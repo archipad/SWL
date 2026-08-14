@@ -10,13 +10,14 @@ dans le livret de règles papier.
 
 ## Ce que ça fait
 
-1. **Import de liste** — collez l'export texte de votre liste (par ex. la
-   vue texte de [Tabletop Admiral](https://tabletopadmiral.com/legion/)) : le
-   parseur reconnaît les sections (Commandant, Corps, Forces Spéciales…), les
-   unités et améliorations au format `Nom (points)`, avec ou sans puce. Le
-   format exact varie selon les sites de liste — tout ce que le parseur ne
-   reconnaît pas reste visible en bas de page plutôt que d'être perdu
-   silencieusement, pour que vous puissiez vérifier.
+1. **Import de liste** — collez l'export de votre liste depuis
+   [Tabletop Admiral](https://tabletopadmiral.com/legion/) : le format
+   **JSON** (recommandé — noms de cartes exacts, faction, points, cartes
+   Commandement) est détecté et parsé nativement (`lib/parseListJson.ts`).
+   L'export **texte** reste aussi accepté via un parseur tolérant qui
+   reconnaît les sections (Commandant, Corps, Forces Spéciales…) et les
+   cartes au format `Nom (points)` — tout ce qu'il ne reconnaît pas reste
+   visible plutôt que d'être perdu silencieusement.
 2. **Mots-clés par carte** — sur chaque unité/amélioration de la liste
    importée, ajoutez les mots-clés qu'elle porte (ex. *Tireur d'élite 2*) via
    le bouton **+ mot-clé**. C'est un tag manuel (une seule fois par carte, en
@@ -58,8 +59,10 @@ node scripts/generate-icons.mjs
 
 ```
 src/
-  data/keywords.ts        glossaire de départ (mots-clés + définitions)
-  lib/parseList.ts        parseur de liste texte -> unités/améliorations
+  data/keywords.ts        glossaire officiel (187 mots-clés + définitions)
+  lib/importList.ts       point d'entrée import : détecte JSON vs texte
+  lib/parseListJson.ts    parseur JSON Tabletop Admiral -> unités/améliorations
+  lib/parseList.ts        parseur de liste texte (fallback) -> unités/améliorations
   lib/glossary.ts         calcule le glossaire d'une liste importée
   lib/useKeywordLibrary.ts état persisté des mots-clés (localStorage)
   lib/useCardTags.ts      état persisté carte -> mots-clés (localStorage)

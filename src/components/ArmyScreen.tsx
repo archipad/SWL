@@ -27,11 +27,19 @@ export function ArmyScreen({
     <div className="army-screen">
       <div className="no-print army-toolbar">
         <div>
-          {list.faction && <p className="army-faction">{list.faction}</p>}
+          {list.listName && <p className="army-faction">{list.listName}</p>}
+          {list.faction && <p className="army-points">{list.faction}</p>}
           {(list.totalPoints !== undefined || list.pointsLimit !== undefined) && (
             <p className="army-points">
               {list.totalPoints ?? '?'}
               {list.pointsLimit !== undefined ? ` / ${list.pointsLimit}` : ''} points
+            </p>
+          )}
+          {(list.commandCards?.length || list.contingencies?.length || list.battleForce) && (
+            <p className="army-points">
+              {list.battleForce ? `Force de combat : ${list.battleForce}. ` : ''}
+              {list.commandCards?.length ? `Commandement : ${list.commandCards.join(', ')}. ` : ''}
+              {list.contingencies?.length ? `Contingences : ${list.contingencies.join(', ')}.` : ''}
             </p>
           )}
         </div>

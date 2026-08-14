@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { ImportScreen } from './components/ImportScreen';
 import { ArmyScreen } from './components/ArmyScreen';
 import { LibraryScreen } from './components/LibraryScreen';
-import { parseArmyListText } from './lib/parseList';
+import { importArmyList } from './lib/importList';
 import { usePersistentState } from './lib/storage';
 import { useKeywordLibrary } from './lib/useKeywordLibrary';
 import { useCardTags } from './lib/useCardTags';
@@ -16,7 +16,7 @@ export default function App() {
   const { keywords, upsertKeyword, removeKeyword, resetToDefaults } = useKeywordLibrary();
   const { library: tagLibrary, getTags, addTag, removeTag } = useCardTags();
 
-  const handleParse = useCallback((text: string) => setList(parseArmyListText(text)), [setList]);
+  const handleParse = useCallback((text: string) => setList(importArmyList(text)), [setList]);
   const handleAddTag = useCallback(
     (cardName: string, keywordId: string, value?: number) => addTag(cardName, { keywordId, value }),
     [addTag],

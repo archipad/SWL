@@ -21,6 +21,11 @@ export interface ParsedList {
   units: ParsedUnit[];
   /** Lignes du texte source que le parseur n'a pas su classer, pour transparence */
   unparsedLines: string[];
+  /** Métadonnées disponibles seulement via un import JSON (ex. Tabletop Admiral) */
+  listName?: string;
+  commandCards?: string[];
+  contingencies?: string[];
+  battleForce?: string | null;
 }
 
 /** Un mot-clé du glossaire (règle générique, indépendante d'une carte précise). */
