@@ -4,10 +4,9 @@ Appli compagnon (PWA) non officielle pour **Star Wars: Legion**, pensée pour
 être utilisée à table pendant une partie afin de limiter les allers-retours
 dans le livret de règles papier.
 
-> Outil personnel, non affilié à Atomic Mass Games / Lucasfilm. Les
-> définitions de mots-clés sont des reformulations pour aide-mémoire, pas une
-> reproduction du texte officiel des cartes ou du livret — en cas de doute
-> (et systématiquement en tournoi), vérifiez la carte ou le livret.
+> Outil personnel, non affilié à Atomic Mass Games / Lucasfilm. Le glossaire
+> des mots-clés reprend le texte du livret de règles officiel (fourni par
+> l'utilisateur) pour un usage personnel entre joueurs, pas pour redistribution.
 
 ## Ce que ça fait
 
@@ -69,11 +68,13 @@ src/
 
 ## Limites connues / pistes d'évolution
 
-- Le glossaire de mots-clés est un point de départ volontairement modeste :
-  plutôt que d'inventer une base de données précise "carte → mots-clés" pour
-  les ~300 cartes du jeu (avec un risque d'erreur difficile à vérifier hors
-  ligne), l'appli mise sur un tag manuel une fois par carte, qui se retient
-  ensuite. À enrichir au fil des parties.
+- Le glossaire (187 mots-clés : unité, arme, cartes Amélioration/Commandement)
+  couvre les définitions génériques des mots-clés. Il n'y a en revanche pas de
+  base de données "carte précise → mots-clés qu'elle porte" pour les ~300
+  cartes du jeu : plutôt que d'inventer ces associations avec un risque
+  d'erreur difficile à vérifier hors ligne, l'appli mise sur un tag manuel une
+  fois par carte (en lisant la vraie carte), qui se retient ensuite. À
+  enrichir au fil des parties.
 - Le parseur d'import est tolérant mais n'a pas pu être calé sur un export
   réel de Tabletop Admiral au moment de l'écriture (site injoignable depuis
   cet environnement) — si un export ne se découpe pas correctement, envoyez

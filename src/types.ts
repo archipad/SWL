@@ -29,7 +29,8 @@ export interface KeywordDef {
   name: string;
   /** true si le mot-clé porte une valeur numérique sur les cartes, ex. "Tireur d'élite X" */
   hasValue: boolean;
-  category: 'attaque' | 'défense' | 'mouvement' | 'commandement' | 'autre';
+  /** Reprend les 3 sections du glossaire officiel, + "autre" pour vos ajouts libres. */
+  category: 'unité' | 'arme' | 'carte' | 'autre';
   definition: string;
   /** true pour les mots-clés ajoutés/édités par l'utilisateur (non fournis par défaut) */
   custom?: boolean;

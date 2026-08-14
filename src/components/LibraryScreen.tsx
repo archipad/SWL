@@ -12,10 +12,9 @@ interface Props {
 }
 
 const CATEGORY_LABELS: Record<KeywordDef['category'], string> = {
-  attaque: 'Attaque',
-  défense: 'Défense',
-  mouvement: 'Mouvement',
-  commandement: 'Commandement',
+  unité: "Mots-clés d'unité",
+  arme: "Mots-clés d'armes",
+  carte: 'Mots-clés de cartes Amélioration et Commandement',
   autre: 'Autre',
 };
 
@@ -73,6 +72,11 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
     .filter((k) => k.name.toLowerCase().includes(filter.toLowerCase()))
     .sort((a, b) => a.name.localeCompare(b.name, 'fr'));
 
+  const categoryOrder: KeywordDef['category'][] = ['unité', 'arme', 'carte', 'autre'];
+  const grouped = categoryOrder
+    .map((cat) => ({ cat, items: filtered.filter((k) => k.category === cat) }))
+    .filter((g) => g.items.length > 0);
+
   const cardEntries = Object.entries(tagLibrary).filter(([, tags]) => tags.length > 0);
 
   return (
@@ -96,27 +100,31 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
         />
       )}
 
-      <ul className="keyword-list">
-        {filtered.map((k) => (
-          <li key={k.id} className="keyword-list-item">
-            {editingId === k.id ? (
-              <KeywordEditor kw={k} onSave={(kw) => { onUpsert(kw); setEditingId(null); }} onCancel={() => setEditingId(null)} />
-            ) : (
-              <>
-                <div>
-                  <strong>{k.name}</strong>
-                  <span className="keyword-category"> · {CATEGORY_LABELS[k.category]}</span>
-                  <p>{k.definition}</p>
-                </div>
-                <div className="keyword-list-actions">
-                  <button type="button" className="btn btn-ghost" onClick={() => setEditingId(k.id)}>Modifier</button>
-                  <button type="button" className="btn btn-ghost btn-danger" onClick={() => onRemove(k.id)}>Supprimer</button>
-                </div>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+      {grouped.map(({ cat, items }) => (
+        <div key={cat} className="keyword-group">
+          <h3>{CATEGORY_LABELS[cat]} <span className="keyword-count">({items.length})</span></h3>
+          <ul className="keyword-list">
+            {items.map((k) => (
+              <li key={k.id} className="keyword-list-item">
+                {editingId === k.id ? (
+                  <KeywordEditor kw={k} onSave={(kw) => { onUpsert(kw); setEditingId(null); }} onCancel={() => setEditingId(null)} />
+                ) : (
+                  <>
+                    <div>
+                      <strong>{k.name}</strong>
+                      <p>{k.definition}</p>
+                    </div>
+                    <div className="keyword-list-actions">
+                      <button type="button" className="btn btn-ghost" onClick={() => setEditingId(k.id)}>Modifier</button>
+                      <button type="button" className="btn btn-ghost btn-danger" onClick={() => onRemove(k.id)}>Supprimer</button>
+                    </div>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
 
       {cardEntries.length > 0 && (
         <>
