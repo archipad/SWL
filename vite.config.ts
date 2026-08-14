@@ -2,8 +2,14 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
+// Served as a GitHub Pages *project* site (https://<owner>.github.io/SWL/),
+// so every asset needs this subpath prefix. Override with BASE_PATH if the
+// deployment target ever changes (custom domain, org/user site, etc.).
+const base = process.env.BASE_PATH ?? '/SWL/'
+
 // https://vite.dev/config/
 export default defineConfig({
+  base,
   plugins: [
     react(),
     VitePWA({
@@ -18,8 +24,8 @@ export default defineConfig({
         background_color: '#12141c',
         display: 'standalone',
         orientation: 'portrait',
-        start_url: '/',
-        scope: '/',
+        start_url: base,
+        scope: base,
         icons: [
           { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },
