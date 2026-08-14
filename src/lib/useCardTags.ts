@@ -1,12 +1,16 @@
 import { useCallback } from 'react';
 import { usePersistentState } from './storage';
 import { normalizeName } from './normalize';
+import { SEED_CARD_TAGS } from '../data/cardTags';
 import type { CardKeywordTag, CardTagLibrary } from '../types';
 
 const STORAGE_KEY = 'swl.card-tags.v1';
 
 export function useCardTags() {
-  const [library, setLibrary] = usePersistentState<CardTagLibrary>(STORAGE_KEY, {});
+  // SEED_CARD_TAGS ne sert que de valeur de départ : dès qu'un appareil a
+  // sauvegardé quoi que ce soit (même après suppression totale), ses propres
+  // données priment et ne sont jamais écrasées par l'amorce.
+  const [library, setLibrary] = usePersistentState<CardTagLibrary>(STORAGE_KEY, SEED_CARD_TAGS);
 
   const getTags = useCallback(
     (cardName: string): CardKeywordTag[] => library[normalizeName(cardName)] ?? [],

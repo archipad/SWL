@@ -207,4 +207,30 @@ const CARD_KEYWORDS: KeywordDef[] = [
   { id: 'traiter-x', name: 'Traiter X : Capacité Y', hasValue: true, category: 'carte', definition: "Lorsqu'une unité utilise l'action de carte Traiter X : Capacité Y, choisissez une unité de soldats non-droïdes alliée à 1 et en LdV et placez un pion Blessure sur la carte dotée du mot-clé Traiter X : Capacité Y. Retirez au total jusqu'à X pions Blessure et/ou Poison de l'unité choisie ou restaurez jusqu'à X figurines dans cette unité. Cette capacité ne peut pas être utilisée si la carte dotée du mot-clé Traiter X : Capacité Y possède sur elle un nombre de pions Blessure supérieur ou égal à Y. Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Traiter X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources." },
 ];
 
-export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS];
+/**
+ * Mots-clés repérés sur de vraies cartes Unité (PDF fourni par l'utilisateur)
+ * mais absents du texte de glossaire transmis initialement — soit une
+ * extension récente du jeu, soit un oubli lors du collage d'origine. Le nom
+ * anglais d'origine est gardé entre parenthèses pour pouvoir les retrouver
+ * facilement sur les cartes en attendant une vraie définition.
+ */
+const STUB_KEYWORDS: KeywordDef[] = [
+  { id: 'compel', name: 'Contraindre : Type (Compel)', hasValue: false, category: 'unité', custom: true,
+    definition: "Mot-clé repéré sur une carte (ex. Dark Vador) mais absent du glossaire transmis — définition à compléter avec le texte exact de la carte." },
+  { id: 'hold-the-line', name: 'Tenir la Ligne (Hold the Line)', hasValue: false, category: 'unité', custom: true,
+    definition: "Mot-clé repéré sur une carte (Stormtrooper Riot Squad) mais absent du glossaire transmis — définition à compléter." },
+  { id: 'stable', name: 'Stable (Steady)', hasValue: false, category: 'unité', custom: true,
+    definition: "Mot-clé repéré sur une carte (Snowtroopers) mais absent du glossaire transmis — définition à compléter." },
+  { id: 'ready-x', name: 'Prêt X (Ready)', hasValue: true, category: 'unité', custom: true,
+    definition: "Mot-clé repéré sur une carte (Imperial Death Troopers) mais absent du glossaire transmis — définition à compléter." },
+  { id: 'low-profile', name: 'Profil Réduit (Low Profile)', hasValue: false, category: 'unité', custom: true,
+    definition: "Mot-clé repéré sur une carte (Scout Troopers) mais absent du glossaire transmis — définition à compléter." },
+  { id: 'armure-x', name: 'Armure X (Armor)', hasValue: true, category: 'unité', custom: true,
+    definition: "Référencé par les mots-clés Impact X et Primitif dans le glossaire transmis, mais jamais défini lui-même — définition à compléter." },
+  { id: 'arsenal-x', name: 'Arsenal X', hasValue: true, category: 'unité', custom: true,
+    definition: "Référencé par le mot-clé Barrage dans le glossaire transmis, mais jamais défini lui-même — définition à compléter." },
+  { id: 'repositionnement', name: 'Repositionnement (Reposition)', hasValue: false, category: 'unité', custom: true,
+    definition: "Mot-clé repéré sur plusieurs cartes (AT-ST, Dewback Rider, DF-90 Mortar Trooper) mais absent du glossaire transmis — définition à compléter." },
+];
+
+export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS, ...STUB_KEYWORDS];
