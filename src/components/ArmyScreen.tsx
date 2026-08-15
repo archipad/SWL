@@ -102,7 +102,8 @@ export function ArmyScreen({
         </p>
         <p className="icon-legend">
           <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Succès ·{' '}
-          <strong>◆</strong> Adrénaline · <strong>①②③</strong> portée/distance
+          <strong>◆</strong> Adrénaline (attaque) · <strong>◇</strong> Adrénaline (défense) ·{' '}
+          <strong>①②③</strong> portée/distance
         </p>
         <GlossarySection list={list} tagLibrary={tagLibrary} keywords={keywords} />
       </section>

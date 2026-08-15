@@ -109,7 +109,8 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
       </p>
       <p className="icon-legend">
         <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Succès ·{' '}
-        <strong>◆</strong> Adrénaline · <strong>①②③</strong> portée/distance
+        <strong>◆</strong> Adrénaline (attaque) · <strong>◇</strong> Adrénaline (défense) ·{' '}
+        <strong>①②③</strong> portée/distance
       </p>
       <div className="library-toolbar">
         <input placeholder="Filtrer…" value={filter} onChange={(e) => setFilter(e.target.value)} />
