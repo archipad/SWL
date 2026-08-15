@@ -142,6 +142,22 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .chip-remove { background: none; border: none; color: inherit; cursor: pointer; font-size: 0.9rem; line-height: 1; padding: 0; opacity: 0.6; }
 .chip-remove:hover { opacity: 1; }
 
+.card-row-definitions {
+  margin-top: 0.5rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.card-row-definitions-group { display: flex; flex-direction: column; gap: 0.15rem; }
+.card-row-definitions-heading {
+  font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.card-row-definition { margin: 0; font-size: 0.8rem; color: var(--text-dim); }
+.card-row-definition strong { color: var(--text); font-weight: 600; }
+
 .tag-editor {
   margin-top: 0.5rem;
   padding: 0.6rem;
