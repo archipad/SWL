@@ -177,10 +177,16 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .unparsed-lines { margin-top: 1rem; color: var(--text-dim); font-size: 0.8rem; }
 .unparsed-lines pre { white-space: pre-wrap; background: var(--bg-input); padding: 0.5rem; border-radius: 8px; }
 
-/* --- Glossary (also used in print) --- */
-.glossary { display: grid; gap: 0.75rem; }
+/* --- Glossary (visible on screen and used in print) --- */
+.glossary-section { margin-top: 1.75rem; }
+.glossary-impact-group { margin-bottom: 1.25rem; }
+.glossary-impact-heading {
+  font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--accent); margin: 0 0 0.5rem;
+}
+.glossary { display: grid; gap: 0.6rem; }
 .glossary-entry { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.8rem; }
-.glossary-entry h3 { margin: 0 0 0.25rem; color: var(--text); font-size: 0.95rem; }
+.glossary-entry h4 { margin: 0 0 0.25rem; color: var(--text); font-size: 0.95rem; }
 .glossary-entry p { margin: 0 0 0.3rem; font-size: 0.88rem; }
 .glossary-cards { color: var(--text-dim); font-size: 0.78rem; }
 
@@ -196,23 +202,29 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .keyword-group { margin-bottom: 1.25rem; }
 .keyword-group h3 { position: sticky; top: 0; background: var(--bg); padding: 0.4rem 0; margin: 0 0 0.5rem; }
 .keyword-count { color: var(--text-dim); font-weight: 400; }
+.group-by-label { color: var(--text-dim); font-size: 0.85rem; align-self: center; }
+.impact-badge {
+  display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.5rem; border-radius: 999px;
+  font-size: 0.7rem; vertical-align: middle; border: 1px solid var(--border);
+}
+.impact-attaque { color: #e0685e; border-color: #e0685e; }
+.impact-défense { color: #6db6e8; border-color: #6db6e8; }
+.impact-autre { color: var(--text-dim); }
 .keyword-list-actions { display: flex; gap: 0.4rem; }
 .keyword-editor { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; }
 .card-tag-list li { flex-direction: column; align-items: stretch; }
 
 /* --- Print --- */
-.printable { display: none; }
-
 @media print {
   body { background: white; color: black; }
   .no-print { display: none !important; }
-  .printable { display: block; }
+  .glossary-impact-heading { color: black; border-bottom: 2px solid black; padding-bottom: 0.15rem; }
   .glossary { display: block; column-count: 2; column-gap: 1.5rem; }
   .glossary-entry {
     background: none; border: none; border-bottom: 1px solid #ccc; border-radius: 0;
     padding: 0.4rem 0; break-inside: avoid;
   }
-  .glossary-entry h3 { color: black; }
+  .glossary-entry h4 { color: black; }
   .glossary-entry p { color: black; }
   .glossary-cards { color: #444; }
   .print-title { font-size: 1.1rem; }

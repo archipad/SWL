@@ -36,6 +36,13 @@ export interface KeywordDef {
   hasValue: boolean;
   /** Reprend les 3 sections du glossaire officiel, + "autre" pour vos ajouts libres. */
   category: 'unité' | 'arme' | 'carte' | 'autre';
+  /**
+   * Impact pour la carte qui porte ce mot-clé : affecte-t-il sa propre
+   * attaque, sa propre défense, ou autre chose (mouvement, commandement,
+   * construction d'armée...) ? "autre" couvre aussi les mots-clés qui
+   * affectent les deux à parts égales (ex. Duelliste).
+   */
+  impact: 'attaque' | 'défense' | 'autre';
   definition: string;
   /** true pour les mots-clés ajoutés/édités par l'utilisateur (non fournis par défaut) */
   custom?: boolean;

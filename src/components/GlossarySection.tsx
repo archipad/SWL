@@ -8,6 +8,12 @@ interface Props {
   keywords: KeywordDef[];
 }
 
+const IMPACT_GROUPS: { id: KeywordDef['impact']; label: string }[] = [
+  { id: 'attaque', label: 'Attaque' },
+  { id: 'défense', label: 'Défense' },
+  { id: 'autre', label: 'Autre' },
+];
+
 export function GlossarySection({ list, tagLibrary, keywords }: Props) {
   const entries = useMemo(() => buildGlossary(list, tagLibrary, keywords), [list, tagLibrary, keywords]);
 
@@ -23,13 +29,22 @@ export function GlossarySection({ list, tagLibrary, keywords }: Props) {
 
   return (
     <div className="glossary">
-      {entries.map((e) => (
-        <div key={e.keyword.id} className="glossary-entry">
-          <h3>{e.keyword.name}</h3>
-          <p>{e.keyword.definition}</p>
-          <p className="glossary-cards">Sur : {e.cards.join(', ')}</p>
-        </div>
-      ))}
+      {IMPACT_GROUPS.map(({ id, label }) => {
+        const items = entries.filter((e) => e.keyword.impact === id);
+        if (items.length === 0) return null;
+        return (
+          <div key={id} className="glossary-impact-group">
+            <h3 className="glossary-impact-heading">{label}</h3>
+            {items.map((e) => (
+              <div key={e.keyword.id} className="glossary-entry">
+                <h4>{e.keyword.name}</h4>
+                <p>{e.keyword.definition}</p>
+                <p className="glossary-cards">Sur : {e.cards.join(', ')}</p>
+              </div>
+            ))}
+          </div>
+        );
+      })}
     </div>
   );
 }

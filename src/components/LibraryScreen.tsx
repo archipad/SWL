@@ -18,10 +18,17 @@ const CATEGORY_LABELS: Record<KeywordDef['category'], string> = {
   autre: 'Autre',
 };
 
+const IMPACT_LABELS: Record<KeywordDef['impact'], string> = {
+  attaque: 'Attaque',
+  défense: 'Défense',
+  autre: 'Autre',
+};
+
 function KeywordEditor({ kw, onSave, onCancel }: { kw: KeywordDef; onSave: (kw: KeywordDef) => void; onCancel: () => void }) {
   const [name, setName] = useState(kw.name);
   const [definition, setDefinition] = useState(kw.definition);
   const [category, setCategory] = useState(kw.category);
+  const [impact, setImpact] = useState(kw.impact);
   const [hasValue, setHasValue] = useState(kw.hasValue);
 
   return (
@@ -29,7 +36,7 @@ function KeywordEditor({ kw, onSave, onCancel }: { kw: KeywordDef; onSave: (kw: 
       className="keyword-editor"
       onSubmit={(e) => {
         e.preventDefault();
-        onSave({ ...kw, name: name.trim() || kw.name, definition: definition.trim(), category, hasValue });
+        onSave({ ...kw, name: name.trim() || kw.name, definition: definition.trim(), category, impact, hasValue });
       }}
     >
       <label className="field">
@@ -42,9 +49,17 @@ function KeywordEditor({ kw, onSave, onCancel }: { kw: KeywordDef; onSave: (kw: 
       </label>
       <div className="field-row">
         <label className="field">
-          Catégorie
+          Section du livret
           <select value={category} onChange={(e) => setCategory(e.target.value as KeywordDef['category'])}>
             {Object.entries(CATEGORY_LABELS).map(([id, label]) => (
+              <option key={id} value={id}>{label}</option>
+            ))}
+          </select>
+        </label>
+        <label className="field">
+          Impact
+          <select value={impact} onChange={(e) => setImpact(e.target.value as KeywordDef['impact'])}>
+            {Object.entries(IMPACT_LABELS).map(([id, label]) => (
               <option key={id} value={id}>{label}</option>
             ))}
           </select>
@@ -66,16 +81,22 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
   const [editingId, setEditingId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
   const [filter, setFilter] = useState('');
+  const [groupBy, setGroupBy] = useState<'impact' | 'category'>('impact');
 
   const byId = new Map(keywords.map((k) => [k.id, k]));
   const filtered = keywords
     .filter((k) => k.name.toLowerCase().includes(filter.toLowerCase()))
     .sort((a, b) => a.name.localeCompare(b.name, 'fr'));
 
-  const categoryOrder: KeywordDef['category'][] = ['unité', 'arme', 'carte', 'autre'];
-  const grouped = categoryOrder
-    .map((cat) => ({ cat, items: filtered.filter((k) => k.category === cat) }))
-    .filter((g) => g.items.length > 0);
+  const groups =
+    groupBy === 'impact'
+      ? (['attaque', 'défense', 'autre'] as const).map((id) => ({
+          id, label: IMPACT_LABELS[id], items: filtered.filter((k) => k.impact === id),
+        }))
+      : (['unité', 'arme', 'carte', 'autre'] as const).map((id) => ({
+          id, label: CATEGORY_LABELS[id], items: filtered.filter((k) => k.category === id),
+        }));
+  const grouped = groups.filter((g) => g.items.length > 0);
 
   const cardEntries = Object.entries(tagLibrary).filter(([, tags]) => tags.length > 0);
 
@@ -91,18 +112,27 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
         <button type="button" className="btn btn-ghost" onClick={() => setCreating(true)}>+ Ajouter</button>
         <button type="button" className="btn btn-ghost" onClick={onResetDefaults}>Réinitialiser les valeurs par défaut</button>
       </div>
+      <div className="library-toolbar">
+        <span className="group-by-label">Grouper par :</span>
+        <button type="button" className={groupBy === 'impact' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setGroupBy('impact')}>
+          Impact (attaque/défense)
+        </button>
+        <button type="button" className={groupBy === 'category' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setGroupBy('category')}>
+          Section du livret
+        </button>
+      </div>
 
       {creating && (
         <KeywordEditor
-          kw={{ id: '', name: '', hasValue: false, category: 'autre', definition: '', custom: true }}
+          kw={{ id: '', name: '', hasValue: false, category: 'autre', impact: 'autre', definition: '', custom: true }}
           onSave={(kw) => { onUpsert({ ...kw, id: slugifyKeywordId(kw.name) }); setCreating(false); }}
           onCancel={() => setCreating(false)}
         />
       )}
 
-      {grouped.map(({ cat, items }) => (
-        <div key={cat} className="keyword-group">
-          <h3>{CATEGORY_LABELS[cat]} <span className="keyword-count">({items.length})</span></h3>
+      {grouped.map(({ id, label, items }) => (
+        <div key={id} className="keyword-group">
+          <h3>{label} <span className="keyword-count">({items.length})</span></h3>
           <ul className="keyword-list">
             {items.map((k) => (
               <li key={k.id} className="keyword-list-item">
@@ -112,6 +142,7 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
                   <>
                     <div>
                       <strong>{k.name}</strong>
+                      {groupBy === 'category' && <span className={`impact-badge impact-${k.impact}`}>{IMPACT_LABELS[k.impact]}</span>}
                       <p>{k.definition}</p>
                     </div>
                     <div className="keyword-list-actions">

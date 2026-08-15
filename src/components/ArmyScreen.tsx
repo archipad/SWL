@@ -91,11 +91,15 @@ export function ArmyScreen({
         )}
       </section>
 
-      <section className="printable">
+      <section className="glossary-section">
         <h2 className="print-title">
-          Glossaire — {list.faction ?? 'Liste'}
+          Glossaire — {list.listName ?? list.faction ?? 'Liste'}
           {list.totalPoints !== undefined ? ` (${list.totalPoints} pts)` : ''}
         </h2>
+        <p className="import-note no-print">
+          Classé par impact : ce que ce mot-clé change pour la carte qui le porte, quand elle
+          attaque, quand elle défend, ou autre chose (mouvement, commandement...).
+        </p>
         <GlossarySection list={list} tagLibrary={tagLibrary} keywords={keywords} />
       </section>
     </div>

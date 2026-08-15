@@ -18,6 +18,7 @@ export function KeywordTagEditor({ keywords, existingIds, onAdd, onCreateKeyword
   const [newName, setNewName] = useState('');
   const [newDef, setNewDef] = useState('');
   const [newHasValue, setNewHasValue] = useState(false);
+  const [newImpact, setNewImpact] = useState<KeywordDef['impact']>('autre');
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -37,7 +38,7 @@ export function KeywordTagEditor({ keywords, existingIds, onAdd, onCreateKeyword
           if (!newName.trim()) return;
           const id = slugifyKeywordId(newName);
           onCreateKeyword({
-            id, name: newName.trim(), hasValue: newHasValue,
+            id, name: newName.trim(), hasValue: newHasValue, impact: newImpact,
             category: 'autre', definition: newDef.trim() || '(définition à compléter)', custom: true,
           });
           onAdd(id, newHasValue ? Number(value) || undefined : undefined);
@@ -51,6 +52,14 @@ export function KeywordTagEditor({ keywords, existingIds, onAdd, onCreateKeyword
         <label className="field">
           Définition
           <textarea value={newDef} onChange={(e) => setNewDef(e.target.value)} rows={2} placeholder="Explication courte pour la table de jeu" />
+        </label>
+        <label className="field">
+          Impact
+          <select value={newImpact} onChange={(e) => setNewImpact(e.target.value as KeywordDef['impact'])}>
+            <option value="attaque">Attaque</option>
+            <option value="défense">Défense</option>
+            <option value="autre">Autre</option>
+          </select>
         </label>
         <label className="field field-inline">
           <input type="checkbox" checked={newHasValue} onChange={(e) => setNewHasValue(e.target.checked)} />
