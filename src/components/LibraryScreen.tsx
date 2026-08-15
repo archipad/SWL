@@ -107,6 +107,10 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
         Corrigez ou complétez librement ces définitions — vos modifications sont sauvegardées sur
         cet appareil. Ce ne sont pas des extraits du livret officiel : vérifiez la carte en cas de doute.
       </p>
+      <p className="icon-legend">
+        <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Succès ·{' '}
+        <strong>◆</strong> Adrénaline · <strong>①②③</strong> portée/distance
+      </p>
       <div className="library-toolbar">
         <input placeholder="Filtrer…" value={filter} onChange={(e) => setFilter(e.target.value)} />
         <button type="button" className="btn btn-ghost" onClick={() => setCreating(true)}>+ Ajouter</button>

@@ -100,6 +100,10 @@ export function ArmyScreen({
           Classé par impact : ce que ce mot-clé change pour la carte qui le porte, quand elle
           attaque, quand elle défend, ou autre chose (mouvement, commandement...).
         </p>
+        <p className="icon-legend">
+          <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Succès ·{' '}
+          <strong>◆</strong> Adrénaline · <strong>①②③</strong> portée/distance
+        </p>
         <GlossarySection list={list} tagLibrary={tagLibrary} keywords={keywords} />
       </section>
     </div>
