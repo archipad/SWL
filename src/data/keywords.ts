@@ -208,29 +208,21 @@ const CARD_KEYWORDS: KeywordDef[] = [
 ];
 
 /**
- * Mots-clés repérés sur de vraies cartes Unité (PDF fourni par l'utilisateur)
- * mais absents du texte de glossaire transmis initialement — soit une
- * extension récente du jeu, soit un oubli lors du collage d'origine. Le nom
- * anglais d'origine est gardé entre parenthèses pour pouvoir les retrouver
- * facilement sur les cartes en attendant une vraie définition.
+ * Mots-clés repérés sur de vraies cartes Unité (PDF EN puis FR fournis par
+ * l'utilisateur) mais absents du texte de glossaire transmis initialement.
+ * Recoupement EN/FR : 5 des 8 mots-clés initialement "manquants" existaient
+ * en fait déjà dans le glossaire sous leur vrai nom français (Hold the Line
+ * = Tenir Bon, Steady = Aguerri, Ready X = Opérationnel X, Low Profile =
+ * Profil Bas, Reposition = Redéploiement) — corrigé dans data/cardTags.ts.
+ * Il ne reste que ces 3 authentiques manques.
  */
 const STUB_KEYWORDS: KeywordDef[] = [
   { id: 'compel', name: 'Contraindre : Type (Compel)', hasValue: false, category: 'unité', custom: true,
-    definition: "Mot-clé repéré sur une carte (ex. Dark Vador) mais absent du glossaire transmis — définition à compléter avec le texte exact de la carte." },
-  { id: 'hold-the-line', name: 'Tenir la Ligne (Hold the Line)', hasValue: false, category: 'unité', custom: true,
-    definition: "Mot-clé repéré sur une carte (Stormtrooper Riot Squad) mais absent du glossaire transmis — définition à compléter." },
-  { id: 'stable', name: 'Stable (Steady)', hasValue: false, category: 'unité', custom: true,
-    definition: "Mot-clé repéré sur une carte (Snowtroopers) mais absent du glossaire transmis — définition à compléter." },
-  { id: 'ready-x', name: 'Prêt X (Ready)', hasValue: true, category: 'unité', custom: true,
-    definition: "Mot-clé repéré sur une carte (Imperial Death Troopers) mais absent du glossaire transmis — définition à compléter." },
-  { id: 'low-profile', name: 'Profil Réduit (Low Profile)', hasValue: false, category: 'unité', custom: true,
-    definition: "Mot-clé repéré sur une carte (Scout Troopers) mais absent du glossaire transmis — définition à compléter." },
+    definition: "Mot-clé repéré sur une carte (Dark Vador, Seigneur Noir des Sith : « Contraindre : Soldat ») mais absent du glossaire transmis — définition à compléter avec le texte exact de la carte." },
   { id: 'armure-x', name: 'Armure X (Armor)', hasValue: true, category: 'unité', custom: true,
-    definition: "Référencé par les mots-clés Impact X et Primitif dans le glossaire transmis, mais jamais défini lui-même — définition à compléter." },
+    definition: "Référencé par les mots-clés Impact X et Primitif dans le glossaire transmis, et présent sur de nombreuses cartes (AT-ST, Soldat Monté sur Dewback, Range Troopers...), mais jamais défini lui-même — définition à compléter." },
   { id: 'arsenal-x', name: 'Arsenal X', hasValue: true, category: 'unité', custom: true,
-    definition: "Référencé par le mot-clé Barrage dans le glossaire transmis, mais jamais défini lui-même — définition à compléter." },
-  { id: 'repositionnement', name: 'Repositionnement (Reposition)', hasValue: false, category: 'unité', custom: true,
-    definition: "Mot-clé repéré sur plusieurs cartes (AT-ST, Dewback Rider, DF-90 Mortar Trooper) mais absent du glossaire transmis — définition à compléter." },
+    definition: "Référencé par le mot-clé Barrage dans le glossaire transmis, et présent sur plusieurs véhicules (AT-ST, TR-TT...), mais jamais défini lui-même — définition à compléter." },
 ];
 
 export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS, ...STUB_KEYWORDS];
