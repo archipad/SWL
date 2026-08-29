@@ -259,6 +259,77 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'impact-x', value: 2 },
     { keywordId: 'perforant-x', value: 1 },
   ],
+
+  // --- Améliorations Empire (armes de rechange, cartes d'équipage/état-major) ---
+  // Depuis le PDF Galactic Empire Upgrades (FR). Beaucoup de cartes de ce PDF
+  // (meneurs d'escouade +5 figurines, techniciens, pilotes, personnages
+  // nommés secondaires...) ne portent aucun mot-clé standard listé ici — soit
+  // parce que leur effet est une capacité propre à la carte (pas un des 200
+  // mots-clés du glossaire), soit parce que le nom anglais exact restait trop
+  // incertain pour être une clé fiable. Seules les améliorations où le
+  // mot-clé ET la traduction anglaise sont sûrs sont incluses.
+  'DLT-19 Stormtrooper': [
+    { keywordId: 'impact-x', value: 1 },
+  ],
+  'T-21 Stormtrooper': [
+    { keywordId: 'critique-x', value: 2 },
+  ],
+  'HH-12 Stormtrooper': [
+    { keywordId: 'encombrant' },
+    { keywordId: 'impact-x', value: 3 },
+  ],
+  'Flametrooper': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'souffle' },
+  ],
+  'T-7 Ion Snowtrooper': [
+    { keywordId: 'critique-x', value: 1 },
+    { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'ion-x', value: 1 },
+  ],
+  'KX-Series Security Droids': [
+    { keywordId: 'impact-x', value: 1 },
+  ],
+  'T-21B Shoretrooper': [
+    { keywordId: 'critique-x', value: 1 },
+  ],
+  'DLT-19x Sniper': [
+    { keywordId: 'haute-velocite' },
+    { keywordId: 'perforant-x', value: 1 },
+  ],
+  'Sonic Charge Saboteur': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'suppressif' },
+  ],
+  'DLT-19D Trooper': [
+    { keywordId: 'impact-x', value: 1 },
+  ],
+  'DLT-20A Range Trooper': [
+    { keywordId: 'impact-x', value: 2 },
+  ],
+  'T-21A Range Trooper': [
+    { keywordId: 'suppressif' },
+  ],
+  'FX-9 Medical Droid': [
+    { keywordId: 'non-combattant' },
+  ],
+  'Imperial Officer': [
+    { keywordId: 'chef' },
+    { keywordId: 'inspiration-x', value: 1 },
+  ],
+  '88i Twin Light Blaster': [
+    { keywordId: 'impact-x', value: 1 },
+  ],
+  'DW-3 Concussion Grenade Launcher': [
+    { keywordId: 'deflagration' },
+  ],
+  'The Darksaber': [
+    { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'perforant-x', value: 1 },
+    { keywordId: 'demoraliser-x', value: 1 },
+    { keywordId: 'immunite-perforant-corps-a-corps' },
+  ],
 };
 
 export const SEED_CARD_TAGS: CardTagLibrary = Object.fromEntries(
