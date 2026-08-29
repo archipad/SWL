@@ -2,6 +2,8 @@ import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { buildRoster, resolveUnitKeywords, type PlayerId, type RosterEntry } from '../lib/combat';
 import { KeywordDefinitionList } from './KeywordDefinitionList';
 import { usePersistentState } from '../lib/storage';
+import { CARD_IMAGES } from '../data/cardImages';
+import { normalizeName } from '../lib/normalize';
 
 interface Props {
   listP1: ParsedList | null;
@@ -37,11 +39,20 @@ function Side({
   }
 
   const resolved = resolveUnitKeywords(entry.unit, tagLibrary, keywords);
+  const imageSrc = CARD_IMAGES[normalizeName(entry.unit.name)];
 
   return (
     <div className={`combat-side combat-side-${role === 'Attaquant' ? 'attack' : 'defense'}`}>
       <h3 className="combat-side-role">{role}</h3>
       <p className="combat-side-player">{entry.playerLabel}</p>
+      {imageSrc && (
+        <img
+          className="combat-side-image"
+          src={imageSrc}
+          alt={`Carte ${entry.unit.name}`}
+          loading="lazy"
+        />
+      )}
       <div className="combat-side-head">
         <span className="card-row-name">{entry.unit.name}</span>
         {entry.unit.points !== undefined && <span className="card-row-points">{entry.unit.points}</span>}
