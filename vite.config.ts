@@ -23,7 +23,10 @@ export default defineConfig({
         theme_color: '#12141c',
         background_color: '#12141c',
         display: 'standalone',
-        orientation: 'portrait',
+        // 'any' plutôt que 'portrait' : sur iPad, l'onglet Combat (attaquant/
+        // défenseur côte à côte) profite du mode paysage — un verrouillage
+        // portrait l'aurait empêché une fois l'appli installée en PWA.
+        orientation: 'any',
         start_url: base,
         scope: base,
         icons: [

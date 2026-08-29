@@ -28,6 +28,13 @@ body {
   display: flex;
   flex-direction: column;
 }
+/* iPad en paysage (~1180px) et plus large : la largeur fixe à 880px laisse
+   ~300px inutilisés de chaque côté sur un écran de table. On élargit pour
+   que l'onglet Combat affiche des visuels de carte plus grands, lisibles
+   d'un coup d'œil pendant la partie. */
+@media (min-width: 900px) {
+  .app { max-width: 1180px; }
+}
 
 .app-header {
   display: flex;
@@ -144,6 +151,10 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   .combat-columns { grid-template-columns: 1fr; }
   .combat-vs { justify-self: center; }
 }
+@media (min-width: 900px) {
+  .combat-columns { gap: 1.75rem; }
+  .combat-side { padding: 1.1rem 1.25rem; }
+}
 .combat-vs {
   align-self: center; color: var(--text-dim); font-weight: 700; font-size: 0.85rem;
   padding: 0.4rem; letter-spacing: 0.05em;
@@ -162,6 +173,9 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .combat-side-image {
   display: block; width: 100%; max-height: 260px; object-fit: contain;
   border-radius: 8px; margin: 0 0 0.6rem; background: #000;
+}
+@media (min-width: 900px) {
+  .combat-side-image { max-height: 420px; }
 }
 .combat-side-head { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
 .combat-side-upgrades { color: var(--text-dim); font-size: 0.8rem; margin: 0.3rem 0 0.6rem; }
@@ -239,6 +253,12 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   padding: 0.4rem 0.5rem;
   font-size: 0.85rem;
   font-family: inherit;
+}
+/* Cible tactile confortable (~44px, repère Apple) sur les champs qu'on touche
+   au doigt en jouant — surtout les select attaquant/défenseur du Combat. */
+@media (pointer: coarse) {
+  .field select, .field input { min-height: 2.75rem; }
+  .btn { min-height: 2.75rem; }
 }
 .field-inline { flex-direction: row; align-items: center; gap: 0.4rem; }
 .field-row { display: flex; gap: 0.75rem; align-items: flex-end; }
