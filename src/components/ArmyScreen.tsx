@@ -103,7 +103,7 @@ export function ArmyScreen({
           attaque, quand elle défend, ou autre chose (mouvement, commandement...).
         </p>
         <p className="icon-legend">
-          <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Succès ·{' '}
+          <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Touche ·{' '}
           <strong>◆</strong> Adrénaline (attaque) · <strong>◇</strong> Adrénaline (défense) ·{' '}
           <strong>①②③</strong> portée/distance
         </p>

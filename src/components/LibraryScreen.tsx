@@ -108,7 +108,7 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
         cet appareil. Ce ne sont pas des extraits du livret officiel : vérifiez la carte en cas de doute.
       </p>
       <p className="icon-legend">
-        <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Succès ·{' '}
+        <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Touche ·{' '}
         <strong>◆</strong> Adrénaline (attaque) · <strong>◇</strong> Adrénaline (défense) ·{' '}
         <strong>①②③</strong> portée/distance
       </p>
