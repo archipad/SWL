@@ -493,6 +493,186 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'incognito' },
     { keywordId: 'infiltration' },
   ],
+
+  // --- Améliorations Alliance Rebelle ---
+  // nom EN à vérifier
+  'MPL-57 Ion Trooper': [
+    { keywordId: 'critique-x', value: 1 },
+    { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'ion-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'DLT-20A Trooper': [
+    { keywordId: 'critique-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'SX-21 Trooper': [
+    { keywordId: 'impact-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'MPL-57 Barrage Trooper': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'cycle' },
+  ],
+  // nom EN à vérifier
+  'CM-O/93 Trooper': [
+    { keywordId: 'critique-x', value: 2 },
+  ],
+  // nom EN à vérifier
+  'Proton Charges Saboteur': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'critique-x', value: 2 },
+    { keywordId: 'impact-x', value: 3 },
+  ],
+  // nom EN à vérifier
+  'Dispersion Rifle Trooper': [
+    { keywordId: 'perforant-x', value: 1 },
+  ],
+  // nom EN à vérifier, faible confiance
+  'Shoulder-Mounted Cannon Wookiee': [
+    { keywordId: 'suppressif' },
+  ],
+  // nom EN à vérifier
+  'DH-447 Sniper': [
+    { keywordId: 'haute-velocite' },
+    { keywordId: 'perforant-x', value: 1 },
+  ],
+  // nom EN à vérifier ; Armure 1 conditionnelle (carte retournée en début d'activation)
+  'Combat Shield Wookiee': [
+    { keywordId: 'armure-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Rebel Trooper Squad': [
+    { keywordId: 'indomptable' },
+  ],
+  // nom EN à vérifier
+  'Bowcaster Wookiee': [
+    { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'perforant-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Beskad Duelist': [
+    { keywordId: 'duelliste' },
+  ],
+  'Tristan Wren': [
+    { keywordId: 'letal-x', value: 1 },
+    { keywordId: 'suppressif' },
+  ],
+  'Ursa Wren': [
+    { keywordId: 'chef' },
+    { keywordId: 'intrepide' },
+    { keywordId: 'longue-distance' },
+  ],
+  // nom EN à vérifier
+  'Rebel Officer': [
+    { keywordId: 'chef' },
+    { keywordId: 'inspiration-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Rebel Trooper Captain': [
+    { keywordId: 'chef' },
+  ],
+  // nom EN à vérifier
+  '2-1B Medical Droid': [
+    { keywordId: 'non-combattant' },
+    { keywordId: 'traiter-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Astromech Droid': [
+    { keywordId: 'non-combattant' },
+    { keywordId: 'reparation-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Fleet Trooper Squad': [
+    { keywordId: 'indomptable' },
+  ],
+  // nom EN à vérifier
+  'Rebel Veteran Squad': [
+    { keywordId: 'indomptable' },
+  ],
+  'Shriv Suurgav': [
+    { keywordId: 'commandant-des-operations' },
+  ],
+  // nom EN à vérifier
+  'Gifted Pilot': [
+    { keywordId: 'tireur-delite-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'RPS-6 Trooper': [
+    { keywordId: 'impact-x', value: 2 },
+  ],
+  'Wedge Antilles': [
+    { keywordId: 'commandant-des-operations' },
+  ],
+  // nom EN à vérifier
+  'Outer Rim Speeder Pilot': [
+    { keywordId: 'couvert-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Mo/Dk Magnetic Harpoon': [
+    { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'cable-de-remorquage' },
+  ],
+  // nom EN à vérifier
+  'TL-TT Laser Cannon': [
+    { keywordId: 'impact-x', value: 3 },
+  ],
+  // nom EN à vérifier
+  'TL-TT Flame Projector': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'souffle' },
+  ],
+  // nom EN à vérifier
+  'M-45 Ion Blaster': [
+    { keywordId: 'critique-x', value: 1 },
+    { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'ion-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Mandalorian Combat Shields': [
+    { keywordId: 'bouclier-x', value: 2 },
+  ],
+  // nom EN à vérifier
+  'Back-Mounted Rockets': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'impact-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'AG-2G Quad Laser': [
+    { keywordId: 'impact-x', value: 2 },
+  ],
+  // nom EN à vérifier
+  'Heavy Laser Conversion': [
+    { keywordId: 'critique-x', value: 1 },
+  ],
+  // nom EN à vérifier ; Cassian Andor uniquement
+  'A280 Rifle Configuration': [
+    { keywordId: 'encombrant' },
+    { keywordId: 'haute-velocite' },
+    { keywordId: 'perforant-x', value: 1 },
+  ],
+  // nom EN à vérifier ; Cassian Andor uniquement
+  'A280 Pistol Configuration': [
+    { keywordId: 'longue-distance' },
+    { keywordId: 'perforant-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  "Jyn's SE-14": [
+    { keywordId: 'perforant-x', value: 1 },
+    { keywordId: 'suppressif' },
+  ],
+  // nom EN à vérifier
+  "Sabine's Combat Shield": [
+    { keywordId: 'recharger-x', value: 1 },
+    { keywordId: 'bouclier-x', value: 1 },
+  ],
+  // Carte « Le Sabre Noir » vue aussi dans les Améliorations Empire avec des
+  // mots-clés différents (Impact X/Perforant X/Démoraliser X + Immunité :
+  // perforant au corps-à-corps) — ici pour Sabine Wren : Impact 1, Perforant 1
+  // + l'unité gagne Intrépide et Immunité : perforant au corps-à-corps.
+  // Incohérence non résolue entre les deux PDF sources ; pas ajoutée une
+  // deuxième fois ici pour ne pas écraser/dupliquer la clé existante.
 };
 
 export const SEED_CARD_TAGS: CardTagLibrary = Object.fromEntries(

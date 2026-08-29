@@ -95,12 +95,17 @@ src/
   onglets Armées et Combat — choix assumé pour une appli pensée pour la
   table à deux, pas pour la consultation solo d'une seule liste.
 - Le glossaire (200 mots-clés : unité, arme, cartes Amélioration/Commandement)
-  couvre les définitions génériques des mots-clés. Il n'y a en revanche pas de
-  base de données "carte précise → mots-clés qu'elle porte" pour les ~300
-  cartes du jeu : plutôt que d'inventer ces associations avec un risque
-  d'erreur difficile à vérifier hors ligne, l'appli mise sur un tag manuel une
-  fois par carte (en lisant la vraie carte), qui se retient ensuite. À
-  enrichir au fil des parties.
+  couvre les définitions génériques des mots-clés. Une base "carte précise →
+  mots-clés qu'elle porte" (`src/data/cardTags.ts`) est amorcée avec ~109
+  cartes vérifiées depuis de vraies cartes Empire/Alliance Rebelle (unités et
+  améliorations) fournies par l'utilisateur ; elle est mergée sans écraser vos
+  propres tags, et reste loin d'être exhaustive sur les ~300 cartes du jeu.
+  Certains noms anglais (clé de la base, format Tabletop Admiral) sont encore
+  marqués « à vérifier » en commentaire faute de pouvoir les confirmer contre
+  un export réel — à corriger au fil de l'eau si une carte n'affiche pas ses
+  mots-clés. Pour toute carte non couverte, le tag manuel une fois par carte
+  (en lisant la vraie carte) reste le filet de sécurité, et se retient
+  ensuite. À enrichir au fil des parties.
 - Le parseur d'import est tolérant mais n'a pas pu être calé sur un export
   réel de Tabletop Admiral au moment de l'écriture (site injoignable depuis
   cet environnement) — si un export ne se découpe pas correctement, envoyez
