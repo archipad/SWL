@@ -74,6 +74,8 @@ node scripts/generate-icons.mjs
 ```
 src/
   data/keywords.ts        glossaire officiel (200 mots-clés + définitions)
+  data/cardTags.ts        base carte -> mots-clés vérifiée (108 cartes)
+  data/cardImages.ts      base carte -> visuel (108 cartes, images dans public/cards/)
   lib/importList.ts       point d'entrée import : détecte JSON vs texte
   lib/parseListJson.ts    parseur JSON Tabletop Admiral -> unités/améliorations
   lib/parseList.ts        parseur de liste texte (fallback) -> unités/améliorations
@@ -96,16 +98,21 @@ src/
   table à deux, pas pour la consultation solo d'une seule liste.
 - Le glossaire (200 mots-clés : unité, arme, cartes Amélioration/Commandement)
   couvre les définitions génériques des mots-clés. Une base "carte précise →
-  mots-clés qu'elle porte" (`src/data/cardTags.ts`) est amorcée avec ~109
+  mots-clés qu'elle porte" (`src/data/cardTags.ts`) est amorcée avec 108
   cartes vérifiées depuis de vraies cartes Empire/Alliance Rebelle (unités et
   améliorations) fournies par l'utilisateur ; elle est mergée sans écraser vos
   propres tags, et reste loin d'être exhaustive sur les ~300 cartes du jeu.
-  Certains noms anglais (clé de la base, format Tabletop Admiral) sont encore
-  marqués « à vérifier » en commentaire faute de pouvoir les confirmer contre
-  un export réel — à corriger au fil de l'eau si une carte n'affiche pas ses
-  mots-clés. Pour toute carte non couverte, le tag manuel une fois par carte
-  (en lisant la vraie carte) reste le filet de sécurité, et se retient
-  ensuite. À enrichir au fil des parties.
+  Quelques noms anglais (clé de la base, format Tabletop Admiral) restent
+  marqués « à vérifier » en commentaire faute de source fiable — à corriger
+  au fil de l'eau si une carte n'affiche pas ses mots-clés. Pour toute carte
+  non couverte, le tag manuel une fois par carte (en lisant la vraie carte)
+  reste le filet de sécurité, et se retient ensuite. À enrichir au fil des
+  parties.
+- Onglet Combat : les 108 cartes de `cardTags.ts` ont aussi leur visuel
+  (scan officiel recadré depuis les mêmes PDF, `src/data/cardImages.ts` +
+  `public/cards/`), affiché au-dessus des mots-clés une fois l'attaquant/le
+  défenseur choisi. Comme pour les mots-clés, aucune image pour une carte
+  non couverte ne bloque rien — juste pas de visuel affiché.
 - Le parseur d'import est tolérant mais n'a pas pu être calé sur un export
   réel de Tabletop Admiral au moment de l'écriture (site injoignable depuis
   cet environnement) — si un export ne se découpe pas correctement, envoyez
