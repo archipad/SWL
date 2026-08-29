@@ -51,6 +51,10 @@ function Side({
           src={imageSrc}
           alt={`Carte ${entry.unit.name}`}
           loading="lazy"
+          // Se cache proprement si l'image n'est pas servable (ex. miroir Artifact
+          // à fichier unique, où public/cards/ n'existe pas) plutôt que d'afficher
+          // l'icône d'image cassée du navigateur.
+          onError={(e) => { e.currentTarget.hidden = true; }}
         />
       )}
       <div className="combat-side-head">
