@@ -268,20 +268,4 @@ const CARD_KEYWORDS: KeywordDef[] = [
   { id: 'traiter-x', impact: 'défense', name: 'Traiter X : Capacité Y', hasValue: true, category: 'carte', definition: "Lorsqu'une unité utilise l'action de carte Traiter X : Capacité Y, choisissez une unité de soldats non-droïdes alliée à ① et en LdV et placez un pion Blessure sur la carte dotée du mot-clé Traiter X : Capacité Y. Retirez au total jusqu'à X pions Blessure et/ou Poison de l'unité choisie ou restaurez jusqu'à X figurines dans cette unité. Cette capacité ne peut pas être utilisée si la carte dotée du mot-clé Traiter X : Capacité Y possède sur elle un nombre de pions Blessure supérieur ou égal à Y. Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Traiter X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources." },
 ];
 
-/**
- * Mots-clés repérés sur de vraies cartes Unité (PDF EN puis FR fournis par
- * l'utilisateur) mais absents du texte de glossaire transmis initialement.
- * Recoupement EN/FR : 5 des 8 mots-clés initialement "manquants" existaient
- * en fait déjà dans le glossaire sous leur vrai nom français (Hold the Line
- * = Tenir Bon, Steady = Aguerri, Ready X = Opérationnel X, Low Profile =
- * Profil Bas, Reposition = Redéploiement) — corrigé dans data/cardTags.ts.
- * Armure X et Arsenal X ont depuis été retrouvés et définis (livret de
- * règles officiel fourni par l'utilisateur, pages 46) et déplacés dans
- * UNIT_KEYWORDS ci-dessus. Il ne reste que ce vrai manque.
- */
-const STUB_KEYWORDS: KeywordDef[] = [
-  { id: 'compel', impact: 'autre', name: 'Contraindre : Type (Compel)', hasValue: false, category: 'unité', custom: true,
-    definition: "Mot-clé repéré sur une carte (Dark Vador, Seigneur Noir des Sith : « Contraindre : Soldat ») mais absent du glossaire transmis — définition à compléter avec le texte exact de la carte." },
-];
-
-export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS, ...STUB_KEYWORDS];
+export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS];
