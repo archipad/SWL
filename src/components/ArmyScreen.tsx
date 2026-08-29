@@ -4,17 +4,18 @@ import { GlossarySection } from './GlossarySection';
 
 interface Props {
   list: ParsedList;
+  playerLabel: string;
   tagLibrary: CardTagLibrary;
   keywords: KeywordDef[];
   getTags: (cardName: string) => CardKeywordTag[];
   onAddTag: (cardName: string, keywordId: string, value?: number) => void;
   onRemoveTag: (cardName: string, keywordId: string) => void;
   onCreateKeyword: (kw: KeywordDef) => void;
-  onNewList: () => void;
+  onChangeList: () => void;
 }
 
 export function ArmyScreen({
-  list, tagLibrary, keywords, getTags, onAddTag, onRemoveTag, onCreateKeyword, onNewList,
+  list, playerLabel, tagLibrary, keywords, getTags, onAddTag, onRemoveTag, onCreateKeyword, onChangeList,
 }: Props) {
   const sections = new Map<string, typeof list.units>();
   for (const unit of list.units) {
@@ -27,6 +28,7 @@ export function ArmyScreen({
     <div className="army-screen">
       <div className="no-print army-toolbar">
         <div>
+          <p className="army-player-label">{playerLabel}</p>
           {list.listName && <p className="army-faction">{list.listName}</p>}
           {list.faction && <p className="army-points">{list.faction}</p>}
           {(list.totalPoints !== undefined || list.pointsLimit !== undefined) && (
@@ -44,7 +46,7 @@ export function ArmyScreen({
           )}
         </div>
         <div className="army-toolbar-actions">
-          <button type="button" className="btn btn-ghost" onClick={onNewList}>Nouvelle liste</button>
+          <button type="button" className="btn btn-ghost" onClick={onChangeList}>Changer la liste</button>
           <button type="button" className="btn btn-primary" onClick={() => window.print()}>Imprimer le glossaire</button>
         </div>
       </div>

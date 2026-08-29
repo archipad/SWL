@@ -1,0 +1,132 @@
+import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
+import { buildRoster, resolveUnitKeywords, type PlayerId, type RosterEntry } from '../lib/combat';
+import { KeywordDefinitionList } from './KeywordDefinitionList';
+import { usePersistentState } from '../lib/storage';
+
+interface Props {
+  listP1: ParsedList | null;
+  listP2: ParsedList | null;
+  tagLibrary: CardTagLibrary;
+  keywords: KeywordDef[];
+}
+
+/** Combine joueur + clé d'unité : deux unités de listes différentes peuvent partager la même clé. */
+function entryId(entry: RosterEntry): string {
+  return `${entry.player}:${entry.unit.key}`;
+}
+
+function findEntry(roster: RosterEntry[], id: string): RosterEntry | undefined {
+  return roster.find((e) => entryId(e) === id);
+}
+
+function Side({
+  role, entry, tagLibrary, keywords,
+}: {
+  role: 'Attaquant' | 'Défenseur';
+  entry: RosterEntry | undefined;
+  tagLibrary: CardTagLibrary;
+  keywords: KeywordDef[];
+}) {
+  if (!entry) {
+    return (
+      <div className={`combat-side combat-side-${role === 'Attaquant' ? 'attack' : 'defense'}`}>
+        <h3 className="combat-side-role">{role}</h3>
+        <p className="empty-hint">Choisissez une unité ci-dessus.</p>
+      </div>
+    );
+  }
+
+  const resolved = resolveUnitKeywords(entry.unit, tagLibrary, keywords);
+
+  return (
+    <div className={`combat-side combat-side-${role === 'Attaquant' ? 'attack' : 'defense'}`}>
+      <h3 className="combat-side-role">{role}</h3>
+      <p className="combat-side-player">{entry.playerLabel}</p>
+      <div className="combat-side-head">
+        <span className="card-row-name">{entry.unit.name}</span>
+        {entry.unit.points !== undefined && <span className="card-row-points">{entry.unit.points}</span>}
+      </div>
+      {entry.unit.upgrades.length > 0 && (
+        <p className="combat-side-upgrades">
+          Équipée de : {entry.unit.upgrades.map((u) => u.name).join(', ')}
+        </p>
+      )}
+      {resolved.length === 0 ? (
+        <p className="empty-hint">
+          Aucun mot-clé renseigné pour cette carte — ouvrez l'onglet Armées pour les ajouter.
+        </p>
+      ) : (
+        <KeywordDefinitionList resolved={resolved} showSource={entry.unit.upgrades.length > 0} />
+      )}
+    </div>
+  );
+}
+
+export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
+  const roster = buildRoster(listP1, listP2);
+  const [attackerId, setAttackerId] = usePersistentState<string>('swl.combat-attacker.v1', '');
+  const [defenderId, setDefenderId] = usePersistentState<string>('swl.combat-defender.v1', '');
+
+  const attacker = findEntry(roster, attackerId);
+  const defender = findEntry(roster, defenderId);
+
+  const swap = () => {
+    setAttackerId(defenderId);
+    setDefenderId(attackerId);
+  };
+
+  const groupedByPlayer = (player: PlayerId) => roster.filter((e) => e.player === player);
+
+  return (
+    <div className="combat-screen no-print">
+      <h2>Résolution de combat</h2>
+      <p className="import-note">
+        Choisissez l'unité qui attaque et celle qui défend : les mots-clés des deux camps (unité +
+        améliorations équipées) s'affichent côte à côte avec leur définition, classés par impact.
+      </p>
+      <div className="combat-selectors">
+        <label className="field">
+          Attaquant
+          <select value={attackerId} onChange={(e) => setAttackerId(e.target.value)}>
+            <option value="">— Choisir —</option>
+            <optgroup label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}>
+              {groupedByPlayer('p1').map((e) => (
+                <option key={entryId(e)} value={entryId(e)}>{e.unit.name}</option>
+              ))}
+            </optgroup>
+            <optgroup label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}>
+              {groupedByPlayer('p2').map((e) => (
+                <option key={entryId(e)} value={entryId(e)}>{e.unit.name}</option>
+              ))}
+            </optgroup>
+          </select>
+        </label>
+        <button type="button" className="btn btn-ghost combat-swap" onClick={swap} disabled={!attackerId && !defenderId}>
+          ⇄ Inverser
+        </button>
+        <label className="field">
+          Défenseur
+          <select value={defenderId} onChange={(e) => setDefenderId(e.target.value)}>
+            <option value="">— Choisir —</option>
+            <optgroup label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}>
+              {groupedByPlayer('p1').map((e) => (
+                <option key={entryId(e)} value={entryId(e)}>{e.unit.name}</option>
+              ))}
+            </optgroup>
+            <optgroup label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}>
+              {groupedByPlayer('p2').map((e) => (
+                <option key={entryId(e)} value={entryId(e)}>{e.unit.name}</option>
+              ))}
+            </optgroup>
+          </select>
+        </label>
+      </div>
+
+      <div className="combat-columns">
+        <Side role="Attaquant" entry={attacker} tagLibrary={tagLibrary} keywords={keywords} />
+        <div className="combat-vs">VS</div>
+        <Side role="Défenseur" entry={defender} tagLibrary={tagLibrary} keywords={keywords} />
+      </div>
+    </div>
+  );
+}

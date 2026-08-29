@@ -16,14 +16,16 @@ Total : 227/800`;
 
 interface Props {
   onParse: (text: string) => void;
+  /** Étiquette du camp concerné (ex. "Joueur 1"), affichée dans le titre. */
+  playerLabel?: string;
 }
 
-export function ImportScreen({ onParse }: Props) {
+export function ImportScreen({ onParse, playerLabel }: Props) {
   const [text, setText] = useState('');
 
   return (
     <div className="import-screen">
-      <h2>Importer une liste d'armée</h2>
+      <h2>{playerLabel ? `Importer la liste — ${playerLabel}` : "Importer une liste d'armée"}</h2>
       <ol className="import-steps">
         <li>
           Sur Tabletop Admiral, exportez votre liste en <strong>JSON</strong> (le plus fiable — noms
