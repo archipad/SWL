@@ -73,7 +73,7 @@ node scripts/generate-icons.mjs
 
 ```
 src/
-  data/keywords.ts        glossaire officiel (197 mots-clés + définitions)
+  data/keywords.ts        glossaire officiel (200 mots-clés + définitions)
   lib/importList.ts       point d'entrée import : détecte JSON vs texte
   lib/parseListJson.ts    parseur JSON Tabletop Admiral -> unités/améliorations
   lib/parseList.ts        parseur de liste texte (fallback) -> unités/améliorations
@@ -94,7 +94,7 @@ src/
 - L'appli exige les deux listes (Joueur 1 et Joueur 2) pour débloquer les
   onglets Armées et Combat — choix assumé pour une appli pensée pour la
   table à deux, pas pour la consultation solo d'une seule liste.
-- Le glossaire (197 mots-clés : unité, arme, cartes Amélioration/Commandement)
+- Le glossaire (200 mots-clés : unité, arme, cartes Amélioration/Commandement)
   couvre les définitions génériques des mots-clés. Il n'y a en revanche pas de
   base de données "carte précise → mots-clés qu'elle porte" pour les ~300
   cartes du jeu : plutôt que d'inventer ces associations avec un risque
