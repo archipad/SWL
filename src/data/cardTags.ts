@@ -330,6 +330,169 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'demoraliser-x', value: 1 },
     { keywordId: 'immunite-perforant-corps-a-corps' },
   ],
+
+  // --- Alliance Rebelle (unités) ---
+  // Depuis le PDF de cartes Unité Alliance Rebelle (FR). Même remarque que
+  // pour l'Empire : les traductions non confirmées par un export TTA réel
+  // sont marquées « nom EN à vérifier ».
+  'Rebel Troopers': [
+    { keywordId: 'preste-x', value: 1 },
+    { keywordId: 'agile' },
+  ],
+  'Mark II Medium Blaster Trooper': [
+    { keywordId: 'detachement' },
+    { keywordId: 'tirs-de-soutien' },
+    { keywordId: 'pivot-complet' },
+    { keywordId: 'position-preparee' },
+    { keywordId: 'redeploiement' },
+    { keywordId: 'sentinelle' },
+    { keywordId: 'critique-x', value: 2 },
+    { keywordId: 'encombrant' },
+  ],
+  // nom EN à vérifier
+  'Fleet Troopers': [
+    { keywordId: 'charge' },
+  ],
+  'Rebel Veterans': [
+    { keywordId: 'coordination' },
+    { keywordId: 'profil-bas' },
+    { keywordId: 'position-preparee' },
+  ],
+  'Rebel Commandos': [
+    { keywordId: 'profil-bas' },
+    { keywordId: 'eclaireur-x', value: 2 },
+    { keywordId: 'tireur-delite-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Rebel Commandos Strike Team': [
+    { keywordId: 'detachement' },
+    { keywordId: 'equipe-avec-arme-lourde' },
+    { keywordId: 'profil-bas' },
+    { keywordId: 'eclaireur-x', value: 2 },
+    { keywordId: 'tireur-delite-x', value: 1 },
+  ],
+  'Wookiee Warriors Freedom Fighters': [
+    { keywordId: 'charge' },
+    { keywordId: 'duelliste' },
+    { keywordId: 'indomptable' },
+    { keywordId: 'ascension' },
+  ],
+  // nom EN à vérifier
+  'Wookiee Warriors Kashyyyk Resistance': [
+    { keywordId: 'indomptable' },
+    { keywordId: 'ascension' },
+    { keywordId: 'tireur-delite-x', value: 1 },
+  ],
+  // nom EN à vérifier
+  'Mandalorian Resistance': [
+    { keywordId: 'saut-x', value: 2 },
+    { keywordId: 'insensible' },
+    { keywordId: 'agile' },
+  ],
+  'Tauntaun Riders': [
+    { keywordId: 'preste-x', value: 1 },
+    { keywordId: 'implacable' },
+    { keywordId: 'redeploiement' },
+    { keywordId: 'tireur-delite-x', value: 1 },
+    { keywordId: 'sans-entrave' },
+  ],
+  'T-47 Airspeeder': [
+    { keywordId: 'armure-x', value: 3 },
+    { keywordId: 'arsenal-x', value: 2 },
+    { keywordId: 'couvert-x', value: 1 },
+    { keywordId: 'speeder-x', value: 2 },
+  ],
+  // nom EN à vérifier
+  'X-34 Landspeeder': [
+    { keywordId: 'armure-x', value: 2 },
+    { keywordId: 'arsenal-x', value: 3 },
+    { keywordId: 'couvert-x', value: 1 },
+    { keywordId: 'speeder-x', value: 1 },
+  ],
+  'Leia Organa': [
+    { keywordId: 'mettre-a-couvert-x', value: 2 },
+    { keywordId: 'exemplaire' },
+    { keywordId: 'inspiration-x', value: 2 },
+    { keywordId: 'agile' },
+    { keywordId: 'tireur-delite-x', value: 2 },
+  ],
+  'C-3PO': [
+    { keywordId: 'calcul-de-probabilites' },
+    { keywordId: 'distraire' },
+    { keywordId: 'alter-ego' },
+  ],
+  'Luke Skywalker Hero of the Rebellion': [
+    { keywordId: 'saut-x', value: 1 },
+    { keywordId: 'blocage' },
+    { keywordId: 'charge' },
+    { keywordId: 'immunite-perforant' },
+    { keywordId: 'inspiration-x', value: 2 },
+    { keywordId: 'tireur-delite-x', value: 1 },
+  ],
+  'Luke Skywalker Jedi Knight': [
+    { keywordId: 'saut-x', value: 1 },
+    { keywordId: 'charge' },
+    { keywordId: 'deflexion' },
+    { keywordId: 'retrait' },
+    { keywordId: 'immunite-perforant' },
+    { keywordId: 'maitre-de-la-force-x', value: 1 },
+  ],
+  'Jyn Erso': [
+    { keywordId: 'preste-x', value: 1 },
+    { keywordId: 'retrait' },
+    { keywordId: 'autonome' },
+    { keywordId: 'infiltration' },
+    { keywordId: 'agile' },
+    { keywordId: 'tireur-delite-x', value: 1 },
+  ],
+  'Cassian Andor': [
+    { keywordId: 'intuition-du-danger-x', value: 3 },
+    { keywordId: 'equipe' },
+    { keywordId: 'commandant-des-operations' },
+    { keywordId: 'infiltration' },
+    { keywordId: 'tireur-embusque' },
+    { keywordId: 'tireur-delite-x', value: 1 },
+    { keywordId: 'tacticien-x', value: 1 },
+  ],
+  'Lando Calrissian': [
+    { keywordId: 'conseils' },
+    { keywordId: 'allies-de-circonstance' },
+    { keywordId: 'longueur-davance' },
+    { keywordId: 'aguerri' },
+    { keywordId: 'coup-de-chance-x', value: 2 },
+  ],
+  'Chewbacca': [
+    { keywordId: 'enrage-x', value: 4 },
+    { keywordId: 'gardien-x', value: 3 },
+    { keywordId: 'ascension' },
+  ],
+  'Sabine Wren': [
+    { keywordId: 'saut-x', value: 2 },
+    { keywordId: 'pistolero' },
+    { keywordId: 'insensible' },
+    { keywordId: 'agile' },
+  ],
+  'R2-D2': [
+    { keywordId: 'reparation-x', value: 2 },
+    { keywordId: 'discret' },
+    { keywordId: 'infiltration' },
+    { keywordId: 'mission-secrete' },
+  ],
+  'Ahsoka Tano': [
+    { keywordId: 'saut-x', value: 2 },
+    { keywordId: 'charge' },
+    { keywordId: 'defense-x', value: 1 },
+    { keywordId: 'deflexion' },
+    { keywordId: 'immunite-perforant' },
+    { keywordId: 'maitrise-du-jarkai' },
+  ],
+  'K-2SO': [
+    { keywordId: 'calcul-de-probabilites' },
+    { keywordId: 'armure-x', value: 1 },
+    { keywordId: 'detachement' },
+    { keywordId: 'incognito' },
+    { keywordId: 'infiltration' },
+  ],
 };
 
 export const SEED_CARD_TAGS: CardTagLibrary = Object.fromEntries(
