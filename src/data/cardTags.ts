@@ -30,6 +30,19 @@ import { normalizeName } from '../lib/normalize';
  * Squadron (source plus récente, image nette) montre en fait
  * « Contrainte : Soldat » — mot-clé bien réel du glossaire. Corrigé ici ;
  * l'entrée « Compel » du glossaire (jamais confirmée) a été retirée.
+ *
+ * Passe de vérification des noms anglais (recherche web, wiki communautaire
+ * Star Wars Legion + comparaison avec le seul export TTA réel dont on
+ * dispose, Darth Vador « Dark Lord of the Sith ») : la plupart des noms
+ * devinés étaient corrects ou quasi corrects (quelques erreurs de détail
+ * corrigées : singulier/pluriel, « Fusil à Dispersion » = Scatter Gun
+ * Trooper et pas une traduction littérale, etc.). Repère utile trouvé au
+ * passage : Tabletop Admiral aplati les sous-titres de carte (parenthèses,
+ * virgules) en texte simple séparé par des espaces — ex. la page wiki
+ * « Darth Vader (Dark Lord of the Sith) » correspond bien à la clé plate
+ * ci-dessus, sans parenthèses ni virgule. Les noms encore marqués
+ * « à vérifier » n'ont pas pu être confirmés par une source fiable malgré
+ * plusieurs recherches (cartes très récentes ou peu documentées en ligne).
  */
 const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // --- Empire Galactique ---
@@ -120,7 +133,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'fiable-x', value: 1 },
     { keywordId: 'escorte' },
   ],
-  // nom EN à vérifier
   'E-Web Heavy Blaster Team': [
     { keywordId: 'position-preparee' },
     { keywordId: 'redeploiement' },
@@ -128,7 +140,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'encombrant' },
     { keywordId: 'impact-x', value: 1 },
   ],
-  // nom EN à vérifier
   'Dewback Rider': [
     { keywordId: 'armure-x', value: 1 },
     { keywordId: 'implacable' },
@@ -152,7 +163,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'arsenal-x', value: 2 },
     { keywordId: 'point-faible-x', value: 1 },
   ],
-  // nom EN à vérifier
   'LAAT/le Patrol Transport': [
     { keywordId: 'sustentation', value: 2 },
     { keywordId: 'immunite-deflagration' },
@@ -181,8 +191,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'entourage' },
     { keywordId: 'exemplaire' },
   ],
-  // nom EN à vérifier
-  "Darth Vader Emperor's Apprentice": [
+  "Darth Vader The Emperor's Apprentice": [
     { keywordId: 'deflexion' },
     { keywordId: 'immunite-perforant' },
     { keywordId: 'chasseur-de-jedi' },
@@ -199,7 +208,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'tacticien-x', value: 1 },
     { keywordId: 'perforant-x', value: 1 },
   ],
-  // nom EN à vérifier
   "Iden's ID10 Seeker Droid": [
     { keywordId: 'surveillance-x', value: 1 },
     { keywordId: 'alter-ego' },
@@ -349,7 +357,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'critique-x', value: 2 },
     { keywordId: 'encombrant' },
   ],
-  // nom EN à vérifier
   'Fleet Troopers': [
     { keywordId: 'charge' },
   ],
@@ -363,7 +370,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'eclaireur-x', value: 2 },
     { keywordId: 'tireur-delite-x', value: 1 },
   ],
-  // nom EN à vérifier
   'Rebel Commandos Strike Team': [
     { keywordId: 'detachement' },
     { keywordId: 'equipe-avec-arme-lourde' },
@@ -377,13 +383,11 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'indomptable' },
     { keywordId: 'ascension' },
   ],
-  // nom EN à vérifier
   'Wookiee Warriors Kashyyyk Resistance': [
     { keywordId: 'indomptable' },
     { keywordId: 'ascension' },
     { keywordId: 'tireur-delite-x', value: 1 },
   ],
-  // nom EN à vérifier
   'Mandalorian Resistance': [
     { keywordId: 'saut-x', value: 2 },
     { keywordId: 'insensible' },
@@ -402,7 +406,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'couvert-x', value: 1 },
     { keywordId: 'speeder-x', value: 2 },
   ],
-  // nom EN à vérifier
   'X-34 Landspeeder': [
     { keywordId: 'armure-x', value: 2 },
     { keywordId: 'arsenal-x', value: 3 },
@@ -495,63 +498,52 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   ],
 
   // --- Améliorations Alliance Rebelle ---
-  // nom EN à vérifier
   'MPL-57 Ion Trooper': [
     { keywordId: 'critique-x', value: 1 },
     { keywordId: 'impact-x', value: 1 },
     { keywordId: 'ion-x', value: 1 },
   ],
-  // nom EN à vérifier
   'DLT-20A Trooper': [
     { keywordId: 'critique-x', value: 1 },
   ],
-  // nom EN à vérifier
   'SX-21 Trooper': [
     { keywordId: 'impact-x', value: 1 },
   ],
-  // nom EN à vérifier
   'MPL-57 Barrage Trooper': [
     { keywordId: 'deflagration' },
     { keywordId: 'impact-x', value: 2 },
     { keywordId: 'cycle' },
   ],
-  // nom EN à vérifier
   'CM-O/93 Trooper': [
     { keywordId: 'critique-x', value: 2 },
   ],
-  // nom EN à vérifier
-  'Proton Charges Saboteur': [
+  'Proton Charge Saboteur': [
     { keywordId: 'deflagration' },
     { keywordId: 'critique-x', value: 2 },
     { keywordId: 'impact-x', value: 3 },
   ],
-  // nom EN à vérifier
-  'Dispersion Rifle Trooper': [
+  'Scatter Gun Trooper': [
     { keywordId: 'perforant-x', value: 1 },
   ],
-  // nom EN à vérifier, faible confiance
-  'Shoulder-Mounted Cannon Wookiee': [
+  'Long Gun Wookiee': [
     { keywordId: 'suppressif' },
   ],
-  // nom EN à vérifier
   'DH-447 Sniper': [
     { keywordId: 'haute-velocite' },
     { keywordId: 'perforant-x', value: 1 },
   ],
-  // nom EN à vérifier ; Armure 1 conditionnelle (carte retournée en début d'activation)
-  'Combat Shield Wookiee': [
+  // Armure 1 conditionnelle (carte retournée en début d'activation)
+  'Battle Shield Wookiee': [
     { keywordId: 'armure-x', value: 1 },
   ],
   // nom EN à vérifier
   'Rebel Trooper Squad': [
     { keywordId: 'indomptable' },
   ],
-  // nom EN à vérifier
   'Bowcaster Wookiee': [
     { keywordId: 'impact-x', value: 1 },
     { keywordId: 'perforant-x', value: 1 },
   ],
-  // nom EN à vérifier
   'Beskad Duelist': [
     { keywordId: 'duelliste' },
   ],
@@ -564,22 +556,18 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'intrepide' },
     { keywordId: 'longue-distance' },
   ],
-  // nom EN à vérifier
   'Rebel Officer': [
     { keywordId: 'chef' },
     { keywordId: 'inspiration-x', value: 1 },
   ],
-  // nom EN à vérifier
   'Rebel Trooper Captain': [
     { keywordId: 'chef' },
   ],
-  // nom EN à vérifier
   '2-1B Medical Droid': [
     { keywordId: 'non-combattant' },
     { keywordId: 'traiter-x', value: 1 },
   ],
-  // nom EN à vérifier
-  'Astromech Droid': [
+  'R5 Astromech Droid': [
     { keywordId: 'non-combattant' },
     { keywordId: 'reparation-x', value: 1 },
   ],
@@ -594,23 +582,19 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Shriv Suurgav': [
     { keywordId: 'commandant-des-operations' },
   ],
-  // nom EN à vérifier
-  'Gifted Pilot': [
+  'Hotshot Pilot': [
     { keywordId: 'tireur-delite-x', value: 1 },
   ],
-  // nom EN à vérifier
-  'RPS-6 Trooper': [
+  'RPS-6 Rocket Gunner': [
     { keywordId: 'impact-x', value: 2 },
   ],
   'Wedge Antilles': [
     { keywordId: 'commandant-des-operations' },
   ],
-  // nom EN à vérifier
-  'Outer Rim Speeder Pilot': [
+  'Outer Rim Speeder Jockey': [
     { keywordId: 'couvert-x', value: 1 },
   ],
-  // nom EN à vérifier
-  'Mo/Dk Magnetic Harpoon': [
+  'Mo/DK Power Harpoon': [
     { keywordId: 'impact-x', value: 1 },
     { keywordId: 'cable-de-remorquage' },
   ],
@@ -623,7 +607,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'deflagration' },
     { keywordId: 'souffle' },
   ],
-  // nom EN à vérifier
   'M-45 Ion Blaster': [
     { keywordId: 'critique-x', value: 1 },
     { keywordId: 'impact-x', value: 1 },
@@ -633,32 +616,26 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Mandalorian Combat Shields': [
     { keywordId: 'bouclier-x', value: 2 },
   ],
-  // nom EN à vérifier
-  'Back-Mounted Rockets': [
+  'Jetpack Rockets': [
     { keywordId: 'deflagration' },
     { keywordId: 'impact-x', value: 1 },
   ],
-  // nom EN à vérifier
   'AG-2G Quad Laser': [
     { keywordId: 'impact-x', value: 2 },
   ],
-  // nom EN à vérifier
-  'Heavy Laser Conversion': [
+  'Heavy Laser Retrofit': [
     { keywordId: 'critique-x', value: 1 },
   ],
-  // nom EN à vérifier ; Cassian Andor uniquement
-  'A280 Rifle Configuration': [
+  // Config Fusil (Encombrant/Haute Vélocité) et Config Pistolet (Longue
+  // Distance) fusionnées : carte unique recto/verso avec Reconfiguration,
+  // Perforant 1 commun aux deux faces.
+  'A280-CFE Pistol/Sniper Config': [
+    { keywordId: 'perforant-x', value: 1 },
     { keywordId: 'encombrant' },
     { keywordId: 'haute-velocite' },
-    { keywordId: 'perforant-x', value: 1 },
-  ],
-  // nom EN à vérifier ; Cassian Andor uniquement
-  'A280 Pistol Configuration': [
     { keywordId: 'longue-distance' },
-    { keywordId: 'perforant-x', value: 1 },
   ],
-  // nom EN à vérifier
-  "Jyn's SE-14": [
+  "Jyn's SE-14 Blaster": [
     { keywordId: 'perforant-x', value: 1 },
     { keywordId: 'suppressif' },
   ],
