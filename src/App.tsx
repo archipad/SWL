@@ -7,6 +7,7 @@ import { importArmyList } from './lib/importList';
 import { usePersistentState } from './lib/storage';
 import { useKeywordLibrary } from './lib/useKeywordLibrary';
 import { useCardTags } from './lib/useCardTags';
+import { useSync } from './lib/useSync';
 import type { ParsedList } from './types';
 
 type Page = 'setup' | 'army' | 'combat' | 'library';
@@ -21,6 +22,7 @@ export default function App() {
   const [activePlayer, setActivePlayer] = useState<PlayerId>('p1');
   const { keywords, upsertKeyword, removeKeyword, resetToDefaults } = useKeywordLibrary();
   const { library: tagLibrary, getTags, addTag, removeTag } = useCardTags();
+  const sync = useSync({ listP1, listP2, setListP1, setListP2 });
 
   // Reprend, une seule fois, l'ancienne liste unique (avant le passage à deux
   // joueurs) comme liste du Joueur 1, pour ne rien perdre à cette mise à jour.
@@ -40,8 +42,24 @@ export default function App() {
 
   const bothReady = listP1 !== null && listP2 !== null;
 
-  const handleParseP1 = useCallback((text: string) => setListP1(importArmyList(text)), [setListP1]);
-  const handleParseP2 = useCallback((text: string) => setListP2(importArmyList(text)), [setListP2]);
+  const handleParseP1 = useCallback((text: string) => {
+    const parsed = importArmyList(text);
+    setListP1(parsed);
+    sync.push(parsed, listP2);
+  }, [setListP1, listP2, sync]);
+  const handleParseP2 = useCallback((text: string) => {
+    const parsed = importArmyList(text);
+    setListP2(parsed);
+    sync.push(listP1, parsed);
+  }, [setListP2, listP1, sync]);
+  const handleClearP1 = useCallback(() => {
+    setListP1(null);
+    sync.push(null, listP2);
+  }, [setListP1, listP2, sync]);
+  const handleClearP2 = useCallback(() => {
+    setListP2(null);
+    sync.push(listP1, null);
+  }, [setListP2, listP1, sync]);
   const handleAddTag = useCallback(
     (cardName: string, keywordId: string, value?: number) => addTag(cardName, { keywordId, value }),
     [addTag],
@@ -97,7 +115,7 @@ export default function App() {
           onRemoveTag={removeTag}
           onCreateKeyword={upsertKeyword}
           onChangeList={() => {
-            if (activePlayer === 'p1') setListP1(null); else setListP2(null);
+            if (activePlayer === 'p1') handleClearP1(); else handleClearP2();
             setPage('setup');
           }}
         />
@@ -110,8 +128,9 @@ export default function App() {
         listP2={listP2}
         onParseP1={handleParseP1}
         onParseP2={handleParseP2}
-        onClearP1={() => setListP1(null)}
-        onClearP2={() => setListP2(null)}
+        onClearP1={handleClearP1}
+        onClearP2={handleClearP2}
+        sync={sync}
       />
     );
   }

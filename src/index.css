@@ -134,6 +134,24 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .setup-slot-filled h2 { margin-top: 0; }
 .setup-slot-summary { color: var(--text-dim); font-size: 0.9rem; margin: 0 0 0.9rem; }
 
+.sync-panel {
+  margin-top: 1.5rem; background: var(--bg-raised); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1rem 1.1rem;
+}
+.sync-panel h3 { margin-top: 0; margin-bottom: 0.5rem; }
+.sync-token-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; margin-top: 0.75rem; }
+.sync-token-row input { flex: 1 1 220px; min-width: 0; }
+.sync-status-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.sync-badge {
+  font-size: 0.78rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 999px;
+  border: 1px solid var(--border); color: var(--text-dim);
+}
+.sync-badge-idle { color: #6ec78a; border-color: #6ec78a; }
+.sync-badge-syncing { color: var(--accent); border-color: var(--accent); }
+.sync-badge-error { color: #e0685e; border-color: #e0685e; }
+.sync-last { color: var(--text-dim); font-size: 0.78rem; }
+.sync-error { color: #e0685e; font-size: 0.82rem; margin: 0.6rem 0 0; }
+
 /* --- Player toggle (onglet Armées) --- */
 .player-toggle { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
 .army-player-label { margin: 0; color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }

@@ -47,7 +47,17 @@ export function ArmyScreen({
           )}
         </div>
         <div className="army-toolbar-actions">
-          <button type="button" className="btn btn-ghost" onClick={onChangeList}>Changer la liste</button>
+          <button
+            type="button"
+            className="btn btn-ghost btn-danger"
+            onClick={() => {
+              if (window.confirm(`Supprimer la liste « ${list.listName ?? list.faction ?? playerLabel} » ? Vous pourrez en importer une nouvelle juste après.`)) {
+                onChangeList();
+              }
+            }}
+          >
+            🗑 Supprimer la liste
+          </button>
           <button type="button" className="btn btn-primary" onClick={() => window.print()}>Imprimer le glossaire</button>
         </div>
       </div>

@@ -1,4 +1,6 @@
 import { ImportScreen } from './ImportScreen';
+import { SyncSettings } from './SyncSettings';
+import type { useSync } from '../lib/useSync';
 import type { ParsedList } from '../types';
 
 interface SlotProps {
@@ -23,7 +25,17 @@ function ImportSlot({ playerLabel, list, onParse, onClear }: SlotProps) {
         {' · '}
         {list.units.length} unité{list.units.length > 1 ? 's' : ''}
       </p>
-      <button type="button" className="btn btn-ghost" onClick={onClear}>Changer la liste</button>
+      <button
+        type="button"
+        className="btn btn-ghost btn-danger"
+        onClick={() => {
+          if (window.confirm(`Supprimer la liste « ${list.listName ?? list.faction ?? playerLabel} » ? Vous pourrez en importer une nouvelle juste après.`)) {
+            onClear();
+          }
+        }}
+      >
+        🗑 Supprimer la liste
+      </button>
     </div>
   );
 }
@@ -35,9 +47,10 @@ interface Props {
   onParseP2: (text: string) => void;
   onClearP1: () => void;
   onClearP2: () => void;
+  sync: ReturnType<typeof useSync>;
 }
 
-export function SetupScreen({ listP1, listP2, onParseP1, onParseP2, onClearP1, onClearP2 }: Props) {
+export function SetupScreen({ listP1, listP2, onParseP1, onParseP2, onClearP1, onClearP2, sync }: Props) {
   return (
     <div className="setup-screen">
       <p className="import-note setup-intro">
@@ -48,6 +61,15 @@ export function SetupScreen({ listP1, listP2, onParseP1, onParseP2, onClearP1, o
         <ImportSlot playerLabel="Joueur 1" list={listP1} onParse={onParseP1} onClear={onClearP1} />
         <ImportSlot playerLabel="Joueur 2" list={listP2} onParse={onParseP2} onClear={onClearP2} />
       </div>
+      <SyncSettings
+        token={sync.token}
+        status={sync.status}
+        error={sync.error}
+        lastSyncAt={sync.lastSyncAt}
+        onSaveToken={sync.saveToken}
+        onRemoveToken={sync.removeToken}
+        onSyncNow={sync.pull}
+      />
     </div>
   );
 }
