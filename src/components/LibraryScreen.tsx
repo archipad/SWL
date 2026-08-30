@@ -83,6 +83,19 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
   const [creating, setCreating] = useState(false);
   const [filter, setFilter] = useState('');
   const [groupBy, setGroupBy] = useState<'impact' | 'category'>('impact');
+  // Repliés par défaut : ~200 mots-clés d'un coup rendent la page interminable.
+  // Un filtre actif force l'ouverture de tous les groupes (peu importe leur
+  // état) pour que les résultats de recherche soient visibles sans clic en plus.
+  const [collapsed, setCollapsed] = useState<Set<string>>(
+    () => new Set(['attaque', 'défense', 'autre', 'unité', 'arme', 'carte']),
+  );
+  const toggleGroup = (id: string) => {
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id); else next.add(id);
+      return next;
+    });
+  };
 
   const byId = new Map(keywords.map((k) => [k.id, k]));
   const filtered = keywords
@@ -98,6 +111,7 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
           id, label: CATEGORY_LABELS[id], items: filtered.filter((k) => k.category === id),
         }));
   const grouped = groups.filter((g) => g.items.length > 0);
+  const isFiltering = filter.trim().length > 0;
 
   const cardEntries = Object.entries(tagLibrary).filter(([, tags]) => tags.length > 0);
 
@@ -136,32 +150,46 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
         />
       )}
 
-      {grouped.map(({ id, label, items }) => (
-        <div key={id} className="keyword-group">
-          <h3>{label} <span className="keyword-count">({items.length})</span></h3>
-          <ul className="keyword-list">
-            {items.map((k) => (
-              <li key={k.id} className="keyword-list-item">
-                {editingId === k.id ? (
-                  <KeywordEditor kw={k} onSave={(kw) => { onUpsert(kw); setEditingId(null); }} onCancel={() => setEditingId(null)} />
-                ) : (
-                  <>
-                    <div>
-                      <strong>{k.name}</strong>
-                      {groupBy === 'category' && <span className={`impact-badge impact-${k.impact}`}>{IMPACT_LABELS[k.impact]}</span>}
-                      <p><DefinitionText text={k.definition} /></p>
-                    </div>
-                    <div className="keyword-list-actions">
-                      <button type="button" className="btn btn-ghost" onClick={() => setEditingId(k.id)}>Modifier</button>
-                      <button type="button" className="btn btn-ghost btn-danger" onClick={() => onRemove(k.id)}>Supprimer</button>
-                    </div>
-                  </>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      {grouped.map(({ id, label, items }) => {
+        const isOpen = isFiltering || !collapsed.has(id);
+        return (
+          <div key={id} className="keyword-group">
+            <button
+              type="button"
+              className="keyword-group-toggle"
+              onClick={() => toggleGroup(id)}
+              aria-expanded={isOpen}
+              disabled={isFiltering}
+            >
+              <span className={`keyword-group-chevron${isOpen ? ' keyword-group-chevron-open' : ''}`}>▶</span>
+              <h3>{label} <span className="keyword-count">({items.length})</span></h3>
+            </button>
+            {isOpen && (
+              <ul className="keyword-list">
+                {items.map((k) => (
+                  <li key={k.id} className="keyword-list-item">
+                    {editingId === k.id ? (
+                      <KeywordEditor kw={k} onSave={(kw) => { onUpsert(kw); setEditingId(null); }} onCancel={() => setEditingId(null)} />
+                    ) : (
+                      <>
+                        <div>
+                          <strong>{k.name}</strong>
+                          {groupBy === 'category' && <span className={`impact-badge impact-${k.impact}`}>{IMPACT_LABELS[k.impact]}</span>}
+                          <p><DefinitionText text={k.definition} /></p>
+                        </div>
+                        <div className="keyword-list-actions">
+                          <button type="button" className="btn btn-ghost" onClick={() => setEditingId(k.id)}>Modifier</button>
+                          <button type="button" className="btn btn-ghost btn-danger" onClick={() => onRemove(k.id)}>Supprimer</button>
+                        </div>
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        );
+      })}
 
       {cardEntries.length > 0 && (
         <>
