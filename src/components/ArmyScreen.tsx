@@ -1,6 +1,7 @@
 import type { CardKeywordTag, CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { CardRow } from './CardRow';
 import { GlossarySection } from './GlossarySection';
+import { DiceIcon } from '../lib/diceIcons';
 
 interface Props {
   list: ParsedList;
@@ -103,9 +104,9 @@ export function ArmyScreen({
           attaque, quand elle défend, ou autre chose (mouvement, commandement...).
         </p>
         <p className="icon-legend">
-          <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Touche ·{' '}
-          <strong>◆</strong> Adrénaline (attaque) · <strong>◇</strong> Adrénaline (défense) ·{' '}
-          <strong>①②③</strong> portée/distance
+          <DiceIcon type="bloc" /> Bloc · <DiceIcon type="critique" /> Critique ·{' '}
+          <DiceIcon type="touche" /> Touche · <DiceIcon type="adr-atq" /> Adrénaline (attaque) ·{' '}
+          <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
         </p>
         <GlossarySection list={list} tagLibrary={tagLibrary} keywords={keywords} />
       </section>

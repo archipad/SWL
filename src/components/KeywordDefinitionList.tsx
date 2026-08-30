@@ -1,5 +1,6 @@
 import type { KeywordDef } from '../types';
 import type { ResolvedTag } from '../lib/combat';
+import { DefinitionText } from '../lib/diceIcons';
 
 interface Props {
   resolved: ResolvedTag[];
@@ -27,7 +28,7 @@ export function KeywordDefinitionList({ resolved, showSource }: Props) {
             {items.map(({ tag, def, source }) => (
               <p key={tag.keywordId} className="card-row-definition">
                 <strong>{def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}</strong>
-                {' — '}{def.definition}
+                {' — '}<DefinitionText text={def.definition} />
                 {showSource && <span className="card-row-definition-source"> ({source})</span>}
               </p>
             ))}

@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { buildGlossary } from '../lib/glossary';
+import { DefinitionText } from '../lib/diceIcons';
 
 interface Props {
   list: ParsedList;
@@ -38,7 +39,7 @@ export function GlossarySection({ list, tagLibrary, keywords }: Props) {
             {items.map((e) => (
               <div key={e.keyword.id} className="glossary-entry">
                 <h4>{e.keyword.name}</h4>
-                <p>{e.keyword.definition}</p>
+                <p><DefinitionText text={e.keyword.definition} /></p>
                 <p className="glossary-cards">Sur : {e.cards.join(', ')}</p>
               </div>
             ))}

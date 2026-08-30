@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { CardTagLibrary, KeywordDef } from '../types';
 import { slugifyKeywordId } from '../lib/useKeywordLibrary';
+import { DefinitionText, DiceIcon } from '../lib/diceIcons';
 
 interface Props {
   keywords: KeywordDef[];
@@ -108,9 +109,9 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
         cet appareil. Ce ne sont pas des extraits du livret officiel : vérifiez la carte en cas de doute.
       </p>
       <p className="icon-legend">
-        <strong>▼</strong> Bloc · <strong>✹</strong> Critique · <strong>●</strong> Touche ·{' '}
-        <strong>◆</strong> Adrénaline (attaque) · <strong>◇</strong> Adrénaline (défense) ·{' '}
-        <strong>①②③</strong> portée/distance
+        <DiceIcon type="bloc" /> Bloc · <DiceIcon type="critique" /> Critique ·{' '}
+        <DiceIcon type="touche" /> Touche · <DiceIcon type="adr-atq" /> Adrénaline (attaque) ·{' '}
+        <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
       </p>
       <div className="library-toolbar">
         <input placeholder="Filtrer…" value={filter} onChange={(e) => setFilter(e.target.value)} />
@@ -148,7 +149,7 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
                     <div>
                       <strong>{k.name}</strong>
                       {groupBy === 'category' && <span className={`impact-badge impact-${k.impact}`}>{IMPACT_LABELS[k.impact]}</span>}
-                      <p>{k.definition}</p>
+                      <p><DefinitionText text={k.definition} /></p>
                     </div>
                     <div className="keyword-list-actions">
                       <button type="button" className="btn btn-ghost" onClick={() => setEditingId(k.id)}>Modifier</button>
