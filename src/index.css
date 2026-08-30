@@ -199,6 +199,20 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .combat-side-upgrades { color: var(--text-dim); font-size: 0.8rem; margin: 0.3rem 0 0.6rem; }
 .card-row-definition-source { color: var(--text-dim); font-style: italic; }
 
+/* Interactions mot-clé attaquant <-> mot-clé défenseur (écran Combat) */
+.combat-interactions {
+  background: rgba(224, 179, 77, 0.1); border: 1px solid #e0b34d; border-radius: 10px;
+  padding: 0.75rem 1rem; margin: 0 0 1.25rem;
+}
+.combat-interactions-heading { margin: 0 0 0.4rem; font-size: 0.85rem; color: #e0b34d; }
+.combat-interactions ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.combat-interactions li { font-size: 0.85rem; color: var(--text); }
+.card-row-definition-highlight {
+  background: rgba(224, 179, 77, 0.12); border-left: 2px solid #e0b34d;
+  padding: 0.2rem 0.4rem; border-radius: 4px; margin-left: -0.4rem;
+}
+.card-row-definition-bolt { margin-right: 0.25rem; }
+
 /* --- Army screen --- */
 .army-toolbar { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem; }
 .army-faction { margin: 0; font-weight: 600; }

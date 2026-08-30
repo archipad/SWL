@@ -1,9 +1,10 @@
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
-import { buildRoster, resolveUnitKeywords, type PlayerId, type RosterEntry } from '../lib/combat';
+import { buildRoster, resolveUnitKeywords, type PlayerId, type ResolvedTag, type RosterEntry } from '../lib/combat';
 import { KeywordDefinitionList } from './KeywordDefinitionList';
 import { usePersistentState } from '../lib/storage';
 import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
+import { detectInteractions } from '../lib/keywordInteractions';
 
 interface Props {
   listP1: ParsedList | null;
@@ -22,12 +23,12 @@ function findEntry(roster: RosterEntry[], id: string): RosterEntry | undefined {
 }
 
 function Side({
-  role, entry, tagLibrary, keywords,
+  role, entry, resolved, highlightedIds,
 }: {
   role: 'Attaquant' | 'Défenseur';
   entry: RosterEntry | undefined;
-  tagLibrary: CardTagLibrary;
-  keywords: KeywordDef[];
+  resolved: ResolvedTag[];
+  highlightedIds: Set<string>;
 }) {
   if (!entry) {
     return (
@@ -38,7 +39,6 @@ function Side({
     );
   }
 
-  const resolved = resolveUnitKeywords(entry.unit, tagLibrary, keywords);
   const imageSrc = CARD_IMAGES[normalizeName(entry.unit.name)];
 
   return (
@@ -71,7 +71,7 @@ function Side({
           Aucun mot-clé renseigné pour cette carte — ouvrez l'onglet Armées pour les ajouter.
         </p>
       ) : (
-        <KeywordDefinitionList resolved={resolved} showSource={entry.unit.upgrades.length > 0} />
+        <KeywordDefinitionList resolved={resolved} showSource={entry.unit.upgrades.length > 0} highlightedIds={highlightedIds} />
       )}
     </div>
   );
@@ -84,6 +84,12 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
 
   const attacker = findEntry(roster, attackerId);
   const defender = findEntry(roster, defenderId);
+
+  const attackerResolved = attacker ? resolveUnitKeywords(attacker.unit, tagLibrary, keywords) : [];
+  const defenderResolved = defender ? resolveUnitKeywords(defender.unit, tagLibrary, keywords) : [];
+  const interactions = attacker && defender ? detectInteractions(attackerResolved, defenderResolved) : [];
+  const highlightedAttackerIds = new Set(interactions.map((i) => i.attackerKeywordId));
+  const highlightedDefenderIds = new Set(interactions.map((i) => i.defenderKeywordId));
 
   const swap = () => {
     setAttackerId(defenderId);
@@ -137,10 +143,21 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
         </label>
       </div>
 
+      {interactions.length > 0 && (
+        <div className="combat-interactions">
+          <h3 className="combat-interactions-heading">⚡ Interactions entre les deux camps</h3>
+          <ul>
+            {interactions.map((i) => (
+              <li key={`${i.attackerKeywordId}:${i.defenderKeywordId}`}>{i.note}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <div className="combat-columns">
-        <Side role="Attaquant" entry={attacker} tagLibrary={tagLibrary} keywords={keywords} />
+        <Side role="Attaquant" entry={attacker} resolved={attackerResolved} highlightedIds={highlightedAttackerIds} />
         <div className="combat-vs">VS</div>
-        <Side role="Défenseur" entry={defender} tagLibrary={tagLibrary} keywords={keywords} />
+        <Side role="Défenseur" entry={defender} resolved={defenderResolved} highlightedIds={highlightedDefenderIds} />
       </div>
     </div>
   );
