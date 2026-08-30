@@ -5,6 +5,7 @@ import { usePersistentState } from '../lib/storage';
 import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
 import { detectInteractions } from '../lib/keywordInteractions';
+import { AttackSequenceGuide } from './AttackSequenceGuide';
 
 interface Props {
   listP1: ParsedList | null;
@@ -81,6 +82,7 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
   const roster = buildRoster(listP1, listP2);
   const [attackerId, setAttackerId] = usePersistentState<string>('swl.combat-attacker.v1', '');
   const [defenderId, setDefenderId] = usePersistentState<string>('swl.combat-defender.v1', '');
+  const [view, setView] = usePersistentState<'sequence' | 'keywords'>('swl.combat-view.v1', 'sequence');
 
   const attacker = findEntry(roster, attackerId);
   const defender = findEntry(roster, defenderId);
@@ -103,7 +105,8 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
       <h2>Résolution de combat</h2>
       <p className="import-note">
         Choisissez l'unité qui attaque et celle qui défend : les mots-clés des deux camps (unité +
-        améliorations équipées) s'affichent côte à côte avec leur définition, classés par impact.
+        améliorations équipées) apparaissent, selon la vue choisie, étape par étape dans l'ordre
+        officiel de l'attaque, ou groupés par impact pour une consultation rapide.
       </p>
       <div className="combat-selectors">
         <label className="field">
@@ -143,7 +146,16 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
         </label>
       </div>
 
-      {interactions.length > 0 && (
+      <div className="btn-group combat-view-toggle">
+        <button type="button" className={view === 'sequence' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setView('sequence')}>
+          Étapes de l'attaque
+        </button>
+        <button type="button" className={view === 'keywords' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setView('keywords')}>
+          Mots-clés (vue rapide)
+        </button>
+      </div>
+
+      {view === 'keywords' && interactions.length > 0 && (
         <div className="combat-interactions">
           <h3 className="combat-interactions-heading">⚡ Interactions entre les deux camps</h3>
           <ul>
@@ -154,11 +166,24 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
         </div>
       )}
 
-      <div className="combat-columns">
-        <Side role="Attaquant" entry={attacker} resolved={attackerResolved} highlightedIds={highlightedAttackerIds} />
-        <div className="combat-vs">VS</div>
-        <Side role="Défenseur" entry={defender} resolved={defenderResolved} highlightedIds={highlightedDefenderIds} />
-      </div>
+      {view === 'sequence' ? (
+        attacker && defender ? (
+          <AttackSequenceGuide
+            attackerResolved={attackerResolved}
+            defenderResolved={defenderResolved}
+            interactions={interactions}
+            resetKey={`${attackerId}:${defenderId}`}
+          />
+        ) : (
+          <p className="empty-hint">Choisissez un attaquant et un défenseur pour dérouler la séquence.</p>
+        )
+      ) : (
+        <div className="combat-columns">
+          <Side role="Attaquant" entry={attacker} resolved={attackerResolved} highlightedIds={highlightedAttackerIds} />
+          <div className="combat-vs">VS</div>
+          <Side role="Défenseur" entry={defender} resolved={defenderResolved} highlightedIds={highlightedDefenderIds} />
+        </div>
+      )}
     </div>
   );
 }
