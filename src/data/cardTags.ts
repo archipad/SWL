@@ -17,12 +17,20 @@ import { normalizeName } from '../lib/normalize';
  * est légèrement différente de celle utilisée par Tabletop Admiral —
  * dis-moi le nom exact et je corrige la clé.
  *
- * L'AT-ST existe en deux configurations imprimées différentes (Point
- * Faible 1 : Flancs à 145 pts, ou Point Faible 1 : Arrière à 125 pts) ;
- * celle retenue ici est la plus courante (Armure 5, Canons Jumelés/Quadruples)
- * — vérifiez votre carte. Même remarque pour TR-TT (deux configurations
- * d'armes, valeur de Point Faible et bonus Redéploiement/Transport variables
- * selon celle choisie : ces deux derniers mots-clés sont omis par prudence).
+ * AT-ST / TR-TT (30/08/2026, signalement utilisateur avec scan officiel FR
+ * à l'appui) : la précédente remarque ci-dessous parlait à tort de « deux
+ * configurations » d'un même AT-ST — en réalité 'AT-ST' (le nom anglais
+ * utilisé par Tabletop Admiral) pointait vers les stats d'une tout autre
+ * unité, le Tank « Occupier » TX-225 GAVw (Armure 5, Arsenal 2, Redéploiement,
+ * Transport, Point Faible 1 : Flancs, Canons Jumelés/Quadruples Canons) —
+ * absent par ailleurs de cette liste. Le vrai AT-ST, dont le nom sur la
+ * carte française est « TR-TT », n'a qu'une seule version imprimée dans
+ * Galactic_Empire_Units_FR.pdf : Armure 5, Arsenal 2, Point Faible 1 :
+ * Arrière, Pinces Coupantes (sans mot-clé) et Blasters Jumelés MS-4
+ * (Fixe : Avant, Impact 3) — c'est cette entrée qui est désormais sous la
+ * clé 'AT-ST' (celle qui matche vraiment les imports). Visuel (public/cards/
+ * tr-tt.jpg) réextrait au bon endroit de la grille d'impression au passage
+ * (l'ancien at-st.jpg affichait carrément le Tank Occupier).
  *
  * Dark Vador, Seigneur Noir des Sith : la première extraction (PDF officiel
  * EN+FR) avait lu « Contraindre : Type » (Compel), mot-clé introuvable dans
@@ -111,11 +119,8 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'AT-ST': [
     { keywordId: 'armure-x', value: 5 },
     { keywordId: 'arsenal-x', value: 2 },
-    { keywordId: 'redeploiement' },
-    { keywordId: 'transport' },
     { keywordId: 'point-faible-x', value: 1 },
-    { keywordId: 'suppressif' },
-    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'impact-x', value: 3 },
   ],
   'Stormtroopers': [
     { keywordId: 'precis-x', value: 1 },
@@ -178,12 +183,11 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'ascension' },
     { keywordId: 'marche-forcee' },
   ],
-  // Point Faible (direction) et Redéploiement/Transport diffèrent selon la
-  // configuration d'armes choisie sur la carte : omis par prudence (vérifié
-  // sur scan : config "Point Faible 1 : Arrière" n'a ni Redéploiement ni
-  // Transport, contrairement à l'autre config imprimée sur la même planche).
-  // Impact 3 (Blasters Jumelés MS-4) vérifié sur scan, commun aux deux
-  // configs vues.
+  // = AT-ST en anglais (nom Tabletop Admiral) ; entrée dupliquée ici sous le
+  // nom imprimé sur la carte française, au cas où un import l'utiliserait
+  // tel quel. Voir la note du 30/08/2026 en tête de fichier : la carte
+  // "autre config" à laquelle une note précédente comparait celle-ci était
+  // en fait le Tank « Occupier » TX-225 GAVw, une unité différente.
   'TR-TT': [
     { keywordId: 'armure-x', value: 5 },
     { keywordId: 'arsenal-x', value: 2 },

@@ -29,7 +29,8 @@ const RAW: Record<string, string> = {
   'Scout Troopers': 'scout-troopers.jpg',
   'Scout Troopers Strike Team': 'scout-troopers-strike-team.jpg',
   '74-Z Speeder Bikes': '74-z-speeder-bikes.jpg',
-  'AT-ST': 'at-st.jpg',
+  // = TR-TT sur la carte française (voir cardTags.ts) : on réutilise le même visuel.
+  'AT-ST': 'tr-tt.jpg',
   'Stormtroopers': 'stormtroopers.jpg',
   'Stormtrooper Heavy Gunner Squad': 'stormtrooper-heavy-gunner-squad.jpg',
   'Shoretroopers': 'shoretroopers.jpg',
