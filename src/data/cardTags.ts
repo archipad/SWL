@@ -43,6 +43,25 @@ import { normalizeName } from '../lib/normalize';
  * ci-dessus, sans parenthèses ni virgule. Les noms encore marqués
  * « à vérifier » n'ont pas pu être confirmés par une source fiable malgré
  * plusieurs recherches (cartes très récentes ou peu documentées en ligne).
+ *
+ * Passe de vérification complète des 108 cartes (suite à un signalement
+ * utilisateur : Impact/Perforant du sabre de Dark Vador manquants) — chaque
+ * carte recomparée un par un à son scan officiel (public/cards/*.jpg) au
+ * lieu de faire confiance à la première extraction de texte. Une vingtaine
+ * de mots-clés d'arme manquaient, surtout sur les personnages nommés avec
+ * plusieurs armes (le texte d'ability était bien repris mais la ligne
+ * d'arme sous l'illustration était parfois ratée) : Impact/Perforant du
+ * sabre de Dark Vador (les deux versions), du sabre de Luke (les deux
+ * versions) et d'Ahsoka, Bélier de La Septième Sœur→Le Cinquième Frère et
+ * des Tauntaun, Immunité: Armes Portée 1 + Armure/Arsenal/Couvert du LAAT
+ * et du T-47, Létal/Longue Distance d'Agent Kallus (à la place d'un
+ * Perforant erroné), Longue Distance de Shoretroopers/Luke/Lando, Suppressif
+ * de Jyn Erso/R2-D2, Traiter 1 de FX-9 (déjà présent sur 2-1B mais oublié
+ * ici), Travail d'Équipe de Chewbacca/K-2SO, Équipe de Forces Spéciales
+ * Impériales Escouade Inferno. Trouvé au passage : un bug dans le script de
+ * découpage d'image (page "1" confondue avec "10"/"11"/"12"/"13" par un
+ * matching de nom de fichier trop permissif) avait corrompu l'image de DLT-19
+ * Stormtrooper — corrigé et réextraite.
  */
 const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // --- Empire Galactique ---
@@ -52,11 +71,12 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'immunite-perforant' },
     { keywordId: 'maitre-de-la-force-x', value: 1 },
     { keywordId: 'implacable' },
-    // Valeurs d'Impact/Perforant du sabre volontairement omises : la
-    // version EN et la version FR du premier PDF officiel se
-    // contredisaient (grille d'impression ambiguë, 2 Vador différents
-    // imprimés côte à côte) — vérifiez la carte plutôt que de faire
-    // confiance à un chiffre non confirmé de façon croisée.
+    // Impact/Perforant du sabre laser : ambiguïté d'origine (grille
+    // d'impression peu nette) résolue par le scan recadré et vérifié
+    // (public/cards/darth-vader-dark-lord-of-the-sith.jpg) — la carte
+    // affiche sans ambiguïté "Sabre Laser de Vador : Impact 3, Perforant 3".
+    { keywordId: 'impact-x', value: 3 },
+    { keywordId: 'perforant-x', value: 3 },
   ],
   'Stormtrooper Riot Squad': [
     { keywordId: 'charge' },
@@ -110,6 +130,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Shoretroopers': [
     { keywordId: 'coordination' },
     { keywordId: 'position-preparee' },
+    { keywordId: 'longue-distance' },
   ],
   'DF-90 Mortar Trooper': [
     { keywordId: 'detachement' },
@@ -128,6 +149,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'fiable-x', value: 1 },
   ],
   'Imperial Special Forces Inferno Squad': [
+    { keywordId: 'equipe' },
     { keywordId: 'infiltration' },
     { keywordId: 'tireur-embusque' },
     { keywordId: 'fiable-x', value: 1 },
@@ -157,16 +179,25 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'marche-forcee' },
   ],
   // Point Faible (direction) et Redéploiement/Transport diffèrent selon la
-  // configuration d'armes choisie sur la carte : omis par prudence.
+  // configuration d'armes choisie sur la carte : omis par prudence (vérifié
+  // sur scan : config "Point Faible 1 : Arrière" n'a ni Redéploiement ni
+  // Transport, contrairement à l'autre config imprimée sur la même planche).
+  // Impact 3 (Blasters Jumelés MS-4) vérifié sur scan, commun aux deux
+  // configs vues.
   'TR-TT': [
     { keywordId: 'armure-x', value: 5 },
     { keywordId: 'arsenal-x', value: 2 },
     { keywordId: 'point-faible-x', value: 1 },
+    { keywordId: 'impact-x', value: 3 },
   ],
   'LAAT/le Patrol Transport': [
+    { keywordId: 'armure-x', value: 5 },
+    { keywordId: 'arsenal-x', value: 2 },
+    { keywordId: 'couvert-x', value: 1 },
     { keywordId: 'sustentation', value: 2 },
     { keywordId: 'immunite-deflagration' },
     { keywordId: 'immunite-corps-a-corps' },
+    { keywordId: 'immunite-armes-portee-1' },
     { keywordId: 'transport' },
     { keywordId: 'impact-x', value: 1 },
   ],
@@ -197,6 +228,8 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'chasseur-de-jedi' },
     { keywordId: 'maitre-de-la-force-x', value: 1 },
     { keywordId: 'implacable' },
+    { keywordId: 'impact-x', value: 3 },
+    { keywordId: 'perforant-x', value: 3 },
     { keywordId: 'deflagration' },
     { keywordId: 'dispersion' },
   ],
@@ -246,7 +279,8 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'immunite-perforant-corps-a-corps' },
     { keywordId: 'interrogatoire' },
     { keywordId: 'critique-x', value: 1 },
-    { keywordId: 'perforant-x', value: 1 },
+    { keywordId: 'letal-x', value: 1 },
+    { keywordId: 'longue-distance' },
   ],
   'The Fifth Brother': [
     { keywordId: 'blocage' },
@@ -255,6 +289,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'immunite-perforant' },
     { keywordId: 'impact-x', value: 2 },
     { keywordId: 'perforant-x', value: 1 },
+    { keywordId: 'belier-x', value: 2 },
   ],
   'The Seventh Sister': [
     { keywordId: 'saut-x', value: 1 },
@@ -321,6 +356,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   ],
   'FX-9 Medical Droid': [
     { keywordId: 'non-combattant' },
+    { keywordId: 'traiter-x', value: 1 },
   ],
   'Imperial Officer': [
     { keywordId: 'chef' },
@@ -399,12 +435,17 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'redeploiement' },
     { keywordId: 'tireur-delite-x', value: 1 },
     { keywordId: 'sans-entrave' },
+    { keywordId: 'belier-x', value: 1 },
   ],
   'T-47 Airspeeder': [
     { keywordId: 'armure-x', value: 3 },
     { keywordId: 'arsenal-x', value: 2 },
     { keywordId: 'couvert-x', value: 1 },
+    { keywordId: 'immunite-deflagration' },
+    { keywordId: 'immunite-corps-a-corps' },
+    { keywordId: 'immunite-armes-portee-1' },
     { keywordId: 'speeder-x', value: 2 },
+    { keywordId: 'impact-x', value: 3 },
   ],
   'X-34 Landspeeder': [
     { keywordId: 'armure-x', value: 2 },
@@ -431,6 +472,9 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'immunite-perforant' },
     { keywordId: 'inspiration-x', value: 2 },
     { keywordId: 'tireur-delite-x', value: 1 },
+    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'perforant-x', value: 1 },
+    { keywordId: 'longue-distance' },
   ],
   'Luke Skywalker Jedi Knight': [
     { keywordId: 'saut-x', value: 1 },
@@ -439,6 +483,8 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'retrait' },
     { keywordId: 'immunite-perforant' },
     { keywordId: 'maitre-de-la-force-x', value: 1 },
+    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'perforant-x', value: 2 },
   ],
   'Jyn Erso': [
     { keywordId: 'preste-x', value: 1 },
@@ -447,6 +493,9 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'infiltration' },
     { keywordId: 'agile' },
     { keywordId: 'tireur-delite-x', value: 1 },
+    { keywordId: 'suppressif' },
+    { keywordId: 'longue-distance' },
+    { keywordId: 'perforant-x', value: 1 },
   ],
   'Cassian Andor': [
     { keywordId: 'intuition-du-danger-x', value: 3 },
@@ -463,23 +512,30 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'longueur-davance' },
     { keywordId: 'aguerri' },
     { keywordId: 'coup-de-chance-x', value: 2 },
+    { keywordId: 'longue-distance' },
   ],
   'Chewbacca': [
     { keywordId: 'enrage-x', value: 4 },
     { keywordId: 'gardien-x', value: 3 },
     { keywordId: 'ascension' },
+    { keywordId: 'travail-dequipe' },
+    { keywordId: 'letal-x', value: 1 },
+    { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'perforant-x', value: 1 },
   ],
   'Sabine Wren': [
     { keywordId: 'saut-x', value: 2 },
     { keywordId: 'pistolero' },
     { keywordId: 'insensible' },
     { keywordId: 'agile' },
+    { keywordId: 'perforant-x', value: 1 },
   ],
   'R2-D2': [
     { keywordId: 'reparation-x', value: 2 },
     { keywordId: 'discret' },
     { keywordId: 'infiltration' },
     { keywordId: 'mission-secrete' },
+    { keywordId: 'suppressif' },
   ],
   'Ahsoka Tano': [
     { keywordId: 'saut-x', value: 2 },
@@ -488,6 +544,8 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'deflexion' },
     { keywordId: 'immunite-perforant' },
     { keywordId: 'maitrise-du-jarkai' },
+    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'perforant-x', value: 2 },
   ],
   'K-2SO': [
     { keywordId: 'calcul-de-probabilites' },
@@ -495,6 +553,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'detachement' },
     { keywordId: 'incognito' },
     { keywordId: 'infiltration' },
+    { keywordId: 'travail-dequipe' },
   ],
 
   // --- Améliorations Alliance Rebelle ---
