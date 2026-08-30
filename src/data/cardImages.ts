@@ -94,6 +94,9 @@ const RAW: Record<string, string> = {
   'R2-D2': 'r2-d2.jpg',
   'Ahsoka Tano': 'ahsoka-tano.jpg',
   'K-2SO': 'k-2so.jpg',
+  // = TL-TT sur la carte française (voir cardTags.ts) : on réutilise le même visuel.
+  'AT-RT': 'tl-tt.jpg',
+  'TL-TT': 'tl-tt.jpg',
   'MPL-57 Ion Trooper': 'mpl-57-ion-trooper.jpg',
   'DLT-20A Trooper': 'dlt-20a-trooper.jpg',
   'SX-21 Trooper': 'sx-21-trooper.jpg',

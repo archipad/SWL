@@ -559,6 +559,26 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'infiltration' },
     { keywordId: 'travail-dequipe' },
   ],
+  // = TL-TT sur la carte française (nom Tabletop Admiral : AT-RT) — équivalent
+  // rebelle du TR-TT/AT-ST impérial. Vérifié le 30/08/2026 sur scan officiel
+  // FR fourni par l'utilisateur (Rebel Alliance Units FR.pdf, signalement :
+  // unité manquante de la bibliothèque). Une seule config imprimée.
+  'AT-RT': [
+    { keywordId: 'armure-x', value: 2 },
+    { keywordId: 'vehicule-grimpant' },
+    { keywordId: 'grimpeur-experimente' },
+    { keywordId: 'eclaireur-x', value: 1 },
+    { keywordId: 'impact-x', value: 1 },
+  ],
+  // = AT-RT en anglais (nom Tabletop Admiral) ; dupliqué ici sous le nom
+  // imprimé sur la carte française, au cas où un import l'utiliserait tel quel.
+  'TL-TT': [
+    { keywordId: 'armure-x', value: 2 },
+    { keywordId: 'vehicule-grimpant' },
+    { keywordId: 'grimpeur-experimente' },
+    { keywordId: 'eclaireur-x', value: 1 },
+    { keywordId: 'impact-x', value: 1 },
+  ],
 
   // --- Améliorations Alliance Rebelle ---
   'MPL-57 Ion Trooper': [
