@@ -55,6 +55,7 @@ body {
 .app-header nav {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .app-header nav button {
@@ -65,6 +66,10 @@ body {
   border-radius: 999px;
   cursor: pointer;
   font-size: 0.85rem;
+  /* Sur petit écran, "Glossaire complet" ne doit jamais se couper en deux
+     lignes dans sa pastille (ça déforme sa hauteur par rapport aux autres
+     onglets) : la pastille entière passe à la ligne suivante à la place. */
+  white-space: nowrap;
 }
 
 .app-header nav button.active {
