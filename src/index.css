@@ -484,10 +484,13 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .cheat-rule p:last-child { margin-bottom: 0; }
 
 /* --- Print --- */
-/* Marges par défaut du navigateur (~2cm) trop généreuses pour une aide de
-   jeu qu'on veut compacte : on reprend l'espace, la mise en page reste
-   dictée par les règles ci-dessous, pas par cette marge. */
-@page { margin: 1.2cm; }
+/* Format portrait explicite (ne pas dépendre du dernier réglage du
+   navigateur) et marges resserrées au minimum raisonnable pour un
+   imprimante grand public — en dessous de ~0,5 cm, beaucoup d'imprimantes
+   rognent le contenu près du bord plutôt que de l'imprimer. Objectif :
+   le moins de feuilles possible, et une unité (visuel + toutes ses
+   définitions) qui tient sur une seule feuille aussi souvent que possible. */
+@page { size: A4 portrait; margin: 0.5cm; }
 
 /* Symétrique de .no-print : groupé par impact à l'écran (utile en jeu),
    liste alphabétique unique à l'impression (plus rapide à consulter sur
@@ -529,27 +532,29 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
      par paire en amont (UnitCardsSection.tsx : chunk(list.units, 2)) ;
      chaque paire force un saut de page juste après elle, donc une page ne
      contient jamais plus de 2 fiches. */
-  .unit-cards-section { margin-top: 0.6em; }
+  .unit-cards-section { margin-top: 0.3em; }
   .unit-cards-page {
-    display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.6em; align-items: start;
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.5em; align-items: start;
     break-after: page; page-break-after: always;
   }
   .unit-cards-page:last-child { break-after: auto; page-break-after: auto; }
   .unit-card-sheet {
     background: none; border: 1px solid #999; border-radius: 0;
-    padding: 0.3em 0.5em; margin: 0;
+    padding: 0.25em 0.4em; margin: 0;
   }
   /* Le visuel + le nom ne se séparent jamais ; chaque définition de
      mot-clé non plus — utile si une fiche a exceptionnellement beaucoup de
-     mots-clés et déborde malgré tout sur la page suivante. */
+     mots-clés et déborde malgré tout sur la page suivante. Le texte est
+     serré au maximum (jusqu'à Perforant X, la définition la plus longue du
+     glossaire) pour qu'une unité normale tienne entière sur sa page. */
   .unit-card-heading { break-inside: avoid; }
-  .unit-card-images { gap: 0.2em; margin-bottom: 0.3em; }
-  .unit-card-image { max-height: 150pt; background: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .unit-card-image-upgrade { max-height: 100pt; }
-  .unit-card-head { color: black; font-size: 9pt; margin-bottom: 0.25em; }
+  .unit-card-images { gap: 0.15em; margin-bottom: 0.2em; }
+  .unit-card-image { max-height: 120pt; background: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .unit-card-image-upgrade { max-height: 85pt; }
+  .unit-card-head { color: black; font-size: 8.5pt; margin-bottom: 0.2em; }
   .unit-card-upgrade-names { color: #444; }
-  .unit-card-keywords { display: flex; flex-direction: column; gap: 0.2em; }
+  .unit-card-keywords { display: flex; flex-direction: column; gap: 0.15em; }
   .unit-card-kw { break-inside: avoid; }
-  .unit-card-kw h4 { color: black; font-size: 8.5pt; margin: 0 0 0.1em; }
-  .unit-card-kw p { color: black; font-size: 7.5pt; line-height: 1.25; margin: 0 0 0.15em; }
+  .unit-card-kw h4 { color: black; font-size: 8pt; margin: 0 0 0.06em; }
+  .unit-card-kw p { color: black; font-size: 7pt; line-height: 1.2; margin: 0 0 0.12em; }
 }
