@@ -423,9 +423,15 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
    dictée par les règles ci-dessous, pas par cette marge. */
 @page { margin: 1.2cm; }
 
+/* Symétrique de .no-print : groupé par impact à l'écran (utile en jeu),
+   liste alphabétique unique à l'impression (plus rapide à consulter sur
+   papier — voir GlossarySection.tsx). */
+.print-only { display: none; }
+
 @media print {
   body { background: white; color: black; }
   .no-print { display: none !important; }
+  .print-only { display: block; }
   .print-title { font-size: 13pt; margin: 0 0 0.3em; }
 
   /* Glossaire imprimé : dense mais lisible — 3 colonnes plutôt que 2 (la
