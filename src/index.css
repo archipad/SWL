@@ -406,7 +406,11 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .glossary-cards { color: var(--text-dim); font-size: 0.78rem; }
 
 /* --- Fiches d'unité imprimables (visuel de carte + mots-clés) --- */
-.unit-cards-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.unit-cards-pages { display: flex; flex-direction: column; gap: 1rem; }
+.unit-cards-page { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; align-items: start; }
+@media (max-width: 600px) {
+  .unit-cards-page { grid-template-columns: 1fr; }
+}
 .unit-card-sheet { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem; }
 .unit-card-images { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
 .unit-card-image { max-height: 170px; max-width: 100%; object-fit: contain; border-radius: 6px; background: #000; flex: 1 1 auto; }
@@ -519,33 +523,29 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   }
   .icon-legend strong { color: black; }
 
-  /* Fiches d'unité imprimées : une carte + ses mots-clés par bloc, 2 par
-     rangée (les visuels ont besoin de plus de place que le texte seul du
-     glossaire), chaque fiche évite de se couper entre deux pages/colonnes
-     quand c'est possible. */
-  /* CSS Grid ne fragmente pas proprement sur plusieurs pages à l'impression
-     (Chrome pousse des lignes entières plutôt que de les répartir, laissant
-     de grands vides) — colonnes CSS comme pour .glossary à la place, qui
-     gère nativement les sauts de page par bloc. */
+  /* Fiches d'unité imprimées : exactement 2 par page A4, une par colonne
+     (visuel en haut, mots-clés en dessous) — pas un flux qui en case plus
+     ou moins selon la longueur des mots-clés. Les unités sont regroupées
+     par paire en amont (UnitCardsSection.tsx : chunk(list.units, 2)) ;
+     chaque paire force un saut de page juste après elle, donc une page ne
+     contient jamais plus de 2 fiches. */
   .unit-cards-section { margin-top: 0.6em; }
-  .unit-cards-grid { display: block; column-count: 2; column-gap: 0.5em; }
-  /* Un vrai encadré (border sur les 4 côtés) ne se peint pas de façon
-     fiable ici : Chrome ne dessine pas la bordure d'un bloc dans un
-     conteneur en colonnes CSS dès que ce bloc dépasse la hauteur d'une
-     colonne — bug connu, pas propre à cette mise en page. Une ligne de
-     séparation en bas (même principe que .glossary-entry, qui elle
-     fonctionne) reste un repère de découpe suffisant. */
+  .unit-cards-page {
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.6em; align-items: start;
+    break-after: page; page-break-after: always;
+  }
+  .unit-cards-page:last-child { break-after: auto; page-break-after: auto; }
   .unit-card-sheet {
-    background: none; border: none; border-bottom: 1px solid #999; border-radius: 0;
-    padding: 0.3em 0.4em 0.6em; margin: 0 0 0.5em;
+    background: none; border: 1px solid #999; border-radius: 0;
+    padding: 0.3em 0.5em; margin: 0;
   }
   /* Le visuel + le nom ne se séparent jamais ; chaque définition de
-     mot-clé non plus (comme .glossary-entry) — mais la fiche entière,
-     elle, peut couper entre deux mots-clés si elle dépasse une page. */
+     mot-clé non plus — utile si une fiche a exceptionnellement beaucoup de
+     mots-clés et déborde malgré tout sur la page suivante. */
   .unit-card-heading { break-inside: avoid; }
   .unit-card-images { gap: 0.2em; margin-bottom: 0.3em; }
-  .unit-card-image { max-height: 130pt; background: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .unit-card-image-upgrade { max-height: 85pt; }
+  .unit-card-image { max-height: 150pt; background: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .unit-card-image-upgrade { max-height: 100pt; }
   .unit-card-head { color: black; font-size: 9pt; margin-bottom: 0.25em; }
   .unit-card-upgrade-names { color: #444; }
   .unit-card-keywords { display: flex; flex-direction: column; gap: 0.2em; }

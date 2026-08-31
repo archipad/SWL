@@ -1,4 +1,4 @@
-import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
+import type { CardTagLibrary, KeywordDef, ParsedList, ParsedUnit } from '../types';
 import { resolveUnitKeywords } from '../lib/combat';
 import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
@@ -10,6 +10,69 @@ interface Props {
   keywords: KeywordDef[];
 }
 
+/** Découpe une liste en groupes de `size` (le dernier groupe peut être plus court). */
+function chunk<T>(items: T[], size: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));
+  return out;
+}
+
+function UnitCard({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary: CardTagLibrary; keywords: KeywordDef[] }) {
+  const resolved = resolveUnitKeywords(unit, tagLibrary, keywords);
+  const unitImg = CARD_IMAGES[normalizeName(unit.name)];
+
+  return (
+    <div className="unit-card-sheet">
+      {/* Regroupé à part (et pas le bloc entier) pour break-inside:avoid :
+          un mot-clé très long (ex. Perforant X) peut à lui seul dépasser une
+          colonne — mieux vaut laisser la liste de mots-clés continuer sur la
+          page suivante que de tronquer ou déborder illisiblement. */}
+      <div className="unit-card-heading">
+        <div className="unit-card-images">
+          {unitImg && (
+            <img
+              className="unit-card-image"
+              src={unitImg}
+              alt={unit.name}
+              onError={(e) => { e.currentTarget.hidden = true; }}
+            />
+          )}
+          {unit.upgrades.map((up) => {
+            const upImg = CARD_IMAGES[normalizeName(up.name)];
+            return upImg ? (
+              <img
+                key={up.key}
+                className="unit-card-image unit-card-image-upgrade"
+                src={upImg}
+                alt={up.name}
+                onError={(e) => { e.currentTarget.hidden = true; }}
+              />
+            ) : null;
+          })}
+        </div>
+        <div className="unit-card-head">
+          <strong>{unit.name}</strong>
+          {unit.upgrades.length > 0 && (
+            <span className="unit-card-upgrade-names"> + {unit.upgrades.map((u) => u.name).join(', ')}</span>
+          )}
+        </div>
+      </div>
+      {resolved.length === 0 ? (
+        <p className="empty-hint">Aucun mot-clé renseigné pour cette carte.</p>
+      ) : (
+        <div className="unit-card-keywords">
+          {resolved.map((r) => (
+            <div key={r.tag.keywordId} className="unit-card-kw">
+              <h4>{r.def.name}{r.def.hasValue && r.tag.value ? ` ${r.tag.value}` : ''}</h4>
+              <p><DefinitionText text={r.def.definition} /></p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /**
  * Une « fiche » imprimable par unité : le visuel de carte de l'unité et de
  * chaque amélioration équipée, suivi des mots-clés qui s'appliquent (unité
@@ -17,6 +80,13 @@ interface Props {
  * pensé pour être découpé et posé à côté de la table à la place de la
  * carte physique, avec la définition sous les yeux sans avoir à la
  * chercher dans le livret.
+ *
+ * Exactement 2 fiches par page A4 imprimée, une par colonne (demande
+ * explicite : pas un flux qui en case plus ou moins selon la longueur des
+ * mots-clés) — les unités sont donc regroupées par paire, chaque paire
+ * forçant un saut de page après elle (sauf la dernière). En écran, un
+ * simple flux à largeur variable suffit (cette section n'est de toute
+ * façon jamais visible à l'écran, cf. plus bas).
  *
  * Une carte sans visuel connu (CARD_IMAGES ne couvre pas encore toutes les
  * cartes) affiche simplement ses mots-clés sans image, plutôt qu'un visuel
@@ -34,62 +104,14 @@ export function UnitCardsSection({ list, tagLibrary, keywords }: Props) {
   }
 
   return (
-    <div className="unit-cards-grid">
-      {list.units.map((unit) => {
-        const resolved = resolveUnitKeywords(unit, tagLibrary, keywords);
-        const unitImg = CARD_IMAGES[normalizeName(unit.name)];
-        return (
-          <div key={unit.key} className="unit-card-sheet">
-            {/* Regroupé à part (et pas le bloc entier) pour break-inside:avoid :
-                un mot-clé très long (ex. Perforant X) peut à lui seul dépasser
-                une page — mieux vaut laisser la liste de mots-clés continuer
-                sur la page suivante que de pousser toute la fiche en bas
-                d'une page vide pour rien. */}
-            <div className="unit-card-heading">
-              <div className="unit-card-images">
-                {unitImg && (
-                  <img
-                    className="unit-card-image"
-                    src={unitImg}
-                    alt={unit.name}
-                    onError={(e) => { e.currentTarget.hidden = true; }}
-                  />
-                )}
-                {unit.upgrades.map((up) => {
-                  const upImg = CARD_IMAGES[normalizeName(up.name)];
-                  return upImg ? (
-                    <img
-                      key={up.key}
-                      className="unit-card-image unit-card-image-upgrade"
-                      src={upImg}
-                      alt={up.name}
-                      onError={(e) => { e.currentTarget.hidden = true; }}
-                    />
-                  ) : null;
-                })}
-              </div>
-              <div className="unit-card-head">
-                <strong>{unit.name}</strong>
-                {unit.upgrades.length > 0 && (
-                  <span className="unit-card-upgrade-names"> + {unit.upgrades.map((u) => u.name).join(', ')}</span>
-                )}
-              </div>
-            </div>
-            {resolved.length === 0 ? (
-              <p className="empty-hint">Aucun mot-clé renseigné pour cette carte.</p>
-            ) : (
-              <div className="unit-card-keywords">
-                {resolved.map((r) => (
-                  <div key={r.tag.keywordId} className="unit-card-kw">
-                    <h4>{r.def.name}{r.def.hasValue && r.tag.value ? ` ${r.tag.value}` : ''}</h4>
-                    <p><DefinitionText text={r.def.definition} /></p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        );
-      })}
+    <div className="unit-cards-pages">
+      {chunk(list.units, 2).map((pair) => (
+        <div key={pair[0].key} className="unit-cards-page">
+          {pair.map((unit) => (
+            <UnitCard key={unit.key} unit={unit} tagLibrary={tagLibrary} keywords={keywords} />
+          ))}
+        </div>
+      ))}
     </div>
   );
 }
