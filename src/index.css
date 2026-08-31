@@ -404,6 +404,20 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .glossary-entry p { margin: 0 0 0.3rem; font-size: 0.88rem; }
 .glossary-cards { color: var(--text-dim); font-size: 0.78rem; }
 
+.print-mode-toggle { margin: 1.5rem 0 1rem; }
+
+/* --- Fiches d'unité imprimables (visuel de carte + mots-clés) --- */
+.unit-cards-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.unit-card-sheet { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem; }
+.unit-card-images { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.5rem; }
+.unit-card-image { max-height: 170px; max-width: 100%; object-fit: contain; border-radius: 6px; background: #000; flex: 1 1 auto; }
+.unit-card-image-upgrade { max-height: 120px; }
+.unit-card-head { margin-bottom: 0.5rem; font-size: 0.9rem; }
+.unit-card-upgrade-names { color: var(--text-dim); font-size: 0.8rem; }
+.unit-card-keywords { display: flex; flex-direction: column; gap: 0.4rem; }
+.unit-card-kw h4 { margin: 0 0 0.15rem; color: var(--text); font-size: 0.85rem; }
+.unit-card-kw p { margin: 0; font-size: 0.8rem; color: var(--text-dim); }
+
 /* --- Library screen --- */
 .library-toolbar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.75rem; }
 .library-toolbar input { flex: 1; min-width: 10rem; background: var(--bg-input); border: 1px solid var(--border); border-radius: 6px; padding: 0.45rem 0.6rem; color: var(--text); }
@@ -505,4 +519,38 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
     padding: 0.2em 0.5em; margin: 0.2em 0 0.4em;
   }
   .icon-legend strong { color: black; }
+
+  /* Fiches d'unité imprimées : une carte + ses mots-clés par bloc, 2 par
+     rangée (les visuels ont besoin de plus de place que le texte seul du
+     glossaire), chaque fiche évite de se couper entre deux pages/colonnes
+     quand c'est possible. */
+  /* CSS Grid ne fragmente pas proprement sur plusieurs pages à l'impression
+     (Chrome pousse des lignes entières plutôt que de les répartir, laissant
+     de grands vides) — colonnes CSS comme pour .glossary à la place, qui
+     gère nativement les sauts de page par bloc. */
+  .unit-cards-section { margin-top: 0.6em; }
+  .unit-cards-grid { display: block; column-count: 2; column-gap: 0.5em; }
+  /* Un vrai encadré (border sur les 4 côtés) ne se peint pas de façon
+     fiable ici : Chrome ne dessine pas la bordure d'un bloc dans un
+     conteneur en colonnes CSS dès que ce bloc dépasse la hauteur d'une
+     colonne — bug connu, pas propre à cette mise en page. Une ligne de
+     séparation en bas (même principe que .glossary-entry, qui elle
+     fonctionne) reste un repère de découpe suffisant. */
+  .unit-card-sheet {
+    background: none; border: none; border-bottom: 1px solid #999; border-radius: 0;
+    padding: 0.3em 0.4em 0.6em; margin: 0 0 0.5em;
+  }
+  /* Le visuel + le nom ne se séparent jamais ; chaque définition de
+     mot-clé non plus (comme .glossary-entry) — mais la fiche entière,
+     elle, peut couper entre deux mots-clés si elle dépasse une page. */
+  .unit-card-heading { break-inside: avoid; }
+  .unit-card-images { gap: 0.2em; margin-bottom: 0.3em; }
+  .unit-card-image { max-height: 130pt; background: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .unit-card-image-upgrade { max-height: 85pt; }
+  .unit-card-head { color: black; font-size: 9pt; margin-bottom: 0.25em; }
+  .unit-card-upgrade-names { color: #444; }
+  .unit-card-keywords { display: flex; flex-direction: column; gap: 0.2em; }
+  .unit-card-kw { break-inside: avoid; }
+  .unit-card-kw h4 { color: black; font-size: 8.5pt; margin: 0 0 0.1em; }
+  .unit-card-kw p { color: black; font-size: 7.5pt; line-height: 1.25; margin: 0 0 0.15em; }
 }

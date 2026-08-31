@@ -1,7 +1,9 @@
 import type { CardKeywordTag, CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { CardRow } from './CardRow';
 import { GlossarySection } from './GlossarySection';
+import { UnitCardsSection } from './UnitCardsSection';
 import { DiceIcon } from '../lib/diceIcons';
+import { usePersistentState } from '../lib/storage';
 
 interface Props {
   list: ParsedList;
@@ -18,6 +20,10 @@ interface Props {
 export function ArmyScreen({
   list, playerLabel, tagLibrary, keywords, getTags, onAddTag, onRemoveTag, onCreateKeyword, onChangeList,
 }: Props) {
+  // Deux mises en page imprimables au choix : le glossaire de toute la liste
+  // (référence complète), ou une fiche par unité avec son visuel de carte —
+  // pensée pour remplacer la carte physique à côté de la table.
+  const [printMode, setPrintMode] = usePersistentState<'glossary' | 'cards'>('swl.army-print-mode.v1', 'glossary');
   const sections = new Map<string, typeof list.units>();
   for (const unit of list.units) {
     const arr = sections.get(unit.section) ?? [];
@@ -58,7 +64,9 @@ export function ArmyScreen({
           >
             🗑 Supprimer la liste
           </button>
-          <button type="button" className="btn btn-primary" onClick={() => window.print()}>Imprimer le glossaire</button>
+          <button type="button" className="btn btn-primary" onClick={() => window.print()}>
+            Imprimer {printMode === 'cards' ? 'les fiches d’unité' : 'le glossaire'}
+          </button>
         </div>
       </div>
 
@@ -104,22 +112,51 @@ export function ArmyScreen({
         )}
       </section>
 
-      <section className="glossary-section">
-        <h2 className="print-title">
-          Glossaire — {list.listName ?? list.faction ?? 'Liste'}
-          {list.totalPoints !== undefined ? ` (${list.totalPoints} pts)` : ''}
-        </h2>
-        <p className="import-note no-print">
-          Classé par impact : ce que ce mot-clé change pour la carte qui le porte, quand elle
-          attaque, quand elle défend, ou autre chose (mouvement, commandement...).
-        </p>
-        <p className="icon-legend">
-          <DiceIcon type="bloc" /> Bloc · <DiceIcon type="critique" /> Critique ·{' '}
-          <DiceIcon type="touche" /> Touche · <DiceIcon type="adr-atq" /> Adrénaline (attaque) ·{' '}
-          <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
-        </p>
-        <GlossarySection list={list} tagLibrary={tagLibrary} keywords={keywords} />
-      </section>
+      <div className="btn-group print-mode-toggle no-print">
+        <button type="button" className={printMode === 'glossary' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setPrintMode('glossary')}>
+          Glossaire complet
+        </button>
+        <button type="button" className={printMode === 'cards' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setPrintMode('cards')}>
+          Fiches d'unité (avec visuel)
+        </button>
+      </div>
+
+      {printMode === 'cards' ? (
+        <section className="unit-cards-section">
+          <h2 className="print-title">
+            Fiches d'unité — {list.listName ?? list.faction ?? 'Liste'}
+            {list.totalPoints !== undefined ? ` (${list.totalPoints} pts)` : ''}
+          </h2>
+          <p className="import-note no-print">
+            Une fiche par unité : le visuel de carte (+ celui de chaque amélioration équipée) suivi
+            de ses mots-clés — à découper et garder à côté de la table à la place de la carte
+            physique.
+          </p>
+          <p className="icon-legend">
+            <DiceIcon type="bloc" /> Bloc · <DiceIcon type="critique" /> Critique ·{' '}
+            <DiceIcon type="touche" /> Touche · <DiceIcon type="adr-atq" /> Adrénaline (attaque) ·{' '}
+            <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
+          </p>
+          <UnitCardsSection list={list} tagLibrary={tagLibrary} keywords={keywords} />
+        </section>
+      ) : (
+        <section className="glossary-section">
+          <h2 className="print-title">
+            Glossaire — {list.listName ?? list.faction ?? 'Liste'}
+            {list.totalPoints !== undefined ? ` (${list.totalPoints} pts)` : ''}
+          </h2>
+          <p className="import-note no-print">
+            Classé par impact : ce que ce mot-clé change pour la carte qui le porte, quand elle
+            attaque, quand elle défend, ou autre chose (mouvement, commandement...).
+          </p>
+          <p className="icon-legend">
+            <DiceIcon type="bloc" /> Bloc · <DiceIcon type="critique" /> Critique ·{' '}
+            <DiceIcon type="touche" /> Touche · <DiceIcon type="adr-atq" /> Adrénaline (attaque) ·{' '}
+            <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
+          </p>
+          <GlossarySection list={list} tagLibrary={tagLibrary} keywords={keywords} />
+        </section>
+      )}
     </div>
   );
 }
