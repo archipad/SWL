@@ -1,16 +1,20 @@
+import { useEffect, useState } from 'react';
 import { ImportScreen } from './ImportScreen';
 import { SyncSettings } from './SyncSettings';
+import { UnitCardsSection } from './UnitCardsSection';
+import { DiceIcon } from '../lib/diceIcons';
 import type { useSync } from '../lib/useSync';
-import type { ParsedList } from '../types';
+import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 
 interface SlotProps {
   playerLabel: string;
   list: ParsedList | null;
   onParse: (text: string) => void;
   onClear: () => void;
+  onPrint: () => void;
 }
 
-function ImportSlot({ playerLabel, list, onParse, onClear }: SlotProps) {
+function ImportSlot({ playerLabel, list, onParse, onClear, onPrint }: SlotProps) {
   if (!list) {
     return <ImportScreen playerLabel={playerLabel} onParse={onParse} />;
   }
@@ -25,17 +29,22 @@ function ImportSlot({ playerLabel, list, onParse, onClear }: SlotProps) {
         {' · '}
         {list.units.length} unité{list.units.length > 1 ? 's' : ''}
       </p>
-      <button
-        type="button"
-        className="btn btn-ghost btn-danger"
-        onClick={() => {
-          if (window.confirm(`Supprimer la liste « ${list.listName ?? list.faction ?? playerLabel} » ? Vous pourrez en importer une nouvelle juste après.`)) {
-            onClear();
-          }
-        }}
-      >
-        🗑 Supprimer la liste
-      </button>
+      <div className="setup-slot-actions">
+        <button type="button" className="btn btn-ghost" onClick={onPrint}>
+          🖶 Imprimer les fiches d'unité
+        </button>
+        <button
+          type="button"
+          className="btn btn-ghost btn-danger"
+          onClick={() => {
+            if (window.confirm(`Supprimer la liste « ${list.listName ?? list.faction ?? playerLabel} » ? Vous pourrez en importer une nouvelle juste après.`)) {
+              onClear();
+            }
+          }}
+        >
+          🗑 Supprimer la liste
+        </button>
+      </div>
     </div>
   );
 }
@@ -43,6 +52,8 @@ function ImportSlot({ playerLabel, list, onParse, onClear }: SlotProps) {
 interface Props {
   listP1: ParsedList | null;
   listP2: ParsedList | null;
+  tagLibrary: CardTagLibrary;
+  keywords: KeywordDef[];
   onParseP1: (text: string) => void;
   onParseP2: (text: string) => void;
   onClearP1: () => void;
@@ -50,26 +61,75 @@ interface Props {
   sync: ReturnType<typeof useSync>;
 }
 
-export function SetupScreen({ listP1, listP2, onParseP1, onParseP2, onClearP1, onClearP2, sync }: Props) {
+export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, onParseP2, onClearP1, onClearP2, sync }: Props) {
+  // Fiches d'unité (visuel de carte + mots-clés) imprimables depuis cette page,
+  // une armée à la fois — distinct du bouton « Imprimer le glossaire » de
+  // l'écran Armées, qui reste purement textuel. On imprime la liste choisie
+  // dès que l'état est posé : le contenu (classe print-only, cf. index.css)
+  // reste invisible à l'écran quoi qu'il arrive, donc pas de risque de flash.
+  const [printTarget, setPrintTarget] = useState<'p1' | 'p2' | null>(null);
+
+  useEffect(() => {
+    if (!printTarget) return;
+    let cancelled = false;
+    // Attendre que les visuels de carte aient fini de charger avant d'ouvrir
+    // la boîte d'impression — sans ça, une image pas encore récupérée sur le
+    // réseau imprimerait comme une case vide.
+    const waitForImages = async () => {
+      const imgs = Array.from(document.querySelectorAll<HTMLImageElement>('.unit-cards-section.print-only img'));
+      await Promise.all(imgs.map((img) => (img.complete ? Promise.resolve() : new Promise<void>((resolve) => {
+        img.addEventListener('load', () => resolve(), { once: true });
+        img.addEventListener('error', () => resolve(), { once: true });
+      }))));
+      if (!cancelled) window.print();
+    };
+    waitForImages();
+    const reset = () => setPrintTarget(null);
+    window.addEventListener('afterprint', reset, { once: true });
+    return () => { cancelled = true; window.removeEventListener('afterprint', reset); };
+  }, [printTarget]);
+
+  const printList = printTarget === 'p1' ? listP1 : printTarget === 'p2' ? listP2 : null;
+  const printLabel = printTarget === 'p1'
+    ? (listP1?.listName ?? listP1?.faction ?? 'Joueur 1')
+    : (listP2?.listName ?? listP2?.faction ?? 'Joueur 2');
+
   return (
     <div className="setup-screen">
-      <p className="import-note setup-intro">
-        Importez la liste de chaque joueur pour débloquer les onglets Armées et Combat — l'appli est
-        pensée pour suivre une partie à deux, avec les mots-clés des deux camps sous la main.
-      </p>
-      <div className="setup-columns">
-        <ImportSlot playerLabel="Joueur 1" list={listP1} onParse={onParseP1} onClear={onClearP1} />
-        <ImportSlot playerLabel="Joueur 2" list={listP2} onParse={onParseP2} onClear={onClearP2} />
+      <div className="no-print">
+        <p className="import-note setup-intro">
+          Importez la liste de chaque joueur pour débloquer les onglets Armées et Combat — l'appli est
+          pensée pour suivre une partie à deux, avec les mots-clés des deux camps sous la main.
+        </p>
+        <div className="setup-columns">
+          <ImportSlot playerLabel="Joueur 1" list={listP1} onParse={onParseP1} onClear={onClearP1} onPrint={() => setPrintTarget('p1')} />
+          <ImportSlot playerLabel="Joueur 2" list={listP2} onParse={onParseP2} onClear={onClearP2} onPrint={() => setPrintTarget('p2')} />
+        </div>
+        <SyncSettings
+          token={sync.token}
+          status={sync.status}
+          error={sync.error}
+          lastSyncAt={sync.lastSyncAt}
+          onSaveToken={sync.saveToken}
+          onRemoveToken={sync.removeToken}
+          onSyncNow={sync.pull}
+        />
       </div>
-      <SyncSettings
-        token={sync.token}
-        status={sync.status}
-        error={sync.error}
-        lastSyncAt={sync.lastSyncAt}
-        onSaveToken={sync.saveToken}
-        onRemoveToken={sync.removeToken}
-        onSyncNow={sync.pull}
-      />
+
+      {printList && (
+        <section className="unit-cards-section print-only">
+          <h2 className="print-title">
+            Fiches d'unité — {printLabel}
+            {printList.totalPoints !== undefined ? ` (${printList.totalPoints} pts)` : ''}
+          </h2>
+          <p className="icon-legend">
+            <DiceIcon type="bloc" /> Bloc · <DiceIcon type="critique" /> Critique ·{' '}
+            <DiceIcon type="touche" /> Touche · <DiceIcon type="adr-atq" /> Adrénaline (attaque) ·{' '}
+            <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
+          </p>
+          <UnitCardsSection list={printList} tagLibrary={tagLibrary} keywords={keywords} />
+        </section>
+      )}
     </div>
   );
 }

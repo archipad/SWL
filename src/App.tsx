@@ -129,6 +129,8 @@ export default function App() {
       <SetupScreen
         listP1={listP1}
         listP2={listP2}
+        tagLibrary={tagLibrary}
+        keywords={keywords}
         onParseP1={handleParseP1}
         onParseP2={handleParseP2}
         onClearP1={handleClearP1}

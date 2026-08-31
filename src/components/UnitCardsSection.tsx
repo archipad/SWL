@@ -21,6 +21,12 @@ interface Props {
  * Une carte sans visuel connu (CARD_IMAGES ne couvre pas encore toutes les
  * cartes) affiche simplement ses mots-clés sans image, plutôt qu'un visuel
  * cassé ou erroné.
+ *
+ * Pas de `loading="lazy"` sur les images : ce composant n'est monté que
+ * dans une section masquée à l'écran (display: none tant qu'on n'imprime
+ * pas, cf. SetupScreen.tsx) — un navigateur ne déclenche jamais le
+ * chargement différé d'une image dans un ancêtre display:none, l'image
+ * resterait vide même une fois l'impression lancée.
  */
 export function UnitCardsSection({ list, tagLibrary, keywords }: Props) {
   if (list.units.length === 0) {
@@ -46,7 +52,6 @@ export function UnitCardsSection({ list, tagLibrary, keywords }: Props) {
                     className="unit-card-image"
                     src={unitImg}
                     alt={unit.name}
-                    loading="lazy"
                     onError={(e) => { e.currentTarget.hidden = true; }}
                   />
                 )}
@@ -58,7 +63,6 @@ export function UnitCardsSection({ list, tagLibrary, keywords }: Props) {
                       className="unit-card-image unit-card-image-upgrade"
                       src={upImg}
                       alt={up.name}
-                      loading="lazy"
                       onError={(e) => { e.currentTarget.hidden = true; }}
                     />
                   ) : null;
