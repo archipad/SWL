@@ -218,6 +218,28 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 }
 .card-row-definition-bolt { margin-right: 0.25rem; }
 
+/* --- Probabilités des dés (écran Combat) --- */
+.dice-probabilities {
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px;
+  padding: 0.6rem 0.9rem; margin: 0 0 1rem;
+}
+.dice-probabilities summary { cursor: pointer; font-weight: 600; }
+.dice-probabilities summary::marker { color: var(--text-dim); }
+.dice-probabilities[open] summary { margin-bottom: 0.5rem; }
+.dice-prob-heading { margin: 0.9rem 0 0.4rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); }
+.dice-prob-heading:first-of-type { margin-top: 0.2rem; }
+.dice-prob-table-wrap { overflow-x: auto; }
+.dice-prob-table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+.dice-prob-table th, .dice-prob-table td { padding: 0.35rem 0.5rem; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
+.dice-prob-name { display: flex; align-items: center; gap: 0.4rem; font-weight: 500; }
+.dice-swatch { display: inline-block; width: 0.85em; height: 0.85em; border-radius: 3px; border: 1px solid var(--border); flex-shrink: 0; }
+.dice-prob-cell { display: table-cell; }
+.dice-prob-cell .dice-icon { margin-right: 0.3rem; }
+.dice-prob-blank { color: var(--text-dim); font-size: 0.78rem; font-style: italic; margin-right: 0.3rem; }
+.dice-prob-count { color: var(--text-dim); font-size: 0.78rem; margin-right: 0.3rem; }
+.dice-prob-pct { font-weight: 600; }
+.dice-prob-footnote { color: var(--text-dim); font-size: 0.78rem; margin: 0.6rem 0 0; }
+
 .btn-group { display: flex; gap: 0.4rem; }
 .combat-view-toggle { margin-bottom: 1rem; }
 
@@ -416,6 +438,33 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .keyword-list-actions { display: flex; gap: 0.4rem; }
 .keyword-editor { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; }
 .card-tag-list li { flex-direction: column; align-items: stretch; }
+
+/* --- Pense-bête --- */
+.cheat-block {
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px;
+  padding: 0.9rem 1.1rem; margin-bottom: 1.1rem;
+}
+.cheat-block h3 { margin: 0 0 0.6rem; font-size: 1.02rem; }
+.cheat-block h4 { margin: 0 0 0.35rem; font-size: 0.88rem; }
+.cheat-steps, .cheat-substeps { margin: 0; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.cheat-substeps { margin-top: 0.35rem; gap: 0.3rem; }
+.cheat-steps li, .cheat-substeps li { font-size: 0.88rem; }
+.cheat-subheading { margin: 0.8rem 0 0.3rem; font-size: 0.82rem; color: var(--text-dim); }
+.cheat-list { margin: 0; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; }
+.cheat-note { color: var(--text-dim); font-size: 0.82rem; margin: 0.5rem 0 0; }
+.cheat-blue { color: #6db6e8; }
+.cheat-red { color: #e0685e; }
+.cheat-table-wrap { overflow-x: auto; margin-bottom: 0.6rem; }
+.cheat-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; }
+.cheat-table th, .cheat-table td { border: 1px solid var(--border); padding: 0.35rem 0.5rem; text-align: left; }
+.cheat-table thead th { color: var(--text-dim); font-weight: 600; }
+.cheat-table td.cheat-no { color: var(--text-dim); }
+.cheat-rules-grid { display: grid; gap: 0.9rem; }
+@media (min-width: 700px) {
+  .cheat-rules-grid { grid-template-columns: 1fr 1fr; }
+}
+.cheat-rule p { margin: 0 0 0.4rem; font-size: 0.85rem; }
+.cheat-rule p:last-child { margin-bottom: 0; }
 
 /* --- Print --- */
 /* Marges par défaut du navigateur (~2cm) trop généreuses pour une aide de

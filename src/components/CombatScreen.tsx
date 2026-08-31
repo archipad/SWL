@@ -6,6 +6,7 @@ import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
 import { detectInteractions } from '../lib/keywordInteractions';
 import { AttackSequenceGuide } from './AttackSequenceGuide';
+import { DiceProbabilities } from './DiceProbabilities';
 
 interface Props {
   listP1: ParsedList | null;
@@ -145,6 +146,8 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
           </select>
         </label>
       </div>
+
+      <DiceProbabilities />
 
       <div className="btn-group combat-view-toggle">
         <button type="button" className={view === 'sequence' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setView('sequence')}>

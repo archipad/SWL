@@ -3,6 +3,7 @@ import { SetupScreen } from './components/SetupScreen';
 import { ArmyScreen } from './components/ArmyScreen';
 import { CombatScreen } from './components/CombatScreen';
 import { LibraryScreen } from './components/LibraryScreen';
+import { CheatSheetScreen } from './components/CheatSheetScreen';
 import { importArmyList } from './lib/importList';
 import { usePersistentState } from './lib/storage';
 import { useKeywordLibrary } from './lib/useKeywordLibrary';
@@ -10,7 +11,7 @@ import { useCardTags } from './lib/useCardTags';
 import { useSync } from './lib/useSync';
 import type { ParsedList } from './types';
 
-type Page = 'setup' | 'army' | 'combat' | 'library';
+type Page = 'setup' | 'army' | 'combat' | 'library' | 'cheatsheet';
 type PlayerId = 'p1' | 'p2';
 
 const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
@@ -79,7 +80,9 @@ export default function App() {
     : (listP2?.listName ?? listP2?.faction ?? 'Joueur 2');
 
   let content;
-  if (page === 'library') {
+  if (page === 'cheatsheet') {
+    content = <CheatSheetScreen />;
+  } else if (page === 'library') {
     content = (
       <LibraryScreen
         keywords={keywords}
@@ -144,6 +147,7 @@ export default function App() {
           <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>Armées</button>
           <button type="button" className={page === 'combat' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('combat')}>Combat</button>
           <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>Glossaire complet</button>
+          <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>Pense-bête</button>
         </nav>
       </header>
 
