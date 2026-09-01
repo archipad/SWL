@@ -5,7 +5,7 @@ import { normalizeName } from '../lib/normalize';
  * des PDF fournis par l'utilisateur) affiché dans l'onglet Combat une fois
  * l'attaquant/le défenseur sélectionné.
  *
- * Couvre les 115 cartes actuellement dans cardTags.ts (mêmes PDF sources :
+ * Couvre les 116 cartes actuellement dans cardTags.ts (mêmes PDF sources :
  * unités et améliorations Empire/Alliance Rebelle). Même logique que
  * `cardTags.ts` : simple table nom-normalisé -> chemin d'image, à étoffer
  * au fil de l'eau à mesure que de nouvelles cartes sont taguées. Aucune
@@ -81,6 +81,7 @@ const RAW: Record<string, string> = {
   'Force Choke': 'force-choke.jpg',
   'Saber Throw': 'saber-throw.jpg',
   'Burst of Speed': 'burst-of-speed.jpg',
+  'Imperial March': 'imperial-march.jpg',
   'The Darksaber': 'the-darksaber.jpg',
   'Rebel Troopers': 'rebel-troopers.jpg',
   'Mark II Medium Blaster Trooper': 'mark-ii-medium-blaster-trooper.jpg',

@@ -100,6 +100,11 @@ import { normalizeName } from '../lib/normalize';
  * (même hachage MD5) des PDF déjà utilisés — rien de nouveau dedans.
  * Imperial March reste introuvable dans les 3 PDF fournis (Empire, Rebelle,
  * générique) ; il faudrait une autre source pour celle-là.
+ *
+ * 01/09/2026 (suite bis) : Imperial March trouvée, fournie directement par
+ * l'utilisateur avec le PDF source (Nouvelles_cartes_amélio_FR_MAJ23.02.2026.pdf,
+ * page 1) — visuel ajouté et mot-clé Charge tagué (voir commentaire sur
+ * l'entrée). 116 cartes au total dans ce fichier.
  */
 const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // --- Empire Galactique ---
@@ -451,6 +456,17 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // maximale à 3 jusqu'à la fin du round, contre 1 pion Immobilisation en
   // Phase Finale — effet unique, pas un mot-clé du glossaire.
   'Burst of Speed': [],
+  // = « Marche Impériale » (Soldat en Position/Véhicule uniquement) —
+  // trouvée le 01/09/2026 dans Nouvelles_cartes_amélio_FR_MAJ23.02.2026.pdf
+  // fourni par l'utilisateur (les 3 PDF précédents ne la contenaient pas).
+  // Effet principal (vitesse +1 sur la 2e action Se déplacer) non modélisable
+  // ici. Le second effet accorde explicitement le mot-clé Charge (en
+  // défaussant la carte lors d'une action Se déplacer) — tagué tel quel,
+  // même logique que Offensive Push/Tacticien X ci-dessus : condition non
+  // modélisable, mais autant afficher la bonne définition de référence.
+  'Imperial March': [
+    { keywordId: 'charge' },
+  ],
   'The Darksaber': [
     { keywordId: 'impact-x', value: 1 },
     { keywordId: 'perforant-x', value: 1 },
