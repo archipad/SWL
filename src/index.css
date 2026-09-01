@@ -533,6 +533,10 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
      chaque paire force un saut de page juste après elle, donc une page ne
      contient jamais plus de 2 fiches. */
   .unit-cards-section { margin-top: 0.3em; }
+  /* La section « Cartes Amélioration » (fin de document) démarre toujours
+     sur une page neuve, plutôt que de partager la page avec un reliquat de
+     la section précédente — plus net à trier après impression. */
+  .unit-cards-appendix-title { break-before: page; page-break-before: always; margin-top: 0; }
   .unit-cards-page {
     display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.5em; align-items: start;
     break-after: page; page-break-after: always;

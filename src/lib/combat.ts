@@ -8,6 +8,23 @@ export interface ResolvedTag {
   source: string;
 }
 
+/** Mots-clés propres à une seule carte (unité ou amélioration), sans fusion avec quoi que ce soit d'autre. */
+export function resolveCardKeywords(
+  cardName: string,
+  tagLibrary: CardTagLibrary,
+  keywords: KeywordDef[],
+): ResolvedTag[] {
+  const byId = new Map(keywords.map((k) => [k.id, k]));
+  const tags = tagLibrary[normalizeName(cardName)] ?? [];
+  const result: ResolvedTag[] = [];
+  for (const tag of tags) {
+    const def = byId.get(tag.keywordId);
+    if (!def) continue;
+    result.push({ tag, def, source: cardName });
+  }
+  return result;
+}
+
 /**
  * Fusionne les mots-clés d'une unité et de toutes ses améliorations
  * équipées en une seule liste dédupliquée (par mot-clé) — c'est ce qui
@@ -22,18 +39,14 @@ export function resolveUnitKeywords(
   tagLibrary: CardTagLibrary,
   keywords: KeywordDef[],
 ): ResolvedTag[] {
-  const byId = new Map(keywords.map((k) => [k.id, k]));
   const seen = new Set<string>();
   const result: ResolvedTag[] = [];
 
   const collect = (cardName: string) => {
-    const tags = tagLibrary[normalizeName(cardName)] ?? [];
-    for (const tag of tags) {
-      if (seen.has(tag.keywordId)) continue;
-      const def = byId.get(tag.keywordId);
-      if (!def) continue;
-      seen.add(tag.keywordId);
-      result.push({ tag, def, source: cardName });
+    for (const r of resolveCardKeywords(cardName, tagLibrary, keywords)) {
+      if (seen.has(r.tag.keywordId)) continue;
+      seen.add(r.tag.keywordId);
+      result.push(r);
     }
   };
 
