@@ -70,6 +70,22 @@ import { normalizeName } from '../lib/normalize';
  * découpage d'image (page "1" confondue avec "10"/"11"/"12"/"13" par un
  * matching de nom de fichier trop permissif) avait corrompu l'image de DLT-19
  * Stormtrooper — corrigé et réextraite.
+ *
+ * 01/09/2026 (liste réelle fournie par l'utilisateur, 10 unités Empire à
+ * 1000 pts) : trois améliorations qui manquaient totalement (aucun visuel,
+ * aucun mot-clé) ajoutées depuis Galactic_Empire_Upgrades_FR.pdf — AT-ST
+ * Mortar Launcher (« Lance-mortier de TR-TT », p.11), Snowtrooper (p.8-9,
+ * aucun mot-clé sur la carte) et Stormtrooper Squad (« Escouade
+ * Stormtrooper », p.6-7). Corrigé au passage : le visuel de KX-Series
+ * Security Droids (public/cards/kx-series-security-droids.jpg) débordait
+ * sur la carte voisine de la grille d'impression (mauvais recadrage),
+ * réextrait proprement depuis la même page. Sept autres améliorations de
+ * cette liste (Burst of Speed, Saber Throw, Force Choke, Imperial March,
+ * Targeting Scopes, Offensive Push, Linked Targeting Array) restent
+ * introuvables dans les PDF actuellement fournis — probablement des cartes
+ * Force/Personnel/Comms génériques (pas spécifiques à l'Empire), absentes
+ * de Galactic_Empire_Upgrades_FR.pdf. Pas ajoutées pour éviter d'inventer
+ * du texte de règle : il faudrait la bonne source pour ces 7-là.
  */
 const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // --- Empire Galactique ---
@@ -371,6 +387,24 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   ],
   'DW-3 Concussion Grenade Launcher': [
     { keywordId: 'deflagration' },
+  ],
+  // = « Lance-mortier de TR-TT » sur la carte française (AT-ST = TR-TT, voir
+  // note du 30/08/2026 en tête de fichier). Fixe : Avant non tagué, comme
+  // 88i/DW-3 ci-dessus (convention de ce fichier : ne pas tagger Fixe).
+  'AT-ST Mortar Launcher': [
+    { keywordId: 'suppressif' },
+  ],
+  // Grille imprimée uniquement "Ajoutez 1 figurine de Snowtrooper." — aucun
+  // mot-clé sur cette carte (vérifié contre Galactic_Empire_Upgrades_FR.pdf,
+  // page 8-9), contrairement à "Snowtrooper Squad" ci-dessous.
+  'Snowtrooper': [],
+  // = « Escouade Stormtrooper » sur la carte française. N'accorde que le
+  // mot-clé Indomptable ; le reste du texte de la carte (portée de cohésion
+  // à ① au lieu de ⑤, restriction Transport) n'est pas un mot-clé du
+  // glossaire et ne peut donc pas être tagué ici (comme pour toute carte
+  // dont l'effet dépasse une simple liste de mots-clés).
+  'Stormtrooper Squad': [
+    { keywordId: 'indomptable' },
   ],
   'The Darksaber': [
     { keywordId: 'impact-x', value: 1 },
