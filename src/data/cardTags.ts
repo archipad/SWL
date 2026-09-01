@@ -86,6 +86,20 @@ import { normalizeName } from '../lib/normalize';
  * Force/Personnel/Comms génériques (pas spécifiques à l'Empire), absentes
  * de Galactic_Empire_Upgrades_FR.pdf. Pas ajoutées pour éviter d'inventer
  * du texte de règle : il faudrait la bonne source pour ces 7-là.
+ *
+ * 01/09/2026 (suite) : l'utilisateur a fourni le deck générique
+ * (« Genrela_upgrade_fr_30mo.pdf », 22 pages, cartes Personnel/Équipement/
+ * Entraînement/Comms/Arme lourde/Pouvoir de la Force communes à toutes les
+ * factions) — 6 des 7 cartes encore manquantes s'y trouvaient : Targeting
+ * Scopes (« Lunette de Visée », p.4), Offensive Push (« Poussée Offensive »,
+ * p.7-8), Linked Targeting Array (« Système de Visée Jumelé », p.14), Force
+ * Choke (« Strangulation de la Force », p.19), Burst of Speed (« Pointe de
+ * Vitesse », p.20) et Saber Throw (« Sabre Lancé », p.22). Les deux autres
+ * PDF joints au même message (Galactic_Empire_Upgrades_FR.pdf et
+ * Rebel_Alliance_Upgrades_FR.pdf) se sont révélés être des copies identiques
+ * (même hachage MD5) des PDF déjà utilisés — rien de nouveau dedans.
+ * Imperial March reste introuvable dans les 3 PDF fournis (Empire, Rebelle,
+ * générique) ; il faudrait une autre source pour celle-là.
  */
 const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // --- Empire Galactique ---
@@ -406,6 +420,37 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Stormtrooper Squad': [
     { keywordId: 'indomptable' },
   ],
+  // Cartes Amélioration génériques (deck « Genrela_upgrade_fr_30mo.pdf »,
+  // non spécifique à une faction — fourni par l'utilisateur le 01/09/2026,
+  // en réponse aux 7 cartes de sa liste introuvables dans les PDF Empire).
+  // = « Lunette de Visée » sur la carte française.
+  'Targeting Scopes': [
+    { keywordId: 'precis-x', value: 1 },
+  ],
+  // = « Poussée Offensive » sur la carte française. Tacticien 1 n'est
+  // accordé que pendant la prochaine action Se déplacer de l'activation —
+  // condition non modélisable ici (comme les autres cartes à effet
+  // conditionnel de ce fichier), tagué tel quel.
+  'Offensive Push': [
+    { keywordId: 'tacticien-x', value: 1 },
+  ],
+  // = « Système de Visée Jumelé » sur la carte française (Soldat en
+  // Position ou Véhicule uniquement — cohérent avec AT-ST/TR-TT).
+  'Linked Targeting Array': [
+    { keywordId: 'cible-x', value: 1 },
+  ],
+  // = « Strangulation de la Force » (Côté Obscur) : inflige 1 blessure
+  // directe à une unité ennemie à portée ①, sans passer par un mot-clé du
+  // glossaire — rien à tagger (comme Snowtrooper plus haut).
+  'Force Choke': [],
+  // = « Sabre Lancé » : arme dont les dés et mots-clés sont ceux d'une arme
+  // de corps-à-corps de l'unité, divisés par 2 (arrondi au supérieur) —
+  // entièrement dynamique, aucun mot-clé fixe à tagger.
+  'Saber Throw': [],
+  // = « Pointe de Vitesse » : incline la carte pour porter la vitesse
+  // maximale à 3 jusqu'à la fin du round, contre 1 pion Immobilisation en
+  // Phase Finale — effet unique, pas un mot-clé du glossaire.
+  'Burst of Speed': [],
   'The Darksaber': [
     { keywordId: 'impact-x', value: 1 },
     { keywordId: 'perforant-x', value: 1 },

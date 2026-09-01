@@ -5,7 +5,7 @@ import { normalizeName } from '../lib/normalize';
  * des PDF fournis par l'utilisateur) affiché dans l'onglet Combat une fois
  * l'attaquant/le défenseur sélectionné.
  *
- * Couvre les 111 cartes actuellement dans cardTags.ts (mêmes 4 PDF sources :
+ * Couvre les 115 cartes actuellement dans cardTags.ts (mêmes PDF sources :
  * unités et améliorations Empire/Alliance Rebelle). Même logique que
  * `cardTags.ts` : simple table nom-normalisé -> chemin d'image, à étoffer
  * au fil de l'eau à mesure que de nouvelles cartes sont taguées. Aucune
@@ -74,6 +74,13 @@ const RAW: Record<string, string> = {
   'Snowtrooper': 'snowtrooper-upgrade.jpg',
   // = « Escouade Stormtrooper » sur la carte française.
   'Stormtrooper Squad': 'stormtrooper-squad.jpg',
+  // Cartes Amélioration génériques (deck Genrela_upgrade_fr_30mo.pdf).
+  'Targeting Scopes': 'targeting-scopes.jpg',
+  'Offensive Push': 'offensive-push.jpg',
+  'Linked Targeting Array': 'linked-targeting-array.jpg',
+  'Force Choke': 'force-choke.jpg',
+  'Saber Throw': 'saber-throw.jpg',
+  'Burst of Speed': 'burst-of-speed.jpg',
   'The Darksaber': 'the-darksaber.jpg',
   'Rebel Troopers': 'rebel-troopers.jpg',
   'Mark II Medium Blaster Trooper': 'mark-ii-medium-blaster-trooper.jpg',
