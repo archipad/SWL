@@ -2,6 +2,7 @@ import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { resolveCardKeywords } from '../lib/combat';
 import { normalizeName } from '../lib/normalize';
 import { DefinitionText } from '../lib/diceIcons';
+import { shortDef } from '../lib/keywordText';
 
 interface Props {
   list: ParsedList;
@@ -34,7 +35,7 @@ function MinimalCard({ name, tagLibrary, keywords }: { name: string; tagLibrary:
                 <p key={r.tag.keywordId} className="mini-kw">
                   <strong>{r.def.name}{r.def.hasValue && r.tag.value ? ` ${r.tag.value}` : ''}</strong>
                   {' — '}
-                  <DefinitionText text={r.def.definition} />
+                  <DefinitionText text={shortDef(r.def)} />
                 </p>
               ))}
             </div>

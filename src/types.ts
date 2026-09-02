@@ -44,6 +44,15 @@ export interface KeywordDef {
    */
   impact: 'attaque' | 'défense' | 'autre';
   definition: string;
+  /**
+   * Version courte de `definition` (mêmes chiffres/mécaniques/icônes de dé,
+   * texte de remplissage coupé) — utilisée partout SAUF dans l'onglet
+   * Glossaire, qui reste sur le texte officiel intégral (`definition`).
+   * Absente = pas encore raccourcie, on retombe sur `definition` (voir
+   * `shortDef()` dans lib/keywordText.ts) : aucun mot-clé ne se retrouve
+   * sans texte pendant que la liste se complète.
+   */
+  shortDefinition?: string;
   /** true pour les mots-clés ajoutés/édités par l'utilisateur (non fournis par défaut) */
   custom?: boolean;
 }

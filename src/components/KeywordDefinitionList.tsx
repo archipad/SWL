@@ -1,6 +1,7 @@
 import type { KeywordDef } from '../types';
 import type { ResolvedTag } from '../lib/combat';
 import { DefinitionText } from '../lib/diceIcons';
+import { shortDef } from '../lib/keywordText';
 
 interface Props {
   resolved: ResolvedTag[];
@@ -36,7 +37,7 @@ export function KeywordDefinitionList({ resolved, showSource, highlightedIds }: 
                 >
                   {highlighted && <span className="card-row-definition-bolt" title="Interagit avec le camp adverse">⚡</span>}
                   <strong>{def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}</strong>
-                  {' — '}<DefinitionText text={def.definition} />
+                  {' — '}<DefinitionText text={shortDef(def)} />
                   {showSource && <span className="card-row-definition-source"> ({source})</span>}
                 </p>
               );

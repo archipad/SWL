@@ -3,6 +3,7 @@ import { resolveCardKeywords, resolveUnitKeywords, type ResolvedTag } from '../l
 import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
 import { DefinitionText } from '../lib/diceIcons';
+import { shortDef } from '../lib/keywordText';
 
 interface Props {
   list: ParsedList;
@@ -27,7 +28,7 @@ function KeywordBlock({ resolved }: { resolved: ResolvedTag[] }) {
       {resolved.map((r) => (
         <div key={r.tag.keywordId} className="unit-card-kw">
           <h4>{r.def.name}{r.def.hasValue && r.tag.value ? ` ${r.tag.value}` : ''}</h4>
-          <p><DefinitionText text={r.def.definition} /></p>
+          <p><DefinitionText text={shortDef(r.def)} /></p>
         </div>
       ))}
     </div>

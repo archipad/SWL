@@ -3,6 +3,7 @@ import type { CardKeywordTag, KeywordDef, ParsedCard } from '../types';
 import { KeywordTagEditor } from './KeywordTagEditor';
 import { KeywordDefinitionList } from './KeywordDefinitionList';
 import { stripDiceTokens } from '../lib/diceIcons';
+import { shortDef } from '../lib/keywordText';
 
 interface Props {
   card: ParsedCard;
@@ -29,7 +30,7 @@ export function CardRow({ card, tags, keywords, onAddTag, onRemoveTag, onCreateK
       </div>
       <div className="card-row-tags">
         {resolved.map(({ tag, def }) => (
-          <span key={tag.keywordId} className="chip" title={stripDiceTokens(def.definition)}>
+          <span key={tag.keywordId} className="chip" title={stripDiceTokens(shortDef(def))}>
             {def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}
             <button
               type="button"

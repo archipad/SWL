@@ -3,6 +3,7 @@ import type { ResolvedTag } from '../lib/combat';
 import { ATTACK_SEQUENCE, keywordsForStep } from '../lib/attackSequence';
 import type { DetectedInteraction } from '../lib/keywordInteractions';
 import { DefinitionText } from '../lib/diceIcons';
+import { shortDef } from '../lib/keywordText';
 
 interface Props {
   attackerResolved: ResolvedTag[];
@@ -16,7 +17,7 @@ function KeywordLine({ tag, def, source }: ResolvedTag) {
   return (
     <p className="sequence-keyword">
       <strong>{def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}</strong>
-      {' — '}<DefinitionText text={def.definition} />
+      {' — '}<DefinitionText text={shortDef(def)} />
       <span className="card-row-definition-source"> ({source})</span>
     </p>
   );
