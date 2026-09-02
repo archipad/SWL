@@ -38,12 +38,15 @@ export function buildSteps(
   });
 }
 
-function KeywordLine({ tag, def, source }: ResolvedTag) {
+/** `hideSource` : quand la ligne apparaît déjà sous un en-tête nommant la carte (ex. vignette de sélection d'arme), répéter « (nom de la carte) » à chaque mot-clé n'apporte rien. */
+export function KeywordLine({ tag, def, source, hideSource }: ResolvedTag & { hideSource?: boolean }) {
   return (
     <p className="sequence-keyword">
       <strong>{def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}</strong>
       {' — '}<DefinitionText text={shortDef(def)} />
-      <span className="card-row-definition-source"> ({frenchCardName(source)})</span>
+      {!hideSource && (
+        <span className="card-row-definition-source"> ({frenchCardName(source)})</span>
+      )}
     </p>
   );
 }

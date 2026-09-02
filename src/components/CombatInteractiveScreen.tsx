@@ -5,7 +5,7 @@ import { usePersistentState } from '../lib/storage';
 import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
 import { frenchCardName } from '../lib/cardNames';
-import { detectInteractions } from '../lib/keywordInteractions';
+import { factionColor } from '../lib/factionColor';
 import { CombatSequenceFullscreen } from './CombatSequenceFullscreen';
 
 interface Props {
@@ -145,7 +145,6 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
 
   const attackerResolved = attacker ? resolveUnitKeywords(attacker.unit, tagLibrary, keywords) : [];
   const defenderResolved = defender ? resolveUnitKeywords(defender.unit, tagLibrary, keywords) : [];
-  const interactions = attacker && defender ? detectInteractions(attackerResolved, defenderResolved) : [];
 
   if (stage === 'sequence' && attacker && defender) {
     return (
@@ -154,7 +153,6 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
         defender={defender}
         attackerResolved={attackerResolved}
         defenderResolved={defenderResolved}
-        interactions={interactions}
         checked={checked}
         onToggle={(stepId) => setChecked((prev) => {
           const next = new Set(prev);
@@ -186,7 +184,7 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
         <div className="live-roster">
           {p1Group.length > 0 && (
             <div className="live-roster-group">
-              <span className="live-roster-group-label">{p1Group[0].playerLabel}</span>
+              <span className="live-roster-group-label" style={{ color: factionColor(listP1) }}>{p1Group[0].playerLabel}</span>
               <div className="live-roster-grid">
                 {p1Group.map((e) => (
                   <LiveTile key={entryId(e)} entry={e} role={roleFor(entryId(e))} onTap={() => setPendingId(entryId(e))} />
@@ -196,7 +194,7 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
           )}
           {p2Group.length > 0 && (
             <div className="live-roster-group">
-              <span className="live-roster-group-label">{p2Group[0].playerLabel}</span>
+              <span className="live-roster-group-label" style={{ color: factionColor(listP2) }}>{p2Group[0].playerLabel}</span>
               <div className="live-roster-grid">
                 {p2Group.map((e) => (
                   <LiveTile key={entryId(e)} entry={e} role={roleFor(entryId(e))} onTap={() => setPendingId(entryId(e))} />

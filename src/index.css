@@ -422,6 +422,80 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .hud-nav-check { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; font-size: 0.7rem; color: var(--text-dim); flex-shrink: 0; }
 .hud-nav-check input { width: 1.3rem; height: 1.3rem; }
 
+/* --- Sélection des armes (étape "Constituer la réserve d'attaque", Combat interactif) --- */
+.hud-weapon-select { display: flex; flex-direction: column; gap: 0.6rem; }
+.hud-weapon-tile {
+  display: flex; align-items: flex-start; gap: 0.7rem; text-align: left;
+  background: var(--bg-input); border: 2px solid var(--border); border-radius: 10px;
+  padding: 0.6rem 0.8rem; cursor: pointer; color: var(--text); width: 100%;
+}
+.hud-weapon-tile-on { border-color: var(--hud-attack); background: rgba(224, 104, 94, 0.08); }
+.hud-weapon-check {
+  flex-shrink: 0; width: 1.4rem; height: 1.4rem; border-radius: 5px; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700;
+  margin-top: 0.1rem;
+}
+.hud-weapon-tile-on .hud-weapon-check { border-color: var(--hud-attack); background: var(--hud-attack); color: white; }
+.hud-weapon-image { flex-shrink: 0; width: 3.4rem; height: 3.4rem; object-fit: cover; border-radius: 6px; background: #000; }
+.hud-weapon-info { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; flex: 1; }
+.hud-weapon-name { font-weight: 700; font-size: 1rem; }
+.hud-weapon-empty { color: var(--text-dim); font-size: 0.85rem; font-style: italic; }
+.hud-weapon-keywords { display: flex; flex-direction: column; gap: 0.15rem; }
+.hud-weapon-keywords .sequence-keyword { font-size: 0.85rem; margin: 0; }
+.hud-weapon-note { color: var(--text-dim); font-size: 0.82rem; margin: 0.2rem 0 0; }
+
+/* Carte porteuse d'arme = choix exclusif (rond plutôt que coche carrée), pour la distinguer visuellement des cartes passives à cocher librement. */
+.hud-weapon-tile-radio .hud-weapon-check { border-radius: 50%; }
+
+/* --- Dés d'arme (losange coloré + chiffre, même code que sur les cartes) --- */
+.dice-row { display: inline-flex; gap: 0.3rem; flex-wrap: wrap; }
+.dice-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.5rem; height: 1.5rem; transform: rotate(45deg);
+  border-radius: 4px; font-size: 0.78rem; font-weight: 700; flex-shrink: 0;
+}
+.dice-badge span { transform: rotate(-45deg); display: inline-block; }
+.dice-badge-blanc { background: #f2f2f2; color: #111; border: 1px solid #999; }
+.dice-badge-rouge { background: #b3261e; color: #fff; }
+.dice-badge-noir { background: #1a1a1a; color: #fff; border: 1px solid #555; }
+
+.hud-weapon-dice-variable { color: var(--text-dim); font-size: 0.82rem; font-style: italic; }
+
+/* Total au sommet du panneau : l'arme actuellement active (une seule carte-arme cochée à la fois). */
+.hud-dice-total {
+  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.2rem;
+  background: rgba(224, 104, 94, 0.12); border: 1px solid var(--hud-attack); border-radius: 10px;
+  padding: 0.55rem 0.8rem;
+}
+.hud-dice-total-label { font-weight: 700; font-size: 0.85rem; color: var(--hud-attack); text-transform: uppercase; letter-spacing: 0.03em; }
+
+/* Choix de l'arme au sein d'une même carte (ex. l'unité : corps-à-corps vs à distance). */
+.hud-weapon-options { display: flex; flex-direction: column; gap: 0.3rem; margin: 0.1rem 0; }
+.hud-weapon-option {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
+  border: 1px solid var(--border); border-radius: 8px; padding: 0.3rem 0.5rem; font-size: 0.85rem;
+}
+.hud-weapon-option-on { border-color: var(--hud-attack); background: rgba(224, 104, 94, 0.1); }
+.hud-weapon-option-name { font-weight: 600; }
+
+/* --- Pense-bête couvert (étape "Déterminer le couvert", Combat interactif) --- */
+.hud-cheatsheet {
+  margin-top: 1rem; padding-top: 0.9rem; border-top: 1px dashed var(--border);
+}
+.hud-cheatsheet h4 { margin: 0.7rem 0 0.3rem; font-size: 0.85rem; color: var(--hud-gold); }
+.hud-cheatsheet h4:first-child { margin-top: 0; }
+.hud-cheatsheet p { margin: 0 0 0.4rem; font-size: 0.9rem; color: var(--text-dim); }
+.hud-cheatsheet ul { margin: 0 0 0.4rem; padding-left: 1.2rem; font-size: 0.9rem; color: var(--text-dim); }
+.hud-cheatsheet-footnote { font-style: italic; font-size: 0.82rem; }
+
+/* --- Rappel jetons (étapes concernées, Combat interactif) --- */
+.hud-token-badge {
+  display: flex; align-items: center; gap: 0.5rem; margin: 0.8rem 0 0;
+  background: rgba(255, 200, 87, 0.1); border: 1px solid var(--hud-gold); border-radius: 8px;
+  padding: 0.5rem 0.7rem; font-size: 0.9rem; color: var(--text);
+}
+.hud-token-icon { font-size: 1.1rem; }
+
 /* --- Écran de sélection du Combat interactif ---
    Un seul répertoire d'unités (pas un panneau par rôle) ; on touche une
    carte puis on répond « Attaquant » ou « Défenseur » dans une petite
@@ -436,7 +510,8 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 
 .live-roster { display: flex; flex-direction: column; gap: 1.1rem; }
 .live-roster-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.live-roster-group-label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+/* Couleur posée en inline (une par faction, voir lib/factionColor.ts) — ici juste le poids/la taille qui la font ressortir. */
+.live-roster-group-label { font-size: 0.95rem; font-weight: 700; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
 .live-roster-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: 0.75rem;
 }
