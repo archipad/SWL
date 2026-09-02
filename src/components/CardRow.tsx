@@ -4,6 +4,7 @@ import { KeywordTagEditor } from './KeywordTagEditor';
 import { KeywordDefinitionList } from './KeywordDefinitionList';
 import { stripDiceTokens } from '../lib/diceIcons';
 import { shortDef } from '../lib/keywordText';
+import { frenchCardName } from '../lib/cardNames';
 
 interface Props {
   card: ParsedCard;
@@ -25,7 +26,7 @@ export function CardRow({ card, tags, keywords, onAddTag, onRemoveTag, onCreateK
   return (
     <div className={`card-row card-row-${card.kind}`}>
       <div className="card-row-head">
-        <span className="card-row-name">{card.name}</span>
+        <span className="card-row-name">{frenchCardName(card.name)}</span>
         {card.points !== undefined && <span className="card-row-points">{card.points}</span>}
       </div>
       <div className="card-row-tags">

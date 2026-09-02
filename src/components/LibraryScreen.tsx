@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { CardTagLibrary, KeywordDef } from '../types';
 import { slugifyKeywordId } from '../lib/useKeywordLibrary';
 import { DefinitionText, DiceIcon } from '../lib/diceIcons';
+import { frenchCardName } from '../lib/cardNames';
 
 interface Props {
   keywords: KeywordDef[];
@@ -198,7 +199,7 @@ export function LibraryScreen({ keywords, tagLibrary, onUpsert, onRemove, onRese
           <ul className="card-tag-list">
             {cardEntries.map(([cardKey, tags]) => (
               <li key={cardKey}>
-                <strong>{cardKey}</strong>
+                <strong>{frenchCardName(cardKey)}</strong>
                 <div className="card-row-tags">
                   {tags.map((t) => {
                     const def = byId.get(t.keywordId);

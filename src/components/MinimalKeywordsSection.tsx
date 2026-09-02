@@ -3,6 +3,7 @@ import { resolveCardKeywords } from '../lib/combat';
 import { normalizeName } from '../lib/normalize';
 import { DefinitionText } from '../lib/diceIcons';
 import { shortDef } from '../lib/keywordText';
+import { frenchCardName } from '../lib/cardNames';
 
 interface Props {
   list: ParsedList;
@@ -21,7 +22,7 @@ function MinimalCard({ name, tagLibrary, keywords }: { name: string; tagLibrary:
 
   return (
     <div className="mini-card">
-      <h4 className="mini-card-name">{name}</h4>
+      <h4 className="mini-card-name">{frenchCardName(name)}</h4>
       {resolved.length === 0 ? (
         <p className="empty-hint">Aucun mot-clé renseigné pour cette carte.</p>
       ) : (
@@ -83,7 +84,10 @@ export function MinimalKeywordsSection({ list, tagLibrary, keywords }: Props) {
     addCard(unit.name);
     for (const up of unit.upgrades) addCard(up.name);
   }
-  cardNames.sort((a, b) => a.localeCompare(b, 'fr'));
+  // Tri sur le nom affiché (français), pas le nom brut anglais : sinon
+  // l'ordre alphabétique imprimé ne correspondrait pas à ce que le joueur
+  // lit réellement sur la page.
+  cardNames.sort((a, b) => frenchCardName(a).localeCompare(frenchCardName(b), 'fr'));
 
   return (
     <div className="mini-cards">

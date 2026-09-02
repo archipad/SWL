@@ -1,5 +1,6 @@
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { normalizeName } from './normalize';
+import { frenchCardName } from './cardNames';
 
 export interface GlossaryEntry {
   keyword: KeywordDef;
@@ -20,7 +21,8 @@ export function buildGlossary(list: ParsedList, tagLibrary: CardTagLibrary, keyw
         entry = { keyword: kw, cards: [] };
         entries.set(kw.id, entry);
       }
-      const cardLabel = kw.hasValue && t.value ? `${name} (${t.value})` : name;
+      const displayName = frenchCardName(name);
+      const cardLabel = kw.hasValue && t.value ? `${displayName} (${t.value})` : displayName;
       if (!entry.cards.includes(cardLabel)) entry.cards.push(cardLabel);
     }
   };

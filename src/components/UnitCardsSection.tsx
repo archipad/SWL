@@ -4,6 +4,7 @@ import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
 import { DefinitionText } from '../lib/diceIcons';
 import { shortDef } from '../lib/keywordText';
+import { frenchCardName } from '../lib/cardNames';
 
 interface Props {
   list: ParsedList;
@@ -51,7 +52,7 @@ function UnitCard({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary
             <img
               className="unit-card-image"
               src={unitImg}
-              alt={unit.name}
+              alt={frenchCardName(unit.name)}
               onError={(e) => { e.currentTarget.hidden = true; }}
             />
           )}
@@ -62,16 +63,16 @@ function UnitCard({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary
                 key={up.key}
                 className="unit-card-image unit-card-image-upgrade"
                 src={upImg}
-                alt={up.name}
+                alt={frenchCardName(up.name)}
                 onError={(e) => { e.currentTarget.hidden = true; }}
               />
             ) : null;
           })}
         </div>
         <div className="unit-card-head">
-          <strong>{unit.name}</strong>
+          <strong>{frenchCardName(unit.name)}</strong>
           {unit.upgrades.length > 0 && (
-            <span className="unit-card-upgrade-names"> + {unit.upgrades.map((u) => u.name).join(', ')}</span>
+            <span className="unit-card-upgrade-names"> + {unit.upgrades.map((u) => frenchCardName(u.name)).join(', ')}</span>
           )}
         </div>
       </div>
@@ -97,12 +98,12 @@ function UpgradeCard({ name, tagLibrary, keywords }: { name: string; tagLibrary:
             <img
               className="unit-card-image"
               src={img}
-              alt={name}
+              alt={frenchCardName(name)}
               onError={(e) => { e.currentTarget.hidden = true; }}
             />
           )}
         </div>
-        <div className="unit-card-head"><strong>{name}</strong></div>
+        <div className="unit-card-head"><strong>{frenchCardName(name)}</strong></div>
       </div>
       <KeywordBlock resolved={resolved} />
     </div>

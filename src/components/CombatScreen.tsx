@@ -4,6 +4,7 @@ import { KeywordDefinitionList } from './KeywordDefinitionList';
 import { usePersistentState } from '../lib/storage';
 import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
+import { frenchCardName } from '../lib/cardNames';
 import { detectInteractions } from '../lib/keywordInteractions';
 import { AttackSequenceGuide } from './AttackSequenceGuide';
 import { DiceProbabilities } from './DiceProbabilities';
@@ -51,7 +52,7 @@ function Side({
         <img
           className="combat-side-image"
           src={imageSrc}
-          alt={`Carte ${entry.unit.name}`}
+          alt={`Carte ${frenchCardName(entry.unit.name)}`}
           loading="lazy"
           // Se cache proprement si l'image n'est pas servable (ex. miroir Artifact
           // à fichier unique, où public/cards/ n'existe pas) plutôt que d'afficher
@@ -60,12 +61,12 @@ function Side({
         />
       )}
       <div className="combat-side-head">
-        <span className="card-row-name">{entry.unit.name}</span>
+        <span className="card-row-name">{frenchCardName(entry.unit.name)}</span>
         {entry.unit.points !== undefined && <span className="card-row-points">{entry.unit.points}</span>}
       </div>
       {entry.unit.upgrades.length > 0 && (
         <p className="combat-side-upgrades">
-          Équipée de : {entry.unit.upgrades.map((u) => u.name).join(', ')}
+          Équipée de : {entry.unit.upgrades.map((u) => frenchCardName(u.name)).join(', ')}
         </p>
       )}
       {resolved.length === 0 ? (
@@ -116,12 +117,12 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
             <option value="">— Choisir —</option>
             <optgroup label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}>
               {groupedByPlayer('p1').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{e.unit.name}</option>
+                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
               ))}
             </optgroup>
             <optgroup label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}>
               {groupedByPlayer('p2').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{e.unit.name}</option>
+                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
               ))}
             </optgroup>
           </select>
@@ -135,12 +136,12 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
             <option value="">— Choisir —</option>
             <optgroup label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}>
               {groupedByPlayer('p1').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{e.unit.name}</option>
+                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
               ))}
             </optgroup>
             <optgroup label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}>
               {groupedByPlayer('p2').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{e.unit.name}</option>
+                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
               ))}
             </optgroup>
           </select>
