@@ -8,6 +8,7 @@ import { frenchCardName } from '../lib/cardNames';
 import { detectInteractions } from '../lib/keywordInteractions';
 import { AttackSequenceGuide } from './AttackSequenceGuide';
 import { DiceProbabilities } from './DiceProbabilities';
+import { CombatPitfalls } from './CombatPitfalls';
 
 interface Props {
   listP1: ParsedList | null;
@@ -171,16 +172,21 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
       )}
 
       {view === 'sequence' ? (
-        attacker && defender ? (
-          <AttackSequenceGuide
-            attackerResolved={attackerResolved}
-            defenderResolved={defenderResolved}
-            interactions={interactions}
-            resetKey={`${attackerId}:${defenderId}`}
-          />
-        ) : (
-          <p className="empty-hint">Choisissez un attaquant et un défenseur pour dérouler la séquence.</p>
-        )
+        <>
+          <CombatPitfalls />
+          {attacker && defender ? (
+            <AttackSequenceGuide
+              attacker={attacker}
+              defender={defender}
+              attackerResolved={attackerResolved}
+              defenderResolved={defenderResolved}
+              interactions={interactions}
+              resetKey={`${attackerId}:${defenderId}`}
+            />
+          ) : (
+            <p className="empty-hint">Choisissez un attaquant et un défenseur pour dérouler la séquence.</p>
+          )}
+        </>
       ) : (
         <div className="combat-columns">
           <Side role="Attaquant" entry={attacker} resolved={attackerResolved} highlightedIds={highlightedAttackerIds} />

@@ -87,6 +87,16 @@ export const KEYWORD_INTERACTIONS: KeywordInteraction[] = [
     defenderKeywordId: 'couvert-x',
     note: "Tireur d'Élite X réduit la valeur de couvert augmentée par Couvert X — les deux valeurs se combinent, à recalculer ensemble.",
   },
+  {
+    attackerKeywordId: 'immunite-deflexion',
+    defenderKeywordId: 'deflexion',
+    note: "L'attaquant ne peut pas subir de blessure due à Déflexion pendant cette attaque (au moins une arme de la réserve porte Immunité : déflexion).",
+  },
+  {
+    attackerKeywordId: 'haute-velocite',
+    defenderKeywordId: 'deflexion',
+    note: "Si la réserve d'attaque ne contient QUE des armes Haute Vélocité, Déflexion n'a aucun effet sur cette attaque (et le défenseur ne peut pas non plus dépenser d'Esquive).",
+  },
 ];
 
 export interface DetectedInteraction extends KeywordInteraction {}

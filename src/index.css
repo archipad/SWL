@@ -294,6 +294,60 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .sequence-keyword { margin: 0 0 0.2rem; font-size: 0.82rem; color: var(--text-dim); }
 .sequence-keyword strong { color: var(--text); font-weight: 600; }
 
+/* Bandeau attaquant/défenseur épinglé en haut du guide pas-à-pas, pour ne
+   pas perdre le fil du duel en cours pendant qu'on fait défiler les étapes. */
+.sequence-banner {
+  position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 0.6rem;
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px;
+  padding: 0.5rem 0.7rem; margin: 0 0 0.75rem;
+}
+.sequence-banner-side {
+  display: flex; align-items: center; gap: 0.4rem; min-width: 0; flex: 1; font-size: 0.85rem; font-weight: 600;
+}
+.sequence-banner-side span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sequence-banner-side img {
+  width: 1.8rem; height: 1.8rem; object-fit: cover; border-radius: 4px; flex-shrink: 0; background: #000;
+}
+.sequence-banner-defense { flex-direction: row-reverse; text-align: right; }
+.sequence-banner-vs { color: var(--text-dim); font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+.sequence-mode-btn { flex-shrink: 0; white-space: nowrap; font-size: 0.8rem; padding: 0.3rem 0.6rem; }
+@media (max-width: 560px) {
+  .sequence-banner { flex-wrap: wrap; }
+  .sequence-banner-side span { max-width: 8rem; }
+  .sequence-mode-btn { order: 1; flex: 1 1 100%; }
+}
+
+/* --- Vue « une étape à la fois » (mode plein écran, écran Combat) --- */
+.sequence-focus { display: flex; flex-direction: column; gap: 0.6rem; }
+.sequence-focus-dots { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.sequence-focus-dot {
+  width: 1.8rem; height: 1.8rem; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--bg-input); color: var(--text-dim); font-size: 0.75rem; cursor: pointer;
+}
+.sequence-focus-dot-active { border-color: var(--accent-dim); color: var(--text); }
+.sequence-focus-dot-current { border-color: var(--accent); border-width: 2px; font-weight: 700; }
+.sequence-focus-dot-done { opacity: 0.45; text-decoration: line-through; }
+.sequence-focus-head { display: flex; align-items: center; gap: 0.5rem; }
+.sequence-focus-head input[type="checkbox"] { width: 1.3rem; height: 1.3rem; }
+.sequence-focus-number { color: var(--text-dim); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.sequence-focus-label { margin: 0; font-size: 1.5rem; }
+.sequence-focus-body {
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1rem 1.2rem; font-size: 1.15rem; min-height: 6rem;
+}
+.sequence-focus-body .sequence-step-hint { margin: 0; font-size: 1rem; }
+.sequence-focus-body .sequence-keyword { font-size: 1rem; }
+.sequence-focus-body .sequence-interaction-note { font-size: 0.95rem; }
+.sequence-focus-body .sequence-side-label { font-size: 0.75rem; }
+.sequence-focus-nav { display: flex; justify-content: space-between; gap: 0.6rem; }
+.sequence-focus-nav .btn { flex: 1; font-size: 1rem; padding: 0.6rem 1rem; }
+
+/* --- Pièges de résolution fréquents (écran Combat) --- */
+.combat-pitfalls-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.combat-pitfalls-list li { border-left: 2px solid #e0b34d; padding-left: 0.6rem; }
+.combat-pitfalls-list strong { display: block; margin-bottom: 0.15rem; font-size: 0.85rem; }
+.combat-pitfalls-list p { margin: 0; color: var(--text-dim); font-size: 0.82rem; }
+
 /* --- Army screen --- */
 .army-toolbar { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem; }
 .army-faction { margin: 0; font-weight: 600; }
