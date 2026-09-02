@@ -1,5 +1,5 @@
 import type { CardTagLibrary, KeywordDef, ParsedList, ParsedUnit } from '../types';
-import { resolveCardKeywords, resolveUnitKeywords, type ResolvedTag } from '../lib/combat';
+import { resolveUnitKeywords, type ResolvedTag } from '../lib/combat';
 import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
 import { DefinitionText } from '../lib/diceIcons';
@@ -42,93 +42,86 @@ function UnitCard({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary
 
   return (
     <div className="unit-card-sheet">
-      {/* Regroupé à part (et pas le bloc entier) pour break-inside:avoid :
-          un mot-clé très long (ex. Perforant X) peut à lui seul dépasser une
-          colonne — mieux vaut laisser la liste de mots-clés continuer sur la
-          page suivante que de tronquer ou déborder illisiblement. */}
-      <div className="unit-card-heading">
-        <div className="unit-card-images">
-          {unitImg && (
+      {/* Colonne visuels (carte de troupe puis chaque amélioration équipée
+          empilée en dessous) et colonne texte (nom + mots-clés) séparées :
+          en impression, disposées côte à côte (visuels à gauche, texte à
+          droite) pour rester compactes en hauteur — cf. index.css. */}
+      <div className="unit-card-images">
+        {unitImg && (
+          <img
+            className="unit-card-image"
+            src={unitImg}
+            alt={frenchCardName(unit.name)}
+            onError={(e) => { e.currentTarget.hidden = true; }}
+          />
+        )}
+        {unit.upgrades.map((up) => {
+          const upImg = CARD_IMAGES[normalizeName(up.name)];
+          return upImg ? (
             <img
-              className="unit-card-image"
-              src={unitImg}
-              alt={frenchCardName(unit.name)}
+              key={up.key}
+              className="unit-card-image unit-card-image-upgrade"
+              src={upImg}
+              alt={frenchCardName(up.name)}
               onError={(e) => { e.currentTarget.hidden = true; }}
             />
-          )}
-          {unit.upgrades.map((up) => {
-            const upImg = CARD_IMAGES[normalizeName(up.name)];
-            return upImg ? (
-              <img
-                key={up.key}
-                className="unit-card-image unit-card-image-upgrade"
-                src={upImg}
-                alt={frenchCardName(up.name)}
-                onError={(e) => { e.currentTarget.hidden = true; }}
-              />
-            ) : null;
-          })}
-        </div>
+          ) : null;
+        })}
+      </div>
+      <div className="unit-card-main">
         <div className="unit-card-head">
           <strong>{frenchCardName(unit.name)}</strong>
           {unit.upgrades.length > 0 && (
             <span className="unit-card-upgrade-names"> + {unit.upgrades.map((u) => frenchCardName(u.name)).join(', ')}</span>
           )}
         </div>
+        <KeywordBlock resolved={resolved} />
       </div>
-      <KeywordBlock resolved={resolved} />
     </div>
   );
 }
 
 /**
- * Fiche d'amélioration seule (visuel en grand + ses propres mots-clés, sans
- * fusion avec l'unité) — même gabarit que UnitCard, pour l'appendice en
- * toute fin de document.
+ * Une carte (unité ou amélioration) manque de données vérifiées : pas de
+ * visuel connu (CARD_IMAGES), et/ou jamais taguée (absente de tagLibrary —
+ * différent d'une carte taguée avec 0 mot-clé, ex. Force Choke, qui est
+ * complète mais n'a simplement aucun mot-clé du glossaire à afficher).
  */
-function UpgradeCard({ name, tagLibrary, keywords }: { name: string; tagLibrary: CardTagLibrary; keywords: KeywordDef[] }) {
-  const resolved = resolveCardKeywords(name, tagLibrary, keywords);
-  const img = CARD_IMAGES[normalizeName(name)];
+interface DataGap { name: string; missingImage: boolean; missingKeywords: boolean }
 
-  return (
-    <div className="unit-card-sheet">
-      <div className="unit-card-heading">
-        <div className="unit-card-images">
-          {img && (
-            <img
-              className="unit-card-image"
-              src={img}
-              alt={frenchCardName(name)}
-              onError={(e) => { e.currentTarget.hidden = true; }}
-            />
-          )}
-        </div>
-        <div className="unit-card-head"><strong>{frenchCardName(name)}</strong></div>
-      </div>
-      <KeywordBlock resolved={resolved} />
-    </div>
-  );
+function collectDataGaps(list: ParsedList, tagLibrary: CardTagLibrary): DataGap[] {
+  const seen = new Set<string>();
+  const gaps: DataGap[] = [];
+  const check = (name: string) => {
+    const key = normalizeName(name);
+    if (seen.has(key)) return;
+    seen.add(key);
+    const missingImage = !CARD_IMAGES[key];
+    const missingKeywords = tagLibrary[key] === undefined;
+    if (missingImage || missingKeywords) gaps.push({ name, missingImage, missingKeywords });
+  };
+  for (const unit of list.units) {
+    check(unit.name);
+    for (const up of unit.upgrades) check(up.name);
+  }
+  return gaps;
 }
 
 /**
  * Une « fiche » imprimable par unité : le visuel de carte de l'unité et de
- * chaque amélioration équipée, suivi des mots-clés qui s'appliquent (unité
- * + améliorations, fusionnés et dédupliqués comme dans l'écran Combat) —
- * pensé pour être découpé et posé à côté de la table à la place de la
- * carte physique, avec la définition sous les yeux sans avoir à la
- * chercher dans le livret. En toute fin de document, une fiche par carte
- * Amélioration présente dans la liste (dédupliquée, une seule fois même si
- * plusieurs unités la portent), avec son propre visuel en grand — la
- * miniature dans l'en-tête de chaque unité ne suffit pas toujours à lire
- * les détails.
+ * chaque amélioration équipée (empilés, amélioration sous la carte de
+ * troupe), suivi des mots-clés qui s'appliquent (unité + améliorations,
+ * fusionnés et dédupliqués comme dans l'écran Combat) — pensé pour être
+ * posé sur la table de jeu à la place des cartes physiques, avec la
+ * définition sous les yeux sans avoir à la chercher dans le livret.
  *
- * Exactement 2 fiches par page A4 imprimée, une par colonne (demande
- * explicite : pas un flux qui en case plus ou moins selon la longueur des
- * mots-clés) — les cartes (unités puis améliorations) sont donc regroupées
- * par paire, chaque paire forçant un saut de page après elle (sauf la
- * dernière de chaque section). En écran, un simple flux à largeur variable
- * suffit (cette section n'est de toute façon jamais visible à l'écran, cf.
- * plus bas).
+ * Plus d'appendice « Cartes Amélioration » en fin de document (retiré le
+ * 02/09/2026, signalement utilisateur : les améliorations sont déjà
+ * visibles sous chaque carte de troupe, l'appendice ne faisait que
+ * doublonner). À la place, un court récapitulatif en fin de document
+ * (`DataGapsNote`) : uniquement les cartes qui manquent réellement de
+ * données vérifiées (visuel et/ou mots-clés), invisible si tout est
+ * complet.
  *
  * Une carte sans visuel connu (CARD_IMAGES ne couvre pas encore toutes les
  * cartes) affiche simplement ses mots-clés sans image, plutôt qu'un visuel
@@ -145,19 +138,7 @@ export function UnitCardsSection({ list, tagLibrary, keywords }: Props) {
     return <p className="empty-hint">Aucune unité dans cette liste.</p>;
   }
 
-  // Une seule fiche par nom d'amélioration distinct, même si plusieurs
-  // unités la portent (ex. deux escouades de Stormtroopers avec le même
-  // DLT-19) — dans l'ordre de première apparition dans la liste.
-  const seenUpgrades = new Set<string>();
-  const upgradeNames: string[] = [];
-  for (const unit of list.units) {
-    for (const up of unit.upgrades) {
-      const key = normalizeName(up.name);
-      if (seenUpgrades.has(key)) continue;
-      seenUpgrades.add(key);
-      upgradeNames.push(up.name);
-    }
-  }
+  const gaps = collectDataGaps(list, tagLibrary);
 
   return (
     <>
@@ -170,16 +151,18 @@ export function UnitCardsSection({ list, tagLibrary, keywords }: Props) {
           </div>
         ))}
       </div>
-      {upgradeNames.length > 0 && (
-        <div className="unit-cards-pages">
-          <h2 className="print-title unit-cards-appendix-title">Cartes Amélioration</h2>
-          {chunk(upgradeNames, 2).map((pair) => (
-            <div key={pair[0]} className="unit-cards-page">
-              {pair.map((name) => (
-                <UpgradeCard key={name} name={name} tagLibrary={tagLibrary} keywords={keywords} />
-              ))}
-            </div>
-          ))}
+      {gaps.length > 0 && (
+        <div className="unit-cards-gaps">
+          <h3>Données manquantes</h3>
+          <ul>
+            {gaps.map((g) => (
+              <li key={g.name}>
+                <strong>{frenchCardName(g.name)}</strong>
+                {' — '}
+                {[g.missingImage && 'visuel', g.missingKeywords && 'mots-clés non renseignés'].filter(Boolean).join(', ')}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </>

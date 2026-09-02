@@ -147,6 +147,12 @@ export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, o
 
       {printList && printTarget?.mode === 'cards' && (
         <section className="unit-cards-section print-only">
+          {/* Format paysage pour ce flux d'impression uniquement (voir
+              commentaire CSS associé) : @page est une règle globale au
+              document imprimé, donc ce <style> n'existe que le temps où
+              cette section est montée — jamais pour le glossaire ni le
+              mode minimaliste, restés en portrait. */}
+          <style>{'@page { size: A4 landscape; margin: 0.5cm; }'}</style>
           <h2 className="print-title">
             Fiches d'unité — {printLabel}
             {printList.totalPoints !== undefined ? ` (${printList.totalPoints} pts)` : ''}

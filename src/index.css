@@ -526,41 +526,76 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   }
   .icon-legend strong { color: black; }
 
-  /* Fiches d'unité imprimées : exactement 2 par page A4, une par colonne
-     (visuel en haut, mots-clés en dessous) — pas un flux qui en case plus
-     ou moins selon la longueur des mots-clés. Les unités sont regroupées
-     par paire en amont (UnitCardsSection.tsx : chunk(list.units, 2)) ;
-     chaque paire force un saut de page juste après elle, donc une page ne
-     contient jamais plus de 2 fiches. */
+  /* Fiches d'unité imprimées : exactement 2 par page A4 paysage, une par
+     colonne — pas un flux qui en case plus ou moins selon la longueur des
+     mots-clés. Les unités sont regroupées par paire en amont
+     (UnitCardsSection.tsx : chunk(list.units, 2)) ; chaque paire force un
+     saut de page juste après elle, donc une page ne contient jamais plus
+     de 2 fiches. À l'intérieur de chaque fiche, visuels à gauche
+     (carte de troupe puis chaque amélioration empilée en dessous) et texte
+     à droite (nom + mots-clés) plutôt qu'empilés verticalement : profite de
+     la largeur du format paysage pour rester compacte en hauteur (posée sur
+     la table de jeu) sans sacrifier la lisibilité des définitions, plus
+     courtes depuis leur passage en version condensée (voir
+     lib/keywordText.ts). Format paysage activé uniquement pour ce flux
+     d'impression via un <style> monté le temps de l'impression (cf.
+     SetupScreen.tsx) — n'affecte pas le glossaire ni le mode minimaliste,
+     restés en portrait. */
   .unit-cards-section { margin-top: 0.3em; }
-  /* La section « Cartes Amélioration » (fin de document) démarre toujours
-     sur une page neuve, plutôt que de partager la page avec un reliquat de
-     la section précédente — plus net à trier après impression. */
-  .unit-cards-appendix-title { break-before: page; page-break-before: always; margin-top: 0; }
+  /* Repère de découpe : demande explicite de l'utilisateur, qui découpe
+     chaque feuille imprimée pour obtenir une fiche par troupe (visuels +
+     améliorations + définitions) à poser sur la table de jeu. Espace fixe
+     en mm (pas em, imprévisible dans ce contexte) entre les deux fiches,
+     assez large pour laisser une marge de sécurité aux ciseaux de chaque
+     côté du pointillé sans toucher la bordure d'une fiche voisine. */
   .unit-cards-page {
-    display: grid; grid-template-columns: 1fr 1fr; column-gap: 0.5em; align-items: start;
+    display: grid; grid-template-columns: 1fr 1fr; column-gap: 10mm; align-items: start;
+    position: relative;
     break-after: page; page-break-after: always;
+  }
+  .unit-cards-page::after {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 50%;
+    border-left: 1px dashed #999;
   }
   .unit-cards-page:last-child { break-after: auto; page-break-after: auto; }
   .unit-card-sheet {
+    display: grid; grid-template-columns: 30mm 1fr; column-gap: 0.5em; align-items: start;
     background: none; border: 1px solid #999; border-radius: 0;
     padding: 0.25em 0.4em; margin: 0;
   }
-  /* Le visuel + le nom ne se séparent jamais ; chaque définition de
-     mot-clé non plus — utile si une fiche a exceptionnellement beaucoup de
-     mots-clés et déborde malgré tout sur la page suivante. Le texte est
-     serré au maximum (jusqu'à Perforant X, la définition la plus longue du
-     glossaire) pour qu'une unité normale tienne entière sur sa page. */
-  .unit-card-heading { break-inside: avoid; }
-  .unit-card-images { gap: 0.15em; margin-bottom: 0.2em; }
-  .unit-card-image { max-height: 120pt; background: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  .unit-card-image-upgrade { max-height: 85pt; }
-  .unit-card-head { color: black; font-size: 8.5pt; margin-bottom: 0.2em; }
+  /* Chaque définition de mot-clé reste groupée avec son titre — utile si
+     une fiche a exceptionnellement beaucoup de mots-clés et déborde malgré
+     tout sur la page suivante. Hauteur FIXE par vignette (plutôt que
+     largeur seule + ratio naturel) : les visuels de cartes n'ont pas tous
+     le même format (carte de troupe plutôt large, améliorations plutôt
+     hautes, certaines très hautes comme le Lance-mortier de TR-TT à
+     ratio 1,6) — sans hauteur bornée, une unité à 4 améliorations comme
+     TR-TT peut dépasser la hauteur d'une page à elle seule (constaté :
+     déborde sur une page supplémentaire, cassant l'appariement par paire).
+     Avec une hauteur fixe, la colonne visuels d'une unité à 4 améliorations
+     tient toujours dans le même budget, quels que soient les formats
+     d'origine des cartes. */
+  .unit-card-images { display: flex; flex-direction: column; gap: 0.15em; break-inside: avoid; }
+  .unit-card-image {
+    width: 100%; height: 32mm; max-height: none; object-fit: contain; background: none;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  .unit-card-image-upgrade { height: 26mm; }
+  .unit-card-main { display: flex; flex-direction: column; gap: 0.2em; min-width: 0; }
+  .unit-card-head { color: black; font-size: 8.5pt; break-inside: avoid; }
   .unit-card-upgrade-names { color: #444; }
   .unit-card-keywords { display: flex; flex-direction: column; gap: 0.15em; }
   .unit-card-kw { break-inside: avoid; }
   .unit-card-kw h4 { color: black; font-size: 8pt; margin: 0 0 0.06em; }
   .unit-card-kw p { color: black; font-size: 7pt; line-height: 1.2; margin: 0 0 0.12em; }
+
+  /* Récapitulatif des données manquantes, en fin de document — remplace
+     l'ancien appendice de cartes en double. Discret, absent si tout est
+     complet. */
+  .unit-cards-gaps { margin-top: 0.6em; font-size: 8pt; }
+  .unit-cards-gaps h3 { font-size: 9pt; margin: 0 0 0.2em; }
+  .unit-cards-gaps ul { margin: 0; padding-left: 1.2em; }
+  .unit-cards-gaps li { margin-bottom: 0.1em; }
 
   /* Mode minimaliste (mots-clés seuls, sans visuel) : flux multi-colonnes
      dense façon glossaire, pas de découpage forcé en paires par page —
