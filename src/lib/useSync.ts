@@ -42,6 +42,27 @@ export function useSync({ listP1, listP2, setListP1, setListP2 }: UseSyncOptions
     setError(null);
   }, []);
 
+  // Appairage sans ressaisie du jeton sur chaque appareil (fastidieux au
+  // clavier tactile) : un lien/QR généré depuis un appareil déjà configuré
+  // (voir SyncSettings.tsx : `#sync-token=...` dans l'URL) porte le jeton.
+  // Au premier chargement sur le nouvel appareil, on le récupère ici et on
+  // nettoie IMMÉDIATEMENT l'URL (replaceState, pas pushState : n'ajoute pas
+  // d'entrée d'historique) pour qu'il ne reste pas affiché en clair dans la
+  // barre d'adresse ni dans l'historique de navigation.
+  useEffect(() => {
+    const match = window.location.hash.match(/sync-token=([^&]+)/);
+    if (!match) return;
+    const incoming = decodeURIComponent(match[1]);
+    const url = new URL(window.location.href);
+    url.hash = '';
+    window.history.replaceState(null, '', url.toString());
+    gistSync.setToken(incoming);
+    knownUpdatedAt.current = 0;
+    setTokenState(incoming);
+    setStatus('idle');
+    setError(null);
+  }, []);
+
   const pull = useCallback(async () => {
     if (!token) return;
     setStatus('syncing');

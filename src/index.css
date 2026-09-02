@@ -158,6 +158,18 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .sync-last { color: var(--text-dim); font-size: 0.78rem; }
 .sync-error { color: #e0685e; font-size: 0.82rem; margin: 0.6rem 0 0; }
 
+/* --- Appairage sans ressaisie du jeton (QR code / lien) --- */
+.sync-pairing {
+  margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px dashed var(--border);
+}
+.sync-qr {
+  display: block; margin: 0.6rem 0; border-radius: 8px; background: #fff; padding: 0.4rem;
+  width: 220px; height: 220px;
+}
+.sync-pairing-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.sync-pairing-actions input { flex: 1 1 220px; min-width: 0; font-size: 0.8rem; }
+.sync-pairing-warning { color: var(--text-dim); font-size: 0.78rem; margin: 0.6rem 0 0; }
+
 /* --- Player toggle (onglet Armées) --- */
 .player-toggle { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
 .army-player-label { margin: 0; color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
