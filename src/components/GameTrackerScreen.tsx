@@ -89,9 +89,19 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat }: Pro
         </select>
         {objective && (
           <div className="tracker-visuals">
-            <img src={objective.cardImage} alt={objective.name} className="tracker-card-image" />
+            <img
+              src={objective.cardImage}
+              alt={objective.name}
+              className="tracker-card-image"
+              onError={(e) => { e.currentTarget.hidden = true; }}
+            />
             {objective.mapImage ? (
-              <img src={objective.mapImage} alt={`Déploiement — ${objective.name}`} className="tracker-card-image" />
+              <img
+                src={objective.mapImage}
+                alt={`Déploiement — ${objective.name}`}
+                className="tracker-card-image"
+                onError={(e) => { e.currentTarget.hidden = true; }}
+              />
             ) : (
               <p className="empty-hint tracker-missing-visual">
                 Visuel de déploiement non fourni pour « {objective.name} » dans le PDF importé.
@@ -109,7 +119,12 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat }: Pro
         </select>
         {secondary && (
           <div className="tracker-visuals">
-            <img src={secondary.image} alt={secondary.name} className="tracker-card-image" />
+            <img
+              src={secondary.image}
+              alt={secondary.name}
+              className="tracker-card-image"
+              onError={(e) => { e.currentTarget.hidden = true; }}
+            />
           </div>
         )}
       </section>
@@ -123,7 +138,14 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat }: Pro
               <option value="">— Choisir —</option>
               {ADVANTAGE_CARDS.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
             </select>
-            {advantageBleu && <img src={advantageBleu.image} alt={advantageBleu.name} className="tracker-card-image" />}
+            {advantageBleu && (
+              <img
+                src={advantageBleu.image}
+                alt={advantageBleu.name}
+                className="tracker-card-image"
+                onError={(e) => { e.currentTarget.hidden = true; }}
+              />
+            )}
           </div>
           <div className="tracker-advantage-side">
             <span className="tracker-player-badge">🔴 {rougeLabel}</span>
@@ -131,7 +153,14 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat }: Pro
               <option value="">— Choisir —</option>
               {ADVANTAGE_CARDS.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
             </select>
-            {advantageRouge && <img src={advantageRouge.image} alt={advantageRouge.name} className="tracker-card-image" />}
+            {advantageRouge && (
+              <img
+                src={advantageRouge.image}
+                alt={advantageRouge.name}
+                className="tracker-card-image"
+                onError={(e) => { e.currentTarget.hidden = true; }}
+              />
+            )}
           </div>
         </div>
       </section>
