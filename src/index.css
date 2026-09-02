@@ -348,6 +348,45 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .combat-pitfalls-list strong { display: block; margin-bottom: 0.15rem; font-size: 0.85rem; }
 .combat-pitfalls-list p { margin: 0; color: var(--text-dim); font-size: 0.82rem; }
 
+.combat-header-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; }
+.combat-header-row h2 { margin: 0; }
+.btn-large { font-size: 1rem; padding: 0.7rem 1.4rem; }
+
+/* --- Suivi de partie --- */
+.game-tracker-screen { display: flex; flex-direction: column; gap: 1.25rem; }
+.tracker-color-assign { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; }
+.tracker-topbar {
+  display: flex; align-items: flex-end; gap: 1.5rem; flex-wrap: wrap;
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem;
+}
+.tracker-round select { font-size: 1.1rem; padding: 0.4rem 0.6rem; }
+.tracker-vp { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+.tracker-vp-side { display: flex; flex-direction: column; gap: 0.4rem; align-items: center; }
+.tracker-vp-bleu .tracker-player-badge { color: #6db6e8; }
+.tracker-vp-rouge .tracker-player-badge { color: #e0685e; }
+.tracker-player-badge { font-weight: 600; font-size: 0.9rem; }
+.tracker-vp-controls { display: flex; align-items: center; gap: 0.6rem; }
+.tracker-vp-controls .btn { width: 2.2rem; height: 2.2rem; padding: 0; font-size: 1.2rem; line-height: 1; }
+.tracker-vp-value { font-size: 1.6rem; font-weight: 700; min-width: 2.2rem; text-align: center; }
+
+.tracker-section {
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem;
+}
+.tracker-section h3 { margin: 0 0 0.6rem; }
+.tracker-section select { width: 100%; max-width: 26rem; }
+.tracker-visuals { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.9rem; }
+.tracker-card-image { max-width: 320px; width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+.tracker-missing-visual { align-self: center; }
+.tracker-advantage-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+@media (max-width: 640px) {
+  .tracker-advantage-columns { grid-template-columns: 1fr; }
+}
+.tracker-advantage-side { display: flex; flex-direction: column; gap: 0.5rem; }
+.tracker-advantage-side select { max-width: none; }
+.tracker-advantage-side .tracker-card-image { max-width: none; }
+
+.tracker-combat-cta { display: flex; justify-content: center; padding: 1rem 0; }
+
 /* --- Army screen --- */
 .army-toolbar { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem; }
 .army-faction { margin: 0; font-weight: 600; }

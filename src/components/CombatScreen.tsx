@@ -15,6 +15,7 @@ interface Props {
   listP2: ParsedList | null;
   tagLibrary: CardTagLibrary;
   keywords: KeywordDef[];
+  onGoToGameTracker: () => void;
 }
 
 /** Combine joueur + clé d'unité : deux unités de listes différentes peuvent partager la même clé. */
@@ -81,7 +82,7 @@ function Side({
   );
 }
 
-export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
+export function CombatScreen({ listP1, listP2, tagLibrary, keywords, onGoToGameTracker }: Props) {
   const roster = buildRoster(listP1, listP2);
   const [attackerId, setAttackerId] = usePersistentState<string>('swl.combat-attacker.v1', '');
   const [defenderId, setDefenderId] = usePersistentState<string>('swl.combat-defender.v1', '');
@@ -105,7 +106,12 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords }: Props) {
 
   return (
     <div className="combat-screen no-print">
-      <h2>Résolution de combat</h2>
+      <div className="combat-header-row">
+        <h2>Résolution de combat</h2>
+        <button type="button" className="btn btn-ghost" onClick={onGoToGameTracker}>
+          📋 Suivi de partie
+        </button>
+      </div>
       <p className="import-note">
         Choisissez l'unité qui attaque et celle qui défend : les mots-clés des deux camps (unité +
         améliorations équipées) apparaissent, selon la vue choisie, étape par étape dans l'ordre
