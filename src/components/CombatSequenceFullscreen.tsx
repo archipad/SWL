@@ -18,6 +18,8 @@ interface Props {
   focusIndex: number;
   setFocusIndex: (i: number) => void;
   onClose: () => void;
+  /** Depuis la dernière étape, "Suivante" démarre un nouveau combat (retour à la sélection, rôles réinitialisés) plutôt que d'avancer. */
+  onFinish: () => void;
 }
 
 function HudCorners() {
@@ -74,7 +76,7 @@ function IdentityCard({ entry, side }: { entry: RosterEntry; side: 'attack' | 'd
  */
 export function CombatSequenceFullscreen({
   attacker, defender, attackerResolved, defenderResolved, interactions,
-  checked, onToggle, focusIndex, setFocusIndex, onClose,
+  checked, onToggle, focusIndex, setFocusIndex, onClose, onFinish,
 }: Props) {
   const [dir, setDir] = useState<'next' | 'prev'>('next');
   const steps = buildSteps(attackerResolved, defenderResolved, interactions);
@@ -91,7 +93,7 @@ export function CombatSequenceFullscreen({
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
-      else if (e.key === 'ArrowRight' && !isLast) goTo(focusIndex + 1, 'next');
+      else if (e.key === 'ArrowRight') { if (isLast) onFinish(); else goTo(focusIndex + 1, 'next'); }
       else if (e.key === 'ArrowLeft' && !isFirst) goTo(focusIndex - 1, 'prev');
     };
     window.addEventListener('keydown', onKey);
@@ -152,10 +154,12 @@ export function CombatSequenceFullscreen({
         <button
           type="button"
           className="btn btn-primary hud-nav-btn"
-          onClick={() => { if (!isChecked) onToggle(data.step.id); if (!isLast) goTo(focusIndex + 1, 'next'); }}
-          disabled={isLast}
+          onClick={() => {
+            if (!isChecked) onToggle(data.step.id);
+            if (isLast) onFinish(); else goTo(focusIndex + 1, 'next');
+          }}
         >
-          Suivante ▶
+          {isLast ? '⚔️ Nouveau combat' : 'Suivante ▶'}
         </button>
       </div>
     </div>

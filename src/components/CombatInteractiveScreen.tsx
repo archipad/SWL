@@ -54,13 +54,31 @@ function LiveTile({
   );
 }
 
-function LaunchThumb({ entry }: { entry: RosterEntry }) {
-  const img = CARD_IMAGES[normalizeName(entry.unit.name)];
+/**
+ * Emplacement du duel (colonne de droite) : visuel de carte agrandi pour
+ * être lisible de loin, attaquant au-dessus / défenseur en dessous comme
+ * demandé. Vide tant que le rôle correspondant n'a pas été assigné.
+ */
+function PreviewSlot({ role, entry }: { role: Role; entry: RosterEntry | undefined }) {
+  const img = entry ? CARD_IMAGES[normalizeName(entry.unit.name)] : undefined;
   return (
-    <span className="live-launch-side">
-      {img && <img src={img} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />}
-      <span>{frenchCardName(entry.unit.name)}</span>
-    </span>
+    <div className={`live-preview-slot live-preview-slot-${role}`}>
+      <span className="live-preview-role">{role === 'attaquant' ? '🎯 Attaquant' : '🛡 Défenseur'}</span>
+      {entry ? (
+        <>
+          <span className="live-preview-frame">
+            {img ? (
+              <img src={img} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />
+            ) : (
+              <span className="live-tile-placeholder" aria-hidden="true">?</span>
+            )}
+          </span>
+          <span className="live-preview-name">{frenchCardName(entry.unit.name)}</span>
+        </>
+      ) : (
+        <p className="empty-hint live-preview-empty">Touchez une carte à gauche.</p>
+      )}
+    </div>
   );
 }
 
@@ -115,6 +133,13 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
     setStage('sequence');
   };
 
+  /** Fin de séquence (dernière étape) : repart d'une sélection vierge pour le combat suivant. */
+  const startNewCombat = () => {
+    setAttackerId('');
+    setDefenderId('');
+    setStage('select');
+  };
+
   const p1Group = roster.filter((e) => e.player === 'p1');
   const p2Group = roster.filter((e) => e.player === 'p2');
 
@@ -139,6 +164,7 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
         focusIndex={focusIndex}
         setFocusIndex={setFocusIndex}
         onClose={() => setStage('select')}
+        onFinish={startNewCombat}
       />
     );
   }
@@ -156,27 +182,44 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
         fois, plus besoin de la retrouver dans deux listes séparées.
       </p>
 
-      <div className="live-roster">
-        {p1Group.length > 0 && (
-          <div className="live-roster-group">
-            <span className="live-roster-group-label">{p1Group[0].playerLabel}</span>
-            <div className="live-roster-grid">
-              {p1Group.map((e) => (
-                <LiveTile key={entryId(e)} entry={e} role={roleFor(entryId(e))} onTap={() => setPendingId(entryId(e))} />
-              ))}
+      <div className="live-layout">
+        <div className="live-roster">
+          {p1Group.length > 0 && (
+            <div className="live-roster-group">
+              <span className="live-roster-group-label">{p1Group[0].playerLabel}</span>
+              <div className="live-roster-grid">
+                {p1Group.map((e) => (
+                  <LiveTile key={entryId(e)} entry={e} role={roleFor(entryId(e))} onTap={() => setPendingId(entryId(e))} />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-        {p2Group.length > 0 && (
-          <div className="live-roster-group">
-            <span className="live-roster-group-label">{p2Group[0].playerLabel}</span>
-            <div className="live-roster-grid">
-              {p2Group.map((e) => (
-                <LiveTile key={entryId(e)} entry={e} role={roleFor(entryId(e))} onTap={() => setPendingId(entryId(e))} />
-              ))}
+          )}
+          {p2Group.length > 0 && (
+            <div className="live-roster-group">
+              <span className="live-roster-group-label">{p2Group[0].playerLabel}</span>
+              <div className="live-roster-grid">
+                {p2Group.map((e) => (
+                  <LiveTile key={entryId(e)} entry={e} role={roleFor(entryId(e))} onTap={() => setPendingId(entryId(e))} />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+
+        <aside className="live-preview-col">
+          <span className="live-preview-heading">Duel</span>
+          <PreviewSlot role="attaquant" entry={attacker} />
+          <span className="live-preview-vs">VS</span>
+          <PreviewSlot role="defenseur" entry={defender} />
+          <button
+            type="button"
+            className="btn btn-primary btn-large live-preview-launch"
+            onClick={launchSequence}
+            disabled={!attacker || !defender}
+          >
+            ▶ Lancer la séquence
+          </button>
+        </aside>
       </div>
 
       {pendingEntry && (
@@ -209,24 +252,6 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
         </div>
       )}
 
-      {attacker && defender ? (
-        <div className="live-launch-bar">
-          <LaunchThumb entry={attacker} />
-          <span className="live-launch-vs">VS</span>
-          <LaunchThumb entry={defender} />
-          <button type="button" className="btn btn-primary btn-large" onClick={launchSequence}>
-            ▶ Lancer la séquence
-          </button>
-        </div>
-      ) : (
-        <p className="empty-hint live-launch-hint">
-          {!attacker && !defender
-            ? "Choisissez un attaquant et un défenseur pour commencer."
-            : !attacker
-              ? 'Il manque encore un attaquant.'
-              : 'Il manque encore un défenseur.'}
-        </p>
-      )}
     </div>
   );
 }

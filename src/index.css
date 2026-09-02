@@ -426,8 +426,15 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
    Un seul répertoire d'unités (pas un panneau par rôle) ; on touche une
    carte puis on répond « Attaquant » ou « Défenseur » dans une petite
    fenêtre. Grille + cibles tactiles généreuses, pensées pour un iPad Air
-   posé à plat (~820-1180px de large selon l'orientation). */
-.live-roster { display: flex; flex-direction: column; gap: 1.1rem; margin: 1rem 0 1.5rem; }
+   posé à plat (~820-1180px de large selon l'orientation). À partir de
+   1000px de large, une colonne de droite (`.live-preview-col`) reprend en
+   grand le duel en cours plutôt que de laisser la marge inutilisée. */
+.live-layout { display: flex; flex-direction: column; gap: 1.25rem; margin: 1rem 0 1.5rem; }
+@media (min-width: 1000px) {
+  .live-layout { display: grid; grid-template-columns: 1fr 19rem; align-items: start; }
+}
+
+.live-roster { display: flex; flex-direction: column; gap: 1.1rem; }
 .live-roster-group { display: flex; flex-direction: column; gap: 0.5rem; }
 .live-roster-group-label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
 .live-roster-grid {
@@ -455,6 +462,13 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .live-tile-attaquant { border-color: var(--hud-attack); box-shadow: 0 0 0 2px rgba(224, 104, 94, 0.28); }
 .live-tile-defenseur { border-color: var(--hud-defense); box-shadow: 0 0 0 2px rgba(109, 182, 232, 0.28); }
 
+/* 6 vignettes par ligne maximum une fois la colonne d'aperçu à droite
+   (largeur disponible régulière) — en dessous de 1000px, la grille reste
+   auto-fill (nombre de colonnes qui s'adapte à la largeur de l'écran). */
+@media (min-width: 1000px) {
+  .live-roster-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
 .live-modal-backdrop {
   position: fixed; inset: 0; z-index: 100; background: rgba(5, 7, 12, 0.72);
   display: flex; align-items: center; justify-content: center; padding: 1.5rem;
@@ -472,20 +486,32 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .live-modal-role-attack { background: rgba(224, 104, 94, 0.15); border-color: var(--hud-attack); color: var(--hud-attack); }
 .live-modal-role-defense { background: rgba(109, 182, 232, 0.15); border-color: var(--hud-defense); color: var(--hud-defense); }
 
-.live-launch-bar {
-  position: sticky; bottom: 0; z-index: 5; display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
-  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 12px;
-  padding: 0.8rem 1rem; margin-top: 1rem;
+/* Colonne d'aperçu du duel (droite) : attaquant au-dessus, défenseur en
+   dessous, visuel agrandi pour rester lisible — épingle ce qui est déjà
+   choisi pendant qu'on continue de parcourir le répertoire à gauche. */
+.live-preview-col {
+  position: sticky; top: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 12px; padding: 1rem;
 }
-.live-launch-side { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; flex: 1; min-width: 0; }
-.live-launch-side span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.live-launch-side img { width: 2.2rem; height: 2.2rem; object-fit: cover; border-radius: 5px; background: #000; flex-shrink: 0; }
-.live-launch-vs { color: var(--hud-gold); font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
-.live-launch-hint { text-align: center; margin-top: 1rem; }
-
-@media (min-width: 700px) {
-  .live-roster-grid { grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); }
+.live-preview-heading { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.live-preview-vs { color: var(--hud-gold); font-weight: 700; font-size: 0.8rem; }
+.live-preview-slot { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.live-preview-role { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.live-preview-slot-attaquant .live-preview-role { color: var(--hud-attack); }
+.live-preview-slot-defenseur .live-preview-role { color: var(--hud-defense); }
+.live-preview-frame {
+  width: 100%; aspect-ratio: 700 / 856; border-radius: 10px; overflow: hidden; background: #000;
+  border: 2px solid var(--border); display: flex; align-items: center; justify-content: center;
 }
+.live-preview-slot-attaquant .live-preview-frame { border-color: var(--hud-attack); }
+.live-preview-slot-defenseur .live-preview-frame { border-color: var(--hud-defense); }
+/* contain (pas cover) : la carte entière doit rester lisible dans ce
+   grand format, y compris ses bords — pas question de rogner le nom ou
+   les stats pour remplir le cadre. */
+.live-preview-frame img { width: 100%; height: 100%; object-fit: contain; }
+.live-preview-name { font-size: 0.85rem; font-weight: 600; text-align: center; }
+.live-preview-empty { margin: 0.5rem 0; text-align: center; font-size: 0.8rem; }
+.live-preview-launch { width: 100%; margin-top: 0.4rem; }
 
 /* --- Pièges de résolution fréquents (écran Combat) --- */
 .combat-pitfalls-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
