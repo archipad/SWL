@@ -32,6 +32,37 @@ function HudCorners() {
 }
 
 /**
+ * Identité d'un camp dans le bandeau du haut : visuel de l'unité + son nom,
+ * et — quand c'est possible (visuel connu) — une rangée de miniatures des
+ * améliorations équipées, pour garder sous les yeux tout l'équipement de
+ * l'unité pendant qu'on résout l'attaque, sans avoir à rouvrir l'écran de
+ * sélection. Une amélioration sans visuel connu est simplement omise (pas
+ * d'icône cassée).
+ */
+function IdentityCard({ entry, side }: { entry: RosterEntry; side: 'attack' | 'defense' }) {
+  const img = CARD_IMAGES[normalizeName(entry.unit.name)];
+  const upgradeImages = entry.unit.upgrades
+    .map((u) => ({ key: u.key, name: u.name, img: CARD_IMAGES[normalizeName(u.name)] }))
+    .filter((u) => u.img);
+
+  return (
+    <div className={`hud-identity hud-identity-${side}`}>
+      {img && <img className="hud-identity-portrait" src={img} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />}
+      <div className="hud-identity-text">
+        <span className="hud-identity-name">{frenchCardName(entry.unit.name)}</span>
+        {upgradeImages.length > 0 && (
+          <div className="hud-identity-upgrades">
+            {upgradeImages.map((u) => (
+              <img key={u.key} src={u.img} alt="" title={frenchCardName(u.name)} onError={(e) => { e.currentTarget.hidden = true; }} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/**
  * Séquence d'attaque en plein écran, une étape par « page » — pensé pour
  * être posé sur la table et lu de loin : gros caractères, très peu de
  * texte à l'écran à la fois, transition rapide entre étapes (déclenchée
@@ -51,9 +82,6 @@ export function CombatSequenceFullscreen({
   const isChecked = checked.has(data.step.id);
   const isFirst = focusIndex === 0;
   const isLast = focusIndex === steps.length - 1;
-
-  const attackerImg = CARD_IMAGES[normalizeName(attacker.unit.name)];
-  const defenderImg = CARD_IMAGES[normalizeName(defender.unit.name)];
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -79,15 +107,9 @@ export function CombatSequenceFullscreen({
   return (
     <div className="hud-overlay">
       <div className="hud-topbar">
-        <div className="hud-identity hud-identity-attack">
-          {attackerImg && <img src={attackerImg} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />}
-          <span>{frenchCardName(attacker.unit.name)}</span>
-        </div>
+        <IdentityCard entry={attacker} side="attack" />
         <span className="hud-identity-vs">VS</span>
-        <div className="hud-identity hud-identity-defense">
-          {defenderImg && <img src={defenderImg} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />}
-          <span>{frenchCardName(defender.unit.name)}</span>
-        </div>
+        <IdentityCard entry={defender} side="defense" />
         <button type="button" className="hud-close" onClick={onClose} aria-label="Fermer la séquence plein écran">
           ✕
         </button>

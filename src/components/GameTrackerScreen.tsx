@@ -167,7 +167,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat }: Pro
 
       <div className="tracker-combat-cta">
         <button type="button" className="btn btn-primary btn-large" onClick={onGoToCombat}>
-          ⚔️ Aller au Combat
+          ⚔️ Aller au Combat interactif
         </button>
       </div>
     </div>

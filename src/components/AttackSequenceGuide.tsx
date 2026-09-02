@@ -5,8 +5,7 @@ import { frenchCardName } from '../lib/cardNames';
 import { CARD_IMAGES } from '../data/cardImages';
 import { normalizeName } from '../lib/normalize';
 import { usePersistentState } from '../lib/storage';
-import { buildSteps, StepBody } from './SequenceStepShared';
-import { CombatSequenceFullscreen } from './CombatSequenceFullscreen';
+import { buildSteps, StepBody, type StepData } from './SequenceStepShared';
 
 interface Props {
   attacker: RosterEntry;
@@ -78,39 +77,102 @@ export function AttackSequenceGuide({ attacker, defender, attackerResolved, defe
         onToggleMode={() => setMode(mode === 'liste' ? 'plein-écran' : 'liste')}
       />
 
-      <ol className="sequence-guide">
-        {steps.map((data) => {
-          const isChecked = checked.has(data.step.id);
-          return (
-            <li
-              key={data.step.id}
-              className={`sequence-step${data.hasContent ? ' sequence-step-active' : ''}${isChecked ? ' sequence-step-done' : ''}`}
-            >
-              <label className="sequence-step-head">
-                <input type="checkbox" checked={isChecked} onChange={() => toggle(data.step.id)} />
-                <span className="sequence-step-number">{data.index + 1}</span>
-                <span className="sequence-step-label">{data.step.label}</span>
-              </label>
-              <StepBody data={data} />
-            </li>
-          );
-        })}
-      </ol>
-
-      {mode === 'plein-écran' && (
-        <CombatSequenceFullscreen
-          attacker={attacker}
-          defender={defender}
-          attackerResolved={attackerResolved}
-          defenderResolved={defenderResolved}
-          interactions={interactions}
-          checked={checked}
-          onToggle={toggle}
-          focusIndex={focusIndex}
-          setFocusIndex={setFocusIndex}
-          onClose={() => setMode('liste')}
-        />
+      {mode === 'liste' ? (
+        <ol className="sequence-guide">
+          {steps.map((data) => {
+            const isChecked = checked.has(data.step.id);
+            return (
+              <li
+                key={data.step.id}
+                className={`sequence-step${data.hasContent ? ' sequence-step-active' : ''}${isChecked ? ' sequence-step-done' : ''}`}
+              >
+                <label className="sequence-step-head">
+                  <input type="checkbox" checked={isChecked} onChange={() => toggle(data.step.id)} />
+                  <span className="sequence-step-number">{data.index + 1}</span>
+                  <span className="sequence-step-label">{data.step.label}</span>
+                </label>
+                <StepBody data={data} />
+              </li>
+            );
+          })}
+        </ol>
+      ) : (
+        <FocusMode steps={steps} checked={checked} onToggle={toggle} focusIndex={focusIndex} setFocusIndex={setFocusIndex} />
       )}
     </>
+  );
+}
+
+/**
+ * Vue « une étape à la fois » : pensée pour être posée à plat sur la table
+ * et lue à distance (gros caractères), sans avoir à faire défiler toute la
+ * liste — on avance étape par étape avec les boutons, ou en tapant
+ * directement un repère de progression pour sauter à une étape précise.
+ * Parcourt les 11 étapes officielles dans l'ordre, y compris celles sans
+ * mot-clé applicable : l'étape reste à effectuer même sans texte à lire.
+ */
+function FocusMode({
+  steps, checked, onToggle, focusIndex, setFocusIndex,
+}: {
+  steps: StepData[];
+  checked: Set<string>;
+  onToggle: (stepId: string) => void;
+  focusIndex: number;
+  setFocusIndex: (i: number) => void;
+}) {
+  const data = steps[focusIndex];
+  const isChecked = checked.has(data.step.id);
+  const isFirst = focusIndex === 0;
+  const isLast = focusIndex === steps.length - 1;
+
+  const goNext = () => {
+    if (!isLast) setFocusIndex(focusIndex + 1);
+  };
+
+  return (
+    <div className="sequence-focus">
+      <div className="sequence-focus-dots">
+        {steps.map((s, i) => (
+          <button
+            key={s.step.id}
+            type="button"
+            className={`sequence-focus-dot${i === focusIndex ? ' sequence-focus-dot-current' : ''}${s.hasContent ? ' sequence-focus-dot-active' : ''}${checked.has(s.step.id) ? ' sequence-focus-dot-done' : ''}`}
+            onClick={() => setFocusIndex(i)}
+            aria-label={`Étape ${i + 1} : ${s.step.label}`}
+            title={s.step.label}
+          >
+            {i + 1}
+          </button>
+        ))}
+      </div>
+
+      <label className="sequence-focus-head">
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={() => onToggle(data.step.id)}
+        />
+        <span className="sequence-focus-number">Étape {data.index + 1} / {steps.length}</span>
+      </label>
+      <h3 className="sequence-focus-label">{data.step.label}</h3>
+
+      <div className="sequence-focus-body">
+        <StepBody data={data} />
+      </div>
+
+      <div className="sequence-focus-nav">
+        <button type="button" className="btn btn-ghost" onClick={() => setFocusIndex(focusIndex - 1)} disabled={isFirst}>
+          ◀ Précédente
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => { if (!isChecked) onToggle(data.step.id); goNext(); }}
+          disabled={isLast}
+        >
+          Suivante ▶
+        </button>
+      </div>
+    </div>
   );
 }

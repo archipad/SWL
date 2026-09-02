@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { SetupScreen } from './components/SetupScreen';
 import { ArmyScreen } from './components/ArmyScreen';
 import { CombatScreen } from './components/CombatScreen';
+import { CombatInteractiveScreen } from './components/CombatInteractiveScreen';
 import { GameTrackerScreen } from './components/GameTrackerScreen';
 import { LibraryScreen } from './components/LibraryScreen';
 import { CheatSheetScreen } from './components/CheatSheetScreen';
@@ -13,7 +14,7 @@ import { useSync } from './lib/useSync';
 import { useGameTracker } from './lib/useGameTracker';
 import type { ParsedList } from './types';
 
-type Page = 'setup' | 'army' | 'game' | 'combat' | 'library' | 'cheatsheet';
+type Page = 'setup' | 'army' | 'game' | 'combat' | 'combat-live' | 'library' | 'cheatsheet';
 type PlayerId = 'p1' | 'p2';
 
 const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
@@ -70,7 +71,7 @@ export default function App() {
   );
 
   const goToPage = (target: Page) => {
-    if ((target === 'army' || target === 'game' || target === 'combat') && !bothReady) {
+    if ((target === 'army' || target === 'game' || target === 'combat' || target === 'combat-live') && !bothReady) {
       setPage('setup');
       return;
     }
@@ -106,13 +107,23 @@ export default function App() {
         onGoToGameTracker={() => setPage('game')}
       />
     );
+  } else if (page === 'combat-live' && bothReady) {
+    content = (
+      <CombatInteractiveScreen
+        listP1={listP1}
+        listP2={listP2}
+        tagLibrary={tagLibrary}
+        keywords={keywords}
+        onGoToGameTracker={() => setPage('game')}
+      />
+    );
   } else if (page === 'game' && bothReady) {
     content = (
       <GameTrackerScreen
         listP1={listP1}
         listP2={listP2}
         tracker={gameTracker}
-        onGoToCombat={() => setPage('combat')}
+        onGoToCombat={() => setPage('combat-live')}
       />
     );
   } else if (page === 'army' && bothReady && activeList) {
@@ -167,6 +178,7 @@ export default function App() {
           <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>Armées</button>
           <button type="button" className={page === 'game' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('game')}>Suivi de partie</button>
           <button type="button" className={page === 'combat' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('combat')}>Combat</button>
+          <button type="button" className={page === 'combat-live' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('combat-live')}>Combat interactif</button>
           <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>Glossaire complet</button>
           <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>Pense-bête</button>
         </nav>

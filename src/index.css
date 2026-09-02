@@ -180,51 +180,12 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .player-toggle { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
 .army-player-label { margin: 0; color: var(--accent); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
 
-/* --- Combat screen --- */
-
-/* Sélection visuelle attaquant/défenseur (remplace les menus déroulants) */
-.target-selector {
-  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0.75rem; align-items: start;
-  margin: 1rem 0 1.5rem;
+/* --- Combat screen (onglet classique, menus déroulants) --- */
+.combat-selectors {
+  display: flex; align-items: flex-end; gap: 0.75rem; flex-wrap: wrap; margin: 1rem 0 1.5rem;
 }
-@media (max-width: 720px) {
-  .target-selector { grid-template-columns: 1fr; }
-  .target-selector-swap { justify-self: center; }
-}
-.target-selector-side {
-  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px;
-  padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.7rem;
-}
-.target-selector-attack { border-top: 3px solid var(--hud-attack); }
-.target-selector-defense { border-top: 3px solid var(--hud-defense); }
-.target-selector-heading { margin: 0; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); }
-.target-selector-swap {
-  align-self: center; width: 2.4rem; height: 2.4rem; border-radius: 50%;
-  background: var(--bg-input); border: 1px solid var(--border); color: var(--text);
-  font-size: 1.1rem; cursor: pointer;
-}
-.target-selector-swap:disabled { opacity: 0.4; cursor: not-allowed; }
-.target-group { display: flex; flex-direction: column; gap: 0.4rem; }
-.target-group-label { font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.04em; }
-.target-strip { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.2rem; }
-.target-tile {
-  flex-shrink: 0; width: 5.4rem; display: flex; flex-direction: column; align-items: center; gap: 0.3rem;
-  background: none; border: none; padding: 0.15rem; cursor: pointer; color: var(--text);
-}
-.target-tile-frame {
-  width: 5rem; height: 5rem; border-radius: 8px; overflow: hidden; background: #000;
-  border: 2px solid var(--border); display: flex; align-items: center; justify-content: center;
-  transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
-}
-.target-tile-frame img { width: 100%; height: 100%; object-fit: cover; }
-.target-tile-placeholder { color: var(--text-dim); font-size: 1.4rem; }
-.target-tile-name { font-size: 0.7rem; text-align: center; line-height: 1.15; }
-.target-selector-attack .target-tile-selected .target-tile-frame {
-  border-color: var(--hud-attack); box-shadow: 0 0 0 3px rgba(224, 104, 94, 0.28); transform: scale(1.05);
-}
-.target-selector-defense .target-tile-selected .target-tile-frame {
-  border-color: var(--hud-defense); box-shadow: 0 0 0 3px rgba(109, 182, 232, 0.28); transform: scale(1.05);
-}
+.combat-selectors .field { flex: 1; min-width: 12rem; }
+.combat-swap { white-space: nowrap; }
 
 .combat-columns {
   display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: start;
@@ -363,7 +324,32 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   .sequence-mode-btn { order: 1; flex: 1 1 100%; }
 }
 
-/* --- Séquence plein écran, une étape par page (écran Combat) ---
+/* --- Vue « une étape à la fois » (mode plein écran intégré, onglet Combat classique) --- */
+.sequence-focus { display: flex; flex-direction: column; gap: 0.6rem; }
+.sequence-focus-dots { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.sequence-focus-dot {
+  width: 1.8rem; height: 1.8rem; border-radius: 50%; border: 1px solid var(--border);
+  background: var(--bg-input); color: var(--text-dim); font-size: 0.75rem; cursor: pointer;
+}
+.sequence-focus-dot-active { border-color: var(--accent-dim); color: var(--text); }
+.sequence-focus-dot-current { border-color: var(--accent); border-width: 2px; font-weight: 700; }
+.sequence-focus-dot-done { opacity: 0.45; text-decoration: line-through; }
+.sequence-focus-head { display: flex; align-items: center; gap: 0.5rem; }
+.sequence-focus-head input[type="checkbox"] { width: 1.3rem; height: 1.3rem; }
+.sequence-focus-number { color: var(--text-dim); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.sequence-focus-label { margin: 0; font-size: 1.5rem; }
+.sequence-focus-body {
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1rem 1.2rem; font-size: 1.15rem; min-height: 6rem;
+}
+.sequence-focus-body .sequence-step-hint { margin: 0; font-size: 1rem; }
+.sequence-focus-body .sequence-keyword { font-size: 1rem; }
+.sequence-focus-body .sequence-interaction-note { font-size: 0.95rem; }
+.sequence-focus-body .sequence-side-label { font-size: 0.75rem; }
+.sequence-focus-nav { display: flex; justify-content: space-between; gap: 0.6rem; }
+.sequence-focus-nav .btn { flex: 1; font-size: 1rem; padding: 0.6rem 1rem; }
+
+/* --- Séquence plein écran, une étape par page (onglet Combat interactif) ---
    Overlay HUD façon viseur/console — coins et anneau d'étape en or, code
    couleur rouge/bleu déjà utilisé partout dans l'appli pour attaquant et
    défenseur. Transition rapide et discrète entre étapes (glissement +
@@ -375,10 +361,15 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 }
 .hud-topbar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
 .hud-identity { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.85rem; min-width: 0; flex: 1; }
-.hud-identity span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hud-identity img { width: 2rem; height: 2rem; object-fit: cover; border-radius: 4px; background: #000; flex-shrink: 0; }
+.hud-identity-portrait { width: 2rem; height: 2rem; object-fit: cover; border-radius: 4px; background: #000; flex-shrink: 0; }
+.hud-identity-text { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.hud-identity-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hud-identity-upgrades { display: flex; gap: 0.25rem; overflow-x: auto; max-width: 12rem; }
+.hud-identity-upgrades img { width: 1.4rem; height: 1.4rem; object-fit: cover; border-radius: 3px; background: #000; flex-shrink: 0; opacity: 0.85; }
 .hud-identity-attack { color: var(--hud-attack); }
 .hud-identity-defense { color: var(--hud-defense); flex-direction: row-reverse; text-align: right; }
+.hud-identity-defense .hud-identity-text { align-items: flex-end; }
+.hud-identity-defense .hud-identity-upgrades { flex-direction: row-reverse; }
 .hud-identity-vs { color: var(--hud-gold); font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
 .hud-close {
   flex-shrink: 0; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--bg-input);
@@ -430,6 +421,71 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .hud-nav-btn { flex: 1; font-size: 1rem; padding: 0.7rem 1rem; }
 .hud-nav-check { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; font-size: 0.7rem; color: var(--text-dim); flex-shrink: 0; }
 .hud-nav-check input { width: 1.3rem; height: 1.3rem; }
+
+/* --- Écran de sélection du Combat interactif ---
+   Un seul répertoire d'unités (pas un panneau par rôle) ; on touche une
+   carte puis on répond « Attaquant » ou « Défenseur » dans une petite
+   fenêtre. Grille + cibles tactiles généreuses, pensées pour un iPad Air
+   posé à plat (~820-1180px de large selon l'orientation). */
+.live-roster { display: flex; flex-direction: column; gap: 1.1rem; margin: 1rem 0 1.5rem; }
+.live-roster-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.live-roster-group-label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; }
+.live-roster-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: 0.75rem;
+}
+.live-tile {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 12px;
+  padding: 0.6rem; cursor: pointer; color: var(--text);
+}
+.live-tile-frame {
+  width: 100%; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: #000;
+  display: flex; align-items: center; justify-content: center;
+}
+.live-tile-frame img { width: 100%; height: 100%; object-fit: cover; }
+.live-tile-placeholder { color: var(--text-dim); font-size: 1.6rem; }
+.live-tile-name { font-size: 0.8rem; text-align: center; line-height: 1.2; }
+.live-tile-badge {
+  position: absolute; top: -0.5rem; left: 50%; transform: translateX(-50%);
+  font-size: 0.68rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 999px;
+  white-space: nowrap; color: white;
+}
+.live-tile-badge-attaquant { background: var(--hud-attack); }
+.live-tile-badge-defenseur { background: var(--hud-defense); }
+.live-tile-attaquant { border-color: var(--hud-attack); box-shadow: 0 0 0 2px rgba(224, 104, 94, 0.28); }
+.live-tile-defenseur { border-color: var(--hud-defense); box-shadow: 0 0 0 2px rgba(109, 182, 232, 0.28); }
+
+.live-modal-backdrop {
+  position: fixed; inset: 0; z-index: 100; background: rgba(5, 7, 12, 0.72);
+  display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+}
+.live-modal {
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 14px;
+  padding: 1.5rem; width: 100%; max-width: 24rem; display: flex; flex-direction: column;
+  align-items: center; gap: 0.9rem; text-align: center;
+}
+.live-modal-preview { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; }
+.live-modal-preview img { width: 6.5rem; height: 6.5rem; object-fit: cover; border-radius: 10px; background: #000; }
+.live-modal-question { margin: 0; color: var(--text-dim); font-size: 0.9rem; }
+.live-modal-actions { display: flex; gap: 0.7rem; width: 100%; }
+.live-modal-role { flex: 1; padding: 0.9rem 0.5rem; font-size: 1rem; font-weight: 600; border-radius: 10px; }
+.live-modal-role-attack { background: rgba(224, 104, 94, 0.15); border-color: var(--hud-attack); color: var(--hud-attack); }
+.live-modal-role-defense { background: rgba(109, 182, 232, 0.15); border-color: var(--hud-defense); color: var(--hud-defense); }
+
+.live-launch-bar {
+  position: sticky; bottom: 0; z-index: 5; display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 12px;
+  padding: 0.8rem 1rem; margin-top: 1rem;
+}
+.live-launch-side { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; flex: 1; min-width: 0; }
+.live-launch-side span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.live-launch-side img { width: 2.2rem; height: 2.2rem; object-fit: cover; border-radius: 5px; background: #000; flex-shrink: 0; }
+.live-launch-vs { color: var(--hud-gold); font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
+.live-launch-hint { text-align: center; margin-top: 1rem; }
+
+@media (min-width: 700px) {
+  .live-roster-grid { grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)); }
+}
 
 /* --- Pièges de résolution fréquents (écran Combat) --- */
 .combat-pitfalls-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
