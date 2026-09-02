@@ -7,6 +7,7 @@ import { normalizeName } from '../lib/normalize';
 import { frenchCardName } from '../lib/cardNames';
 import { detectInteractions } from '../lib/keywordInteractions';
 import { AttackSequenceGuide } from './AttackSequenceGuide';
+import { CombatTargetSelector } from './CombatTargetSelector';
 import { DiceProbabilities } from './DiceProbabilities';
 import { CombatPitfalls } from './CombatPitfalls';
 
@@ -117,43 +118,17 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords, onGoToGameT
         améliorations équipées) apparaissent, selon la vue choisie, étape par étape dans l'ordre
         officiel de l'attaque, ou groupés par impact pour une consultation rapide.
       </p>
-      <div className="combat-selectors">
-        <label className="field">
-          Attaquant
-          <select value={attackerId} onChange={(e) => setAttackerId(e.target.value)}>
-            <option value="">— Choisir —</option>
-            <optgroup label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}>
-              {groupedByPlayer('p1').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
-              ))}
-            </optgroup>
-            <optgroup label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}>
-              {groupedByPlayer('p2').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
-              ))}
-            </optgroup>
-          </select>
-        </label>
-        <button type="button" className="btn btn-ghost combat-swap" onClick={swap} disabled={!attackerId && !defenderId}>
-          ⇄ Inverser
-        </button>
-        <label className="field">
-          Défenseur
-          <select value={defenderId} onChange={(e) => setDefenderId(e.target.value)}>
-            <option value="">— Choisir —</option>
-            <optgroup label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}>
-              {groupedByPlayer('p1').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
-              ))}
-            </optgroup>
-            <optgroup label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}>
-              {groupedByPlayer('p2').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
-              ))}
-            </optgroup>
-          </select>
-        </label>
-      </div>
+      <CombatTargetSelector
+        rosterP1={groupedByPlayer('p1')}
+        rosterP2={groupedByPlayer('p2')}
+        p1Label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}
+        p2Label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}
+        attackerId={attackerId}
+        defenderId={defenderId}
+        onSelectAttacker={setAttackerId}
+        onSelectDefender={setDefenderId}
+        onSwap={swap}
+      />
 
       <DiceProbabilities />
 
