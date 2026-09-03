@@ -831,6 +831,33 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Recon Intel': [
     { keywordId: 'eclaireur-x', value: 1 },
   ],
+  // Alliance Rebelle, Rebel_Alliance_Upgrades_FR.pdf relu intégralement le
+  // 04/09/2026 (signalement utilisateur : « assure-toi qu'il n'y a plus de
+  // manquants ») — 13 cartes en plus des 8 déjà ajoutées. Texte propre à la
+  // carte, sans mot-clé du glossaire correspondant → pas de tag, comme
+  // Tenacity/Inspiring Presence ci-dessus. Noms anglais non confirmés par
+  // un export TTA réel (aucune de ces 13 cartes n'était dans les listes
+  // fournies jusqu'ici) — à corriger si un import réel utilise un nom
+  // différent.
+  'Rebel Ambusher': [],
+  'Sleeper Cell Astromech': [],
+  'Rebel Trooper Specialist': [],
+  'Rebel Comms Technician': [],
+  'Fleet Trooper': [],
+  'Ryder Azadi': [],
+  'Unstable Astromech': [],
+  'Remote Doc': [],
+  'Unorthodox Tactician': [],
+  "Sabine's Grapple Line": [],
+  // Ces 3-là sont des armes (weapons dans diceProfiles.ts) mais sans mot-clé
+  // propre au-delà de Fixe, déjà couvert par le tag générique 'fixe'.
+  'X-34 Gunner': [],
+  'TL-TT Rotary Blaster': [
+    { keywordId: 'fixe' },
+  ],
+  'X-34 Mark II Blaster': [
+    { keywordId: 'fixe' },
+  ],
   'M-45 Ion Blaster': [
     { keywordId: 'critique-x', value: 1 },
     { keywordId: 'impact-x', value: 1 },
