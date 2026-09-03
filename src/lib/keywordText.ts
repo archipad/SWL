@@ -12,3 +12,16 @@ import type { KeywordDef } from '../types';
 export function shortDef(def: KeywordDef): string {
   return def.shortDefinition ?? def.definition;
 }
+
+/**
+ * Remplace le X littéral (mot entier, ex. « Critique X », « jusqu'à X
+ * résultats ») par la valeur réelle du mot-clé sur cette carte précise —
+ * ex. "Critique X" + value 2 → "Critique 2". `value` vient de
+ * `CardKeywordTag.value`, saisi lors du tagage de la carte (cardTags.ts) ;
+ * si cette carte n'a pas de valeur connue pour ce mot-clé, le X reste tel
+ * quel (mieux vaut un X visible qu'un chiffre inventé).
+ */
+export function substituteValue(text: string, value: number | undefined): string {
+  if (value === undefined) return text;
+  return text.replace(/\bX\b/g, String(value));
+}

@@ -156,6 +156,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'arsenal-x', value: 2 },
     { keywordId: 'point-faible-x', value: 1 },
     { keywordId: 'impact-x', value: 3 },
+    { keywordId: 'fixe' },
   ],
   'Stormtroopers': [
     { keywordId: 'precis-x', value: 1 },
@@ -228,6 +229,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'arsenal-x', value: 2 },
     { keywordId: 'point-faible-x', value: 1 },
     { keywordId: 'impact-x', value: 3 },
+    { keywordId: 'fixe' },
   ],
   'LAAT/le Patrol Transport': [
     { keywordId: 'armure-x', value: 5 },
@@ -239,6 +241,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'immunite-armes-portee-1' },
     { keywordId: 'transport' },
     { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'fixe' },
   ],
   // nom EN à vérifier (Dark Troopers Impériaux)
   'Dark Trooper Squad': [
@@ -309,6 +312,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'point-faible-x', value: 1 },
     { keywordId: 'deflagration' },
     { keywordId: 'impact-x' },
+    { keywordId: 'fixe' },
   ],
   'Agent Kallus': [
     { keywordId: 'surveillance-x', value: 2 },
@@ -403,15 +407,17 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   ],
   '88i Twin Light Blaster': [
     { keywordId: 'impact-x', value: 1 },
+    { keywordId: 'fixe' },
   ],
   'DW-3 Concussion Grenade Launcher': [
     { keywordId: 'deflagration' },
+    { keywordId: 'fixe' },
   ],
   // = « Lance-mortier de TR-TT » sur la carte française (AT-ST = TR-TT, voir
-  // note du 30/08/2026 en tête de fichier). Fixe : Avant non tagué, comme
-  // 88i/DW-3 ci-dessus (convention de ce fichier : ne pas tagger Fixe).
+  // note du 30/08/2026 en tête de fichier).
   'AT-ST Mortar Launcher': [
     { keywordId: 'suppressif' },
+    { keywordId: 'fixe' },
   ],
   // Grille imprimée uniquement "Ajoutez 1 figurine de Snowtrooper." — aucun
   // mot-clé sur cette carte (vérifié contre Galactic_Empire_Upgrades_FR.pdf,
@@ -491,6 +497,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'sentinelle' },
     { keywordId: 'critique-x', value: 2 },
     { keywordId: 'encombrant' },
+    { keywordId: 'fixe' },
   ],
   'Fleet Troopers': [
     { keywordId: 'charge' },
@@ -545,6 +552,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'immunite-armes-portee-1' },
     { keywordId: 'speeder-x', value: 2 },
     { keywordId: 'impact-x', value: 3 },
+    { keywordId: 'fixe' },
   ],
   'X-34 Landspeeder': [
     { keywordId: 'armure-x', value: 2 },
@@ -779,16 +787,19 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // nom EN à vérifier
   'TL-TT Laser Cannon': [
     { keywordId: 'impact-x', value: 3 },
+    { keywordId: 'fixe' },
   ],
   // nom EN à vérifier
   'TL-TT Flame Projector': [
     { keywordId: 'deflagration' },
     { keywordId: 'souffle' },
+    { keywordId: 'fixe' },
   ],
   'M-45 Ion Blaster': [
     { keywordId: 'critique-x', value: 1 },
     { keywordId: 'impact-x', value: 1 },
     { keywordId: 'ion-x', value: 1 },
+    { keywordId: 'fixe' },
   ],
   // nom EN à vérifier
   'Mandalorian Combat Shields': [

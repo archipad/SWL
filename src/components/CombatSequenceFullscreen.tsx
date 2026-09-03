@@ -325,6 +325,39 @@ function WeaponSelectPanel({
 }
 
 /**
+ * Rappel permanent des mots-clés des armes cochées (Fixe : Avant, Critique
+ * X, Perforant X, Encombrant...), répété à CHAQUE étape de la résolution —
+ * pas seulement à l'étape « Armes ». Nécessaire car beaucoup de ces
+ * mots-clés (ex. Fixe : Avant, condition d'arc de tir pour ajouter l'arme
+ * à la réserve) ne sont jamais rattachés par keywordsForStep à une étape
+ * précise de la séquence — sans ce rappel permanent, ils resteraient
+ * invisibles dès qu'on quitte l'étape « Armes », alors qu'ils continuent
+ * de conditionner l'attaque en cours. Repliable une fois lu, sur le même
+ * principe que la liste par arme de l'étape « Armes ».
+ */
+function WeaponKeywordsReference({ keywords }: { keywords: ResolvedTag[] }) {
+  const [expanded, setExpanded] = useState(keywords.length <= COLLAPSE_KEYWORDS_ABOVE);
+  if (keywords.length === 0) return null;
+  return (
+    <div className="hud-weapon-keywords-ref">
+      <h4>🔫 Mots-clés des armes utilisées</h4>
+      {expanded ? (
+        <div className="hud-weapon-keywords">
+          {keywords.map((r) => <KeywordLine key={r.tag.keywordId} {...r} />)}
+          {keywords.length > COLLAPSE_KEYWORDS_ABOVE && (
+            <button type="button" className="hud-weapon-collapse-btn" onClick={() => setExpanded(false)}>▴ Replier</button>
+          )}
+        </div>
+      ) : (
+        <button type="button" className="hud-weapon-collapse-btn" onClick={() => setExpanded(true)}>
+          ▾ Voir {keywords.length} mots-clés d'arme
+        </button>
+      )}
+    </div>
+  );
+}
+
+/**
  * Pense-bête couvert (étape « Déterminer le couvert ») : texte fourni par
  * l'utilisateur (règle officielle), affiché systématiquement à cette
  * étape en complément des mots-clés spécifiques déjà listés au-dessus.
@@ -425,6 +458,8 @@ export function CombatSequenceFullscreen({
   ]);
 
   const filteredAttackerResolved = attackerResolved.filter((r) => selectedSources.has(r.source));
+  /** Sert au rappel permanent affiché à chaque étape — voir WeaponKeywordsReference. */
+  const weaponKeywordsInPlay = filteredAttackerResolved.filter((r) => r.def.category === 'arme');
   const interactions = detectInteractions(filteredAttackerResolved, defenderResolved);
   const steps = buildSteps(filteredAttackerResolved, defenderResolved, interactions)
     .filter((s) => !REMOVED_STEP_IDS.has(s.step.id))
@@ -553,6 +588,9 @@ export function CombatSequenceFullscreen({
               <TokenBadge icon="🛡" text="Pion Esquive utilisable ici, côté défenseur." />
             )}
             {data.step.id === 'determine-cover' && <CoverCheatsheet />}
+            {data.step.id !== 'build-pool' && (
+              <WeaponKeywordsReference keywords={weaponKeywordsInPlay} />
+            )}
           </div>
         </div>
       </div>

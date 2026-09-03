@@ -1,7 +1,7 @@
 import type { KeywordDef } from '../types';
 import type { ResolvedTag } from '../lib/combat';
 import { DefinitionText } from '../lib/diceIcons';
-import { shortDef } from '../lib/keywordText';
+import { shortDef, substituteValue } from '../lib/keywordText';
 import { frenchCardName } from '../lib/cardNames';
 
 interface Props {
@@ -31,14 +31,15 @@ export function KeywordDefinitionList({ resolved, showSource, highlightedIds }: 
             <span className="card-row-definitions-heading">{label}</span>
             {items.map(({ tag, def, source }) => {
               const highlighted = highlightedIds?.has(tag.keywordId) ?? false;
+              const value = def.hasValue ? tag.value : undefined;
               return (
                 <p
                   key={tag.keywordId}
                   className={highlighted ? 'card-row-definition card-row-definition-highlight' : 'card-row-definition'}
                 >
                   {highlighted && <span className="card-row-definition-bolt" title="Interagit avec le camp adverse">⚡</span>}
-                  <strong>{def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}</strong>
-                  {' — '}<DefinitionText text={shortDef(def)} />
+                  <strong>{substituteValue(def.name, value)}</strong>
+                  {' — '}<DefinitionText text={substituteValue(shortDef(def), value)} />
                   {showSource && <span className="card-row-definition-source"> ({frenchCardName(source)})</span>}
                 </p>
               );

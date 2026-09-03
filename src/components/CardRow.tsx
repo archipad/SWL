@@ -3,7 +3,7 @@ import type { CardKeywordTag, KeywordDef, ParsedCard } from '../types';
 import { KeywordTagEditor } from './KeywordTagEditor';
 import { KeywordDefinitionList } from './KeywordDefinitionList';
 import { stripDiceTokens } from '../lib/diceIcons';
-import { shortDef } from '../lib/keywordText';
+import { shortDef, substituteValue } from '../lib/keywordText';
 import { frenchCardName } from '../lib/cardNames';
 
 interface Props {
@@ -30,19 +30,22 @@ export function CardRow({ card, tags, keywords, onAddTag, onRemoveTag, onCreateK
         {card.points !== undefined && <span className="card-row-points">{card.points}</span>}
       </div>
       <div className="card-row-tags">
-        {resolved.map(({ tag, def }) => (
-          <span key={tag.keywordId} className="chip" title={stripDiceTokens(shortDef(def))}>
-            {def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}
-            <button
-              type="button"
-              className="chip-remove"
-              aria-label={`Retirer ${def.name}`}
-              onClick={() => onRemoveTag(card.name, tag.keywordId)}
-            >
-              ×
-            </button>
-          </span>
-        ))}
+        {resolved.map(({ tag, def }) => {
+          const value = def.hasValue ? tag.value : undefined;
+          return (
+            <span key={tag.keywordId} className="chip" title={stripDiceTokens(substituteValue(shortDef(def), value))}>
+              {substituteValue(def.name, value)}
+              <button
+                type="button"
+                className="chip-remove"
+                aria-label={`Retirer ${def.name}`}
+                onClick={() => onRemoveTag(card.name, tag.keywordId)}
+              >
+                ×
+              </button>
+            </span>
+          );
+        })}
         {!editing && (
           <button type="button" className="chip chip-add" onClick={() => setEditing(true)}>
             + mot-clé

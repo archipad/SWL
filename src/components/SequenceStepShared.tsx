@@ -2,7 +2,7 @@ import type { ResolvedTag } from '../lib/combat';
 import { ATTACK_SEQUENCE, keywordsForStep, type AttackStep } from '../lib/attackSequence';
 import type { DetectedInteraction } from '../lib/keywordInteractions';
 import { DefinitionText } from '../lib/diceIcons';
-import { shortDef } from '../lib/keywordText';
+import { shortDef, substituteValue } from '../lib/keywordText';
 import { frenchCardName } from '../lib/cardNames';
 
 /**
@@ -50,11 +50,12 @@ export function buildSteps(
  */
 export function KeywordLine({ tag, def, source, hideSource }: ResolvedTag & { hideSource?: boolean }) {
   const isAction = def.impact !== 'autre';
+  const value = def.hasValue ? tag.value : undefined;
   return (
     <p className={`sequence-keyword${isAction ? ' sequence-keyword-action' : ''}`}>
       {isAction && <span className="sequence-keyword-bolt" aria-hidden="true">⚡</span>}
-      <strong>{def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}</strong>
-      {' — '}<DefinitionText text={shortDef(def)} />
+      <strong>{substituteValue(def.name, value)}</strong>
+      {' — '}<DefinitionText text={substituteValue(shortDef(def), value)} />
       {!hideSource && (
         <span className="card-row-definition-source"> ({frenchCardName(source)})</span>
       )}
