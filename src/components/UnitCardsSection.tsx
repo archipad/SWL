@@ -1,10 +1,9 @@
 import type { CardTagLibrary, KeywordDef, ParsedList, ParsedUnit } from '../types';
 import { resolveUnitKeywords, type ResolvedTag } from '../lib/combat';
-import { CARD_IMAGES } from '../data/cardImages';
-import { normalizeName } from '../lib/normalize';
+import { CARD_IMAGES, cardImageFor } from '../data/cardImages';
 import { DefinitionText } from '../lib/diceIcons';
 import { shortDef } from '../lib/keywordText';
-import { frenchCardName } from '../lib/cardNames';
+import { frenchCardName, canonicalCardKey } from '../lib/cardNames';
 
 interface Props {
   list: ParsedList;
@@ -38,7 +37,7 @@ function KeywordBlock({ resolved }: { resolved: ResolvedTag[] }) {
 
 function UnitCard({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary: CardTagLibrary; keywords: KeywordDef[] }) {
   const resolved = resolveUnitKeywords(unit, tagLibrary, keywords);
-  const unitImg = CARD_IMAGES[normalizeName(unit.name)];
+  const unitImg = cardImageFor(unit.name);
 
   return (
     <div className="unit-card-sheet">
@@ -56,7 +55,7 @@ function UnitCard({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary
           />
         )}
         {unit.upgrades.map((up) => {
-          const upImg = CARD_IMAGES[normalizeName(up.name)];
+          const upImg = cardImageFor(up.name);
           return upImg ? (
             <img
               key={up.key}
@@ -93,7 +92,7 @@ function collectDataGaps(list: ParsedList, tagLibrary: CardTagLibrary): DataGap[
   const seen = new Set<string>();
   const gaps: DataGap[] = [];
   const check = (name: string) => {
-    const key = normalizeName(name);
+    const key = canonicalCardKey(name);
     if (seen.has(key)) return;
     seen.add(key);
     const missingImage = !CARD_IMAGES[key];

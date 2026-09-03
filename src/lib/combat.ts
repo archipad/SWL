@@ -1,5 +1,5 @@
 import type { CardKeywordTag, CardTagLibrary, KeywordDef, ParsedList, ParsedUnit } from '../types';
-import { normalizeName } from './normalize';
+import { canonicalCardKey } from './cardNames';
 
 export interface ResolvedTag {
   tag: CardKeywordTag;
@@ -8,14 +8,20 @@ export interface ResolvedTag {
   source: string;
 }
 
-/** Mots-clés propres à une seule carte (unité ou amélioration), sans fusion avec quoi que ce soit d'autre. */
+/**
+ * Mots-clés propres à une seule carte (unité ou amélioration), sans fusion
+ * avec quoi que ce soit d'autre. `canonicalCardKey` fait matcher aussi bien
+ * un nom saisi en anglais (export Tabletop Admiral) qu'en français (recopié
+ * depuis la vraie carte) — sinon une liste en texte libre français perdrait
+ * silencieusement tous ses mots-clés dès que le titre FR diffère du nom EN.
+ */
 export function resolveCardKeywords(
   cardName: string,
   tagLibrary: CardTagLibrary,
   keywords: KeywordDef[],
 ): ResolvedTag[] {
   const byId = new Map(keywords.map((k) => [k.id, k]));
-  const tags = tagLibrary[normalizeName(cardName)] ?? [];
+  const tags = tagLibrary[canonicalCardKey(cardName)] ?? [];
   const result: ResolvedTag[] = [];
   for (const tag of tags) {
     const def = byId.get(tag.keywordId);

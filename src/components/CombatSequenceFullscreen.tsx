@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { RosterEntry, ResolvedTag } from '../lib/combat';
-import { CARD_IMAGES } from '../data/cardImages';
-import { normalizeName } from '../lib/normalize';
+import { cardImageFor } from '../data/cardImages';
 import { frenchCardName } from '../lib/cardNames';
 import { DefinitionText } from '../lib/diceIcons';
 import { diceProfileFor, type DiceColor, type WeaponDice, type WeaponProfile } from '../data/diceProfiles';
@@ -54,9 +53,9 @@ function HudCorners() {
  * d'icône cassée).
  */
 function IdentityCard({ entry, side }: { entry: RosterEntry; side: 'attack' | 'defense' }) {
-  const img = CARD_IMAGES[normalizeName(entry.unit.name)];
+  const img = cardImageFor(entry.unit.name);
   const upgradeImages = entry.unit.upgrades
-    .map((u) => ({ key: u.key, name: u.name, img: CARD_IMAGES[normalizeName(u.name)] }))
+    .map((u) => ({ key: u.key, name: u.name, img: cardImageFor(u.name) }))
     .filter((u) => u.img);
 
   return (
@@ -107,76 +106,107 @@ function WeaponDiceLine({ weapon }: { weapon: WeaponProfile }) {
   return <DiceRow dice={weapon.dice} />;
 }
 
+const DICE_COLOR_ORDER: DiceColor[] = ['noir', 'rouge', 'blanc'];
+
+/** Additionne, couleur par couleur, les pools de toutes les armes cochées. Une arme au pool variable est ignorée dans le total (signalée à part). */
+function sumWeaponDice(weapons: WeaponProfile[]): { totals: WeaponDice[]; hasVariable: boolean } {
+  const totals = new Map<DiceColor, number>();
+  let hasVariable = false;
+  for (const w of weapons) {
+    if (w.dice === 'variable') { hasVariable = true; continue; }
+    for (const d of w.dice) totals.set(d.color, (totals.get(d.color) ?? 0) + d.count);
+  }
+  return { totals: DICE_COLOR_ORDER.filter((c) => totals.has(c)).map((color) => ({ color, count: totals.get(color)! })), hasVariable };
+}
+
+/** Identifiant unique d'une arme = carte + index (le nom seul peut se répéter, ex. "Non armé" sur plusieurs unités). */
+function weaponKey(cardName: string, index: number): string {
+  return `${cardName}::${index}`;
+}
+
 /**
- * Sélection de la carte qui fournit l'arme de cette attaque (unité ou une
- * amélioration équipée) — un seul porteur d'arme actif à la fois, comme aux
- * règles (on n'utilise qu'une arme par attaque), imposé par `onToggle` côté
- * parent. Les cartes sans arme (Chef, Personnel, pouvoirs...) restent des
- * cases à cocher indépendantes : elles n'entrent pas dans ce choix, seuls
- * leurs mots-clés comptent pour la suite de la séquence.
- *
- * Une carte avec plusieurs lignes d'arme (ex. l'unité elle-même : corps-à-
- * corps + à distance) propose en plus un choix entre ses propres armes.
+ * Sélection des armes de cette attaque : chaque arme (celles de l'unité
+ * elle-même + celles de chaque amélioration équipée) est une case à cocher
+ * indépendante — on peut en cocher plusieurs, le total en haut additionne
+ * les dés de toutes les armes cochées, couleur par couleur. Les cartes
+ * sans arme (Chef, Personnel, pouvoirs...) restent des cases à cocher à
+ * part, pour leurs mots-clés seulement.
  */
 function WeaponSelectPanel({
-  attacker, attackerResolved, selected, onToggle, weaponIndex, onPickWeapon,
+  attacker, attackerResolved, selectedWeapons, onToggleWeapon, selectedPassive, onTogglePassive,
 }: {
   attacker: RosterEntry;
   attackerResolved: ResolvedTag[];
-  selected: Set<string>;
-  onToggle: (name: string) => void;
-  weaponIndex: number;
-  onPickWeapon: (i: number) => void;
+  selectedWeapons: Set<string>;
+  onToggleWeapon: (cardName: string, index: number) => void;
+  selectedPassive: Set<string>;
+  onTogglePassive: (cardName: string) => void;
 }) {
   const cards = [attacker.unit.name, ...attacker.unit.upgrades.map((u) => u.name)];
-  const activeWeaponCard = cards.find((name) => selected.has(name) && (diceProfileFor(name)?.weapons.length ?? 0) > 0);
-  const activeProfile = activeWeaponCard ? diceProfileFor(activeWeaponCard) : undefined;
-  const activeWeapon = activeProfile?.weapons[Math.min(weaponIndex, activeProfile.weapons.length - 1)];
+  const chosenWeapons: WeaponProfile[] = [];
+  for (const name of cards) {
+    const weapons = diceProfileFor(name)?.weapons ?? [];
+    weapons.forEach((w, i) => { if (selectedWeapons.has(weaponKey(name, i))) chosenWeapons.push(w); });
+  }
+  const { totals, hasVariable } = sumWeaponDice(chosenWeapons);
 
   return (
     <div className="hud-weapon-select">
-      {activeWeapon && (
-        <div className="hud-dice-total">
-          <span className="hud-dice-total-label">Dés à lancer</span>
-          <WeaponDiceLine weapon={activeWeapon} />
-        </div>
-      )}
+      <div className="hud-dice-total">
+        <span className="hud-dice-total-label">Dés à lancer</span>
+        {totals.length > 0 ? (
+          <span className="dice-row dice-row-big">
+            {totals.map((d) => <DiceBadge key={d.color} color={d.color} count={d.count} />)}
+          </span>
+        ) : (
+          <span className="hud-dice-total-empty">Aucune arme cochée</span>
+        )}
+        {hasVariable && <span className="hud-dice-total-variable">+ arme(s) à pool variable — voir carte</span>}
+      </div>
+      <div className="hud-weapon-grid">
       {cards.map((name) => {
-        const img = CARD_IMAGES[normalizeName(name)];
-        const isOn = selected.has(name);
+        const img = cardImageFor(name);
         const cardKeywords = attackerResolved.filter((r) => r.source === name);
         const profile = diceProfileFor(name);
         const weapons = profile?.weapons ?? [];
         const isWeaponCard = weapons.length > 0;
+        const isOn = isWeaponCard
+          ? weapons.some((_, i) => selectedWeapons.has(weaponKey(name, i)))
+          : selectedPassive.has(name);
         return (
-          <button
-            key={name}
-            type="button"
-            className={`hud-weapon-tile${isOn ? ' hud-weapon-tile-on' : ''}${isWeaponCard ? ' hud-weapon-tile-radio' : ''}`}
-            onClick={() => onToggle(name)}
-          >
-            <span className="hud-weapon-check" aria-hidden="true">{isOn ? (isWeaponCard ? '●' : '✓') : ''}</span>
+          <div key={name} className={`hud-weapon-tile${isOn ? ' hud-weapon-tile-on' : ''}`}>
             {img && <img className="hud-weapon-image" src={img} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />}
             <div className="hud-weapon-info">
-              <span className="hud-weapon-name">{frenchCardName(name)}</span>
+              {isWeaponCard ? (
+                <span className="hud-weapon-name">{frenchCardName(name)}</span>
+              ) : (
+                <button
+                  type="button"
+                  className={`hud-weapon-name-btn${selectedPassive.has(name) ? ' hud-weapon-name-btn-on' : ''}`}
+                  onClick={() => onTogglePassive(name)}
+                >
+                  <span className="hud-weapon-check" aria-hidden="true">{selectedPassive.has(name) ? '✓' : ''}</span>
+                  <span className="hud-weapon-name">{frenchCardName(name)}</span>
+                </button>
+              )}
               {weapons.length > 0 && (
                 <div className="hud-weapon-options">
-                  {weapons.map((w, i) => (
-                    <span
-                      key={w.name}
-                      role={weapons.length > 1 ? 'button' : undefined}
-                      className={`hud-weapon-option${isOn && i === weaponIndex ? ' hud-weapon-option-on' : ''}`}
-                      onClick={(e) => {
-                        if (weapons.length <= 1) return;
-                        e.stopPropagation();
-                        if (!isOn) onToggle(name);
-                        onPickWeapon(i);
-                      }}
-                    >
-                      <span className="hud-weapon-option-name">{frenchCardName(w.name)}</span>
-                      <WeaponDiceLine weapon={w} />
-                    </span>
-                  ))}
+                  {weapons.map((w, i) => {
+                    const key = weaponKey(name, i);
+                    const on = selectedWeapons.has(key);
+                    return (
+                      <button
+                        key={key}
+                        type="button"
+                        className={`hud-weapon-option${on ? ' hud-weapon-option-on' : ''}`}
+                        onClick={() => onToggleWeapon(name, i)}
+                      >
+                        <span className="hud-weapon-check" aria-hidden="true">{on ? '✓' : ''}</span>
+                        <span className="hud-weapon-option-name">{frenchCardName(w.name)}</span>
+                        <WeaponDiceLine weapon={w} />
+                      </button>
+                    );
+                  })}
                 </div>
               )}
               {cardKeywords.length === 0 ? (
@@ -187,12 +217,14 @@ function WeaponSelectPanel({
                 </div>
               )}
             </div>
-          </button>
+          </div>
         );
       })}
+      </div>
       <p className="hud-weapon-note">
-        💡 Une seule carte-arme active à la fois (●) — les autres cases (✓) sont les cartes dont les
-        mots-clés s'appliquent quand même (Chef, pouvoirs, améliorations passives...).
+        💡 Coche toutes les armes utilisées pour cette attaque — le total en haut s'additionne
+        automatiquement. Les cases sans dé (Chef, pouvoirs, améliorations passives...) n'apportent que
+        leurs mots-clés.
       </p>
     </div>
   );
@@ -259,19 +291,27 @@ export function CombatSequenceFullscreen({
   const [dir, setDir] = useState<'next' | 'prev'>('next');
   /**
    * Départage les cartes de l'attaquant en porteuses d'arme (unité +
-   * améliorations-armes) et passives (Chef, pouvoirs, Personnel...). Par
-   * défaut : toutes les passives + l'arme de l'unité elle-même (ou, si
-   * l'unité n'en a pas — ex. un compagnon —, la première amélioration-arme
-   * trouvée).
+   * améliorations-armes, cochables arme par arme, plusieurs à la fois) et
+   * passives (Chef, pouvoirs, Personnel...). Par défaut : toutes les
+   * passives cochées + la première arme de l'unité elle-même cochée (ou,
+   * si l'unité n'en a pas — ex. un compagnon —, la première arme trouvée
+   * parmi les améliorations).
    */
   const cardNames = [attacker.unit.name, ...attacker.unit.upgrades.map((u) => u.name)];
   const isWeaponCard = (name: string) => (diceProfileFor(name)?.weapons.length ?? 0) > 0;
-  const [selectedSources, setSelectedSources] = useState<Set<string>>(() => {
-    const passive = cardNames.filter((n) => !isWeaponCard(n));
-    const defaultWeapon = cardNames.find((n) => isWeaponCard(n));
-    return new Set(defaultWeapon ? [...passive, defaultWeapon] : passive);
+  const [selectedWeapons, setSelectedWeapons] = useState<Set<string>>(() => {
+    const firstWeaponCard = cardNames.find(isWeaponCard);
+    return new Set(firstWeaponCard ? [weaponKey(firstWeaponCard, 0)] : []);
   });
-  const [weaponIndex, setWeaponIndex] = useState(0);
+  const [selectedPassive, setSelectedPassive] = useState<Set<string>>(
+    () => new Set(cardNames.filter((n) => !isWeaponCard(n))),
+  );
+
+  const weaponCardOf = (key: string) => key.slice(0, key.lastIndexOf('::'));
+  const selectedSources = new Set([
+    ...cardNames.filter((name) => isWeaponCard(name) && [...selectedWeapons].some((k) => weaponCardOf(k) === name)),
+    ...selectedPassive,
+  ]);
 
   const filteredAttackerResolved = attackerResolved.filter((r) => selectedSources.has(r.source));
   const interactions = detectInteractions(filteredAttackerResolved, defenderResolved);
@@ -285,21 +325,20 @@ export function CombatSequenceFullscreen({
   const isFirst = safeFocusIndex === 0;
   const isLast = safeFocusIndex === steps.length - 1;
 
-  /** Une seule carte-arme active à la fois (règle : une arme par attaque) ; les cartes passives se cochent librement. */
-  const toggleSource = (name: string) => {
-    setSelectedSources((prev) => {
+  const toggleWeapon = (cardName: string, index: number) => {
+    const key = weaponKey(cardName, index);
+    setSelectedWeapons((prev) => {
       const next = new Set(prev);
-      if (next.has(name)) {
-        next.delete(name);
-      } else {
-        if (isWeaponCard(name)) {
-          for (const n of cardNames) if (n !== name && isWeaponCard(n)) next.delete(n);
-        }
-        next.add(name);
-      }
+      if (next.has(key)) next.delete(key); else next.add(key);
       return next;
     });
-    setWeaponIndex(0);
+  };
+  const togglePassive = (name: string) => {
+    setSelectedPassive((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name); else next.add(name);
+      return next;
+    });
   };
 
   useEffect(() => {
@@ -348,7 +387,7 @@ export function CombatSequenceFullscreen({
       </div>
 
       <div className="hud-stage">
-        <div key={data.step.id} className={`hud-panel hud-panel-enter-${dir}`}>
+        <div key={data.step.id} className={`hud-panel hud-panel-enter-${dir}${data.step.id === 'build-pool' ? ' hud-panel-wide' : ''}`}>
           <HudCorners />
           <div className="hud-panel-head">
             <span className="hud-ring">{safeFocusIndex + 1}<small>/{steps.length}</small></span>
@@ -359,10 +398,10 @@ export function CombatSequenceFullscreen({
               <WeaponSelectPanel
                 attacker={attacker}
                 attackerResolved={attackerResolved}
-                selected={selectedSources}
-                onToggle={toggleSource}
-                weaponIndex={weaponIndex}
-                onPickWeapon={setWeaponIndex}
+                selectedWeapons={selectedWeapons}
+                onToggleWeapon={toggleWeapon}
+                selectedPassive={selectedPassive}
+                onTogglePassive={togglePassive}
               />
             ) : (
               <StepBody data={data} />

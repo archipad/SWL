@@ -2,8 +2,7 @@ import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { buildRoster, resolveUnitKeywords, type PlayerId, type ResolvedTag, type RosterEntry } from '../lib/combat';
 import { KeywordDefinitionList } from './KeywordDefinitionList';
 import { usePersistentState } from '../lib/storage';
-import { CARD_IMAGES } from '../data/cardImages';
-import { normalizeName } from '../lib/normalize';
+import { cardImageFor } from '../data/cardImages';
 import { frenchCardName } from '../lib/cardNames';
 import { detectInteractions } from '../lib/keywordInteractions';
 import { AttackSequenceGuide } from './AttackSequenceGuide';
@@ -44,7 +43,7 @@ function Side({
     );
   }
 
-  const imageSrc = CARD_IMAGES[normalizeName(entry.unit.name)];
+  const imageSrc = cardImageFor(entry.unit.name);
 
   return (
     <div className={`combat-side combat-side-${role === 'Attaquant' ? 'attack' : 'defense'}`}>

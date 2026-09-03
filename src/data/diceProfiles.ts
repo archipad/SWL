@@ -1,4 +1,5 @@
 import { normalizeName } from '../lib/normalize';
+import { canonicalCardKey } from '../lib/cardNames';
 
 export type DiceColor = 'blanc' | 'rouge' | 'noir';
 
@@ -166,6 +167,7 @@ export const DICE_PROFILES: Record<string, CardDiceProfile> = Object.fromEntries
   Object.entries(RAW).map(([name, profile]) => [normalizeName(name), profile]),
 );
 
+/** Accepte aussi bien un nom anglais (Tabletop Admiral) qu'un nom français recopié depuis la carte — voir canonicalCardKey(). */
 export function diceProfileFor(cardName: string): CardDiceProfile | undefined {
-  return DICE_PROFILES[normalizeName(cardName)];
+  return DICE_PROFILES[canonicalCardKey(cardName)];
 }

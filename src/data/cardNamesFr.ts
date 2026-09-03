@@ -147,3 +147,17 @@ const RAW: Record<string, string> = {
 export const CARD_NAMES_FR: Record<string, string> = Object.fromEntries(
   Object.entries(RAW).map(([name, fr]) => [normalizeName(name), fr]),
 );
+
+/**
+ * Table inverse (titre français normalisé -> clé anglaise normalisée) —
+ * permet de retrouver une carte quand une liste a été saisie avec les noms
+ * français imprimés sur les cartes (import texte recopié à la main) plutôt
+ * que les noms anglais d'export Tabletop Admiral attendus par cardTags.ts/
+ * cardImages.ts/diceProfiles.ts. Voir lib/cardNames.ts (canonicalCardKey).
+ * Un titre FR identique au nom EN (beaucoup de noms propres) mappe sur
+ * lui-même, sans conséquence puisque canonicalCardKey() teste d'abord la
+ * clé anglaise directement.
+ */
+export const EN_KEY_BY_FRENCH_NAME: Record<string, string> = Object.fromEntries(
+  Object.entries(RAW).map(([name, fr]) => [normalizeName(fr), normalizeName(name)]),
+);

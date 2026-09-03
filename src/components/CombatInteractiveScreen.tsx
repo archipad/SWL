@@ -2,8 +2,7 @@ import { useState } from 'react';
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { buildRoster, resolveUnitKeywords, type RosterEntry } from '../lib/combat';
 import { usePersistentState } from '../lib/storage';
-import { CARD_IMAGES } from '../data/cardImages';
-import { normalizeName } from '../lib/normalize';
+import { cardImageFor } from '../data/cardImages';
 import { frenchCardName } from '../lib/cardNames';
 import { factionColor } from '../lib/factionColor';
 import { CombatSequenceFullscreen } from './CombatSequenceFullscreen';
@@ -30,7 +29,7 @@ function findEntry(roster: RosterEntry[], id: string): RosterEntry | undefined {
 function LiveTile({
   entry, role, onTap,
 }: { entry: RosterEntry; role: Role | null; onTap: () => void }) {
-  const img = CARD_IMAGES[normalizeName(entry.unit.name)];
+  const img = cardImageFor(entry.unit.name);
   return (
     <button
       type="button"
@@ -60,7 +59,7 @@ function LiveTile({
  * demandé. Vide tant que le rôle correspondant n'a pas été assigné.
  */
 function PreviewSlot({ role, entry }: { role: Role; entry: RosterEntry | undefined }) {
-  const img = entry ? CARD_IMAGES[normalizeName(entry.unit.name)] : undefined;
+  const img = entry ? cardImageFor(entry.unit.name) : undefined;
   return (
     <div className={`live-preview-slot live-preview-slot-${role}`}>
       <span className="live-preview-role">{role === 'attaquant' ? '🎯 Attaquant' : '🛡 Défenseur'}</span>
@@ -224,8 +223,8 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
         <div className="live-modal-backdrop" onClick={() => setPendingId(null)}>
           <div className="live-modal" onClick={(e) => e.stopPropagation()}>
             <div className="live-modal-preview">
-              {CARD_IMAGES[normalizeName(pendingEntry.unit.name)] && (
-                <img src={CARD_IMAGES[normalizeName(pendingEntry.unit.name)]} alt="" />
+              {cardImageFor(pendingEntry.unit.name) && (
+                <img src={cardImageFor(pendingEntry.unit.name)} alt="" />
               )}
               <strong>{frenchCardName(pendingEntry.unit.name)}</strong>
             </div>

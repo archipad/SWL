@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 import { usePersistentState } from './storage';
-import { normalizeName } from './normalize';
+import { canonicalCardKey } from './cardNames';
 import { SEED_CARD_TAGS } from '../data/cardTags';
 import type { CardKeywordTag, CardTagLibrary } from '../types';
 
@@ -39,13 +39,13 @@ export function useCardTags() {
   }, []);
 
   const getTags = useCallback(
-    (cardName: string): CardKeywordTag[] => library[normalizeName(cardName)] ?? [],
+    (cardName: string): CardKeywordTag[] => library[canonicalCardKey(cardName)] ?? [],
     [library],
   );
 
   const addTag = useCallback(
     (cardName: string, tag: CardKeywordTag) => {
-      const key = normalizeName(cardName);
+      const key = canonicalCardKey(cardName);
       setLibrary((prev) => {
         const existing = prev[key] ?? [];
         if (existing.some((t) => t.keywordId === tag.keywordId)) return prev;
@@ -57,7 +57,7 @@ export function useCardTags() {
 
   const removeTag = useCallback(
     (cardName: string, keywordId: string) => {
-      const key = normalizeName(cardName);
+      const key = canonicalCardKey(cardName);
       setLibrary((prev) => {
         if (!prev[key]) return prev;
         const filtered = prev[key].filter((t) => t.keywordId !== keywordId);

@@ -1,6 +1,5 @@
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
-import { normalizeName } from './normalize';
-import { frenchCardName } from './cardNames';
+import { frenchCardName, canonicalCardKey } from './cardNames';
 
 export interface GlossaryEntry {
   keyword: KeywordDef;
@@ -12,7 +11,7 @@ export function buildGlossary(list: ParsedList, tagLibrary: CardTagLibrary, keyw
   const entries = new Map<string, GlossaryEntry>();
 
   const visit = (name: string) => {
-    const tags = tagLibrary[normalizeName(name)] ?? [];
+    const tags = tagLibrary[canonicalCardKey(name)] ?? [];
     for (const t of tags) {
       const kw = byId.get(t.keywordId);
       if (!kw) continue;

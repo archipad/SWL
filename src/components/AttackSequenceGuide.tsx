@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 import type { ResolvedTag, RosterEntry } from '../lib/combat';
 import type { DetectedInteraction } from '../lib/keywordInteractions';
 import { frenchCardName } from '../lib/cardNames';
-import { CARD_IMAGES } from '../data/cardImages';
-import { normalizeName } from '../lib/normalize';
+import { cardImageFor } from '../data/cardImages';
 import { usePersistentState } from '../lib/storage';
 import { buildSteps, StepBody, type StepData } from './SequenceStepShared';
 
@@ -27,8 +26,8 @@ interface Props {
 function SequenceBanner({
   attacker, defender, mode, onToggleMode,
 }: { attacker: RosterEntry; defender: RosterEntry; mode: 'liste' | 'plein-écran'; onToggleMode: () => void }) {
-  const attackerImg = CARD_IMAGES[normalizeName(attacker.unit.name)];
-  const defenderImg = CARD_IMAGES[normalizeName(defender.unit.name)];
+  const attackerImg = cardImageFor(attacker.unit.name);
+  const defenderImg = cardImageFor(defender.unit.name);
   return (
     <div className="sequence-banner no-print">
       <div className="sequence-banner-side sequence-banner-attack">

@@ -359,21 +359,21 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   display: flex; flex-direction: column; gap: 0.75rem;
   padding: 0.75rem 1rem 1rem; overflow: hidden;
 }
-.hud-topbar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-.hud-identity { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.85rem; min-width: 0; flex: 1; }
-.hud-identity-portrait { width: 2rem; height: 2rem; object-fit: cover; border-radius: 4px; background: #000; flex-shrink: 0; }
-.hud-identity-text { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+.hud-topbar { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
+.hud-identity { display: flex; align-items: center; gap: 1rem; font-weight: 600; font-size: 1.15rem; min-width: 0; flex: 1; }
+.hud-identity-portrait { width: 4.6rem; height: 4.6rem; object-fit: cover; border-radius: 8px; background: #000; flex-shrink: 0; }
+.hud-identity-text { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
 .hud-identity-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.hud-identity-upgrades { display: flex; gap: 0.25rem; overflow-x: auto; max-width: 12rem; }
-.hud-identity-upgrades img { width: 1.4rem; height: 1.4rem; object-fit: cover; border-radius: 3px; background: #000; flex-shrink: 0; opacity: 0.85; }
+.hud-identity-upgrades { display: flex; gap: 0.35rem; overflow-x: auto; max-width: 16rem; }
+.hud-identity-upgrades img { width: 2.3rem; height: 2.3rem; object-fit: cover; border-radius: 5px; background: #000; flex-shrink: 0; opacity: 0.9; }
 .hud-identity-attack { color: var(--hud-attack); }
 .hud-identity-defense { color: var(--hud-defense); flex-direction: row-reverse; text-align: right; }
 .hud-identity-defense .hud-identity-text { align-items: flex-end; }
 .hud-identity-defense .hud-identity-upgrades { flex-direction: row-reverse; }
-.hud-identity-vs { color: var(--hud-gold); font-size: 0.7rem; font-weight: 700; flex-shrink: 0; }
+.hud-identity-vs { color: var(--hud-gold); font-size: 1.3rem; font-weight: 700; flex-shrink: 0; }
 .hud-close {
-  flex-shrink: 0; width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--bg-input);
-  border: 1px solid var(--border); color: var(--text); font-size: 1rem; cursor: pointer;
+  flex-shrink: 0; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--bg-input);
+  border: 1px solid var(--border); color: var(--text); font-size: 1.1rem; cursor: pointer;
 }
 .hud-dots { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
 .hud-dot {
@@ -390,6 +390,8 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   background: var(--bg-raised); border: 1px solid var(--border); border-radius: 14px;
   padding: 1.5rem 1.75rem;
 }
+/* Étape "Constituer la réserve d'attaque" : profite de toute la largeur de l'écran (visuels de carte + grille d'armes plus lisibles sur tablette). */
+.hud-panel-wide { max-width: min(96vw, 72rem); }
 .hud-corner { position: absolute; width: 18px; height: 18px; border: 2px solid var(--hud-gold); opacity: 0.7; }
 .hud-corner-tl { top: -1px; left: -1px; border-right: none; border-bottom: none; border-top-left-radius: 6px; }
 .hud-corner-tr { top: -1px; right: -1px; border-left: none; border-bottom: none; border-top-right-radius: 6px; }
@@ -423,60 +425,75 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .hud-nav-check input { width: 1.3rem; height: 1.3rem; }
 
 /* --- Sélection des armes (étape "Constituer la réserve d'attaque", Combat interactif) --- */
-.hud-weapon-select { display: flex; flex-direction: column; gap: 0.6rem; }
+.hud-weapon-select { display: flex; flex-direction: column; gap: 1rem; }
+/* Grille plutôt qu'une pile : profite de la largeur du panneau (.hud-panel-wide) sur tablette. */
+.hud-weapon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr)); gap: 1rem; }
 .hud-weapon-tile {
-  display: flex; align-items: flex-start; gap: 0.7rem; text-align: left;
-  background: var(--bg-input); border: 2px solid var(--border); border-radius: 10px;
-  padding: 0.6rem 0.8rem; cursor: pointer; color: var(--text); width: 100%;
+  display: flex; align-items: flex-start; gap: 1rem; text-align: left;
+  background: var(--bg-input); border: 2px solid var(--border); border-radius: 12px;
+  padding: 1rem 1.1rem; color: var(--text); width: 100%;
 }
 .hud-weapon-tile-on { border-color: var(--hud-attack); background: rgba(224, 104, 94, 0.08); }
 .hud-weapon-check {
-  flex-shrink: 0; width: 1.4rem; height: 1.4rem; border-radius: 5px; border: 2px solid var(--border);
-  display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: 700;
-  margin-top: 0.1rem;
+  flex-shrink: 0; width: 1.6rem; height: 1.6rem; border-radius: 5px; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700;
+  margin-top: 0.1rem; background: var(--bg-raised);
 }
-.hud-weapon-tile-on .hud-weapon-check { border-color: var(--hud-attack); background: var(--hud-attack); color: white; }
-.hud-weapon-image { flex-shrink: 0; width: 3.4rem; height: 3.4rem; object-fit: cover; border-radius: 6px; background: #000; }
-.hud-weapon-info { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; flex: 1; }
-.hud-weapon-name { font-weight: 700; font-size: 1rem; }
-.hud-weapon-empty { color: var(--text-dim); font-size: 0.85rem; font-style: italic; }
-.hud-weapon-keywords { display: flex; flex-direction: column; gap: 0.15rem; }
-.hud-weapon-keywords .sequence-keyword { font-size: 0.85rem; margin: 0; }
-.hud-weapon-note { color: var(--text-dim); font-size: 0.82rem; margin: 0.2rem 0 0; }
-
-/* Carte porteuse d'arme = choix exclusif (rond plutôt que coche carrée), pour la distinguer visuellement des cartes passives à cocher librement. */
-.hud-weapon-tile-radio .hud-weapon-check { border-radius: 50%; }
+.hud-weapon-option-on .hud-weapon-check,
+.hud-weapon-name-btn-on .hud-weapon-check {
+  border-color: var(--hud-attack); background: var(--hud-attack); color: white;
+}
+.hud-weapon-image { flex-shrink: 0; width: 6.5rem; height: 6.5rem; object-fit: cover; border-radius: 8px; background: #000; }
+.hud-weapon-info { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; flex: 1; }
+.hud-weapon-name { font-weight: 700; font-size: 1.3rem; }
+.hud-weapon-name-btn {
+  display: flex; align-items: center; gap: 0.6rem; background: none; border: none; padding: 0;
+  cursor: pointer; color: inherit; text-align: left; width: 100%; font: inherit;
+}
+.hud-weapon-empty { color: var(--text-dim); font-size: 0.9rem; font-style: italic; }
+.hud-weapon-keywords { display: flex; flex-direction: column; gap: 0.25rem; }
+.hud-weapon-keywords .sequence-keyword { font-size: 0.95rem; margin: 0; }
+.hud-weapon-note { color: var(--text-dim); font-size: 0.88rem; margin: 0; }
 
 /* --- Dés d'arme (losange coloré + chiffre, même code que sur les cartes) --- */
-.dice-row { display: inline-flex; gap: 0.3rem; flex-wrap: wrap; }
+.dice-row { display: inline-flex; gap: 0.35rem; flex-wrap: wrap; align-items: center; }
 .dice-badge {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 1.5rem; height: 1.5rem; transform: rotate(45deg);
-  border-radius: 4px; font-size: 0.78rem; font-weight: 700; flex-shrink: 0;
+  width: 1.6rem; height: 1.6rem; transform: rotate(45deg);
+  border-radius: 4px; font-size: 0.82rem; font-weight: 700; flex-shrink: 0;
 }
 .dice-badge span { transform: rotate(-45deg); display: inline-block; }
 .dice-badge-blanc { background: #f2f2f2; color: #111; border: 1px solid #999; }
 .dice-badge-rouge { background: #b3261e; color: #fff; }
 .dice-badge-noir { background: #1a1a1a; color: #fff; border: 1px solid #555; }
+/* Version agrandie pour le total en haut du panneau — doit se voir de loin sur la table. */
+.dice-row-big { gap: 0.6rem; }
+.dice-row-big .dice-badge { width: 3.2rem; height: 3.2rem; border-radius: 8px; font-size: 1.5rem; }
 
-.hud-weapon-dice-variable { color: var(--text-dim); font-size: 0.82rem; font-style: italic; }
+.hud-weapon-dice-variable { color: var(--text-dim); font-size: 0.85rem; font-style: italic; }
 
-/* Total au sommet du panneau : l'arme actuellement active (une seule carte-arme cochée à la fois). */
+/* Total au-dessus de la grille de sélection — le plus visible de l'écran, pour se lire de loin. */
 .hud-dice-total {
-  display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.2rem;
-  background: rgba(224, 104, 94, 0.12); border: 1px solid var(--hud-attack); border-radius: 10px;
-  padding: 0.55rem 0.8rem;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 1rem;
+  background: rgba(224, 104, 94, 0.14); border: 2px solid var(--hud-attack); border-radius: 12px;
+  padding: 1rem 1.3rem;
 }
-.hud-dice-total-label { font-weight: 700; font-size: 0.85rem; color: var(--hud-attack); text-transform: uppercase; letter-spacing: 0.03em; }
+.hud-dice-total-label {
+  font-weight: 800; font-size: 1.15rem; color: var(--hud-attack); text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.hud-dice-total-empty { color: var(--text-dim); font-size: 1rem; font-style: italic; }
+.hud-dice-total-variable { color: var(--hud-gold); font-size: 0.9rem; font-style: italic; }
 
-/* Choix de l'arme au sein d'une même carte (ex. l'unité : corps-à-corps vs à distance). */
-.hud-weapon-options { display: flex; flex-direction: column; gap: 0.3rem; margin: 0.1rem 0; }
+/* Choix de l'arme au sein d'une même carte (ex. l'unité : corps-à-corps vs à distance) — cases à cocher, plusieurs actives à la fois. */
+.hud-weapon-options { display: flex; flex-direction: column; gap: 0.4rem; margin: 0.1rem 0; }
 .hud-weapon-option {
-  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
-  border: 1px solid var(--border); border-radius: 8px; padding: 0.3rem 0.5rem; font-size: 0.85rem;
+  display: flex; align-items: center; gap: 0.6rem; width: 100%;
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px;
+  padding: 0.5rem 0.7rem; font-size: 0.95rem; color: var(--text); cursor: pointer;
 }
-.hud-weapon-option-on { border-color: var(--hud-attack); background: rgba(224, 104, 94, 0.1); }
-.hud-weapon-option-name { font-weight: 600; }
+.hud-weapon-option-on { border-color: var(--hud-attack); background: rgba(224, 104, 94, 0.12); }
+.hud-weapon-option-name { font-weight: 600; flex: 1; }
 
 /* --- Pense-bête couvert (étape "Déterminer le couvert", Combat interactif) --- */
 .hud-cheatsheet {
