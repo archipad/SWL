@@ -52,7 +52,9 @@ function HudCorners() {
  * sélection. Une amélioration sans visuel connu est simplement omise (pas
  * d'icône cassée).
  */
-function IdentityCard({ entry, side }: { entry: RosterEntry; side: 'attack' | 'defense' }) {
+function IdentityCard({
+  entry, side, onZoom,
+}: { entry: RosterEntry; side: 'attack' | 'defense'; onZoom: (src: string, alt: string) => void }) {
   const img = cardImageFor(entry.unit.name);
   const upgradeImages = entry.unit.upgrades
     .map((u) => ({ key: u.key, name: u.name, img: cardImageFor(u.name) }))
@@ -60,17 +62,33 @@ function IdentityCard({ entry, side }: { entry: RosterEntry; side: 'attack' | 'd
 
   return (
     <div className={`hud-identity hud-identity-${side}`}>
-      {img && <img className="hud-identity-portrait" src={img} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />}
+      {img && (
+        <button type="button" className="hud-identity-portrait-btn" onClick={() => onZoom(img, frenchCardName(entry.unit.name))}>
+          <img className="hud-identity-portrait" src={img} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />
+        </button>
+      )}
       <div className="hud-identity-text">
         <span className="hud-identity-name">{frenchCardName(entry.unit.name)}</span>
         {upgradeImages.length > 0 && (
           <div className="hud-identity-upgrades">
             {upgradeImages.map((u) => (
-              <img key={u.key} src={u.img} alt="" title={frenchCardName(u.name)} onError={(e) => { e.currentTarget.hidden = true; }} />
+              <button key={u.key} type="button" className="hud-identity-upgrade-btn" onClick={() => onZoom(u.img!, frenchCardName(u.name))}>
+                <img src={u.img} alt="" title={frenchCardName(u.name)} onError={(e) => { e.currentTarget.hidden = true; }} />
+              </button>
             ))}
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+/** Visuel agrandi sur toute la hauteur de l'écran, pour vérifier soi-même ce qui est imprimé sur la carte (dés, mots-clés...) — fermeture par clic en dehors, bouton ✕, ou Échap. */
+function ImageLightbox({ src, alt, onClose }: { src: string; alt: string; onClose: () => void }) {
+  return (
+    <div className="hud-lightbox-backdrop" onClick={onClose}>
+      <img className="hud-lightbox-img" src={src} alt={alt} onClick={(e) => e.stopPropagation()} />
+      <button type="button" className="hud-lightbox-close" onClick={onClose} aria-label="Fermer le visuel">✕</button>
     </div>
   );
 }
@@ -133,7 +151,7 @@ function weaponKey(cardName: string, index: number): string {
  * part, pour leurs mots-clés seulement.
  */
 function WeaponSelectPanel({
-  attacker, attackerResolved, selectedWeapons, onToggleWeapon, selectedPassive, onTogglePassive,
+  attacker, attackerResolved, selectedWeapons, onToggleWeapon, selectedPassive, onTogglePassive, onZoom,
 }: {
   attacker: RosterEntry;
   attackerResolved: ResolvedTag[];
@@ -141,6 +159,7 @@ function WeaponSelectPanel({
   onToggleWeapon: (cardName: string, index: number) => void;
   selectedPassive: Set<string>;
   onTogglePassive: (cardName: string) => void;
+  onZoom: (src: string, alt: string) => void;
 }) {
   const cards = [attacker.unit.name, ...attacker.unit.upgrades.map((u) => u.name)];
   const chosenWeapons: WeaponProfile[] = [];
@@ -166,7 +185,11 @@ function WeaponSelectPanel({
       <div className="hud-weapon-grid">
       {cards.map((name) => {
         const img = cardImageFor(name);
-        const cardKeywords = attackerResolved.filter((r) => r.source === name);
+        const allCardKeywords = attackerResolved.filter((r) => r.source === name);
+        // Uniquement les mots-clés de catégorie "arme" (Impact X, Perforant X, Fixe...) : les mots-clés
+        // d'unité (Armure, Grimpeur, Éclaireur...) s'appliquent quoi qu'il arrive, indépendamment de
+        // l'arme choisie — les afficher ici aussi noyait l'info utile et rendait l'écran illisible.
+        const weaponKeywords = allCardKeywords.filter((r) => r.def.category === 'arme');
         const profile = diceProfileFor(name);
         const weapons = profile?.weapons ?? [];
         const isWeaponCard = weapons.length > 0;
@@ -175,7 +198,16 @@ function WeaponSelectPanel({
           : selectedPassive.has(name);
         return (
           <div key={name} className={`hud-weapon-tile${isOn ? ' hud-weapon-tile-on' : ''}`}>
-            {img && <img className="hud-weapon-image" src={img} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />}
+            {img && (
+              <button
+                type="button"
+                className="hud-weapon-image-btn"
+                onClick={(e) => { e.stopPropagation(); onZoom(img, frenchCardName(name)); }}
+                aria-label={`Agrandir le visuel de ${frenchCardName(name)}`}
+              >
+                <img className="hud-weapon-image" src={img} alt="" onError={(e) => { e.currentTarget.hidden = true; }} />
+              </button>
+            )}
             <div className="hud-weapon-info">
               {isWeaponCard ? (
                 <span className="hud-weapon-name">{frenchCardName(name)}</span>
@@ -209,12 +241,13 @@ function WeaponSelectPanel({
                   })}
                 </div>
               )}
-              {cardKeywords.length === 0 ? (
-                weapons.length === 0 && <span className="hud-weapon-empty">Aucun mot-clé renseigné.</span>
-              ) : (
+              {weaponKeywords.length > 0 && (
                 <div className="hud-weapon-keywords">
-                  {cardKeywords.map((r) => <KeywordLine key={r.tag.keywordId} {...r} hideSource />)}
+                  {weaponKeywords.map((r) => <KeywordLine key={r.tag.keywordId} {...r} hideSource />)}
                 </div>
+              )}
+              {weapons.length === 0 && allCardKeywords.length === 0 && (
+                <span className="hud-weapon-empty">Aucun mot-clé renseigné.</span>
               )}
             </div>
           </div>
@@ -289,6 +322,7 @@ export function CombatSequenceFullscreen({
   checked, onToggle, focusIndex, setFocusIndex, onClose, onFinish,
 }: Props) {
   const [dir, setDir] = useState<'next' | 'prev'>('next');
+  const [zoomedImage, setZoomedImage] = useState<{ src: string; alt: string } | null>(null);
   /**
    * Départage les cartes de l'attaquant en porteuses d'arme (unité +
    * améliorations-armes, cochables arme par arme, plusieurs à la fois) et
@@ -348,26 +382,28 @@ export function CombatSequenceFullscreen({
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      // Échap ferme d'abord le visuel agrandi s'il y en a un, pas toute la séquence d'un coup.
+      if (e.key === 'Escape') { if (zoomedImage) setZoomedImage(null); else onClose(); }
       else if (e.key === 'ArrowRight') { if (isLast) onFinish(); else goTo(safeFocusIndex + 1, 'next'); }
       else if (e.key === 'ArrowLeft' && !isFirst) goTo(safeFocusIndex - 1, 'prev');
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [safeFocusIndex, isFirst, isLast]);
+  }, [safeFocusIndex, isFirst, isLast, zoomedImage]);
 
   const goTo = (i: number, direction: 'next' | 'prev') => {
     setDir(direction);
     setFocusIndex(i);
   };
+  const onZoom = (src: string, alt: string) => setZoomedImage({ src, alt });
 
   return (
     <div className="hud-overlay">
       <div className="hud-topbar">
-        <IdentityCard entry={attacker} side="attack" />
+        <IdentityCard entry={attacker} side="attack" onZoom={onZoom} />
         <span className="hud-identity-vs">VS</span>
-        <IdentityCard entry={defender} side="defense" />
+        <IdentityCard entry={defender} side="defense" onZoom={onZoom} />
         <button type="button" className="hud-close" onClick={onClose} aria-label="Fermer la séquence plein écran">
           ✕
         </button>
@@ -402,6 +438,7 @@ export function CombatSequenceFullscreen({
                 onToggleWeapon={toggleWeapon}
                 selectedPassive={selectedPassive}
                 onTogglePassive={togglePassive}
+                onZoom={onZoom}
               />
             ) : (
               <StepBody data={data} />
@@ -436,6 +473,10 @@ export function CombatSequenceFullscreen({
           {isLast ? '⚔️ Nouveau combat' : 'Suivante ▶'}
         </button>
       </div>
+
+      {zoomedImage && (
+        <ImageLightbox src={zoomedImage.src} alt={zoomedImage.alt} onClose={() => setZoomedImage(null)} />
+      )}
     </div>
   );
 }

@@ -361,11 +361,14 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 }
 .hud-topbar { display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap; }
 .hud-identity { display: flex; align-items: center; gap: 1rem; font-weight: 600; font-size: 1.15rem; min-width: 0; flex: 1; }
-.hud-identity-portrait { width: 4.6rem; height: 4.6rem; object-fit: cover; border-radius: 8px; background: #000; flex-shrink: 0; }
+.hud-identity-portrait-btn, .hud-identity-upgrade-btn {
+  border: none; padding: 0; margin: 0; background: none; cursor: zoom-in; flex-shrink: 0; line-height: 0;
+}
+.hud-identity-portrait { width: 4.6rem; height: 4.6rem; object-fit: cover; border-radius: 8px; background: #000; }
 .hud-identity-text { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
 .hud-identity-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .hud-identity-upgrades { display: flex; gap: 0.35rem; overflow-x: auto; max-width: 16rem; }
-.hud-identity-upgrades img { width: 2.3rem; height: 2.3rem; object-fit: cover; border-radius: 5px; background: #000; flex-shrink: 0; opacity: 0.9; }
+.hud-identity-upgrades img { width: 2.3rem; height: 2.3rem; object-fit: cover; border-radius: 5px; background: #000; opacity: 0.9; }
 .hud-identity-attack { color: var(--hud-attack); }
 .hud-identity-defense { color: var(--hud-defense); flex-direction: row-reverse; text-align: right; }
 .hud-identity-defense .hud-identity-text { align-items: flex-end; }
@@ -374,6 +377,17 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .hud-close {
   flex-shrink: 0; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--bg-input);
   border: 1px solid var(--border); color: var(--text); font-size: 1.1rem; cursor: pointer;
+}
+
+/* Visuel de carte agrandi (clic sur un visuel dans la séquence) — au-dessus de tout le reste, y compris le bandeau du haut. */
+.hud-lightbox-backdrop {
+  position: fixed; inset: 0; z-index: 300; background: rgba(0, 0, 0, 0.88);
+  display: flex; align-items: center; justify-content: center; padding: 2rem; cursor: zoom-out;
+}
+.hud-lightbox-img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 10px; cursor: default; }
+.hud-lightbox-close {
+  position: fixed; top: 1rem; right: 1rem; width: 2.6rem; height: 2.6rem; border-radius: 50%;
+  background: var(--bg-input); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; cursor: pointer;
 }
 .hud-dots { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
 .hud-dot {
@@ -443,7 +457,11 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .hud-weapon-name-btn-on .hud-weapon-check {
   border-color: var(--hud-attack); background: var(--hud-attack); color: white;
 }
-.hud-weapon-image { flex-shrink: 0; width: 6.5rem; height: 6.5rem; object-fit: cover; border-radius: 8px; background: #000; }
+.hud-weapon-image-btn {
+  flex-shrink: 0; border: none; padding: 0; margin: 0; background: none; cursor: zoom-in; line-height: 0;
+  border-radius: 8px;
+}
+.hud-weapon-image { width: 6.5rem; height: 6.5rem; object-fit: cover; border-radius: 8px; background: #000; display: block; }
 .hud-weapon-info { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; flex: 1; }
 .hud-weapon-name { font-weight: 700; font-size: 1.3rem; }
 .hud-weapon-name-btn {
