@@ -300,6 +300,13 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 }
 .sequence-keyword { margin: 0 0 0.2rem; font-size: 0.82rem; color: var(--text-dim); }
 .sequence-keyword strong { color: var(--text); font-weight: 600; }
+/* Mot-clé qui agit vraiment à cette étape (def.impact 'attaque'/'défense') — même code visuel que
+   les notes d'interaction (éclair + fond doré) pour le distinguer des rappels de règle ("autre"). */
+.sequence-keyword-action {
+  background: rgba(224, 179, 77, 0.1); border-radius: 6px; padding: 0.3rem 0.5rem;
+  color: var(--text);
+}
+.sequence-keyword-bolt { color: #e0b34d; margin-right: 0.2rem; }
 
 /* Bandeau attaquant/défenseur épinglé en haut du guide pas-à-pas, pour ne
    pas perdre le fil du duel en cours pendant qu'on fait défiler les étapes. */

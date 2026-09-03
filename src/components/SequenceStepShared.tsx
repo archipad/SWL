@@ -38,10 +38,21 @@ export function buildSteps(
   });
 }
 
-/** `hideSource` : quand la ligne apparaît déjà sous un en-tête nommant la carte (ex. vignette de sélection d'arme), répéter « (nom de la carte) » à chaque mot-clé n'apporte rien. */
+/**
+ * `hideSource` : quand la ligne apparaît déjà sous un en-tête nommant la carte (ex. vignette de
+ * sélection d'arme), répéter « (nom de la carte) » à chaque mot-clé n'apporte rien.
+ *
+ * L'éclair ⚡ (même traitement que les notes d'interaction ci-dessous) marque un mot-clé qui agit
+ * réellement à cette étape côté attaque/défense (def.impact === 'attaque'/'défense') — par
+ * opposition aux mots-clés « autre » (contraintes, conditions...) qui ne font que rappeler une
+ * règle sans modifier quoi que ce soit ici. Distinction déjà présente dans le glossaire, pas
+ * inventée pour l'occasion.
+ */
 export function KeywordLine({ tag, def, source, hideSource }: ResolvedTag & { hideSource?: boolean }) {
+  const isAction = def.impact !== 'autre';
   return (
-    <p className="sequence-keyword">
+    <p className={`sequence-keyword${isAction ? ' sequence-keyword-action' : ''}`}>
+      {isAction && <span className="sequence-keyword-bolt" aria-hidden="true">⚡</span>}
       <strong>{def.name}{def.hasValue && tag.value ? ` ${tag.value}` : ''}</strong>
       {' — '}<DefinitionText text={shortDef(def)} />
       {!hideSource && (
