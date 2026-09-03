@@ -380,7 +380,14 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .hud-identity-defense { color: var(--hud-defense); flex-direction: row-reverse; text-align: right; }
 .hud-identity-defense .hud-identity-text { align-items: flex-end; }
 .hud-identity-defense .hud-identity-upgrades { flex-direction: row-reverse; }
-.hud-identity-vs { color: var(--hud-gold); font-size: 1.3rem; font-weight: 700; flex-shrink: 0; }
+/* Bouton d'échange attaquant/défenseur, à la place de l'ancien simple libellé "VS" — mêmes couleurs. */
+.hud-swap {
+  display: flex; flex-direction: column; align-items: center; gap: 0.1rem; flex-shrink: 0;
+  background: none; border: none; color: var(--hud-gold); font-size: 0.75rem; font-weight: 700;
+  cursor: pointer; padding: 0.2rem 0.5rem; border-radius: 8px;
+}
+.hud-swap:hover { background: rgba(224, 179, 77, 0.12); }
+.hud-swap-icon { font-size: 1.3rem; line-height: 1; }
 .hud-close {
   flex-shrink: 0; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--bg-input);
   border: 1px solid var(--border); color: var(--text); font-size: 1.1rem; cursor: pointer;
@@ -391,19 +398,33 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   position: fixed; inset: 0; z-index: 300; background: rgba(0, 0, 0, 0.88);
   display: flex; align-items: center; justify-content: center; padding: 2rem; cursor: zoom-out;
 }
-.hud-lightbox-img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 10px; cursor: default; }
+.hud-lightbox-img { max-width: 92vw; max-height: 92vh; object-fit: contain; border-radius: 10px; cursor: zoom-in; touch-action: pinch-zoom; }
+/* Tap sur l'image : taille réelle, défilable (pincement natif du navigateur toujours possible en plus). */
+.hud-lightbox-backdrop-zoomed { overflow: auto; padding: 0; align-items: flex-start; justify-content: flex-start; }
+.hud-lightbox-img-zoomed { max-width: none; max-height: none; width: auto; height: auto; border-radius: 0; cursor: zoom-out; }
 .hud-lightbox-close {
   position: fixed; top: 1rem; right: 1rem; width: 2.6rem; height: 2.6rem; border-radius: 50%;
   background: var(--bg-input); border: 1px solid var(--border); color: var(--text); font-size: 1.2rem; cursor: pointer;
+  z-index: 1;
 }
-.hud-dots { display: flex; justify-content: center; gap: 0.4rem; flex-wrap: wrap; }
+
+.hud-dots { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; }
+.hud-dot-wrap {
+  display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  background: none; border: none; padding: 0.2rem; cursor: pointer;
+}
 .hud-dot {
-  width: 0.6rem; height: 0.6rem; border-radius: 50%; border: none; padding: 0; cursor: pointer;
+  width: 0.6rem; height: 0.6rem; border-radius: 50%;
   background: var(--bg-input);
 }
 .hud-dot-active { background: var(--hud-gold); opacity: 0.5; }
 .hud-dot-done { opacity: 0.9; }
-.hud-dot-current { outline: 2px solid var(--hud-gold); outline-offset: 2px; }
+.hud-dot-wrap.hud-dot-current .hud-dot { outline: 2px solid var(--hud-gold); outline-offset: 2px; }
+.hud-dot-label {
+  font-size: 0.62rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.hud-dot-wrap.hud-dot-current .hud-dot-label { color: var(--hud-gold); font-weight: 700; }
 
 .hud-stage { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; overflow: hidden; }
 .hud-panel {
@@ -441,7 +462,9 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 }
 
 .hud-nav { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.hud-nav-left { display: flex; flex: 1; gap: 0.5rem; }
 .hud-nav-btn { flex: 1; font-size: 1rem; padding: 0.7rem 1rem; }
+.hud-nav-btn-icon { flex: 0 0 auto; padding: 0.7rem 0.9rem; }
 .hud-nav-check { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; font-size: 0.7rem; color: var(--text-dim); flex-shrink: 0; }
 .hud-nav-check input { width: 1.3rem; height: 1.3rem; }
 
@@ -460,8 +483,7 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700;
   margin-top: 0.1rem; background: var(--bg-raised);
 }
-.hud-weapon-option-on .hud-weapon-check,
-.hud-weapon-name-btn-on .hud-weapon-check {
+.hud-weapon-option-on .hud-weapon-check {
   border-color: var(--hud-attack); background: var(--hud-attack); color: white;
 }
 .hud-weapon-image-btn {
@@ -471,14 +493,15 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .hud-weapon-image { width: 6.5rem; height: 6.5rem; object-fit: cover; border-radius: 8px; background: #000; display: block; }
 .hud-weapon-info { display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; flex: 1; }
 .hud-weapon-name { font-weight: 700; font-size: 1.3rem; }
-.hud-weapon-name-btn {
-  display: flex; align-items: center; gap: 0.6rem; background: none; border: none; padding: 0;
-  cursor: pointer; color: inherit; text-align: left; width: 100%; font: inherit;
-}
 .hud-weapon-empty { color: var(--text-dim); font-size: 0.9rem; font-style: italic; }
 .hud-weapon-keywords { display: flex; flex-direction: column; gap: 0.25rem; }
 .hud-weapon-keywords .sequence-keyword { font-size: 0.95rem; margin: 0; }
 .hud-weapon-note { color: var(--text-dim); font-size: 0.88rem; margin: 0; }
+/* Repli/déploiement des mots-clés d'une carte très chargée (Vador, Iden Versio...), pour ne pas dominer toute la grille. */
+.hud-weapon-collapse-btn {
+  align-self: flex-start; background: none; border: none; color: var(--hud-gold);
+  font-size: 0.85rem; font-weight: 600; cursor: pointer; padding: 0.15rem 0;
+}
 
 /* --- Dés d'arme (losange coloré + chiffre, même code que sur les cartes) --- */
 .dice-row { display: inline-flex; gap: 0.35rem; flex-wrap: wrap; align-items: center; }
@@ -510,15 +533,29 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .hud-dice-total-empty { color: var(--text-dim); font-size: 1rem; font-style: italic; }
 .hud-dice-total-variable { color: var(--hud-gold); font-size: 0.9rem; font-style: italic; }
 
-/* Choix de l'arme au sein d'une même carte (ex. l'unité : corps-à-corps vs à distance) — cases à cocher, plusieurs actives à la fois. */
+/* Choix de l'arme au sein d'une même carte (ex. l'unité : corps-à-corps vs à distance) — cases à cocher, plusieurs actives à la fois, avec réglage du nombre de figurines. */
 .hud-weapon-options { display: flex; flex-direction: column; gap: 0.4rem; margin: 0.1rem 0; }
 .hud-weapon-option {
-  display: flex; align-items: center; gap: 0.6rem; width: 100%;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0.7rem; width: 100%;
   background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px;
-  padding: 0.5rem 0.7rem; font-size: 0.95rem; color: var(--text); cursor: pointer;
+  padding: 0.5rem 0.7rem; font-size: 0.95rem; color: var(--text);
 }
 .hud-weapon-option-on { border-color: var(--hud-attack); background: rgba(224, 104, 94, 0.12); }
-.hud-weapon-option-name { font-weight: 600; flex: 1; }
+.hud-weapon-option-toggle {
+  display: flex; align-items: center; gap: 0.6rem; background: none; border: none; padding: 0;
+  cursor: pointer; color: inherit; text-align: left; font: inherit; flex: 1; min-width: 8rem;
+}
+.hud-weapon-option-name { font-weight: 600; }
+
+/* Nombre de figurines utilisant cette arme — multiplie le pool imprimé sur la carte (par figurine). */
+.hud-weapon-count-stepper { display: flex; align-items: center; gap: 0.4rem; flex-shrink: 0; }
+.hud-weapon-count-stepper button {
+  width: 1.7rem; height: 1.7rem; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--bg-input); color: var(--text); font-size: 1rem; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; line-height: 1;
+}
+.hud-weapon-count-stepper button:disabled { opacity: 0.35; cursor: not-allowed; }
+.hud-weapon-count-value { font-weight: 700; font-size: 0.9rem; min-width: 1.8rem; text-align: center; }
 
 /* --- Pense-bête couvert (étape "Déterminer le couvert", Combat interactif) --- */
 .hud-cheatsheet {

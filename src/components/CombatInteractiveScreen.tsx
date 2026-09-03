@@ -139,6 +139,13 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
     setStage('select');
   };
 
+  /** Riposte / tir croisé : échange les rôles sans quitter la séquence, on reprend à l'étape 1 avec les nouveaux rôles. */
+  const swapSides = () => {
+    setAttackerId(defenderId);
+    setDefenderId(attackerId);
+    setChecked(new Set());
+  };
+
   const p1Group = roster.filter((e) => e.player === 'p1');
   const p2Group = roster.filter((e) => e.player === 'p2');
 
@@ -162,6 +169,7 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
         setFocusIndex={setFocusIndex}
         onClose={() => setStage('select')}
         onFinish={startNewCombat}
+        onSwapSides={swapSides}
       />
     );
   }
