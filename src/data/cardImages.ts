@@ -140,6 +140,7 @@ const RAW: Record<string, string> = {
   'Mo/DK Power Harpoon': 'mo-dk-power-harpoon.jpg',
   'TL-TT Laser Cannon': 'tl-tt-laser-cannon.jpg',
   'TL-TT Flame Projector': 'tl-tt-flame-projector.jpg',
+  'AT-RT Flamethrower': 'tl-tt-flame-projector.jpg',
   'M-45 Ion Blaster': 'm-45-ion-blaster.jpg',
   'Mandalorian Combat Shields': 'mandalorian-combat-shields.jpg',
   'Jetpack Rockets': 'jetpack-rockets.jpg',

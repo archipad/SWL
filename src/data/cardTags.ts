@@ -795,6 +795,42 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'souffle' },
     { keywordId: 'fixe' },
   ],
+  // = TL-TT Flame Projector ci-dessus, sous l'autre nom Tabletop Admiral
+  // rencontré pour la même carte (« Lance-flammes de TL-TT », signalement
+  // utilisateur du 03/09/2026 avec export TTA + Rebel_Alliance_Upgrades_FR.pdf
+  // à l'appui) — dupliqué ici comme AT-RT/TL-TT plus haut.
+  'AT-RT Flamethrower': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'souffle' },
+    { keywordId: 'fixe' },
+  ],
+  // Alliance Rebelle, vu sur Rebel_Alliance_Upgrades_FR.pdf (signalement du
+  // 03/09/2026) : « Ax-108 « Ground Buzzer » », Airspeeder T-47 uniquement.
+  'Ax-108 "Ground Buzzer"': [
+    { keywordId: 'fixe' },
+  ],
+  // Alliance Rebelle, vu sur Rebel_Alliance_Upgrades_FR.pdf : « Blaster Rotatif
+  // Z-6 », aucun mot-clé sur la carte au-delà de l'arme elle-même.
+  'Z-6 Trooper': [],
+  // Alliance Rebelle, vu sur Rebel_Alliance_Upgrades_FR.pdf : simple ajout de
+  // figurine (« Soldat Rebelle »/« Vétéran Rebelle »), aucun mot-clé propre —
+  // distinct de Rebel Trooper Squad/Rebel Veteran Squad (ajout de 5 figurines
+  // + Indomptable + règle de cohésion), déjà dans cette table.
+  'Rebel Trooper': [],
+  'Rebel Veteran': [],
+  // Alliance Rebelle, carte fournie par l'utilisateur (scan, 03/09/2026) :
+  // « Ténacité » — texte propre à la carte (« si elle a 1+ pion Blessure ou
+  // si 1+ figurine vaincue, ajoute 1 dé d'attaque rouge en corps-à-corps »),
+  // ne correspond à aucun mot-clé du glossaire officiel — pas de tag.
+  'Tenacity': [],
+  // Idem, « Présence Inspirante » — texte propre (portée à 4 : les alliés
+  // peuvent utiliser sa Défense pour leurs tests de panique), aucun mot-clé
+  // du glossaire ne correspond — pas de tag.
+  'Inspiring Presence': [],
+  // Idem, « Données de Reconnaissance » : « Cette unité gagne Éclaireur 1. »
+  'Recon Intel': [
+    { keywordId: 'eclaireur-x', value: 1 },
+  ],
   'M-45 Ion Blaster': [
     { keywordId: 'critique-x', value: 1 },
     { keywordId: 'impact-x', value: 1 },
