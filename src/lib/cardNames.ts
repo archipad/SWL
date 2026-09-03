@@ -29,3 +29,17 @@ export function canonicalCardKey(name: string): string {
   if (norm in CARD_NAMES_FR) return norm;
   return EN_KEY_BY_FRENCH_NAME[norm] ?? norm;
 }
+
+/**
+ * Vrai si cette carte est la variante « Groupe de Combat » (Strike Team,
+ * nom Tabletop Admiral) d'une unité — le titre imprimé sur la carte est
+ * identique à la version classique (même frenchCardName()), donc les deux
+ * ne se distinguent PAS à l'affichage sans cette étiquette. Sert à
+ * départager, dans un sélecteur attaquant/défenseur, deux unités qui
+ * afficheraient sinon un nom strictement identique (ex. deux « Commandos
+ * Rebelles » dont un seul est un Groupe de Combat) — signalement
+ * utilisateur du 04/09/2026.
+ */
+export function isCombatTeamVariant(name: string): boolean {
+  return canonicalCardKey(name).includes('strike team');
+}

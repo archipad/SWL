@@ -3,7 +3,7 @@ import { buildRoster, resolveUnitKeywords, type PlayerId, type ResolvedTag, type
 import { KeywordDefinitionList } from './KeywordDefinitionList';
 import { usePersistentState } from '../lib/storage';
 import { cardImageFor } from '../data/cardImages';
-import { frenchCardName } from '../lib/cardNames';
+import { frenchCardName, isCombatTeamVariant } from '../lib/cardNames';
 import { detectInteractions } from '../lib/keywordInteractions';
 import { AttackSequenceGuide } from './AttackSequenceGuide';
 import { DiceProbabilities } from './DiceProbabilities';
@@ -24,6 +24,21 @@ function entryId(entry: RosterEntry): string {
 
 function findEntry(roster: RosterEntry[], id: string): RosterEntry | undefined {
   return roster.find((e) => entryId(e) === id);
+}
+
+/**
+ * Libellé d'une option du sélecteur attaquant/défenseur : le nom seul ne
+ * suffit pas à distinguer deux unités identiques à l'affichage (ex. deux
+ * « Commandos Rebelles » dont un seul est un Groupe de Combat) — on ajoute
+ * donc l'étiquette Groupe de Combat et les améliorations équipées.
+ */
+function selectOptionLabel(entry: RosterEntry): string {
+  const parts = [frenchCardName(entry.unit.name)];
+  const extra: string[] = [];
+  if (isCombatTeamVariant(entry.unit.name)) extra.push('Groupe de Combat');
+  extra.push(...entry.unit.upgrades.map((u) => frenchCardName(u.name)));
+  if (extra.length > 0) parts.push(`(${extra.join(', ')})`);
+  return parts.join(' ');
 }
 
 function Side({
@@ -123,12 +138,12 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords, onGoToGameT
             <option value="">— Choisir —</option>
             <optgroup label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}>
               {groupedByPlayer('p1').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
+                <option key={entryId(e)} value={entryId(e)}>{selectOptionLabel(e)}</option>
               ))}
             </optgroup>
             <optgroup label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}>
               {groupedByPlayer('p2').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
+                <option key={entryId(e)} value={entryId(e)}>{selectOptionLabel(e)}</option>
               ))}
             </optgroup>
           </select>
@@ -142,12 +157,12 @@ export function CombatScreen({ listP1, listP2, tagLibrary, keywords, onGoToGameT
             <option value="">— Choisir —</option>
             <optgroup label={groupedByPlayer('p1')[0]?.playerLabel ?? 'Joueur 1'}>
               {groupedByPlayer('p1').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
+                <option key={entryId(e)} value={entryId(e)}>{selectOptionLabel(e)}</option>
               ))}
             </optgroup>
             <optgroup label={groupedByPlayer('p2')[0]?.playerLabel ?? 'Joueur 2'}>
               {groupedByPlayer('p2').map((e) => (
-                <option key={entryId(e)} value={entryId(e)}>{frenchCardName(e.unit.name)}</option>
+                <option key={entryId(e)} value={entryId(e)}>{selectOptionLabel(e)}</option>
               ))}
             </optgroup>
           </select>

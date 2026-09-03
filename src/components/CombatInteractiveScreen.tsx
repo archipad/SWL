@@ -3,7 +3,7 @@ import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { buildRoster, resolveUnitKeywords, type RosterEntry } from '../lib/combat';
 import { usePersistentState } from '../lib/storage';
 import { cardImageFor } from '../data/cardImages';
-import { frenchCardName } from '../lib/cardNames';
+import { frenchCardName, isCombatTeamVariant } from '../lib/cardNames';
 import { factionColor } from '../lib/factionColor';
 import { CombatSequenceFullscreen } from './CombatSequenceFullscreen';
 
@@ -24,6 +24,25 @@ function entryId(entry: RosterEntry): string {
 
 function findEntry(roster: RosterEntry[], id: string): RosterEntry | undefined {
   return roster.find((e) => entryId(e) === id);
+}
+
+/**
+ * Sous-titre texte identifiant précisément une unité au-delà de son nom
+ * (souvent partagé par plusieurs cartes de la liste, ex. deux « Commandos
+ * Rebelles ») : étiquette Groupe de Combat le cas échéant, puis la liste
+ * des améliorations équipées — de quoi choisir la bonne carte sans avoir
+ * à deviner. Rien à afficher pour une unité de base sans amélioration.
+ */
+function UnitSubtitle({ unit }: { unit: RosterEntry['unit'] }) {
+  const isTeam = isCombatTeamVariant(unit.name);
+  const upgradeNames = unit.upgrades.map((u) => frenchCardName(u.name));
+  if (!isTeam && upgradeNames.length === 0) return null;
+  return (
+    <span className="live-tile-subtitle">
+      {isTeam && <span className="live-tile-team-badge">Groupe de Combat</span>}
+      {upgradeNames.length > 0 && upgradeNames.join(', ')}
+    </span>
+  );
 }
 
 function LiveTile({
@@ -49,6 +68,7 @@ function LiveTile({
         )}
       </span>
       <span className="live-tile-name">{frenchCardName(entry.unit.name)}</span>
+      <UnitSubtitle unit={entry.unit} />
     </button>
   );
 }
@@ -73,6 +93,7 @@ function PreviewSlot({ role, entry }: { role: Role; entry: RosterEntry | undefin
             )}
           </span>
           <span className="live-preview-name">{frenchCardName(entry.unit.name)}</span>
+          <UnitSubtitle unit={entry.unit} />
         </>
       ) : (
         <p className="empty-hint live-preview-empty">Touchez une carte à gauche.</p>
@@ -235,6 +256,7 @@ export function CombatInteractiveScreen({ listP1, listP2, tagLibrary, keywords, 
                 <img src={cardImageFor(pendingEntry.unit.name)} alt="" />
               )}
               <strong>{frenchCardName(pendingEntry.unit.name)}</strong>
+              <UnitSubtitle unit={pendingEntry.unit} />
             </div>
             <p className="live-modal-question">Cette unité est…</p>
             <div className="live-modal-actions">
