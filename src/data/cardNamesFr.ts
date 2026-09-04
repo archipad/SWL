@@ -173,6 +173,38 @@ const RAW: Record<string, string> = {
   "Wookiee Warriors Kashyyyk Resistance": "Guerriers Wookies, Résistance de Kashyyyk",
   "X-34 Landspeeder": "Landspeeder X-34",
   "Z-6 Trooper": "Soldat avec Z-6",
+
+  // Second passage complet sur Galactic_Empire_Upgrades_FR.pdf (voir
+  // cardTags.ts pour le détail de l'audit).
+  "RT-97C Stormtrooper": "Stormtrooper avec RT-97C",
+  "DT-F16": "•DT-F16",
+  "Del Meeko": "•Del Meeko",
+  "Gideon Hask": "•Gideon Hask",
+  "T-21 Special Forces Trooper": "Soldat des Forces Spéciales avec T-21",
+  "SM-9 Dark Trooper": "Dark Trooper avec Lanceur à Fragmentation SM-9",
+  "XS-IV Dark Trooper": "Dark Trooper avec Canon d'Assaut XS-IV",
+  "Cleaver Dark Trooper": "Dark Trooper avec Tranchoir",
+  "E-11D Focused Strike Config": "E-11D Config Frappe Concentrée",
+  "E-11D Grenade Launcher Config": "E-11D Config Lance-Grenades",
+  "CR-24 Flame Rifle": "Fusil Lance-flammes CR-24",
+  "RT-97C Dewback Rider": "Fusil Blaster RT-97C",
+  "T-21 Dewback Rider": "Fusil Blaster T-21",
+  "DLT-19 Pintle Mount": "DLT-19 sur Pivot",
+  "RT-97C Pintle Mount": "RT-97C sur Pivot",
+  "Programmed Loyalty": "Loyauté Programmée",
+  "Inquisitorius Training": "Entraînement de l'Inquisitorius",
+  "R4 Astromech Droid": "Astromech R4",
+  "Imperial Comms Technician": "Technicien Comms Impérial",
+  "Stormtrooper Captain": "Capitaine Stormtrooper",
+  "Stormtrooper Specialist": "Spécialiste Stormtrooper",
+  "Stormtrooper Sharpshooter": "Tireur Embusqué Stormtrooper",
+  "Stormtrooper": "Stormtrooper",
+  "Shoretrooper": "Shoretrooper",
+  "Range Trooper": "Range Trooper",
+  "Dark Trooper": "Dark Trooper",
+  "Stormtrooper Squad Expansion": "Escouade Stormtrooper",
+  "Snowtrooper Squad Expansion": "Escouade Snowtrooper",
+  "Shoretrooper Squad Expansion": "Escouade Shoretrooper",
 };
 
 export const CARD_NAMES_FR: Record<string, string> = Object.fromEntries(

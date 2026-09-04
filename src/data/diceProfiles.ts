@@ -173,6 +173,38 @@ const RAW: Record<string, CardDiceProfile> = {
   'Wookiee Warriors Freedom Fighters': { weapons: [{ name: 'Poignard Ryyk', dice: [{ color: 'noir', count: 2 }], range: 'melee' }, { name: 'Pistolet Kashyyyk', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-2' }], defenseColor: 'rouge' },
   'Wookiee Warriors Kashyyyk Resistance': { weapons: [{ name: 'Entraînement au Combat', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: 'melee' }, { name: 'Carabine X1', dice: [{ color: 'blanc', count: 2 }], range: '1-3' }], defenseColor: 'rouge' },
   'X-34 Landspeeder': { weapons: [{ name: 'Pistolet Blaster', dice: [{ color: 'blanc', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
+
+  // Second passage complet sur Galactic_Empire_Upgrades_FR.pdf (voir
+  // cardTags.ts pour le détail de l'audit).
+  'RT-97C Stormtrooper': { weapons: [{ name: 'Fusil Blaster RT-97C', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 3 }], range: '1-4' }] },
+  'DT-F16': { weapons: [{ name: 'Fusil Blaster E-11D', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-3' }] },
+  'Del Meeko': { weapons: [{ name: 'DLT-19x de Del', dice: [{ color: 'noir', count: 2 }], range: '1-5' }] },
+  'Gideon Hask': { weapons: [{ name: 'E-11 de Gideon', dice: [{ color: 'rouge', count: 2 }], range: '1-3' }] },
+  'T-21 Special Forces Trooper': { weapons: [{ name: 'Blaster à Répétition T-21', dice: [{ color: 'blanc', count: 4 }], range: '1-3' }] },
+  'SM-9 Dark Trooper': { weapons: [{ name: 'Lanceur à Fragmentation SM-9', dice: [{ color: 'rouge', count: 2 }, { color: 'noir', count: 1 }], range: '1-2' }] },
+  'XS-IV Dark Trooper': { weapons: [{ name: 'Canon d\'Assaut XS-IV', dice: [{ color: 'noir', count: 4 }], range: '1-3' }] },
+  'Cleaver Dark Trooper': { weapons: [{ name: 'Tranchoir', dice: [{ color: 'rouge', count: 2 }, { color: 'noir', count: 1 }], range: 'melee' }] },
+  'E-11D Focused Strike Config': { weapons: [{ name: 'E-11D Frappe Concentrée', dice: [{ color: 'blanc', count: 1 }], range: '1-4' }] },
+  'E-11D Grenade Launcher Config': { weapons: [{ name: 'E-11D Lance-grenades', dice: [{ color: 'rouge', count: 1 }], range: '1-2' }] },
+  'CR-24 Flame Rifle': { weapons: [{ name: 'Fusil Lance-flammes CR-24', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: 'melee' }] },
+  'RT-97C Dewback Rider': { weapons: [{ name: 'Fusil Blaster RT-97C', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 3 }], range: '1-4' }] },
+  'T-21 Dewback Rider': { weapons: [{ name: 'Fusil Blaster T-21', dice: [{ color: 'blanc', count: 4 }], range: '1-3' }] },
+  'DLT-19 Pintle Mount': { weapons: [{ name: 'DLT-19 sur Pivot', dice: [{ color: 'rouge', count: 2 }], range: '1-4' }] },
+  'RT-97C Pintle Mount': { weapons: [{ name: 'RT-97C sur Pivot', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 3 }], range: '1-4' }] },
+  'Programmed Loyalty': { weapons: [], note: 'améliore Escorte, pas d\'arme propre' },
+  'Inquisitorius Training': { weapons: [], note: 'améliore Démoraliser 1, pas d\'arme propre' },
+  'R4 Astromech Droid': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
+  'Imperial Comms Technician': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
+  'Stormtrooper Captain': { weapons: [], note: 'figurine additionnelle (Chef), pas d\'arme propre' },
+  'Stormtrooper Specialist': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
+  'Stormtrooper Sharpshooter': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
+  'Stormtrooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
+  'Shoretrooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
+  'Range Trooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
+  'Dark Trooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
+  'Stormtrooper Squad Expansion': { weapons: [], note: 'carte d\'extension (5 figurines), pas d\'arme propre' },
+  'Snowtrooper Squad Expansion': { weapons: [], note: 'carte d\'extension (5 figurines), pas d\'arme propre' },
+  'Shoretrooper Squad Expansion': { weapons: [], note: 'carte d\'extension (5 figurines), pas d\'arme propre' },
 };
 
 export const DICE_PROFILES: Record<string, CardDiceProfile> = Object.fromEntries(

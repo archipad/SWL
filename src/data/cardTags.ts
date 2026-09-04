@@ -494,6 +494,108 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'immunite-perforant-corps-a-corps' },
   ],
 
+  // --- Empire Galactique (améliorations, suite) ---
+  // Second passage complet sur Galactic_Empire_Upgrades_FR.pdf (13 pages,
+  // chaque carte revérifiée), demandé par l'utilisateur pour fermer l'audit
+  // « base de données complète » après le passage sur les unités des deux
+  // factions. Comme pour les améliorations rebelles : noms anglais
+  // best-effort quand la carte n'a jamais été vue dans un export TTA réel,
+  // signalés par un commentaire.
+  'RT-97C Stormtrooper': [],
+  'DT-F16': [
+    { keywordId: 'contrainte' },
+    { keywordId: 'chef' },
+  ],
+  'Del Meeko': [
+    { keywordId: 'haute-velocite' },
+    { keywordId: 'letal-x', value: 1 },
+    { keywordId: 'reparation-x', value: 2 },
+  ],
+  // Le gain de +1 à la valeur de défense n'est pas un mot-clé du glossaire —
+  // seul Coordination : Soldat ▲ et Chef sont tagués.
+  'Gideon Hask': [
+    { keywordId: 'coordination' },
+    { keywordId: 'chef' },
+  ],
+  // nom EN à vérifier
+  'T-21 Special Forces Trooper': [],
+  // nom EN à vérifier
+  'SM-9 Dark Trooper': [],
+  // nom EN à vérifier
+  'XS-IV Dark Trooper': [],
+  // nom EN à vérifier — arme « Tranchoir »
+  'Cleaver Dark Trooper': [],
+  'E-11D Focused Strike Config': [
+    { keywordId: 'reconfiguration' },
+  ],
+  'E-11D Grenade Launcher Config': [
+    { keywordId: 'reconfiguration' },
+  ],
+  // nom EN à vérifier — « Fusil Lance-flammes CR-24 » (Soldat Monté sur
+  // Dewback uniquement)
+  'CR-24 Flame Rifle': [],
+  // nom EN à vérifier — variante Dewback du Fusil Blaster RT-97C, même
+  // profil de dés que la version Stormtrooper mais carte distincte
+  'RT-97C Dewback Rider': [],
+  // nom EN à vérifier — variante Dewback du Blaster à Répétition T-21
+  'T-21 Dewback Rider': [],
+  // nom EN à vérifier — arme montée sur pivot du Tank « Occupier » TX-225
+  // GAVw
+  'DLT-19 Pintle Mount': [],
+  // nom EN à vérifier — arme montée sur pivot du Tank « Occupier » TX-225
+  // GAVw
+  'RT-97C Pintle Mount': [],
+  // nom EN à vérifier = « Loyauté Programmée » (Dark Troopers Impériaux
+  // uniquement). La restriction « ne peut recevoir d'ordres que d'une
+  // unité Officier » n'est pas un mot-clé du glossaire — seul Escorte est
+  // tagué.
+  'Programmed Loyalty': [
+    { keywordId: 'escorte' },
+  ],
+  // nom EN à vérifier = « Entraînement de l'Inquisitorius » (Le Cinquième
+  // Frère ou La Septième Sœur uniquement)
+  'Inquisitorius Training': [
+    { keywordId: 'demoraliser-x', value: 1 },
+  ],
+  'R4 Astromech Droid': [
+    { keywordId: 'non-combattant' },
+    { keywordId: 'reparation-x', value: 1 },
+  ],
+  'Imperial Comms Technician': [],
+  'Stormtrooper Captain': [
+    { keywordId: 'chef' },
+  ],
+  // Le gain d'icône d'amélioration et son action (1 pion Viser ou
+  // Adrénaline) ne sont pas un mot-clé du glossaire — rien à tagger.
+  'Stormtrooper Specialist': [],
+  // = « Tireur Embusqué Stormtrooper » (Escouade Stormtrooper Antiémeute
+  // uniquement) — action conditionnelle unique (1 dé d'attaque rouge contre
+  // une unité ennemie non engagée), pas de mot-clé du glossaire à tagger,
+  // pas d'arme permanente.
+  'Stormtrooper Sharpshooter': [],
+  // Cartes « Ajoutez 1 figurine de X » sans texte propre au-delà du nom —
+  // même politique que Snowtrooper (déjà en base) : pas d'arme, pas de
+  // mot-clé.
+  'Stormtrooper': [],
+  'Shoretrooper': [],
+  'Range Trooper': [],
+  'Dark Trooper': [],
+  // nom EN à vérifier = « Escouade Stormtrooper » sur la carte française —
+  // carte d'extension (ajoute 5 figurines, confirme Indomptable même si
+  // vaincues), distincte de l'unité « Stormtrooper Squad » déjà en base
+  // sous le même nom affiché.
+  'Stormtrooper Squad Expansion': [
+    { keywordId: 'indomptable' },
+  ],
+  // nom EN à vérifier = « Escouade Snowtrooper » sur la carte française
+  'Snowtrooper Squad Expansion': [
+    { keywordId: 'indomptable' },
+  ],
+  // nom EN à vérifier = « Escouade Shoretrooper » sur la carte française
+  'Shoretrooper Squad Expansion': [
+    { keywordId: 'indomptable' },
+  ],
+
   // --- Alliance Rebelle (unités) ---
   // Depuis le PDF de cartes Unité Alliance Rebelle (FR). Même remarque que
   // pour l'Empire : les traductions non confirmées par un export TTA réel
