@@ -26,6 +26,7 @@ import { normalizeName } from '../lib/normalize';
  * plutôt que sous un nom deviné.
  */
 const RAW: Record<string, string> = {
+  "1.4 FD Laser Cannon Team": "Équipe Canon Laser 1.4 FD",
   "2-1B Medical Droid": "Droïde Médical 2-1B",
   "74-Z Speeder Bikes": "Speederbikes 74-Z",
   "88i Twin Light Blaster": "Blasters Légers Jumelés 88i",
@@ -61,6 +62,7 @@ const RAW: Record<string, string> = {
   "E-Web Heavy Blaster Team": "Équipe Blaster Lourd E-Web",
   "Flametrooper": "Flametrooper",
   "Fleet Trooper": "Soldat de la Flotte",
+  "A-A5 Speeder Truck": "Camion Speeder A-A5",
   "Fleet Trooper Squad": "Escouade Soldat de la Flotte",
   "Fleet Troopers": "Soldats de la Flotte",
   "Force Choke": "Strangulation de la Force",
@@ -68,6 +70,7 @@ const RAW: Record<string, string> = {
   "General Veers": "Général Veers",
   "Heavy Laser Retrofit": "Conversion Laser Lourd",
   "HH-12 Stormtrooper": "Stormtrooper avec HH-12",
+  "Han Solo": "Han Solo, Général Peu Orthodoxe",
   "Hotshot Pilot": "Pilote Surdoué",
   "Iden Versio": "Iden Versio",
   "Imperial Death Troopers": "Death Troopers Impériaux",
@@ -92,6 +95,7 @@ const RAW: Record<string, string> = {
   "Major Marquand": "Major Marquand",
   "Mandalorian Combat Shields": "Boucliers de Combat Mandaloriens",
   "Mandalorian Resistance": "Résistance Mandalorienne",
+  "Mandalorian Resistance Clan Wren": "Résistance Mandalorienne, Clan Wren",
   "Mark II Medium Blaster Trooper": "Soldat avec Blaster Moyen Mark II",
   "Remote Doc": "Médecin d'un Monde Reculé",
   "Mo/DK Power Harpoon": "Harpon Magnétique Mo/Dk",
@@ -111,6 +115,7 @@ const RAW: Record<string, string> = {
   "Ryder Azadi": "Ryder Azadi",
   "Recon Intel": "Données de Reconnaissance",
   "Rebel Ambusher": "Tireur Embusqué Rebelle",
+  "Rebel Sleeper Cell": "Cellule Dormante Rebelle",
   "Range Troopers": "Range Troopers",
   "Rebel Commandos": "Commandos Rebelles",
   "Rebel Commandos Strike Team": "Commandos Rebelles",

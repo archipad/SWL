@@ -858,6 +858,46 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'X-34 Mark II Blaster': [
     { keywordId: 'fixe' },
   ],
+  // Alliance Rebelle, unités relues sur Cartes_rebelles_fr.pdf (« Rebel
+  // Alliance Units FR.pdf », signalement utilisateur du 04/09/2026 : « la
+  // base de données complète ») — 5 unités entièrement absentes jusqu'ici
+  // (aucune trace sous quelque nom que ce soit). Noms anglais non confirmés
+  // par un export TTA réel, à corriger si besoin.
+  'Han Solo': [
+    { keywordId: 'pistolero' },
+    { keywordId: 'profil-bas' },
+    { keywordId: 'tireur-delite-x', value: 1 },
+    { keywordId: 'aguerri' },
+    { keywordId: 'coup-de-chance-x', value: 3 },
+    { keywordId: 'perforant-x', value: 2 },
+  ],
+  'A-A5 Speeder Truck': [
+    { keywordId: 'armure-x', value: 5 },
+    { keywordId: 'sustentation' },
+    { keywordId: 'redeploiement' },
+    { keywordId: 'transport' },
+    { keywordId: 'point-faible-x', value: 2 },
+  ],
+  'Rebel Sleeper Cell': [
+    { keywordId: 'agile' },
+    { keywordId: 'eclaireur-x', value: 2 },
+    { keywordId: 'tacticien-x', value: 1 },
+  ],
+  '1.4 FD Laser Cannon Team': [
+    { keywordId: 'pivot-complet' },
+    { keywordId: 'position-preparee' },
+    { keywordId: 'sentinelle' },
+    { keywordId: 'stationnaire' },
+  ],
+  // Même arme/mots-clés que Mandalorian Resistance ci-dessus — variante de
+  // composition (Équipe : Tristan Wren/Ursa Wren, Escorte : Sabine Wren).
+  'Mandalorian Resistance Clan Wren': [
+    { keywordId: 'saut-x', value: 2 },
+    { keywordId: 'equipe' },
+    { keywordId: 'insensible' },
+    { keywordId: 'agile' },
+    { keywordId: 'escorte' },
+  ],
   'M-45 Ion Blaster': [
     { keywordId: 'critique-x', value: 1 },
     { keywordId: 'impact-x', value: 1 },
