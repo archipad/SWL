@@ -1044,30 +1044,10 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   .unit-cards-gaps ul { margin: 0; padding-left: 1.2em; }
   .unit-cards-gaps li { margin-bottom: 0.1em; }
 
-  /* Mode minimaliste (mots-clés seuls, sans visuel) : flux multi-colonnes
-     dense façon glossaire, pas de découpage forcé en paires par page —
-     inutile sans image à caler. border-bottom seul (pas de bordure
-     complète) : column-count ne peint pas correctement les bordures
-     latérales/hautes d'une boîte qui dépasse la hauteur d'une colonne
-     (même limite que le glossaire). */
+  /* Mode minimaliste (mots-clés seuls, sans visuel) : réutilise directement
+     les classes .glossary/.glossary-impact-* définies plus haut pour le
+     glossaire de l'onglet Armées — même déduplication (buildGlossary), même
+     regroupement par impact et même mise en page 3 colonnes, voir
+     MinimalKeywordsSection.tsx. */
   .minimal-keywords-section { margin-top: 0.3em; }
-  .mini-cards { display: block; column-count: 3; column-gap: 1em; }
-  /* Pas de break-inside:avoid sur .mini-card lui-même : une carte avec
-     beaucoup de mots-clés (ex. Darth Vader) peut à elle seule dépasser la
-     hauteur d'une colonne, et forcer ce bloc entier à rester groupé
-     perturbe le calcul d'équilibrage des colonnes de Chrome sur la première
-     page (colonnes tronquées avec un grand vide en dessous — même famille
-     de bug que celui déjà rencontré avec les fiches d'unité, cf.
-     UnitCardsSection.tsx). Seul .mini-kw (un mot-clé + sa définition) est
-     protégé : la liste de mots-clés d'une carte peut continuer sur la
-     colonne ou la page suivante, mais un mot-clé ne se coupe jamais en
-     plein milieu de sa définition. */
-  .mini-card { border: none; border-bottom: 0.5px solid #ccc; padding: 0.15em 0; margin: 0 0 0.15em; }
-  .mini-card-name { color: black; font-size: 9pt; margin: 0 0 0.15em; break-after: avoid; }
-  .mini-card-group { margin: 0 0 0.15em; }
-  .mini-card-group-label {
-    display: block; font-size: 6.5pt; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.03em; color: #666; margin-bottom: 0.05em; break-after: avoid;
-  }
-  .mini-kw { color: black; font-size: 7.5pt; line-height: 1.22; margin: 0 0 0.15em; break-inside: avoid; }
 }
