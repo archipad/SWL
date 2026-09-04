@@ -161,6 +161,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'X-34 Gunner': { weapons: [{ name: 'Fusil Blaster A300', dice: [{ color: 'blanc', count: 2 }], range: '1-3' }] },
   'X-34 Mark II Blaster': { weapons: [{ name: 'Blaster Moyen Mark II', dice: [{ color: 'noir', count: 4 }], range: '1-3' }] },
   'TR-TT': { weapons: [{ name: 'Pinces Coupantes', dice: [{ color: 'rouge', count: 4 }], range: 'melee' }, { name: 'Blasters Jumelés MS-4', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-4' }], defenseColor: 'rouge' },
+  'TX-225 Occupier Tank': { weapons: [{ name: 'Canons Jumelés', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 1 }], range: '1-2' }, { name: 'Quadruples Canons', dice: [{ color: 'rouge', count: 2 }, { color: 'noir', count: 2 }], range: '1-4' }], defenseColor: 'rouge' },
   'Targeting Scopes': { weapons: [], note: 'confère Précis 1, pas d\'arme propre' },
   'Tauntaun Riders': { weapons: [{ name: 'Cavalcade', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: 'melee' }, { name: 'Pistolets Blaster', dice: [{ color: 'rouge', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
   'The Darksaber': { weapons: [{ name: 'Le Sabre Noir', dice: [{ color: 'noir', count: 5 }], range: 'melee' }] },

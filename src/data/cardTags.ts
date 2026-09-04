@@ -231,6 +231,20 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'impact-x', value: 3 },
     { keywordId: 'fixe' },
   ],
+  // Empire, vu sur Galactic_Empire_Units_FR.pdf (signalement utilisateur du
+  // 04/09/2026) : le vrai Tank « Occupier » TX-225 GAVw, distinct d'AT-ST/
+  // TR-TT — voir la note du 30/08/2026 en tête de fichier, qui documentait
+  // déjà cette confusion mais n'avait pas ajouté cette carte séparément.
+  'TX-225 Occupier Tank': [
+    { keywordId: 'armure-x', value: 5 },
+    { keywordId: 'arsenal-x', value: 2 },
+    { keywordId: 'redeploiement' },
+    { keywordId: 'transport' },
+    { keywordId: 'point-faible-x', value: 1 },
+    { keywordId: 'suppressif' },
+    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'fixe' },
+  ],
   'LAAT/le Patrol Transport': [
     { keywordId: 'armure-x', value: 5 },
     { keywordId: 'arsenal-x', value: 2 },
