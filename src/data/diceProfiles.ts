@@ -201,10 +201,16 @@ const RAW: Record<string, CardDiceProfile> = {
   'Stormtrooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
   'Shoretrooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
   'Range Trooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
-  'Dark Trooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
   'Stormtrooper Squad Expansion': { weapons: [], note: 'carte d\'extension (5 figurines), pas d\'arme propre' },
   'Snowtrooper Squad Expansion': { weapons: [], note: 'carte d\'extension (5 figurines), pas d\'arme propre' },
   'Shoretrooper Squad Expansion': { weapons: [], note: 'carte d\'extension (5 figurines), pas d\'arme propre' },
+
+  'Governor Pryce': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
+  'First Sergeant Arbmab': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
+  'General Weiss': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
+  'Baron Rudor': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
+  'Imperial Hammers Elite Armor Pilot': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
+  'Imperial TIE Pilot': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
 };
 
 export const DICE_PROFILES: Record<string, CardDiceProfile> = Object.fromEntries(

@@ -201,10 +201,16 @@ const RAW: Record<string, string> = {
   "Stormtrooper": "Stormtrooper",
   "Shoretrooper": "Shoretrooper",
   "Range Trooper": "Range Trooper",
-  "Dark Trooper": "Dark Trooper",
   "Stormtrooper Squad Expansion": "Escouade Stormtrooper",
   "Snowtrooper Squad Expansion": "Escouade Snowtrooper",
   "Shoretrooper Squad Expansion": "Escouade Shoretrooper",
+
+  "Governor Pryce": "Gouverneur Pryce",
+  "First Sergeant Arbmab": "Premier Sergent Arbmab",
+  "General Weiss": "Général Weiss",
+  "Baron Rudor": "Baron Rudor",
+  "Imperial Hammers Elite Armor Pilot": "Pilote de l'Unité d'Élite Blindée Imperial Hammers",
+  "Imperial TIE Pilot": "Pilote de TIE Impérial",
 };
 
 export const CARD_NAMES_FR: Record<string, string> = Object.fromEntries(

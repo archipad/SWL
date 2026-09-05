@@ -149,6 +149,45 @@ const RAW: Record<string, string> = {
   'A280-CFE Pistol/Sniper Config': 'a280-cfe-pistol-sniper-config.jpg',
   "Jyn's SE-14 Blaster": 'jyns-se-14-blaster.jpg',
   "Sabine's Combat Shield": 'sabines-combat-shield.jpg',
+  // Cartes du deck Galactic_Empire_Upgrades_FR.pdf re-découpées le
+  // 05/09/2026 avec la grille précise (voir crop_lib.py) : le lot précédent
+  // ne couvrait pas encore ces visuels.
+  'RT-97C Stormtrooper': 'rt-97c-stormtrooper.jpg',
+  'Stormtrooper Sharpshooter': 'stormtrooper-sharpshooter.jpg',
+  'DT-F16': 'dt-f16.jpg',
+  'Del Meeko': 'del-meeko.jpg',
+  'Gideon Hask': 'gideon-hask.jpg',
+  'T-21 Special Forces Trooper': 't-21-special-forces-trooper.jpg',
+  'SM-9 Dark Trooper': 'sm-9-dark-trooper.jpg',
+  'XS-IV Dark Trooper': 'xs-iv-dark-trooper.jpg',
+  'Cleaver Dark Trooper': 'cleaver-dark-trooper.jpg',
+  // Carte « Ajoutez 1 figurine de X » (filler), distincte des unités
+  // « Stormtroopers »/« Shoretroopers »/« Range Troopers » déjà en base.
+  'Stormtrooper': 'stormtrooper.jpg',
+  'Shoretrooper': 'shoretrooper.jpg',
+  'Range Trooper': 'range-trooper.jpg',
+  'Stormtrooper Squad Expansion': 'stormtrooper-squad-expansion.jpg',
+  'Snowtrooper Squad Expansion': 'snowtrooper-squad-expansion.jpg',
+  'Shoretrooper Squad Expansion': 'shoretrooper-squad-expansion.jpg',
+  'Stormtrooper Captain': 'stormtrooper-captain.jpg',
+  'Stormtrooper Specialist': 'stormtrooper-specialist.jpg',
+  'Imperial Comms Technician': 'imperial-comms-technician.jpg',
+  'Governor Pryce': 'governor-pryce.jpg',
+  'First Sergeant Arbmab': 'first-sergeant-arbmab.jpg',
+  'General Weiss': 'general-weiss.jpg',
+  'Baron Rudor': 'baron-rudor.jpg',
+  'Imperial Hammers Elite Armor Pilot': 'imperial-hammers-elite-armor-pilot.jpg',
+  'Imperial TIE Pilot': 'imperial-tie-pilot.jpg',
+  'Programmed Loyalty': 'programmed-loyalty.jpg',
+  'E-11D Focused Strike Config': 'e-11d-focused-strike-config.jpg',
+  'E-11D Grenade Launcher Config': 'e-11d-grenade-launcher-config.jpg',
+  'CR-24 Flame Rifle': 'cr-24-flame-rifle.jpg',
+  'RT-97C Dewback Rider': 'rt-97c-dewback-rider.jpg',
+  'T-21 Dewback Rider': 't-21-dewback-rider.jpg',
+  'Inquisitorius Training': 'inquisitorius-training.jpg',
+  'R4 Astromech Droid': 'r4-astromech-droid.jpg',
+  'DLT-19 Pintle Mount': 'dlt-19-pintle-mount.jpg',
+  'RT-97C Pintle Mount': 'rt-97c-pintle-mount.jpg',
 };
 
 export const CARD_IMAGES: Record<string, string> = Object.fromEntries(

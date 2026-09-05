@@ -579,7 +579,6 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Stormtrooper': [],
   'Shoretrooper': [],
   'Range Trooper': [],
-  'Dark Trooper': [],
   // nom EN à vérifier = « Escouade Stormtrooper » sur la carte française —
   // carte d'extension (ajoute 5 figurines, confirme Indomptable même si
   // vaincues), distincte de l'unité « Stormtrooper Squad » déjà en base
@@ -595,6 +594,40 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Shoretrooper Squad Expansion': [
     { keywordId: 'indomptable' },
   ],
+
+  // Repérées dans Galactic_Empire_Upgrades_FR.pdf lors du re-découpage des
+  // visuels (05/09/2026) — décrites dans l'audit précédent mais jamais
+  // effectivement ajoutées à la base, corrigé ici.
+  // nom EN à vérifier = « Gouverneur Pryce ». L'action de carte (choisir une
+  // unité alliée à ② qui gagne 1 pion Viser et 1 pion Suppression) n'est pas
+  // un mot-clé du glossaire — seul Commandant des Opérations est tagué.
+  'Governor Pryce': [
+    { keywordId: 'commandant-des-operations' },
+  ],
+  // nom EN à vérifier = « Premier Sergent Arbmab »
+  'First Sergeant Arbmab': [
+    { keywordId: 'tacticien-x', value: 1 },
+  ],
+  // nom EN à vérifier = « Général Weiss »
+  'General Weiss': [
+    { keywordId: 'arsenal-x', value: 2 },
+    { keywordId: 'commandant-des-operations' },
+  ],
+  // nom EN à vérifier = « Baron Rudor ». Le gain de pion Viser après une
+  // action Récupérer n'est pas un mot-clé du glossaire — seul Tireur
+  // Embusqué est tagué.
+  'Baron Rudor': [
+    { keywordId: 'tireur-embusque' },
+  ],
+  // nom EN à vérifier = « Pilote de l'Unité d'Élite Blindée Imperial
+  // Hammers ». Le texte imprimé (icône de conversion d'adrénaline
+  // remplacée par une icône fixe) ne correspond à aucun mot-clé du
+  // glossaire identifiable avec certitude — laissé sans tag plutôt que
+  // deviner (politique de l'appli : jamais de mot-clé inventé).
+  'Imperial Hammers Elite Armor Pilot': [],
+  // nom EN à vérifier = « Pilote de TIE Impérial ». Le gain de +1 vitesse
+  // maximale n'est pas un mot-clé du glossaire.
+  'Imperial TIE Pilot': [],
 
   // --- Alliance Rebelle (unités) ---
   // Depuis le PDF de cartes Unité Alliance Rebelle (FR). Même remarque que
