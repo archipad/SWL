@@ -240,23 +240,35 @@ const RAW: Record<string, CardDiceProfile> = {
   // === Genrela_upgrade_fr_30mo.pdf (audité le 06/09/2026)
   'Concussion Grenades': { weapons: [{ name: 'Grenade à Concussion', dice: [{ color: 'noir', count: 1 }], range: 'grenade' }] },
   'EMP Grenades': { weapons: [{ name: 'Grenades « Anti-droïdes » EMP', dice: [{ color: 'noir', count: 1 }], range: 'grenade' }] },
-  'Fragmentation Grenades': { weapons: [{ name: 'Grenade à Fragmentation', dice: [{ color: 'noir', count: 1 }], range: 'grenade' }] },
+  // Corrigé le 06/09/2026 : losange rouge sur le visuel couleur du PDF
+  // source (confirmé par l'utilisateur, qui avait d'abord transmis une
+  // version en niveaux de gris), pas noir.
+  'Fragmentation Grenades': { weapons: [{ name: 'Grenade à Fragmentation', dice: [{ color: 'rouge', count: 1 }], range: 'grenade' }] },
   'Impact Grenades': { weapons: [{ name: 'Grenade à Impact', dice: [{ color: 'noir', count: 1 }], range: '-1' }] },
   'Sonic Imploders': { weapons: [{ name: 'Imploseur Sonique', dice: [{ color: 'noir', count: 1 }], range: 'grenade' }] },
-  'Armor-Piercing Shells': { weapons: [{ name: 'Obus Antiblindage', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: '2-3' }] },
-  'High-Energy Shells': { weapons: [{ name: 'Obus à Haute Énergie', dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 1 }], range: '2-4' }] },
-  'Anti-Bunker Shells': { weapons: [{ name: 'Obus « Antibunker »', dice: [{ color: 'rouge', count: 3 }, { color: 'noir', count: 1 }], range: '1-2' }] },
+  // Les 3 obus ci-dessous corrigés le 06/09/2026 contre le PDF source en
+  // couleur (la première version transmise était en niveaux de gris,
+  // couleur devinée à tort par la forme du losange) : Antiblindage et Haute
+  // Énergie sont rouge+noir (pas blanc+noir), Antibunker est blanc+noir (pas
+  // rouge+noir).
+  'Armor-Piercing Shells': { weapons: [{ name: 'Obus Antiblindage', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }], range: '2-3' }] },
+  'High-Energy Shells': { weapons: [{ name: 'Obus à Haute Énergie', dice: [{ color: 'rouge', count: 2 }, { color: 'noir', count: 1 }], range: '2-4' }] },
+  'Anti-Bunker Shells': { weapons: [{ name: 'Obus « Antibunker »', dice: [{ color: 'blanc', count: 3 }, { color: 'noir', count: 1 }], range: '1-2' }] },
 
   // === Nouvelles_cartes_amelio_FR_MAJ23.02.2026.pdf (audité le 06/09/2026)
   'Mounted Gunners': { weapons: [{ name: 'Blaster Monté', dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-2' }] },
-  'Kraken': { weapons: [{ name: 'Blaster de Kraken', dice: [{ color: 'noir', count: 2 }], range: '-3' }] },
-  'Kallus the Operative': { weapons: [{ name: 'Fusil-Bo J-19', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '-2' }] },
+  // Corrigé le 06/09/2026 : 2 losanges distincts sur le visuel (blanc et
+  // noir), pas 2 noirs.
+  'Kraken': { weapons: [{ name: 'Blaster de Kraken', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '-3' }] },
+  // Corrigé le 06/09/2026 : le losange noir affiche "2" sur le visuel, pas 1.
+  'Kallus the Operative': { weapons: [{ name: 'Fusil-Bo J-19', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: '-2' }] },
   'Captain Rex': { weapons: [{ name: 'Paire de Blasters de Poche', dice: [{ color: 'rouge', count: 1 }], range: '-2' }] },
   // Carte recto/verso : arme recto (visible en début de partie) seule
   // reprise ici, comme pour les autres cartes fusionnées de ce fichier — le
   // verso (Opérations Secrètes, 1 rouge, Longue Distance) n'a pas de champ
   // dédié dans ce modèle de données.
-  'Cassian Andor Operative': { weapons: [{ name: 'A280 Configuration Sniper', dice: [{ color: 'noir', count: 1 }], range: '1-3' }] },
+  // Corrigé le 06/09/2026 : le losange noir affiche "2" sur le visuel, pas 1.
+  'Cassian Andor Operative': { weapons: [{ name: 'A280 Configuration Sniper', dice: [{ color: 'noir', count: 2 }], range: '1-3' }] },
 };
 
 export const DICE_PROFILES: Record<string, CardDiceProfile> = Object.fromEntries(
