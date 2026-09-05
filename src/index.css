@@ -737,6 +737,27 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .army-section { margin-bottom: 1rem; }
 .army-unit { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px; padding: 0.6rem 0.75rem; margin-bottom: 0.6rem; }
 .army-upgrades { margin-top: 0.4rem; padding-left: 0.75rem; border-left: 2px solid var(--border); display: flex; flex-direction: column; gap: 0.4rem; }
+.army-view-toggle { margin-bottom: 1rem; }
+
+/* Vue visuelle de l'onglet Armées (VisualListSection à l'écran, pas à
+   l'impression) : même contenu que le mode d'impression « liste (visuel +
+   mots-clés) » de la page Listes, mais lisible à l'écran (tablette,
+   pendant la partie) — cf. le thème sombre de l'appli plutôt que les
+   couleurs pensées pour du papier de .visual-list-* sous @media print. */
+.visual-list-block {
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px;
+  padding: 0.7rem 0.9rem; margin-bottom: 0.8rem;
+}
+.visual-list-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; margin-bottom: 0.5rem; }
+.visual-list-head strong { font-size: 1rem; }
+.visual-list-points { color: var(--text-dim); font-size: 0.78rem; white-space: nowrap; }
+.visual-list-images { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.4rem; margin-bottom: 0.5rem; }
+.visual-list-image { height: 7rem; width: auto; object-fit: contain; border-radius: 4px; }
+.visual-list-keywords { display: grid; gap: 0.5rem; }
+@media (min-width: 700px) {
+  .visual-list-keywords { grid-template-columns: 1fr 1fr; }
+}
+.visual-list-kw { font-size: 0.85rem; margin: 0; }
 
 .card-row-head { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
 .card-row-name { font-weight: 600; }

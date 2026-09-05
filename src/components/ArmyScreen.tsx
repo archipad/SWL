@@ -1,7 +1,9 @@
 import type { CardKeywordTag, CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { CardRow } from './CardRow';
 import { GlossarySection } from './GlossarySection';
+import { VisualListSection } from './VisualListSection';
 import { DiceIcon } from '../lib/diceIcons';
+import { usePersistentState } from '../lib/storage';
 
 interface Props {
   list: ParsedList;
@@ -18,6 +20,13 @@ interface Props {
 export function ArmyScreen({
   list, playerLabel, tagLibrary, keywords, getTags, onAddTag, onRemoveTag, onCreateKeyword, onChangeList,
 }: Props) {
+  // Vue texte (par défaut, éditable — ajout/retrait de mots-clés par carte)
+  // ou vue visuelle (façon Tabletop Admiral : visuels de carte + mots-clés
+  // en lecture seule, pensée pour être consultée sur tablette pendant la
+  // partie sans imprimer — signalement utilisateur du 05/09/2026). Persisté
+  // comme le reste des préférences d'affichage de l'appli (cf. le même
+  // pattern dans CombatScreen).
+  const [view, setView] = usePersistentState<'text' | 'visual'>('swl.army-view.v1', 'text');
   const sections = new Map<string, typeof list.units>();
   for (const unit of list.units) {
     const arr = sections.get(unit.section) ?? [];
@@ -62,47 +71,68 @@ export function ArmyScreen({
         </div>
       </div>
 
-      <section className="no-print">
-        <h2>Composition de la liste</h2>
-        {[...sections.entries()].map(([section, units]) => (
-          <div key={section} className="army-section">
-            <h3>{section}</h3>
-            {units.map((unit) => (
-              <div key={unit.key} className="army-unit">
-                <CardRow
-                  card={unit}
-                  tags={getTags(unit.name)}
-                  keywords={keywords}
-                  onAddTag={onAddTag}
-                  onRemoveTag={onRemoveTag}
-                  onCreateKeyword={onCreateKeyword}
-                />
-                {unit.upgrades.length > 0 && (
-                  <div className="army-upgrades">
-                    {unit.upgrades.map((up) => (
-                      <CardRow
-                        key={up.key}
-                        card={up}
-                        tags={getTags(up.name)}
-                        keywords={keywords}
-                        onAddTag={onAddTag}
-                        onRemoveTag={onRemoveTag}
-                        onCreateKeyword={onCreateKeyword}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        ))}
-        {list.unparsedLines.length > 0 && (
-          <details className="unparsed-lines">
-            <summary>{list.unparsedLines.length} ligne(s) non reconnue(s) à l'import</summary>
-            <pre>{list.unparsedLines.join('\n')}</pre>
-          </details>
-        )}
-      </section>
+      <div className="btn-group army-view-toggle no-print">
+        <button type="button" className={view === 'text' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setView('text')}>
+          Vue texte
+        </button>
+        <button type="button" className={view === 'visual' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setView('visual')}>
+          Vue visuelle
+        </button>
+      </div>
+
+      {view === 'text' ? (
+        <section className="no-print">
+          <h2>Composition de la liste</h2>
+          {[...sections.entries()].map(([section, units]) => (
+            <div key={section} className="army-section">
+              <h3>{section}</h3>
+              {units.map((unit) => (
+                <div key={unit.key} className="army-unit">
+                  <CardRow
+                    card={unit}
+                    tags={getTags(unit.name)}
+                    keywords={keywords}
+                    onAddTag={onAddTag}
+                    onRemoveTag={onRemoveTag}
+                    onCreateKeyword={onCreateKeyword}
+                  />
+                  {unit.upgrades.length > 0 && (
+                    <div className="army-upgrades">
+                      {unit.upgrades.map((up) => (
+                        <CardRow
+                          key={up.key}
+                          card={up}
+                          tags={getTags(up.name)}
+                          keywords={keywords}
+                          onAddTag={onAddTag}
+                          onRemoveTag={onRemoveTag}
+                          onCreateKeyword={onCreateKeyword}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+          {list.unparsedLines.length > 0 && (
+            <details className="unparsed-lines">
+              <summary>{list.unparsedLines.length} ligne(s) non reconnue(s) à l'import</summary>
+              <pre>{list.unparsedLines.join('\n')}</pre>
+            </details>
+          )}
+        </section>
+      ) : (
+        <section className="no-print visual-list-onscreen">
+          <h2>Composition de la liste — vue visuelle</h2>
+          <p className="icon-legend">
+            <DiceIcon type="bloc" /> Bloc · <DiceIcon type="critique" /> Critique ·{' '}
+            <DiceIcon type="touche" /> Touche · <DiceIcon type="adr-atq" /> Adrénaline (attaque) ·{' '}
+            <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
+          </p>
+          <VisualListSection list={list} tagLibrary={tagLibrary} keywords={keywords} />
+        </section>
+      )}
 
       <section className="glossary-section">
         <h2 className="print-title">
