@@ -85,7 +85,11 @@ const RAW: Record<string, string> = {
   'Imperial March': 'imperial-march.jpg',
   'The Darksaber': 'the-darksaber.jpg',
   'Rebel Troopers': 'rebel-troopers.jpg',
-  'Mark II Medium Blaster Trooper': 'mark-ii-medium-blaster-trooper.jpg',
+  // 'Mark II Medium Blaster Trooper' est l'UNITÉ (voir Cartes_rebelles_fr.pdf,
+  // re-découpée le 05/09/2026) — ne pas confondre avec 'X-34 Mark II Blaster',
+  // l'arme montée sur Landspeeder X-34 ci-dessous : erreur corrigée le
+  // 05/09/2026, la même image avait été mise par erreur sous les deux clés.
+  'X-34 Mark II Blaster': 'x-34-mark-ii-blaster.jpg',
   'Fleet Troopers': 'fleet-troopers.jpg',
   'Rebel Veterans': 'rebel-veterans.jpg',
   'Rebel Commandos': 'rebel-commandos.jpg',
@@ -211,6 +215,14 @@ const RAW: Record<string, string> = {
   'TL-TT Rotary Blaster': 'tl-tt-rotary-blaster.jpg',
   'Ax-108 "Ground Buzzer"': 'ax-108-ground-buzzer.jpg',
   "Sabine's Grapple Line": 'sabines-grapple-line.jpg',
+  // Cartes de Cartes_rebelles_fr.pdf découpées le 05/09/2026 : déjà
+  // présentes dans cardTags.ts/cardNamesFr.ts/diceProfiles.ts depuis un
+  // audit précédent, mais sans visuel jusqu'ici.
+  'Mandalorian Resistance Clan Wren': 'mandalorian-resistance-clan-wren.jpg',
+  'Rebel Sleeper Cell': 'rebel-sleeper-cell.jpg',
+  '1.4 FD Laser Cannon Team': '1-4-fd-laser-cannon-team.jpg',
+  'A-A5 Speeder Truck': 'a-a5-speeder-truck.jpg',
+  'Han Solo': 'han-solo.jpg',
 };
 
 export const CARD_IMAGES: Record<string, string> = Object.fromEntries(
