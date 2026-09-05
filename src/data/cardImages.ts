@@ -89,6 +89,9 @@ const RAW: Record<string, string> = {
   // re-découpée le 05/09/2026) — ne pas confondre avec 'X-34 Mark II Blaster',
   // l'arme montée sur Landspeeder X-34 ci-dessous : erreur corrigée le
   // 05/09/2026, la même image avait été mise par erreur sous les deux clés.
+  // L'entrée ci-dessous avait été supprimée par erreur lors de ce correctif
+  // (06/09/2026) — le fichier existait déjà mais n'était plus référencé.
+  'Mark II Medium Blaster Trooper': 'mark-ii-medium-blaster-trooper.jpg',
   'X-34 Mark II Blaster': 'x-34-mark-ii-blaster.jpg',
   'Fleet Troopers': 'fleet-troopers.jpg',
   'Rebel Veterans': 'rebel-veterans.jpg',
