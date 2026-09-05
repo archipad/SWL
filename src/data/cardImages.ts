@@ -188,6 +188,29 @@ const RAW: Record<string, string> = {
   'R4 Astromech Droid': 'r4-astromech-droid.jpg',
   'DLT-19 Pintle Mount': 'dlt-19-pintle-mount.jpg',
   'RT-97C Pintle Mount': 'rt-97c-pintle-mount.jpg',
+  // Présent dans cardTags.ts/diceProfiles.ts depuis un audit précédent mais
+  // sans visuel jusqu'ici (voir aussi le re-découpage de
+  // Galactic_Empire_Units_FR.pdf du 05/09/2026).
+  'TX-225 Occupier Tank': 'tx-225-occupier-tank.jpg',
+  // Cartes de Rebel_Alliance_Upgrades_FR.pdf découpées le 05/09/2026 : déjà
+  // présentes dans cardTags.ts/cardNamesFr.ts/diceProfiles.ts depuis un
+  // audit précédent, mais sans visuel jusqu'ici.
+  'Rebel Ambusher': 'rebel-ambusher.jpg',
+  'Z-6 Trooper': 'z-6-trooper.jpg',
+  'Rebel Trooper': 'rebel-trooper.jpg',
+  'Sleeper Cell Astromech': 'sleeper-cell-astromech.jpg',
+  'Rebel Trooper Specialist': 'rebel-trooper-specialist.jpg',
+  'Rebel Comms Technician': 'rebel-comms-technician.jpg',
+  'Fleet Trooper': 'fleet-trooper.jpg',
+  'Rebel Veteran': 'rebel-veteran.jpg',
+  'Ryder Azadi': 'ryder-azadi.jpg',
+  'Unstable Astromech': 'unstable-astromech.jpg',
+  'Remote Doc': 'remote-doc.jpg',
+  'Unorthodox Tactician': 'unorthodox-tactician.jpg',
+  'X-34 Gunner': 'x-34-gunner.jpg',
+  'TL-TT Rotary Blaster': 'tl-tt-rotary-blaster.jpg',
+  'Ax-108 "Ground Buzzer"': 'ax-108-ground-buzzer.jpg',
+  "Sabine's Grapple Line": 'sabines-grapple-line.jpg',
 };
 
 export const CARD_IMAGES: Record<string, string> = Object.fromEntries(
