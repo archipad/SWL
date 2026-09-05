@@ -1,0 +1,35 @@
+.army-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 820px;
+  margin: 18px auto;
+}
+
+.army-switch button {
+  min-height: 86px;
+  display: grid;
+  gap: 3px;
+  align-content: center;
+  padding: 12px 18px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+}
+
+.army-switch button.active {
+  border-color: var(--acid);
+  background: var(--raised);
+  box-shadow: 0 0 0 2px rgba(202, 255, 61, .12);
+}
+
+.army-switch small { color: var(--acid); font-size: .68rem; font-weight: 900; letter-spacing: .1em; }
+.army-switch strong { font-size: 1.05rem; }
+.army-switch span { color: var(--muted); font-size: .78rem; }
+
+@media (max-width: 560px) {
+  .army-switch { gap: 8px; }
+  .army-switch button { min-height: 78px; padding: 10px; }
+}
