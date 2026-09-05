@@ -46,7 +46,9 @@ export interface CardDiceProfile {
  */
 const RAW: Record<string, CardDiceProfile> = {
   '2-1B Medical Droid': { weapons: [], note: 'Non-combattant' },
-  '74-Z Speeder Bikes': { weapons: [{ name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }, { name: 'Canon Blaster', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
+  // 'Canon Blaster' corrigé le 06/09/2026 : 3 losanges sur le visuel
+  // (rouge/blanc/noir), le noir manquait entièrement.
+  '74-Z Speeder Bikes': { weapons: [{ name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }, { name: 'Canon Blaster', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   '88i Twin Light Blaster': { weapons: [{ name: 'Blasters Légers Jumelés 88i', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-3' }] },
   'A280-CFE Pistol/Sniper Config': { weapons: [{ name: 'A280, Config Fusil', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 1 }], range: '1-#' }] },
   'AG-2G Quad Laser': { weapons: [{ name: 'Quadrilaser AG-2G', dice: [{ color: 'noir', count: 6 }], range: '1-3' }] },
@@ -88,10 +90,15 @@ const RAW: Record<string, CardDiceProfile> = {
   'Han Solo': { weapons: [{ name: 'Bagarre', dice: [{ color: 'blanc', count: 3 }], range: 'melee' }, { name: 'Blaster DL-44 de Han', dice: [{ color: 'rouge', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
   'A-A5 Speeder Truck': { weapons: [], defenseColor: 'rouge', note: 'véhicule de transport, pas d\'arme propre' },
   'Rebel Sleeper Cell': { weapons: [{ name: 'Pack d\'Explosifs', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Pistolets Blaster', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: 'melee' }, { name: 'Pistolets Blaster', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
-  '1.4 FD Laser Cannon Team': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 2 }], range: 'melee' }, { name: 'Pistolets Blaster', dice: [{ color: 'blanc', count: 4 }], range: '1-2' }, { name: 'Canon Laser 1.4 FD', dice: [{ color: 'noir', count: 5 }], range: '1-5' }], defenseColor: 'rouge' },
+  // 'Non armé' corrigé le 06/09/2026 : losange noir plein sur le visuel —
+  // même confusion pastille rouge (badge de portée mêlée) / dé que sur
+  // Scout Troopers ci-dessus.
+  '1.4 FD Laser Cannon Team': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 2 }], range: 'melee' }, { name: 'Pistolets Blaster', dice: [{ color: 'blanc', count: 4 }], range: '1-2' }, { name: 'Canon Laser 1.4 FD', dice: [{ color: 'noir', count: 5 }], range: '1-5' }], defenseColor: 'rouge' },
   'Mandalorian Resistance Clan Wren': { weapons: [{ name: 'Blasters WESTAR-35', dice: [{ color: 'noir', count: 2 }], range: '-2' }], defenseColor: 'rouge' },
   'Iden Versio': { weapons: [{ name: 'Arts Martiaux', dice: [{ color: 'noir', count: 3 }], range: 'melee' }, { name: 'Fusil DLT-20A d\'Iden', dice: [{ color: 'noir', count: 2 }], range: '1-#' }, { name: 'Répétiteur TL-50 d\'Iden', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }, { color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
-  'Imperial Death Troopers': { weapons: [{ name: 'Combat Rapproché', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster Léger SE-14r', dice: [{ color: 'blanc', count: 2 }], range: '1-2' }, { name: 'Fusil Blaster E-11D', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
+  // 'Fusil Blaster E-11D' corrigé le 06/09/2026 : losange noir plein sur le
+  // visuel, pas blanc.
+  'Imperial Death Troopers': { weapons: [{ name: 'Combat Rapproché', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster Léger SE-14r', dice: [{ color: 'blanc', count: 2 }], range: '1-2' }, { name: 'Fusil Blaster E-11D', dice: [{ color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'Imperial March': { weapons: [], note: 'carte de commandement, pas d\'arme' },
   'Imperial Officer': { weapons: [], note: 'Chef, pas d\'arme propre' },
   'Imperial Special Forces': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
@@ -124,7 +131,10 @@ const RAW: Record<string, CardDiceProfile> = {
   'R2-D2': { weapons: [{ name: 'Électrochoc', dice: [{ color: 'blanc', count: 3 }], range: '-1' }], defenseColor: 'rouge' },
   'R5 Astromech Droid': { weapons: [], note: 'Non-combattant' },
   'RPS-6 Rocket Gunner': { weapons: [{ name: 'Lance-roquettes RPS-6', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '2-4' }] },
-  'Range Troopers': { weapons: [{ name: 'Coup de Botte-crampon', dice: [{ color: 'blanc', count: 2 }], range: 'melee' }, { name: 'Fusil Blaster E-10R', dice: [{ color: 'blanc', count: 1 }], range: '1-4' }], defenseColor: 'rouge' },
+  // 'Fusil Blaster E-10R' corrigé le 06/09/2026 : losange noir plein sur le
+  // visuel, pas blanc ('Coup de Botte-crampon' au-dessus est bien blanc,
+  // vérifié séparément).
+  'Range Troopers': { weapons: [{ name: 'Coup de Botte-crampon', dice: [{ color: 'blanc', count: 2 }], range: 'melee' }, { name: 'Fusil Blaster E-10R', dice: [{ color: 'noir', count: 1 }], range: '1-4' }], defenseColor: 'rouge' },
   'Rebel Commandos': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster A280', dice: [{ color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'Rebel Commandos Strike Team': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster A280', dice: [{ color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'Rebel Officer': { weapons: [], note: 'Chef, pas d\'arme propre' },
@@ -139,15 +149,26 @@ const RAW: Record<string, CardDiceProfile> = {
   'Scatter Gun Trooper': { weapons: [{ name: 'Fusil à Dispersion', dice: [{ color: 'rouge', count: 2 }], range: '-2' }] },
   // 'Blaster de Poche EC-17' corrigé le 06/09/2026 (ici et sur 74-Z Speeder
   // Bikes ci-dessus) : losange noir plein sur le visuel, pas blanc.
-  'Scout Troopers': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
-  'Scout Troopers Strike Team': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
-  'Shoretroopers': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-22', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
+  // 'Non armé' corrigé le 06/09/2026 (ici et sur Strike Team ci-dessous) :
+  // losange noir plein sur le visuel — la pastille rouge à côté est le badge
+  // de portée mêlée (croix), pas la couleur du dé ; confondre les deux avait
+  // causé l'erreur initiale.
+  'Scout Troopers': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
+  'Scout Troopers Strike Team': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
+  // 'Non armé' et 'Fusil Blaster E-22' corrigés le 06/09/2026 : les deux
+  // losanges sont noirs sur le visuel (même confusion badge/dé que ci-dessus
+  // pour 'Non armé' ; 'Fusil Blaster E-22' était noté blanc par erreur).
+  'Shoretroopers': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-22', dice: [{ color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'Shriv Suurgav': { weapons: [], note: 'carte de soutien pilote, pas d\'arme' },
   'Snowtrooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
   'Snowtroopers': { weapons: [{ name: 'Matraque', dice: [{ color: 'blanc', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'Sonic Charge Saboteur': { weapons: [{ name: 'Charge Sonique', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: '-1' }] },
   'Stormtrooper Heavy Gunner Squad': { weapons: [], note: 'carte extension d\'unité (personnel), pas de bloc arme propre' },
-  'Stormtrooper Riot Squad': { weapons: [{ name: 'Bâton Étourdissant', dice: [{ color: 'blanc', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
+  // 'Bâton Étourdissant' corrigé le 06/09/2026 : losange noir plein sur le
+  // visuel, pas blanc ('Fusil Blaster E-11' en dessous, lui, est bien blanc —
+  // vérifié pixel par pixel pour ne pas confondre avec le pastille rouge du
+  // badge de portée mêlée, distinct du losange de dé).
+  'Stormtrooper Riot Squad': { weapons: [{ name: 'Bâton Étourdissant', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'Stormtrooper Squad': { weapons: [], note: 'règle de cohésion, pas d\'arme' },
   'Stormtroopers': { weapons: [{ name: 'Matraque', dice: [{ color: 'blanc', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'T-21 Stormtrooper': { weapons: [{ name: 'Blaster à Répétition T-21', dice: [{ color: 'blanc', count: 4 }], range: '1-3' }] },
