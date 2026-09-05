@@ -46,7 +46,7 @@ export interface CardDiceProfile {
  */
 const RAW: Record<string, CardDiceProfile> = {
   '2-1B Medical Droid': { weapons: [], note: 'Non-combattant' },
-  '74-Z Speeder Bikes': { weapons: [{ name: 'Blaster de Poche EC-17', dice: [{ color: 'blanc', count: 2 }], range: '1-2' }, { name: 'Canon Blaster', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
+  '74-Z Speeder Bikes': { weapons: [{ name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }, { name: 'Canon Blaster', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   '88i Twin Light Blaster': { weapons: [{ name: 'Blasters Légers Jumelés 88i', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-3' }] },
   'A280-CFE Pistol/Sniper Config': { weapons: [{ name: 'A280, Config Fusil', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 1 }], range: '1-#' }] },
   'AG-2G Quad Laser': { weapons: [{ name: 'Quadrilaser AG-2G', dice: [{ color: 'noir', count: 6 }], range: '1-3' }] },
@@ -113,7 +113,9 @@ const RAW: Record<string, CardDiceProfile> = {
   'Major Marquand': { weapons: [{ name: 'Lance-grenades', dice: [{ color: 'noir', count: 2 }], range: '-2' }, { name: 'Blasters Légers Jumelés 88', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '-3' }, { name: 'Blasters Jumelés MS-4', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-4' }], defenseColor: 'rouge' },
   'Mandalorian Combat Shields': { weapons: [], note: 'confère Bouclier 2, pas d\'arme propre' },
   'Mandalorian Resistance': { weapons: [{ name: 'Blasters WESTAR-35', dice: [{ color: 'noir', count: 2 }], range: '-2' }], defenseColor: 'rouge' },
-  'Mark II Medium Blaster Trooper': { weapons: [{ name: 'Non armé', dice: [{ color: 'blanc', count: 1 }], range: 'melee' }, { name: 'Blaster Moyen Mark II', dice: [{ color: 'noir', count: 4 }], range: '1-3' }], defenseColor: 'rouge' },
+  // 'Non armé' corrigé le 06/09/2026 : dé noir sur le visuel (losange plein
+  // noir, pas blanc) — signalé par l'utilisateur.
+  'Mark II Medium Blaster Trooper': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Blaster Moyen Mark II', dice: [{ color: 'noir', count: 4 }], range: '1-3' }], defenseColor: 'rouge' },
   'Mo/DK Power Harpoon': { weapons: [{ name: 'Harpon Magnétique Mo/DK', dice: [{ color: 'rouge', count: 1 }], range: '1-2' }] },
   'Moff Gideon': { weapons: [{ name: 'Entraînement au Combat', dice: [{ color: 'rouge', count: 2 }], range: 'melee' }, { name: 'Blaster de Gideon', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
   'Offensive Push': { weapons: [], note: 'carte de commandement, pas d\'arme' },
@@ -135,8 +137,10 @@ const RAW: Record<string, CardDiceProfile> = {
   'Saber Throw': { weapons: [{ name: 'Sabre Lancé', dice: 'variable', range: '1-2', note: 'dés variables = moitié (arrondi sup.) du total de dés de l\'arme de corps-à-corps choisie ; voir texte de la carte' }] },
   'Sabine Wren': { weapons: [{ name: 'Blasters WESTAR-35', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '-2' }], defenseColor: 'rouge' },
   'Scatter Gun Trooper': { weapons: [{ name: 'Fusil à Dispersion', dice: [{ color: 'rouge', count: 2 }], range: '-2' }] },
-  'Scout Troopers': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster de Poche EC-17', dice: [{ color: 'blanc', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
-  'Scout Troopers Strike Team': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster de Poche EC-17', dice: [{ color: 'blanc', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
+  // 'Blaster de Poche EC-17' corrigé le 06/09/2026 (ici et sur 74-Z Speeder
+  // Bikes ci-dessus) : losange noir plein sur le visuel, pas blanc.
+  'Scout Troopers': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
+  'Scout Troopers Strike Team': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster de Poche EC-17', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
   'Shoretroopers': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-22', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'Shriv Suurgav': { weapons: [], note: 'carte de soutien pilote, pas d\'arme' },
   'Snowtrooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
