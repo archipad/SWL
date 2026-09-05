@@ -6,6 +6,7 @@ import { CombatInteractiveScreen } from './components/CombatInteractiveScreen';
 import { GameTrackerScreen } from './components/GameTrackerScreen';
 import { LibraryScreen } from './components/LibraryScreen';
 import { CheatSheetScreen } from './components/CheatSheetScreen';
+import { PrintCardsScreen } from './components/PrintCardsScreen';
 import { importArmyList } from './lib/importList';
 import { usePersistentState } from './lib/storage';
 import { useKeywordLibrary } from './lib/useKeywordLibrary';
@@ -14,7 +15,7 @@ import { useSync } from './lib/useSync';
 import { useGameTracker } from './lib/useGameTracker';
 import type { ParsedList } from './types';
 
-type Page = 'setup' | 'army' | 'game' | 'combat' | 'combat-live' | 'library' | 'cheatsheet';
+type Page = 'setup' | 'army' | 'game' | 'combat' | 'combat-live' | 'library' | 'cheatsheet' | 'print-cards';
 type PlayerId = 'p1' | 'p2';
 
 const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
@@ -86,6 +87,8 @@ export default function App() {
   let content;
   if (page === 'cheatsheet') {
     content = <CheatSheetScreen />;
+  } else if (page === 'print-cards') {
+    content = <PrintCardsScreen />;
   } else if (page === 'library') {
     content = (
       <LibraryScreen
@@ -181,6 +184,7 @@ export default function App() {
           <button type="button" className={page === 'combat-live' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('combat-live')}>Combat interactif</button>
           <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>Glossaire complet</button>
           <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>Pense-bête</button>
+          <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>Imprimer des cartes</button>
         </nav>
       </header>
 
