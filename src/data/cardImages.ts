@@ -83,6 +83,8 @@ const RAW: Record<string, string> = {
   'Saber Throw': 'saber-throw.jpg',
   'Burst of Speed': 'burst-of-speed.jpg',
   'Imperial March': 'imperial-march.jpg',
+  'Inspiring Presence': 'inspiring-presence.jpg',
+  'Tenacity': 'tenacity.jpg',
   'The Darksaber': 'the-darksaber.jpg',
   'Rebel Troopers': 'rebel-troopers.jpg',
   // 'Mark II Medium Blaster Trooper' est l'UNITÉ (voir Cartes_rebelles_fr.pdf,
