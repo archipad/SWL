@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
-import { buildGlossary } from '../lib/glossary';
+import { buildGlossary, buildCardNotes } from '../lib/glossary';
 import { DefinitionText } from '../lib/diceIcons';
 
 interface Props {
@@ -15,10 +15,32 @@ const IMPACT_GROUPS: { id: KeywordDef['impact']; label: string }[] = [
   { id: 'autre', label: 'Autre' },
 ];
 
+/**
+ * Cartes à effet propre (cardNotes.ts) : pas un mot-clé du glossaire, donc
+ * une section à part plutôt que mêlée aux groupes attaque/défense/autre
+ * ci-dessus (qui n'ont de sens que pour un vrai KeywordDef.impact).
+ */
+function CardNotesGroup({ list }: { list: ParsedList }) {
+  const notes = useMemo(() => buildCardNotes(list), [list]);
+  if (notes.length === 0) return null;
+  return (
+    <div className="glossary-impact-group">
+      <h3 className="glossary-impact-heading">Effets propres aux cartes</h3>
+      {notes.map((n) => (
+        <div key={n.displayName} className="glossary-entry">
+          <h4>{n.displayName}</h4>
+          <p><DefinitionText text={n.note} /></p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function GlossarySection({ list, tagLibrary, keywords }: Props) {
   const entries = useMemo(() => buildGlossary(list, tagLibrary, keywords), [list, tagLibrary, keywords]);
+  const hasNotes = useMemo(() => buildCardNotes(list).length > 0, [list]);
 
-  if (entries.length === 0) {
+  if (entries.length === 0 && !hasNotes) {
     return (
       <p className="empty-hint">
         Aucun mot-clé n'a encore été renseigné pour cette liste. Ouvrez chaque carte (bouton
@@ -50,6 +72,7 @@ export function GlossarySection({ list, tagLibrary, keywords }: Props) {
             </div>
           );
         })}
+        <CardNotesGroup list={list} />
       </div>
       {/* Impression : liste unique triée par ordre alphabétique — sur papier on
           cherche un nom précis, pas une catégorie, donc pas de groupes à
@@ -62,6 +85,7 @@ export function GlossarySection({ list, tagLibrary, keywords }: Props) {
             <p className="glossary-cards">Sur : {e.cards.join(', ')}</p>
           </div>
         ))}
+        <CardNotesGroup list={list} />
       </div>
     </>
   );

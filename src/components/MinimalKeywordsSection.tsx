@@ -1,5 +1,5 @@
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
-import { buildGlossary } from '../lib/glossary';
+import { buildGlossary, buildCardNotes } from '../lib/glossary';
 import { DefinitionText } from '../lib/diceIcons';
 
 interface Props {
@@ -29,11 +29,17 @@ const IMPACT_GROUPS: { id: KeywordDef['impact']; label: string }[] = [
  * quelle(s) carte(s) elle se trouve (avec la valeur X propre à chacune
  * quand elle diffère d'une carte à l'autre, ex. « Armure (3), Armure (5) »)
  * pour resituer le mot-clé sans revenir à l'onglet Armées.
+ *
+ * En plus des mots-clés : une section « Effets propres aux cartes »
+ * (buildCardNotes(), cardNotes.ts) pour les cartes dont l'effet ne se
+ * réduit à aucun mot-clé du glossaire — sans elle, ces cartes n'affichaient
+ * rien du tout (signalement utilisateur du 06/09/2026).
  */
 export function MinimalKeywordsSection({ list, tagLibrary, keywords }: Props) {
   const entries = buildGlossary(list, tagLibrary, keywords);
+  const notes = buildCardNotes(list);
 
-  if (entries.length === 0) {
+  if (entries.length === 0 && notes.length === 0) {
     return <p className="empty-hint">Aucun mot-clé renseigné pour cette liste.</p>;
   }
 
@@ -55,6 +61,19 @@ export function MinimalKeywordsSection({ list, tagLibrary, keywords }: Props) {
           </div>
         );
       })}
+      {/* Cartes à effet propre (cardNotes.ts) : pas un mot-clé du glossaire,
+          donc pas classables par impact — section à part. */}
+      {notes.length > 0 && (
+        <div className="glossary-impact-group">
+          <h3 className="glossary-impact-heading">Effets propres aux cartes</h3>
+          {notes.map((n) => (
+            <div key={n.displayName} className="glossary-entry">
+              <h4>{n.displayName}</h4>
+              <p><DefinitionText text={n.note} /></p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

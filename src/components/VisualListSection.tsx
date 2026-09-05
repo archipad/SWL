@@ -1,9 +1,10 @@
 import type { CardTagLibrary, KeywordDef, ParsedList, ParsedUnit } from '../types';
 import { resolveUnitKeywords } from '../lib/combat';
 import { cardImageFor } from '../data/cardImages';
+import { cardNoteFor } from '../data/cardNotes';
 import { DefinitionText } from '../lib/diceIcons';
 import { shortDef } from '../lib/keywordText';
-import { frenchCardName } from '../lib/cardNames';
+import { frenchCardName, canonicalCardKey } from '../lib/cardNames';
 
 interface Props {
   list: ParsedList;
@@ -33,8 +34,33 @@ function PointsBreakdown({ unit }: { unit: ParsedUnit }) {
   );
 }
 
+/**
+ * Cartes de cette unité (elle-même + améliorations) dont l'effet ne se
+ * réduit à aucun mot-clé du glossaire mais qui ont un texte propre dans
+ * cardNotes.ts — sans quoi ces cartes n'affichaient rien du tout ici
+ * (signalement utilisateur du 06/09/2026 : Présence Inspirante/Pointe de
+ * Vitesse/Ténacité). Dédupliqué par carte, dans l'ordre unité puis
+ * améliorations.
+ */
+function unitCardNotes(unit: ParsedUnit): { key: string; displayName: string; note: string }[] {
+  const seen = new Set<string>();
+  const result: { key: string; displayName: string; note: string }[] = [];
+  const visit = (name: string) => {
+    const key = canonicalCardKey(name);
+    if (seen.has(key)) return;
+    const note = cardNoteFor(name);
+    if (!note) return;
+    seen.add(key);
+    result.push({ key, displayName: frenchCardName(name), note });
+  };
+  visit(unit.name);
+  for (const up of unit.upgrades) visit(up.name);
+  return result;
+}
+
 function VisualUnitBlock({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary: CardTagLibrary; keywords: KeywordDef[] }) {
   const resolved = resolveUnitKeywords(unit, tagLibrary, keywords);
+  const notes = unitCardNotes(unit);
   const unitImg = cardImageFor(unit.name);
 
   return (
@@ -65,13 +91,20 @@ function VisualUnitBlock({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tag
           ) : null;
         })}
       </div>
-      {resolved.length > 0 && (
+      {(resolved.length > 0 || notes.length > 0) && (
         <div className="visual-list-keywords">
           {resolved.map((r) => (
             <p key={r.tag.keywordId} className="visual-list-kw">
               <strong>{r.def.name}{r.def.hasValue && r.tag.value ? ` ${r.tag.value}` : ''}</strong>
               {' — '}
               <DefinitionText text={shortDef(r.def)} />
+            </p>
+          ))}
+          {notes.map((n) => (
+            <p key={n.key} className="visual-list-kw">
+              <strong>{n.displayName}</strong>
+              {' — '}
+              <DefinitionText text={n.note} />
             </p>
           ))}
         </div>

@@ -517,14 +517,28 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'coordination' },
     { keywordId: 'chef' },
   ],
-  // nom EN à vérifier
-  'T-21 Special Forces Trooper': [],
-  // nom EN à vérifier
-  'SM-9 Dark Trooper': [],
-  // nom EN à vérifier
-  'XS-IV Dark Trooper': [],
-  // nom EN à vérifier — arme « Tranchoir »
-  'Cleaver Dark Trooper': [],
+  // nom EN à vérifier — arme « Blaster à Répétition T-21 », Critique 2
+  // repéré le 06/09/2026 en revérifiant le visuel de la carte (oublié lors
+  // de l'audit initial).
+  'T-21 Special Forces Trooper': [
+    { keywordId: 'critique-x', value: 2 },
+  ],
+  // nom EN à vérifier — arme « Lanceur à Fragmentation SM-9 », Déflagration/
+  // Cycle/Impact 2 repérés le 06/09/2026 (même oubli que ci-dessus).
+  'SM-9 Dark Trooper': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'cycle' },
+    { keywordId: 'impact-x', value: 2 },
+  ],
+  // nom EN à vérifier — arme « Canon d'Assaut XS-IV », Critique 1 repéré le
+  // 06/09/2026.
+  'XS-IV Dark Trooper': [
+    { keywordId: 'critique-x', value: 1 },
+  ],
+  // nom EN à vérifier — arme « Tranchoir », Suppressif repéré le 06/09/2026.
+  'Cleaver Dark Trooper': [
+    { keywordId: 'suppressif' },
+  ],
   'E-11D Focused Strike Config': [
     { keywordId: 'reconfiguration' },
   ],
@@ -532,18 +546,27 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'reconfiguration' },
   ],
   // nom EN à vérifier — « Fusil Lance-flammes CR-24 » (Soldat Monté sur
-  // Dewback uniquement)
-  'CR-24 Flame Rifle': [],
+  // Dewback uniquement), Déflagration/Souffle repérés le 06/09/2026.
+  'CR-24 Flame Rifle': [
+    { keywordId: 'deflagration' },
+    { keywordId: 'souffle' },
+  ],
   // nom EN à vérifier — variante Dewback du Fusil Blaster RT-97C, même
-  // profil de dés que la version Stormtrooper mais carte distincte
+  // profil de dés que la version Stormtrooper mais carte distincte, sans
+  // mot-clé sur cette carte-ci.
   'RT-97C Dewback Rider': [],
-  // nom EN à vérifier — variante Dewback du Blaster à Répétition T-21
-  'T-21 Dewback Rider': [],
+  // nom EN à vérifier — variante Dewback du Blaster à Répétition T-21,
+  // Critique 2 repéré le 06/09/2026.
+  'T-21 Dewback Rider': [
+    { keywordId: 'critique-x', value: 2 },
+  ],
   // nom EN à vérifier — arme montée sur pivot du Tank « Occupier » TX-225
-  // GAVw
-  'DLT-19 Pintle Mount': [],
+  // GAVw, Impact 1 repéré le 06/09/2026.
+  'DLT-19 Pintle Mount': [
+    { keywordId: 'impact-x', value: 1 },
+  ],
   // nom EN à vérifier — arme montée sur pivot du Tank « Occupier » TX-225
-  // GAVw
+  // GAVw, sans mot-clé sur cette carte-ci.
   'RT-97C Pintle Mount': [],
   // nom EN à vérifier = « Loyauté Programmée » (Dark Troopers Impériaux
   // uniquement). La restriction « ne peut recevoir d'ordres que d'une
@@ -620,11 +643,11 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'tireur-embusque' },
   ],
   // nom EN à vérifier = « Pilote de l'Unité d'Élite Blindée Imperial
-  // Hammers ». Le texte imprimé (icône de conversion d'adrénaline
-  // remplacée par une icône fixe) ne correspond à aucun mot-clé du
-  // glossaire identifiable avec certitude — laissé sans tag plutôt que
-  // deviner (politique de l'appli : jamais de mot-clé inventé).
-  'Imperial Hammers Elite Armor Pilot': [],
+  // Hammers ». Repéré le 06/09/2026 en revérifiant le visuel (icônes
+  // agrandies) : « Cette unité gagne IA : Attaque. » — IA taggé bare, la
+  // substitution précise (Attaque) n'a pas d'équivalent dans
+  // CardKeywordTag (pas de valeur libre), documentée ici seulement.
+  'Imperial Hammers Elite Armor Pilot': [{ keywordId: 'ia' }],
   // nom EN à vérifier = « Pilote de TIE Impérial ». Le gain de +1 vitesse
   // maximale n'est pas un mot-clé du glossaire.
   'Imperial TIE Pilot': [],
@@ -989,7 +1012,11 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // fournies jusqu'ici) — à corriger si un import réel utilise un nom
   // différent.
   'Rebel Ambusher': [],
-  'Sleeper Cell Astromech': [],
+  // repéré le 06/09/2026 en revérifiant le visuel : « Non-Combattant » est un
+  // vrai mot-clé du glossaire (le reste du texte — bonus d'esquive près d'un
+  // pion Objectif — n'a pas d'équivalent et reste non tagué, comme pour les
+  // autres cartes IA/action ci-dessus).
+  'Sleeper Cell Astromech': [{ keywordId: 'non-combattant' }],
   'Rebel Trooper Specialist': [],
   'Rebel Comms Technician': [],
   'Fleet Trooper': [],
