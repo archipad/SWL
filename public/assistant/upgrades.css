@@ -1,0 +1,36 @@
+.upgrades { padding: 16px 18px 20px; border-top: 1px solid var(--line); background: #0e1612; }
+.section-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; color: var(--acid); font-size: .72rem; font-weight: 900; letter-spacing: .1em; }
+.section-heading b { display: grid; place-items: center; min-width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 50%; color: var(--text); }
+.upgrade-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.upgrade-card { display: grid; grid-template-columns: 150px 1fr; min-height: 205px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.upgrade-visual { position: relative; display: grid; place-items: center; min-height: 205px; padding: 8px; border: 0; border-right: 1px solid var(--line); background: #050806; color: var(--text); cursor: zoom-in; }
+.upgrade-visual img { width: 100%; height: 190px; object-fit: contain; }
+.upgrade-visual span { position: absolute; right: 7px; bottom: 7px; padding: 5px 8px; border-radius: 6px; background: rgba(5,8,6,.88); color: var(--acid); font-size: .68rem; font-weight: 900; text-transform: uppercase; }
+.upgrade-visual.missing img { display: none; }
+.upgrade-visual.missing::before { content: 'Visuel à vérifier'; color: var(--muted); font-size: .8rem; }
+.upgrade-copy { padding: 13px; }
+.upgrade-copy > small { color: var(--acid); font-size: .63rem; font-weight: 900; letter-spacing: .08em; }
+.upgrade-copy h3 { margin: 4px 0 10px; font-size: 1rem; }
+.upgrade-definition { padding: 8px 0; border-top: 1px solid var(--line); }
+.upgrade-definition strong { color: var(--gold); font-size: .85rem; }
+.upgrade-definition p, .unavailable, .empty-upgrades { margin: 4px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+.empty-upgrades { padding: 12px; border: 1px dashed var(--line); border-radius: 9px; }
+.card-dialog { width: min(92vw,680px); max-height: 92vh; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: #080d0a; color: var(--text); }
+.card-dialog::backdrop { background: rgba(0,0,0,.82); backdrop-filter: blur(4px); }
+.card-dialog img { display: block; width: 100%; max-height: 78vh; object-fit: contain; }
+.card-dialog strong { display: block; margin: 10px 42px 2px 4px; }
+.dialog-close { position: absolute; right: 12px; top: 12px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--raised); color: var(--text); font-size: 1.6rem; }
+.surge-panel { display: grid; gap: 6px; max-width: 390px; margin-top: 15px; padding: 11px 13px; border-left: 3px solid var(--acid); background: var(--raised); }
+.surge-panel > span { color: var(--acid); font-size: .65rem; font-weight: 900; letter-spacing: .08em; }
+.surge-panel strong { display: flex; align-items: center; gap: 9px; }
+.dice-symbol { display: inline-block; width: 1.3em; height: 1.3em; margin: 0 .12em; object-fit: contain; vertical-align: -.28em; }
+.dice-symbol.large { width: 34px; height: 34px; vertical-align: middle; }
+.tag .dice-symbol, .upgrade-definition .dice-symbol, .total .dice-symbol, .field .dice-symbol, .result-strip .dice-symbol { filter: invert(1) brightness(1.7); }
+.surge-panel strong .dice-symbol { padding: 6px; border-radius: 6px; background: #f3f2e9; }
+.result-strip b { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.field > span { display: flex; align-items: center; gap: 5px; }
+.surge-panel small { color: var(--muted); font-size: .68rem; }
+.surge-panel.unknown { border-left-color: var(--gold); }
+.surge-panel.unknown > span { color: var(--gold); }
+@media (max-width: 900px) { .upgrade-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .upgrades { padding: 13px 10px; } .upgrade-card { grid-template-columns: 112px 1fr; } .upgrade-visual { min-height: 175px; } .upgrade-visual img { height: 160px; } .upgrade-copy { padding: 10px; } }
