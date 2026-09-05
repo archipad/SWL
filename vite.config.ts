@@ -42,6 +42,9 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,svg,ico,webmanifest}'],
+        // L'assistant est une page HTML autonome. Sans cette exception,
+        // le mode hors-ligne renvoie toute navigation vers l'application React.
+        navigateFallbackDenylist: [/^\/SWL\/assistant(?:\/|$)/],
       },
     }),
   ],
