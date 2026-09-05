@@ -211,6 +211,27 @@ const RAW: Record<string, CardDiceProfile> = {
   'Baron Rudor': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
   'Imperial Hammers Elite Armor Pilot': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
   'Imperial TIE Pilot': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
+
+  // === Genrela_upgrade_fr_30mo.pdf (audité le 06/09/2026)
+  'Concussion Grenades': { weapons: [{ name: 'Grenade à Concussion', dice: [{ color: 'noir', count: 1 }], range: 'grenade' }] },
+  'EMP Grenades': { weapons: [{ name: 'Grenades « Anti-droïdes » EMP', dice: [{ color: 'noir', count: 1 }], range: 'grenade' }] },
+  'Fragmentation Grenades': { weapons: [{ name: 'Grenade à Fragmentation', dice: [{ color: 'noir', count: 1 }], range: 'grenade' }] },
+  'Impact Grenades': { weapons: [{ name: 'Grenade à Impact', dice: [{ color: 'noir', count: 1 }], range: '-1' }] },
+  'Sonic Imploders': { weapons: [{ name: 'Imploseur Sonique', dice: [{ color: 'noir', count: 1 }], range: 'grenade' }] },
+  'Armor-Piercing Shells': { weapons: [{ name: 'Obus Antiblindage', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: '2-3' }] },
+  'High-Energy Shells': { weapons: [{ name: 'Obus à Haute Énergie', dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 1 }], range: '2-4' }] },
+  'Anti-Bunker Shells': { weapons: [{ name: 'Obus « Antibunker »', dice: [{ color: 'rouge', count: 3 }, { color: 'noir', count: 1 }], range: '1-2' }] },
+
+  // === Nouvelles_cartes_amelio_FR_MAJ23.02.2026.pdf (audité le 06/09/2026)
+  'Mounted Gunners': { weapons: [{ name: 'Blaster Monté', dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-2' }] },
+  'Kraken': { weapons: [{ name: 'Blaster de Kraken', dice: [{ color: 'noir', count: 2 }], range: '-3' }] },
+  'Kallus the Operative': { weapons: [{ name: 'Fusil-Bo J-19', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '-2' }] },
+  'Captain Rex': { weapons: [{ name: 'Paire de Blasters de Poche', dice: [{ color: 'rouge', count: 1 }], range: '-2' }] },
+  // Carte recto/verso : arme recto (visible en début de partie) seule
+  // reprise ici, comme pour les autres cartes fusionnées de ce fichier — le
+  // verso (Opérations Secrètes, 1 rouge, Longue Distance) n'a pas de champ
+  // dédié dans ce modèle de données.
+  'Cassian Andor Operative': { weapons: [{ name: 'A280 Configuration Sniper', dice: [{ color: 'noir', count: 1 }], range: '1-3' }] },
 };
 
 export const DICE_PROFILES: Record<string, CardDiceProfile> = Object.fromEntries(

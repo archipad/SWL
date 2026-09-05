@@ -1091,6 +1091,199 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // + l'unité gagne Intrépide et Immunité : perforant au corps-à-corps.
   // Incohérence non résolue entre les deux PDF sources ; pas ajoutée une
   // deuxième fois ici pour ne pas écraser/dupliquer la clé existante.
+
+  // === Genrela_upgrade_fr_30mo.pdf (deck générique multi-faction/multi-ère,
+  // cartes en niveaux de gris — audité en entier le 06/09/2026, 22 pages).
+  // Noms EN à vérifier partout dans ce bloc (pas de nom anglais officiel
+  // sous la main, traductions raisonnables depuis le texte français).
+  'Improvised Orders': [],
+  'Strict Orders': [],
+  'Lead by Example': [
+    { keywordId: 'inspiration-x', value: 2 },
+  ],
+  'Climbing Cables': [
+    { keywordId: 'ascension' },
+  ],
+  'Electrobinoculars': [
+    { keywordId: 'observateur-x', value: 1 },
+  ],
+  'Underworld Contacts': [
+    { keywordId: 'allies-de-circonstance' },
+  ],
+  'Environmental Gear': [
+    { keywordId: 'sans-entrave' },
+  ],
+  'Handheld Scanner': [
+    { keywordId: 'mettre-a-couvert-x', value: 1 },
+  ],
+  'Grapnel Hooks': [
+    { keywordId: 'grimpeur-experimente' },
+  ],
+  // Place le pion « Esquive 1 » à la mise en place (voir mot-clé Cache).
+  'Prepared Materiel': [
+    { keywordId: 'cache' },
+  ],
+  // Carte « Vigilance » : effet de mise en place propre à la carte (retire un
+  // pion Esquive), aucun mot-clé du glossaire ne correspond malgré le nom.
+  'Vigilance': [],
+  'On the Hunt': [],
+  'Endurance': [],
+  'Point Blank': [],
+  'In the Fray': [],
+  'Protector': [],
+  'Spotting': [
+    { keywordId: 'sentinelle' },
+  ],
+  'Seize the Opportunity': [],
+  'Situational Awareness': [
+    { keywordId: 'manoeuvre-improbable' },
+  ],
+  'Evasive Cover': [],
+  'Emergency Stims': [],
+  'Defensive Posture': [],
+  'Offensive Posture': [],
+  'Comms Jammer': [],
+  // Véhicule uniquement — restriction sur Coordination, pas un gain de
+  // mot-clé (le mot-clé Coordination n'est pas accordé par cette carte).
+  'Command System': [],
+  'Emergency Transponder': [],
+  // Nom EN à vérifier — carte notée «••» (restriction non identifiée avec
+  // certitude sur le scan, probablement Commandant/unique).
+  'HQ Uplink': [],
+  'Comms Hacking Unit': [],
+  // Véhicule uniquement. Accorde IA : Viser (action substituée = Viser).
+  'Attack Protocols': [
+    { keywordId: 'ia' },
+    { keywordId: 'precis-x', value: 2 },
+  ],
+  // Véhicule uniquement. Accorde Coordination : Soldat (type substitué =
+  // Soldat).
+  'Onboard Comms Channel': [
+    { keywordId: 'coordination' },
+  ],
+  'Concussion Grenades': [
+    { keywordId: 'deflagration' },
+  ],
+  'EMP Grenades': [
+    { keywordId: 'ion-x', value: 1 },
+  ],
+  // Le texte de la carte (« Tant que cette arme est dans la réserve
+  // d'attaque, cette unité gagne « [CRITIQUE] : [BLOC] » ») décrit une
+  // conversion Critique->Bloc propre à la carte, sans correspondance exacte
+  // dans le glossaire (Perforant X annule des Bloc, ce n'est pas la même
+  // mécanique) — laissée non taguée plutôt que d'inventer.
+  'Fragmentation Grenades': [],
+  'Impact Grenades': [
+    { keywordId: 'impact-x', value: 4 },
+  ],
+  'Sonic Imploders': [
+    { keywordId: 'suppressif' },
+  ],
+  // Accorde l'action de carte Fumée 1 (pas un mot-clé passif, mais c'est la
+  // seule correspondance de glossaire pertinente).
+  'Smoke Grenades': [
+    { keywordId: 'fumee-x', value: 1 },
+  ],
+  // Véhicule uniquement. Accorde aussi IA : Esquive (action substituée =
+  // Esquive).
+  'Defense Protocols': [
+    { keywordId: 'agile' },
+    { keywordId: 'manoeuvre-improbable' },
+    { keywordId: 'ia' },
+  ],
+  // Véhicule uniquement. Accorde IA : Attaque, Déplacement (deux actions
+  // substituées).
+  'Engagement Protocols': [
+    { keywordId: 'ia' },
+  ],
+  // Accorde Suppressif à la réserve d'attaque construite via cette carte
+  // (pas une amélioration d'arme permanente, mais Suppressif est le mot-clé
+  // réellement gagné).
+  'Barrage Generator': [
+    { keywordId: 'suppressif' },
+  ],
+  'Generator Overcharge': [
+    { keywordId: 'impact-x', value: 1 },
+  ],
+  // Véhicule uniquement, mot-clé Cycle (jamais épuisée). Arme : Fixe :
+  // Avant, Impact 3.
+  'Armor-Piercing Shells': [
+    { keywordId: 'cycle' },
+    { keywordId: 'fixe' },
+    { keywordId: 'impact-x', value: 3 },
+  ],
+  'High-Energy Shells': [
+    { keywordId: 'cycle' },
+    { keywordId: 'fixe' },
+    { keywordId: 'critique-x', value: 1 },
+    { keywordId: 'haute-velocite' },
+  ],
+  'Anti-Bunker Shells': [
+    { keywordId: 'cycle' },
+    { keywordId: 'fixe' },
+    { keywordId: 'deflagration' },
+    { keywordId: 'dispersion' },
+  ],
+  // Côté Obscur uniquement.
+  'Anger': [],
+  'Fear': [
+    { keywordId: 'demoraliser-x', value: 1 },
+  ],
+  // Côté Lumineux uniquement.
+  'Hope': [
+    { keywordId: 'inspiration-x', value: 1 },
+  ],
+  'Old Jedi Trick': [],
+  'Force Barrier': [],
+  'Force Guidance': [],
+  'Force Push': [],
+  'Force Reflexes': [],
+
+  // === Nouvelles_cartes_amelio_FR_MAJ23.02.2026.pdf (audité le 06/09/2026,
+  // 3 pages, cartes en couleur). Noms EN à vérifier.
+  'Hit and Run': [],
+  // Nom EN à vérifier — unique (•), carte « Chef de Groupe de Combat ».
+  'Combat Group Leader': [],
+  'Mission Objective': [],
+  // Unique (•).
+  'Trusted Agent': [],
+  // = Imperial March (déjà en base), reprint identique — pas de nouvelle clé.
+  'Dread': [],
+  'Entrenched': [],
+  'Serenity': [],
+  'Additional Supplies': [],
+  'Clairvoyance': [],
+  'Spotter Link': [
+    { keywordId: 'tireur-delite-x', value: 1 },
+  ],
+  // Véhicule ayant Transport uniquement. Arme : Blaster Monté, Fixe :
+  // Flancs, 2 blancs + 2 noirs.
+  'Mounted Gunners': [],
+  // Nom EN à vérifier — unique (•), soldat Droïde uniquement. Perd IA (pas
+  // un tag à part), gagne 1 icône d'amélioration (pas un mot-clé). Arme :
+  // Blaster de Kraken, 2 noirs.
+  'Kraken': [],
+  // Distinct de la clé 'Agent Kallus' existante (celle-ci = l'UNITÉ Chasseur
+  // de Spectres de Galactic_Empire_Units_FR.pdf) : ce nom EN est un
+  // placeholder pour cette carte « ajouter 1 figurine » à part, nom EN à
+  // vérifier. Arme : Fusil-Bo J-19, 1 blanc + 1 noir.
+  'Kallus the Operative': [
+    { keywordId: 'demoraliser-x', value: 1 },
+    { keywordId: 'arme-de-poing' },
+  ],
+  // Arme : Paire de Blasters de Poche, 1 rouge.
+  'Captain Rex': [],
+  // Carte recto/verso fusionnée (comme A280-CFE Rifle/Pistol Config) :
+  // Profil Bas + Mission Secrète (recto, visible au début) et Coup de
+  // Chance 1 (verso). Distinct de la clé 'Cassian Andor' existante (unité
+  // de Cartes_rebelles_fr.pdf). Nom EN à vérifier. Arme recto : A280
+  // Configuration Sniper, 1 noir ; arme verso (non illustrée) : Opérations
+  // Secrètes, 1 rouge.
+  'Cassian Andor Operative': [
+    { keywordId: 'profil-bas' },
+    { keywordId: 'mission-secrete' },
+    { keywordId: 'coup-de-chance-x', value: 1 },
+  ],
 };
 
 export const SEED_CARD_TAGS: CardTagLibrary = Object.fromEntries(
