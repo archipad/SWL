@@ -1094,4 +1094,23 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   }
   .print-card-box-landscape { width: 88mm; height: 62mm; }
   .print-card-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* Imprimer la liste (visuel + mots-clés) : mise en page « façon Tabletop
+     Admiral » — carte de troupe et cartes d'amélioration équipées côte à
+     côte sur une même ligne (pas empilées comme .unit-card-images),
+     mots-clés fusionnés dessous. Une hauteur unique pour toutes les images
+     d'un bloc (troupe et améliorations confondues) : contrairement aux
+     fiches d'unité (colonne étroite, gain de hauteur nécessaire), ici les
+     images sont côte à côte, une hauteur commune donne un rendu plus
+     proche de la capture Tabletop Admiral d'origine. */
+  .visual-list-block { margin-bottom: 0.7em; }
+  .visual-list-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 0.6em;
+    color: black; font-size: 9pt; margin-bottom: 0.15em;
+  }
+  .visual-list-points { color: #444; font-size: 7.5pt; white-space: nowrap; }
+  .visual-list-images { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.15em; break-inside: avoid; }
+  .visual-list-image { height: 32mm; width: auto; object-fit: contain; }
+  .visual-list-keywords { column-count: 2; column-gap: 1em; margin-top: 0.2em; }
+  .visual-list-kw { color: black; font-size: 7.5pt; line-height: 1.25; margin: 0 0 0.15em; break-inside: avoid; }
 }

@@ -3,6 +3,7 @@ import { ImportScreen } from './ImportScreen';
 import { SyncSettings } from './SyncSettings';
 import { UnitCardsSection } from './UnitCardsSection';
 import { MinimalKeywordsSection } from './MinimalKeywordsSection';
+import { VisualListSection } from './VisualListSection';
 import { DiceIcon } from '../lib/diceIcons';
 import type { useSync } from '../lib/useSync';
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
@@ -14,9 +15,10 @@ interface SlotProps {
   onClear: () => void;
   onPrint: () => void;
   onPrintMinimal: () => void;
+  onPrintVisual: () => void;
 }
 
-function ImportSlot({ playerLabel, list, onParse, onClear, onPrint, onPrintMinimal }: SlotProps) {
+function ImportSlot({ playerLabel, list, onParse, onClear, onPrint, onPrintMinimal, onPrintVisual }: SlotProps) {
   if (!list) {
     return <ImportScreen playerLabel={playerLabel} onParse={onParse} />;
   }
@@ -34,6 +36,9 @@ function ImportSlot({ playerLabel, list, onParse, onClear, onPrint, onPrintMinim
       <div className="setup-slot-actions">
         <button type="button" className="btn btn-ghost" onClick={onPrint}>
           🖶 Imprimer les fiches d'unité
+        </button>
+        <button type="button" className="btn btn-ghost" onClick={onPrintVisual}>
+          🖶 Imprimer la liste (visuel + mots-clés)
         </button>
         <button type="button" className="btn btn-ghost" onClick={onPrintMinimal}>
           🖶 Imprimer mots-clés (mode rapide)
@@ -66,7 +71,7 @@ interface Props {
   sync: ReturnType<typeof useSync>;
 }
 
-type PrintMode = 'cards' | 'minimal';
+type PrintMode = 'cards' | 'minimal' | 'visual';
 type PrintTarget = { player: 'p1' | 'p2'; mode: PrintMode } | null;
 
 export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, onParseP2, onClearP1, onClearP2, sync }: Props) {
@@ -124,6 +129,7 @@ export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, o
             onClear={onClearP1}
             onPrint={() => setPrintTarget({ player: 'p1', mode: 'cards' })}
             onPrintMinimal={() => setPrintTarget({ player: 'p1', mode: 'minimal' })}
+            onPrintVisual={() => setPrintTarget({ player: 'p1', mode: 'visual' })}
           />
           <ImportSlot
             playerLabel="Joueur 2"
@@ -132,6 +138,7 @@ export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, o
             onClear={onClearP2}
             onPrint={() => setPrintTarget({ player: 'p2', mode: 'cards' })}
             onPrintMinimal={() => setPrintTarget({ player: 'p2', mode: 'minimal' })}
+            onPrintVisual={() => setPrintTarget({ player: 'p2', mode: 'visual' })}
           />
         </div>
         <SyncSettings
@@ -178,6 +185,17 @@ export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, o
             <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
           </p>
           <MinimalKeywordsSection list={printList} tagLibrary={tagLibrary} keywords={keywords} />
+        </section>
+      )}
+
+      {printList && printTarget?.mode === 'visual' && (
+        <section className="visual-list-print-section print-only">
+          <h2 className="print-title">
+            {printLabel}
+            {printList.faction ? ` — ${printList.faction}` : ''}
+            {printList.totalPoints !== undefined ? ` (${printList.totalPoints} pts)` : ''}
+          </h2>
+          <VisualListSection list={printList} tagLibrary={tagLibrary} keywords={keywords} />
         </section>
       )}
     </div>
