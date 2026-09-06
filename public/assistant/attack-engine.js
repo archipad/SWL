@@ -1,0 +1,87 @@
+(function exposeAttackEngine() {
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, Number(value) || 0));
+
+  function rangeBounds(range) {
+    if (range === 'melee') return { melee: true };
+    if (range === 'grenade') return { min: 1, max: 1 };
+    const match = String(range || '').match(/^(\d+)?-(\d+)$/);
+    if (match) return { min: Number(match[1] || 1), max: Number(match[2]) };
+    const single = Number(range);
+    return Number.isFinite(single) && single > 0 ? { min: single, max: single } : null;
+  }
+
+  function weaponEligible(range, selectedRange) {
+    const bounds = rangeBounds(range);
+    if (!bounds || selectedRange == null) return true;
+    if (selectedRange === 'melee') return bounds.melee === true;
+    return !bounds.melee && selectedRange >= bounds.min && selectedRange <= bounds.max;
+  }
+
+  function rangeOptions(weapons) {
+    const options = new Set();
+    weapons.forEach((weapon) => {
+      const bounds = rangeBounds(weapon.range);
+      if (bounds?.melee) options.add('melee');
+      else if (bounds) for (let range = bounds.min; range <= bounds.max; range += 1) options.add(range);
+    });
+    return [...options].sort((a, b) => a === 'melee' ? -1 : b === 'melee' ? 1 : a - b);
+  }
+
+  function buildPool(rows, counts) {
+    const pool = { rouge: 0, noir: 0, blanc: 0, variable: false };
+    rows.forEach((row) => {
+      const multiplier = Math.max(1, Number(counts[row.key]) || 1);
+      if (row.weapon.dice === 'variable') pool.variable = true;
+      else row.weapon.dice.forEach((die) => { pool[die.color] += die.count * multiplier; });
+    });
+    return pool;
+  }
+
+  function rerollCapacity(aimTokens, preciseX) {
+    return Math.max(0, Number(aimTokens) || 0) * (2 + Math.max(0, Number(preciseX) || 0));
+  }
+
+  function convertAttack(roll, attackSurge, criticalX) {
+    const surge = Math.max(0, Number(roll.surge) || 0);
+    const critical = Math.min(surge, Math.max(0, Number(criticalX) || 0));
+    const remaining = surge - critical;
+    return {
+      hit: Math.max(0, Number(roll.hit) || 0) + (attackSurge === 'hit' ? remaining : 0),
+      crit: Math.max(0, Number(roll.crit) || 0) + critical + (attackSurge === 'crit' ? remaining : 0),
+      unusedSurge: attackSurge ? 0 : remaining,
+      criticalUsed: critical,
+    };
+  }
+
+  function applyImpactArmor(results, options) {
+    const hasArmor = Boolean(options.hasArmor);
+    const impactUsed = hasArmor ? clamp(options.impactUsed, 0, Math.min(results.hit, options.impactX || 0)) : 0;
+    const hitsAfterImpact = results.hit - impactUsed;
+    const armorLimit = options.armorUnlimited ? hitsAfterImpact : Math.max(0, Number(options.armorX) || 0);
+    const armorCancelled = hasArmor ? clamp(options.armorCancelled, 0, Math.min(hitsAfterImpact, armorLimit)) : 0;
+    return { hit: hitsAfterImpact - armorCancelled, crit: results.crit + impactUsed, impactUsed, armorCancelled };
+  }
+
+  function applyCover(results, options) {
+    const coverCancelled = options.melee ? 0 : Math.min(
+      results.hit,
+      Math.max(0, Number(options.coverBlock) || 0) +
+        (options.cover === 'heavy' ? Math.max(0, Number(options.coverSurge) || 0) : 0),
+    );
+    const dodgesUsed = clamp(options.dodges, 0, Math.max(0, results.hit - coverCancelled));
+    return { hit: Math.max(0, results.hit - coverCancelled - dodgesUsed), crit: results.crit, coverCancelled, dodgesUsed };
+  }
+
+  function applyDefense(results, defense, options) {
+    const converted = Math.max(0, Number(defense.block) || 0) +
+      (options.defenseSurge === 'block' ? Math.max(0, Number(defense.surge) || 0) : 0);
+    const pierceUsed = options.pierceImmune ? 0 : clamp(options.pierceUsed, 0, Math.min(converted, options.pierceX || 0));
+    const blocks = Math.max(0, converted - pierceUsed);
+    return { converted, pierceUsed, blocks, wounds: Math.max(0, results.hit + results.crit - blocks) };
+  }
+
+  window.SWL_ATTACK_ENGINE = {
+    rangeBounds, weaponEligible, rangeOptions, buildPool, rerollCapacity,
+    convertAttack, applyImpactArmor, applyCover, applyDefense,
+  };
+})();

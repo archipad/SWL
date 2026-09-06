@@ -1,0 +1,36 @@
+.range-picker {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+  gap: 8px;
+  margin: 14px 0;
+}
+.range-picker button {
+  min-height: 52px;
+  border: 1px solid var(--line);
+  background: #101713;
+  color: var(--text);
+  font: inherit;
+  font-weight: 850;
+}
+.range-picker button.on { border-color: var(--acid); background: var(--acid); color: #071006; }
+.weapon-choice.disabled { opacity: .42; }
+.weapon-choice.disabled button { cursor: not-allowed; }
+.strict-warning {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border: 1px solid #ff665c;
+  background: #351716;
+  color: #ffb4ae;
+  font-weight: 800;
+}
+.automation-card, .resolution-log {
+  display: grid;
+  gap: 5px;
+  margin: 14px 0;
+  padding: 13px;
+  border-left: 3px solid var(--acid);
+  background: #18221b;
+}
+.automation-card small, .resolution-log li { color: var(--muted); }
+.resolution-log ol { margin: 6px 0 0; padding-left: 22px; }
+.resolution-log li { padding: 3px 0; }
