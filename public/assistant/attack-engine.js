@@ -55,6 +55,14 @@
     return Math.max(0, Number(aimTokens) || 0) * (2 + Math.max(0, Number(preciseX) || 0));
   }
 
+  function applyLethal(basePierce, lethalX, aimTokens) {
+    const lethalUsed = clamp(aimTokens, 0, Math.max(0, Number(lethalX) || 0));
+    return {
+      lethalUsed,
+      pierce: Math.max(0, Number(basePierce) || 0) + lethalUsed,
+    };
+  }
+
   function convertAttack(roll, attackSurge, criticalX) {
     const surge = Math.max(0, Number(roll.surge) || 0);
     const critical = Math.min(surge, Math.max(0, Number(criticalX) || 0));
@@ -95,7 +103,7 @@
   }
 
   window.SWL_ATTACK_ENGINE = {
-    rangeBounds, weaponEligible, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity,
+    rangeBounds, weaponEligible, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal,
     convertAttack, applyImpactArmor, applyCover, applyDefense,
   };
 })();
