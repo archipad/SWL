@@ -23,6 +23,15 @@ const pool = engine.buildPool([
 ], { e11: 3, hh12: 1 })
 assert.deepEqual({ ...pool }, { rouge: 0, noir: 3, blanc: 3, variable: false })
 
+const cumbersomePool = engine.buildPool([
+  { key: 'weapon', weapon: { dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }] } },
+], { weapon: 1 }, new Set(['weapon']))
+assert.deepEqual({ ...cumbersomePool }, { rouge: 0, noir: 1, blanc: 2, variable: false })
+assert.equal(engine.effectiveCover('heavy', 1, false, false), 'light')
+assert.equal(engine.effectiveCover('heavy', 2, false, false), 'none')
+assert.equal(engine.effectiveCover('heavy', 0, true, false), 'none')
+assert.equal(engine.effectiveCover('heavy', 0, true, true), 'heavy')
+
 assert.equal(engine.rerollCapacity(2, 1), 6)
 assert.deepEqual(
   { ...engine.convertAttack({ hit: 2, crit: 0, surge: 3 }, 'hit', 1) },
@@ -55,4 +64,4 @@ const immuneDefense = engine.applyDefense(
 )
 assert.deepEqual({ ...immuneDefense }, { converted: 2, pierceUsed: 0, blocks: 2, wounds: 1 })
 
-console.log('Assistant attack engine: 20 assertions OK')
+console.log('Assistant attack engine: 25 assertions OK')
