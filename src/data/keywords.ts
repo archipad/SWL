@@ -313,4 +313,32 @@ const CARD_KEYWORDS: KeywordDef[] = [
   { id: 'traiter-x', impact: 'défense', name: 'Traiter X : Capacité Y', hasValue: true, category: 'carte', definition: "Lorsqu'une unité utilise l'action de carte Traiter X : Capacité Y, choisissez une unité de soldats non-droïdes alliée à ① et en LdV et placez un pion Blessure sur la carte dotée du mot-clé Traiter X : Capacité Y. Retirez au total jusqu'à X pions Blessure et/ou Poison de l'unité choisie ou restaurez jusqu'à X figurines dans cette unité. Cette capacité ne peut pas être utilisée si la carte dotée du mot-clé Traiter X : Capacité Y possède sur elle un nombre de pions Blessure supérieur ou égal à Y. Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Traiter X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources.", shortDefinition: "Action de carte : choisissez une unité de soldats non-droïdes alliée à ① et en LdV, placez un pion Blessure sur cette carte — retirez jusqu'à X pions Blessure/Poison ou restaurez jusqu'à X figurines. Inutilisable si la carte a déjà Y pions Blessure ou plus (ces pions ne comptent pas pour le seuil de l'unité). Chaque capacité identique compte séparément, une seule utilisation chacune par activation." },
 ];
 
-export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS];
+const ACTIVATION_KEYWORDS = new Set([
+  'aguerri', 'cible-x', 'tacticien-x', 'observateur-x', 'operationnel-x',
+  'defense-x', 'distraire', 'generateur-x', 'mettre-a-couvert-x', 'preste-x',
+  'recharger-x', 'regenerer-x', 'reparation-x', 'restauration', 'traiter-x',
+]);
+
+const KEYWORD_DISPLAY_SECTIONS: Record<string, KeywordDef['displaySections']> = {
+  'charge': ['autre', 'attaque'],
+  'implacable': ['autre', 'attaque'],
+  'surveillance-x': ['autre', 'attaque'],
+  'fumee-x': ['autre', 'attaque', 'défense'],
+  'discret': ['autre', 'défense'],
+  'accomplir-la-mission': ['autre', 'attaque', 'défense'],
+  'duelliste': ['attaque', 'défense'],
+  'exemplaire': ['attaque', 'défense'],
+  'maitrise-de-lataru': ['attaque', 'défense'],
+  'maitrise-du-vaapad': ['attaque', 'défense'],
+  'tenir-bon': ['attaque', 'défense'],
+  'transport-x': ['autre', 'attaque', 'défense'],
+  'non-combattant': ['attaque', 'défense'],
+  'indifferent': ['autre', 'défense'],
+  'les-mandaloriens-sont-plus-forts-ensemble': ['attaque', 'défense'],
+};
+
+export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS].map((keyword) => ({
+  ...keyword,
+  impact: ACTIVATION_KEYWORDS.has(keyword.id) ? 'autre' : keyword.impact,
+  displaySections: KEYWORD_DISPLAY_SECTIONS[keyword.id],
+}));
