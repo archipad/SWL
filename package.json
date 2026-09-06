@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "generate:assistant-data": "node scripts/generate-assistant-reference.mjs",
+    "build": "npm run generate:assistant-data && tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
