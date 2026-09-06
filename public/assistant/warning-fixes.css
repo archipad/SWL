@@ -86,7 +86,8 @@
 .mini-upgrades .upgrade-visual>span{
   position:absolute;
   top:6px;
-  right:6px;
+  left:6px;
+  right:auto;
   bottom:auto;
   display:grid;
   place-items:center;
