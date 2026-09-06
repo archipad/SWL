@@ -17,7 +17,21 @@
   color:#071006;
 }
 .weapon-choice.on .weapon-toggle>.weapon-check{background:var(--acid);border-color:var(--acid)}
-.weapon-toggle>.weapon-copy{grid-column:2;grid-row:1;display:grid;gap:4px;min-width:0}
+.weapon-toggle>.weapon-copy{
+  grid-column:2;
+  grid-row:1;
+  display:grid;
+  place-items:initial;
+  gap:4px;
+  width:auto;
+  height:auto;
+  min-width:0;
+  border:0;
+  background:transparent;
+  color:inherit;
+}
+.weapon-choice.on .weapon-toggle>.weapon-copy,
+.weapon-choice.on .weapon-toggle>.weapon-printed-dice{border:0;background:transparent;color:inherit}
 .weapon-copy b,.weapon-copy small{display:block;overflow-wrap:anywhere}
 .weapon-toggle>.weapon-printed-dice{
   grid-column:3;
