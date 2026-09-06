@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { usePersistentState } from './storage';
 import { SEED_KEYWORDS } from '../data/keywords';
 import type { KeywordDef } from '../types';
@@ -6,7 +6,13 @@ import type { KeywordDef } from '../types';
 const STORAGE_KEY = 'swl.keywords.v1';
 
 export function useKeywordLibrary() {
-  const [keywords, setKeywords] = usePersistentState<KeywordDef[]>(STORAGE_KEY, SEED_KEYWORDS);
+  const [storedKeywords, setKeywords] = usePersistentState<KeywordDef[]>(STORAGE_KEY, SEED_KEYWORDS);
+  const keywords = useMemo(() => storedKeywords.map((keyword) => {
+    const source = SEED_KEYWORDS.find((candidate) => candidate.id === keyword.id);
+    return source
+      ? { ...keyword, impact: source.impact, displaySections: source.displaySections }
+      : keyword;
+  }), [storedKeywords]);
 
   const upsertKeyword = useCallback(
     (kw: KeywordDef) => {
