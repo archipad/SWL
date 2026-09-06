@@ -8,6 +8,7 @@
     'recharger-x', 'regenerer-x', 'reparation-x', 'restauration', 'traiter-x',
   ]);
   const sections = {
+    'precis-x': ['attaque'],
     'charge': ['autre', 'attaque'],
     'implacable': ['autre', 'attaque'],
     'surveillance-x': ['autre', 'attaque'],
