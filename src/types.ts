@@ -43,6 +43,8 @@ export interface KeywordDef {
    * affectent les deux à parts égales (ex. Duelliste).
    */
   impact: 'attaque' | 'défense' | 'autre';
+  /** Sections fonctionnelles dans lesquelles afficher une règle transversale. */
+  displaySections?: Array<'attaque' | 'défense' | 'autre'>;
   definition: string;
   /**
    * Version courte de `definition` (mêmes chiffres/mécaniques/icônes de dé,
