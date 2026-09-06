@@ -34,3 +34,6 @@
 .automation-card small, .resolution-log li { color: var(--muted); }
 .resolution-log ol { margin: 6px 0 0; padding-left: 22px; }
 .resolution-log li { padding: 3px 0; }
+.situation-check { display:grid; grid-template-columns:auto 1fr; gap:.2rem .65rem; align-items:center; margin:1rem 0; padding:.85rem 1rem; border:1px solid #66752d; background:#182119; color:#fff; font-weight:700; }
+.situation-check input { width:1.45rem; height:1.45rem; accent-color:#caff35; }
+.situation-check small { grid-column:2; color:#b8c9bd; font-weight:400; }

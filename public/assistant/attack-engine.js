@@ -27,14 +27,28 @@
     return [...options].sort((a, b) => a === 'melee' ? -1 : b === 'melee' ? 1 : a - b);
   }
 
-  function buildPool(rows, counts) {
+  function downgradeColor(color) {
+    return color === 'rouge' ? 'noir' : color === 'noir' ? 'blanc' : 'blanc';
+  }
+
+  function buildPool(rows, counts, downgradedKeys = new Set()) {
     const pool = { rouge: 0, noir: 0, blanc: 0, variable: false };
     rows.forEach((row) => {
       const multiplier = Math.max(1, Number(counts[row.key]) || 1);
       if (row.weapon.dice === 'variable') pool.variable = true;
-      else row.weapon.dice.forEach((die) => { pool[die.color] += die.count * multiplier; });
+      else row.weapon.dice.forEach((die) => {
+        const color = downgradedKeys.has(row.key) ? downgradeColor(die.color) : die.color;
+        pool[color] += die.count * multiplier;
+      });
     });
     return pool;
+  }
+
+  function effectiveCover(cover, sharpshooterX, hasBlast, immuneBlast) {
+    if (hasBlast && !immuneBlast) return 'none';
+    const value = cover === 'heavy' ? 2 : cover === 'light' ? 1 : 0;
+    const reduced = Math.max(0, value - Math.max(0, Number(sharpshooterX) || 0));
+    return reduced >= 2 ? 'heavy' : reduced === 1 ? 'light' : 'none';
   }
 
   function rerollCapacity(aimTokens, preciseX) {
@@ -81,7 +95,7 @@
   }
 
   window.SWL_ATTACK_ENGINE = {
-    rangeBounds, weaponEligible, rangeOptions, buildPool, rerollCapacity,
+    rangeBounds, weaponEligible, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity,
     convertAttack, applyImpactArmor, applyCover, applyDefense,
   };
 })();
