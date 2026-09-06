@@ -320,6 +320,7 @@ const ACTIVATION_KEYWORDS = new Set([
 ]);
 
 const KEYWORD_DISPLAY_SECTIONS: Record<string, KeywordDef['displaySections']> = {
+  'precis-x': ['attaque'],
   'charge': ['autre', 'attaque'],
   'implacable': ['autre', 'attaque'],
   'surveillance-x': ['autre', 'attaque'],
