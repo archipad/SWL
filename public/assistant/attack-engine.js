@@ -85,7 +85,7 @@
   }
 
   function applyCover(results, options) {
-    const coverCancelled = options.melee ? 0 : Math.min(
+    const coverCancelled = options.melee || options.cover === 'none' ? 0 : Math.min(
       results.hit,
       Math.max(0, Number(options.coverBlock) || 0) +
         (options.cover === 'heavy' ? Math.max(0, Number(options.coverSurge) || 0) : 0),

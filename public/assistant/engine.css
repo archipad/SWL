@@ -54,3 +54,10 @@
   .touch-counter { grid-template-columns:56px 62px 56px; }
   .touch-counter button { min-width:56px; min-height:56px; }
 }
+.rule-highlight { border:1px solid currentColor; border-left-width:5px; border-radius:4px; }
+.rule-highlight strong { font-size:1.05rem; letter-spacing:.045em; }
+.rule-highlight.cover-none { color:#ffcc54; background:#302713; }
+.rule-highlight.cover-light { color:#8eeaff; background:#132a30; }
+.rule-highlight.cover-heavy { color:#ff9d72; background:#321d16; }
+.rule-highlight small { color:#f2f6f3; }
+.no-cover-notice { grid-column:1/-1; padding:14px; border:1px solid #ffcc54; border-left:5px solid #ffcc54; background:#302713; color:#fff2bf; font-weight:800; }
