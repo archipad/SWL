@@ -37,3 +37,20 @@
 .situation-check { display:grid; grid-template-columns:auto 1fr; gap:.2rem .65rem; align-items:center; margin:1rem 0; padding:.85rem 1rem; border:1px solid #66752d; background:#182119; color:#fff; font-weight:700; }
 .situation-check input { width:1.45rem; height:1.45rem; accent-color:#caff35; }
 .situation-check small { grid-column:2; color:#b8c9bd; font-weight:400; }
+
+/* Compteurs tactiles communs aux pions et aux résultats de dés. */
+.quick-field { min-height:72px; flex-wrap:wrap; }
+.quick-label { flex:1; min-width:110px; }
+.touch-counter { display:grid; grid-template-columns:52px 64px 52px; align-items:stretch; gap:5px; margin-left:auto; }
+.touch-counter button { min-width:52px; min-height:52px; padding:0; border:1px solid var(--line); border-radius:4px; background:#243128; color:var(--text); font:800 1.55rem/1 inherit; cursor:pointer; touch-action:manipulation; }
+.touch-counter button:active:not(:disabled) { background:var(--acid); color:#071006; }
+.touch-counter button:focus-visible, .touch-counter input:focus-visible { outline:3px solid var(--acid); outline-offset:2px; }
+.touch-counter button:disabled { opacity:.28; cursor:not-allowed; }
+.touch-counter input { width:64px; min-height:52px; box-sizing:border-box; margin:0; padding:.45rem; font-size:1.3rem; font-weight:800; text-align:center; }
+.touch-counter input::-webkit-inner-spin-button, .touch-counter input::-webkit-outer-spin-button { -webkit-appearance:none; margin:0; }
+.touch-counter input[type=number] { -moz-appearance:textfield; }
+@media(max-width:760px) {
+  .quick-field { padding:10px; }
+  .touch-counter { grid-template-columns:56px 62px 56px; }
+  .touch-counter button { min-width:56px; min-height:56px; }
+}
