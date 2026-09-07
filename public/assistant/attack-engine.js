@@ -103,6 +103,26 @@
     };
   }
 
+  function applyGuardian(results, defense, options) {
+    const hitsCancelled = options.eligible
+      ? clamp(options.hitsCancelled, 0, Math.min(results.hit, options.guardianX || 0))
+      : 0;
+    const converted = Math.max(0, Number(defense.block) || 0) +
+      (options.defenseSurge === 'block' ? Math.max(0, Number(defense.surge) || 0) : 0);
+    const pierceUsed = options.pierceImmune ? 0 : clamp(options.pierceUsed, 0, Math.min(converted, options.pierceAvailable || 0));
+    const blocks = Math.max(0, converted - pierceUsed);
+    return {
+      hit: results.hit - hitsCancelled,
+      crit: results.crit,
+      hitsCancelled,
+      converted,
+      pierceUsed,
+      blocks,
+      wounds: Math.max(0, hitsCancelled - blocks),
+      pierceRemaining: Math.max(0, (Number(options.pierceAvailable) || 0) - pierceUsed),
+    };
+  }
+
   function applyCover(results, options) {
     const coverCancelled = options.melee || options.cover === 'none' ? 0 : Math.min(
       results.hit,
@@ -123,6 +143,6 @@
 
   window.SWL_ATTACK_ENGINE = {
     rangeBounds, weaponEligible, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal,
-    convertAttack, applyShields, applyImpactArmor, applyCover, applyDefense,
+    convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense,
   };
 })();
