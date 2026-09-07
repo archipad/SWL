@@ -46,6 +46,9 @@ const automatic = new Set([
   'maitrise-de-lataru',
   'maitrise-du-djem-so',
   'matamore',
+  'tenir-bon',
+  'belier-x',
+  'souffle',
 ])
 
 const assisted = new Set([

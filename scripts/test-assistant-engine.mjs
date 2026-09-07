@@ -153,4 +153,9 @@ const immuneDefense = engine.applyDefense(
 )
 assert.deepEqual({ ...immuneDefense }, { converted: 2, pierceUsed: 0, blocks: 2, wounds: 1 })
 
-console.log('Assistant attack engine: 61 assertions OK')
+const ramApplied = engine.applyRam({ hit: 2, crit: 1, unusedSurge: 1 }, 2, true)
+assert.deepEqual({ ...ramApplied }, { hit: 1, crit: 3, unusedSurge: 0, ramUsed: 2 })
+const ramUnavailable = engine.applyRam({ hit: 2, crit: 1, unusedSurge: 1 }, 2, false)
+assert.deepEqual({ ...ramUnavailable }, { hit: 2, crit: 1, unusedSurge: 1, ramUsed: 0 })
+
+console.log('Assistant attack engine: 63 assertions OK')
