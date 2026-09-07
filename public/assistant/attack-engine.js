@@ -145,8 +145,13 @@
     return { converted, pierceUsed, blocks, wounds: Math.max(0, results.hit + results.crit - blocks) };
   }
 
+  function weaponKeywordActive(profile, weapon, cardKeywordIds, keywordId) {
+    if (Array.isArray(weapon?.keywordIds)) return weapon.keywordIds.includes(keywordId);
+    return (profile?.weapons?.length || 0) === 1 && (cardKeywordIds || []).includes(keywordId);
+  }
+
   window.SWL_ATTACK_ENGINE = {
     rangeBounds, weaponEligible, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal,
-    convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense,
+    convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense, weaponKeywordActive,
   };
 })();
