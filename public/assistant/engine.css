@@ -68,3 +68,28 @@
 .guardian-picker button { min-height:54px; padding:10px; border:1px solid var(--line); background:#101713; color:var(--text); font:inherit; font-weight:800; }
 .guardian-picker button.on { border-color:var(--acid); background:var(--acid); color:#081007; }
 @media(max-width:760px) { .guardian-picker { grid-template-columns:1fr; } }
+.dice-journey { position:sticky; top:0; z-index:8; margin:0 0 16px; border:1px solid #526158; background:rgba(8,14,10,.97); box-shadow:0 8px 22px rgba(0,0,0,.3); }
+.dice-journey header { display:flex; justify-content:space-between; gap:12px; padding:9px 12px; border-bottom:1px solid #344139; color:var(--acid); }
+.dice-journey header span { color:var(--muted); font-size:.75rem; }
+.dice-journey>div { display:flex; align-items:stretch; overflow-x:auto; padding:8px; scrollbar-width:thin; }
+.journey-stage { min-width:132px; flex:1; display:grid; align-content:center; gap:4px; padding:8px 10px; border:1px solid #2f3b34; background:#111914; }
+.journey-stage.active { border-color:var(--acid); background:#1b271d; }
+.journey-stage small { color:#a9bbb0; font-size:.68rem; letter-spacing:.08em; }
+.journey-stage strong { display:flex; align-items:center; flex-wrap:wrap; gap:5px; color:#fff; }
+.journey-stage em { color:#c8d5cd; font-size:.7rem; font-style:normal; line-height:1.25; }
+.journey-stage .dice-icon { width:28px; height:28px; }
+.journey-stage .dice-badge { transform:scale(.78); transform-origin:left center; margin-right:-7px; }
+.journey-arrow { align-self:center; padding:0 5px; color:var(--acid); font-size:1.5rem; font-weight:900; }
+@media (min-width:768px) and (max-width:1180px) {
+  .attack-workspace { grid-template-columns:230px minmax(0,1fr) 230px; }
+  .resolve-center { min-width:0; }
+  .dice-journey header span { display:none; }
+  .journey-stage { min-width:118px; }
+  .weapon-choice { min-width:0; }
+  .actions { position:sticky; bottom:0; z-index:12; background:rgba(8,14,10,.96); }
+}
+@media (max-width:767px) {
+  .dice-journey { position:relative; }
+  .dice-journey header span { display:none; }
+  .journey-stage { min-width:122px; }
+}
