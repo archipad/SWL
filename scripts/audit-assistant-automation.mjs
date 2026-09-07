@@ -17,6 +17,7 @@ const automatic = new Set([
   'critique-x',
   'coup-de-chance-x',
   'deflagration',
+  'debordement',
   'encombrant',
   'haute-velocite',
   'impact-x',
