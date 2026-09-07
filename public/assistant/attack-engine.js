@@ -67,8 +67,19 @@
   }
 
   function suppressionTokens(options = {}) {
-    if (!options.ranged || !options.hadAttackResult) return 0;
+    if (options.vehicle || !options.ranged || !options.hadAttackResult) return 0;
     return 1 + (options.suppressive ? 1 : 0) + (options.overwhelm && options.aimSpent ? 1 : 0);
+  }
+
+  function moraleState(options = {}) {
+    const current = Math.max(0, Number(options.currentSuppression) || 0);
+    const gained = Math.max(0, Number(options.gainedSuppression) || 0);
+    if (options.nullCourage || options.vehicle) return { current, gained: 0, total: current, courage: null, suppressed: false, panicThreshold: null, panicRisk: false };
+    const own = Math.max(1, Number(options.courage) || 1);
+    const commander = Math.max(0, Number(options.commanderCourage) || 0);
+    const courage = Math.max(own, commander);
+    const total = current + gained;
+    return { current, gained, total, courage, suppressed: total >= courage, panicThreshold: courage * 2, panicRisk: total >= courage * 2 };
   }
 
   function applyLethal(basePierce, lethalX, aimTokens) {
@@ -199,7 +210,7 @@
   }
 
   window.SWL_ATTACK_ENGINE = {
-    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, applyLethal, effectivePierce,
+    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, moraleState, applyLethal, effectivePierce,
     convertAttack, applyRam, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
   };
 })();
