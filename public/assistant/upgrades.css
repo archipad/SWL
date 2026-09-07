@@ -27,6 +27,8 @@
 .dice-symbol.large { width: 34px; height: 34px; vertical-align: middle; }
 .tag .dice-symbol, .upgrade-definition .dice-symbol, .total .dice-symbol, .field .dice-symbol, .result-strip .dice-symbol { filter: invert(1) brightness(1.7); }
 .surge-panel strong .dice-symbol { padding: 6px; border-radius: 6px; background: #f3f2e9; }
+.surge-line { display: flex; align-items: center; gap: 9px; }
+.no-surge { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 6px; background: #0a0f0c; color: var(--muted); font-size: 1.35rem; font-style: normal; }
 .result-strip b { display: flex; align-items: center; justify-content: center; gap: 8px; }
 .field > span { display: flex; align-items: center; gap: 5px; }
 .surge-panel small { color: var(--muted); font-size: .68rem; }

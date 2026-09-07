@@ -67,11 +67,15 @@
     const surge = Math.max(0, Number(roll.surge) || 0);
     const critical = Math.min(surge, Math.max(0, Number(criticalX) || 0));
     const remaining = surge - critical;
+    const printedToHit = attackSurge === 'hit' ? remaining : 0;
+    const printedToCrit = attackSurge === 'crit' ? remaining : 0;
     return {
-      hit: Math.max(0, Number(roll.hit) || 0) + (attackSurge === 'hit' ? remaining : 0),
-      crit: Math.max(0, Number(roll.crit) || 0) + critical + (attackSurge === 'crit' ? remaining : 0),
-      unusedSurge: attackSurge ? 0 : remaining,
+      hit: Math.max(0, Number(roll.hit) || 0) + printedToHit,
+      crit: Math.max(0, Number(roll.crit) || 0) + critical + printedToCrit,
+      unusedSurge: remaining - printedToHit - printedToCrit,
       criticalUsed: critical,
+      printedToHit,
+      printedToCrit,
     };
   }
 
@@ -109,7 +113,7 @@
       : 0;
     const converted = Math.max(0, Number(defense.block) || 0) +
       (options.defenseSurge === 'block' ? Math.max(0, Number(defense.surge) || 0) : 0);
-    const pierceUsed = options.pierceImmune ? 0 : clamp(options.pierceUsed, 0, Math.min(converted, options.pierceAvailable || 0));
+    const pierceUsed = options.pierceImmune ? 0 : Math.min(converted, Math.max(0, Number(options.pierceAvailable) || 0));
     const blocks = Math.max(0, converted - pierceUsed);
     return {
       hit: results.hit - hitsCancelled,
@@ -136,7 +140,7 @@
   function applyDefense(results, defense, options) {
     const converted = Math.max(0, Number(defense.block) || 0) +
       (options.defenseSurge === 'block' ? Math.max(0, Number(defense.surge) || 0) : 0);
-    const pierceUsed = options.pierceImmune ? 0 : clamp(options.pierceUsed, 0, Math.min(converted, options.pierceX || 0));
+    const pierceUsed = options.pierceImmune ? 0 : Math.min(converted, Math.max(0, Number(options.pierceX) || 0));
     const blocks = Math.max(0, converted - pierceUsed);
     return { converted, pierceUsed, blocks, wounds: Math.max(0, results.hit + results.crit - blocks) };
   }
