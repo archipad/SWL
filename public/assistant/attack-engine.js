@@ -110,6 +110,15 @@
     return { hit: hitsAfterImpact - armorCancelled, crit: critAfterPrimitive, impactUsed, ...(primitiveConverted ? { primitiveConverted } : {}), armorCancelled };
   }
 
+  function applyRam(results, ramX, eligible) {
+    const availableSurges = Math.max(0, Number(results.unusedSurge) || 0);
+    const availableHits = Math.max(0, Number(results.hit) || 0);
+    const converted = eligible ? clamp(ramX, 0, availableSurges + availableHits) : 0;
+    const surgeConverted = Math.min(converted, availableSurges);
+    const hitConverted = converted - surgeConverted;
+    return { ...results, hit: availableHits - hitConverted, crit: Math.max(0, Number(results.crit) || 0) + converted, unusedSurge: availableSurges - surgeConverted, ramUsed: converted };
+  }
+
   function applyShields(results, options) {
     const active = Math.max(0, Number(options.activeShields) || 0);
     const ionFlipped = options.ionEligible
@@ -191,6 +200,6 @@
 
   window.SWL_ATTACK_ENGINE = {
     rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, applyLethal, effectivePierce,
-    convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
+    convertAttack, applyRam, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
   };
 })();
