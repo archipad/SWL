@@ -17,6 +17,13 @@
     return !bounds.melee && selectedRange >= bounds.min && selectedRange <= bounds.max;
   }
 
+  function weaponBlockedByImmunity(weapon, options = {}) {
+    if (!weapon) return false;
+    if (options.immuneMelee && weapon.range === 'melee') return true;
+    const bounds = rangeBounds(weapon.range);
+    return Boolean(options.immuneRange1 && bounds && bounds.max === 1);
+  }
+
   function rangeOptions(weapons) {
     const options = new Set();
     weapons.forEach((weapon) => {
@@ -156,7 +163,7 @@
   }
 
   window.SWL_ATTACK_ENGINE = {
-    rangeBounds, weaponEligible, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal,
+    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal,
     convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
   };
 })();
