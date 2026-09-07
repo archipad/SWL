@@ -10,8 +10,10 @@ const source = [
 ].join('\n')
 
 const automatic = new Set([
+  'agile',
   'armure-x',
   'bouclier-x',
+  'blocage',
   'critique-x',
   'deflagration',
   'encombrant',

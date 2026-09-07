@@ -17,6 +17,15 @@ assert.equal(engine.weaponEligible('melee', 'melee'), true)
 assert.equal(engine.weaponEligible('melee', 1), false)
 assert.deepEqual([...engine.rangeOptions([{ range: 'melee' }, { range: '2-4' }])], ['melee', 2, 3, 4])
 
+const multiWeaponProfile = { weapons: [{ name: 'Pinces', keywordIds: [] }, { name: 'Canon', keywordIds: ['impact-x'] }] }
+assert.equal(engine.weaponKeywordActive(multiWeaponProfile, multiWeaponProfile.weapons[0], ['impact-x'], 'impact-x'), false)
+assert.equal(engine.weaponKeywordActive(multiWeaponProfile, multiWeaponProfile.weapons[1], ['impact-x'], 'impact-x'), true)
+assert.equal(engine.weaponKeywordActive({ weapons: [{ name: 'Fusil' }] }, { name: 'Fusil' }, ['impact-x'], 'impact-x'), true)
+assert.equal(engine.weaponKeywordActive({ weapons: [{ name: 'A' }, { name: 'B' }] }, { name: 'A' }, ['impact-x'], 'impact-x'), false)
+assert.equal(engine.effectiveDefenseSurge(null, true, 1), 'block')
+assert.equal(engine.effectiveDefenseSurge(null, true, 0), null)
+assert.equal(engine.effectiveDefenseSurge('block', false, 0), 'block')
+
 const pool = engine.buildPool([
   { key: 'e11', weapon: { dice: [{ color: 'blanc', count: 1 }] } },
   { key: 'hh12', weapon: { dice: [{ color: 'noir', count: 3 }] } },
@@ -117,4 +126,4 @@ const immuneDefense = engine.applyDefense(
 )
 assert.deepEqual({ ...immuneDefense }, { converted: 2, pierceUsed: 0, blocks: 2, wounds: 1 })
 
-console.log('Assistant attack engine: 35 assertions OK')
+console.log('Assistant attack engine: 42 assertions OK')
