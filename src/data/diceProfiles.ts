@@ -31,6 +31,9 @@ export interface CardDiceProfile {
   weapons: WeaponProfile[];
   /** Couleur du dé de défense de l'unité (absent : carte sans défense propre — compagnon, ou amélioration). */
   defenseColor?: DiceColor;
+  /** Couleur de défense contrôlée directement sur le visuel français de l'unité. */
+  defenseVerifiedAgainstCard?: boolean;
+  defenseVerificationSource?: string;
   note?: string;
 }
 
@@ -60,7 +63,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'AG-2G Quad Laser': { weapons: [{ name: 'Quadrilaser AG-2G', dice: [{ color: 'noir', count: 6 }], range: '1-3' }] },
   'AT-RT': { weapons: [{ name: 'Griffes Agrippantes', dice: [{ color: 'rouge', count: 3 }], range: 'melee', keywordIds: ['impact-x'] }, { name: 'Fusil Blaster A300', dice: [{ color: 'blanc', count: 2 }], range: '1-3', keywordIds: [] }], defenseColor: 'rouge' },
   'AT-ST': { weapons: [{ name: 'Pinces Coupantes', dice: [{ color: 'rouge', count: 4 }], range: 'melee', keywordIds: [] }, { name: 'Blasters Jumelés MS-4', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-4', keywordIds: ['fixe', 'impact-x'] }], defenseColor: 'rouge' },
-  'AT-ST Mortar Launcher': { weapons: [{ name: 'Lance-mortier de TR-TT', dice: [{ color: 'blanc', count: 3 }], range: '4-#' }] },
+  'AT-ST Mortar Launcher': { weapons: [{ name: 'Lance-mortier de TR-TT', dice: [{ color: 'blanc', count: 3 }], range: '4-#', verifiedAgainstCard: true, verificationSource: 'Carte française Lance-mortier de TR-TT' }] },
   'Agent Kallus': { weapons: [{ name: 'Fusil-Bo J-19', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 3 }], range: '1-2' }], defenseColor: 'rouge' },
   'Ahsoka Tano': { weapons: [{ name: 'Sabres Laser d\'Ahsoka', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: 'melee' }], defenseColor: 'rouge' },
   'Battle Shield Wookiee': { weapons: [{ name: 'Bouclier de Combat', dice: [{ color: 'noir', count: 2 }], range: 'melee' }] },
@@ -73,8 +76,8 @@ const RAW: Record<string, CardDiceProfile> = {
   'Chewbacca': { weapons: [{ name: 'Prépotence', dice: [{ color: 'rouge', count: 4 }], range: 'melee', keywordIds: ['letal-x'] }, { name: 'Arbalète de Chewbacca', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }], range: '1-3', keywordIds: ['impact-x', 'perforant-x'] }], defenseColor: 'blanc' },
   'DF-90 Mortar Trooper': { weapons: [], note: 'carte extension d\'unité (personnel), pas de bloc arme propre' },
   'DH-447 Sniper': { weapons: [{ name: 'Fusil de Sniper DH-447', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-5' }] },
-  'DLT-19 Stormtrooper': { weapons: [{ name: 'Fusil Blaster DLT-19', dice: [{ color: 'rouge', count: 2 }], range: '1-4' }] },
-  'DLT-19D Trooper': { weapons: [{ name: 'Fusil Blaster DLT-19D', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 1 }], range: '1-4' }] },
+  'DLT-19 Stormtrooper': { weapons: [{ name: 'Fusil Blaster DLT-19', dice: [{ color: 'rouge', count: 2 }], range: '1-4', verifiedAgainstCard: true, verificationSource: 'Carte française Stormtrooper avec DLT-19' }] },
+  'DLT-19D Trooper': { weapons: [{ name: 'Fusil Blaster DLT-19D', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 1 }], range: '1-4', verifiedAgainstCard: true, verificationSource: 'Carte française Soldat avec DLT-19D' }] },
   'DLT-19x Sniper': { weapons: [{ name: 'Fusil DLT-19x', dice: [{ color: 'noir', count: 2 }], range: '1-5' }] },
   'DLT-20A Range Trooper': { weapons: [{ name: 'Fusil Blaster DLT-20A', dice: [{ color: 'rouge', count: 2 }], range: '1-5' }] },
   'DLT-20A Trooper': { weapons: [{ name: 'Fusil Blaster DLT-20A', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: '1-4' }] },
@@ -90,7 +93,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'Fleet Troopers': { weapons: [{ name: 'Pistolet Blaster DH-17', dice: [{ color: 'blanc', count: 2 }], range: '1-2' }], defenseColor: 'blanc' },
   'Force Choke': { weapons: [], note: 'carte de commandement (Force), pas d\'arme à dés' },
   'General Veers': { weapons: [{ name: 'Expertise du Combat', dice: [{ color: 'noir', count: 2 }], range: 'melee' }, { name: 'Fusil Blaster de Veers', dice: [{ color: 'rouge', count: 3 }], range: '1-3' }], defenseColor: 'rouge' },
-  'HH-12 Stormtrooper': { weapons: [{ name: 'Lance-roquettes HH-12', dice: [{ color: 'noir', count: 3 }], range: '2-4' }] },
+  'HH-12 Stormtrooper': { weapons: [{ name: 'Lance-roquettes HH-12', dice: [{ color: 'noir', count: 3 }], range: '2-4', verifiedAgainstCard: true, verificationSource: 'Carte française Stormtrooper avec HH-12' }] },
   'Heavy Laser Retrofit': { weapons: [{ name: 'Conversion Laser Lourd', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-4' }] },
   'Hotshot Pilot': { weapons: [], note: 'confère Tireur d\'Élite 1, pas d\'arme propre' },
   'Han Solo': { weapons: [{ name: 'Bagarre', dice: [{ color: 'blanc', count: 3 }], range: 'melee', keywordIds: [] }, { name: 'Blaster DL-44 de Han', dice: [{ color: 'rouge', count: 2 }], range: '1-2', keywordIds: ['perforant-x'] }], defenseColor: 'blanc' },
@@ -99,7 +102,7 @@ const RAW: Record<string, CardDiceProfile> = {
   '1.4 FD Laser Cannon Team': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 2 }], range: 'melee' }, { name: 'Pistolets Blaster', dice: [{ color: 'blanc', count: 4 }], range: '1-2' }, { name: 'Canon Laser 1.4 FD', dice: [{ color: 'noir', count: 5 }], range: '1-5' }], defenseColor: 'blanc' },
   'Mandalorian Resistance Clan Wren': { weapons: [{ name: 'Blasters WESTAR-35', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
   'Iden Versio': { weapons: [{ name: 'Arts Martiaux', dice: [{ color: 'noir', count: 3 }], range: 'melee', keywordIds: [] }, { name: 'Fusil DLT-20A d\'Iden', dice: [{ color: 'noir', count: 2 }], range: '1-#', keywordIds: ['haute-velocite', 'perforant-x'] }, { name: 'Répétiteur TL-50 d\'Iden', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }, { color: 'noir', count: 1 }], range: '1-3', keywordIds: ['critique-x', 'impact-x'] }], defenseColor: 'rouge' },
-  'Imperial Death Troopers': { weapons: [{ name: 'Combat Rapproché', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Blaster Léger SE-14r', dice: [{ color: 'blanc', count: 2 }], range: '1-2' }, { name: 'Fusil Blaster E-11D', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
+  'Imperial Death Troopers': { weapons: [{ name: 'Combat Rapproché', dice: [{ color: 'rouge', count: 1 }], range: 'melee', verifiedAgainstCard: true, verificationSource: 'Carte française Death Troopers Impériaux' }, { name: 'Blaster Léger SE-14r', dice: [{ color: 'blanc', count: 2 }], range: '1-2', verifiedAgainstCard: true, verificationSource: 'Carte française Death Troopers Impériaux' }, { name: 'Fusil Blaster E-11D', dice: [{ color: 'blanc', count: 1 }], range: '1-3', verifiedAgainstCard: true, verificationSource: 'Carte française Death Troopers Impériaux' }], defenseColor: 'rouge', defenseVerifiedAgainstCard: true, defenseVerificationSource: 'Carte française Death Troopers Impériaux' },
   'Imperial March': { weapons: [], note: 'carte de commandement, pas d\'arme' },
   'Imperial Officer': { weapons: [], note: 'Chef, pas d\'arme propre' },
   'Imperial Special Forces': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
@@ -126,7 +129,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'Moff Gideon': { weapons: [{ name: 'Entraînement au Combat', dice: [{ color: 'rouge', count: 2 }], range: 'melee', keywordIds: [] }, { name: 'Blaster de Gideon', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }], range: '1-2', keywordIds: ['perforant-x'] }], defenseColor: 'rouge' },
   'Offensive Push': { weapons: [], note: 'carte de commandement, pas d\'arme' },
   'Outer Rim Speeder Jockey': { weapons: [], note: 'confère Couvert 1, pas d\'arme propre' },
-  'Proton Charge Saboteur': { weapons: [{ name: 'Charge à Protons', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: 'melee-1' }] },
+  'Proton Charge Saboteur': { weapons: [{ name: 'Charge à Protons', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: 'melee-1', verifiedAgainstCard: true, verificationSource: 'Carte française Saboteur avec Charge à Protons' }] },
   'R2-D2': { weapons: [{ name: 'Électrochoc', dice: [{ color: 'blanc', count: 3 }], range: '1' }], defenseColor: 'blanc' },
   'R5 Astromech Droid': { weapons: [], note: 'Non-combattant' },
   'RPS-6 Rocket Gunner': { weapons: [{ name: 'Lance-roquettes RPS-6', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '2-4' }] },
@@ -148,17 +151,17 @@ const RAW: Record<string, CardDiceProfile> = {
   'Shoretroopers': { weapons: [{ name: 'Non armé', dice: [{ color: 'rouge', count: 1 }], range: 'melee', keywordIds: [] }, { name: 'Fusil Blaster E-22', dice: [{ color: 'blanc', count: 1 }], range: '1-3', keywordIds: ['longue-distance'] }], defenseColor: 'rouge' },
   'Shriv Suurgav': { weapons: [], note: 'carte de soutien pilote, pas d\'arme' },
   'Snowtrooper': { weapons: [], note: 'figurine additionnelle, pas d\'arme propre' },
-  'Snowtroopers': { weapons: [{ name: 'Matraque', dice: [{ color: 'blanc', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
+  'Snowtroopers': { weapons: [{ name: 'Matraque', dice: [{ color: 'blanc', count: 1 }], range: 'melee', verifiedAgainstCard: true, verificationSource: 'Carte française Snowtroopers' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3', verifiedAgainstCard: true, verificationSource: 'Carte française Snowtroopers' }], defenseColor: 'rouge', defenseVerifiedAgainstCard: true, defenseVerificationSource: 'Carte française Snowtroopers' },
   'Sonic Charge Saboteur': { weapons: [{ name: 'Charge Sonique', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: '1' }] },
   'Stormtrooper Heavy Gunner Squad': { weapons: [], note: 'carte extension d\'unité (personnel), pas de bloc arme propre' },
   'Stormtrooper Riot Squad': { weapons: [{ name: 'Bâton Étourdissant', dice: [{ color: 'blanc', count: 1 }], range: 'melee', keywordIds: ['suppressif'] }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3', keywordIds: [] }], defenseColor: 'rouge' },
   'Stormtrooper Squad': { weapons: [], note: 'règle de cohésion, pas d\'arme' },
-  'Stormtroopers': { weapons: [{ name: 'Matraque', dice: [{ color: 'blanc', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
+  'Stormtroopers': { weapons: [{ name: 'Matraque', dice: [{ color: 'blanc', count: 1 }], range: 'melee', verifiedAgainstCard: true, verificationSource: 'Carte française Stormtroopers' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'blanc', count: 1 }], range: '1-3', verifiedAgainstCard: true, verificationSource: 'Carte française Stormtroopers' }], defenseColor: 'rouge', defenseVerifiedAgainstCard: true, defenseVerificationSource: 'Carte française Stormtroopers' },
   'T-21 Stormtrooper': { weapons: [{ name: 'Blaster à Répétition T-21', dice: [{ color: 'blanc', count: 4 }], range: '1-3' }] },
   'T-21A Range Trooper': { weapons: [{ name: 'Blaster à Répétition T-21A', dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-4' }] },
   'T-21B Shoretrooper': { weapons: [{ name: 'Blaster à Répétition T-21B', dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-4' }] },
   'T-47 Airspeeder': { weapons: [{ name: 'Canon Laser Double', dice: [{ color: 'rouge', count: 3 }, { color: 'noir', count: 3 }], range: '1-3' }], defenseColor: 'rouge' },
-  'T-7 Ion Snowtrooper': { weapons: [{ name: 'Fusil T-7 à Ions', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: '1-3' }] },
+  'T-7 Ion Snowtrooper': { weapons: [{ name: 'Fusil T-7 à Ions', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: '1-3', verifiedAgainstCard: true, verificationSource: 'Carte française Snowtrooper avec T-7 à Ions' }] },
   'TL-TT': { weapons: [{ name: 'Griffes Agrippantes', dice: [{ color: 'rouge', count: 3 }], range: 'melee', keywordIds: ['impact-x'] }, { name: 'Fusil Blaster A300', dice: [{ color: 'blanc', count: 2 }], range: '1-3', keywordIds: [] }], defenseColor: 'rouge' },
   'TL-TT Flame Projector': { weapons: [{ name: 'Lance-flammes de TL-TT', dice: [{ color: 'noir', count: 2 }], range: '1' }] },
   'AT-RT Flamethrower': { weapons: [{ name: 'Lance-flammes de TL-TT', dice: [{ color: 'noir', count: 2 }], range: '1' }] },
@@ -171,7 +174,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'TR-TT': { weapons: [{ name: 'Pinces Coupantes', dice: [{ color: 'rouge', count: 4 }], range: 'melee', keywordIds: [] }, { name: 'Blasters Jumelés MS-4', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-4', keywordIds: ['fixe', 'impact-x'] }], defenseColor: 'rouge' },
   'TX-225 Occupier Tank': { weapons: [{ name: 'Canons Jumelés', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 1 }], range: '1-2', keywordIds: ['fixe', 'suppressif'] }, { name: 'Quadruples Canons', dice: [{ color: 'rouge', count: 2 }, { color: 'noir', count: 2 }], range: '1-4', keywordIds: ['fixe', 'impact-x'] }], defenseColor: 'rouge' },
   'Targeting Scopes': { weapons: [], note: 'confère Précis 1, pas d\'arme propre' },
-  'Tauntaun Riders': { weapons: [{ name: 'Cavalcade', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: 'melee', keywordIds: ['belier-x'] }, { name: 'Pistolets Blaster', dice: [{ color: 'rouge', count: 2 }], range: '1-2', keywordIds: [] }], defenseColor: 'blanc' },
+  'Tauntaun Riders': { weapons: [{ name: 'Cavalcade', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }], range: 'melee', keywordIds: ['belier-x'], verifiedAgainstCard: true, verificationSource: 'Carte française Soldats montés sur Tauntaun' }, { name: 'Pistolets Blaster', dice: [{ color: 'rouge', count: 2 }], range: '1-2', keywordIds: [], verifiedAgainstCard: true, verificationSource: 'Carte française Soldats montés sur Tauntaun' }], defenseColor: 'blanc', defenseVerifiedAgainstCard: true, defenseVerificationSource: 'Carte française Soldats montés sur Tauntaun' },
   'The Darksaber': { weapons: [{ name: 'Le Sabre Noir', dice: [{ color: 'noir', count: 5 }], range: 'melee' }] },
   'The Fifth Brother': { weapons: [{ name: 'Sabre Laser Rotatif', dice: [{ color: 'noir', count: 5 }], range: 'melee', keywordIds: ['impact-x', 'perforant-x', 'belier-x'] }, { name: 'Sabre Laser Lancé', dice: [{ color: 'noir', count: 3 }], range: '1-2', keywordIds: ['impact-x', 'perforant-x'] }], defenseColor: 'rouge' },
   'The Seventh Sister': { weapons: [{ name: 'Sabre Laser Rotatif', dice: [{ color: 'noir', count: 5 }], range: 'melee', keywordIds: ['impact-x', 'perforant-x'] }, { name: 'Sabre Laser Lancé', dice: [{ color: 'noir', count: 3 }], range: '1-2', keywordIds: ['impact-x', 'perforant-x'] }], defenseColor: 'rouge' },
