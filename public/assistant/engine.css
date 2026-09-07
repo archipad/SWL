@@ -148,6 +148,9 @@
 .data-verification { display:block; width:max-content; max-width:100%; margin-top:4px; padding:3px 6px; border-radius:4px; font-size:.62rem; font-style:normal; font-weight:900; letter-spacing:.03em; }
 .data-verification.verified { border:1px solid #86d62f; background:#1d2d18; color:#c7ff63; }
 .data-verification.unverified { border:1px solid #e5a642; background:#342616; color:#ffd082; }
+.defense-verification { margin-top:8px; padding:7px 8px; border-left:3px solid currentColor; background:#111914; font-size:.66rem; font-weight:900; line-height:1.25; }
+.defense-verification.verified { color:var(--acid); }
+.defense-verification.unverified { color:#ffbb68; }
 .empty-selection { padding:25px; border:1px dashed var(--line); text-align:center; color:var(--muted); }
 .side-heading { display:flex; align-items:center; gap:8px; margin-bottom:10px; }
 .side-heading h3 { margin:0 0 3px; }
