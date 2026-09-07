@@ -84,6 +84,18 @@ const noCover = engine.applyCover(
 )
 assert.deepEqual({ ...noCover }, { hit: 2, crit: 1, coverCancelled: 0, dodgesUsed: 1 })
 
+// L'ordre officiel est Couvert/Esquive puis Modification des dés d'attaque.
+// Une touche annulée par le couvert ne peut donc plus être convertie par Impact.
+const coveredBeforeImpact = engine.applyCover(
+  { hit: 3, crit: 0 },
+  { melee: false, cover: 'light', coverBlock: 1, coverSurge: 0, dodges: 0 },
+)
+const impactedAfterCover = engine.applyImpactArmor(
+  coveredBeforeImpact,
+  { hasArmor: true, impactX: 3, impactUsed: 3, armorUnlimited: true, armorCancelled: 0 },
+)
+assert.deepEqual({ ...impactedAfterCover }, { hit: 0, crit: 2, impactUsed: 2, armorCancelled: 0 })
+
 const defense = engine.applyDefense(
   { hit: 1, crit: 2 },
   { block: 1, surge: 1 },
@@ -105,4 +117,4 @@ const immuneDefense = engine.applyDefense(
 )
 assert.deepEqual({ ...immuneDefense }, { converted: 2, pierceUsed: 0, blocks: 2, wounds: 1 })
 
-console.log('Assistant attack engine: 34 assertions OK')
+console.log('Assistant attack engine: 35 assertions OK')
