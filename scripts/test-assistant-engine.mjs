@@ -158,4 +158,18 @@ assert.deepEqual({ ...ramApplied }, { hit: 1, crit: 3, unusedSurge: 0, ramUsed: 
 const ramUnavailable = engine.applyRam({ hit: 2, crit: 1, unusedSurge: 1 }, 2, false)
 assert.deepEqual({ ...ramUnavailable }, { hit: 2, crit: 1, unusedSurge: 1, ramUsed: 0 })
 
-console.log('Assistant attack engine: 63 assertions OK')
+// Scénario complet : conversion -> couvert/esquive -> Impact/Armure -> défense/Perforant.
+const combinedConverted = engine.convertAttack({ hit: 3, crit: 1, surge: 2, blank: 0 }, 'hit', 1)
+assert.deepEqual({ ...combinedConverted }, { hit: 4, crit: 2, unusedSurge: 0, criticalUsed: 1, printedToHit: 1, printedToCrit: 0 })
+const combinedCovered = engine.applyCover(combinedConverted, { melee: false, cover: 'heavy', coverBlock: 1, coverSurge: 1, dodges: 1 })
+assert.deepEqual({ ...combinedCovered }, { hit: 1, crit: 2, coverCancelled: 2, dodgesUsed: 1 })
+const combinedArmored = engine.applyImpactArmor(combinedCovered, { hasArmor: true, impactX: 2, impactUsed: 2, armorUnlimited: true, armorCancelled: 0 })
+assert.deepEqual({ ...combinedArmored }, { hit: 0, crit: 3, impactUsed: 1, armorCancelled: 0 })
+const combinedDefense = engine.applyDefense(combinedArmored, { block: 2, surge: 1 }, { defenseSurge: 'block', pierceX: 1, pierceImmune: false })
+assert.deepEqual({ ...combinedDefense }, { converted: 3, pierceUsed: 1, blocks: 2, wounds: 1 })
+
+// En corps-à-corps, les dés de couvert saisis ne modifient jamais les résultats.
+const meleeIgnoresCover = engine.applyCover({ hit: 3, crit: 1 }, { melee: true, cover: 'heavy', coverBlock: 3, coverSurge: 3, automaticBlock: 1, dodges: 0 })
+assert.deepEqual({ ...meleeIgnoresCover }, { hit: 3, crit: 1, coverCancelled: 0, dodgesUsed: 0 })
+
+console.log('Assistant attack engine: 68 assertions OK')
