@@ -70,6 +70,10 @@
     };
   }
 
+  function effectivePierce(pierceX, impervious) {
+    return Math.max(0, (Number(pierceX) || 0) - (impervious ? 1 : 0));
+  }
+
   function convertAttack(roll, attackSurge, criticalX) {
     const surge = Math.max(0, Number(roll.surge) || 0);
     const critical = Math.min(surge, Math.max(0, Number(criticalX) || 0));
@@ -163,7 +167,7 @@
   }
 
   window.SWL_ATTACK_ENGINE = {
-    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal,
+    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal, effectivePierce,
     convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
   };
 })();
