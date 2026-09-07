@@ -10,11 +10,11 @@
     return Number.isFinite(single) && single > 0 ? { min: single, max: single } : null;
   }
 
-  function weaponEligible(range, selectedRange) {
+  function weaponEligible(range, selectedRange, maximumRangeBonus = 0) {
     const bounds = rangeBounds(range);
     if (!bounds || selectedRange == null) return true;
     if (selectedRange === 'melee') return bounds.melee === true;
-    return !bounds.melee && selectedRange >= bounds.min && selectedRange <= bounds.max;
+    return !bounds.melee && selectedRange >= bounds.min && selectedRange <= bounds.max + Math.max(0, Number(maximumRangeBonus) || 0);
   }
 
   function weaponBlockedByImmunity(weapon, options = {}) {
@@ -29,7 +29,7 @@
     weapons.forEach((weapon) => {
       const bounds = rangeBounds(weapon.range);
       if (bounds?.melee) options.add('melee');
-      else if (bounds) for (let range = bounds.min; range <= bounds.max; range += 1) options.add(range);
+      else if (bounds) for (let range = bounds.min; range <= bounds.max + Math.max(0, Number(weapon.rangeBonus) || 0); range += 1) options.add(range);
     });
     return [...options].sort((a, b) => a === 'melee' ? -1 : b === 'melee' ? 1 : a - b);
   }
@@ -156,8 +156,20 @@
         Math.max(0, Number(options.automaticBlock) || 0) +
         (options.cover === 'heavy' ? Math.max(0, Number(options.coverSurge) || 0) : 0),
     );
-    const dodgesUsed = clamp(options.dodges, 0, Math.max(0, results.hit - coverCancelled));
-    return { hit: Math.max(0, results.hit - coverCancelled - dodgesUsed), crit: results.crit, coverCancelled, dodgesUsed };
+    const critDodgesUsed = options.dodgeCritsAllowed ? clamp(options.dodgeCrits, 0, results.crit) : 0;
+    const hitDodgesUsed = clamp(options.dodges, 0, Math.max(0, results.hit - coverCancelled));
+    const resolved = { hit: Math.max(0, results.hit - coverCancelled - hitDodgesUsed), crit: results.crit - critDodgesUsed, coverCancelled, dodgesUsed: hitDodgesUsed + critDodgesUsed };
+    return options.dodgeCritsAllowed ? { ...resolved, hitDodgesUsed, critDodgesUsed } : resolved;
+  }
+
+  function resolveStatusEffects(options = {}) {
+    const wounded = Math.max(0, Number(options.wounds) || 0) > 0;
+    return {
+      immobilize: wounded ? Math.max(0, Number(options.immobilizeX) || 0) + (options.towCable && options.targetVehicle ? 1 : 0) : 0,
+      poison: wounded && options.targetNonDroidTrooper ? Math.max(0, Number(options.poisonX) || 0) : 0,
+      towCablePivot: Boolean(wounded && options.towCable && options.targetVehicle),
+      scatter: Boolean(options.scatter && options.targetSmallTrooper),
+    };
   }
 
   function applyDefense(results, defense, options) {
@@ -179,6 +191,6 @@
 
   window.SWL_ATTACK_ENGINE = {
     rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, applyLethal, effectivePierce,
-    convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
+    convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
   };
 })();
