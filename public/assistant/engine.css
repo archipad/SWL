@@ -116,9 +116,10 @@
 .rank-filters { display:flex; gap:7px; overflow-x:auto; padding-bottom:2px; }
 .rank-filters button { flex:0 0 auto; display:flex; align-items:center; gap:6px; min-height:46px; padding:7px 11px; border:1px solid var(--line); border-radius:8px; background:#121b16; color:var(--text); font:inherit; font-size:.74rem; font-weight:800; }
 .rank-filters button.on { border-color:var(--acid); background:#25351f; color:var(--acid); }
-.rank-filters img { width:25px; height:21px; object-fit:contain; }
+.rank-filters img { width:25px; height:21px; object-fit:contain; filter:invert(1) brightness(2.8) contrast(1.2); opacity:1; }
 .tile-visual { position:relative; display:block!important; }
-.tile-visual>.rank-icon { position:absolute; left:-5px; top:-5px; width:27px; height:24px; padding:3px; border:1px solid #607067; border-radius:5px; background:#0b100de8; object-fit:contain; }
+.unit-tile { grid-template-columns:72px minmax(0,1fr) 48px; }
+.unit-tile>.rank-icon { justify-self:end; width:42px; height:38px; padding:5px; border:1px solid #53645a; border-radius:7px; background:#0b100d; object-fit:contain; }
 .rank-label { color:var(--acid)!important; font-size:.67rem; text-transform:uppercase; letter-spacing:.07em; }
 .rank-icon { width:34px; height:30px; object-fit:contain; flex:0 0 auto; filter:invert(1) brightness(1.8); }
 .rank-unknown { display:grid; place-items:center; border:1px solid var(--gold); color:var(--gold); font-weight:900; }
