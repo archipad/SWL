@@ -105,10 +105,42 @@ const keywords = sandbox.window.SWL_REFERENCE.keywords
 const reference = sandbox.window.SWL_REFERENCE
 const keywordById = Object.fromEntries(keywords.map((keyword) => [keyword.id, keyword]))
 
+const weaponDataErrors = Object.entries(reference.weapons).flatMap(([card, profile]) =>
+  (profile.weapons || []).flatMap((weapon) => {
+    const label = `${card} · ${weapon.name || '(arme sans nom)'}`
+    const errors = []
+    if (!weapon.name?.trim()) errors.push(`${label}: nom manquant`)
+    if (weapon.dice === 'variable') {
+      if (!weapon.note?.trim()) errors.push(`${label}: réserve variable sans règle de calcul`)
+    } else if (!Array.isArray(weapon.dice) || weapon.dice.length === 0) {
+      errors.push(`${label}: réserve de dés absente`)
+    } else {
+      const colors = new Set()
+      for (const die of weapon.dice) {
+        if (!['rouge', 'blanc', 'noir'].includes(die.color)) errors.push(`${label}: couleur invalide « ${die.color} »`)
+        if (!Number.isInteger(die.count) || die.count <= 0) errors.push(`${label}: quantité invalide pour ${die.color}`)
+        if (colors.has(die.color)) errors.push(`${label}: couleur ${die.color} déclarée plusieurs fois`)
+        colors.add(die.color)
+      }
+    }
+    if (weapon.verifiedAgainstCard && !weapon.verificationSource?.trim()) {
+      errors.push(`${label}: profil certifié sans source de vérification`)
+    }
+    if (!weapon.verifiedAgainstCard && weapon.verificationSource) {
+      errors.push(`${label}: source de vérification présente sans certification`)
+    }
+    return errors
+  }),
+)
+
+if (weaponDataErrors.length) {
+  throw new Error(`Profils de dés invalides :\n${weaponDataErrors.join('\n')}`)
+}
+
 const invalidWeaponRanges = Object.entries(reference.weapons).flatMap(([card, profile]) =>
   (profile.weapons || []).flatMap((weapon) => {
     const range = String(weapon.range || '').trim()
-    if (range === 'melee' || range === 'grenade' || /^\d+$/.test(range)) return []
+    if (range === 'melee' || range === 'melee-1' || range === 'grenade' || /^\d+$/.test(range)) return []
     const interval = range.match(/^(\d+)-(\d+|#)$/)
     if (interval && (interval[2] === '#' || Number(interval[1]) <= Number(interval[2]))) return []
     return [`${card} · ${weapon.name}: ${range || '(absente)'}`]
@@ -117,6 +149,41 @@ const invalidWeaponRanges = Object.entries(reference.weapons).flatMap(([card, pr
 
 if (invalidWeaponRanges.length) {
   throw new Error(`Portées d'arme invalides :\n${invalidWeaponRanges.join('\n')}`)
+}
+
+const invalidDefenseColors = Object.entries(reference.weapons).flatMap(([card, profile]) =>
+  profile.defenseColor && !['rouge', 'blanc'].includes(profile.defenseColor) ? [`${card}: ${profile.defenseColor}`] : [],
+)
+if (invalidDefenseColors.length) throw new Error(`Couleurs de défense invalides :\n${invalidDefenseColors.join('\n')}`)
+const invalidDefenseVerification = Object.entries(reference.weapons).flatMap(([card, profile]) => {
+  if (profile.defenseVerifiedAgainstCard && !profile.defenseColor) return [`${card}: défense certifiée sans couleur`]
+  if (profile.defenseVerifiedAgainstCard && !profile.defenseVerificationSource?.trim()) return [`${card}: défense certifiée sans source`]
+  if (!profile.defenseVerifiedAgainstCard && profile.defenseVerificationSource) return [`${card}: source de défense sans certification`]
+  return []
+})
+if (invalidDefenseVerification.length) {
+  throw new Error(`Certifications de défense invalides :\n${invalidDefenseVerification.join('\n')}`)
+}
+if (reference.weapons['tauntaun riders']?.defenseColor !== 'blanc') {
+  throw new Error('Les Soldats montés sur Tauntaun doivent utiliser des dés de défense blancs.')
+}
+
+const canonicalDiceChecks = [
+  ['z 6 trooper', 'Blaster Rotatif Z-6', [{ color: 'blanc', count: 6 }]],
+  ['imperial death troopers', 'Blaster Léger SE-14r', [{ color: 'blanc', count: 2 }]],
+  ['t 7 ion snowtrooper', 'Fusil T-7 à Ions', [{ color: 'blanc', count: 1 }, { color: 'noir', count: 2 }]],
+  ['dlt 19 stormtrooper', 'Fusil Blaster DLT-19', [{ color: 'rouge', count: 2 }]],
+  ['dlt 19d trooper', 'Fusil Blaster DLT-19D', [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 1 }]],
+  ['hh 12 stormtrooper', 'Lance-roquettes HH-12', [{ color: 'noir', count: 3 }]],
+  ['at st mortar launcher', 'Lance-mortier de TR-TT', [{ color: 'blanc', count: 3 }]],
+  ['proton charge saboteur', 'Charge à Protons', [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }]],
+  ['tauntaun riders', 'Pistolets Blaster', [{ color: 'rouge', count: 2 }]],
+]
+for (const [card, weaponName, expectedDice] of canonicalDiceChecks) {
+  const weapon = reference.weapons[card]?.weapons?.find((candidate) => candidate.name === weaponName)
+  if (!weapon || JSON.stringify(weapon.dice) !== JSON.stringify(expectedDice)) {
+    throw new Error(`Profil canonique altéré : ${card} · ${weaponName}`)
+  }
 }
 
 const combatKeywords = keywords.filter((keyword) =>
@@ -158,5 +225,7 @@ console.log(`Automatiques : ${counts.automatique || 0}`)
 console.log(`Assistés : ${counts['assisté'] || 0}`)
 console.log(`Non traités : ${counts['non traité'] || 0}`)
 console.log(`Portées d'arme validées : ${Object.values(reference.weapons).reduce((total, profile) => total + (profile.weapons?.length || 0), 0)}`)
+console.log(`Profils certifiés sur carte : ${Object.values(reference.weapons).reduce((total, profile) => total + (profile.weapons || []).filter((weapon) => weapon.verifiedAgainstCard).length, 0)}`)
+console.log(`Défenses certifiées sur carte : ${Object.values(reference.weapons).filter((profile) => profile.defenseVerifiedAgainstCard).length}`)
 console.log('\nMots-clés non traités :')
 console.log(rows.filter((row) => row.status === 'non traité').map((row) => `- ${row.name} [${row.id}]`).join('\n'))
