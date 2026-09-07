@@ -32,6 +32,7 @@ const automatic = new Set([
   'perforant-x',
   'precis-x',
   'profil-bas',
+  'primitif',
   'suppressif',
   'tireur-delite-x',
 ])

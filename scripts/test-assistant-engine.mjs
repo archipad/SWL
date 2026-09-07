@@ -26,6 +26,7 @@ assert.equal(engine.defenseRerollCapacity(null), 0)
 assert.equal(engine.suppressionTokens({ ranged: true, hadAttackResult: true }), 1)
 assert.equal(engine.suppressionTokens({ ranged: true, hadAttackResult: true, suppressive: true, overwhelm: true, aimSpent: true }), 3)
 assert.equal(engine.suppressionTokens({ ranged: false, hadAttackResult: true, suppressive: true, overwhelm: true, aimSpent: true }), 0)
+assert.deepEqual({ ...engine.applyImpactArmor({ hit: 2, crit: 1 }, { hasArmor: true, impactX: 1, impactUsed: 1, primitive: true, armorUnlimited: true, armorCancelled: 2 }) }, { hit: 1, crit: 0, impactUsed: 1, primitiveConverted: 2, armorCancelled: 2 })
 assert.deepEqual([...engine.rangeOptions([{ range: 'melee' }, { range: '2-4' }])], ['melee', 2, 3, 4])
 
 const multiWeaponProfile = { weapons: [{ name: 'Pinces', keywordIds: [] }, { name: 'Canon', keywordIds: ['impact-x'] }] }
@@ -147,4 +148,4 @@ const immuneDefense = engine.applyDefense(
 )
 assert.deepEqual({ ...immuneDefense }, { converted: 2, pierceUsed: 0, blocks: 2, wounds: 1 })
 
-console.log('Assistant attack engine: 55 assertions OK')
+console.log('Assistant attack engine: 56 assertions OK')
