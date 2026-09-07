@@ -131,6 +131,7 @@
     const coverCancelled = options.melee || options.cover === 'none' ? 0 : Math.min(
       results.hit,
       Math.max(0, Number(options.coverBlock) || 0) +
+        Math.max(0, Number(options.automaticBlock) || 0) +
         (options.cover === 'heavy' ? Math.max(0, Number(options.coverSurge) || 0) : 0),
     );
     const dodgesUsed = clamp(options.dodges, 0, Math.max(0, results.hit - coverCancelled));
