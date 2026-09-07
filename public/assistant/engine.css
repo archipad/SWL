@@ -93,3 +93,13 @@
   .dice-journey header span { display:none; }
   .journey-stage { min-width:122px; }
 }
+.topbar .topbar-actions { display:flex; justify-content:flex-end; gap:8px; text-align:right; }
+.topbar .topbar-actions button { min-height:40px; padding:0 10px; border:1px solid var(--line); border-radius:7px; background:#18221b; cursor:pointer; }
+.attack-history { max-width:980px; margin:12px auto; }
+.attack-history header { display:flex; justify-content:space-between; align-items:end; gap:12px; margin-bottom:14px; }
+.attack-history-list { display:grid; gap:10px; }
+.history-entry { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:10px; padding:14px; border:1px solid var(--line); border-left:4px solid var(--acid); background:var(--panel); }
+.history-entry h3,.history-entry p { margin:0; }
+.history-entry p,.history-entry small { color:var(--muted); }
+.history-score { display:grid; min-width:120px; place-content:center; text-align:center; color:var(--acid); font-size:1.5rem; font-weight:900; }
+@media(max-width:760px){.topbar .topbar-actions{gap:4px}.topbar .topbar-actions button{padding:0 6px;font-size:.78rem}.history-entry{grid-template-columns:1fr}.history-score{place-content:start;min-width:0;text-align:left}}
