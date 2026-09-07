@@ -15,6 +15,7 @@ const automatic = new Set([
   'bouclier-x',
   'blocage',
   'critique-x',
+  'coup-de-chance-x',
   'deflagration',
   'encombrant',
   'haute-velocite',
