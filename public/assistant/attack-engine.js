@@ -102,10 +102,12 @@
   function applyImpactArmor(results, options) {
     const hasArmor = Boolean(options.hasArmor);
     const impactUsed = hasArmor ? clamp(options.impactUsed, 0, Math.min(results.hit, options.impactX || 0)) : 0;
-    const hitsAfterImpact = results.hit - impactUsed;
+    const primitiveConverted = hasArmor && options.primitive ? results.crit + impactUsed : 0;
+    const hitsAfterImpact = results.hit - impactUsed + primitiveConverted;
+    const critAfterPrimitive = results.crit + impactUsed - primitiveConverted;
     const armorLimit = options.armorUnlimited ? hitsAfterImpact : Math.max(0, Number(options.armorX) || 0);
     const armorCancelled = hasArmor ? clamp(options.armorCancelled, 0, Math.min(hitsAfterImpact, armorLimit)) : 0;
-    return { hit: hitsAfterImpact - armorCancelled, crit: results.crit + impactUsed, impactUsed, armorCancelled };
+    return { hit: hitsAfterImpact - armorCancelled, crit: critAfterPrimitive, impactUsed, ...(primitiveConverted ? { primitiveConverted } : {}), armorCancelled };
   }
 
   function applyShields(results, options) {
