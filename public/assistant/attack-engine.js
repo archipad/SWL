@@ -62,6 +62,10 @@
     return Math.max(0, Number(aimTokens) || 0) * (2 + Math.max(0, Number(preciseX) || 0));
   }
 
+  function defenseRerollCapacity(luckyX) {
+    return Math.max(0, Number(luckyX) || 0);
+  }
+
   function applyLethal(basePierce, lethalX, aimTokens) {
     const lethalUsed = clamp(aimTokens, 0, Math.max(0, Number(lethalX) || 0));
     return {
@@ -167,7 +171,7 @@
   }
 
   window.SWL_ATTACK_ENGINE = {
-    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal, effectivePierce,
+    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, applyLethal, effectivePierce,
     convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
   };
 })();
