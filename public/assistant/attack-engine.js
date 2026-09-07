@@ -84,6 +84,25 @@
     return { hit: hitsAfterImpact - armorCancelled, crit: results.crit + impactUsed, impactUsed, armorCancelled };
   }
 
+  function applyShields(results, options) {
+    const active = Math.max(0, Number(options.activeShields) || 0);
+    const ionFlipped = options.ionEligible
+      ? clamp(options.ionX, 0, Math.min(active, results.hit + results.crit))
+      : 0;
+    const available = options.ranged ? Math.max(0, active - ionFlipped) : 0;
+    const critCancelled = clamp(options.shieldCrit, 0, Math.min(results.crit, available));
+    const hitCancelled = clamp(options.shieldHit, 0, Math.min(results.hit, available - critCancelled));
+    return {
+      hit: results.hit - hitCancelled,
+      crit: results.crit - critCancelled,
+      ionFlipped,
+      hitCancelled,
+      critCancelled,
+      shieldsSpent: hitCancelled + critCancelled,
+      shieldsRemaining: available - hitCancelled - critCancelled,
+    };
+  }
+
   function applyCover(results, options) {
     const coverCancelled = options.melee || options.cover === 'none' ? 0 : Math.min(
       results.hit,
@@ -104,6 +123,6 @@
 
   window.SWL_ATTACK_ENGINE = {
     rangeBounds, weaponEligible, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal,
-    convertAttack, applyImpactArmor, applyCover, applyDefense,
+    convertAttack, applyShields, applyImpactArmor, applyCover, applyDefense,
   };
 })();
