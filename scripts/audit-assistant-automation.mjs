@@ -19,6 +19,7 @@ const automatic = new Set([
   'encombrant',
   'haute-velocite',
   'impact-x',
+  'insensible',
   'immunite-deflagration',
   'immunite-armes-portee-1',
   'immunite-corps-a-corps',

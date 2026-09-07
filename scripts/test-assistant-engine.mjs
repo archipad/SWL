@@ -18,6 +18,9 @@ assert.equal(engine.weaponEligible('melee', 1), false)
 assert.equal(engine.weaponBlockedByImmunity({ range: 'melee' }, { immuneMelee: true }), true)
 assert.equal(engine.weaponBlockedByImmunity({ range: '1' }, { immuneRange1: true }), true)
 assert.equal(engine.weaponBlockedByImmunity({ range: '1-3' }, { immuneRange1: true }), false)
+assert.equal(engine.effectivePierce(3, true), 2)
+assert.equal(engine.effectivePierce(1, true), 0)
+assert.equal(engine.effectivePierce(3, false), 3)
 assert.deepEqual([...engine.rangeOptions([{ range: 'melee' }, { range: '2-4' }])], ['melee', 2, 3, 4])
 
 const multiWeaponProfile = { weapons: [{ name: 'Pinces', keywordIds: [] }, { name: 'Canon', keywordIds: ['impact-x'] }] }
@@ -139,4 +142,4 @@ const immuneDefense = engine.applyDefense(
 )
 assert.deepEqual({ ...immuneDefense }, { converted: 2, pierceUsed: 0, blocks: 2, wounds: 1 })
 
-console.log('Assistant attack engine: 47 assertions OK')
+console.log('Assistant attack engine: 50 assertions OK')
