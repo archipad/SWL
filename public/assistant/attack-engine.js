@@ -145,6 +145,10 @@
     return { converted, pierceUsed, blocks, wounds: Math.max(0, results.hit + results.crit - blocks) };
   }
 
+  function effectiveDefenseSurge(printedSurge, hasBlockKeyword, dodgesUsed) {
+    return hasBlockKeyword && Math.max(0, Number(dodgesUsed) || 0) > 0 ? 'block' : printedSurge;
+  }
+
   function weaponKeywordActive(profile, weapon, cardKeywordIds, keywordId) {
     if (Array.isArray(weapon?.keywordIds)) return weapon.keywordIds.includes(keywordId);
     return (profile?.weapons?.length || 0) === 1 && (cardKeywordIds || []).includes(keywordId);
@@ -152,6 +156,6 @@
 
   window.SWL_ATTACK_ENGINE = {
     rangeBounds, weaponEligible, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, applyLethal,
-    convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense, weaponKeywordActive,
+    convertAttack, applyShields, applyGuardian, applyImpactArmor, applyCover, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
   };
 })();
