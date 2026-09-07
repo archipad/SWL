@@ -20,6 +20,8 @@ const automatic = new Set([
   'haute-velocite',
   'impact-x',
   'immunite-deflagration',
+  'immunite-armes-portee-1',
+  'immunite-corps-a-corps',
   'immunite-perforant',
   'immunite-perforant-corps-a-corps',
   'ion-x',
