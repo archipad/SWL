@@ -104,6 +104,21 @@ const assisted = new Set([
 const keywords = sandbox.window.SWL_REFERENCE.keywords
 const reference = sandbox.window.SWL_REFERENCE
 const keywordById = Object.fromEntries(keywords.map((keyword) => [keyword.id, keyword]))
+
+const invalidWeaponRanges = Object.entries(reference.weapons).flatMap(([card, profile]) =>
+  (profile.weapons || []).flatMap((weapon) => {
+    const range = String(weapon.range || '').trim()
+    if (range === 'melee' || range === 'grenade' || /^\d+$/.test(range)) return []
+    const interval = range.match(/^(\d+)-(\d+|#)$/)
+    if (interval && (interval[2] === '#' || Number(interval[1]) <= Number(interval[2]))) return []
+    return [`${card} · ${weapon.name}: ${range || '(absente)'}`]
+  }),
+)
+
+if (invalidWeaponRanges.length) {
+  throw new Error(`Portées d'arme invalides :\n${invalidWeaponRanges.join('\n')}`)
+}
+
 const combatKeywords = keywords.filter((keyword) =>
   [keyword.impact, ...(keyword.displaySections || [])].some((section) => section === 'attaque' || section === 'défense'),
 )
@@ -142,5 +157,6 @@ console.log(`Audit Assistant : ${rows.length} mots-clés de combat`)
 console.log(`Automatiques : ${counts.automatique || 0}`)
 console.log(`Assistés : ${counts['assisté'] || 0}`)
 console.log(`Non traités : ${counts['non traité'] || 0}`)
+console.log(`Portées d'arme validées : ${Object.values(reference.weapons).reduce((total, profile) => total + (profile.weapons?.length || 0), 0)}`)
 console.log('\nMots-clés non traités :')
 console.log(rows.filter((row) => row.status === 'non traité').map((row) => `- ${row.name} [${row.id}]`).join('\n'))
