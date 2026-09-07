@@ -86,6 +86,16 @@ const cover = engine.applyCover(
   { melee: false, cover: 'heavy', coverBlock: 1, coverSurge: 1, dodges: 1 },
 )
 assert.deepEqual({ ...cover }, { hit: 1, crit: 2, coverCancelled: 2, dodgesUsed: 1 })
+const lowProfileCover = engine.applyCover(
+  { hit: 3, crit: 1 },
+  { melee: false, cover: 'light', coverBlock: 0, coverSurge: 0, automaticBlock: 1, dodges: 0 },
+)
+assert.deepEqual({ ...lowProfileCover }, { hit: 2, crit: 1, coverCancelled: 1, dodgesUsed: 0 })
+const ignoredLowProfile = engine.applyCover(
+  { hit: 2, crit: 0 },
+  { melee: false, cover: 'none', coverBlock: 0, coverSurge: 0, automaticBlock: 1, dodges: 0 },
+)
+assert.deepEqual({ ...ignoredLowProfile }, { hit: 2, crit: 0, coverCancelled: 0, dodgesUsed: 0 })
 
 const noCover = engine.applyCover(
   { hit: 3, crit: 1 },
@@ -126,4 +136,4 @@ const immuneDefense = engine.applyDefense(
 )
 assert.deepEqual({ ...immuneDefense }, { converted: 2, pierceUsed: 0, blocks: 2, wounds: 1 })
 
-console.log('Assistant attack engine: 42 assertions OK')
+console.log('Assistant attack engine: 44 assertions OK')
