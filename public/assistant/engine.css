@@ -78,7 +78,18 @@
 .journey-stage strong { display:flex; align-items:center; flex-wrap:wrap; gap:5px; color:#fff; }
 .journey-stage em { color:#c8d5cd; font-size:.7rem; font-style:normal; line-height:1.25; }
 .journey-stage .dice-icon { width:28px; height:28px; }
-.journey-stage .dice-badge { transform:scale(.78); transform-origin:left center; margin-right:-7px; }
+.journey-stage .dice-badge { width:2.15rem; height:2.15rem; transform:rotate(45deg) scale(.92); transform-origin:center; margin:2px 5px; border-radius:3px; font-size:1rem; }
+.journey-stage .dice-badge span { display:grid; width:100%; height:100%; place-items:center; transform:rotate(-45deg); line-height:1; }
+.dice-row-big .dice-badge { width:3.5rem; height:3.5rem; border-radius:4px; font-size:1.55rem; }
+.dice-journey .dice-symbol { width:31px; height:31px; filter:invert(1) brightness(2.8) contrast(1.15); }
+.resolve-center .dice-symbol { filter:invert(1) brightness(2.8) contrast(1.15); background:transparent; }
+.resolve-center .dice-badge-noir { border:2px solid #9ca69f; }
+.resolve-center .dice-badge-blanc { border:2px solid #fff; }
+.defense-dice-pool { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:12px 0 16px; padding:13px; border-left:4px solid #65c8ff; background:#102631; }
+.defense-dice-pool>span { color:#b9e9ff; font-size:.72rem; font-weight:900; letter-spacing:.1em; }
+.defense-die-badge { display:grid; width:3.5rem; height:3.5rem; place-items:center; border:2px solid #969f99; border-radius:7px; font-size:1.55rem; font-weight:900; line-height:1; }
+.defense-die-blanc { background:#f4f4f0; color:#101510; }
+.defense-die-rouge { background:#be342c; color:#fff; border-color:#ef877f; }
 .journey-arrow { align-self:center; padding:0 5px; color:var(--acid); font-size:1.5rem; font-weight:900; }
 @media (min-width:768px) and (max-width:1180px) {
   .attack-workspace { grid-template-columns:230px minmax(0,1fr) 230px; }
@@ -120,6 +131,8 @@
 .tile-visual { position:relative; display:block!important; }
 .unit-tile { grid-template-columns:72px minmax(0,1fr) 48px; }
 .unit-tile>.rank-icon { justify-self:end; width:42px; height:38px; padding:5px; border:1px solid #53645a; border-radius:7px; background:#0b100d; object-fit:contain; }
+.unit-status { display:flex!important; flex-wrap:wrap; gap:5px; margin-top:3px; }
+.unit-status b { padding:3px 6px; border:1px solid #8b6032; border-radius:5px; background:#2c2115; color:#ffd38a; font-size:.65rem; }
 .rank-label { color:var(--acid)!important; font-size:.67rem; text-transform:uppercase; letter-spacing:.07em; }
 .rank-icon { width:34px; height:30px; object-fit:contain; flex:0 0 auto; filter:invert(1) brightness(1.8); }
 .rank-unknown { display:grid; place-items:center; border:1px solid var(--gold); color:var(--gold); font-weight:900; }
