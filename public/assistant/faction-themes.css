@@ -71,6 +71,15 @@ body[data-faction-theme="imperial"] h1,body[data-faction-theme="imperial"] h2,bo
 #progress::after { content:""; position:absolute; right:16px; bottom:0; left:16px; height:1px; background:linear-gradient(90deg,transparent,var(--acid),transparent); opacity:.45; }
 #progress i { border-radius:2px; background:color-mix(in srgb,var(--panel) 88%,transparent); }
 #progress i.active,#progress i.done { box-shadow:0 0 16px color-mix(in srgb,var(--acid) 20%,transparent); }
+.attack-stepper { grid-template-columns:repeat(6,minmax(0,1fr)); }
+.dice-badge > span,.defense-die-badge > span { font-size:1.35rem; font-weight:900; line-height:1; }
+.conditional-modifiers { display:grid; gap:10px; margin:12px 0; }
+.conditional-question { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; padding:10px; border:1px solid color-mix(in srgb,var(--acid) 35%,var(--line)); background:color-mix(in srgb,var(--panel) 82%,transparent); }
+.conditional-question small { display:block; margin-top:3px; }
+.yes-no { display:grid; grid-template-columns:repeat(2,minmax(62px,1fr)); gap:7px; }
+.yes-no button { min-height:48px; border:1px solid var(--line); background:var(--raised); color:var(--text); font:inherit; font-weight:900; }
+.yes-no button.on { border-color:var(--acid); background:var(--acid); color:#071006; box-shadow:0 0 14px color-mix(in srgb,var(--acid) 28%,transparent); }
+@media(max-width:760px){.conditional-question{grid-template-columns:1fr}.yes-no{width:100%}}
 .intro h1 { letter-spacing:.02em; text-transform:uppercase; }
 .army-switch,.unit-tools,.overview,.attack-workspace,.rules-panel,.morale-panel,.attack-history,.unit-tile,.weapon-choice,.journey-stage {
   border-radius:2px!important;
