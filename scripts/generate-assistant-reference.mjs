@@ -40,6 +40,17 @@ try {
       profile.defenseVerifiedAgainstCard = true;
       profile.defenseVerificationSource = 'Certification visuelle centralisée GitHub';
     }
+    if (certification.unitStats) {
+      profile.unitStats = {
+        ...certification.unitStats,
+        verifiedAgainstCard: true,
+        verificationSource: 'Certification visuelle centralisée GitHub',
+      };
+    }
+    if (Number.isInteger(certification.addedModels)) {
+      profile.addedModels = certification.addedModels;
+      profile.addedModelsVerifiedAgainstCard = true;
+    }
   }
 
   const reference = {
