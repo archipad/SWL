@@ -1,0 +1,115 @@
+/* Couche visuelle uniquement : le moteur et la structure des écrans restent inchangés. */
+body {
+  position:relative;
+  isolation:isolate;
+  font-family:"Share Tech Mono",monospace;
+  transition:background-color .2s ease,color .2s ease;
+}
+body::before,body::after {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+}
+body[data-faction-theme="rebel"] {
+  --bg:#0a0e15;
+  --panel:#0f1621;
+  --raised:#142231;
+  --line:rgba(143,214,255,.25);
+  --text:#e8f2fb;
+  --muted:#8fa9bd;
+  --acid:#ff8c1a;
+  --gold:#ffb35d;
+  --blue:#7fd8ff;
+  --red:#ff765f;
+  background:#0a0e15;
+}
+body[data-faction-theme="rebel"]::before {
+  background:radial-gradient(900px 520px at 12% -8%,rgba(255,140,26,.13),transparent 62%),linear-gradient(180deg,#111a24,#0a0e15 72%);
+}
+body[data-faction-theme="rebel"]::after {
+  opacity:.55;
+  background-image:repeating-linear-gradient(0deg,rgba(127,216,255,.045) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(127,216,255,.045) 0 1px,transparent 1px 40px);
+  mask-image:linear-gradient(to bottom,#000,transparent 82%);
+}
+body[data-faction-theme="imperial"] {
+  --bg:#0a0b0d;
+  --panel:#15181c;
+  --raised:#1b1f24;
+  --line:rgba(220,225,230,.18);
+  --text:#e6eaed;
+  --muted:#929ca5;
+  --acid:#ff4550;
+  --gold:#ff8b91;
+  --blue:#b8c5ce;
+  --red:#ff4550;
+  background:#0a0b0d;
+}
+body[data-faction-theme="imperial"]::before {
+  background:radial-gradient(980px 560px at 82% -12%,rgba(200,35,44,.14),transparent 62%),linear-gradient(180deg,#14171b,#0a0b0d 72%);
+}
+body[data-faction-theme="imperial"]::after {
+  opacity:.48;
+  background-image:repeating-linear-gradient(60deg,rgba(200,35,44,.055) 0 1px,transparent 1px 46px),repeating-linear-gradient(-60deg,rgba(200,35,44,.055) 0 1px,transparent 1px 46px),repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);
+  mask-image:linear-gradient(to bottom,#000,transparent 88%);
+}
+body[data-faction-theme="rebel"] h1,body[data-faction-theme="rebel"] h2,body[data-faction-theme="rebel"] h3,body[data-faction-theme="rebel"] strong,body[data-faction-theme="rebel"] button {
+  font-family:"Rajdhani",sans-serif;
+}
+body[data-faction-theme="imperial"] h1,body[data-faction-theme="imperial"] h2,body[data-faction-theme="imperial"] h3,body[data-faction-theme="imperial"] strong,body[data-faction-theme="imperial"] button {
+  font-family:"Orbitron",sans-serif;
+}
+.topbar {
+  border-bottom-color:var(--line);
+  background:color-mix(in srgb,var(--bg) 92%,transparent);
+}
+.topbar strong { letter-spacing:.12em; text-transform:uppercase; }
+.topbar-actions button { white-space:nowrap; }
+.topbar small,.kicker { color:var(--acid); text-shadow:0 0 14px color-mix(in srgb,var(--acid) 58%,transparent); }
+#progress { position:sticky; top:64px; margin:0; }
+#progress::after { content:""; position:absolute; right:16px; bottom:0; left:16px; height:1px; background:linear-gradient(90deg,transparent,var(--acid),transparent); opacity:.45; }
+#progress i { border-radius:2px; background:color-mix(in srgb,var(--panel) 88%,transparent); }
+#progress i.active,#progress i.done { box-shadow:0 0 16px color-mix(in srgb,var(--acid) 20%,transparent); }
+.intro h1 { letter-spacing:.02em; text-transform:uppercase; }
+.army-switch,.unit-tools,.overview,.attack-workspace,.rules-panel,.morale-panel,.attack-history,.unit-tile,.weapon-choice,.journey-stage {
+  border-radius:2px!important;
+  background-color:color-mix(in srgb,var(--panel) 94%,transparent)!important;
+  box-shadow:0 18px 38px rgba(0,0,0,.22);
+}
+body[data-faction-theme="rebel"] .army-switch,body[data-faction-theme="rebel"] .unit-tools,body[data-faction-theme="rebel"] .overview,body[data-faction-theme="rebel"] .attack-workspace {
+  box-shadow:inset 2px 2px 0 -1px rgba(127,216,255,.7),inset -2px -2px 0 -1px rgba(127,216,255,.45),0 18px 38px rgba(0,0,0,.28);
+}
+body[data-faction-theme="imperial"] .overview,body[data-faction-theme="imperial"] .attack-workspace,body[data-faction-theme="imperial"] .unit-tools {
+  border-color:rgba(255,69,80,.22);
+  box-shadow:inset 0 3px 0 rgba(200,35,44,.6),0 18px 38px rgba(0,0,0,.38);
+}
+.unit-tile { position:relative; overflow:hidden; }
+.unit-tile::after { content:""; position:absolute; right:0; bottom:0; width:22px; height:22px; border-right:2px solid var(--acid); border-bottom:2px solid var(--acid); opacity:.65; }
+.unit-tile:hover,.unit-tile:focus-visible { box-shadow:0 0 22px color-mix(in srgb,var(--acid) 22%,transparent); }
+.unit-tile .rank-label,.army-title span { color:var(--acid)!important; letter-spacing:.08em; }
+button.primary,.army-switch button.active,.rank-filters button.on,.range-picker button.on,.cover-options button.on {
+  border-radius:2px!important;
+  box-shadow:0 0 24px color-mix(in srgb,var(--acid) 34%,transparent);
+}
+body[data-faction-theme="rebel"] button.primary { color:#1a1000; }
+body[data-faction-theme="imperial"] button.primary { color:#fff; }
+.section-heading,.side-heading,.dice-journey>header { border-bottom-color:var(--line); }
+.combat-side.attack { border-top:3px solid var(--acid); }
+.combat-side.defense { border-top:3px solid var(--blue); }
+.automation-card,.rule-highlight { box-shadow:inset 3px 0 0 var(--acid); }
+.dice-pool>span { font-size:.92rem; line-height:1.2; }
+.dice-pool .attack-die b { font-size:1.55rem; line-height:1; }
+.dice-pool .attack-die small { font-size:.74rem; }
+.cumbersome-checks { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:10px 0; }
+.cumbersome-checks .situation-check { margin:0; }
+.cumbersome-checks .mandatory-check { border-color:var(--acid); }
+.roll-conversion-panel .surge-line { gap:4px; }
+.roll-conversion-panel .surge-line .dice-symbol { width:24px; height:24px; padding:4px; }
+.roll-conversion-panel>strong:first-child { font-size:.78rem; letter-spacing:.06em; }
+@media (max-width:850px) {
+  .topbar strong { letter-spacing:.06em; }
+  .topbar-actions button { font-size:.72rem; }
+  body[data-faction-theme="imperial"] h1 { font-size:clamp(1.4rem,5vw,2.4rem); }
+  .cumbersome-checks { grid-template-columns:1fr; }
+}
