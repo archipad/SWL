@@ -447,5 +447,1871 @@
       }
     ],
     "defenseColor": "rouge"
+  },
+  "a280 cfe pistol sniper config": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "A280, Config Fusil",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-#"
+      }
+    ]
+  },
+  "rt 97c pintle mount": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "RT-97C sur Pivot",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "rt 97c dewback rider": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster RT-97C",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "cr 24 flame rifle": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Lance-flammes CR-24",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      }
+    ]
+  },
+  "e 11d grenade launcher config": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "E-11D Lance-grenades",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ]
+  },
+  "e 11d focused strike config": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "E-11D Frappe Concentrée",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "cleaver dark trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Tranchoir",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      }
+    ]
+  },
+  "t 21 special forces trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster à Répétition T-21",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 4
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "sm 9 dark trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Lanceur à Fragmentation SM-9",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ]
+  },
+  "gideon hask": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "E-11 de Gideon",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "del meeko": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "DLT-19x de Del",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-5"
+      }
+    ]
+  },
+  "dt f16": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster E-11D",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "rt 97c stormtrooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster RT-97C",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "x 34 landspeeder": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "wookiee warriors kashyyyk resistance": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Carabine X1",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "wookiee warriors freedom fighters": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Poignard Ryyk",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Pistolet Kashyyyk",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "ursa wren": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster d'Ursa",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ]
+  },
+  "tristan wren": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster de Tristan",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "the seventh sister": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Sabre Laser Rotatif",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 5
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Sabre Laser Lancé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "the fifth brother": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Sabre Laser Rotatif",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 5
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Sabre Laser Lancé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "the darksaber": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Le Sabre Noir",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 5
+          }
+        ],
+        "range": "melee"
+      }
+    ]
+  },
+  "tx 225 occupier tank": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Canons Jumelés",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      },
+      {
+        "index": 1,
+        "name": "Quadruples Canons",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "tr tt": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Pinces Coupantes",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blasters Jumelés MS-4",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "x 34 mark ii blaster": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster Moyen Mark II",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 4
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "x 34 gunner": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster A300",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "tl tt rotary blaster": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster Rotatif de TL-TT",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 5
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "tl tt laser cannon": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Canon Laser de TL-TT",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "2-4"
+      }
+    ]
+  },
+  "ax 108 ground buzzer": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Ax-108 « Ground Buzzer »",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 4
+          }
+        ],
+        "range": "1-2"
+      }
+    ]
+  },
+  "t 47 airspeeder": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Canon Laser Double",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "at rt flamethrower": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Lance-flammes de TL-TT",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1"
+      }
+    ]
+  },
+  "tl tt flame projector": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Lance-flammes de TL-TT",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1"
+      }
+    ]
+  },
+  "t 21b shoretrooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster à Répétition T-21B",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "t 21a range trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster à Répétition T-21A",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "t 21 stormtrooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster à Répétition T-21",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 4
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "stormtrooper riot squad": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Bâton Étourdissant",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster E-11",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "sonic charge saboteur": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Charge Sonique",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1"
+      }
+    ]
+  },
+  "dark trooper squad": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Poing Écrasant",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster E-11D",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "director orson krennic": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster de Krennic",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "flametrooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Lance-flammes",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1"
+      }
+    ]
+  },
+  "fleet troopers": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Pistolet Blaster DH-17",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "general veers": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Expertise du Combat",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster de Veers",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "heavy laser retrofit": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Conversion Laser Lourd",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "han solo": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Bagarre",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster DL-44 de Han",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "rebel sleeper cell": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Pack d'Explosifs",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Pistolets Blaster",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 2,
+        "name": "Pistolets Blaster",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "mandalorian resistance clan wren": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blasters WESTAR-35",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "imperial special forces": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster E-11",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "jetpack rockets": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Roquettes Dorsales",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "3-4"
+      }
+    ]
+  },
+  "k 2so": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Domination",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "range": "melee"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "laat le patrol transport": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Canons Laser Jumelés",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "leia organa": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Arts Martiaux",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster de Leia",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "luke skywalker hero of the rebellion": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Sabre Laser d'Anakin",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster de Luke",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "m 45 ion blaster": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster Ionique M-45",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "mpl 57 ion trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "MPL-57 à Ions",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "mandalorian resistance": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blasters WESTAR-35",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "mo dk power harpoon": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Harpon Magnétique Mo/DK",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ]
+  },
+  "r2 d2": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Électrochoc",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "1"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "range troopers": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Coup de Botte-crampon",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster E-10R",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-4"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "rebel commandos strike team": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster A280",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "rebel veterans": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster A280",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "saber throw": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Sabre Lancé",
+        "dice": "variable",
+        "range": "1-2"
+      }
+    ]
+  },
+  "xs iv dark trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Canon d'Assaut XS-IV",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 4
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "scatter gun trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil à Dispersion",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ]
+  },
+  "scout troopers strike team": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster de Poche EC-17",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "tl tt": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Griffes Agrippantes",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster A300",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "a a5 speeder truck": {
+    "weapons": [],
+    "defenseColor": "blanc"
+  },
+  "1 4 fd laser cannon team": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Pistolets Blaster",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 4
+          }
+        ],
+        "range": "1-2"
+      },
+      {
+        "index": 2,
+        "name": "Canon Laser 1.4 FD",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 5
+          }
+        ],
+        "range": "1-5"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "iden versio": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Arts Martiaux",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil DLT-20A d'Iden",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-#"
+      },
+      {
+        "index": 2,
+        "name": "Répétiteur TL-50 d'Iden",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "imperial special forces inferno squad": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Combat Rapproché",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster E-11",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "jyn erso": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Tonfa Télescopique",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 4
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Pistolet Blaster A-180",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "kx series security droids": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Oppression",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      }
+    ]
+  },
+  "lando calrissian": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Plan de Secours",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster X-8 de Lando",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "long gun wookiee": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Arme d'Épaule",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "luke skywalker jedi knight": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Sabre Laser de Luke",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 7
+          }
+        ],
+        "range": "melee"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "mpl 57 barrage trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "MPL-57 de Barrage",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "major marquand": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Lance-grenades",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      },
+      {
+        "index": 1,
+        "name": "Blasters Légers Jumelés 88",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      },
+      {
+        "index": 2,
+        "name": "Blasters Jumelés MS-4",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "mark ii medium blaster trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster Moyen Mark II",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 4
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "moff gideon": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster de Gideon",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "rps 6 rocket gunner": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Lance-roquettes RPS-6",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "2-4"
+      }
+    ]
+  },
+  "rebel commandos": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster A280",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "rebel troopers": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster A280",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "sx 21 trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster à Dispersion SX-21",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ]
+  },
+  "shoretroopers": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster E-22",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "sabine wren": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blasters WESTAR-35",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "scout troopers": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster de Poche EC-17",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
   }
 }
