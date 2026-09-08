@@ -2662,6 +2662,7 @@
   },
   "df 90 mortar trooper": {
     "weapons": [],
+    "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 3,
       "courage": 2,
@@ -2678,6 +2679,7 @@
   },
   "dewback rider": {
     "weapons": [],
+    "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": 2,
@@ -2698,6 +2700,7 @@
   },
   "e web heavy blaster team": {
     "weapons": [],
+    "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 4,
       "courage": 2,
@@ -2790,6 +2793,7 @@
   },
   "stormtrooper heavy gunner squad": {
     "weapons": [],
+    "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 1,
