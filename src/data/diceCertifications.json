@@ -133,5 +133,319 @@
       }
     ],
     "defenseColor": "blanc"
+  },
+  "agent kallus": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil-Bo J-19",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "ahsoka tano": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Sabres Laser d'Ahsoka",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee"
+      }
+    ],
+    "defenseColor": "rouge"
+  },
+  "battle shield wookiee": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Bouclier de Combat",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee"
+      }
+    ]
+  },
+  "beskad duelist": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Vibrolame",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "melee"
+      }
+    ]
+  },
+  "bowcaster wookiee": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Arbalète",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "c 3po": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Coup de Pied Maladroit",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      }
+    ]
+  },
+  "cm o 93 trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "CM-O/93",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 4
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "cassian andor": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Arts Martiaux",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Blaster Modulaire de Cassian",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "chewbacca": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Prépotence",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "index": 1,
+        "name": "Arbalète de Chewbacca",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc"
+  },
+  "dh 447 sniper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil de Sniper DH-447",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-5"
+      }
+    ]
+  },
+  "dlt 19x sniper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil DLT-19x",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-5"
+      }
+    ]
+  },
+  "t 21 dewback rider": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster T-21",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 4
+          }
+        ],
+        "range": "1-3"
+      }
+    ]
+  },
+  "dlt 19 pintle mount": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "DLT-19 sur Pivot",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "dlt 20a range trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster DLT-20A",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-5"
+      }
+    ]
+  },
+  "dlt 20a trooper": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster DLT-20A",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ]
+  },
+  "dw 3 concussion grenade launcher": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Lance-grenades DW-3",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ]
+  },
+  "darth vader dark lord of the sith": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Sabre Laser de Vador",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 6
+          }
+        ],
+        "range": "melee"
+      }
+    ],
+    "defenseColor": "rouge"
   }
 }
