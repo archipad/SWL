@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/diceCertifications.json public/assistant/reference-data.js
+          git add src/data/diceCertifications.json public/assistant/reference-data.js public/assistant/index.html
           git commit -m "Certifie les dés : ${{ github.event.issue.title }}"
           git push origin HEAD:claude/star-wars-legion-app-49rc3z
       - uses: actions/github-script@v7
