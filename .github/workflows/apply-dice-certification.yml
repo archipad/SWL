@@ -1,0 +1,55 @@
+name: Appliquer une certification de dés
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  apply:
+    if: >-
+      github.event.issue.pull_request == null &&
+      github.event.comment.body == '/appliquer-certification' &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/star-wars-legion-app-49rc3z
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - uses: actions/github-script@v7
+        id: payload
+        with:
+          script: |
+            const body = context.payload.issue.body || ''
+            const match = body.match(/<!-- SWL_DICE_CERTIFICATION\s*([\s\S]*?)\s*-->/)
+            if (!match) core.setFailed('Bloc de certification absent')
+            JSON.parse(match[1])
+            require('fs').writeFileSync('certification-payload.json', match[1])
+      - run: npm ci
+      - run: node scripts/apply-dice-certification.mjs certification-payload.json
+      - run: npm run verify:assistant-dice
+      - run: npm run build
+      - name: Enregistrer la certification
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/diceCertifications.json public/assistant/reference-data.js
+          git commit -m "Certifie les dés : ${{ github.event.issue.title }}"
+          git push origin HEAD:claude/star-wars-legion-app-49rc3z
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '✅ Certification appliquée, tests validés et déploiement déclenché.'
+            })
+            await github.rest.issues.update({owner:context.repo.owner,repo:context.repo.repo,issue_number:context.issue.number,state:'closed'})
