@@ -34,6 +34,17 @@ export interface CardDiceProfile {
   /** Couleur de défense contrôlée directement sur le visuel français de l'unité. */
   defenseVerifiedAgainstCard?: boolean;
   defenseVerificationSource?: string;
+  /** Caractéristiques imprimées de la carte Unité, certifiées avec le même circuit que les dés. */
+  unitStats?: {
+    woundsPerModel: number;
+    courage: number | null;
+    baseModels: number;
+    verifiedAgainstCard?: boolean;
+    verificationSource?: string;
+  };
+  /** Nombre de figurines ajoutées par une carte d'amélioration. */
+  addedModels?: number;
+  addedModelsVerifiedAgainstCard?: boolean;
   note?: string;
 }
 
