@@ -32,7 +32,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 3,
+      "courage": null,
+      "baseModels": 2
+    }
   },
   "88i twin light blaster": {
     "weapons": [
@@ -55,7 +60,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "ag 2g quad laser": {
     "weapons": [
@@ -70,7 +76,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "at rt": {
     "weapons": [
@@ -97,7 +104,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "at st": {
     "weapons": [
@@ -132,7 +144,12 @@
         "range": "1-4"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 11,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "agent kallus": {
     "weapons": [
@@ -152,7 +169,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "ahsoka tano": {
     "weapons": [
@@ -176,7 +198,12 @@
         "range": "melee"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1
+    }
   },
   "battle shield wookiee": {
     "weapons": [
@@ -191,7 +218,8 @@
         ],
         "range": "melee"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "beskad duelist": {
     "weapons": [
@@ -206,7 +234,8 @@
         ],
         "range": "melee"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "bowcaster wookiee": {
     "weapons": [
@@ -225,7 +254,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "c 3po": {
     "weapons": [
@@ -240,7 +270,8 @@
         ],
         "range": "melee"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "cm o 93 trooper": {
     "weapons": [
@@ -255,7 +286,8 @@
         ],
         "range": "1-4"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "cassian andor": {
     "weapons": [
@@ -286,7 +318,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "chewbacca": {
     "weapons": [
@@ -317,7 +354,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 9,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "dh 447 sniper": {
     "weapons": [
@@ -336,7 +378,8 @@
         ],
         "range": "1-5"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "dlt 19x sniper": {
     "weapons": [
@@ -351,7 +394,8 @@
         ],
         "range": "1-5"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "t 21 dewback rider": {
     "weapons": [
@@ -396,7 +440,8 @@
         ],
         "range": "1-5"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "dlt 20a trooper": {
     "weapons": [
@@ -415,7 +460,8 @@
         ],
         "range": "1-4"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "dw 3 concussion grenade launcher": {
     "weapons": [
@@ -430,7 +476,8 @@
         ],
         "range": "1-2"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "darth vader dark lord of the sith": {
     "weapons": [
@@ -446,7 +493,12 @@
         "range": "melee"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 8,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "a280 cfe pistol sniper config": {
     "weapons": [
@@ -465,7 +517,8 @@
         ],
         "range": "1-#"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "rt 97c pintle mount": {
     "weapons": [
@@ -928,7 +981,12 @@
         "range": "1-4"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 11,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "x 34 mark ii blaster": {
     "weapons": [
@@ -943,7 +1001,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "x 34 gunner": {
     "weapons": [
@@ -958,7 +1017,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "tl tt rotary blaster": {
     "weapons": [
@@ -973,7 +1033,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "tl tt laser cannon": {
     "weapons": [
@@ -992,7 +1053,8 @@
         ],
         "range": "2-4"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "ax 108 ground buzzer": {
     "weapons": [
@@ -1007,7 +1069,8 @@
         ],
         "range": "1-2"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "t 47 airspeeder": {
     "weapons": [
@@ -1027,7 +1090,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 7,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "at rt flamethrower": {
     "weapons": [
@@ -1042,7 +1110,8 @@
         ],
         "range": "1"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "tl tt flame projector": {
     "weapons": [
@@ -1057,7 +1126,8 @@
         ],
         "range": "1"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "t 21b shoretrooper": {
     "weapons": [
@@ -1076,7 +1146,8 @@
         ],
         "range": "1-4"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "t 21a range trooper": {
     "weapons": [
@@ -1095,7 +1166,8 @@
         ],
         "range": "1-4"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "t 21 stormtrooper": {
     "weapons": [
@@ -1110,7 +1182,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "stormtrooper riot squad": {
     "weapons": [
@@ -1137,7 +1210,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4
+    }
   },
   "sonic charge saboteur": {
     "weapons": [
@@ -1160,7 +1238,8 @@
         ],
         "range": "1"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "dark trooper squad": {
     "weapons": [
@@ -1191,7 +1270,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 2,
+      "courage": null,
+      "baseModels": 3
+    }
   },
   "director orson krennic": {
     "weapons": [
@@ -1218,7 +1302,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "flametrooper": {
     "weapons": [
@@ -1233,7 +1322,8 @@
         ],
         "range": "1"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "fleet troopers": {
     "weapons": [
@@ -1249,7 +1339,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4
+    }
   },
   "general veers": {
     "weapons": [
@@ -1276,7 +1371,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "heavy laser retrofit": {
     "weapons": [
@@ -1299,7 +1399,8 @@
         ],
         "range": "1-4"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "han solo": {
     "weapons": [
@@ -1326,7 +1427,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "rebel sleeper cell": {
     "weapons": [
@@ -1368,7 +1474,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 6
+    }
   },
   "mandalorian resistance clan wren": {
     "weapons": [
@@ -1384,7 +1495,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 2,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "imperial special forces": {
     "weapons": [
@@ -1411,7 +1527,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    }
   },
   "jetpack rockets": {
     "weapons": [
@@ -1426,7 +1547,8 @@
         ],
         "range": "3-4"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "k 2so": {
     "weapons": [
@@ -1442,7 +1564,12 @@
         "range": "melee"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "laat le patrol transport": {
     "weapons": [
@@ -1462,7 +1589,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 8,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "leia organa": {
     "weapons": [
@@ -1489,7 +1621,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "luke skywalker hero of the rebellion": {
     "weapons": [
@@ -1524,7 +1661,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1
+    }
   },
   "m 45 ion blaster": {
     "weapons": [
@@ -1543,7 +1685,8 @@
         ],
         "range": "1-4"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "mpl 57 ion trooper": {
     "weapons": [
@@ -1562,7 +1705,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "mandalorian resistance": {
     "weapons": [
@@ -1578,7 +1722,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 3
+    }
   },
   "mo dk power harpoon": {
     "weapons": [
@@ -1593,7 +1742,8 @@
         ],
         "range": "1-2"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "r2 d2": {
     "weapons": [
@@ -1609,7 +1759,12 @@
         "range": "1"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "range troopers": {
     "weapons": [
@@ -1636,7 +1791,12 @@
         "range": "1-4"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    }
   },
   "rebel commandos strike team": {
     "weapons": [
@@ -1663,7 +1823,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "rebel veterans": {
     "weapons": [
@@ -1690,7 +1855,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4
+    }
   },
   "saber throw": {
     "weapons": [
@@ -1700,7 +1870,8 @@
         "dice": "variable",
         "range": "1-2"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "xs iv dark trooper": {
     "weapons": [
@@ -1730,7 +1901,8 @@
         ],
         "range": "1-2"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "scout troopers strike team": {
     "weapons": [
@@ -1757,7 +1929,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "tl tt": {
     "weapons": [
@@ -1784,11 +1961,21 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "a a5 speeder truck": {
     "weapons": [],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 8,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "1 4 fd laser cannon team": {
     "weapons": [
@@ -1826,7 +2013,12 @@
         "range": "1-5"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "iden versio": {
     "weapons": [
@@ -1872,7 +2064,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1
+    }
   },
   "imperial special forces inferno squad": {
     "weapons": [
@@ -1899,7 +2096,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 2,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "jyn erso": {
     "weapons": [
@@ -1930,7 +2132,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1
+    }
   },
   "kx series security droids": {
     "weapons": [
@@ -1945,7 +2152,8 @@
         ],
         "range": "melee"
       }
-    ]
+    ],
+    "addedModels": 2
   },
   "lando calrissian": {
     "weapons": [
@@ -1976,7 +2184,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "long gun wookiee": {
     "weapons": [
@@ -1991,7 +2204,8 @@
         ],
         "range": "1-4"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "luke skywalker jedi knight": {
     "weapons": [
@@ -2007,7 +2221,12 @@
         "range": "melee"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 7,
+      "courage": 4,
+      "baseModels": 1
+    }
   },
   "mpl 57 barrage trooper": {
     "weapons": [
@@ -2026,7 +2245,8 @@
         ],
         "range": "1-3"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "major marquand": {
     "weapons": [
@@ -2080,7 +2300,12 @@
         "range": "1-4"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 11,
+      "courage": null,
+      "baseModels": 1
+    }
   },
   "mark ii medium blaster trooper": {
     "weapons": [
@@ -2107,7 +2332,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "moff gideon": {
     "weapons": [
@@ -2138,7 +2368,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1
+    }
   },
   "rps 6 rocket gunner": {
     "weapons": [
@@ -2161,7 +2396,8 @@
         ],
         "range": "2-4"
       }
-    ]
+    ],
+    "addedModels": 0
   },
   "rebel commandos": {
     "weapons": [
@@ -2188,7 +2424,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    }
   },
   "rebel troopers": {
     "weapons": [
@@ -2215,7 +2456,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4
+    }
   },
   "sx 21 trooper": {
     "weapons": [
@@ -2234,7 +2480,8 @@
         ],
         "range": "1-2"
       }
-    ]
+    ],
+    "addedModels": 1
   },
   "shoretroopers": {
     "weapons": [
@@ -2261,7 +2508,12 @@
         "range": "1-3"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4
+    }
   },
   "sabine wren": {
     "weapons": [
@@ -2285,7 +2537,12 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "rouge"
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    }
   },
   "scout troopers": {
     "weapons": [
@@ -2312,6 +2569,203 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc"
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    }
+  },
+  "snowtroopers": {
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4
+    }
+  },
+  "tauntaun riders": {
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 2,
+      "baseModels": 2
+    }
+  },
+  "snowtrooper squad expansion": {
+    "weapons": [],
+    "addedModels": 5
+  },
+  "2 1b medical droid": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "imperial tie pilot": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "at st mortar launcher": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "burst of speed": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "df 90 mortar trooper": {
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 3,
+      "courage": 2,
+      "baseModels": 1
+    }
+  },
+  "dlt 19 stormtrooper": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "dlt 19d trooper": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "dewback rider": {
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    }
+  },
+  "imperial hammers elite armor pilot": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "general weiss": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "first sergeant arbmab": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "e web heavy blaster team": {
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 2,
+      "baseModels": 1
+    }
+  },
+  "fx 9 medical droid": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "fleet trooper squad": {
+    "weapons": [],
+    "addedModels": 5
+  },
+  "force choke": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "hh 12 stormtrooper": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "hotshot pilot": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "imperial death troopers": {
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    }
+  },
+  "imperial march": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "imperial officer": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "linked targeting array": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "mandalorian combat shields": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "offensive push": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "outer rim speeder jockey": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "proton charge saboteur": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "r5 astromech droid": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "rebel officer": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "rebel trooper captain": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "rebel trooper squad": {
+    "weapons": [],
+    "addedModels": 5
+  },
+  "rebel veteran squad": {
+    "weapons": [],
+    "addedModels": 5
+  },
+  "shriv suurgav": {
+    "weapons": [],
+    "addedModels": 0
+  },
+  "snowtrooper": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "stormtrooper heavy gunner squad": {
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 3
+    }
+  },
+  "stormtrooper squad": {
+    "weapons": [],
+    "addedModels": 5
+  },
+  "stormtroopers": {
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4
+    }
+  },
+  "t 7 ion snowtrooper": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "z 6 trooper": {
+    "weapons": [],
+    "addedModels": 1
   }
 }
