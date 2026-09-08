@@ -29,9 +29,8 @@ body[data-faction-theme="rebel"]::before {
   background:radial-gradient(900px 520px at 12% -8%,rgba(255,140,26,.13),transparent 62%),linear-gradient(180deg,#111a24,#0a0e15 72%);
 }
 body[data-faction-theme="rebel"]::after {
-  opacity:.55;
-  background-image:repeating-linear-gradient(0deg,rgba(127,216,255,.045) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(127,216,255,.045) 0 1px,transparent 1px 40px);
-  mask-image:linear-gradient(to bottom,#000,transparent 82%);
+  opacity:.82;
+  background-image:repeating-linear-gradient(0deg,rgba(127,216,255,.07) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(127,216,255,.07) 0 1px,transparent 1px 40px);
 }
 body[data-faction-theme="imperial"] {
   --bg:#0a0b0d;
@@ -124,7 +123,7 @@ body[data-faction-theme="imperial"] button.primary { color:#fff; }
 @media (max-width:850px) {
   .topbar strong { letter-spacing:.06em; }
   .topbar-actions button { font-size:.72rem; }
-  body[data-faction-theme="imperial"] h1 { font-size:clamp(1.4rem,5vw,2.4rem); }
+  body[data-faction-theme] h1 { font-size:clamp(1.4rem,5vw,2.4rem); }
   .cumbersome-checks { grid-template-columns:1fr; }
 }
 .cert-batch-bar { position:sticky; top:0; z-index:5; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px; margin:10px 0 14px; padding:12px 14px; border:2px solid var(--accent,#d8ff36); background:#111b16; }
@@ -139,6 +138,7 @@ body[data-faction-theme="imperial"] button.primary { color:#fff; }
 .cert-status-section>summary span::before { content:'▸'; display:inline-block; margin-right:8px; }
 .cert-status-section[open]>summary span::before { content:'▾'; }
 .cert-status-section.controlled .cert-list { margin-top:10px; }
+.cert-status-section.ready>header{border-color:#ffb020;background:#302207}.cert-status-section.ready h2{color:#ffd36b}.cert-status-section.ready .cert-list>button{border-color:#ffb020}.no-courage-choice{display:flex;align-items:center;gap:10px;min-height:48px;padding:10px;border:1px solid #f5c527;color:#ffe995;background:#2c2508}.no-courage-choice input{width:24px;height:24px}.suppression-immune b{font-size:.78rem!important;color:#73d13d!important}
 .cert-list>button.controlled-card { border-color:#477a3a; opacity:.88; }
 .cert-list>button.controlled-card small,.cert-list>button.controlled-card>b { color:#73d13d; }
 .cert-export { max-width:860px; margin:18px auto; display:grid; gap:12px; }
