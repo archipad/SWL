@@ -1,4 +1,4 @@
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
@@ -22,11 +22,31 @@ try {
     server.ssrLoadModule('/src/data/diceProfiles.ts'),
   ]);
 
+  const certifications = JSON.parse(await readFile(resolve(projectRoot, 'src/data/diceCertifications.json'), 'utf8'));
+  const weapons = structuredClone(diceModule.DICE_PROFILES);
+  for (const [card, certification] of Object.entries(certifications)) {
+    const profile = weapons[card];
+    if (!profile) throw new Error(`Certification sans profil : ${card}`);
+    for (const certifiedWeapon of certification.weapons || []) {
+      const weapon = profile.weapons?.[certifiedWeapon.index];
+      if (!weapon || weapon.name !== certifiedWeapon.name) throw new Error(`Arme de certification introuvable : ${card} #${certifiedWeapon.index}`);
+      weapon.dice = certifiedWeapon.dice;
+      weapon.range = certifiedWeapon.range;
+      weapon.verifiedAgainstCard = true;
+      weapon.verificationSource = 'Certification visuelle centralisée GitHub';
+    }
+    if (certification.defenseColor) {
+      profile.defenseColor = certification.defenseColor;
+      profile.defenseVerifiedAgainstCard = true;
+      profile.defenseVerificationSource = 'Certification visuelle centralisée GitHub';
+    }
+  }
+
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,
     tags: tagModule.SEED_CARD_TAGS,
     names: nameModule.CARD_NAMES_FR,
-    weapons: diceModule.DICE_PROFILES,
+    weapons,
   };
 
   await writeFile(
