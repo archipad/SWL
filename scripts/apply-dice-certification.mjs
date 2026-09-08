@@ -22,5 +22,14 @@ for(const card of cards){
   for(const weapon of card.weapons||[])byIndex.set(weapon.index,weapon)
   database[card.card]={weapons:[...byIndex.values()].sort((a,b)=>a.index-b.index),...(card.defenseColor?{defenseColor:card.defenseColor}:previous.defenseColor?{defenseColor:previous.defenseColor}:{})}
 }
-fs.writeFileSync(databasePath,`${JSON.stringify(database,null,2)}\n`)
-console.log(`Certifications appliquées : ${cards.length} carte(s)`)
+fs.writeFileSync(databasePath,JSON.stringify(database,null,2)+'\n')
+
+const assistantIndexPath=new URL('../public/assistant/index.html',import.meta.url)
+const assistantIndex=fs.readFileSync(assistantIndexPath,'utf8')
+const versionedIndex=assistantIndex.replace(
+  /(reference-data\.js\?v=)(\d+)/,
+  (_match,prefix,version)=>prefix+(Number(version)+1),
+)
+if(versionedIndex===assistantIndex)throw new Error('Version du référentiel Assistant introuvable')
+fs.writeFileSync(assistantIndexPath,versionedIndex)
+console.log('Certifications appliquées : '+cards.length+' carte(s)')
