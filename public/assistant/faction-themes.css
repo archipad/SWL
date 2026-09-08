@@ -127,6 +127,21 @@ body[data-faction-theme="imperial"] button.primary { color:#fff; }
 .cert-batch-bar { position:sticky; top:0; z-index:5; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px; margin:10px 0 14px; padding:12px 14px; border:2px solid var(--accent,#d8ff36); background:#111b16; }
 .cert-batch-bar strong { color:var(--accent,#d8ff36); font-size:1.05rem; }
 .cert-batch-bar button:disabled { opacity:.45; cursor:not-allowed; }
+.cert-status-section { margin-top:14px; }
+.cert-status-section>header,.cert-status-section>summary { display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 10px; padding:12px 14px; border:1px solid var(--line); background:var(--panel); }
+.cert-status-section h2 { margin:0; font-size:1.12rem; color:var(--warn,#ffb020); }
+.cert-status-section>header>b,.cert-status-section>summary>b { color:var(--muted); }
+.cert-status-section>summary { cursor:pointer; list-style:none; min-height:48px; color:#73d13d; font-weight:900; }
+.cert-status-section>summary::-webkit-details-marker { display:none; }
+.cert-status-section>summary span::before { content:'▸'; display:inline-block; margin-right:8px; }
+.cert-status-section[open]>summary span::before { content:'▾'; }
+.cert-status-section.controlled .cert-list { margin-top:10px; }
+.cert-list>button.controlled-card { border-color:#477a3a; opacity:.88; }
+.cert-list>button.controlled-card small,.cert-list>button.controlled-card>b { color:#73d13d; }
+.cert-export { max-width:860px; margin:18px auto; display:grid; gap:12px; }
+.cert-export h1 { margin:0; }
+.cert-export textarea { width:100%; min-height:220px; resize:vertical; padding:12px; border:1px solid var(--line); background:#07100b; color:var(--text); font:12px/1.35 monospace; }
+.cert-export>.primary,.cert-export>.secondary { min-height:54px; font-weight:900; }
 @media (max-width:820px) {
   .cert-batch-bar { grid-template-columns:1fr; }
   .cert-batch-bar .primary { min-height:52px; width:100%; }
