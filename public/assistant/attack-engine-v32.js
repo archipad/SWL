@@ -86,6 +86,28 @@
     return { current, gained, total, courage, suppressed: total >= courage, panicThreshold: courage * 2, panicRisk: total >= courage * 2 };
   }
 
+  function allocateWounds(models = [], wounds = 0) {
+    let remaining = Math.max(0, Number(wounds) || 0);
+    const resolved = models.map((model) => {
+      const maximum = Math.max(1, Number(model.maxWounds) || 1);
+      const existing = clamp(model.wounds, 0, maximum);
+      const applied = Math.min(remaining, maximum - existing);
+      remaining -= applied;
+      return { ...model, maxWounds: maximum, wounds: existing + applied, defeated: existing + applied >= maximum };
+    });
+    return { models: resolved, applied: Math.max(0, Number(wounds) || 0) - remaining, overflow: remaining, defeated: resolved.filter(model => model.defeated).length, remaining: resolved.filter(model => !model.defeated).length };
+  }
+
+  function rallyState(options = {}) {
+    const before = Math.max(0, Number(options.suppression) || 0);
+    if (options.nullCourage || options.vehicle) return { before: 0, dice: 0, removed: 0, remaining: 0, courage: null, suppressed: false, panicked: false };
+    const successes = Math.max(0, Number(options.block) || 0) + Math.max(0, Number(options.surge) || 0);
+    const removed = Math.min(before, successes);
+    const remaining = before - removed;
+    const courage = Math.max(1, Number(options.commanderCourage) || 0, Number(options.courage) || 1);
+    return { before, dice: before, removed, remaining, courage, suppressed: remaining >= courage, panicked: remaining >= courage * 2 };
+  }
+
   function applyLethal(basePierce, lethalX, aimTokens) {
     const lethalUsed = clamp(aimTokens, 0, Math.max(0, Number(lethalX) || 0));
     return {
@@ -214,7 +236,7 @@
   }
 
   window.SWL_ATTACK_ENGINE = {
-    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, moraleState, applyLethal, effectivePierce,
+    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, moraleState, allocateWounds, rallyState, applyLethal, effectivePierce,
     convertAttack, applyRam, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
   };
 })();
