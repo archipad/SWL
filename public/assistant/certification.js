@@ -15,7 +15,20 @@
   function draftFor(card){
     const p=weaponProfiles[card],saved=drafts[card];
     if(!saved||!Array.isArray(saved.weapons))drafts[card]={card,weapons:(p.weapons||[]).map((w,index)=>({index,name:w.name,dice:w.dice==='variable'?'variable':w.dice.map(d=>({...d})),range:w.range,verified:!!w.verifiedAgainstCard,queued:false})),defenseColor:p.defenseColor||null,defenseVerified:!!p.defenseVerifiedAgainstCard,defenseQueued:false,unitStats:p.unitStats?{woundsPerModel:p.unitStats.woundsPerModel,courage:p.unitStats.courage,baseModels:p.unitStats.baseModels}:{woundsPerModel:1,courage:1,baseModels:1},unitStatsVerified:!!p.unitStats?.verifiedAgainstCard,unitStatsQueued:false,addedModels:Number.isInteger(p.addedModels)?p.addedModels:0,addedModelsVerified:!!p.addedModelsVerifiedAgainstCard,addedModelsQueued:false};
-    return drafts[card];
+    const d=drafts[card],defaultStats=p.unitStats?{woundsPerModel:p.unitStats.woundsPerModel,courage:p.unitStats.courage,baseModels:p.unitStats.baseModels}:{woundsPerModel:1,courage:1,baseModels:1};
+    if(!d.unitStats||typeof d.unitStats!=='object')d.unitStats={...defaultStats};
+    if(!Number.isFinite(d.unitStats.woundsPerModel))d.unitStats.woundsPerModel=defaultStats.woundsPerModel;
+    if(d.unitStats.courage===undefined)d.unitStats.courage=defaultStats.courage;
+    if(!Number.isFinite(d.unitStats.baseModels))d.unitStats.baseModels=defaultStats.baseModels;
+    if(typeof d.unitStatsVerified!=='boolean')d.unitStatsVerified=!!p.unitStats?.verifiedAgainstCard;
+    if(typeof d.unitStatsQueued!=='boolean')d.unitStatsQueued=false;
+    if(d.defenseColor===undefined)d.defenseColor=p.defenseColor||null;
+    if(typeof d.defenseVerified!=='boolean')d.defenseVerified=!!p.defenseVerifiedAgainstCard;
+    if(typeof d.defenseQueued!=='boolean')d.defenseQueued=false;
+    if(!Number.isInteger(d.addedModels))d.addedModels=Number.isInteger(p.addedModels)?p.addedModels:0;
+    if(typeof d.addedModelsVerified!=='boolean')d.addedModelsVerified=!!p.addedModelsVerifiedAgainstCard;
+    if(typeof d.addedModelsQueued!=='boolean')d.addedModelsQueued=false;
+    save();return d;
   }
   const dieCount=(weapon,color)=>weapon.dice==='variable'?0:(weapon.dice.find(d=>d.color===color)?.count||0);
   function setDie(weapon,color,value){if(weapon.dice==='variable')weapon.dice=[];weapon.dice=weapon.dice.filter(d=>d.color!==color);if(value>0)weapon.dice.push({color,count:value});weapon.dice.sort((a,b)=>['rouge','noir','blanc'].indexOf(a.color)-['rouge','noir','blanc'].indexOf(b.color));weapon.queued=false;save()}
