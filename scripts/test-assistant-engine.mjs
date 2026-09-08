@@ -4,7 +4,7 @@ import vm from 'node:vm'
 
 const sandbox = { window: {} }
 vm.runInNewContext(
-  fs.readFileSync(new URL('../public/assistant/attack-engine.js', import.meta.url), 'utf8'),
+  fs.readFileSync(new URL('../public/assistant/attack-engine-v32.js', import.meta.url), 'utf8'),
   sandbox,
 )
 
@@ -15,6 +15,12 @@ assert.equal(engine.weaponEligible('1-3', 3), true)
 assert.equal(engine.weaponEligible('1-3', 4), false)
 assert.equal(engine.weaponEligible('melee', 'melee'), true)
 assert.equal(engine.weaponEligible('melee', 1), false)
+assert.equal(engine.weaponEligible('melee-1', 'melee'), true)
+assert.equal(engine.weaponEligible('melee-1', 1), true)
+assert.equal(engine.weaponEligible('melee-1', 2), false)
+assert.equal(engine.weaponEligible('4-#', 3), false)
+assert.equal(engine.weaponEligible('4-#', 4), true)
+assert.equal(engine.weaponEligible('4-#', 8), true)
 assert.equal(engine.weaponEligible('1-3', 4, 1), true)
 assert.equal(engine.weaponEligible('1-3', 4, 0), false)
 assert.deepEqual({ ...engine.applyCover({ hit: 2, crit: 2 }, { cover: 'none', dodges: 1, dodgeCrits: 1, dodgeCritsAllowed: true }) }, { hit: 1, crit: 1, coverCancelled: 0, dodgesUsed: 2, hitDodgesUsed: 1, critDodgesUsed: 1 })
@@ -31,8 +37,14 @@ assert.equal(engine.defenseRerollCapacity(null), 0)
 assert.equal(engine.suppressionTokens({ ranged: true, hadAttackResult: true }), 1)
 assert.equal(engine.suppressionTokens({ ranged: true, hadAttackResult: true, suppressive: true, overwhelm: true, aimSpent: true }), 3)
 assert.equal(engine.suppressionTokens({ ranged: false, hadAttackResult: true, suppressive: true, overwhelm: true, aimSpent: true }), 0)
+assert.equal(engine.suppressionTokens({ ranged: true, hadAttackResult: true, suppressive: true, vehicle: true }), 0)
+assert.deepEqual({ ...engine.moraleState({ currentSuppression: 0, gainedSuppression: 1, courage: 1 }) }, { current: 0, gained: 1, total: 1, courage: 1, suppressed: true, panicThreshold: 2, panicRisk: false })
+assert.deepEqual({ ...engine.moraleState({ currentSuppression: 1, gainedSuppression: 1, courage: 1 }) }, { current: 1, gained: 1, total: 2, courage: 1, suppressed: true, panicThreshold: 2, panicRisk: true })
+assert.deepEqual({ ...engine.moraleState({ currentSuppression: 2, gainedSuppression: 1, courage: 1, commanderCourage: 2 }) }, { current: 2, gained: 1, total: 3, courage: 2, suppressed: true, panicThreshold: 4, panicRisk: false })
+assert.deepEqual({ ...engine.moraleState({ currentSuppression: 3, gainedSuppression: 2, courage: 1, nullCourage: true }) }, { current: 0, gained: 0, total: 0, courage: null, suppressed: false, panicThreshold: null, panicRisk: false })
 assert.deepEqual({ ...engine.applyImpactArmor({ hit: 2, crit: 1 }, { hasArmor: true, impactX: 1, impactUsed: 1, primitive: true, armorUnlimited: true, armorCancelled: 2 }) }, { hit: 1, crit: 0, impactUsed: 1, primitiveConverted: 2, armorCancelled: 2 })
 assert.deepEqual([...engine.rangeOptions([{ range: 'melee' }, { range: '2-4' }])], ['melee', 2, 3, 4])
+assert.deepEqual([...engine.rangeOptions([{ range: 'melee-1' }, { range: '4-#' }])], ['melee', 1, 4])
 
 const multiWeaponProfile = { weapons: [{ name: 'Pinces', keywordIds: [] }, { name: 'Canon', keywordIds: ['impact-x'] }] }
 assert.equal(engine.weaponKeywordActive(multiWeaponProfile, multiWeaponProfile.weapons[0], ['impact-x'], 'impact-x'), false)
@@ -172,4 +184,4 @@ assert.deepEqual({ ...combinedDefense }, { converted: 3, pierceUsed: 1, blocks: 
 const meleeIgnoresCover = engine.applyCover({ hit: 3, crit: 1 }, { melee: true, cover: 'heavy', coverBlock: 3, coverSurge: 3, automaticBlock: 1, dodges: 0 })
 assert.deepEqual({ ...meleeIgnoresCover }, { hit: 3, crit: 1, coverCancelled: 0, dodgesUsed: 0 })
 
-console.log('Assistant attack engine: 68 assertions OK')
+console.log('Assistant attack engine: 73 assertions OK')

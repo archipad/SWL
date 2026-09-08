@@ -6,7 +6,7 @@ vm.runInNewContext(fs.readFileSync(new URL('../public/assistant/reference-data.j
 
 const source = [
   fs.readFileSync(new URL('../public/assistant/app.js', import.meta.url), 'utf8'),
-  fs.readFileSync(new URL('../public/assistant/attack-engine.js', import.meta.url), 'utf8'),
+  fs.readFileSync(new URL('../public/assistant/attack-engine-v32.js', import.meta.url), 'utf8'),
 ].join('\n')
 
 const automatic = new Set([
