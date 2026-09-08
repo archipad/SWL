@@ -2,7 +2,7 @@
 body {
   position:relative;
   isolation:isolate;
-  font-family:"Share Tech Mono",monospace;
+  font-family:"Rajdhani",sans-serif;
   transition:background-color .2s ease,color .2s ease;
 }
 body::before,body::after {
@@ -49,16 +49,16 @@ body[data-faction-theme="imperial"]::before {
   background:radial-gradient(980px 560px at 82% -12%,rgba(200,35,44,.14),transparent 62%),linear-gradient(180deg,#14171b,#0a0b0d 72%);
 }
 body[data-faction-theme="imperial"]::after {
-  opacity:.48;
-  background-image:repeating-linear-gradient(60deg,rgba(200,35,44,.055) 0 1px,transparent 1px 46px),repeating-linear-gradient(-60deg,rgba(200,35,44,.055) 0 1px,transparent 1px 46px),repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);
-  mask-image:linear-gradient(to bottom,#000,transparent 88%);
+  opacity:.82;
+  background-image:repeating-linear-gradient(0deg,rgba(255,69,80,.07) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(255,69,80,.07) 0 1px,transparent 1px 40px);
 }
 body[data-faction-theme="rebel"] h1,body[data-faction-theme="rebel"] h2,body[data-faction-theme="rebel"] h3,body[data-faction-theme="rebel"] strong,body[data-faction-theme="rebel"] button {
   font-family:"Rajdhani",sans-serif;
 }
 body[data-faction-theme="imperial"] h1,body[data-faction-theme="imperial"] h2,body[data-faction-theme="imperial"] h3,body[data-faction-theme="imperial"] strong,body[data-faction-theme="imperial"] button {
-  font-family:"Orbitron",sans-serif;
+  font-family:"Rajdhani",sans-serif;
 }
+.faction-emblem{display:inline-grid;width:28px;height:28px;place-items:center;grid-row:1/4;align-self:center;margin-right:9px;border:2px solid currentColor;border-radius:50%;font-size:17px;line-height:1}.faction-emblem.rebel{color:#ff9b32}.faction-emblem.imperial{color:#ff5560}.faction-emblem.rebel::before{content:'▲'}.faction-emblem.imperial::before{content:'✦'}.army-switch button{grid-template-columns:auto 1fr}.army-switch button>small,.army-switch button>strong,.army-switch button>span{grid-column:2;text-align:left}
 .topbar {
   border-bottom-color:var(--line);
   background:color-mix(in srgb,var(--bg) 92%,transparent);
@@ -151,3 +151,4 @@ body[data-faction-theme="imperial"] button.primary { color:#fff; }
 }
 .unit-hud,.unit-hud.compact{grid-template-columns:repeat(4,minmax(0,1fr))}.unit-hud em{font-size:9px;color:#87b9d5;font-style:normal;text-align:center}.cert-stats{padding:12px;border:2px solid #ba3a35;background:var(--panel)}.cert-stats.certified{border-color:#73d13d}.cert-stats>header{display:flex;justify-content:space-between;gap:10px}.cert-stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}.cert-stat-grid label{display:grid;gap:6px;color:var(--muted);font-size:12px}.cert-stat-grid input{min-height:46px;background:#071016;border:1px solid var(--line);color:#fff;font:700 18px var(--hud-font);padding:8px;text-align:center}@media(max-width:760px){.cert-stat-grid{grid-template-columns:1fr}.unit-hud,.unit-hud.compact{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .unit-identity-panel{position:relative;max-width:620px;padding:18px;border:1px solid #27445a;background:#0d1824;box-shadow:inset 0 0 30px #07121c}.unit-identity-panel:before,.unit-identity-panel:after{content:"";position:absolute;width:16px;height:16px;border-color:#66cff7}.unit-identity-panel:before{left:-1px;top:-1px;border-left:2px solid #66cff7;border-top:2px solid #66cff7}.unit-identity-panel:after{right:-1px;bottom:-1px;border-right:2px solid #66cff7;border-bottom:2px solid #66cff7}.unit-identity-panel>header{display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid #21394d}.unit-identity-panel>header .rank-icon{position:static;flex:0 0 28px;width:28px;height:28px;background:#ff9218}.unit-identity-panel h1{margin:0;color:#fff;font-size:clamp(1.25rem,3vw,2rem);letter-spacing:.01em}.unit-identity-panel>header small{display:block;margin-top:3px;color:#72bddd;text-transform:uppercase;letter-spacing:.09em}.unit-identity-panel .unit-hud{max-width:none;margin:12px 0 8px;padding:0;border:0;background:transparent;box-shadow:none}.unit-identity-panel .unit-hud>span{min-height:68px}.unit-identity-panel .unit-hud .hud-wide{grid-column:span 2;min-height:50px;grid-template-columns:auto 1fr;align-items:center;padding:7px 12px}.unit-identity-panel .surge-panel{max-width:none;margin:8px 0 0;border:1px solid #294459;border-left:3px solid var(--acid);grid-template-columns:auto 1fr 1fr;align-items:center}.unit-identity-panel .surge-panel>span{grid-column:1}.unit-identity-panel .surge-panel>small{grid-column:1/-1}.card-stat-icon{display:inline-grid;flex:0 0 auto;width:23px;height:23px}.health-icon{border:3px solid #23ce79;border-radius:50%;box-shadow:inset 0 0 0 3px #0d1824,0 0 7px #23ce7977}.courage-icon{width:20px;height:20px;border:3px solid #f5c527;transform:rotate(45deg);box-shadow:inset 0 0 0 2px #0d1824}.suppression-icon{width:17px;height:17px;background:#ff8c16;border:2px solid #ffb13b;box-shadow:0 0 9px #ff8c16}.defense-icon{border:2px solid #dae4e8;background:#f7fafb}.defense-icon.rouge{background:#c93036;border-color:#ff6d70}.defense-icon.blanc{background:#fff}.defense-icon.unknown{background:transparent;border-style:dashed}.unit-hud>span:nth-child(2) b{text-transform:capitalize}.hero{align-items:start}.hero .unit-card-zoom{align-self:start}@media(max-width:760px){.unit-identity-panel{padding:12px}.unit-identity-panel .surge-panel{grid-template-columns:1fr 1fr}.unit-identity-panel .surge-panel>span{grid-column:1/-1}.unit-identity-panel .unit-hud .hud-wide{grid-column:span 1}.unit-identity-panel .unit-hud{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.readiness-state,.casualty-summary{display:grid;gap:4px;margin:8px 0;padding:9px 12px;border:1px solid #3b7050;background:#10281b}.readiness-state.warning{border-color:#e0a82f;background:#302507}.readiness-state.danger,.casualty-summary.destroyed{border-color:#ff4550;background:#351417}.readiness-state.immune{color:#7ce29b}.readiness-state small,.casualty-summary small{color:var(--muted)}.casualty-summary b{font-size:1.25rem}.unit-status .danger{color:#ff6670}.unit-status .warning{color:#ffd36b}
