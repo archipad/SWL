@@ -5,6 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "audit:assistant": "npm run generate:assistant-data && node scripts/audit-assistant-automation.mjs",
+    "verify:assistant-dice": "npm run test:assistant-engine && npm run audit:assistant",
     "test:assistant-engine": "node scripts/test-assistant-engine.mjs",
     "generate:assistant-data": "node scripts/generate-assistant-reference.mjs",
     "build": "npm run test:assistant-engine && npm run generate:assistant-data && tsc -b && vite build",
