@@ -172,3 +172,38 @@ body[data-faction-theme="imperial"] button.primary { color:#fff; }
 .hero .unit-card-zoom{min-height:0;max-width:340px;padding:6px;background:#081018}.hero .unit-card-zoom img{width:100%;height:100%;max-height:270px;object-fit:contain}
 @media(max-width:850px){.hero{grid-template-columns:minmax(0,1fr) minmax(210px,34%)}.hero .unit-card-zoom img{max-height:250px}}
 @media(max-width:680px){.hero{grid-template-columns:1fr}.hero .unit-card-zoom{max-width:100%;min-height:190px}.hero .unit-card-zoom img{max-height:220px}.unit-identity-panel .hud-primary,.unit-identity-panel .hud-vitals{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Navigation et introduction ultra-compactes v61 : davantage de plateau visible sur iPad. */
+#progress{gap:4px;padding:4px 12px}
+#progress i{min-width:64px;height:28px;grid-template-columns:18px 1fr;gap:4px;padding:0 6px}
+#progress i b{width:18px;height:18px;font-size:.68rem}
+#progress i span{font-size:.56rem;line-height:1}
+.intro{display:flex;align-items:baseline;justify-content:center;gap:10px;min-height:0;margin:3px 0 7px;padding:3px 8px}
+.intro .kicker{flex:0 0 auto;font-size:.56rem}
+.intro h1{margin:0;font-size:clamp(1rem,2vw,1.35rem);line-height:1.1}
+.intro p{max-width:none;margin:0;font-size:.7rem;line-height:1.15}
+.intro .army-switch,.intro .notice{flex-basis:100%}
+.intro:has(.army-switch),.intro:has(.notice){flex-wrap:wrap}
+@media(max-width:850px){#progress i{min-width:32px;grid-template-columns:1fr}#progress i span{display:none}.intro{gap:7px}.intro p{font-size:.64rem}}
+
+/* Panneaux latéraux de résolution v61. */
+.combat-side .side-detail{display:flex;flex-direction:column;gap:9px}
+.combat-side .unit-card-zoom{order:1;margin:0}
+.combat-side .unit-card-zoom img{max-height:190px;object-fit:contain}
+.combat-side .side-status{order:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 84%,#071018)}
+.combat-side .side-status span{display:grid;place-items:center;gap:3px;min-width:0;padding:7px 3px;border-right:1px solid var(--line);text-align:center}
+.combat-side .side-status span:last-child{border-right:0}
+.combat-side .side-status small{color:var(--muted);font-size:.5rem;letter-spacing:.08em}
+.combat-side .side-status b{display:flex;align-items:center;gap:4px;color:var(--text);font-size:.88rem}
+.combat-side .side-status .blood-drop{width:9px;height:13px}
+.combat-side .mini-upgrades{order:3;margin:0}
+.combat-side .side-surge{order:4;margin:0}
+.combat-side.collapsed .side-detail{display:none}
+
+/* État vaincu immédiatement identifiable dans la sélection. */
+.unit-tile.unit-defeated{isolation:isolate;border-color:#78383d;filter:none}
+.unit-tile.unit-defeated>span:not(.defeated-overlay),.unit-tile.unit-defeated>.rank-icon{opacity:.24;filter:grayscale(1) blur(.35px)}
+.unit-tile.unit-defeated::before{content:"";position:absolute;z-index:3;inset:0;background:rgba(4,6,7,.58);pointer-events:none}
+.unit-tile.unit-defeated::after{content:"";z-index:4;right:0;bottom:0;padding:0;background:transparent}
+.unit-tile .defeated-overlay{position:absolute;z-index:5;inset:0;display:grid;place-items:center;pointer-events:none}
+.unit-tile .defeated-overlay b{display:grid;width:58px;height:58px;place-items:center;border:2px solid #ff5b64;border-radius:50%;background:rgba(35,4,7,.9);color:#fff;font-family:system-ui,sans-serif;font-size:2rem;line-height:1;box-shadow:0 0 22px rgba(255,50,61,.5)}
