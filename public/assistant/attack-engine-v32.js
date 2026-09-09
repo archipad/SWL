@@ -83,7 +83,7 @@
     const commander = Math.max(0, Number(options.commanderCourage) || 0);
     const courage = Math.max(own, commander);
     const total = current + gained;
-    return { current, gained, total, courage, suppressed: total >= courage, panicThreshold: courage * 2, panicRisk: total >= courage * 2 };
+    return { current, gained, total, courage, suppressed: total >= own, panicThreshold: courage * 2, panicRisk: total >= courage * 2 };
   }
 
   function allocateWounds(models = [], wounds = 0) {
