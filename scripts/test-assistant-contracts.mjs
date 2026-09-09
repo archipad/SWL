@@ -1,0 +1,64 @@
+import assert from 'node:assert/strict'
+import fs from 'node:fs'
+
+const app = fs.readFileSync(new URL('../public/assistant/app.js', import.meta.url), 'utf8')
+const css = fs.readFileSync(new URL('../public/assistant/engine.css', import.meta.url), 'utf8')
+const index = fs.readFileSync(new URL('../public/assistant/index.html', import.meta.url), 'utf8')
+const certificationUi = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
+const certifications = JSON.parse(fs.readFileSync(new URL('../src/data/diceCertifications.json', import.meta.url), 'utf8'))
+
+// Toute situation dont la réponse modifie une règle doit avoir trois états :
+// non répondue, oui et non. Une case décochée ne suffit pas à prouver un « non ».
+const mandatoryConditions = [
+  ['ramEligible', 'belier-x'],
+  ['engaged', 'tenir-bon'],
+  ['targetForceUpgrade', 'chasseur-de-jedi'],
+  ['priorityMissionAttack', 'accomplir-la-mission'],
+  ['priorityMissionDefense', 'accomplir-la-mission'],
+]
+for (const [field, keyword] of mandatoryConditions) {
+  assert.match(app, new RegExp(`${field}:null`), `${field} doit commencer sans réponse`)
+  assert.match(app, new RegExp(`conditionalChoice\\('${field}'`), `${field} doit proposer Oui et Non`)
+  assert.match(app, new RegExp(`${field}===null`), `${field} doit bloquer la progression sans réponse`)
+  assert.match(app, new RegExp(keyword.replace('-', '\\-')), `${keyword} doit rester relié à sa condition`)
+}
+assert.match(app, /data-condition="\$\{id\}" data-value="true"/, 'Bouton Oui manquant')
+assert.match(app, /data-condition="\$\{id\}" data-value="false"/, 'Bouton Non manquant')
+assert.match(app, /if\(stepIssue\(\)\)\{resolveScreen\(\);return\}/, 'Le bouton suivant doit respecter tous les blocages')
+assert.match(app, /\+b\.dataset\.go<=attackStep\|\|!stepIssue\(\)/, 'La navigation directe ne doit pas contourner un blocage')
+
+// Contrats de saisie : chaque résultat doit correspondre exactement à la réserve.
+assert.match(app, /total===expected/, 'Le compteur de saisie exacte est absent')
+assert.match(app, /rolled!==expected/, 'Le verrou du jet de défense est absent')
+assert.match(app, /Object\.values\(attackState\.roll\).*rolled!==expected/, 'Le verrou du jet d’attaque est absent')
+
+// Contrats iPad : viewport, trois colonnes adaptatives, cibles tactiles et barre d’action visible.
+assert.match(index, /viewport-fit=cover/, 'Le viewport iPad doit respecter les zones sûres')
+assert.match(css, /@media \(min-width:768px\) and \(max-width:1180px\)/, 'Point de rupture iPad absent')
+assert.match(css, /grid-template-columns:minmax\(150px,185px\) minmax\(0,1fr\) minmax\(150px,185px\)/, 'Disposition iPad à trois colonnes absente')
+assert.match(css, /env\(safe-area-inset-bottom\)/, 'La barre basse ne respecte pas la zone sûre iPad')
+assert.match(css, /\.touch-counter button[^}]*min-width:(?:4[4-9]|[5-9]\d)px[^}]*min-height:(?:4[4-9]|[5-9]\d)px/s, 'Les boutons +/- doivent conserver une cible tactile suffisante')
+assert.match(certificationUi, /!!weaponProfiles\[card\]\?\.unitStats/, 'Une carte avec caractéristiques certifiées doit être reconnue comme carte Unité')
+
+// La base centrale ne doit contenir que des valeurs exploitables par le moteur.
+const colors = new Set(['rouge', 'noir', 'blanc'])
+let certifiedWeapons = 0
+let certifiedDefense = 0
+for (const [card, record] of Object.entries(certifications)) {
+  assert.ok(card.trim(), 'Une certification possède un nom de carte vide')
+  for (const weapon of record.weapons || []) {
+    assert.ok(Number.isInteger(weapon.index) && weapon.index >= 0, `${card}: index d’arme invalide`)
+    assert.ok(weapon.name, `${card}: nom d’arme manquant`)
+    if (weapon.dice !== 'variable') for (const die of weapon.dice || []) {
+      assert.ok(colors.has(die.color), `${card}/${weapon.name}: couleur invalide`)
+      assert.ok(Number.isInteger(die.count) && die.count > 0, `${card}/${weapon.name}: quantité invalide`)
+    }
+    certifiedWeapons++
+  }
+  if (record.defenseColor) {
+    assert.ok(record.defenseColor === 'rouge' || record.defenseColor === 'blanc', `${card}: défense invalide`)
+    certifiedDefense++
+  }
+}
+
+console.log(`Assistant contracts: conditions, saisies, iPad et base OK (${certifiedWeapons} armes, ${certifiedDefense} défenses)`)
