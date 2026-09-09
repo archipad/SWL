@@ -41,6 +41,7 @@ assert.equal(engine.suppressionTokens({ ranged: true, hadAttackResult: true, sup
 assert.deepEqual({ ...engine.moraleState({ currentSuppression: 0, gainedSuppression: 1, courage: 1 }) }, { current: 0, gained: 1, total: 1, courage: 1, suppressed: true, panicThreshold: 2, panicRisk: false })
 assert.deepEqual({ ...engine.moraleState({ currentSuppression: 1, gainedSuppression: 1, courage: 1 }) }, { current: 1, gained: 1, total: 2, courage: 1, suppressed: true, panicThreshold: 2, panicRisk: true })
 assert.deepEqual({ ...engine.moraleState({ currentSuppression: 2, gainedSuppression: 1, courage: 1, commanderCourage: 2 }) }, { current: 2, gained: 1, total: 3, courage: 2, suppressed: true, panicThreshold: 4, panicRisk: false })
+assert.deepEqual({ ...engine.moraleState({ currentSuppression: 2, courage: 2, commanderCourage: 3 }) }, { current: 2, gained: 0, total: 2, courage: 3, suppressed: true, panicThreshold: 6, panicRisk: false })
 assert.deepEqual({ ...engine.moraleState({ currentSuppression: 3, gainedSuppression: 2, courage: 1, nullCourage: true }) }, { current: 0, gained: 0, total: 0, courage: null, suppressed: false, panicThreshold: null, panicRisk: false })
 assert.deepEqual({ ...engine.applyImpactArmor({ hit: 2, crit: 1 }, { hasArmor: true, impactX: 1, impactUsed: 1, primitive: true, armorUnlimited: true, armorCancelled: 2 }) }, { hit: 1, crit: 0, impactUsed: 1, primitiveConverted: 2, armorCancelled: 2 })
 assert.deepEqual([...engine.rangeOptions([{ range: 'melee' }, { range: '2-4' }])], ['melee', 2, 3, 4])
@@ -184,4 +185,28 @@ assert.deepEqual({ ...combinedDefense }, { converted: 3, pierceUsed: 1, blocks: 
 const meleeIgnoresCover = engine.applyCover({ hit: 3, crit: 1 }, { melee: true, cover: 'heavy', coverBlock: 3, coverSurge: 3, automaticBlock: 1, dodges: 0 })
 assert.deepEqual({ ...meleeIgnoresCover }, { hit: 3, crit: 1, coverCancelled: 0, dodgesUsed: 0 })
 
-console.log('Assistant attack engine: 73 assertions OK')
+const casualties = engine.allocateWounds([{ id: 'chef', maxWounds: 2, wounds: 1 }, { id: 'soldat', maxWounds: 1, wounds: 0 }], 2)
+assert.deepEqual(casualties.models.map(model => ({ id: model.id, wounds: model.wounds, defeated: model.defeated })), [{ id: 'chef', wounds: 2, defeated: true }, { id: 'soldat', wounds: 1, defeated: true }])
+assert.equal(casualties.remaining, 0)
+assert.equal(casualties.overflow, 0)
+const rally = engine.rallyState({ suppression: 4, block: 1, surge: 1, courage: 2 })
+assert.deepEqual({ ...rally }, { before: 4, dice: 4, removed: 2, remaining: 2, courage: 2, suppressed: true, panicked: false })
+assert.deepEqual({ ...engine.rallyState({ suppression: 5, block: 0, surge: 0, courage: 2 }) }, { before: 5, dice: 5, removed: 0, remaining: 5, courage: 2, suppressed: true, panicked: true })
+assert.deepEqual({ ...engine.rallyState({ suppression: 3, block: 0, surge: 0, courage: null, nullCourage: true }) }, { before: 0, dice: 0, removed: 0, remaining: 0, courage: null, suppressed: false, panicked: false })
+
+// Matrice de non-régression pour l’état persistant et le respect de l’ordre des règles.
+const commanderMorale = engine.moraleState({ currentSuppression: 2, courage: 2, commanderCourage: 3 })
+assert.equal(commanderMorale.suppressed, true, 'Le courage du commandant ne retire pas l’état démoralisé')
+assert.equal(commanderMorale.panicRisk, false, 'Le courage du commandant augmente bien le seuil de panique')
+const mixedCasualties = engine.allocateWounds([
+  { id: 'soldat', maxWounds: 1, wounds: 0 },
+  { id: 'chef', maxWounds: 3, wounds: 0 },
+], 3)
+assert.deepEqual(mixedCasualties.models.map(model => [model.id, model.wounds, model.defeated]), [['soldat', 1, true], ['chef', 2, false]])
+assert.equal(mixedCasualties.remaining, 1)
+const persistentEffects = engine.resolveStatusEffects({ wounds: 1, immobilizeX: 2, poisonX: 1, targetNonDroidTrooper: true })
+assert.equal(persistentEffects.immobilize, 2)
+assert.equal(persistentEffects.poison, 1)
+assert.equal(engine.suppressionTokens({ ranged: true, hadAttackResult: true, suppressive: true, vehicle: true }), 0)
+
+console.log('Assistant attack engine: matrice complète OK')

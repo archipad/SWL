@@ -18,16 +18,18 @@ for(const card of cards){
   }
   if(card.defenseColor&&!['rouge','blanc'].includes(card.defenseColor))throw new Error('Défense invalide')
   if(card.unitStats){
-    const {woundsPerModel,courage,baseModels}=card.unitStats
+    const {woundsPerModel,courage,baseModels,suppressionImmune}=card.unitStats
     if(!Number.isInteger(woundsPerModel)||woundsPerModel<1||woundsPerModel>20)throw new Error('Points de vie invalides')
     if(courage!==null&&(!Number.isInteger(courage)||courage<1||courage>20))throw new Error('Courage invalide')
     if(!Number.isInteger(baseModels)||baseModels<1||baseModels>30)throw new Error('Nombre de figurines invalide')
+    if(suppressionImmune!==undefined&&typeof suppressionImmune!=='boolean')throw new Error('Immunité à la suppression invalide')
   }
   if(card.addedModels!==undefined&&(!Number.isInteger(card.addedModels)||card.addedModels<0||card.addedModels>30))throw new Error('Figurines ajoutées invalides')
+  if(card.addedModelWounds!==undefined&&(!Number.isInteger(card.addedModelWounds)||card.addedModelWounds<1||card.addedModelWounds>20))throw new Error('PV des figurines ajoutées invalides')
   const previous=database[card.card]||{}
   const byIndex=new Map((previous.weapons||[]).map(weapon=>[weapon.index,weapon]))
   for(const weapon of card.weapons||[])byIndex.set(weapon.index,weapon)
-  database[card.card]={weapons:[...byIndex.values()].sort((a,b)=>a.index-b.index),...(card.defenseColor?{defenseColor:card.defenseColor}:previous.defenseColor?{defenseColor:previous.defenseColor}:{}),...(card.unitStats?{unitStats:card.unitStats}:previous.unitStats?{unitStats:previous.unitStats}:{}),...(card.addedModels!==undefined?{addedModels:card.addedModels}:previous.addedModels!==undefined?{addedModels:previous.addedModels}:{})}
+  database[card.card]={weapons:[...byIndex.values()].sort((a,b)=>a.index-b.index),...(card.defenseColor?{defenseColor:card.defenseColor}:previous.defenseColor?{defenseColor:previous.defenseColor}:{}),...(card.unitStats?{unitStats:card.unitStats}:previous.unitStats?{unitStats:previous.unitStats}:{}),...(card.addedModels!==undefined?{addedModels:card.addedModels}:previous.addedModels!==undefined?{addedModels:previous.addedModels}:{}),...(card.addedModelWounds!==undefined?{addedModelWounds:card.addedModelWounds}:previous.addedModelWounds!==undefined?{addedModelWounds:previous.addedModelWounds}:{})}
 }
 fs.writeFileSync(databasePath,`${JSON.stringify(database,null,2)}\n`)
 

@@ -51,6 +51,9 @@ try {
       profile.addedModels = certification.addedModels;
       profile.addedModelsVerifiedAgainstCard = true;
     }
+    if (Number.isInteger(certification.addedModelWounds)) {
+      profile.addedModelWounds = certification.addedModelWounds;
+    }
   }
 
   const reference = {
