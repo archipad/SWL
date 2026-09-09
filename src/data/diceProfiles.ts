@@ -37,13 +37,18 @@ export interface CardDiceProfile {
   /** Caractéristiques imprimées de la carte Unité, certifiées avec le même circuit que les dés. */
   unitStats?: {
     woundsPerModel: number;
+    /** null = symbole « — » imprimé : aucun test de moral et aucun pion Suppression. */
     courage: number | null;
     baseModels: number;
+    /** Certaines unités ignorent la suppression même si une valeur de courage est imprimée. */
+    suppressionImmune?: boolean;
     verifiedAgainstCard?: boolean;
     verificationSource?: string;
   };
   /** Nombre de figurines ajoutées par une carte d'amélioration. */
   addedModels?: number;
+  /** PV propres à chaque figurine ajoutée (absent : mêmes PV que l'unité). */
+  addedModelWounds?: number;
   addedModelsVerifiedAgainstCard?: boolean;
   note?: string;
 }
