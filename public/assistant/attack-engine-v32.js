@@ -104,8 +104,9 @@
     const successes = Math.max(0, Number(options.block) || 0) + Math.max(0, Number(options.surge) || 0);
     const removed = Math.min(before, successes);
     const remaining = before - removed;
-    const courage = Math.max(1, Number(options.commanderCourage) || 0, Number(options.courage) || 1);
-    return { before, dice: before, removed, remaining, courage, suppressed: remaining >= courage, panicked: remaining >= courage * 2 };
+    const ownCourage = Math.max(1, Number(options.courage) || 1);
+    const courage = Math.max(ownCourage, Number(options.commanderCourage) || 0);
+    return { before, dice: before, removed, remaining, courage, suppressed: remaining >= ownCourage, panicked: remaining >= courage * 2 };
   }
 
   function applyLethal(basePierce, lethalX, aimTokens) {

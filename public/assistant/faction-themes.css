@@ -207,3 +207,22 @@ body[data-faction-theme="imperial"] button.primary { color:#fff; }
 .unit-tile.unit-defeated::after{content:"";z-index:4;right:0;bottom:0;padding:0;background:transparent}
 .unit-tile .defeated-overlay{position:absolute;z-index:5;inset:0;display:grid;place-items:center;pointer-events:none}
 .unit-tile .defeated-overlay b{display:grid;width:58px;height:58px;place-items:center;border:2px solid #ff5b64;border-radius:50%;background:rgba(35,4,7,.9);color:#fff;font-family:system-ui,sans-serif;font-size:2rem;line-height:1;box-shadow:0 0 22px rgba(255,50,61,.5)}
+
+/* Navigation centrale ultra-compacte v62. */
+.resolve-center .attack-stepper{gap:3px;margin-bottom:7px}
+.resolve-center .attack-stepper button{min-height:30px;padding:2px 5px}
+.resolve-center .attack-stepper button b{display:inline;font-size:.72rem;line-height:1}
+.resolve-center .attack-stepper button span{margin-left:4px;font-size:.52rem;line-height:1}
+@media(max-width:1050px){.resolve-center .attack-stepper button{min-height:27px}.resolve-center .attack-stepper button b{font-size:.68rem}}
+
+.casualty-models{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:8px}
+.casualty-models span{display:flex;justify-content:space-between;gap:8px;padding:5px 7px;border:1px solid var(--line);background:var(--panel)}
+.casualty-models span.defeated{border-color:#83343a;color:#ff8d93;opacity:.72}
+.casualty-models small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.casualty-models b{white-space:nowrap}
+.post-rally-panel{display:grid;gap:8px;margin:10px 0;padding:10px;border:1px solid var(--acid);background:color-mix(in srgb,var(--panel) 88%,var(--acid))}
+.post-rally-panel>div{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:3px 10px;padding:7px;border:1px solid var(--line);background:var(--panel)}
+.post-rally-panel>div>small{grid-column:1;color:var(--muted)}
+.post-rally-panel>div>button{grid-column:2;grid-row:1/3;min-height:42px}
+.demoralize-targets{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:5px}
+.demoralize-targets button{min-height:38px;padding:4px 9px;font-size:.72rem}
