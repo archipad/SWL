@@ -64,6 +64,14 @@ assert.match(app, /total===expected/, 'Le compteur de saisie exacte est absent')
 assert.match(app, /rolled!==expected/, 'Le verrou du jet de défense est absent')
 assert.match(app, /Object\.values\(attackState\.roll\).*rolled!==expected/, 'Le verrou du jet d’attaque est absent')
 
+// Contrats de suivi de partie : les blessures restent affectées aux bonnes figurines.
+assert.match(app, /modelWounds/, 'La répartition persistante des blessures par figurine est absente')
+assert.match(app, /eligibleWoundTarget/, 'Le contrôle de la figurine éligible est absent')
+assert.match(app, /progress\.assigned!==progress\.required/, 'La fin d’attaque doit être bloquée tant que les blessures ne sont pas réparties')
+assert.match(app, /outcome\?\.panicked/, 'Une unité encore paniquée après ralliement doit être détectée')
+assert.match(app, /Unité paniquée : aucune action/, 'La panique doit interdire les actions')
+assert.match(app, /state\.suppression-courage/, 'La fin d’activation paniquée doit retirer la valeur de Courage en suppression')
+
 // Contrats iPad : viewport, trois colonnes adaptatives, cibles tactiles et barre d’action visible.
 assert.match(index, /viewport-fit=cover/, 'Le viewport iPad doit respecter les zones sûres')
 assert.match(css, /@media \(min-width:768px\) and \(max-width:1180px\)/, 'Point de rupture iPad absent')
