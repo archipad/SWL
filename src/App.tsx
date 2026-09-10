@@ -30,6 +30,15 @@ export default function App() {
   const gameTracker = useGameTracker();
   const sync = useSync({ listP1, listP2, setListP1, setListP2, gameTracker: gameTracker.state, setGameTracker: gameTracker.replace });
 
+  useEffect(() => {
+    const openRequestedScreen = () => {
+      if (window.location.hash === '#suivi-partie') setPage('game');
+    };
+    openRequestedScreen();
+    window.addEventListener('hashchange', openRequestedScreen);
+    return () => window.removeEventListener('hashchange', openRequestedScreen);
+  }, [setPage]);
+
   // Reprend, une seule fois, l'ancienne liste unique (avant le passage à deux
   // joueurs) comme liste du Joueur 1, pour ne rien perdre à cette mise à jour.
   useEffect(() => {
@@ -176,7 +185,7 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app ${page === 'game' ? 'app-game-tracker' : ''}`}>
       <header className="app-header no-print">
         <h1>Legion Compagnon</h1>
         <nav>
