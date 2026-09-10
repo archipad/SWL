@@ -15,15 +15,26 @@ const server = await createServer({
 });
 
 try {
-  const [keywordModule, tagModule, nameModule, diceModule] = await Promise.all([
+  const [keywordModule, tagModule, nameModule, diceModule, imageModule] = await Promise.all([
     server.ssrLoadModule('/src/data/keywords.ts'),
     server.ssrLoadModule('/src/data/cardTags.ts'),
     server.ssrLoadModule('/src/data/cardNamesFr.ts'),
     server.ssrLoadModule('/src/data/diceProfiles.ts'),
+    server.ssrLoadModule('/src/data/cardImages.ts'),
   ]);
 
   const certifications = JSON.parse(await readFile(resolve(projectRoot, 'src/data/diceCertifications.json'), 'utf8'));
   const weapons = structuredClone(diceModule.DICE_PROFILES);
+  // Le catalogue d'images est la source exhaustive des cartes reconnues par
+  // l'interface. Une carte sans dés ni figurine ajoutée doit malgré tout être
+  // raccordée, visible après import et proposée dans la certification.
+  for (const card of Object.keys(imageModule.CARD_IMAGES)) {
+    weapons[card] ??= {
+      weapons: [],
+      note: 'carte sans dés ni figurine ajoutée',
+      addedModels: 0,
+    };
+  }
   for (const [card, certification] of Object.entries(certifications)) {
     const profile = weapons[card];
     if (!profile) throw new Error(`Certification sans profil : ${card}`);
@@ -60,6 +71,7 @@ try {
     keywords: keywordModule.SEED_KEYWORDS,
     tags: tagModule.SEED_CARD_TAGS,
     names: nameModule.CARD_NAMES_FR,
+    images: imageModule.CARD_IMAGES,
     weapons,
   };
 
@@ -71,7 +83,8 @@ try {
 
   console.log(
     `Référentiel Assistant généré : ${reference.keywords.length} mots-clés, ` +
-      `${Object.keys(reference.tags).length} cartes et ` +
+      `${Object.keys(reference.tags).length} cartes, ` +
+      `${Object.keys(reference.images).length} visuels et ` +
       `${Object.keys(reference.weapons).length} profils de dés.`,
   );
 } finally {
