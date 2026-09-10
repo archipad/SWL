@@ -762,6 +762,23 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 
 .tracker-combat-cta { display: flex; justify-content: center; padding: 1rem 0; }
 
+/* Tableau de partie v65 — disposition inspirée du dashboard officiel. */
+body:has(.app-game-tracker){min-height:100vh;background-color:#0a0e15;background-image:repeating-linear-gradient(0deg,rgba(127,216,255,.075) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(127,216,255,.075) 0 1px,transparent 1px 40px),radial-gradient(1000px 600px at 15% 0,rgba(255,140,26,.12),transparent 65%);background-attachment:fixed}
+.app-game-tracker{width:min(100%,1500px);min-height:100vh;font-family:"Rajdhani",sans-serif;background:transparent}
+.tracker-header-actions{display:flex;align-items:center;justify-self:end;gap:.75rem}
+.tracker-combat-link{min-height:42px;white-space:nowrap}
+.tracker-armies{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tracker-army{min-height:92px;padding:12px 16px}
+.tracker-army>div strong{font-size:1.18rem}.tracker-army dl{gap:1.3rem}.tracker-army dd{font-size:1.45rem}
+.tracker-topbar{display:grid;grid-template-columns:130px 1fr;align-items:center;padding:13px 18px;border:2px solid #ff8c1a!important;box-shadow:0 0 24px rgba(255,140,26,.15)}
+.tracker-round{align-items:center;text-align:center;color:#ffb45f;font-size:.82rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}
+.tracker-round select{width:100%;margin-top:5px;border:1px solid #ff8c1a;background:#090d13;color:#fff;font-size:1.65rem;font-weight:900;text-align:center}
+.tracker-vp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.tracker-vp-side{padding:9px;border:1px solid #294459;background:#0a111a}.tracker-player-badge{font-size:1.05rem;font-weight:900}.tracker-vp-value{font-size:2.2rem;line-height:1}.tracker-vp-controls .btn{width:2.7rem;height:2.7rem}
+.tracker-section{padding:10px 12px}.tracker-section select{max-width:none;min-height:42px}.tracker-visuals{gap:8px;margin-top:8px}.tracker-card-button{display:block;width:auto;padding:0;border:1px solid #294459;background:#050807;cursor:zoom-in}.tracker-card-button:hover,.tracker-card-button:focus-visible{border-color:#ff8c1a;box-shadow:0 0 18px rgba(255,140,26,.25)}.tracker-card-image{display:block;width:auto;max-width:155px;max-height:205px;border:0;object-fit:contain}.tracker-section-objective .tracker-card-image{max-width:190px}.tracker-advantage-columns{gap:10px}.tracker-advantage-side{min-width:0}.tracker-advantage-side .tracker-card-image{max-width:155px}
+.tracker-card-preview{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;padding:32px;background:rgba(0,0,0,.88);cursor:zoom-out}.tracker-card-preview img{max-width:min(88vw,720px);max-height:88vh;object-fit:contain;filter:drop-shadow(0 18px 40px #000)}.tracker-card-preview>button{position:fixed;right:24px;top:18px;width:48px;height:48px;border:1px solid #ff8c1a;background:#101721;color:#fff;font-size:2rem;cursor:pointer}
+@media(min-width:980px){.game-tracker-screen{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:12px}.tracker-command-header,.tracker-armies,.tracker-color-assign,.tracker-combat-cta{grid-column:1/-1}.tracker-topbar{grid-column:2;grid-row:4/6;align-self:stretch}.tracker-section-objective{grid-column:1;grid-row:4}.tracker-section-secondary{grid-column:1;grid-row:5}.tracker-section-advantage{grid-column:3;grid-row:4/6}.tracker-section-advantage .tracker-advantage-columns{grid-template-columns:1fr}.tracker-card-image{max-height:175px}.tracker-section-objective .tracker-card-image{max-width:155px}}
+@media(max-width:760px){.tracker-command-header{grid-template-columns:1fr}.tracker-header-actions{justify-self:start;flex-wrap:wrap}.tracker-armies{grid-template-columns:1fr}.tracker-topbar{grid-template-columns:1fr}.tracker-vp{grid-template-columns:1fr 1fr}.tracker-card-image,.tracker-section-objective .tracker-card-image{max-width:130px;max-height:175px}}
+
 /* --- Army screen --- */
 .army-toolbar { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem; }
 .army-faction { margin: 0; font-weight: 600; }
