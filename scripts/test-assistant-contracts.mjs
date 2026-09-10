@@ -77,6 +77,11 @@ assert.match(trackerState, /activatedUnitIds: string\[\]/, 'Le suivi persistant 
 assert.match(trackerUi, /toggleActivation/, 'Le bouton Jouée / À jouer est absent')
 assert.match(trackerUi, /round === state\.round \? activatedUnitIds : \[\]/, 'Un nouveau round doit remettre les activations à zéro')
 assert.match(trackerUi, /!unitSnapshot\(unit, player, index\)\.defeated/, 'Une unité vaincue ne doit pas compter parmi les activations restantes')
+assert.match(app, /markUnitActivated\(attacker\)/, 'Une attaque terminée doit marquer automatiquement l’attaquant comme joué')
+assert.match(app, /markUnitActivated\(entry\)/, 'Une activation paniquée terminée doit être marquée comme jouée')
+assert.match(trackerState, /roundHistory: RoundHistoryEntry\[\]/, 'L’historique des rounds est absent')
+assert.match(trackerUi, /round: state\.round \+ 1/, 'Le passage contrôlé au round suivant est absent')
+assert.match(trackerUi, /roundHistory: \[\.\.\.roundHistory/, 'Le round terminé doit être archivé avant la remise à zéro')
 
 // Contrats iPad : viewport, trois colonnes adaptatives, cibles tactiles et barre d’action visible.
 assert.match(index, /viewport-fit=cover/, 'Le viewport iPad doit respecter les zones sûres')
