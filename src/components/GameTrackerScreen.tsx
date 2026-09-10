@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ADVANTAGE_CARDS, OBJECTIVE_CARDS, SECONDARY_OBJECTIVE_CARDS } from '../data/battleCards';
+import certifications from '../data/diceCertifications.json';
+import { canonicalCardKey, frenchCardName } from '../lib/cardNames';
 import type { useGameTracker } from '../lib/useGameTracker';
 import type { SyncStatus } from '../lib/useSync';
 import type { ParsedList } from '../types';
@@ -14,6 +16,16 @@ interface Props {
 }
 
 const ROUNDS = [1, 2, 3, 4, 5];
+const UNIT_STATE_KEY = 'swl.assistant.unit-state.v1';
+type UnitState = { wounds?: number; suppression?: number; ion?: number; immobilize?: number; poison?: number; shield?: number };
+type UnitStates = Record<string, UnitState>;
+type CertifiedRecord = { unitStats?: { woundsPerModel: number; courage: number | null; baseModels: number; suppressionImmune?: boolean }; addedModels?: number; addedModelWounds?: number };
+const certified = certifications as Record<string, CertifiedRecord>;
+
+function readUnitStates(): UnitStates {
+  try { return JSON.parse(localStorage.getItem(UNIT_STATE_KEY) || '{}') as UnitStates; }
+  catch { return {}; }
+}
 
 function playerLabel(list: ParsedList | null, fallback: string): string {
   return list?.listName ?? list?.faction ?? fallback;
@@ -21,6 +33,7 @@ function playerLabel(list: ParsedList | null, fallback: string): string {
 
 export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus, lastSyncAt }: Props) {
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
+  const [unitStates, setUnitStates] = useState<UnitStates>(readUnitStates);
   const { state, patch } = tracker;
   const update = (changes: Partial<typeof state>) => { const next = { ...state, ...changes }; patch(changes); onSync(next); };
   const p1Label = playerLabel(listP1, 'Joueur 1');
@@ -33,14 +46,38 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   const advantageBleu = ADVANTAGE_CARDS.find((a) => a.id === state.advantageBleuId) ?? null;
   const advantageRouge = ADVANTAGE_CARDS.find((a) => a.id === state.advantageRougeId) ?? null;
 
+  useEffect(() => {
+    const refresh = () => setUnitStates(readUnitStates());
+    refresh();
+    window.addEventListener('storage', refresh);
+    window.addEventListener('focus', refresh);
+    return () => { window.removeEventListener('storage', refresh); window.removeEventListener('focus', refresh); };
+  }, [lastSyncAt]);
+
+  const unitSnapshot = (unit: ParsedList['units'][number], player: 'p1' | 'p2', index: number) => {
+    const state = unitStates[`${player}:${index}`] ?? {};
+    const base = certified[canonicalCardKey(unit.name)]?.unitStats;
+    const models = base ? [
+      ...Array.from({ length: base.baseModels }, () => base.woundsPerModel),
+      ...unit.upgrades.flatMap((upgrade) => {
+        const profile = certified[canonicalCardKey(upgrade.name)];
+        return Array.from({ length: profile?.addedModels ?? 0 }, () => profile?.addedModelWounds ?? base.woundsPerModel);
+      }),
+    ] : [];
+    let budget = Math.max(0, state.wounds ?? 0);
+    const remaining = models.reduce((sum, health) => { const applied = Math.min(health, budget); budget -= applied; return sum + (applied < health ? 1 : 0); }, 0);
+    const totalWounds = models.reduce((sum, health) => sum + health, 0);
+    const suppression = base?.suppressionImmune || base?.courage === null ? 0 : Math.max(0, state.suppression ?? 0);
+    const courage = base?.courage ?? null;
+    return { state, base, totalModels: models.length, remaining, totalWounds, suppression, panicked: courage !== null && suppression >= courage * 2, suppressed: courage !== null && suppression >= courage, defeated: !!models.length && remaining === 0 };
+  };
+
   const armySummary = (list: ParsedList | null, player: 'p1' | 'p2') => {
-    let saved: Record<string, { wounds?: number; suppression?: number }> = {};
-    try { saved = JSON.parse(localStorage.getItem('swl.assistant.unit-state.v1') || '{}'); } catch { /* état local illisible */ }
     const units = list?.units ?? [];
     return {
       units: units.length,
-      wounded: units.filter((_, index) => (saved[`${player}:${index}`]?.wounds ?? 0) > 0).length,
-      suppression: units.reduce((sum, _, index) => sum + (saved[`${player}:${index}`]?.suppression ?? 0), 0),
+      wounded: units.filter((_, index) => (unitStates[`${player}:${index}`]?.wounds ?? 0) > 0).length,
+      suppression: units.reduce((sum, _, index) => sum + (unitStates[`${player}:${index}`]?.suppression ?? 0), 0),
     };
   };
   const p1Summary = armySummary(listP1, 'p1');
@@ -73,6 +110,29 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
           </article>
         ))}
       </div>
+
+      <section className="tracker-unit-status tracker-console-panel" aria-label="État détaillé des armées">
+        <h3>État des unités</h3>
+        <div className="tracker-unit-columns">
+          {([[listP1, 'p1', 'Joueur 1'], [listP2, 'p2', 'Joueur 2']] as const).map(([list, player, fallback]) => (
+            <div className="tracker-unit-column" key={player}>
+              <strong>{playerLabel(list, fallback)}</strong>
+              {(list?.units ?? []).map((unit, index) => {
+                const snapshot = unitSnapshot(unit, player, index);
+                const morale = snapshot.defeated ? 'Vaincue' : snapshot.panicked ? 'Paniquée' : snapshot.suppressed ? 'Démoralisée' : snapshot.suppression ? 'Ralliement' : 'Stable';
+                return <article className={`tracker-unit-row ${snapshot.defeated ? 'defeated' : snapshot.panicked ? 'panicked' : snapshot.suppressed ? 'suppressed' : ''}`} key={`${player}:${index}`}>
+                  <div><b>{frenchCardName(unit.name)}</b><small>{morale}</small></div>
+                  <dl>
+                    <div><dt>Fig.</dt><dd>{snapshot.base ? `${snapshot.remaining}/${snapshot.totalModels}` : '?'}</dd></div>
+                    <div><dt>Bless.</dt><dd>{snapshot.state.wounds ?? 0}{snapshot.totalWounds ? `/${snapshot.totalWounds}` : ''}</dd></div>
+                    <div><dt>Supp.</dt><dd>{snapshot.base?.suppressionImmune || snapshot.base?.courage === null ? '—' : snapshot.suppression}</dd></div>
+                  </dl>
+                </article>;
+              })}
+            </div>
+          ))}
+        </div>
+      </section>
 
       <div className="tracker-color-assign tracker-console-panel">
         <strong>Attribution tactique</strong>
