@@ -65,6 +65,7 @@ body[data-faction-theme="imperial"] h1,body[data-faction-theme="imperial"] h2,bo
 }
 .topbar strong { letter-spacing:.12em; text-transform:uppercase; }
 .topbar-actions button { white-space:nowrap; }
+.topbar-actions .tracker-shortcut { display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:6px 10px; border:1px solid var(--acid); color:var(--acid); font-weight:900; letter-spacing:.04em; white-space:nowrap; box-shadow:0 0 14px color-mix(in srgb,var(--acid) 18%,transparent); }
 .topbar small,.kicker { color:var(--acid); text-shadow:0 0 14px color-mix(in srgb,var(--acid) 58%,transparent); }
 #progress { position:sticky; top:64px; margin:0; }
 #progress::after { content:""; position:absolute; right:16px; bottom:0; left:16px; height:1px; background:linear-gradient(90deg,transparent,var(--acid),transparent); opacity:.45; }
