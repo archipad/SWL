@@ -138,7 +138,6 @@ export default function App() {
         onSync={(state) => sync.push(listP1, listP2, state)}
         syncStatus={sync.status}
         lastSyncAt={sync.lastSyncAt}
-        onGoToCombat={() => setPage('combat-live')}
       />
     );
   } else if (page === 'army' && bothReady && activeList) {
