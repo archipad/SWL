@@ -49,6 +49,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
   return (
     <div className="game-tracker-screen no-print">
       <header className="tracker-command-header">
+        <a className="tracker-back" href="./assistant/">‹ Assistant d’unité</a>
         <div>
           <span className="tracker-eyebrow">Centre de commandement</span>
           <h2>Suivi de partie</h2>
@@ -69,7 +70,8 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
         ))}
       </div>
 
-      <div className="tracker-color-assign">
+      <div className="tracker-color-assign tracker-console-panel">
+        <strong>Attribution tactique</strong>
         <span>Joueur 1 :</span>
         <button
           type="button"
@@ -87,7 +89,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
         </button>
       </div>
 
-      <div className="tracker-topbar">
+      <div className="tracker-topbar tracker-console-panel">
         <label className="tracker-round field">
           Round
           <select value={state.round} onChange={(e) => update({ round: Number(e.target.value) })}>
