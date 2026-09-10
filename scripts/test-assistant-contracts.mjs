@@ -14,6 +14,31 @@ const totalModels = (unit, upgrades) => certifications[unit].unitStats.baseModel
 assert.equal(totalModels('rebel troopers', ['z 6 trooper', 'rebel trooper']), 6, 'Soldats rebelles : 4 + Z-6 + Soldat Rebelle doit donner 6')
 assert.equal(totalModels('rebel veterans', ['cm o 93 trooper', 'rebel veteran']), 6, 'Vétérans rebelles : 4 + CM-O/93 + Vétéran Rebelle doit donner 6')
 
+const expectedAddedModels = {
+  'rebel trooper': 1,
+  'rebel veteran': 1,
+  'rebel trooper specialist': 1,
+  'rebel comms technician': 1,
+  'sleeper cell astromech': 1,
+  'kraken': 1,
+  'captain rex': 1,
+  'fleet trooper squad': 5,
+  'rebel trooper squad': 5,
+  'rebel veteran squad': 5,
+  'stormtrooper squad': 5,
+  'stormtrooper squad expansion': 5,
+  'snowtrooper squad expansion': 5,
+  'shoretrooper squad expansion': 5,
+}
+for (const [card, expected] of Object.entries(expectedAddedModels)) {
+  assert.equal(certifications[card]?.addedModels, expected, `${card}: nombre de figurines ajoutées incorrect ou absent`)
+}
+
+for (const [card, record] of Object.entries(certifications)) {
+  if (record.unitStats || !(record.weapons || []).length) continue
+  assert.ok(Number.isInteger(record.addedModels), `${card}: impact sur l'effectif non déclaré`)
+}
+
 // Toute situation dont la réponse modifie une règle doit avoir trois états :
 // non répondue, oui et non. Une case décochée ne suffit pas à prouver un « non ».
 const mandatoryConditions = [
