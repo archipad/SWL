@@ -36,6 +36,9 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   const [unitStates, setUnitStates] = useState<UnitStates>(readUnitStates);
   const { state, patch } = tracker;
   const update = (changes: Partial<typeof state>) => { const next = { ...state, ...changes }; patch(changes); onSync(next); };
+  const activatedUnitIds = state.activatedUnitIds ?? [];
+  const toggleActivation = (unitId: string) => update({ activatedUnitIds: activatedUnitIds.includes(unitId) ? activatedUnitIds.filter((id) => id !== unitId) : [...activatedUnitIds, unitId] });
+  const changeRound = (round: number) => update({ round, activatedUnitIds: round === state.round ? activatedUnitIds : [] });
   const p1Label = playerLabel(listP1, 'Joueur 1');
   const p2Label = playerLabel(listP2, 'Joueur 2');
   const bleuLabel = state.p1Color === 'bleu' ? p1Label : p2Label;
@@ -84,6 +87,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
       units: units.length,
       wounded: units.filter((_, index) => (unitStates[`${player}:${index}`]?.wounds ?? 0) > 0).length,
       suppression: units.reduce((sum, _, index) => sum + (unitStates[`${player}:${index}`]?.suppression ?? 0), 0),
+      remainingActivations: units.filter((unit, index) => !activatedUnitIds.includes(`${player}:${index}`) && !unitSnapshot(unit, player, index).defeated).length,
     };
   };
   const p1Summary = armySummary(listP1, 'p1');
@@ -112,6 +116,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
               <div><dt>Unités</dt><dd>{summary.units}</dd></div>
               <div><dt>Touchées</dt><dd>{summary.wounded}</dd></div>
               <div><dt>Suppression</dt><dd>{summary.suppression}</dd></div>
+              <div><dt>À jouer</dt><dd>{summary.remainingActivations}</dd></div>
             </dl>
           </article>
         ))}
@@ -126,13 +131,16 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
               {(list?.units ?? []).map((unit, index) => {
                 const snapshot = unitSnapshot(unit, player, index);
                 const morale = snapshot.defeated ? 'Vaincue' : snapshot.panicked ? 'Paniquée' : snapshot.suppressed ? 'Démoralisée' : snapshot.suppression ? 'Ralliement' : 'Stable';
-                return <article className={`tracker-unit-row ${snapshot.defeated ? 'defeated' : snapshot.panicked ? 'panicked' : snapshot.suppressed ? 'suppressed' : ''}`} key={`${player}:${index}`}>
+                const unitId = `${player}:${index}`;
+                const activated = activatedUnitIds.includes(unitId);
+                return <article className={`tracker-unit-row ${activated ? 'activated' : ''} ${snapshot.defeated ? 'defeated' : snapshot.panicked ? 'panicked' : snapshot.suppressed ? 'suppressed' : ''}`} key={unitId}>
                   <div><b>{frenchCardName(unit.name)}</b><small>{morale}</small></div>
                   <dl>
                     <div><dt>Fig.</dt><dd>{snapshot.base ? `${snapshot.remaining}/${snapshot.totalModels}` : '?'}</dd></div>
                     <div><dt>Bless.</dt><dd>{snapshot.state.wounds ?? 0}{snapshot.totalWounds ? `/${snapshot.totalWounds}` : ''}</dd></div>
                     <div><dt>Supp.</dt><dd>{snapshot.base?.suppressionImmune || snapshot.base?.courage === null ? '—' : snapshot.suppression}</dd></div>
                   </dl>
+                  <button type="button" className={`tracker-activation ${activated ? 'done' : ''}`} disabled={snapshot.defeated} onClick={() => toggleActivation(unitId)}>{snapshot.defeated ? '☠' : activated ? '✓ Jouée' : 'À jouer'}</button>
                 </article>;
               })}
             </div>
@@ -162,7 +170,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
       <div className="tracker-topbar tracker-console-panel">
         <label className="tracker-round field">
           Round
-          <select value={state.round} onChange={(e) => update({ round: Number(e.target.value) })}>
+          <select value={state.round} onChange={(e) => changeRound(Number(e.target.value))}>
             {ROUNDS.map((r) => <option key={r} value={r}>{r}</option>)}
           </select>
         </label>
