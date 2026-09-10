@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { ADVANTAGE_CARDS, OBJECTIVE_CARDS, SECONDARY_OBJECTIVE_CARDS } from '../data/battleCards';
 import type { useGameTracker } from '../lib/useGameTracker';
 import type { SyncStatus } from '../lib/useSync';
@@ -20,6 +21,7 @@ function playerLabel(list: ParsedList | null, fallback: string): string {
 }
 
 export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSync, syncStatus, lastSyncAt }: Props) {
+  const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
   const { state, patch } = tracker;
   const update = (changes: Partial<typeof state>) => { const next = { ...state, ...changes }; patch(changes); onSync(next); };
   const p1Label = playerLabel(listP1, 'Joueur 1');
@@ -54,7 +56,10 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
           <span className="tracker-eyebrow">Centre de commandement</span>
           <h2>Suivi de partie</h2>
         </div>
-        <span className={`tracker-sync tracker-sync-${syncStatus}`}><i />{syncLabel}</span>
+        <div className="tracker-header-actions">
+          <span className={`tracker-sync tracker-sync-${syncStatus}`}><i />{syncLabel}</span>
+          <button type="button" className="btn btn-primary tracker-combat-link" onClick={onGoToCombat}>⚔ Résolution d’attaque</button>
+        </div>
       </header>
 
       <div className="tracker-armies">
@@ -125,19 +130,13 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
         </select>
         {objective && (
           <div className="tracker-visuals">
-            <img
-              src={objective.cardImage}
-              alt={objective.name}
-              className="tracker-card-image"
-              onError={(e) => { e.currentTarget.hidden = true; }}
-            />
+            <button type="button" className="tracker-card-button" onClick={() => setPreview({ src: objective.cardImage, alt: objective.name })} aria-label={`Agrandir ${objective.name}`}>
+              <img src={objective.cardImage} alt={objective.name} className="tracker-card-image" onError={(e) => { e.currentTarget.hidden = true; }} />
+            </button>
             {objective.mapImage ? (
-              <img
-                src={objective.mapImage}
-                alt={`Déploiement — ${objective.name}`}
-                className="tracker-card-image"
-                onError={(e) => { e.currentTarget.hidden = true; }}
-              />
+              <button type="button" className="tracker-card-button" onClick={() => setPreview({ src: objective.mapImage!, alt: `Déploiement — ${objective.name}` })} aria-label={`Agrandir le déploiement ${objective.name}`}>
+                <img src={objective.mapImage} alt={`Déploiement — ${objective.name}`} className="tracker-card-image" onError={(e) => { e.currentTarget.hidden = true; }} />
+              </button>
             ) : (
               <p className="empty-hint tracker-missing-visual">
                 Visuel de déploiement non fourni pour « {objective.name} » dans le PDF importé.
@@ -155,12 +154,9 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
         </select>
         {secondary && (
           <div className="tracker-visuals">
-            <img
-              src={secondary.image}
-              alt={secondary.name}
-              className="tracker-card-image"
-              onError={(e) => { e.currentTarget.hidden = true; }}
-            />
+            <button type="button" className="tracker-card-button" onClick={() => setPreview({ src: secondary.image, alt: secondary.name })} aria-label={`Agrandir ${secondary.name}`}>
+              <img src={secondary.image} alt={secondary.name} className="tracker-card-image" onError={(e) => { e.currentTarget.hidden = true; }} />
+            </button>
           </div>
         )}
       </section>
@@ -175,12 +171,9 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
               {ADVANTAGE_CARDS.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
             </select>
             {advantageBleu && (
-              <img
-                src={advantageBleu.image}
-                alt={advantageBleu.name}
-                className="tracker-card-image"
-                onError={(e) => { e.currentTarget.hidden = true; }}
-              />
+              <button type="button" className="tracker-card-button" onClick={() => setPreview({ src: advantageBleu.image, alt: advantageBleu.name })} aria-label={`Agrandir ${advantageBleu.name}`}>
+                <img src={advantageBleu.image} alt={advantageBleu.name} className="tracker-card-image" onError={(e) => { e.currentTarget.hidden = true; }} />
+              </button>
             )}
           </div>
           <div className="tracker-advantage-side">
@@ -190,12 +183,9 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
               {ADVANTAGE_CARDS.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
             </select>
             {advantageRouge && (
-              <img
-                src={advantageRouge.image}
-                alt={advantageRouge.name}
-                className="tracker-card-image"
-                onError={(e) => { e.currentTarget.hidden = true; }}
-              />
+              <button type="button" className="tracker-card-button" onClick={() => setPreview({ src: advantageRouge.image, alt: advantageRouge.name })} aria-label={`Agrandir ${advantageRouge.name}`}>
+                <img src={advantageRouge.image} alt={advantageRouge.name} className="tracker-card-image" onError={(e) => { e.currentTarget.hidden = true; }} />
+              </button>
             )}
           </div>
         </div>
@@ -206,6 +196,12 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
           ⚔️ Aller au Combat interactif
         </button>
       </div>
+      {preview && (
+        <div className="tracker-card-preview" role="dialog" aria-modal="true" aria-label={preview.alt} onClick={() => setPreview(null)}>
+          <button type="button" aria-label="Fermer" onClick={() => setPreview(null)}>×</button>
+          <img src={preview.src} alt={preview.alt} />
+        </div>
+      )}
     </div>
   );
 }
