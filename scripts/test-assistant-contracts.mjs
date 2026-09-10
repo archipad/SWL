@@ -5,6 +5,8 @@ const app = fs.readFileSync(new URL('../public/assistant/app.js', import.meta.ur
 const css = fs.readFileSync(new URL('../public/assistant/engine.css', import.meta.url), 'utf8')
 const index = fs.readFileSync(new URL('../public/assistant/index.html', import.meta.url), 'utf8')
 const certificationUi = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
+const trackerUi = fs.readFileSync(new URL('../src/components/GameTrackerScreen.tsx', import.meta.url), 'utf8')
+const trackerState = fs.readFileSync(new URL('../src/lib/useGameTracker.ts', import.meta.url), 'utf8')
 const certifications = JSON.parse(fs.readFileSync(new URL('../src/data/diceCertifications.json', import.meta.url), 'utf8'))
 
 // Les cartes de personnel et d'armes lourdes ajoutent chacune leur figurine.
@@ -71,6 +73,10 @@ assert.match(app, /progress\.assigned!==progress\.required/, 'La fin d’attaque
 assert.match(app, /outcome\?\.panicked/, 'Une unité encore paniquée après ralliement doit être détectée')
 assert.match(app, /Unité paniquée : aucune action/, 'La panique doit interdire les actions')
 assert.match(app, /state\.suppression-courage/, 'La fin d’activation paniquée doit retirer la valeur de Courage en suppression')
+assert.match(trackerState, /activatedUnitIds: string\[\]/, 'Le suivi persistant des activations est absent')
+assert.match(trackerUi, /toggleActivation/, 'Le bouton Jouée / À jouer est absent')
+assert.match(trackerUi, /round === state\.round \? activatedUnitIds : \[\]/, 'Un nouveau round doit remettre les activations à zéro')
+assert.match(trackerUi, /!unitSnapshot\(unit, player, index\)\.defeated/, 'Une unité vaincue ne doit pas compter parmi les activations restantes')
 
 // Contrats iPad : viewport, trois colonnes adaptatives, cibles tactiles et barre d’action visible.
 assert.match(index, /viewport-fit=cover/, 'Le viewport iPad doit respecter les zones sûres')
