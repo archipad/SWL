@@ -17,7 +17,7 @@ interface Props {
 
 const ROUNDS = [1, 2, 3, 4, 5];
 const UNIT_STATE_KEY = 'swl.assistant.unit-state.v1';
-type UnitState = { wounds?: number; suppression?: number; ion?: number; immobilize?: number; poison?: number; shield?: number };
+type UnitState = { wounds?: number; suppression?: number; ion?: number; immobilize?: number; poison?: number; shield?: number; modelWounds?: Record<string, number> };
 type UnitStates = Record<string, UnitState>;
 type CertifiedRecord = { unitStats?: { woundsPerModel: number; courage: number | null; baseModels: number; suppressionImmune?: boolean }; addedModels?: number; addedModelWounds?: number };
 const certified = certifications as Record<string, CertifiedRecord>;
@@ -58,15 +58,21 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
     const state = unitStates[`${player}:${index}`] ?? {};
     const base = certified[canonicalCardKey(unit.name)]?.unitStats;
     const models = base ? [
-      ...Array.from({ length: base.baseModels }, () => base.woundsPerModel),
-      ...unit.upgrades.flatMap((upgrade) => {
+      ...Array.from({ length: base.baseModels }, (_, modelIndex) => ({ id: `base-${modelIndex}`, health: base.woundsPerModel })),
+      ...unit.upgrades.flatMap((upgrade, upgradeIndex) => {
         const profile = certified[canonicalCardKey(upgrade.name)];
-        return Array.from({ length: profile?.addedModels ?? 0 }, () => profile?.addedModelWounds ?? base.woundsPerModel);
+        return Array.from({ length: profile?.addedModels ?? 0 }, (_, modelIndex) => ({ id: `upgrade-${upgradeIndex}-${canonicalCardKey(upgrade.name)}-${modelIndex}`, health: profile?.addedModelWounds ?? base.woundsPerModel }));
       }),
     ] : [];
+    const detailedTotal = models.reduce((sum, model) => sum + Math.max(0, Math.min(model.health, state.modelWounds?.[model.id] ?? 0)), 0);
+    const hasConsistentDetail = !!state.modelWounds && detailedTotal === Math.max(0, state.wounds ?? 0);
     let budget = Math.max(0, state.wounds ?? 0);
-    const remaining = models.reduce((sum, health) => { const applied = Math.min(health, budget); budget -= applied; return sum + (applied < health ? 1 : 0); }, 0);
-    const totalWounds = models.reduce((sum, health) => sum + health, 0);
+    const remaining = models.reduce((sum, model) => {
+      const applied = hasConsistentDetail ? Math.max(0, Math.min(model.health, state.modelWounds?.[model.id] ?? 0)) : Math.min(model.health, budget);
+      if (!hasConsistentDetail) budget -= applied;
+      return sum + (applied < model.health ? 1 : 0);
+    }, 0);
+    const totalWounds = models.reduce((sum, model) => sum + model.health, 0);
     const suppression = base?.suppressionImmune || base?.courage === null ? 0 : Math.max(0, state.suppression ?? 0);
     const courage = base?.courage ?? null;
     return { state, base, totalModels: models.length, remaining, totalWounds, suppression, panicked: courage !== null && suppression >= courage * 2, suppressed: courage !== null && suppression >= courage, defeated: !!models.length && remaining === 0 };
