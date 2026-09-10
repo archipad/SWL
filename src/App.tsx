@@ -27,8 +27,8 @@ export default function App() {
   const [activePlayer, setActivePlayer] = useState<PlayerId>('p1');
   const { keywords, upsertKeyword, removeKeyword, resetToDefaults } = useKeywordLibrary();
   const { library: tagLibrary, getTags, addTag, removeTag } = useCardTags();
-  const sync = useSync({ listP1, listP2, setListP1, setListP2 });
   const gameTracker = useGameTracker();
+  const sync = useSync({ listP1, listP2, setListP1, setListP2, gameTracker: gameTracker.state, setGameTracker: gameTracker.replace });
 
   // Reprend, une seule fois, l'ancienne liste unique (avant le passage à deux
   // joueurs) comme liste du Joueur 1, pour ne rien perdre à cette mise à jour.
@@ -126,6 +126,9 @@ export default function App() {
         listP1={listP1}
         listP2={listP2}
         tracker={gameTracker}
+        onSync={(state) => sync.push(listP1, listP2, state)}
+        syncStatus={sync.status}
+        lastSyncAt={sync.lastSyncAt}
         onGoToCombat={() => setPage('combat-live')}
       />
     );
@@ -185,12 +188,6 @@ export default function App() {
           <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>Glossaire complet</button>
           <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>Pense-bête</button>
           <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>Imprimer des cartes</button>
-          {/* Page autonome distincte (public/assistant/), pas un onglet de cette
-              SPA : lien externe plutôt qu'une entrée de Page/setPage, ouvert
-              dans un nouvel onglet pour ne pas perdre l'état de l'appli en cours. */}
-          <a className="nav-external" href="https://archipad.github.io/SWL/assistant/" target="_blank" rel="noopener noreferrer">
-            Assistant d’unité ↗
-          </a>
         </nav>
       </header>
 
