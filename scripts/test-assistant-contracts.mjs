@@ -7,6 +7,13 @@ const index = fs.readFileSync(new URL('../public/assistant/index.html', import.m
 const certificationUi = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 const certifications = JSON.parse(fs.readFileSync(new URL('../src/data/diceCertifications.json', import.meta.url), 'utf8'))
 
+// Les cartes de personnel et d'armes lourdes ajoutent chacune leur figurine.
+// Ces contrats protègent notamment les effectifs complets des Soldats et Vétérans rebelles.
+const totalModels = (unit, upgrades) => certifications[unit].unitStats.baseModels
+  + upgrades.reduce((sum, upgrade) => sum + (certifications[upgrade]?.addedModels || 0), 0)
+assert.equal(totalModels('rebel troopers', ['z 6 trooper', 'rebel trooper']), 6, 'Soldats rebelles : 4 + Z-6 + Soldat Rebelle doit donner 6')
+assert.equal(totalModels('rebel veterans', ['cm o 93 trooper', 'rebel veteran']), 6, 'Vétérans rebelles : 4 + CM-O/93 + Vétéran Rebelle doit donner 6')
+
 // Toute situation dont la réponse modifie une règle doit avoir trois états :
 // non répondue, oui et non. Une case décochée ne suffit pas à prouver un « non ».
 const mandatoryConditions = [
