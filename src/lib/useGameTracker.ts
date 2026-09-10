@@ -1,6 +1,7 @@
 import { usePersistentState } from './storage';
 
 export type BattleColor = 'bleu' | 'rouge';
+export interface RoundHistoryEntry { round: number; activatedUnitIds: string[]; vpBleu: number; vpRouge: number; completedAt: string }
 
 export interface GameTrackerState {
   round: number;
@@ -12,6 +13,7 @@ export interface GameTrackerState {
   advantageBleuId: string | null;
   advantageRougeId: string | null;
   activatedUnitIds: string[];
+  roundHistory: RoundHistoryEntry[];
 }
 
 const DEFAULT_STATE: GameTrackerState = {
@@ -24,6 +26,7 @@ const DEFAULT_STATE: GameTrackerState = {
   advantageBleuId: null,
   advantageRougeId: null,
   activatedUnitIds: [],
+  roundHistory: [],
 };
 
 /**
