@@ -37,8 +37,17 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   const { state, patch } = tracker;
   const update = (changes: Partial<typeof state>) => { const next = { ...state, ...changes }; patch(changes); onSync(next); };
   const activatedUnitIds = state.activatedUnitIds ?? [];
+  const roundHistory = state.roundHistory ?? [];
   const toggleActivation = (unitId: string) => update({ activatedUnitIds: activatedUnitIds.includes(unitId) ? activatedUnitIds.filter((id) => id !== unitId) : [...activatedUnitIds, unitId] });
   const changeRound = (round: number) => update({ round, activatedUnitIds: round === state.round ? activatedUnitIds : [] });
+  const nextRound = () => {
+    if (state.round >= ROUNDS.at(-1)!) return;
+    update({
+      round: state.round + 1,
+      activatedUnitIds: [],
+      roundHistory: [...roundHistory.filter((entry) => entry.round !== state.round), { round: state.round, activatedUnitIds, vpBleu: state.vpBleu, vpRouge: state.vpRouge, completedAt: new Date().toISOString() }],
+    });
+  };
   const p1Label = playerLabel(listP1, 'Joueur 1');
   const p2Label = playerLabel(listP2, 'Joueur 2');
   const bleuLabel = state.p1Color === 'bleu' ? p1Label : p2Label;
@@ -168,12 +177,10 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
       </div>
 
       <div className="tracker-topbar tracker-console-panel">
-        <label className="tracker-round field">
-          Round
-          <select value={state.round} onChange={(e) => changeRound(Number(e.target.value))}>
-            {ROUNDS.map((r) => <option key={r} value={r}>{r}</option>)}
-          </select>
-        </label>
+        <div className="tracker-round field">
+          <label>Round<select value={state.round} onChange={(e) => changeRound(Number(e.target.value))}>{ROUNDS.map((r) => <option key={r} value={r}>{r}</option>)}</select></label>
+          <button type="button" className="btn btn-primary tracker-next-round" disabled={state.round >= ROUNDS.at(-1)!} onClick={nextRound}>Round suivant →</button>
+        </div>
 
         <div className="tracker-vp">
           <div className="tracker-vp-side tracker-vp-bleu">
@@ -194,6 +201,11 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
           </div>
         </div>
       </div>
+
+      {roundHistory.length > 0 && <section className="tracker-round-history tracker-console-panel">
+        <h3>Rounds terminés</h3>
+        <div>{roundHistory.slice().reverse().map((entry) => <article key={entry.round}><b>Round {entry.round}</b><span>{entry.activatedUnitIds.length} activation(s)</span><span>🔵 {entry.vpBleu} · 🔴 {entry.vpRouge}</span></article>)}</div>
+      </section>}
 
       <section className="tracker-section tracker-section-objective">
         <h3>Objectif</h3>
