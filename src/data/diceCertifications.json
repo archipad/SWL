@@ -2511,6 +2511,14 @@
       "baseModels": 4
     }
   },
+  "rebel trooper": {
+    "weapons": [],
+    "addedModels": 1
+  },
+  "rebel veteran": {
+    "weapons": [],
+    "addedModels": 1
+  },
   "sx 21 trooper": {
     "weapons": [
       {
