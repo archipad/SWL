@@ -127,6 +127,17 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
     return () => document.removeEventListener('visibilitychange', onVisible);
   }, [token, pull]);
 
+  // Pendant une partie, l'Assistant peut être utilisé sur un autre appareil
+  // tandis que le tableau de suivi reste affiché. Une relève légère garde les
+  // blessures, suppressions et ralliements alignés sans rechargement manuel.
+  useEffect(() => {
+    if (!token) return;
+    const timer = window.setInterval(() => {
+      if (document.visibilityState === 'visible') pull();
+    }, 15_000);
+    return () => window.clearInterval(timer);
+  }, [token, pull]);
+
   return { token, status, error, lastSyncAt, saveToken, removeToken, pull, push };
 }
 
