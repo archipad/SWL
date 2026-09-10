@@ -40,5 +40,5 @@ export function useGameTracker() {
 
   const reset = () => setState(DEFAULT_STATE);
 
-  return { state, patch, reset };
+  return { state, patch, reset, replace: setState };
 }

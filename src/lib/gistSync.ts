@@ -1,4 +1,5 @@
 import type { ParsedList } from '../types';
+import type { GameTrackerState } from './useGameTracker';
 
 /**
  * Synchronisation des listes importées entre appareils, via un Gist GitHub
@@ -24,6 +25,8 @@ export interface SyncPayload {
   updatedAt: number;
   listP1: ParsedList | null;
   listP2: ParsedList | null;
+  gameTracker?: GameTrackerState;
+  assistantUnitStates?: Record<string, Record<string, number>>;
 }
 
 const EMPTY_PAYLOAD: SyncPayload = { updatedAt: 0, listP1: null, listP2: null };
@@ -146,7 +149,7 @@ export async function pullSync(token: string): Promise<SyncPayload> {
   }
 }
 
-export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null }): Promise<SyncPayload> {
+export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; assistantUnitStates?: Record<string, Record<string, number>> }): Promise<SyncPayload> {
   const gistId = await findOrCreateGistId(token);
   const full: SyncPayload = { ...payload, updatedAt: Date.now() };
   const res = await githubFetch(token, `/gists/${gistId}`, {

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { ParsedList } from '../types';
+import type { GameTrackerState } from './useGameTracker';
 import * as gistSync from './gistSync';
 
 export type SyncStatus = 'disabled' | 'idle' | 'syncing' | 'error';
@@ -9,6 +10,8 @@ interface UseSyncOptions {
   listP2: ParsedList | null;
   setListP1: (l: ParsedList | null) => void;
   setListP2: (l: ParsedList | null) => void;
+  gameTracker: GameTrackerState;
+  setGameTracker: (state: GameTrackerState) => void;
 }
 
 /**
@@ -17,7 +20,7 @@ interface UseSyncOptions {
  * visible ; pousse (push) explicitement quand l'appelant importe ou
  * supprime une liste — voir `push` retourné par ce hook.
  */
-export function useSync({ listP1, listP2, setListP1, setListP2 }: UseSyncOptions) {
+export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, setGameTracker }: UseSyncOptions) {
   const [token, setTokenState] = useState<string | null>(() => gistSync.getToken());
   const [status, setStatus] = useState<SyncStatus>(() => (gistSync.getToken() ? 'idle' : 'disabled'));
   const [error, setError] = useState<string | null>(null);
@@ -71,11 +74,13 @@ export function useSync({ listP1, listP2, setListP1, setListP2 }: UseSyncOptions
       if (remote.updatedAt > knownUpdatedAt.current) {
         setListP1(remote.listP1);
         setListP2(remote.listP2);
+        if (remote.gameTracker) setGameTracker(remote.gameTracker);
+        if (remote.assistantUnitStates) localStorage.setItem('swl.assistant.unit-state.v1', JSON.stringify(remote.assistantUnitStates));
         knownUpdatedAt.current = remote.updatedAt;
       } else if (remote.updatedAt === 0 && (listP1 || listP2)) {
         // Gist tout juste créé (vide) mais on a déjà des listes localement :
         // on les y envoie pour amorcer la synchro sur les autres appareils.
-        const saved = await gistSync.pushSync(token, { listP1, listP2 });
+        const saved = await gistSync.pushSync(token, { listP1, listP2, gameTracker, assistantUnitStates: readAssistantStates() });
         knownUpdatedAt.current = saved.updatedAt;
       }
       setStatus('idle');
@@ -91,11 +96,11 @@ export function useSync({ listP1, listP2, setListP1, setListP2 }: UseSyncOptions
   }, [token, setListP1, setListP2]);
 
   const push = useCallback(
-    async (nextP1: ParsedList | null, nextP2: ParsedList | null) => {
+    async (nextP1: ParsedList | null, nextP2: ParsedList | null, nextGameTracker: GameTrackerState = gameTracker) => {
       if (!token) return;
       setStatus('syncing');
       try {
-        const saved = await gistSync.pushSync(token, { listP1: nextP1, listP2: nextP2 });
+        const saved = await gistSync.pushSync(token, { listP1: nextP1, listP2: nextP2, gameTracker: nextGameTracker, assistantUnitStates: readAssistantStates() });
         knownUpdatedAt.current = saved.updatedAt;
         setStatus('idle');
         setError(null);
@@ -105,7 +110,7 @@ export function useSync({ listP1, listP2, setListP1, setListP2 }: UseSyncOptions
         setError(e instanceof Error ? e.message : String(e));
       }
     },
-    [token],
+    [token, gameTracker],
   );
 
   useEffect(() => {
@@ -123,4 +128,9 @@ export function useSync({ listP1, listP2, setListP1, setListP2 }: UseSyncOptions
   }, [token, pull]);
 
   return { token, status, error, lastSyncAt, saveToken, removeToken, pull, push };
+}
+
+function readAssistantStates(): Record<string, Record<string, number>> {
+  try { return JSON.parse(localStorage.getItem('swl.assistant.unit-state.v1') || '{}'); }
+  catch { return {}; }
 }
