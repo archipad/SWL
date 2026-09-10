@@ -5,6 +5,7 @@ const app = fs.readFileSync(new URL('../public/assistant/app.js', import.meta.ur
 const css = fs.readFileSync(new URL('../public/assistant/engine.css', import.meta.url), 'utf8')
 const index = fs.readFileSync(new URL('../public/assistant/index.html', import.meta.url), 'utf8')
 const certificationUi = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
+const referenceData = fs.readFileSync(new URL('../public/assistant/reference-data.js', import.meta.url), 'utf8')
 const trackerUi = fs.readFileSync(new URL('../src/components/GameTrackerScreen.tsx', import.meta.url), 'utf8')
 const trackerState = fs.readFileSync(new URL('../src/lib/useGameTracker.ts', import.meta.url), 'utf8')
 const certifications = JSON.parse(fs.readFileSync(new URL('../src/data/diceCertifications.json', import.meta.url), 'utf8'))
@@ -90,6 +91,9 @@ assert.match(css, /grid-template-columns:minmax\(150px,185px\) minmax\(0,1fr\) m
 assert.match(css, /env\(safe-area-inset-bottom\)/, 'La barre basse ne respecte pas la zone sûre iPad')
 assert.match(css, /\.touch-counter button[^}]*min-width:(?:4[4-9]|[5-9]\d)px[^}]*min-height:(?:4[4-9]|[5-9]\d)px/s, 'Les boutons +/- doivent conserver une cible tactile suffisante')
 assert.match(certificationUi, /!!weaponProfiles\[card\]\?\.unitStats/, 'Une carte avec caractéristiques certifiées doit être reconnue comme carte Unité')
+assert.match(referenceData, /"offensive posture":"\/(?:SWL\/)?cards\/offensive-posture\.jpg"/, 'Posture Offensive doit être raccordée à son visuel')
+assert.match(referenceData, /"offensive posture":\{"weapons":\[\],"note":"carte sans dés ni figurine ajoutée","addedModels":0\}/, 'Toute carte illustrée sans profil doit entrer dans la certification')
+assert.match(app, /window\.SWL_REFERENCE\?\.images/, 'L’assistant doit utiliser le catalogue central des visuels')
 
 // La base centrale ne doit contenir que des valeurs exploitables par le moteur.
 const colors = new Set(['rouge', 'noir', 'blanc'])
