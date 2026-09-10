@@ -8,7 +8,6 @@ interface Props {
   listP1: ParsedList | null;
   listP2: ParsedList | null;
   tracker: ReturnType<typeof useGameTracker>;
-  onGoToCombat: () => void;
   onSync: (state: ReturnType<typeof useGameTracker>['state']) => void;
   syncStatus: SyncStatus;
   lastSyncAt: number | null;
@@ -20,7 +19,7 @@ function playerLabel(list: ParsedList | null, fallback: string): string {
   return list?.listName ?? list?.faction ?? fallback;
 }
 
-export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSync, syncStatus, lastSyncAt }: Props) {
+export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus, lastSyncAt }: Props) {
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
   const { state, patch } = tracker;
   const update = (changes: Partial<typeof state>) => { const next = { ...state, ...changes }; patch(changes); onSync(next); };
@@ -58,7 +57,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
         </div>
         <div className="tracker-header-actions">
           <span className={`tracker-sync tracker-sync-${syncStatus}`}><i />{syncLabel}</span>
-          <button type="button" className="btn btn-primary tracker-combat-link" onClick={onGoToCombat}>⚔ Résolution d’attaque</button>
+          <a className="btn btn-primary tracker-combat-link" href="./assistant/">⚔ Assistant d’unité</a>
         </div>
       </header>
 
@@ -192,9 +191,9 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onGoToCombat, onSyn
       </section>
 
       <div className="tracker-combat-cta">
-        <button type="button" className="btn btn-primary btn-large" onClick={onGoToCombat}>
-          ⚔️ Aller au Combat interactif
-        </button>
+        <a className="btn btn-primary btn-large" href="./assistant/">
+          ⚔️ Ouvrir l’Assistant d’unité
+        </a>
       </div>
       {preview && (
         <div className="tracker-card-preview" role="dialog" aria-modal="true" aria-label={preview.alt} onClick={() => setPreview(null)}>
