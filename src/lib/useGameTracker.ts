@@ -11,6 +11,7 @@ export interface GameTrackerState {
   secondaryId: string | null;
   advantageBleuId: string | null;
   advantageRougeId: string | null;
+  activatedUnitIds: string[];
 }
 
 const DEFAULT_STATE: GameTrackerState = {
@@ -22,13 +23,12 @@ const DEFAULT_STATE: GameTrackerState = {
   secondaryId: null,
   advantageBleuId: null,
   advantageRougeId: null,
+  activatedUnitIds: [],
 };
 
 /**
- * Suivi de partie (round, points de victoire, objectifs sélectionnés) :
- * volontairement local à l'appareil, pas de synchro entre appareils (à la
- * différence des listes P1/P2) — chaque joueur suit sa propre table sur son
- * propre écran. Les points de victoire et les cartes Avantage sont
+ * Suivi de partie (round, activations, points de victoire, objectifs sélectionnés).
+ * Les points de victoire et les cartes Avantage sont
  * rattachés à la couleur (bleu/rouge), comme sur le tapis de jeu physique ;
  * `p1Color` retient quel côté (bleu ou rouge) le Joueur 1 a choisi en début
  * de partie, pour afficher son nom à côté du bon badge.
