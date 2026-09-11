@@ -1190,3 +1190,19 @@ body:has(.app-game-tracker){min-height:100vh;background-color:#0a0e15;background
   .visual-list-keywords { column-count: 2; column-gap: 1em; margin-top: 0.2em; }
   .visual-list-kw { color: black; font-size: 7.5pt; line-height: 1.25; margin: 0 0 0.15em; break-inside: avoid; }
 }
+/* Rapport de compatibilité affiché immédiatement après chaque import. */
+.import-audit{margin-top:14px;border:1px solid #33485a;background:#0b151d}
+.import-audit-ok{border-color:#2f9d68;box-shadow:inset 3px 0 #49e59a}
+.import-audit-warning{border-color:#d58a2b;box-shadow:inset 3px 0 #ff9d22}
+.import-audit-summary{width:100%;min-height:58px;padding:10px 12px;display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}
+.import-audit-summary>span:nth-child(2){display:grid;gap:3px}
+.import-audit-summary small{color:#9bb0bf;font-size:.76rem}
+.import-audit-icon{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900;background:#173229;color:#62f0aa}
+.import-audit-warning .import-audit-icon{background:#3d2912;color:#ffb34d}
+.import-audit-details{padding:0 12px 12px;display:grid;gap:7px}
+.import-audit-details article{padding:9px;border:1px solid #263c4b;background:#0e1a23}
+.import-audit-details article>div{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.import-audit-details article>div span,.import-audit-unit-ok{color:#72d8f7;font-size:.78rem}
+.import-audit-details ul{margin:7px 0 0;padding-left:18px;color:#ffc36f;font-size:.78rem}
+.import-audit-blocking{margin:2px 0 0;padding:9px;border-left:3px solid #ff9d22;background:#2b1c10;color:#ffd097;font-size:.78rem}
+.import-audit-action{justify-self:start;margin-top:4px;text-decoration:none}
