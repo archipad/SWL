@@ -105,7 +105,8 @@ body {
    actif : un bref halo qui s'allume puis retombe, une seule fois par
    activation — ne rejoue pas tant que l'onglet reste actif car l'animation
    ne redémarre que lorsque la classe .active est (re)posée sur le bouton. */
-.app-game-tracker .app-header nav button.active {
+.app-game-tracker .app-header nav button.active,
+.app-game-tracker .app-header nav a.igniting {
   animation: navIgnite 380ms ease-out;
 }
 @keyframes navIgnite {
@@ -114,7 +115,8 @@ body {
   100% { box-shadow: 0 0 0 0 rgba(255, 140, 26, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .app-game-tracker .app-header nav button.active { animation: none; }
+  .app-game-tracker .app-header nav button.active,
+  .app-game-tracker .app-header nav a.igniting { animation: none; }
 }
 
 /* Transition entre pages façon « star wipe » (balayage gauche → droite

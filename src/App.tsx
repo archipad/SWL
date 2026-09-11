@@ -18,12 +18,18 @@ type Page = 'setup' | 'army' | 'game' | 'library' | 'cheatsheet' | 'print-cards'
 type PlayerId = 'p1' | 'p2';
 
 const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
+const ASSISTANT_URL = 'https://archipad.github.io/SWL/assistant/';
+/* Durée de l'animation .nav-ignite (voir index.css) : le clic sur Assistant
+   d'unité doit la laisser jouer avant de quitter la SPA, sinon la
+   navigation coupe l'animation avant qu'elle soit visible. */
+const NAV_IGNITE_MS = 380;
 
 export default function App() {
   const [listP1, setListP1] = usePersistentState<ParsedList | null>('swl.list.p1.v1', null);
   const [listP2, setListP2] = usePersistentState<ParsedList | null>('swl.list.p2.v1', null);
   const [page, setPage] = usePersistentState<Page>('swl.page.v1', 'setup');
   const [activePlayer, setActivePlayer] = useState<PlayerId>('p1');
+  const [assistantIgniting, setAssistantIgniting] = useState(false);
   const { keywords, upsertKeyword, removeKeyword, resetToDefaults } = useKeywordLibrary();
   const { library: tagLibrary, getTags, addTag, removeTag } = useCardTags();
   const gameTracker = useGameTracker();
@@ -185,8 +191,29 @@ export default function App() {
           {/* Page autonome distincte (public/assistant/), pas un onglet de cette
               SPA : lien externe plutôt qu'une entrée de Page/setPage. Navigue
               dans le même onglet (demande explicite de l'utilisateur). Placée
-              juste après Suivi de partie, comme demandé. */}
-          <a className="nav-external" href="https://archipad.github.io/SWL/assistant/">
+              juste après Suivi de partie, comme demandé. Le clic déclenche
+              d'abord le même effet d'ignition que les autres onglets (classe
+              .igniting, voir index.css) avant de naviguer, sinon la
+              navigation coupe l'animation avant qu'elle soit visible ; la
+              page d'arrivée rejoue ensuite son propre « star wipe »
+              (public/assistant/header-sync.css). */}
+          <a
+            className={`nav-external${assistantIgniting ? ' igniting' : ''}`}
+            href={ASSISTANT_URL}
+            onClick={(e) => {
+              e.preventDefault();
+              // Pas d'attente artificielle si l'utilisateur a demandé de
+              // réduire les animations : l'effet ne joue pas (voir la garde
+              // prefers-reduced-motion dans index.css), donc rien à laisser
+              // le temps de voir avant de naviguer.
+              if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                window.location.href = ASSISTANT_URL;
+                return;
+              }
+              setAssistantIgniting(true);
+              setTimeout(() => { window.location.href = ASSISTANT_URL; }, NAV_IGNITE_MS);
+            }}
+          >
             <NavIcon id="assistant" />Assistant d'unité
           </a>
           <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>
