@@ -78,23 +78,23 @@ const RAW: Record<string, string> = {
   // Cartes Amélioration génériques (deck Genrela_upgrade_fr_30mo.pdf).
   'Targeting Scopes': 'targeting-scopes.jpg',
   'Offensive Push': 'offensive-push.jpg',
+  'Offensive Posture': 'offensive-posture.jpg',
   'Linked Targeting Array': 'linked-targeting-array.jpg',
   'Force Choke': 'force-choke.jpg',
   'Saber Throw': 'saber-throw.jpg',
   'Burst of Speed': 'burst-of-speed.jpg',
   'Imperial March': 'imperial-march.jpg',
-  'Inspiring Presence': 'inspiring-presence.jpg',
-  'Tenacity': 'tenacity.jpg',
   'The Darksaber': 'the-darksaber.jpg',
   'Rebel Troopers': 'rebel-troopers.jpg',
   // 'Mark II Medium Blaster Trooper' est l'UNITÉ (voir Cartes_rebelles_fr.pdf,
   // re-découpée le 05/09/2026) — ne pas confondre avec 'X-34 Mark II Blaster',
   // l'arme montée sur Landspeeder X-34 ci-dessous : erreur corrigée le
   // 05/09/2026, la même image avait été mise par erreur sous les deux clés.
-  // L'entrée ci-dessous avait été supprimée par erreur lors de ce correctif
-  // (06/09/2026) — le fichier existait déjà mais n'était plus référencé.
-  'Mark II Medium Blaster Trooper': 'mark-ii-medium-blaster-trooper.jpg',
   'X-34 Mark II Blaster': 'x-34-mark-ii-blaster.jpg',
+  'Mark II Medium Blaster Trooper': 'mark-ii-medium-blaster-trooper.jpg',
+  'Inspiring Presence': 'inspiring-presence.jpg',
+  'Recon Intel': 'recon-intel.jpg',
+  'Tenacity': 'tenacity.jpg',
   'Fleet Troopers': 'fleet-troopers.jpg',
   'Rebel Veterans': 'rebel-veterans.jpg',
   'Rebel Commandos': 'rebel-commandos.jpg',
@@ -228,76 +228,6 @@ const RAW: Record<string, string> = {
   '1.4 FD Laser Cannon Team': '1-4-fd-laser-cannon-team.jpg',
   'A-A5 Speeder Truck': 'a-a5-speeder-truck.jpg',
   'Han Solo': 'han-solo.jpg',
-  // Cartes de Genrela_upgrade_fr_30mo.pdf, audité et découpé le 06/09/2026.
-  'Improvised Orders': 'improvised-orders.jpg',
-  'Lead by Example': 'lead-by-example.jpg',
-  'Strict Orders': 'strict-orders.jpg',
-  'Climbing Cables': 'climbing-cables.jpg',
-  'Electrobinoculars': 'electrobinoculars.jpg',
-  'Underworld Contacts': 'underworld-contacts.jpg',
-  'Environmental Gear': 'environmental-gear.jpg',
-  'Handheld Scanner': 'handheld-scanner.jpg',
-  'Grapnel Hooks': 'grapnel-hooks.jpg',
-  // Déjà en base (audit précédent) mais sans visuel jusqu'ici.
-  'Recon Intel': 'recon-intel.jpg',
-  'Prepared Materiel': 'prepared-materiel.jpg',
-  'Vigilance': 'vigilance.jpg',
-  'Evasive Cover': 'evasive-cover.jpg',
-  'Emergency Stims': 'emergency-stims.jpg',
-  'Endurance': 'endurance.jpg',
-  'In the Fray': 'in-the-fray.jpg',
-  'Protector': 'protector.jpg',
-  'Spotting': 'spotting.jpg',
-  'Seize the Opportunity': 'seize-the-opportunity.jpg',
-  'Situational Awareness': 'situational-awareness.jpg',
-  'Point Blank': 'point-blank.jpg',
-  'Defensive Posture': 'defensive-posture.jpg',
-  'Offensive Posture': 'offensive-posture.jpg',
-  'Comms Jammer': 'comms-jammer.jpg',
-  'Command System': 'command-system.jpg',
-  'Emergency Transponder': 'emergency-transponder.jpg',
-  'HQ Uplink': 'hq-uplink.jpg',
-  'Comms Hacking Unit': 'comms-hacking-unit.jpg',
-  'Attack Protocols': 'attack-protocols.jpg',
-  'Onboard Comms Channel': 'onboard-comms-channel.jpg',
-  'Concussion Grenades': 'concussion-grenades.jpg',
-  'EMP Grenades': 'emp-grenades.jpg',
-  'Fragmentation Grenades': 'fragmentation-grenades.jpg',
-  'Impact Grenades': 'impact-grenades.jpg',
-  'Sonic Imploders': 'sonic-imploders.jpg',
-  'Smoke Grenades': 'smoke-grenades.jpg',
-  'Defense Protocols': 'defense-protocols.jpg',
-  'Engagement Protocols': 'engagement-protocols.jpg',
-  'Barrage Generator': 'barrage-generator.jpg',
-  'Generator Overcharge': 'generator-overcharge.jpg',
-  'Armor-Piercing Shells': 'armor-piercing-shells.jpg',
-  'High-Energy Shells': 'high-energy-shells.jpg',
-  'Anti-Bunker Shells': 'anti-bunker-shells.jpg',
-  'Anger': 'anger.jpg',
-  'Fear': 'fear.jpg',
-  'Hope': 'hope.jpg',
-  'Old Jedi Trick': 'old-jedi-trick.jpg',
-  'Force Barrier': 'force-barrier.jpg',
-  'Force Guidance': 'force-guidance.jpg',
-  'Force Push': 'force-push.jpg',
-  'Force Reflexes': 'force-reflexes.jpg',
-  // Cartes de Nouvelles_cartes_amelio_FR_MAJ23.02.2026.pdf, audité et
-  // découpé le 06/09/2026.
-  'Hit and Run': 'hit-and-run.jpg',
-  'Combat Group Leader': 'combat-group-leader.jpg',
-  'Mission Objective': 'mission-objective.jpg',
-  'Trusted Agent': 'trusted-agent.jpg',
-  'Dread': 'dread.jpg',
-  'Entrenched': 'entrenched.jpg',
-  'Serenity': 'serenity.jpg',
-  'Additional Supplies': 'additional-supplies.jpg',
-  'Clairvoyance': 'clairvoyance.jpg',
-  'Spotter Link': 'spotter-link.jpg',
-  'Mounted Gunners': 'mounted-gunners.jpg',
-  'Kraken': 'kraken.jpg',
-  'Kallus the Operative': 'kallus-the-operative.jpg',
-  'Captain Rex': 'captain-rex.jpg',
-  'Cassian Andor Operative': 'cassian-andor-operative.jpg',
 };
 
 export const CARD_IMAGES: Record<string, string> = Object.fromEntries(
@@ -306,5 +236,9 @@ export const CARD_IMAGES: Record<string, string> = Object.fromEntries(
 
 /** Accepte aussi bien un nom anglais (Tabletop Admiral) qu'un nom français recopié depuis la carte — voir canonicalCardKey(). */
 export function cardImageFor(name: string): string | undefined {
-  return CARD_IMAGES[canonicalCardKey(name)];
+  const key = canonicalCardKey(name);
+  if (key === 'ahsoka tano fulcrum' || key.startsWith('ahsoka tano ')) {
+    return CARD_IMAGES['ahsoka tano'];
+  }
+  return CARD_IMAGES[key];
 }
