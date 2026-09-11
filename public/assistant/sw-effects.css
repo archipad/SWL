@@ -294,3 +294,23 @@
 @media (prefers-reduced-motion: reduce) {
   .progress-complete-pop { animation: none; }
 }
+
+/* --- Dé saisi : éclat sur le champ à chaque frappe/tap ---
+   Classe posée depuis app.js (pulseEl) sur .quick-field à chaque
+   'input' des compteurs de résultat. Restreinte via :has() aux champs
+   qui affichent réellement un symbole de dé (icône touche/critique/
+   adrénaline/blocage ou face vierge, cf. resultMarker() dans app.js) —
+   pas aux compteurs de jetons (Viser, relances, boucliers...). Anim
+   très courte, une seule propriété transform + box-shadow : coût
+   négligeable même rejouée à chaque chiffre tapé ou +/- appuyé. */
+.quick-field:has(.dice-symbol, .blank-die).field-touched {
+  animation: fieldTouched 300ms ease-out;
+}
+@keyframes fieldTouched {
+  0% { box-shadow: 0 0 0 0 transparent; transform: scale(1); }
+  35% { box-shadow: 0 0 12px 2px var(--acid); transform: scale(1.02); }
+  100% { box-shadow: 0 0 0 0 transparent; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quick-field:has(.dice-symbol, .blank-die).field-touched { animation: none; }
+}
