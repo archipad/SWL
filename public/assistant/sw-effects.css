@@ -314,3 +314,25 @@
 @media (prefers-reduced-motion: reduce) {
   .quick-field:has(.dice-symbol, .blank-die).field-touched { animation: none; }
 }
+
+/* --- Nombre de dés saisis invalide, au clic refusé sur Étape suivante ---
+   Classe posée depuis app.js (pulseEl) sur l'encadré .result-entry qui
+   contient les compteurs de dés, uniquement quand stepIssue() signale un
+   total ne correspondant pas à la réserve à lancer ("Le jet saisi
+   contient X dés, mais la réserve en contient Y."). Shake + cadre rouge
+   bref, en plus de l'éclat déjà posé sur le message d'avertissement. */
+.result-entry.dice-entry-invalid {
+  animation: diceEntryInvalid 460ms ease-in-out;
+  border-radius: 10px;
+}
+@keyframes diceEntryInvalid {
+  0% { box-shadow: 0 0 0 0 rgba(255, 102, 92, 0); transform: translateX(0); }
+  20% { transform: translateX(-6px); box-shadow: 0 0 0 3px rgba(255, 102, 92, 0.85); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); box-shadow: 0 0 0 3px rgba(255, 102, 92, 0.85); }
+  80% { transform: translateX(2px); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 102, 92, 0); transform: translateX(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .result-entry.dice-entry-invalid { animation: none; }
+}

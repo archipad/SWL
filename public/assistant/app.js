@@ -343,10 +343,15 @@ document.addEventListener('click',event=>{const armyButton=event.target.closest?
    ne peut pas animer l'ancien bouton (détruit avant d'être peint) — on pose
    un drapeau en phase de capture, avant que le onclick natif ne re-rende
    l'écran, puis on l'applique juste après au bouton fraîchement recréé. */
-let nextAttackDenied=false;
-document.addEventListener('click',event=>{if(event.target.closest?.('#nextAttack')&&typeof stepIssue==='function'&&stepIssue())nextAttackDenied=true},true);
+let nextAttackDenied=false,nextAttackDeniedIssue='';
+document.addEventListener('click',event=>{if(event.target.closest?.('#nextAttack')&&typeof stepIssue==='function'){const issue=stepIssue();if(issue){nextAttackDenied=true;nextAttackDeniedIssue=issue}}},true);
 const resolveScreenDeniedShakeBase=resolveScreen;
-resolveScreen=function(){resolveScreenDeniedShakeBase();if(nextAttackDenied){pulseEl($('#nextAttack'),'next-denied');const warning=root.querySelector('.resolve-center .strict-warning:not([hidden])');if(warning)warning.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});nextAttackDenied=false}};
+resolveScreen=function(){resolveScreenDeniedShakeBase();if(nextAttackDenied){pulseEl($('#nextAttack'),'next-denied');const warning=root.querySelector('.resolve-center .strict-warning:not([hidden])');if(warning)warning.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+/* Nombre de dés saisis invalide (trop ou pas assez par rapport à la
+   réserve) : en plus de l'éclat générique ci-dessus, on cible en plus
+   l'encadré qui contient les compteurs de dés lui-même. */
+if(/^Le jet (saisi|de défense saisi) contient/.test(nextAttackDeniedIssue)){const entry=root.querySelector('.resolve-center .result-entry');if(entry)pulseEl(entry,'dice-entry-invalid')}
+nextAttackDenied=false;nextAttackDeniedIssue=''}};
 /* Éclat « refusé » sur une arme grisée (hors portée / interdite par une
    immunité) au tap/clic : le <button> porte l'attribut disabled (aucun
    événement ne s'y déclenche), mais sw-effects.css neutralise son
