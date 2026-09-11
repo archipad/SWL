@@ -4,7 +4,7 @@
   try{drafts=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch{drafts={}}
   const profiles=()=>Object.entries(weaponProfiles);
   const isUnitCard=card=>!!weaponProfiles[card]?.unitStats||entries.some(entry=>norm(entry.unit.name)===card)||Object.values(rankCatalog).some(cards=>cards.includes(card));
-  const pendingFor=(card,profile)=>(profile.weapons||[]).filter(w=>!w.verifiedAgainstCard).length+(isUnitCard(card)&&!profile.defenseVerifiedAgainstCard?1:0)+(isUnitCard(card)&&!profile.unitStats?.verifiedAgainstCard?1:0)+(!isUnitCard(card)&&!profile.addedModelsVerifiedAgainstCard?1:0);
+  const pendingFor=(card,profile)=>(profile.weapons||[]).filter(w=>!w.verifiedAgainstCard).length+(isUnitCard(card)&&!profile.defenseVerifiedAgainstCard?1:0)+(isUnitCard(card)&&!profile.unitStats?.verifiedAgainstCard?1:0)+(!isUnitCard(card)&&Number.isInteger(profile.addedModels)&&!profile.addedModelsVerifiedAgainstCard?1:0);
   const pendingTotal=()=>profiles().reduce((n,[card,p])=>n+pendingFor(card,p),0);
   const batchCount=()=>Object.values(drafts).reduce((n,d)=>n+(d.weapons||[]).filter(w=>w.queued).length+(d.defenseQueued?1:0)+(d.unitStatsQueued?1:0)+(d.addedModelsQueued?1:0),0);
   const save=()=>localStorage.setItem(storageKey,JSON.stringify(drafts));
