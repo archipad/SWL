@@ -16,6 +16,7 @@ const setupUi = fs.readFileSync(new URL('../src/components/SetupScreen.tsx', imp
 const syncUi = fs.readFileSync(new URL('../src/lib/useSync.ts', import.meta.url), 'utf8')
 const gistSync = fs.readFileSync(new URL('../src/lib/gistSync.ts', import.meta.url), 'utf8')
 const jsonImporter = fs.readFileSync(new URL('../src/lib/parseListJson.ts', import.meta.url), 'utf8')
+const cardNames = fs.readFileSync(new URL('../src/lib/cardNames.ts', import.meta.url), 'utf8')
 const certificationUiSource = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 
 // Les cartes de personnel et d'armes lourdes ajoutent chacune leur figurine.
@@ -105,6 +106,9 @@ assert.match(referenceData, /"offensive posture":\{"weapons":\[\],"note":"carte 
 assert.doesNotMatch(referenceData, /"offensive posture":\{[^}]*"addedModels"/, 'Une amélioration sans figurine ne doit pas créer un faux contrôle de figurines')
 assert.match(certificationUi, /Number\.isInteger\(profile\.addedModels\)/, 'Seules les cartes déclarées comme ajoutant des figurines doivent entrer dans ce contrôle')
 assert.match(app, /'ahsoka tano fulcrum':'ahsoka tano'/, 'Ahsoka Fulcrum doit réutiliser son profil certifié Ahsoka Tano')
+assert.match(app, /'prepared supplies':'prepared materiel'/, 'L’assistant doit reconnaître Prepared Supplies')
+assert.match(app, /'cm 0 93 trooper':'cm o 93 trooper'/, 'L’assistant doit reconnaître la variante CM-0/93')
+assert.match(app, /'evasive cover':'duck and cover'/, 'L’ancienne clé Evasive Cover doit retrouver Duck and Cover')
 assert.match(app, /window\.SWL_REFERENCE\?\.images/, 'L’assistant doit utiliser le catalogue central des visuels')
 assert.match(app, /'ahsoka tano fulcrum':'ahsoka tano'/, 'La variante Tabletop Admiral d’Ahsoka doit utiliser la certification canonique')
 assert.match(app, /const key=cardKey\(unit\.name\)/, 'Le rang des unités importées doit utiliser leur clé canonique')
@@ -130,6 +134,12 @@ assert.match(syncUi, /swl\.assistant\.attack-history\.v1/, 'Le journal distant d
 assert.match(app, /assistantAttackHistory:attackHistory/, 'L’assistant doit envoyer son journal de résolution')
 assert.match(trackerUi, /Journal de résolution/, 'Le suivi de partie doit afficher le journal synchronisé des attaques')
 assert.match(jsonImporter, /const unitKey = nextSlug\(u\.name\)/, 'La clé stable d’une unité doit être réservée avant ses améliorations')
+assert.match(cardNames, /'prepared supplies': 'prepared materiel'/, 'Prepared Supplies doit retrouver Matériel Préparé')
+assert.match(cardNames, /'cm 0 93 trooper': 'cm o 93 trooper'/, 'CM-0\/93 doit retrouver la carte CM-O\/93')
+for (const card of ['force reflexes', 'improvised orders', 'prepared materiel', 'fragmentation grenades', 'situational awareness', 'impact grenades', 'hq uplink', 'duck and cover']) {
+  assert.ok(reference.images[card], `${card}: visuel générique non raccordé`)
+  assert.ok(reference.names[card], `${card}: nom français générique non raccordé`)
+}
 assert.match(app, /unit\.key\|\|index/, 'L’assistant doit conserver une identité stable lors d’une réimportation')
 assert.match(app, /legacyId/, 'Les blessures enregistrées avec les anciens identifiants doivent être migrées')
 assert.match(certificationUiSource, /location\.hash==='\#certification'/, 'Le rapport d’import doit pouvoir ouvrir directement la certification')
