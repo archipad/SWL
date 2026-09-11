@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { SetupScreen } from './components/SetupScreen';
 import { ArmyScreen } from './components/ArmyScreen';
-import { CombatScreen } from './components/CombatScreen';
-import { CombatInteractiveScreen } from './components/CombatInteractiveScreen';
 import { GameTrackerScreen } from './components/GameTrackerScreen';
 import { LibraryScreen } from './components/LibraryScreen';
 import { CheatSheetScreen } from './components/CheatSheetScreen';
@@ -15,7 +13,7 @@ import { useSync } from './lib/useSync';
 import { useGameTracker } from './lib/useGameTracker';
 import type { ParsedList } from './types';
 
-type Page = 'setup' | 'army' | 'game' | 'combat' | 'combat-live' | 'library' | 'cheatsheet' | 'print-cards';
+type Page = 'setup' | 'army' | 'game' | 'library' | 'cheatsheet' | 'print-cards';
 type PlayerId = 'p1' | 'p2';
 
 const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
@@ -81,7 +79,7 @@ export default function App() {
   );
 
   const goToPage = (target: Page) => {
-    if ((target === 'army' || target === 'game' || target === 'combat' || target === 'combat-live') && !bothReady) {
+    if ((target === 'army' || target === 'game') && !bothReady) {
       setPage('setup');
       return;
     }
@@ -107,26 +105,6 @@ export default function App() {
         onRemove={removeKeyword}
         onResetDefaults={resetToDefaults}
         onRemoveCardTag={removeTag}
-      />
-    );
-  } else if (page === 'combat' && bothReady) {
-    content = (
-      <CombatScreen
-        listP1={listP1}
-        listP2={listP2}
-        tagLibrary={tagLibrary}
-        keywords={keywords}
-        onGoToGameTracker={() => setPage('game')}
-      />
-    );
-  } else if (page === 'combat-live' && bothReady) {
-    content = (
-      <CombatInteractiveScreen
-        listP1={listP1}
-        listP2={listP2}
-        tagLibrary={tagLibrary}
-        keywords={keywords}
-        onGoToGameTracker={() => setPage('game')}
       />
     );
   } else if (page === 'game' && bothReady) {
@@ -183,27 +161,29 @@ export default function App() {
     );
   }
 
-  // Habillage « console tactique » du Suivi de partie, étendu ici aux pages
-  // de référence (Glossaire complet / Pense-bête / Imprimer des cartes) pour
-  // harmoniser couleurs et police avec elle — voir index.css, règles
+  // Habillage « console tactique » du Suivi de partie, étendu à toutes les
+  // pages de la SPA pour une identité visuelle unique (police Rajdhani,
+  // fond quadrillé, titres orange) — voir index.css, règles
   // ".app-game-tracker" et les sélecteurs dédiés .cheatsheet-screen /
-  // .library-screen / .print-cards-screen juste en dessous. Purement
-  // visuel : aucune page ni fonctionnalité n'est modifiée par ce choix.
-  const useConsoleTheme = page === 'game' || page === 'library' || page === 'cheatsheet' || page === 'print-cards';
+  // .library-screen / .print-cards-screen juste en dessous.
 
   return (
-    <div className={`app ${useConsoleTheme ? 'app-game-tracker' : ''}`}>
+    <div className="app app-game-tracker">
       <header className="app-header no-print">
         <h1>Legion Compagnon</h1>
         <nav>
           <button type="button" className={page === 'setup' ? 'active' : ''} onClick={() => setPage('setup')}>Listes</button>
           <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>Armées</button>
           <button type="button" className={page === 'game' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('game')}>Suivi de partie</button>
-          <button type="button" className={page === 'combat' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('combat')}>Combat</button>
-          <button type="button" className={page === 'combat-live' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('combat-live')}>Combat interactif</button>
           <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>Glossaire complet</button>
           <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>Pense-bête</button>
           <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>Imprimer des cartes</button>
+          {/* Page autonome distincte (public/assistant/), pas un onglet de cette
+              SPA : lien externe plutôt qu'une entrée de Page/setPage, ouvert
+              dans un nouvel onglet pour ne pas perdre l'état de l'appli en cours. */}
+          <a className="nav-external" href="https://archipad.github.io/SWL/assistant/" target="_blank" rel="noopener noreferrer">
+            Assistant d'unité ↗
+          </a>
         </nav>
       </header>
 
