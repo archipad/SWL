@@ -11,6 +11,7 @@ import { useKeywordLibrary } from './lib/useKeywordLibrary';
 import { useCardTags } from './lib/useCardTags';
 import { useSync } from './lib/useSync';
 import { useGameTracker } from './lib/useGameTracker';
+import { NavIcon } from './lib/navIcons';
 import type { ParsedList } from './types';
 
 type Page = 'setup' | 'army' | 'game' | 'library' | 'cheatsheet' | 'print-cards';
@@ -173,34 +174,38 @@ export default function App() {
         <h1>Legion Compagnon</h1>
         <nav>
           <button type="button" className={page === 'setup' ? 'active' : ''} onClick={() => setPage('setup')}>
-            <span className="nav-icon" aria-hidden="true">📋</span>Listes
+            <NavIcon id="listes" />Listes
           </button>
           <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>
-            <span className="nav-icon" aria-hidden="true">🗂️</span>Armées
+            <NavIcon id="armees" />Armées
           </button>
           <button type="button" className={page === 'game' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('game')}>
-            <span className="nav-icon" aria-hidden="true">🎯</span>Suivi de partie
+            <NavIcon id="suivi" />Suivi de partie
           </button>
           {/* Page autonome distincte (public/assistant/), pas un onglet de cette
               SPA : lien externe plutôt qu'une entrée de Page/setPage. Navigue
               dans le même onglet (demande explicite de l'utilisateur). Placée
               juste après Suivi de partie, comme demandé. */}
           <a className="nav-external" href="https://archipad.github.io/SWL/assistant/">
-            <span className="nav-icon" aria-hidden="true">⚔️</span>Assistant d'unité
+            <NavIcon id="assistant" />Assistant d'unité
           </a>
           <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>
-            <span className="nav-icon" aria-hidden="true">🔍</span>Glossaire complet
+            <NavIcon id="glossaire" />Glossaire complet
           </button>
           <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>
-            <span className="nav-icon" aria-hidden="true">📝</span>Pense-bête
+            <NavIcon id="pense-bete" />Pense-bête
           </button>
           <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>
-            <span className="nav-icon" aria-hidden="true">🖨️</span>Imprimer des cartes
+            <NavIcon id="imprimer" />Imprimer des cartes
           </button>
         </nav>
       </header>
 
-      <main>{content}</main>
+      {/* key={page} : force le remontage de <main> à chaque changement de
+          page pour rejouer l'animation de transition (« wipe » façon
+          Star Wars, voir .page-transition dans index.css) — sans quoi une
+          animation CSS ne se rejoue pas au simple changement des enfants. */}
+      <main key={page} className="page-transition">{content}</main>
 
       <footer className="app-footer no-print">
         <p>

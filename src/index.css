@@ -71,6 +71,8 @@ body {
 
 .app-header nav button,
 .app-header nav a {
+  display: inline-flex;
+  align-items: center;
   background: transparent;
   border: 1px solid var(--border);
   color: var(--text-dim);
@@ -92,6 +94,42 @@ body {
 }
 
 .app-header nav button:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* Icônes de nav — SVG en currentColor (voir lib/navIcons.tsx) : un seul
+   style de trait pour les 7 onglets, rendu identique sur toutes les
+   plateformes (contrairement aux emoji, dont le dessin dépend de la
+   police système du téléphone/PC). */
+.nav-icon { width: 1.05em; height: 1.05em; margin-right: 0.4rem; flex-shrink: 0; }
+
+/* Effet d'« ignition » (façon sabre laser) au moment où un onglet devient
+   actif : un bref halo qui s'allume puis retombe, une seule fois par
+   activation — ne rejoue pas tant que l'onglet reste actif car l'animation
+   ne redémarre que lorsque la classe .active est (re)posée sur le bouton. */
+.app-game-tracker .app-header nav button.active {
+  animation: navIgnite 380ms ease-out;
+}
+@keyframes navIgnite {
+  0% { box-shadow: 0 0 0 0 rgba(255, 140, 26, 0); }
+  45% { box-shadow: 0 0 16px 3px rgba(255, 140, 26, 0.85); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 140, 26, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-game-tracker .app-header nav button.active { animation: none; }
+}
+
+/* Transition entre pages façon « star wipe » (balayage gauche → droite
+   utilisé dans les changements de scène Star Wars), rejouée à chaque
+   changement d'onglet grâce à key={page} sur <main> dans App.tsx. */
+.page-transition {
+  animation: pageWipe 420ms cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+@keyframes pageWipe {
+  from { clip-path: inset(0 100% 0 0); opacity: 0.4; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { animation: none; }
+}
 
 .nav-icon { margin-right: 0.35rem; }
 
