@@ -183,8 +183,16 @@ export default function App() {
     );
   }
 
+  // Habillage « console tactique » du Suivi de partie, étendu ici aux pages
+  // de référence (Glossaire complet / Pense-bête / Imprimer des cartes) pour
+  // harmoniser couleurs et police avec elle — voir index.css, règles
+  // ".app-game-tracker" et les sélecteurs dédiés .cheatsheet-screen /
+  // .library-screen / .print-cards-screen juste en dessous. Purement
+  // visuel : aucune page ni fonctionnalité n'est modifiée par ce choix.
+  const useConsoleTheme = page === 'game' || page === 'library' || page === 'cheatsheet' || page === 'print-cards';
+
   return (
-    <div className={`app ${page === 'game' ? 'app-game-tracker' : ''}`}>
+    <div className={`app ${useConsoleTheme ? 'app-game-tracker' : ''}`}>
       <header className="app-header no-print">
         <h1>Legion Compagnon</h1>
         <nav>
