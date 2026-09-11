@@ -1165,7 +1165,7 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Situational Awareness': [
     { keywordId: 'manoeuvre-improbable' },
   ],
-  'Evasive Cover': [],
+  'Duck and Cover': [],
   'Emergency Stims': [],
   'Defensive Posture': [],
   'Offensive Posture': [],

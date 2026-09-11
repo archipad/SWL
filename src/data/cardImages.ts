@@ -233,6 +233,16 @@ const RAW: Record<string, string> = {
   // test-assistant-contracts.mjs, qui vérifie que tout fichier de
   // public/cards/ est bien référencé ici).
   'Additional Supplies': 'additional-supplies.jpg',
+  // Améliorations génériques dont les scans étaient présents dans
+  // public/cards sans être exposés par le catalogue central.
+  'Force Reflexes': 'force-reflexes.jpg',
+  'Improvised Orders': 'improvised-orders.jpg',
+  'Prepared Materiel': 'prepared-materiel.jpg',
+  'Fragmentation Grenades': 'fragmentation-grenades.jpg',
+  'Situational Awareness': 'situational-awareness.jpg',
+  'Impact Grenades': 'impact-grenades.jpg',
+  'HQ Uplink': 'hq-uplink.jpg',
+  'Duck and Cover': 'evasive-cover.jpg',
 };
 
 export const CARD_IMAGES: Record<string, string> = Object.fromEntries(

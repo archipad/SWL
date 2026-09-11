@@ -254,7 +254,7 @@ const RAW: Record<string, string> = {
   "Engagement Protocols": "Protocoles d'Engagement",
   "Entrenched": "Retranché",
   "Environmental Gear": "Équipement Environnemental",
-  "Evasive Cover": "Couvert Évasif",
+  "Duck and Cover": "Évitement et Couvert",
   "Fear": "Peur",
   "Force Barrier": "Barrière de la Force",
   "Force Guidance": "Guidage par la Force",
