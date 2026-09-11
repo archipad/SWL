@@ -67,11 +67,18 @@ try {
     }
   }
 
+  const assistantImages = Object.fromEntries(
+    Object.entries(imageModule.CARD_IMAGES).map(([card, path]) => [
+      card,
+      `/SWL/cards/${String(path).split('/').pop()}`,
+    ]),
+  );
+
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,
     tags: tagModule.SEED_CARD_TAGS,
     names: nameModule.CARD_NAMES_FR,
-    images: imageModule.CARD_IMAGES,
+    images: assistantImages,
     weapons,
   };
 
