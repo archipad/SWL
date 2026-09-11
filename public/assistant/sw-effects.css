@@ -175,3 +175,122 @@
   .rule-highlight.cover-heavy,
   .readiness-state.warning { animation: none; }
 }
+
+/* --- Case à cocher obligatoire, en attente / validée ---
+   .mandatory-check est ajoutée à la main aux seules cases dont le fait de
+   NE PAS être cochée bloque l'étape (Encombrant, arc de tir Fixe) — pas à
+   .smallOnlyVisible, dont c'est l'inverse (cochée = cible interdite).
+   :has() bascule automatiquement les deux règles à chaque coche/décoche,
+   sans code JS ; supporté par tous les navigateurs tablette/mobile
+   modernes (déjà utilisé ailleurs dans ce projet, cf. body:has(...) de la
+   SPA). Halo lent (opacity/box-shadow) tant que non cochée, coût
+   négligeable même en boucle infinie ; petit éclat vert une fois validée. */
+.situation-check.mandatory-check:has(> input:not(:checked)) {
+  animation: mandatoryPending 2.2s ease-in-out infinite;
+}
+@keyframes mandatoryPending {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 204, 84, 0); }
+  50% { box-shadow: 0 0 14px 2px rgba(255, 204, 84, 0.5); }
+}
+.situation-check.mandatory-check:has(> input:checked) {
+  animation: mandatoryConfirmed 420ms ease-out;
+}
+@keyframes mandatoryConfirmed {
+  0% { box-shadow: 0 0 0 0 rgba(134, 214, 47, 0); background-color: rgba(134, 214, 47, 0.16); }
+  100% { box-shadow: 0 0 0 0 rgba(134, 214, 47, 0); background-color: transparent; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .situation-check.mandatory-check:has(> input:not(:checked)),
+  .situation-check.mandatory-check:has(> input:checked) { animation: none; }
+}
+
+/* --- Badge de certification des dés, non encore vérifié ---
+   Contour pulsé très discret pour distinguer "à vérifier" de .verified
+   (statique). Élément recréé à chaque rendu de l'étape Armes, mais une
+   boucle infinie n'a pas besoin d'être « rejouée » à ce moment précis. */
+.data-verification.unverified {
+  animation: unverifiedGlow 2.4s ease-in-out infinite;
+}
+@keyframes unverifiedGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 208, 130, 0); }
+  50% { box-shadow: 0 0 8px 1px rgba(255, 208, 130, 0.65); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .data-verification.unverified { animation: none; }
+}
+
+/* --- Bouton « Étape suivante » refusé ---
+   Classe posée depuis app.js (pulseEl) sur le bouton fraîchement recréé
+   après un clic bloqué par stepIssue(). */
+.next-denied {
+  animation: nextDenied 340ms ease-in-out;
+}
+@keyframes nextDenied {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .next-denied { animation: none; }
+}
+
+/* --- Arme grisée (hors portée / interdite), tap ou clic ---
+   .weapon-toggle etc. restent inertes (disabled) : on neutralise leur
+   pointer-events pour que le clic remonte à l'article .weapon-choice.disabled
+   (lui reste un élément normal, cliquable), qui reçoit le shake + un bref
+   badge 🚫 posé par-dessus. */
+.weapon-choice.disabled { position: relative; }
+.weapon-choice.disabled .weapon-toggle,
+.weapon-choice.disabled .count-control button,
+.weapon-choice.disabled .count-control input {
+  pointer-events: none;
+}
+.weapon-choice.disabled.denied-shake {
+  animation: deniedShake 340ms ease-in-out;
+}
+.weapon-choice.disabled.denied-shake::after {
+  content: "🚫";
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.1rem;
+  pointer-events: none;
+  animation: deniedBadge 340ms ease-out;
+}
+@keyframes deniedShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+@keyframes deniedBadge {
+  0% { opacity: 0; transform: scale(0.5); }
+  40% { opacity: 1; transform: scale(1.15); }
+  100% { opacity: 0; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .weapon-choice.disabled.denied-shake,
+  .weapon-choice.disabled.denied-shake::after { animation: none; }
+}
+
+/* --- Saisie de dés complète (jet ou défense) ---
+   Classe posée depuis app.js (pulseEl) uniquement au moment où
+   .entry-progress passe de "pending"/"over" à "complete" — pas à chaque
+   chiffre tapé — pour distinguer "c'est bon, continuez" du rouge/orange
+   utilisés pour les problèmes. Couleur héritée de var(--acid), déjà
+   utilisée par .entry-progress.complete (verte/orange/rouge selon la
+   faction active). */
+.progress-complete-pop {
+  animation: progressCompletePop 460ms ease-out;
+}
+@keyframes progressCompletePop {
+  0% { box-shadow: 0 0 0 0 transparent; transform: scale(0.97); }
+  40% { box-shadow: 0 0 18px 3px var(--acid); transform: scale(1.015); }
+  100% { box-shadow: 0 0 0 0 transparent; transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress-complete-pop { animation: none; }
+}
