@@ -217,6 +217,81 @@ const RAW: Record<string, string> = {
   "Imperial Hammers Elite Armor Pilot": "Pilote de l'Unité d'Élite Blindée Imperial Hammers",
   "Imperial TIE Pilot": "Pilote de TIE Impérial",
   "Additional Supplies": "Fournitures Supplémentaires",
+
+  // Lot de 62 cartes repérées le 11/09/2026 en corrigeant le pipeline de
+  // build (test-assistant-contracts.mjs exige désormais une traduction
+  // française pour tout visuel connu) : mots-clés/notes déjà présents dans
+  // cardTags.ts/cardNotes.ts depuis un audit précédent, mais sans entrée
+  // ici. Traductions établies à partir de la terminologie officielle du
+  // jeu et, pour les couleurs de dé déjà vérifiées contre le PDF source en
+  // couleur, des noms français déjà utilisés dans diceProfiles.ts (Obus
+  // Antiblindage / Obus à Haute Énergie / Obus « Antibunker »). "Cassian
+  // Andor Operative" et "Kallus the Operative" reprennent le nom déjà en
+  // usage pour l'autre configuration du même personnage (même principe
+  // qu'"Ahsoka Tano Fulcrum" → "Ahsoka Tano" plus haut). À vérifier contre
+  // les cartes physiques en cas de doute.
+  "Anger": "Colère",
+  "Anti-Bunker Shells": "Obus « Antibunker »",
+  "Armor-Piercing Shells": "Obus Antiblindage",
+  "Attack Protocols": "Protocoles d'Attaque",
+  "Barrage Generator": "Générateur de Barrage",
+  "Captain Rex": "Capitaine Rex",
+  "Cassian Andor Operative": "Cassian Andor",
+  "Clairvoyance": "Clairvoyance",
+  "Climbing Cables": "Câbles d'Escalade",
+  "Combat Group Leader": "Chef de Groupe de Combat",
+  "Command System": "Système de Commandement",
+  "Comms Hacking Unit": "Unité de Piratage des Communications",
+  "Comms Jammer": "Brouilleur de Communications",
+  "Concussion Grenades": "Grenades à Concussion",
+  "Defense Protocols": "Protocoles de Défense",
+  "Dread": "Effroi",
+  "Electrobinoculars": "Électrojumelles",
+  "Emergency Stims": "Stimulants d'Urgence",
+  "Emergency Transponder": "Transpondeur d'Urgence",
+  "EMP Grenades": "Grenades EMP",
+  "Endurance": "Endurance",
+  "Engagement Protocols": "Protocoles d'Engagement",
+  "Entrenched": "Retranché",
+  "Environmental Gear": "Équipement Environnemental",
+  "Evasive Cover": "Couvert Évasif",
+  "Fear": "Peur",
+  "Force Barrier": "Barrière de la Force",
+  "Force Guidance": "Guidage par la Force",
+  "Force Push": "Poussée de la Force",
+  "Force Reflexes": "Réflexes de la Force",
+  "Fragmentation Grenades": "Grenades à Fragmentation",
+  "Generator Overcharge": "Surcharge du Générateur",
+  "Grapnel Hooks": "Grappins",
+  "Handheld Scanner": "Scanner Portable",
+  "High-Energy Shells": "Obus à Haute Énergie",
+  "Hit and Run": "Frappe et Fuite",
+  "Hope": "Espoir",
+  "HQ Uplink": "Liaison avec le QG",
+  "Impact Grenades": "Grenades à Impact",
+  "Improvised Orders": "Ordres Improvisés",
+  "In the Fray": "Dans la Mêlée",
+  "Kallus the Operative": "Agent Kallus",
+  "Kraken": "Kraken",
+  "Lead by Example": "Meneur d'Hommes",
+  "Mission Objective": "Objectif de Mission",
+  "Mounted Gunners": "Artilleurs Montés",
+  "Old Jedi Trick": "Vieille Ruse Jedi",
+  "Onboard Comms Channel": "Canal de Communication Embarqué",
+  "Point Blank": "À Bout Portant",
+  "Prepared Materiel": "Matériel Préparé",
+  "Protector": "Protecteur",
+  "Seize the Opportunity": "Saisir l'Opportunité",
+  "Serenity": "Sérénité",
+  "Situational Awareness": "Conscience Situationnelle",
+  "Smoke Grenades": "Grenades Fumigènes",
+  "Sonic Imploders": "Imploseurs Soniques",
+  "Spotter Link": "Liaison d'Observateur",
+  "Spotting": "Repérage",
+  "Strict Orders": "Ordres Stricts",
+  "Trusted Agent": "Agent de Confiance",
+  "Underworld Contacts": "Contacts de la Pègre",
+  "Vigilance": "Vigilance",
 };
 
 export const CARD_NAMES_FR: Record<string, string> = Object.fromEntries(
