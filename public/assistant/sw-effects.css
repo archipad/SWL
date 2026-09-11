@@ -111,3 +111,67 @@
 @media (prefers-reduced-motion: reduce) {
   .dice-badge-rouge, .dice-badge-blanc, .dice-badge-noir { animation: none; }
 }
+
+/* --- Éclat des blessures, à chaque mise à jour du compteur ---
+   .final-wounds et .total (résumé « Blessures à appliquer ») ne sont
+   jamais recréés pendant la saisie des résultats de défense — seul leur
+   texte est patché (voir updateLiveCounters() dans app.js). La classe
+   .wound-pulse est donc (re)posée depuis app.js (pulseEl()) plutôt que
+   déclenchée par une simple insertion DOM comme les dés ci-dessus.
+   Anim courte, une seule propriété transform/box-shadow animée : coût
+   négligeable même si elle rejoue à chaque chiffre tapé. */
+.wound-pulse {
+  animation: woundPulse 520ms ease-out;
+}
+@keyframes woundPulse {
+  0% { box-shadow: 0 0 0 0 rgba(239, 60, 60, 0); transform: scale(1); }
+  35% { box-shadow: 0 0 22px 5px rgba(239, 60, 60, 0.75); transform: scale(1.045); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 60, 60, 0); transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wound-pulse { animation: none; }
+}
+
+/* --- Éclat d'apparition sur les encadrés d'alerte (rouge/orange) ---
+   Ces classes sont toutes recréées (innerHTML réécrit) par un appel à
+   resolveScreen()/defenseScreen() déclenché par une action ponctuelle
+   (changer de couvert, cocher une case, choisir un Gardien...) — jamais
+   par la saisie des compteurs de résultat — donc un simple `animation:`
+   se rejoue naturellement au bon moment, sans code JS supplémentaire.
+   Deux teintes, choisies pour matcher la couleur déjà utilisée par
+   chaque encadré (voir engine.css/faction-themes.css) : rouge pour les
+   alertes bloquantes, orange pour les avertissements/couverts. */
+.strict-warning, .combat-warning,
+.guardian-panel.blocked,
+.morale-panel.danger,
+.readiness-state.danger,
+.casualty-summary.destroyed {
+  animation: alertFlashRed 480ms ease-out;
+}
+.no-cover-notice,
+.rule-highlight.cover-none,
+.rule-highlight.cover-heavy,
+.readiness-state.warning {
+  animation: alertFlashOrange 480ms ease-out;
+}
+@keyframes alertFlashRed {
+  0% { box-shadow: 0 0 0 0 rgba(255, 102, 92, 0); transform: translateX(-6px); opacity: 0; }
+  40% { box-shadow: 0 0 20px 3px rgba(255, 102, 92, 0.55); opacity: 1; }
+  100% { box-shadow: 0 0 0 0 rgba(255, 102, 92, 0); transform: translateX(0); opacity: 1; }
+}
+@keyframes alertFlashOrange {
+  0% { box-shadow: 0 0 0 0 rgba(255, 204, 84, 0); transform: translateX(-6px); opacity: 0; }
+  40% { box-shadow: 0 0 20px 3px rgba(255, 204, 84, 0.55); opacity: 1; }
+  100% { box-shadow: 0 0 0 0 rgba(255, 204, 84, 0); transform: translateX(0); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .strict-warning, .combat-warning,
+  .guardian-panel.blocked,
+  .morale-panel.danger,
+  .readiness-state.danger,
+  .casualty-summary.destroyed,
+  .no-cover-notice,
+  .rule-highlight.cover-none,
+  .rule-highlight.cover-heavy,
+  .readiness-state.warning { animation: none; }
+}
