@@ -115,6 +115,10 @@ assert.match(setupUi, /ImportCompatibilityReport/, 'Le rapport de compatibilité
 assert.match(importAudit, /Visuel non raccordé/, 'Un visuel inconnu doit être signalé')
 assert.match(importAudit, /PV, courage ou effectif non certifiés/, 'Une unité non certifiée doit être signalée')
 assert.match(importAudit, /Dés d.attaque non certifiés/, 'Une arme non certifiée doit être signalée')
+assert.match(importAudit, /weapon\.verifiedAgainstCard/, 'L’audit doit respecter la certification portée par le profil de dés')
+assert.match(importAudit, /profile\.defenseVerifiedAgainstCard/, 'L’audit doit respecter la certification de défense portée par le profil')
+assert.match(importAudit, /scope: 'catalog'/, 'Les raccordements de catalogue doivent être séparés des certifications moteur')
+assert.match(importAudit, /certificationCards: uniqueCards/, 'Le compteur doit compter les cartes à certifier, pas additionner leurs anomalies')
 assert.match(unitModels, /addedModelWounds \?\? base\.woundsPerModel/, 'Les figurines hétérogènes doivent conserver leurs propres PV')
 assert.match(trackerUi, /buildCertifiedUnitRoster/, 'Le suivi de partie doit utiliser le calcul d’effectif central')
 
