@@ -93,6 +93,8 @@ body {
 
 .app-header nav button:disabled { opacity: 0.35; cursor: not-allowed; }
 
+.nav-icon { margin-right: 0.35rem; }
+
 main {
   flex: 1;
   padding: 1rem;

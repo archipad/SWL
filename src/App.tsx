@@ -172,18 +172,31 @@ export default function App() {
       <header className="app-header no-print">
         <h1>Legion Compagnon</h1>
         <nav>
-          <button type="button" className={page === 'setup' ? 'active' : ''} onClick={() => setPage('setup')}>Listes</button>
-          <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>Armées</button>
-          <button type="button" className={page === 'game' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('game')}>Suivi de partie</button>
-          <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>Glossaire complet</button>
-          <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>Pense-bête</button>
-          <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>Imprimer des cartes</button>
+          <button type="button" className={page === 'setup' ? 'active' : ''} onClick={() => setPage('setup')}>
+            <span className="nav-icon" aria-hidden="true">📋</span>Listes
+          </button>
+          <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>
+            <span className="nav-icon" aria-hidden="true">🗂️</span>Armées
+          </button>
+          <button type="button" className={page === 'game' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('game')}>
+            <span className="nav-icon" aria-hidden="true">🎯</span>Suivi de partie
+          </button>
           {/* Page autonome distincte (public/assistant/), pas un onglet de cette
               SPA : lien externe plutôt qu'une entrée de Page/setPage. Navigue
-              dans le même onglet (demande explicite de l'utilisateur). */}
+              dans le même onglet (demande explicite de l'utilisateur). Placée
+              juste après Suivi de partie, comme demandé. */}
           <a className="nav-external" href="https://archipad.github.io/SWL/assistant/">
-            Assistant d'unité
+            <span className="nav-icon" aria-hidden="true">⚔️</span>Assistant d'unité
           </a>
+          <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>
+            <span className="nav-icon" aria-hidden="true">🔍</span>Glossaire complet
+          </button>
+          <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>
+            <span className="nav-icon" aria-hidden="true">📝</span>Pense-bête
+          </button>
+          <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>
+            <span className="nav-icon" aria-hidden="true">🖨️</span>Imprimer des cartes
+          </button>
         </nav>
       </header>
 
