@@ -22,11 +22,13 @@ const GIST_DESCRIPTION =
 const GIST_FILENAME = 'legion-compagnon-lists.json';
 
 export interface SyncPayload {
+  schemaVersion?: number;
   updatedAt: number;
   listP1: ParsedList | null;
   listP2: ParsedList | null;
   gameTracker?: GameTrackerState;
-  assistantUnitStates?: Record<string, Record<string, number>>;
+  assistantUnitStates?: Record<string, Record<string, unknown>>;
+  assistantAttackHistory?: unknown[];
 }
 
 const EMPTY_PAYLOAD: SyncPayload = { updatedAt: 0, listP1: null, listP2: null };
@@ -149,9 +151,9 @@ export async function pullSync(token: string): Promise<SyncPayload> {
   }
 }
 
-export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; assistantUnitStates?: Record<string, Record<string, number>> }): Promise<SyncPayload> {
+export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; assistantUnitStates?: Record<string, Record<string, unknown>>; assistantAttackHistory?: unknown[] }): Promise<SyncPayload> {
   const gistId = await findOrCreateGistId(token);
-  const full: SyncPayload = { ...payload, updatedAt: Date.now() };
+  const full: SyncPayload = { schemaVersion: 2, ...payload, updatedAt: Date.now() };
   const res = await githubFetch(token, `/gists/${gistId}`, {
     method: 'PATCH',
     body: JSON.stringify({ files: { [GIST_FILENAME]: { content: JSON.stringify(full) } } }),

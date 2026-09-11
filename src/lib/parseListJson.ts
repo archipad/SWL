@@ -63,12 +63,16 @@ export function parseArmyListJson(input: string): ParsedList | null {
   };
 
   const units: ParsedUnit[] = data.units.map((u) => {
+    // Réserver la clé de l'unité avant celles de ses améliorations. Ainsi,
+    // ajouter ou retirer une amélioration ne change jamais l'identité des
+    // unités suivantes et ne déplace pas leurs blessures synchronisées.
+    const unitKey = nextSlug(u.name);
     const upgradeNames = [...(u.upgrades ?? []), ...(u.loadout ?? [])];
     const upgrades: ParsedCard[] = upgradeNames.map((name) => ({
       key: nextSlug(name), name, kind: 'upgrade',
     }));
     return {
-      key: nextSlug(u.name), name: u.name, kind: 'unit', section: 'Unités', upgrades,
+      key: unitKey, name: u.name, kind: 'unit', section: 'Unités', upgrades,
     };
   });
 
