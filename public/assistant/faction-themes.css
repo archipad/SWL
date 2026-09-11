@@ -213,6 +213,15 @@ body[data-faction-theme="imperial"] button.primary { color:#fff; }
 .unit-state-editor .persistent-tokens>summary{min-height:38px;padding:9px 12px}
 @media(max-width:700px){.unit-state-editor{grid-template-columns:1fr}.unit-state-editor .state-reset{grid-column:1;grid-row:auto;justify-self:end}}
 
+/* Même cadre que « État actuel de l'unité » sur les blocs qui suivent
+   (« AMÉLIORATIONS ÉQUIPÉES » et le résumé de mots-clés en bas de page) :
+   auparavant de simples sections à pleine largeur séparées par un filet
+   du haut, elles deviennent des cartes à part entière (bordure complète,
+   coins arrondis), pour rester visuellement cohérentes avec le bloc du
+   dessus. Design uniquement, aucun changement de fonctionnement. */
+.upgrades{margin:12px 0;border:1px solid #27445a;border-radius:10px}
+.columns{margin:12px 0;border:1px solid #27445a;border-radius:10px;overflow:hidden}
+
 /* Navigation et introduction ultra-compactes v61 : davantage de plateau visible sur iPad. */
 #progress{gap:4px;padding:4px 12px}
 #progress i{min-width:64px;height:28px;grid-template-columns:18px 1fr;gap:4px;padding:0 6px}
