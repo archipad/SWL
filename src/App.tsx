@@ -179,10 +179,10 @@ export default function App() {
           <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>Pense-bête</button>
           <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>Imprimer des cartes</button>
           {/* Page autonome distincte (public/assistant/), pas un onglet de cette
-              SPA : lien externe plutôt qu'une entrée de Page/setPage, ouvert
-              dans un nouvel onglet pour ne pas perdre l'état de l'appli en cours. */}
-          <a className="nav-external" href="https://archipad.github.io/SWL/assistant/" target="_blank" rel="noopener noreferrer">
-            Assistant d'unité ↗
+              SPA : lien externe plutôt qu'une entrée de Page/setPage. Navigue
+              dans le même onglet (demande explicite de l'utilisateur). */}
+          <a className="nav-external" href="https://archipad.github.io/SWL/assistant/">
+            Assistant d'unité
           </a>
         </nav>
       </header>
