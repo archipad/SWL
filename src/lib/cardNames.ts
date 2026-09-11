@@ -3,6 +3,13 @@ import { CARD_NAMES_FR, EN_KEY_BY_FRENCH_NAME } from '../data/cardNamesFr';
 
 const CARD_KEY_ALIASES: Record<string, string> = {
   'ahsoka tano fulcrum': 'ahsoka tano',
+  // Variantes actuellement émises par Tabletop Admiral. Le catalogue
+  // français emploie « Materiel » et la carte CM-O/93 la lettre O, alors
+  // que certains exports utilisent respectivement « Supplies » et 0.
+  'prepared supplies': 'prepared materiel',
+  'cm 0 93 trooper': 'cm o 93 trooper',
+  // Ancienne clé erronée conservée pour les listes déjà enregistrées.
+  'evasive cover': 'duck and cover',
   'offensive stance': 'offensive posture',
   'defensive stance': 'offensive posture',
   'defensive posture': 'offensive posture',
