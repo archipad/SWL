@@ -133,7 +133,81 @@ body {
   .page-transition { animation: none; }
 }
 
-.nav-icon { margin-right: 0.35rem; }
+/* --- Champ d'étoiles discret en fond, en plus du quadrillage existant
+   (voir body:has(.app-game-tracker) plus bas) --- */
+.starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255, 255, 255, 0.38), transparent 60%),
+    radial-gradient(1.5px 1.5px at 50% 15%, rgba(255, 255, 255, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 70% 55%, rgba(255, 255, 255, 0.32), transparent 60%),
+    radial-gradient(1.5px 1.5px at 85% 30%, rgba(255, 255, 255, 0.4), transparent 60%),
+    radial-gradient(1px 1px at 92% 80%, rgba(255, 255, 255, 0.32), transparent 60%),
+    radial-gradient(1px 1px at 15% 90%, rgba(255, 255, 255, 0.28), transparent 60%),
+    radial-gradient(1.5px 1.5px at 60% 85%, rgba(255, 255, 255, 0.38), transparent 60%);
+  background-repeat: repeat;
+  background-size: 100% 100%;
+  animation: starDrift 90s linear infinite;
+}
+@keyframes starDrift {
+  from { background-position: 0 0; }
+  to { background-position: -420px 320px; }
+}
+.shooting-star {
+  position: absolute;
+  top: 12%;
+  left: -5%;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  animation: shootingStar 11s ease-in infinite;
+  animation-delay: 4s;
+}
+@keyframes shootingStar {
+  0%, 90% { opacity: 0; transform: translate(0, 0) rotate(18deg); }
+  91% { opacity: 1; }
+  95% { opacity: 1; transform: translate(78vw, 24vh) rotate(18deg); }
+  100% { opacity: 0; transform: translate(80vw, 24.6vh) rotate(18deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .starfield, .shooting-star { animation: none; }
+}
+
+/* --- Saut en hyperespace : recouvre l'écran pendant le délai avant de
+   quitter la SPA pour l'Assistant d'unité (voir le onClick dans App.tsx).
+   assistantIgniting ne passe jamais à true sous prefers-reduced-motion
+   (géré côté JS), donc pas besoin de garde ici. --- */
+.hyperspace-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+  background: rgba(5, 7, 12, 0.35);
+  overflow: hidden;
+}
+.hyperspace-overlay .beam {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 2px;
+  width: 4px;
+  background: linear-gradient(90deg, transparent, #cfe9ff, #fff, #cfe9ff, transparent);
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: hyperspaceBeam 420ms ease-in forwards;
+}
+@keyframes hyperspaceBeam {
+  0% { width: 4px; opacity: 0; }
+  30% { opacity: 1; }
+  100% { width: 140vw; opacity: 0; }
+}
 
 main {
   flex: 1;

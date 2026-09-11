@@ -1,0 +1,113 @@
+/* Effets « Star Wars » supplémentaires demandés par l'utilisateur, en
+   fichier séparé dans le même esprit que header-sync.css/dice-adjustments.css :
+   patch ciblé, facile à identifier et à retirer. Tout est désactivé sous
+   prefers-reduced-motion. */
+
+/* --- Hologramme à l'arrivée sur la page ---
+   Bref scintillement bleuté façon message holographique (lignes de
+   balayage + flou), au-dessus de tout (y compris .topbar, z-index:10) —
+   ne bloque jamais les clics (pointer-events:none) et se termine à
+   opacity 0 : reste inerte dans le DOM ensuite, pas besoin de le retirer
+   en JS. Élément ajouté dans index.html juste après <body>. */
+.hologram-flicker {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(127, 216, 255, 0.35) 0 1px, transparent 1px 3px),
+    linear-gradient(rgba(127, 216, 255, 0.14), rgba(127, 216, 255, 0.03));
+  mix-blend-mode: screen;
+  animation: hologramFlicker 700ms steps(1, end) forwards;
+}
+@keyframes hologramFlicker {
+  0% { opacity: 0.9; }
+  8% { opacity: 0.15; }
+  16% { opacity: 0.85; }
+  24% { opacity: 0.2; }
+  35% { opacity: 0.7; }
+  50% { opacity: 0.1; }
+  65% { opacity: 0.5; }
+  100% { opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hologram-flicker { display: none; }
+}
+
+/* --- Champ d'étoiles discret, en fond, sous tout le reste ---
+   Élément ajouté en tout premier enfant de <body> (index.html), sans
+   z-index : peint donc avant .topbar (z-index:10 explicite) et avant le
+   contenu normal, mais au-dessus du fond uni de <body> lui-même. */
+.starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255, 255, 255, 0.4), transparent 60%),
+    radial-gradient(1.5px 1.5px at 50% 15%, rgba(255, 255, 255, 0.5), transparent 60%),
+    radial-gradient(1px 1px at 70% 55%, rgba(255, 255, 255, 0.35), transparent 60%),
+    radial-gradient(1.5px 1.5px at 85% 30%, rgba(255, 255, 255, 0.45), transparent 60%),
+    radial-gradient(1px 1px at 92% 80%, rgba(255, 255, 255, 0.35), transparent 60%),
+    radial-gradient(1px 1px at 15% 90%, rgba(255, 255, 255, 0.3), transparent 60%),
+    radial-gradient(1.5px 1.5px at 60% 85%, rgba(255, 255, 255, 0.4), transparent 60%);
+  background-repeat: repeat;
+  background-size: 100% 100%;
+  animation: starDrift 90s linear infinite;
+}
+@keyframes starDrift {
+  from { background-position: 0 0; }
+  to { background-position: -420px 320px; }
+}
+.shooting-star {
+  position: absolute;
+  top: 12%;
+  left: -5%;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 1px rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  animation: shootingStar 11s ease-in infinite;
+  animation-delay: 4s;
+}
+@keyframes shootingStar {
+  0%, 90% { opacity: 0; transform: translate(0, 0) rotate(18deg); }
+  91% { opacity: 1; }
+  95% { opacity: 1; transform: translate(78vw, 24vh) rotate(18deg); }
+  100% { opacity: 0; transform: translate(80vw, 24.6vh) rotate(18deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .starfield, .shooting-star { animation: none; }
+}
+
+/* --- Éclat coloré des dés à chaque changement de sélection ---
+   .dice-badge est recréé (innerHTML réécrit) à chaque appel de
+   resolveScreen()/pick() : changement d'arme, de couvert, de Gardien,
+   case cochée... pas à chaque frappe dans les compteurs de résultat (ces
+   derniers ne patchent que le texte via les attributs data-live-*, voir
+   bindLiveCounters() dans app.js) — l'éclat ne joue donc pas à chaque
+   chiffre tapé. */
+.dice-badge-rouge { animation: diceFlashRouge 480ms ease-out; }
+.dice-badge-blanc { animation: diceFlashBlanc 480ms ease-out; }
+.dice-badge-noir { animation: diceFlashNoir 480ms ease-out; }
+@keyframes diceFlashRouge {
+  0% { box-shadow: 0 0 0 0 rgba(179, 38, 30, 0); transform: rotate(45deg) scale(0.6); opacity: 0; }
+  55% { box-shadow: 0 0 18px 4px rgba(179, 38, 30, 0.9); opacity: 1; }
+  100% { box-shadow: 0 0 0 0 rgba(179, 38, 30, 0); transform: rotate(45deg) scale(1); opacity: 1; }
+}
+@keyframes diceFlashBlanc {
+  0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); transform: rotate(45deg) scale(0.6); opacity: 0; }
+  55% { box-shadow: 0 0 18px 4px rgba(255, 255, 255, 0.9); opacity: 1; }
+  100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); transform: rotate(45deg) scale(1); opacity: 1; }
+}
+@keyframes diceFlashNoir {
+  0% { box-shadow: 0 0 0 0 rgba(200, 210, 220, 0); transform: rotate(45deg) scale(0.6); opacity: 0; }
+  55% { box-shadow: 0 0 14px 3px rgba(200, 210, 220, 0.7); opacity: 1; }
+  100% { box-shadow: 0 0 0 0 rgba(200, 210, 220, 0); transform: rotate(45deg) scale(1); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dice-badge-rouge, .dice-badge-blanc, .dice-badge-noir { animation: none; }
+}

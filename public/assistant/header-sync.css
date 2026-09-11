@@ -24,11 +24,13 @@
 }
 
 /* Rejoue la même animation qu'à un changement d'onglet dans la SPA : un
-   balayage gauche → droite au chargement de la page. #app ne se
-   remonte jamais (l'appli met à jour son innerHTML à chaque étape), donc
-   cette animation ne joue qu'une fois, à l'arrivée sur la page — pas à
-   chaque étape de l'assistant. */
-#app {
+   balayage gauche → droite au chargement de la page. Posée sur <body>
+   (pas seulement #app) pour couvrir toute la page, bandeau et étapes
+   compris — demande utilisateur, le bandeau n'étant pas balayé sinon.
+   Ne joue qu'une fois : contrairement à #app (dont l'innerHTML est
+   réécrit à chaque étape), <body> lui-même n'est jamais recréé après le
+   chargement initial de la page. */
+body {
   animation: pageWipe 420ms cubic-bezier(0.16, 0.84, 0.44, 1);
 }
 @keyframes pageWipe {
@@ -36,5 +38,5 @@
   to { clip-path: inset(0 0 0 0); opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #app { animation: none; }
+  body { animation: none; }
 }

@@ -22,7 +22,7 @@ const ASSISTANT_URL = 'https://archipad.github.io/SWL/assistant/';
 /* Durée de l'animation .nav-ignite (voir index.css) : le clic sur Assistant
    d'unité doit la laisser jouer avant de quitter la SPA, sinon la
    navigation coupe l'animation avant qu'elle soit visible. */
-const NAV_IGNITE_MS = 380;
+const NAV_IGNITE_MS = 460;
 
 export default function App() {
   const [listP1, setListP1] = usePersistentState<ParsedList | null>('swl.list.p1.v1', null);
@@ -176,6 +176,11 @@ export default function App() {
 
   return (
     <div className="app app-game-tracker">
+      {/* Champ d'étoiles discret en fond, en plus du quadrillage existant
+          (voir body:has(.app-game-tracker) dans index.css) — premier enfant,
+          sans z-index : peint donc derrière le contenu normal mais devant
+          le fond uni du body. Respecte prefers-reduced-motion (index.css). */}
+      <div className="starfield" aria-hidden="true"><i className="shooting-star" /></div>
       <header className="app-header no-print">
         <h1>Legion Compagnon</h1>
         <nav>
@@ -240,6 +245,21 @@ export default function App() {
           une marque d'Atomic Mass Games / Lucasfilm — ce site n'y est pas affilié.
         </p>
       </footer>
+
+      {/* Saut en hyperespace : quelques traits lumineux qui filent
+          horizontalement pendant le délai avant de quitter la SPA pour
+          l'Assistant d'unité (voir le clic ci-dessus) — la seule vraie
+          transition/chargement de cette appli (un changement de page
+          interne est instantané, rien à couvrir par un tel effet).
+          Masqué sous prefers-reduced-motion (index.css), auquel cas
+          assistantIgniting ne passe jamais à true (cf. le onClick). */}
+      {assistantIgniting && (
+        <div className="hyperspace-overlay" aria-hidden="true">
+          {Array.from({ length: 7 }, (_, i) => (
+            <span key={i} className="beam" style={{ top: `${8 + i * 13}%`, animationDelay: `${i * 22}ms` }} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
