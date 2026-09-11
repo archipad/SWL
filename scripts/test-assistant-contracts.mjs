@@ -10,6 +10,13 @@ const reference = JSON.parse(referenceData.replace(/^window\.SWL_REFERENCE=/, ''
 const trackerUi = fs.readFileSync(new URL('../src/components/GameTrackerScreen.tsx', import.meta.url), 'utf8')
 const trackerState = fs.readFileSync(new URL('../src/lib/useGameTracker.ts', import.meta.url), 'utf8')
 const certifications = JSON.parse(fs.readFileSync(new URL('../src/data/diceCertifications.json', import.meta.url), 'utf8'))
+const importAudit = fs.readFileSync(new URL('../src/lib/importAudit.ts', import.meta.url), 'utf8')
+const unitModels = fs.readFileSync(new URL('../src/lib/unitModels.ts', import.meta.url), 'utf8')
+const setupUi = fs.readFileSync(new URL('../src/components/SetupScreen.tsx', import.meta.url), 'utf8')
+const syncUi = fs.readFileSync(new URL('../src/lib/useSync.ts', import.meta.url), 'utf8')
+const gistSync = fs.readFileSync(new URL('../src/lib/gistSync.ts', import.meta.url), 'utf8')
+const jsonImporter = fs.readFileSync(new URL('../src/lib/parseListJson.ts', import.meta.url), 'utf8')
+const certificationUiSource = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 
 // Les cartes de personnel et d'armes lourdes ajoutent chacune leur figurine.
 // Ces contrats protègent notamment les effectifs complets des Soldats et Vétérans rebelles.
@@ -101,6 +108,27 @@ assert.match(app, /'ahsoka tano fulcrum':'ahsoka tano'/, 'Ahsoka Fulcrum doit r�
 assert.match(app, /window\.SWL_REFERENCE\?\.images/, 'L’assistant doit utiliser le catalogue central des visuels')
 assert.match(app, /'ahsoka tano fulcrum':'ahsoka tano'/, 'La variante Tabletop Admiral d’Ahsoka doit utiliser la certification canonique')
 assert.match(app, /const key=cardKey\(unit\.name\)/, 'Le rang des unités importées doit utiliser leur clé canonique')
+
+// Tout nouvel import doit produire un diagnostic explicite et utiliser le
+// même calcul d'effectif que le tableau de suivi.
+assert.match(setupUi, /ImportCompatibilityReport/, 'Le rapport de compatibilité doit être visible après import')
+assert.match(importAudit, /Visuel non raccordé/, 'Un visuel inconnu doit être signalé')
+assert.match(importAudit, /PV, courage ou effectif non certifiés/, 'Une unité non certifiée doit être signalée')
+assert.match(importAudit, /Dés d.attaque non certifiés/, 'Une arme non certifiée doit être signalée')
+assert.match(unitModels, /addedModelWounds \?\? base\.woundsPerModel/, 'Les figurines hétérogènes doivent conserver leurs propres PV')
+assert.match(trackerUi, /buildCertifiedUnitRoster/, 'Le suivi de partie doit utiliser le calcul d’effectif central')
+
+// État, journal d'attaque et suivi de partie voyagent dans un même format
+// versionné afin que deux appareils affichent le même état de partie.
+assert.match(gistSync, /schemaVersion\?: number/, 'Le format de synchronisation doit être versionné')
+assert.match(gistSync, /assistantAttackHistory\?: unknown\[\]/, 'Le journal des attaques doit faire partie de la synchronisation')
+assert.match(syncUi, /swl\.assistant\.attack-history\.v1/, 'Le journal distant doit être restauré localement')
+assert.match(app, /assistantAttackHistory:attackHistory/, 'L’assistant doit envoyer son journal de résolution')
+assert.match(trackerUi, /Journal de résolution/, 'Le suivi de partie doit afficher le journal synchronisé des attaques')
+assert.match(jsonImporter, /const unitKey = nextSlug\(u\.name\)/, 'La clé stable d’une unité doit être réservée avant ses améliorations')
+assert.match(app, /unit\.key\|\|index/, 'L’assistant doit conserver une identité stable lors d’une réimportation')
+assert.match(app, /legacyId/, 'Les blessures enregistrées avec les anciens identifiants doivent être migrées')
+assert.match(certificationUiSource, /location\.hash==='\#certification'/, 'Le rapport d’import doit pouvoir ouvrir directement la certification')
 
 // Couverture exhaustive des ressources déjà présentes : tout nouveau fichier
 // de carte doit être nommé et raccordé avant qu'une publication puisse passer.
