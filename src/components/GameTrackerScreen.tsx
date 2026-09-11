@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ADVANTAGE_CARDS, OBJECTIVE_CARDS, SECONDARY_OBJECTIVE_CARDS } from '../data/battleCards';
 import certifications from '../data/diceCertifications.json';
 import { canonicalCardKey, frenchCardName } from '../lib/cardNames';
+import { buildCertifiedUnitRoster } from '../lib/unitModels';
 import type { useGameTracker } from '../lib/useGameTracker';
 import type { SyncStatus } from '../lib/useSync';
 import type { ParsedList } from '../types';
@@ -19,6 +20,7 @@ const ROUNDS = [1, 2, 3, 4, 5];
 const UNIT_STATE_KEY = 'swl.assistant.unit-state.v1';
 type UnitState = { wounds?: number; suppression?: number; ion?: number; immobilize?: number; poison?: number; shield?: number; modelWounds?: Record<string, number> };
 type UnitStates = Record<string, UnitState>;
+type AttackHistoryEntry = { id: string; at: string; attacker: string; defender: string; weapons?: string[]; wounds: number; blocks?: number };
 type CertifiedRecord = { unitStats?: { woundsPerModel: number; courage: number | null; baseModels: number; suppressionImmune?: boolean }; addedModels?: number; addedModelWounds?: number };
 const certified = certifications as Record<string, CertifiedRecord>;
 
@@ -27,13 +29,21 @@ function readUnitStates(): UnitStates {
   catch { return {}; }
 }
 
+function readAttackHistory(): AttackHistoryEntry[] {
+  try { return JSON.parse(localStorage.getItem('swl.assistant.attack-history.v1') || '[]') as AttackHistoryEntry[]; }
+  catch { return []; }
+}
+
 function playerLabel(list: ParsedList | null, fallback: string): string {
   return list?.listName ?? list?.faction ?? fallback;
 }
 
+const unitIdFor = (player: 'p1' | 'p2', unit: ParsedList['units'][number], index: number) => `${player}:${unit.key || index}`;
+
 export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus, lastSyncAt }: Props) {
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
   const [unitStates, setUnitStates] = useState<UnitStates>(readUnitStates);
+  const [attackHistory, setAttackHistory] = useState<AttackHistoryEntry[]>(readAttackHistory);
   const { state, patch } = tracker;
   const update = (changes: Partial<typeof state>) => { const next = { ...state, ...changes }; patch(changes); onSync(next); };
   const activatedUnitIds = state.activatedUnitIds ?? [];
@@ -59,7 +69,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   const advantageRouge = ADVANTAGE_CARDS.find((a) => a.id === state.advantageRougeId) ?? null;
 
   useEffect(() => {
-    const refresh = () => setUnitStates(readUnitStates());
+    const refresh = () => { setUnitStates(readUnitStates()); setAttackHistory(readAttackHistory()); };
     refresh();
     window.addEventListener('storage', refresh);
     window.addEventListener('focus', refresh);
@@ -67,15 +77,10 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   }, [lastSyncAt]);
 
   const unitSnapshot = (unit: ParsedList['units'][number], player: 'p1' | 'p2', index: number) => {
-    const state = unitStates[`${player}:${index}`] ?? {};
+    const state = unitStates[unitIdFor(player, unit, index)] ?? unitStates[`${player}:${index}`] ?? {};
     const base = certified[canonicalCardKey(unit.name)]?.unitStats;
-    const models = base ? [
-      ...Array.from({ length: base.baseModels }, (_, modelIndex) => ({ id: `base-${modelIndex}`, health: base.woundsPerModel })),
-      ...unit.upgrades.flatMap((upgrade, upgradeIndex) => {
-        const profile = certified[canonicalCardKey(upgrade.name)];
-        return Array.from({ length: profile?.addedModels ?? 0 }, (_, modelIndex) => ({ id: `upgrade-${upgradeIndex}-${canonicalCardKey(upgrade.name)}-${modelIndex}`, health: profile?.addedModelWounds ?? base.woundsPerModel }));
-      }),
-    ] : [];
+    const roster = buildCertifiedUnitRoster(unit);
+    const models = roster.models.map((model) => ({ id: model.id, health: model.maxWounds }));
     const detailedTotal = models.reduce((sum, model) => sum + Math.max(0, Math.min(model.health, state.modelWounds?.[model.id] ?? 0)), 0);
     const hasConsistentDetail = !!state.modelWounds && detailedTotal === Math.max(0, state.wounds ?? 0);
     let budget = Math.max(0, state.wounds ?? 0);
@@ -94,9 +99,9 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
     const units = list?.units ?? [];
     return {
       units: units.length,
-      wounded: units.filter((_, index) => (unitStates[`${player}:${index}`]?.wounds ?? 0) > 0).length,
-      suppression: units.reduce((sum, _, index) => sum + (unitStates[`${player}:${index}`]?.suppression ?? 0), 0),
-      remainingActivations: units.filter((unit, index) => !activatedUnitIds.includes(`${player}:${index}`) && !unitSnapshot(unit, player, index).defeated).length,
+      wounded: units.filter((unit, index) => (unitSnapshot(unit, player, index).state.wounds ?? 0) > 0).length,
+      suppression: units.reduce((sum, unit, index) => sum + unitSnapshot(unit, player, index).suppression, 0),
+      remainingActivations: units.filter((unit, index) => !activatedUnitIds.includes(unitIdFor(player, unit, index)) && !unitSnapshot(unit, player, index).defeated).length,
     };
   };
   const p1Summary = armySummary(listP1, 'p1');
@@ -140,7 +145,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
               {(list?.units ?? []).map((unit, index) => {
                 const snapshot = unitSnapshot(unit, player, index);
                 const morale = snapshot.defeated ? 'Vaincue' : snapshot.panicked ? 'Paniquée' : snapshot.suppressed ? 'Démoralisée' : snapshot.suppression ? 'Ralliement' : 'Stable';
-                const unitId = `${player}:${index}`;
+                const unitId = unitIdFor(player, unit, index);
                 const activated = activatedUnitIds.includes(unitId);
                 return <article className={`tracker-unit-row ${activated ? 'activated' : ''} ${snapshot.defeated ? 'defeated' : snapshot.panicked ? 'panicked' : snapshot.suppressed ? 'suppressed' : ''}`} key={unitId}>
                   <div><b>{frenchCardName(unit.name)}</b><small>{morale}</small></div>
@@ -155,6 +160,15 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="tracker-round-history tracker-console-panel" aria-label="Dernières attaques résolues">
+        <h3>Journal de résolution</h3>
+        {attackHistory.length ? <div>{attackHistory.slice(0, 8).map((entry) => <article key={entry.id}>
+          <b>{entry.attacker} → {entry.defender}</b>
+          <span>{entry.weapons?.join(' · ') || 'Arme non renseignée'}</span>
+          <span>{entry.wounds} blessure{entry.wounds > 1 ? 's' : ''} · {entry.blocks ?? 0} blocage{(entry.blocks ?? 0) > 1 ? 's' : ''}</span>
+        </article>)}</div> : <p className="empty-hint">Les attaques terminées dans l’Assistant apparaîtront ici automatiquement.</p>}
       </section>
 
       <div className="tracker-color-assign tracker-console-panel">

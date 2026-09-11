@@ -5,6 +5,7 @@ import { UnitCardsSection } from './UnitCardsSection';
 import { MinimalKeywordsSection } from './MinimalKeywordsSection';
 import { VisualListSection } from './VisualListSection';
 import { DiceIcon } from '../lib/diceIcons';
+import { ImportCompatibilityReport } from './ImportCompatibilityReport';
 import type { useSync } from '../lib/useSync';
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
 
@@ -55,6 +56,7 @@ function ImportSlot({ playerLabel, list, onParse, onClear, onPrint, onPrintMinim
           🗑 Supprimer la liste
         </button>
       </div>
+      <ImportCompatibilityReport list={list} />
     </div>
   );
 }
