@@ -1,4 +1,4 @@
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'vite';
@@ -26,13 +26,12 @@ try {
   const certifications = JSON.parse(await readFile(resolve(projectRoot, 'src/data/diceCertifications.json'), 'utf8'));
   const weapons = structuredClone(diceModule.DICE_PROFILES);
   // Le catalogue d'images est la source exhaustive des cartes reconnues par
-  // l'interface. Une carte sans dés ni figurine ajoutée doit malgré tout être
-  // raccordée, visible après import et proposée dans la certification.
+  // l'interface. Une carte sans dés ni figurine ajoutée reste raccordée et
+  // visible après import, mais ne doit pas créer un faux contrôle de figurines.
   for (const card of Object.keys(imageModule.CARD_IMAGES)) {
     weapons[card] ??= {
       weapons: [],
       note: 'carte sans dés ni figurine ajoutée',
-      addedModels: 0,
     };
   }
   for (const [card, certification] of Object.entries(certifications)) {
@@ -73,6 +72,27 @@ try {
       `/SWL/cards/${String(path).split('/').pop()}`,
     ]),
   );
+
+  // Contrat d'import Tabletop Admiral : une donnée connue ne doit jamais
+  // disparaître silencieusement de l'assistant après régénération.
+  const cardFiles = (await readdir(resolve(projectRoot, 'public/cards')))
+    .filter((file) => /\.(?:jpe?g|png|webp)$/i.test(file));
+  const mappedFiles = new Set(Object.values(assistantImages).map((path) => String(path).split('/').pop().toLowerCase()));
+  const unmappedFiles = cardFiles.filter((file) => !mappedFiles.has(file.toLowerCase()));
+  if (unmappedFiles.length) throw new Error(`Visuels présents mais non raccordés : ${unmappedFiles.join(', ')}`);
+
+  const unnamedCards = Object.keys(assistantImages).filter((card) => !nameModule.CARD_NAMES_FR[card]);
+  if (unnamedCards.length) throw new Error(`Cartes sans nom français : ${unnamedCards.join(', ')}`);
+
+  const incompleteUnits = Object.entries(weapons)
+    .filter(([, profile]) => profile.defenseColor && !profile.unitStats?.verifiedAgainstCard)
+    .map(([card]) => card);
+  if (incompleteUnits.length) throw new Error(`Unités sans caractéristiques certifiées : ${incompleteUnits.join(', ')}`);
+
+  const incompleteModels = Object.entries(weapons)
+    .filter(([, profile]) => Number.isInteger(profile.addedModels) && !profile.addedModelsVerifiedAgainstCard)
+    .map(([card]) => card);
+  if (incompleteModels.length) throw new Error(`Ajouts de figurines non certifiés : ${incompleteModels.join(', ')}`);
 
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,

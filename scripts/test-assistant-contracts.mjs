@@ -6,6 +6,7 @@ const css = fs.readFileSync(new URL('../public/assistant/engine.css', import.met
 const index = fs.readFileSync(new URL('../public/assistant/index.html', import.meta.url), 'utf8')
 const certificationUi = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 const referenceData = fs.readFileSync(new URL('../public/assistant/reference-data.js', import.meta.url), 'utf8')
+const reference = JSON.parse(referenceData.replace(/^window\.SWL_REFERENCE=/, '').replace(/;\s*$/, ''))
 const trackerUi = fs.readFileSync(new URL('../src/components/GameTrackerScreen.tsx', import.meta.url), 'utf8')
 const trackerState = fs.readFileSync(new URL('../src/lib/useGameTracker.ts', import.meta.url), 'utf8')
 const certifications = JSON.parse(fs.readFileSync(new URL('../src/data/diceCertifications.json', import.meta.url), 'utf8'))
@@ -93,9 +94,25 @@ assert.match(css, /\.touch-counter button[^}]*min-width:(?:4[4-9]|[5-9]\d)px[^}]
 assert.match(certificationUi, /!!weaponProfiles\[card\]\?\.unitStats/, 'Une carte avec caractéristiques certifiées doit être reconnue comme carte Unité')
 assert.match(referenceData, /"offensive posture":"\/SWL\/cards\/offensive-posture\.jpg"/, 'Posture Offensive doit être raccordée au sous-chemin GitHub Pages')
 assert.doesNotMatch(referenceData, /"images":\{[^}]*":"\/cards\//, 'Aucun visuel ne doit cibler la racine du domaine')
-assert.doesNotMatch(referenceData, /"images":\{[^}]*":"\/cards\//, 'Aucun visuel de l’assistant ne doit pointer vers la racine du domaine')
-assert.match(referenceData, /"offensive posture":\{"weapons":\[\],"note":"carte sans dés ni figurine ajoutée","addedModels":0\}/, 'Toute carte illustrée sans profil doit entrer dans la certification')
+assert.match(referenceData, /"offensive posture":\{"weapons":\[\],"note":"carte sans dés ni figurine ajoutée"\}/, 'Toute carte illustrée doit rester raccordée au référentiel')
+assert.doesNotMatch(referenceData, /"offensive posture":\{[^}]*"addedModels"/, 'Une amélioration sans figurine ne doit pas créer un faux contrôle de figurines')
+assert.match(certificationUi, /Number\.isInteger\(profile\.addedModels\)/, 'Seules les cartes déclarées comme ajoutant des figurines doivent entrer dans ce contrôle')
+assert.match(app, /'ahsoka tano fulcrum':'ahsoka tano'/, 'Ahsoka Fulcrum doit réutiliser son profil certifié Ahsoka Tano')
 assert.match(app, /window\.SWL_REFERENCE\?\.images/, 'L’assistant doit utiliser le catalogue central des visuels')
+assert.match(app, /'ahsoka tano fulcrum':'ahsoka tano'/, 'La variante Tabletop Admiral d’Ahsoka doit utiliser la certification canonique')
+assert.match(app, /const key=cardKey\(unit\.name\)/, 'Le rang des unités importées doit utiliser leur clé canonique')
+
+// Couverture exhaustive des ressources déjà présentes : tout nouveau fichier
+// de carte doit être nommé et raccordé avant qu'une publication puisse passer.
+const imageFiles = fs.readdirSync(new URL('../public/cards/', import.meta.url))
+  .filter((file) => /\.(?:jpe?g|png|webp)$/i.test(file))
+const mappedImageFiles = new Set(Object.values(reference.images).map((path) => path.split('/').pop().toLowerCase()))
+for (const file of imageFiles) assert.ok(mappedImageFiles.has(file.toLowerCase()), `${file}: visuel non raccordé au catalogue`)
+for (const card of Object.keys(reference.images)) assert.ok(reference.names[card], `${card}: traduction française absente`)
+for (const [card, profile] of Object.entries(reference.weapons)) {
+  if (profile.defenseColor) assert.ok(profile.unitStats?.verifiedAgainstCard, `${card}: PV/courage/figurines non certifiés`)
+  if (Number.isInteger(profile.addedModels)) assert.ok(profile.addedModelsVerifiedAgainstCard, `${card}: ajout de figurines non certifié`)
+}
 
 // La base centrale ne doit contenir que des valeurs exploitables par le moteur.
 const colors = new Set(['rouge', 'noir', 'blanc'])
