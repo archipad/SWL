@@ -1,6 +1,14 @@
 import { normalizeName } from './normalize';
 import { CARD_NAMES_FR, EN_KEY_BY_FRENCH_NAME } from '../data/cardNamesFr';
 
+const CARD_KEY_ALIASES: Record<string, string> = {
+  'ahsoka tano fulcrum': 'ahsoka tano',
+  'offensive stance': 'offensive posture',
+  'defensive stance': 'offensive posture',
+  'defensive posture': 'offensive posture',
+  'posture defensive': 'offensive posture',
+};
+
 /**
  * Nom d'affichage d'une carte (unité ou amélioration) : le titre français
  * officiel s'il est connu (CARD_NAMES_FR), sinon le nom tel quel (format
@@ -26,8 +34,10 @@ export function frenchCardName(name: string): string {
  */
 export function canonicalCardKey(name: string): string {
   const norm = normalizeName(name);
+  if (norm in CARD_KEY_ALIASES) return CARD_KEY_ALIASES[norm];
   if (norm in CARD_NAMES_FR) return norm;
-  return EN_KEY_BY_FRENCH_NAME[norm] ?? norm;
+  const translated = EN_KEY_BY_FRENCH_NAME[norm] ?? norm;
+  return CARD_KEY_ALIASES[translated] ?? translated;
 }
 
 /**
