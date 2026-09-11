@@ -228,6 +228,11 @@ const RAW: Record<string, string> = {
   '1.4 FD Laser Cannon Team': '1-4-fd-laser-cannon-team.jpg',
   'A-A5 Speeder Truck': 'a-a5-speeder-truck.jpg',
   'Han Solo': 'han-solo.jpg',
+  // Visuel présent dans public/cards/ mais jamais raccordé au catalogue —
+  // repéré le 11/09/2026 en corrigeant le pipeline de build (script
+  // test-assistant-contracts.mjs, qui vérifie que tout fichier de
+  // public/cards/ est bien référencé ici).
+  'Additional Supplies': 'additional-supplies.jpg',
 };
 
 export const CARD_IMAGES: Record<string, string> = Object.fromEntries(

@@ -216,6 +216,7 @@ const RAW: Record<string, string> = {
   "Baron Rudor": "Baron Rudor",
   "Imperial Hammers Elite Armor Pilot": "Pilote de l'Unité d'Élite Blindée Imperial Hammers",
   "Imperial TIE Pilot": "Pilote de TIE Impérial",
+  "Additional Supplies": "Fournitures Supplémentaires",
 };
 
 export const CARD_NAMES_FR: Record<string, string> = Object.fromEntries(
