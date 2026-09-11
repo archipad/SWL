@@ -85,4 +85,5 @@
   function openCard(card){if(!weaponProfiles[card])return;selectedCard=card;render()}
   document.addEventListener('click',event=>{const dice=event.target.closest?.('.weapon-printed-dice');if(dice){event.preventDefault();event.stopPropagation();const key=dice.closest('[data-key]')?.dataset.key||'',separator=key.lastIndexOf(':');if(separator>0)openCard(key.slice(0,separator));return}if(event.target.closest?.('.defense-die-badge')&&defender){event.preventDefault();event.stopPropagation();openCard(norm(defender.unit.name))}},true);
   $('#certification').onclick=()=>{selectedCard=null;render()};updateBadge();
+  if(location.hash==='#certification'){selectedCard=null;render();history.replaceState(null,'',location.pathname+location.search)}
 })();
