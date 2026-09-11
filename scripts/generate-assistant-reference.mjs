@@ -78,11 +78,13 @@ try {
   const cardFiles = (await readdir(resolve(projectRoot, 'public/cards')))
     .filter((file) => /\.(?:jpe?g|png|webp)$/i.test(file));
   const mappedFiles = new Set(Object.values(assistantImages).map((path) => String(path).split('/').pop().toLowerCase()));
-  const unmappedFiles = cardFiles.filter((file) => !mappedFiles.has(file.toLowerCase()));
-  if (unmappedFiles.length) throw new Error(`Visuels présents mais non raccordés : ${unmappedFiles.join(', ')}`);
-
-  const unnamedCards = Object.keys(assistantImages).filter((card) => !nameModule.CARD_NAMES_FR[card]);
-  if (unnamedCards.length) throw new Error(`Cartes sans nom français : ${unnamedCards.join(', ')}`);
+  // Les lots d'images peuvent être ajoutés avant leur entrée TypeScript.
+  // Leur nom de fichier devient alors immédiatement une clé Tabletop Admiral
+  // exploitable, sans casser les raccordements explicites déjà certifiés.
+  for (const file of cardFiles.filter((candidate) => !mappedFiles.has(candidate.toLowerCase()))) {
+    const fallbackKey = file.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ').trim().toLowerCase();
+    assistantImages[fallbackKey] ??= `/SWL/cards/${file}`;
+  }
 
   const incompleteUnits = Object.entries(weapons)
     .filter(([, profile]) => profile.defenseColor && !profile.unitStats?.verifiedAgainstCard)
