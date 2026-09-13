@@ -3,7 +3,7 @@ import { ADVANTAGE_CARDS, OBJECTIVE_CARDS, SECONDARY_OBJECTIVE_CARDS } from '../
 import certifications from '../data/diceCertifications.json';
 import { canonicalCardKey, frenchCardName } from '../lib/cardNames';
 import { buildCertifiedUnitRoster } from '../lib/unitModels';
-import type { useGameTracker } from '../lib/useGameTracker';
+import { DEFAULT_STATE, type useGameTracker } from '../lib/useGameTracker';
 import type { SyncStatus } from '../lib/useSync';
 import type { ParsedList } from '../types';
 
@@ -57,6 +57,14 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
       activatedUnitIds: [],
       roundHistory: [...roundHistory.filter((entry) => entry.round !== state.round), { round: state.round, activatedUnitIds, vpBleu: state.vpBleu, vpRouge: state.vpRouge, completedAt: new Date().toISOString() }],
     });
+  };
+  const startNewGame = () => {
+    if (!window.confirm('Démarrer une nouvelle partie ? Ça efface les blessures, suppressions et pions de toutes les unités, remet le round à 1 et réinitialise le suivi (points de victoire, objectifs, avantage, historique). Les listes importées restent en place.')) return;
+    localStorage.setItem(UNIT_STATE_KEY, '{}');
+    localStorage.setItem('swl.assistant.attack-history.v1', '[]');
+    setUnitStates({});
+    setAttackHistory([]);
+    update(DEFAULT_STATE);
   };
   const p1Label = playerLabel(listP1, 'Joueur 1');
   const p2Label = playerLabel(listP2, 'Joueur 2');
@@ -118,6 +126,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         </div>
         <div className="tracker-header-actions">
           <span className={`tracker-sync tracker-sync-${syncStatus}`}><i />{syncLabel}</span>
+          <button type="button" className="btn btn-ghost btn-danger" onClick={startNewGame}>🆕 Nouvelle partie</button>
           <a className="btn btn-primary tracker-combat-link" href="./assistant/">⚔ Assistant d’unité</a>
         </div>
       </header>

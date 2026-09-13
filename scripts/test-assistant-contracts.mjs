@@ -166,6 +166,15 @@ assert.match(importAudit, /certificationCards: uniqueCards/, 'Le compteur doit c
 assert.match(unitModels, /addedModelWounds \?\? base\.woundsPerModel/, 'Les figurines hétérogènes doivent conserver leurs propres PV')
 assert.match(trackerUi, /buildCertifiedUnitRoster/, 'Le suivi de partie doit utiliser le calcul d’effectif central')
 
+// "Nouvelle partie" doit repartir de zéro sans exiger de réimporter les
+// listes : round/activations/VP/objectifs (tracker) ET blessures/suppression
+// (état des unités, partagé avec l'Assistant) remis à zéro ensemble.
+assert.match(trackerUi, /window\.confirm\(/, 'Nouvelle partie doit demander confirmation (action destructive)')
+assert.match(trackerUi, /UNIT_STATE_KEY, '\{\}'/, 'Nouvelle partie doit effacer les blessures/suppressions de toutes les unités')
+assert.match(trackerUi, /'swl\.assistant\.attack-history\.v1', '\[\]'/, 'Nouvelle partie doit effacer le journal de résolution')
+assert.match(trackerUi, /update\(DEFAULT_STATE\)/, 'Nouvelle partie doit remettre le round, les VP et les objectifs à zéro')
+assert.match(trackerState, /export const DEFAULT_STATE/, 'DEFAULT_STATE doit être exporté pour que Nouvelle partie puisse le réutiliser')
+
 // État, journal d'attaque et suivi de partie voyagent dans un même format
 // versionné afin que deux appareils affichent le même état de partie.
 assert.match(gistSync, /schemaVersion\?: number/, 'Le format de synchronisation doit être versionné')

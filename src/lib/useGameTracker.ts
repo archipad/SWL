@@ -16,7 +16,7 @@ export interface GameTrackerState {
   roundHistory: RoundHistoryEntry[];
 }
 
-const DEFAULT_STATE: GameTrackerState = {
+export const DEFAULT_STATE: GameTrackerState = {
   round: 1,
   p1Color: 'bleu',
   vpBleu: 0,
