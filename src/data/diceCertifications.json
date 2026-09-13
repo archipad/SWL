@@ -2848,6 +2848,28 @@
     "weapons": [],
     "addedModels": 1
   },
+  "fragmentation grenades": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Grenade à Fragmentation",
+        "dice": [{ "color": "rouge", "count": 1 }],
+        "range": "1"
+      }
+    ],
+    "addedModels": 0
+  },
+  "impact grenades": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Grenade à Impact",
+        "dice": [{ "color": "noir", "count": 1 }],
+        "range": "1"
+      }
+    ],
+    "addedModels": 0
+  },
   "targeting scopes": {
     "weapons": [],
     "addedModels": 0

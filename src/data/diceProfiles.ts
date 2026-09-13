@@ -21,6 +21,8 @@ export interface WeaponProfile {
   keywordIds?: string[];
   /** Valeur propre à cette arme quand plusieurs armes de la carte portent le même mot-clé avec des valeurs différentes. */
   keywordValues?: Record<string, number>;
+  /** Conversion accordée à toute la réserve tant que cette arme y participe. */
+  attackSurge?: 'hit' | 'crit';
   /** Indique qu'un humain a comparé ce profil au visuel de la carte de référence. */
   verifiedAgainstCard?: boolean;
   /** Référence lisible utilisée lors du contrôle visuel. */
@@ -220,6 +222,8 @@ const RAW: Record<string, CardDiceProfile> = {
   'Cleaver Dark Trooper': { weapons: [{ name: 'Tranchoir', dice: [{ color: 'rouge', count: 2 }, { color: 'noir', count: 1 }], range: 'melee' }] },
   'E-11D Focused Strike Config': { weapons: [{ name: 'E-11D Frappe Concentrée', dice: [{ color: 'blanc', count: 1 }], range: '1-4' }] },
   'E-11D Grenade Launcher Config': { weapons: [{ name: 'E-11D Lance-grenades', dice: [{ color: 'rouge', count: 1 }], range: '1-2' }] },
+  'Fragmentation Grenades': { weapons: [{ name: 'Grenade à Fragmentation', dice: [{ color: 'rouge', count: 1 }], range: '1', attackSurge: 'crit', verifiedAgainstCard: true, verificationSource: 'Carte française Grenades à Fragmentation' }] },
+  'Impact Grenades': { weapons: [{ name: 'Grenade à Impact', dice: [{ color: 'noir', count: 1 }], range: '1', keywordIds: ['impact-x'], keywordValues: { 'impact-x': 4 }, verifiedAgainstCard: true, verificationSource: 'Carte française Grenades à Impact' }] },
   'CR-24 Flame Rifle': { weapons: [{ name: 'Fusil Lance-flammes CR-24', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: 'melee' }] },
   'RT-97C Dewback Rider': { weapons: [{ name: 'Fusil Blaster RT-97C', dice: [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 3 }], range: '1-4' }] },
   'T-21 Dewback Rider': { weapons: [{ name: 'Fusil Blaster T-21', dice: [{ color: 'blanc', count: 4 }], range: '1-3' }] },

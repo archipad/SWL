@@ -51,7 +51,7 @@ const RAW: Record<string, string> = {
   'Comms Hacking Unit': "Pendant l'étape « Donner des ordres » de la Phase de Commandement, après qu'une unité ennemie à ① de cette unité a reçu un ordre, cette unité peut se donner un ordre à elle-même.",
 
   // === Genrela_upgrade_fr_30mo.pdf — grenades/imploseur/générateur/véhicule
-  'Fragmentation Grenades': "Tant que cette arme est dans la réserve d'attaque, cette unité gagne une conversion Critique en Bloc propre à cette carte.",
+  'Fragmentation Grenades': "Tant que cette arme est dans la réserve d'attaque, cette unité convertit ses adrénalines d'attaque en résultats Critique.",
 
   // === Genrela_upgrade_fr_30mo.pdf — Force/Côté Obscur/Côté Lumineux
   'Anger': "Côté Obscur uniquement. Quand cette unité subit au moins 1 blessure, après que l'effet a été résolu, elle gagne 1 pion Viser.",
