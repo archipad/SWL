@@ -1,5 +1,6 @@
 import { normalizeName } from '../lib/normalize';
 import { canonicalCardKey } from '../lib/cardNames';
+import { CUSTOM_CARDS } from './customCards';
 
 /**
  * Visuel de carte (scan officiel, recadré depuis les grilles d'impression
@@ -245,9 +246,17 @@ const RAW: Record<string, string> = {
   'Duck and Cover': 'evasive-cover.jpg',
 };
 
-export const CARD_IMAGES: Record<string, string> = Object.fromEntries(
-  Object.entries(RAW).map(([name, file]) => [normalizeName(name), `${import.meta.env.BASE_URL}cards/${file}`]),
-);
+export const CARD_IMAGES: Record<string, string> = {
+  ...Object.fromEntries(
+    Object.entries(RAW).map(([name, file]) => [normalizeName(name), `${import.meta.env.BASE_URL}cards/${file}`]),
+  ),
+  // Cartes ajoutées depuis l'écran « Nouvelle carte » de l'assistant.
+  ...Object.fromEntries(
+    Object.entries(CUSTOM_CARDS)
+      .filter(([, card]) => card.image)
+      .map(([key, card]) => [key, `${import.meta.env.BASE_URL}cards/${card.image}`]),
+  ),
+};
 
 /** Accepte aussi bien un nom anglais (Tabletop Admiral) qu'un nom français recopié depuis la carte — voir canonicalCardKey(). */
 export function cardImageFor(name: string): string | undefined {

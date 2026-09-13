@@ -2,15 +2,42 @@
   const repository='archipad/SWL',branch='claude/star-wars-legion-app-49rc3z',storageKey='swl-dice-certification-batch-v1';
   let selectedCard=null,drafts={};
   try{drafts=JSON.parse(localStorage.getItem(storageKey)||'{}')||{}}catch{drafts={}}
+  // --- Cartes totalement inconnues du catalogue (ni visuel ni profil de dés) ---
+  // pendingFor() ci-dessous certifie des cartes déjà connues ; ceci détecte au
+  // contraire les cartes importées qu'aucun fichier de données ne référence du
+  // tout (signalement Chewbacca Walking Carpet, 13/09/2026).
+  const unknownStorageKey='swl-unknown-card-aliases-v1'
+  let aliasDrafts={}
+  try{aliasDrafts=JSON.parse(localStorage.getItem(unknownStorageKey)||'{}')||{}}catch{aliasDrafts={}}
+  const saveAliasDrafts=()=>localStorage.setItem(unknownStorageKey,JSON.stringify(aliasDrafts))
+  // Contient un objet File (photo) : ne peut pas être conservé en JSON, donc
+  // perdu si l'onglet est rechargé avant l'envoi du lot -- volontaire.
+  let newCardDrafts={},unknownScreen=null
+  const catalogKeys=()=>new Set([...Object.keys(weaponProfiles),...Object.keys(window.SWL_REFERENCE?.images||{})])
+  function unknownCardEntries(){
+    const known=catalogKeys(),seen=new Set(),list=[]
+    const consider=name=>{const key=cardKey(name);if(!key||known.has(key)||seen.has(key))return;seen.add(key);list.push({key,label:name})}
+    for(const entry of entries){consider(entry.unit.name);(entry.unit.upgrades||[]).forEach(u=>consider(u.name))}
+    return list
+  }
+  const unknownStatus=key=>aliasDrafts[key]?`= ${displayName(aliasDrafts[key])}`:newCardDrafts[key]?.ready?'Nouvelle carte prête':newCardDrafts[key]?'Brouillon en cours':null
+  const unknownBatchCount=()=>Object.keys(aliasDrafts).length+Object.values(newCardDrafts).filter(d=>d.ready).length
   const profiles=()=>Object.entries(weaponProfiles);
   const isUnitCard=card=>!!weaponProfiles[card]?.unitStats||entries.some(entry=>norm(entry.unit.name)===card)||Object.values(rankCatalog).some(cards=>cards.includes(card));
   const pendingFor=(card,profile)=>(profile.weapons||[]).filter(w=>!w.verifiedAgainstCard).length+(isUnitCard(card)&&!profile.defenseVerifiedAgainstCard?1:0)+(isUnitCard(card)&&!profile.unitStats?.verifiedAgainstCard?1:0)+(!isUnitCard(card)&&Number.isInteger(profile.addedModels)&&!profile.addedModelsVerifiedAgainstCard?1:0);
   const pendingTotal=()=>profiles().reduce((n,[card,p])=>n+pendingFor(card,p),0);
-  const batchCount=()=>Object.values(drafts).reduce((n,d)=>n+(d.weapons||[]).filter(w=>w.queued).length+(d.defenseQueued?1:0)+(d.unitStatsQueued?1:0)+(d.addedModelsQueued?1:0),0);
+  const batchCount=()=>Object.values(drafts).reduce((n,d)=>n+(d.weapons||[]).filter(w=>w.queued).length+(d.defenseQueued?1:0)+(d.unitStatsQueued?1:0)+(d.addedModelsQueued?1:0),0)+unknownBatchCount();
   const save=()=>localStorage.setItem(storageKey,JSON.stringify(drafts));
   const canonicalDice=dice=>dice==='variable'?'variable':(dice||[]).map(d=>({color:norm(d.color),count:Number(d.count)})).filter(d=>d.count>0).sort((a,b)=>a.color.localeCompare(b.color)||a.count-b.count),sameDice=(a,b)=>JSON.stringify(canonicalDice(a))===JSON.stringify(canonicalDice(b)),sameRange=(a,b)=>norm(String(a||'').replace(/∞/g,'#'))===norm(String(b||'').replace(/∞/g,'#')),publishedWeapon=(profile,draft)=>profile.weapons?.[draft.index]?.name===draft.name?profile.weapons[draft.index]:profile.weapons?.find(weapon=>norm(weapon.name)===norm(draft.name));
   function reconcilePublished(){let changed=false;for(const [card,d] of Object.entries(drafts)){const p=weaponProfiles[card];if(!p)continue;(d.weapons||[]).forEach(w=>{const published=publishedWeapon(p,w);if(w.queued&&published?.verifiedAgainstCard&&sameDice(published.dice,w.dice)&&sameRange(published.range,w.range)){w.queued=false;changed=true}});if(d.defenseQueued&&p.defenseVerifiedAgainstCard&&norm(p.defenseColor)===norm(d.defenseColor)){d.defenseQueued=false;changed=true}if(d.unitStatsQueued&&p.unitStats?.verifiedAgainstCard&&Number(p.unitStats.woundsPerModel)===Number(d.unitStats?.woundsPerModel)&&(p.unitStats.courage===null?d.unitStats?.courage===null:Number(p.unitStats.courage)===Number(d.unitStats?.courage))&&Number(p.unitStats.baseModels)===Number(d.unitStats?.baseModels)&&!!p.unitStats.suppressionImmune===!!d.unitStats?.suppressionImmune){d.unitStatsQueued=false;changed=true}if(d.addedModelsQueued&&p.addedModelsVerifiedAgainstCard&&Number(p.addedModels)===Number(d.addedModels)&&(d.addedModels===0||Number(p.addedModelWounds||1)===Number(d.addedModelWounds||1))){d.addedModelsQueued=false;changed=true}}if(changed)save()}
+  function reconcileUnknownDrafts(){
+    let aliasChanged=false
+    for(const key of Object.keys(aliasDrafts)){if((window.SWL_REFERENCE?.aliases||{})[key]===aliasDrafts[key]){delete aliasDrafts[key];aliasChanged=true}}
+    if(aliasChanged)saveAliasDrafts()
+    for(const key of Object.keys(newCardDrafts)){if(weaponProfiles[key])delete newCardDrafts[key]}
+  }
   reconcilePublished();
+  reconcileUnknownDrafts();
   function updateBadge(){const button=$('#certification'),count=$('#certificationCount'),pending=pendingTotal();if(!button||!count)return;button.classList.toggle('all-certified',pending===0);button.firstChild.textContent=pending?'⚠ Certification des cartes ':'✓ Cartes certifiées ';count.textContent=pending?String(pending):'✓'}
   function draftFor(card){
     const p=weaponProfiles[card],saved=drafts[card];
@@ -34,6 +61,30 @@
   }
   const dieCount=(weapon,color)=>weapon.dice==='variable'?0:(weapon.dice.find(d=>d.color===color)?.count||0);
   function setDie(weapon,color,value){if(weapon.dice==='variable')weapon.dice=[];weapon.dice=weapon.dice.filter(d=>d.color!==color);if(value>0)weapon.dice.push({color,count:value});weapon.dice.sort((a,b)=>['rouge','noir','blanc'].indexOf(a.color)-['rouge','noir','blanc'].indexOf(b.color));weapon.queued=false;save()}
+  function unknownSection(){
+    const items=unknownCardEntries()
+    if(!items.length)return ''
+    return `<section class="cert-status-section unknown"><header><h2>Cartes inconnues du catalogue</h2><b>${items.length} carte(s)</b></header><p class="cert-help">Ni visuel ni dés enregistrés pour ces cartes importées -- le contrôle ci-dessus ne peut rien vous proposer tant qu'elles ne sont pas raccordées.</p><div class="cert-list">${items.map(({key,label})=>{const status=unknownStatus(key);return `<button type="button" data-unknown-card="${encodeURIComponent(key)}" data-unknown-label="${encodeURIComponent(label)}" class="${status?'controlled-card':''}"><span><strong>${displayName(label)}</strong><small>${status||'Non traité'}</small></span><b>›</b></button>`}).join('')}</div></section>`
+  }
+  function unknownChooser(card,label){
+    const staged=aliasDrafts[card]?`Alias vers « ${displayName(aliasDrafts[card])} »`:newCardDrafts[card]?.ready?'Nouvelle carte prête à envoyer':newCardDrafts[card]?'Brouillon de nouvelle carte en cours':null
+    return `<section class="cert-detail"><header><div><small>CARTE INCONNUE</small><h2>${displayName(label)}</h2></div><button class="secondary" id="backUnknown">Retour à la liste</button></header><div class="cert-card-layout"><div class="cert-fields">${staged?`<p class="notice">${staged}</p>`:''}<button class="primary" data-unknown-action="pick">C'est la même carte que…</button><button class="primary" data-unknown-action="new">C'est une nouvelle carte</button>${staged?'<button class="secondary" data-unknown-action="clear">Retirer du lot</button>':''}<p class="cert-help">« Même carte » : cette carte a déjà ses dés/PV certifiés sous un autre nom (ex. le titre complet exporté par Tabletop Admiral). « Nouvelle carte » : elle n'a encore jamais été saisie, y compris son visuel.</p></div></div></section>`
+  }
+  function aliasPicker(card,label,query){
+    const q=norm(query||''),matches=Object.keys(weaponProfiles).filter(key=>!q||norm(displayName(key)).includes(q)||key.includes(q)).slice(0,40)
+    return `<section class="cert-detail"><header><div><small>MÊME CARTE QUE…</small><h2>${displayName(label)}</h2></div><button class="secondary" id="backUnknownChoose">Retour</button></header><div class="cert-card-layout"><div class="cert-fields"><input id="aliasSearch" type="search" placeholder="Rechercher une carte déjà connue…" value="${(query||'').replace(/"/g,'&quot;')}"><div class="cert-list">${matches.map(key=>`<button type="button" data-alias-pick="${encodeURIComponent(key)}"><img src="${imageFor(key)}" alt=""><span><strong>${displayName(key)}</strong></span></button>`).join('')||'<p class="notice">Aucune carte ne correspond.</p>'}</div></div></div></section>`
+  }
+  function ensureNewCardDraft(card,label){
+    if(!newCardDrafts[card])newCardDrafts[card]={nameFr:label,kind:'unit',weapons:[],defenseColor:null,unitStats:{woundsPerModel:1,courage:1,baseModels:1},addedModels:0,addedModelWounds:1,imageFile:null,imagePreviewUrl:null,ready:false}
+    return newCardDrafts[card]
+  }
+  const setNewCardDie=(weapon,color,value)=>{weapon.dice=(weapon.dice||[]).filter(d=>d.color!==color);if(value>0)weapon.dice.push({color,count:value});weapon.dice.sort((a,b)=>['rouge','noir','blanc'].indexOf(a.color)-['rouge','noir','blanc'].indexOf(b.color))}
+  function newCardForm(card,label){
+    const d=ensureNewCardDraft(card,label)
+    const weaponsHtml=d.weapons.map((w,index)=>`<article class="cert-weapon"><header><strong>Arme ${index+1}</strong><button class="secondary" data-remove-weapon="${index}">Retirer</button></header><label>Nom<input data-weapon-field="${index}:name" value="${(w.name||'').replace(/"/g,'&quot;')}"></label><label>Portée (ex. 1-3, melee)<input data-weapon-field="${index}:range" value="${(w.range||'').replace(/"/g,'&quot;')}"></label><div class="cert-dice-row">${['rouge','noir','blanc'].map(color=>`<div class="cert-die-control"><span class="dice-badge dice-badge-${color}"><span>${dieCount(w,color)}</span></span><div><button data-newcard-die="${index}:${color}" data-delta="-1">−</button><b>${dieCount(w,color)}</b><button data-newcard-die="${index}:${color}" data-delta="1">+</button></div></div>`).join('')}</div></article>`).join('')
+    const statsHtml=d.kind==='unit'?`<article class="cert-stats"><header><strong>PV, courage et figurines</strong></header><div class="cert-stat-grid"><label>PV par figurine<input data-newcard-stat="woundsPerModel" type="number" min="1" max="20" value="${d.unitStats.woundsPerModel}"></label><label>Courage<input data-newcard-stat="courage" type="number" min="1" max="20" value="${d.unitStats.courage??''}" placeholder="—"></label><label>Figurines de base<input data-newcard-stat="baseModels" type="number" min="1" max="30" value="${d.unitStats.baseModels}"></label></div><label class="no-courage-choice"><input id="newCardNoCourage" type="checkbox" ${d.unitStats.courage===null?'checked':''}> Courage « — »</label><div class="defense-choice"><button data-newcard-defense="blanc" class="${d.defenseColor==='blanc'?'on':''}">□ BLANC</button><button data-newcard-defense="rouge" class="${d.defenseColor==='rouge'?'on':''}">■ ROUGE</button></div></article>`:d.kind==='upgrade-models'?`<article class="cert-stats"><header><strong>Figurines ajoutées</strong></header><div class="cert-stat-grid"><label>Nombre ajouté<input data-newcard-added-models type="number" min="0" max="30" value="${d.addedModels}"></label><label>PV de chaque figurine<input data-newcard-added-model-wounds type="number" min="1" max="20" value="${d.addedModelWounds}"></label></div></article>`:''
+    return `<section class="cert-detail"><header><div><small>NOUVELLE CARTE</small><h2>${displayName(label)}</h2></div><button class="secondary" id="backUnknownChoose">Retour</button></header><div class="cert-card-layout"><div class="cert-fields"><label>Nom français<input id="newCardNameFr" value="${(d.nameFr||'').replace(/"/g,'&quot;')}"></label><label>Type de carte<select id="newCardKind"><option value="unit" ${d.kind==='unit'?'selected':''}>Carte Unité (PV/courage/figurines)</option><option value="upgrade-models" ${d.kind==='upgrade-models'?'selected':''}>Amélioration qui ajoute des figurines</option><option value="upgrade-plain" ${d.kind==='upgrade-plain'?'selected':''}>Autre amélioration / carte Commandement</option></select></label>${statsHtml}<div class="cert-weapons">${weaponsHtml}</div><button class="secondary" id="addWeaponRow">+ Ajouter une arme</button><label>Visuel de la carte (photo prise à plat, bien éclairée)<input id="newCardImage" type="file" accept="image/*"></label>${d.imagePreviewUrl?`<img class="cert-newcard-preview" src="${d.imagePreviewUrl}" alt="Aperçu">`:''}<button class="primary" id="confirmNewCard">${d.ready?'✓ Prêt -- revalider':'Ajouter au lot'}</button><p class="cert-help">Le brouillon (sauf la photo) reste sur cet appareil jusqu'à l'envoi du lot ; la photo, elle, est perdue si l'onglet est rechargé avant l'envoi.</p></div></div></section>`
+  }
   function editor(card){
     const source=weaponProfiles[card],p=isUnitCard(card)&&!source.defenseColor?{...source,defenseColor:'unknown'}:source,d=draftFor(card),count=batchCount();
     const stats=p.defenseColor?`<article class="cert-stats ${d.unitStatsQueued?'certified':''}"><header><strong>PV, courage et figurines</strong><span>${d.unitStatsQueued?'✓ AJOUTÉ AU LOT':d.unitStatsVerified?'✓ DÉJÀ CERTIFIÉ':'⚠ À VÉRIFIER'}</span></header><div class="cert-stat-grid"><label>PV par figurine<input data-cert-stat="woundsPerModel" type="number" min="1" max="20" value="${d.unitStats.woundsPerModel}"></label><label>Courage<input data-cert-stat="courage" type="number" min="1" max="20" value="${d.unitStats.courage??''}" placeholder="—"></label><label>Figurines de base<input data-cert-stat="baseModels" type="number" min="1" max="30" value="${d.unitStats.baseModels}"></label></div><label class="no-courage-choice"><input id="noCourage" type="checkbox" ${d.unitStats.courage===null?'checked':''}> Courage « — » : aucun moral et aucune suppression</label><label class="no-courage-choice"><input id="suppressionImmune" type="checkbox" ${d.unitStats.suppressionImmune?'checked':''}> Immunisée à la suppression malgré un courage imprimé</label><button class="certify-line" id="queueUnitStats">${d.unitStatsQueued?'Retirer du lot':'Ajouter les caractéristiques au lot'}</button></article>`:`<article class="cert-stats ${d.addedModelsQueued?'certified':''}"><header><strong>Figurines ajoutées</strong><span>${d.addedModelsQueued?'✓ AJOUTÉ AU LOT':d.addedModelsVerified?'✓ DÉJÀ CERTIFIÉ':'⚠ À VÉRIFIER'}</span></header><div class="cert-stat-grid"><label>Nombre ajouté par cette carte<input data-added-models type="number" min="0" max="30" value="${d.addedModels}"></label><label>PV de chaque figurine ajoutée<input data-added-model-wounds type="number" min="1" max="20" value="${d.addedModelWounds}"></label></div><button class="certify-line" id="queueAddedModels">${d.addedModelsQueued?'Retirer du lot':'Ajouter ces valeurs au lot'}</button></article>`;
@@ -42,10 +93,11 @@
   function list(){
     const all=profiles(),hasQueued=([card])=>{const d=drafts[card];return !!((d?.weapons||[]).some(w=>w.queued)||d?.defenseQueued||d?.unitStatsQueued||d?.addedModelsQueued)},ready=all.filter(hasQueued),pending=all.filter(item=>pendingFor(item[0],item[1])>0&&!hasQueued(item)),controlled=all.filter(item=>pendingFor(item[0],item[1])===0&&!hasQueued(item)),count=batchCount();
     const cardButton=([card,p],done=false)=>{const draft=drafts[card],queued=(draft?.weapons||[]).filter(w=>w.queued).length+(draft?.defenseQueued?1:0)+(draft?.unitStatsQueued?1:0)+(draft?.addedModelsQueued?1:0);return `<button type="button" data-cert-card="${encodeURIComponent(card)}" class="${done?'controlled-card':''}"><img src="${imageFor(card)}" alt=""><span><strong>${displayName(card)}</strong><small>${done?'✓ Carte contrôlée':`${pendingFor(card,p)} contrôle(s) restant(s)${queued?` · ${queued} dans le lot`:''}`}</small></span><b>${done?'✓':'›'}</b></button>`};
-    return `<section class="cert-page"><header><div><span class="kicker">CONTRÔLE CENTRALISÉ</span><h1>Certification des cartes</h1><p>${pendingTotal()} élément(s) restent à comparer aux cartes.</p></div><button class="secondary" id="closeCertification">Retour à l’assistant</button></header><div class="cert-batch-bar"><strong>${count} correction(s) dans le lot</strong><span>Les corrections déjà présentes dans la base publiée sont retirées automatiquement.</span><button class="primary" id="sendBatch" ${count?'':'disabled'}>Envoyer toutes les corrections (${count})</button></div><section class="cert-status-section todo"><header><h2>À contrôler</h2><b>${pending.length} carte(s)</b></header><div class="cert-list">${pending.map(item=>cardButton(item)).join('')||'<p class="notice">Toutes les cartes sont contrôlées ou prêtes à envoyer.</p>'}</div></section><section class="cert-status-section ready"><header><h2>Correction prête, à envoyer</h2><b>${ready.length} carte(s)</b></header><div class="cert-list">${ready.map(item=>cardButton(item)).join('')||'<p class="notice">Aucune correction en attente d’envoi.</p>'}</div></section><details class="cert-status-section controlled"><summary><span>Cartes contrôlées et publiées</span><b>${controlled.length} carte(s)</b></summary><div class="cert-list">${controlled.map(item=>cardButton(item,true)).join('')||'<p class="notice">Aucune carte entièrement contrôlée.</p>'}</div></details></section>`;
+    return `<section class="cert-page"><header><div><span class="kicker">CONTRÔLE CENTRALISÉ</span><h1>Certification des cartes</h1><p>${pendingTotal()} élément(s) restent à comparer aux cartes.</p></div><button class="secondary" id="closeCertification">Retour à l’assistant</button></header><div class="cert-batch-bar"><strong>${count} correction(s) dans le lot</strong><span>Les corrections déjà présentes dans la base publiée sont retirées automatiquement.</span><button class="primary" id="sendBatch" ${count?'':'disabled'}>Envoyer toutes les corrections (${count})</button></div>${unknownSection()}<section class="cert-status-section todo"><header><h2>À contrôler</h2><b>${pending.length} carte(s)</b></header><div class="cert-list">${pending.map(item=>cardButton(item)).join('')||'<p class="notice">Toutes les cartes sont contrôlées ou prêtes à envoyer.</p>'}</div></section><section class="cert-status-section ready"><header><h2>Correction prête, à envoyer</h2><b>${ready.length} carte(s)</b></header><div class="cert-list">${ready.map(item=>cardButton(item)).join('')||'<p class="notice">Aucune correction en attente d’envoi.</p>'}</div></section><details class="cert-status-section controlled"><summary><span>Cartes contrôlées et publiées</span><b>${controlled.length} carte(s)</b></summary><div class="cert-list">${controlled.map(item=>cardButton(item,true)).join('')||'<p class="notice">Aucune carte entièrement contrôlée.</p>'}</div></details></section>`;
   }
   function render(){
-    stage=1;document.body.classList.add('certification-open');root.innerHTML=selectedCard?editor(selectedCard):list();
+    stage=1;document.body.classList.add('certification-open');
+    root.innerHTML=unknownScreen?(unknownScreen.mode==='choose'?unknownChooser(unknownScreen.card,unknownScreen.label):unknownScreen.mode==='pick'?aliasPicker(unknownScreen.card,unknownScreen.label,unknownScreen.query):newCardForm(unknownScreen.card,unknownScreen.label)):selectedCard?editor(selectedCard):list();
     root.querySelectorAll('#closeCertification').forEach(b=>b.onclick=close);
     root.querySelectorAll('#backCertification,#backToBatch').forEach(b=>b.onclick=()=>{selectedCard=null;render()});
     const next=$('#nextCertification');if(next)next.onclick=()=>{const current=selectedCard,ordered=profiles().filter(([card,p])=>card!==current&&pendingFor(card,p)>0&&!((drafts[card]?.weapons||[]).some(w=>w.queued)||drafts[card]?.defenseQueued||drafts[card]?.unitStatsQueued||drafts[card]?.addedModelsQueued));selectedCard=ordered[0]?.[0]||null;render()};
@@ -62,16 +114,51 @@
     const unitStats=$('#queueUnitStats');if(unitStats)unitStats.onclick=()=>{const d=draftFor(selectedCard);d.unitStatsQueued=!d.unitStatsQueued;save();render()};
     const added=$('#queueAddedModels');if(added)added.onclick=()=>{const d=draftFor(selectedCard);d.addedModelsQueued=!d.addedModelsQueued;save();render()};
     const send=$('#sendBatch');if(send)send.onclick=proposeBatch;
+    root.querySelectorAll('[data-unknown-card]').forEach(b=>b.onclick=()=>{unknownScreen={mode:'choose',card:decodeURIComponent(b.dataset.unknownCard),label:decodeURIComponent(b.dataset.unknownLabel)};render()});
+    const backUnknown=$('#backUnknown');if(backUnknown)backUnknown.onclick=()=>{unknownScreen=null;render()};
+    const backUnknownChoose=$('#backUnknownChoose');if(backUnknownChoose)backUnknownChoose.onclick=()=>{unknownScreen={mode:'choose',card:unknownScreen.card,label:unknownScreen.label};render()};
+    root.querySelectorAll('[data-unknown-action]').forEach(b=>b.onclick=()=>{const {card,label}=unknownScreen,action=b.dataset.unknownAction;if(action==='pick')unknownScreen={mode:'pick',card,label,query:''};else if(action==='new')unknownScreen={mode:'new',card,label};else if(action==='clear'){delete aliasDrafts[card];saveAliasDrafts();delete newCardDrafts[card];unknownScreen=null}render()});
+    const aliasSearch=$('#aliasSearch');if(aliasSearch)aliasSearch.oninput=()=>{unknownScreen={...unknownScreen,query:aliasSearch.value};render();const input=$('#aliasSearch');if(input){input.focus();input.setSelectionRange(input.value.length,input.value.length)}};
+    root.querySelectorAll('[data-alias-pick]').forEach(b=>b.onclick=()=>{aliasDrafts[unknownScreen.card]=decodeURIComponent(b.dataset.aliasPick);saveAliasDrafts();unknownScreen=null;render()});
+    const newCardNameFr=$('#newCardNameFr');if(newCardNameFr)newCardNameFr.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.nameFr=newCardNameFr.value;d.ready=false};
+    const newCardKind=$('#newCardKind');if(newCardKind)newCardKind.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.kind=newCardKind.value;d.ready=false;render()};
+    const newCardNoCourage=$('#newCardNoCourage');if(newCardNoCourage)newCardNoCourage.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.unitStats.courage=newCardNoCourage.checked?null:1;d.ready=false;render()};
+    root.querySelectorAll('[data-newcard-stat]').forEach(input=>input.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label),key=input.dataset.newcardStat;d.unitStats[key]=key==='courage'&&!input.value?null:Math.max(1,Number(input.value)||1);d.ready=false});
+    root.querySelectorAll('[data-newcard-defense]').forEach(b=>b.onclick=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.defenseColor=b.dataset.newcardDefense;d.ready=false;render()});
+    const newCardAddedModels=$('[data-newcard-added-models]');if(newCardAddedModels)newCardAddedModels.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.addedModels=Math.max(0,Number(newCardAddedModels.value)||0);d.ready=false};
+    const newCardAddedModelWounds=$('[data-newcard-added-model-wounds]');if(newCardAddedModelWounds)newCardAddedModelWounds.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.addedModelWounds=Math.max(1,Number(newCardAddedModelWounds.value)||1);d.ready=false};
+    root.querySelectorAll('[data-newcard-die]').forEach(b=>b.onclick=()=>{const [index,color]=b.dataset.newcardDie.split(':'),d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label),w=d.weapons[+index];setNewCardDie(w,color,Math.max(0,Math.min(20,dieCount(w,color)+Number(b.dataset.delta))));d.ready=false;render()});
+    root.querySelectorAll('[data-weapon-field]').forEach(input=>input.onchange=()=>{const [index,field]=input.dataset.weaponField.split(':'),d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.weapons[+index][field]=input.value;d.ready=false});
+    root.querySelectorAll('[data-remove-weapon]').forEach(b=>b.onclick=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.weapons.splice(+b.dataset.removeWeapon,1);d.ready=false;render()});
+    const addWeaponRow=$('#addWeaponRow');if(addWeaponRow)addWeaponRow.onclick=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.weapons.push({name:'',range:'',dice:[]});d.ready=false;render()};
+    const newCardImage=$('#newCardImage');if(newCardImage)newCardImage.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label),file=newCardImage.files?.[0];if(!file)return;d.imageFile=file;if(d.imagePreviewUrl)URL.revokeObjectURL(d.imagePreviewUrl);d.imagePreviewUrl=URL.createObjectURL(file);d.ready=false;render()};
+    const confirmNewCard=$('#confirmNewCard');if(confirmNewCard)confirmNewCard.onclick=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);if(!d.nameFr?.trim()){alert('Le nom français est obligatoire.');return}if(!d.imageFile){alert('Une photo de la carte est obligatoire.');return}if(d.kind==='unit'&&!d.defenseColor){alert('Choisissez la couleur du dé de défense.');return}if(d.weapons.some(w=>!w.name?.trim())){alert('Chaque arme doit avoir un nom (ou retirez-la).');return}d.ready=true;unknownScreen=null;render()};
     updateBadge();
   }
   function proposeBatch(){
     const cards=Object.values(drafts).map(d=>({card:d.card,weapons:(d.weapons||[]).filter(w=>w.queued).map(({index,name,dice,range})=>({index,name,dice,range})),...(d.defenseQueued?{defenseColor:d.defenseColor}:{}),...(d.unitStatsQueued?{unitStats:d.unitStats}:{}),...(d.addedModelsQueued?{addedModels:d.addedModels,addedModelWounds:d.addedModelWounds}:{})})).filter(d=>d.weapons.length||d.defenseColor||d.unitStats||d.addedModels!==undefined);
-    if(!cards.length){alert('Ajoutez au moins une correction au lot.');return}
-    const payload={version:3,branch,cards};
-    const lines=cards.map(d=>`- **${displayName(d.card)}** : ${d.weapons.length} arme(s)${d.defenseColor?' + défense':''}${d.unitStats?' + caractéristiques':''}${d.addedModels!==undefined?' + figurines ajoutées':''}`).join('\n');
-    const body=`## Lot de certifications visuelles des cartes\n\n${cards.length} carte(s), ${batchCount()} correction(s) :\n\n${lines}\n\nAprès vérification, commenter exactement \`/appliquer-certification\`.\n\n<!-- SWL_DICE_CERTIFICATION\n${JSON.stringify(payload,null,2)}\n-->`;
-    const title=`[Certification cartes] Lot de ${batchCount()} corrections`;
-    root.innerHTML=`<section class="cert-export"><span class="kicker">LOT PRÊT</span><h1>${batchCount()} correction(s) à envoyer</h1><div class="notice"><strong>Pourquoi cette étape ?</strong><p>Le lot est trop volumineux pour être placé dans une adresse web. Le bouton ci-dessous le copie intégralement, puis ouvre une issue GitHub sans limite de longueur.</p></div><textarea id="batchIssueBody" readonly aria-label="Contenu du lot de certifications"></textarea><button class="primary" id="copyAndOpenIssue">Copier le lot et ouvrir GitHub</button><button class="secondary" id="cancelBatchExport">Retour aux cartes</button><p class="cert-help">Dans GitHub, touchez le champ de description, collez le contenu puis créez l’issue. Ajoutez ensuite le commentaire <code>/appliquer-certification</code>.</p></section>`;
+    const aliasList=Object.entries(aliasDrafts).map(([from,to])=>({from,to}));
+    const newCardList=Object.entries(newCardDrafts).filter(([,d])=>d.ready).map(([key,d],index)=>({
+      key,nameFr:d.nameFr,
+      weapons:d.weapons.map(w=>({name:w.name,...(w.range?{range:w.range}:{}),dice:w.dice})),
+      ...(d.kind==='unit'&&d.defenseColor?{defenseColor:d.defenseColor}:{}),
+      ...(d.kind==='unit'?{unitStats:d.unitStats}:{}),
+      ...(d.kind==='upgrade-models'?{addedModels:d.addedModels,addedModelWounds:d.addedModelWounds}:{}),
+      imageMarker:`IMG-${index+1}`,imageFile:d.imageFile,
+    }));
+    if(!cards.length&&!aliasList.length&&!newCardList.length){alert('Ajoutez au moins une correction, un alias ou une nouvelle carte au lot.');return}
+    const payload={version:4,branch,cards,...(aliasList.length?{aliases:aliasList}:{}),...(newCardList.length?{newCards:newCardList.map(({imageFile,...rest})=>rest)}:{})};
+    const totalCount=batchCount();
+    const lines=[
+      ...cards.map(d=>`- **${displayName(d.card)}** : ${d.weapons.length} arme(s)${d.defenseColor?' + défense':''}${d.unitStats?' + caractéristiques':''}${d.addedModels!==undefined?' + figurines ajoutées':''}`),
+      ...aliasList.map(a=>`- **${displayName(a.from)}** = alias vers **${displayName(a.to)}**`),
+      ...newCardList.map(c=>`- **${c.nameFr}** : nouvelle carte (photo repérée ${c.imageMarker})`),
+    ].join('\n');
+    const imageInstructions=newCardList.length?`\n\n### Visuels à coller ci-dessous\n\nPour chaque nouvelle carte, laissez son repère sur sa propre ligne puis collez la photo juste après (Ctrl+V / Cmd+V, ou le bouton « Copier la photo » de l'écran précédent) :\n\n${newCardList.map(c=>`${c.imageMarker}\n(collez ici la photo de ${c.nameFr})`).join('\n\n')}`:'';
+    const body=`## Lot de certifications visuelles des cartes\n\n${cards.length} carte(s) corrigée(s), ${aliasList.length} alias, ${newCardList.length} nouvelle(s) carte(s) :\n\n${lines}${imageInstructions}\n\nAprès vérification (et collage des photos ci-dessus), commenter exactement \`/appliquer-certification\`.\n\n<!-- SWL_DICE_CERTIFICATION\n${JSON.stringify(payload,null,2)}\n-->`;
+    const title=`[Certification cartes] Lot de ${totalCount} corrections`;
+    const imageButtons=newCardList.map((c,i)=>`<button class="secondary" data-copy-image="${i}">📋 Copier la photo de ${c.nameFr} (${c.imageMarker})</button>`).join('');
+    root.innerHTML=`<section class="cert-export"><span class="kicker">LOT PRÊT</span><h1>${totalCount} correction(s) à envoyer</h1><div class="notice"><strong>Pourquoi cette étape ?</strong><p>Le lot est trop volumineux pour être placé dans une adresse web. Le premier bouton le copie intégralement, puis ouvre une issue GitHub sans limite de longueur.</p></div><textarea id="batchIssueBody" readonly aria-label="Contenu du lot de certifications"></textarea><button class="primary" id="copyAndOpenIssue">Copier le lot et ouvrir GitHub</button>${imageButtons}<button class="secondary" id="cancelBatchExport">Retour aux cartes</button><p class="cert-help">Dans GitHub : collez le texte, puis pour chaque nouvelle carte copiez sa photo et collez-la juste après le repère correspondant (ex. IMG-1), avant de créer l’issue. Ajoutez ensuite le commentaire <code>/appliquer-certification</code>.</p></section>`;
     const textarea=$('#batchIssueBody');textarea.value=body;
     $('#cancelBatchExport').onclick=render;
     $('#copyAndOpenIssue').onclick=()=>{
@@ -80,6 +167,19 @@
       if(navigator.clipboard?.writeText)navigator.clipboard.writeText(body).catch(()=>{});
       window.open(`https://github.com/${repository}/issues/new?title=${encodeURIComponent(title)}`,'_blank','noopener');
     };
+    newCardList.forEach((c,i)=>{
+      const btn=$(`[data-copy-image="${i}"]`);
+      if(!btn)return;
+      btn.onclick=async()=>{
+        if(!c.imageFile){alert('Photo introuvable -- rechargez et refaites la carte '+c.nameFr+'.');return}
+        try{
+          await navigator.clipboard.write([new ClipboardItem({[c.imageFile.type]:c.imageFile})]);
+          btn.textContent=`✓ Photo de ${c.nameFr} copiée -- collez-la sous ${c.imageMarker} dans GitHub`;
+        }catch{
+          alert(`Copie impossible sur ce navigateur -- dans GitHub, utilisez le trombone pour joindre la photo de ${c.nameFr} juste après la ligne ${c.imageMarker}.`);
+        }
+      };
+    });
   }
   function close(){document.body.classList.remove('certification-open');selectedCard=null;if(attackState)resolveScreen();else pick('attacker')}
   function openCard(card){if(!weaponProfiles[card])return;selectedCard=card;render()}

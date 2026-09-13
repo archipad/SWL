@@ -1,4 +1,5 @@
 import { normalizeName } from '../lib/normalize';
+import { CUSTOM_CARDS } from './customCards';
 
 /**
  * Titre français tel qu'imprimé sur la carte officielle, pour chaque nom
@@ -294,9 +295,15 @@ const RAW: Record<string, string> = {
   "Vigilance": "Vigilance",
 };
 
-export const CARD_NAMES_FR: Record<string, string> = Object.fromEntries(
-  Object.entries(RAW).map(([name, fr]) => [normalizeName(name), fr]),
-);
+export const CARD_NAMES_FR: Record<string, string> = {
+  ...Object.fromEntries(
+    Object.entries(RAW).map(([name, fr]) => [normalizeName(name), fr]),
+  ),
+  // Cartes ajoutées depuis l'écran « Nouvelle carte » de l'assistant.
+  ...Object.fromEntries(
+    Object.entries(CUSTOM_CARDS).map(([key, card]) => [key, card.nameFr]),
+  ),
+};
 
 /**
  * Table inverse (titre français normalisé -> clé anglaise normalisée) —

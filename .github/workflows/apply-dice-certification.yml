@@ -32,15 +32,18 @@ jobs:
             if (!match) core.setFailed('Bloc de certification absent')
             JSON.parse(match[1])
             require('fs').writeFileSync('certification-payload.json', match[1])
+            // Corps complet de l'issue : nécessaire pour retrouver les
+            // visuels collés à la main (voir newCards[].imageMarker).
+            require('fs').writeFileSync('issue-body.txt', body)
       - run: npm ci
-      - run: node scripts/apply-dice-certification.mjs certification-payload.json
+      - run: node scripts/apply-dice-certification.mjs certification-payload.json issue-body.txt
       - run: npm run verify:assistant-dice
       - run: npm run build
       - name: Enregistrer la certification
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/diceCertifications.json public/assistant/reference-data.js public/assistant/index.html
+          git add src/data/diceCertifications.json src/data/cardKeyAliases.json src/data/customCards.json public/cards public/assistant/reference-data.js public/assistant/index.html
           git commit -m "Certifie les dés : ${{ github.event.issue.title }}"
           git push origin HEAD:claude/star-wars-legion-app-49rc3z
       - uses: actions/github-script@v7

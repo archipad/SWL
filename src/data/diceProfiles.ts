@@ -1,5 +1,6 @@
 import { normalizeName } from '../lib/normalize';
 import { canonicalCardKey } from '../lib/cardNames';
+import { CUSTOM_CARDS } from './customCards';
 
 export type DiceColor = 'blanc' | 'rouge' | 'noir';
 
@@ -251,9 +252,45 @@ const RAW: Record<string, CardDiceProfile> = {
   'Imperial TIE Pilot': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
 };
 
-export const DICE_PROFILES: Record<string, CardDiceProfile> = Object.fromEntries(
-  Object.entries(RAW).map(([name, profile]) => [normalizeName(name), profile]),
-);
+export const DICE_PROFILES: Record<string, CardDiceProfile> = {
+  ...Object.fromEntries(
+    Object.entries(RAW).map(([name, profile]) => [normalizeName(name), profile]),
+  ),
+  // Cartes ajoutées depuis l'écran « Nouvelle carte » de l'assistant (voir
+  // src/data/customCards.ts) — déjà certifiées à l'ajout, pas en attente.
+  ...Object.fromEntries(
+    Object.entries(CUSTOM_CARDS).map(([key, card]) => [
+      key,
+      {
+        weapons: (card.weapons ?? []).map((weapon) => ({
+          ...weapon,
+          verifiedAgainstCard: true,
+          verificationSource: card.verificationSource,
+        })),
+        ...(card.defenseColor
+          ? {
+              defenseColor: card.defenseColor,
+              defenseVerifiedAgainstCard: true,
+              defenseVerificationSource: card.verificationSource,
+            }
+          : {}),
+        ...(card.unitStats
+          ? {
+              unitStats: {
+                ...card.unitStats,
+                verifiedAgainstCard: true,
+                verificationSource: card.verificationSource,
+              },
+            }
+          : {}),
+        ...(card.addedModels != null
+          ? { addedModels: card.addedModels, addedModelsVerifiedAgainstCard: true }
+          : {}),
+        ...(card.addedModelWounds != null ? { addedModelWounds: card.addedModelWounds } : {}),
+      } satisfies CardDiceProfile,
+    ]),
+  ),
+};
 
 /** Accepte aussi bien un nom anglais (Tabletop Admiral) qu'un nom français recopié depuis la carte — voir canonicalCardKey(). */
 export function diceProfileFor(cardName: string): CardDiceProfile | undefined {

@@ -18,6 +18,10 @@ const gistSync = fs.readFileSync(new URL('../src/lib/gistSync.ts', import.meta.u
 const jsonImporter = fs.readFileSync(new URL('../src/lib/parseListJson.ts', import.meta.url), 'utf8')
 const cardNames = fs.readFileSync(new URL('../src/lib/cardNames.ts', import.meta.url), 'utf8')
 const cardKeyAliases = JSON.parse(fs.readFileSync(new URL('../src/data/cardKeyAliases.json', import.meta.url), 'utf8'))
+const applyScript = fs.readFileSync(new URL('../scripts/apply-dice-certification.mjs', import.meta.url), 'utf8')
+const diceProfilesSource = fs.readFileSync(new URL('../src/data/diceProfiles.ts', import.meta.url), 'utf8')
+const cardImagesSource = fs.readFileSync(new URL('../src/data/cardImages.ts', import.meta.url), 'utf8')
+const cardNamesFrSource = fs.readFileSync(new URL('../src/data/cardNamesFr.ts', import.meta.url), 'utf8')
 const certificationUiSource = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 
 // Les cartes de personnel et d'armes lourdes ajoutent chacune leur figurine.
@@ -120,6 +124,23 @@ assert.equal(reference.aliases?.['evasive cover'], 'duck and cover', 'L’ancien
 assert.equal(reference.aliases?.['chewbacca walking carpet'], 'chewbacca', 'Chewbacca Walking Carpet doit réutiliser son profil certifié Chewbacca')
 assert.match(app, /window\.SWL_REFERENCE\?\.images/, 'L’assistant doit utiliser le catalogue central des visuels')
 assert.match(app, /const key=cardKey\(unit\.name\)/, 'Le rang des unités importées doit utiliser leur clé canonique')
+
+// Cartes importées totalement absentes du catalogue (ni visuel ni profil de
+// dés) : détection dans l'écran de certification, et deux façons de les
+// résoudre (alias vers une carte déjà connue, ou nouvelle carte complète
+// avec visuel) appliquées par le même circuit issue GitHub + Action.
+assert.match(certificationUi, /function unknownCardEntries\(\)/, 'La détection des cartes totalement inconnues du catalogue est absente')
+assert.match(certificationUi, /data-unknown-action="pick"/, 'Le choix « même carte que… » est absent de l’écran de certification')
+assert.match(certificationUi, /data-unknown-action="new"/, 'Le choix « nouvelle carte » est absent de l’écran de certification')
+assert.match(certificationUi, /ClipboardItem/, 'La copie du visuel d’une nouvelle carte vers le presse-papiers est absente')
+assert.match(certificationUi, /imageMarker:`IMG-\$\{index\+1\}`/, 'Chaque nouvelle carte doit avoir un repère de visuel unique pour l’issue GitHub')
+assert.match(applyScript, /const knownCard = \(key\) =>/, 'La validation des alias/nouvelles cartes doit vérifier le catalogue réel, pas seulement les fichiers JSON pris isolément')
+assert.match(applyScript, /a déjà sa propre entrée dans le catalogue/, 'Un alias ne doit jamais pouvoir écraser silencieusement une carte déjà connue')
+assert.match(applyScript, /existe déjà dans le catalogue/, 'Une « nouvelle carte » ne doit jamais pouvoir écraser silencieusement une carte déjà connue')
+assert.match(applyScript, /execSync\('node scripts\/generate-assistant-reference\.mjs'/, 'Le référentiel doit être régénéré avant que verify:assistant-dice ne teste ses propres contrats')
+assert.match(diceProfilesSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'DICE_PROFILES doit fusionner les cartes ajoutées depuis l’assistant')
+assert.match(cardImagesSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'CARD_IMAGES doit fusionner les cartes ajoutées depuis l’assistant')
+assert.match(cardNamesFrSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'CARD_NAMES_FR doit fusionner les cartes ajoutées depuis l’assistant')
 
 // Tout nouvel import doit produire un diagnostic explicite et utiliser le
 // même calcul d'effectif que le tableau de suivi.

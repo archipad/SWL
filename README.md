@@ -113,6 +113,13 @@ src/
   `public/cards/`), affiché au-dessus des mots-clés une fois l'attaquant/le
   défenseur choisi. Comme pour les mots-clés, aucune image pour une carte
   non couverte ne bloque rien — juste pas de visuel affiché.
+- Une carte importée totalement absente du catalogue (ni visuel, ni dés —
+  au-delà du simple « pas encore certifié ») est détectée à l'import
+  (`ImportCompatibilityReport`) et peut être résolue directement depuis
+  l'écran de certification de l'Assistant (« Cartes inconnues ») : soit en
+  l'aliasant vers une carte déjà connue sous un autre nom (ex. titre complet
+  exporté par Tabletop Admiral), soit en la créant intégralement (nom,
+  dés, PV/courage/effectif, visuel) — voir `ASSISTANT_TODO.md`.
 - Le parseur d'import est tolérant mais n'a pas pu être calé sur un export
   réel de Tabletop Admiral au moment de l'écriture (site injoignable depuis
   cet environnement) — si un export ne se découpe pas correctement, envoyez
