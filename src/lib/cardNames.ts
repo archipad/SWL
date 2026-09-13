@@ -11,12 +11,19 @@ const CARD_KEY_ALIASES: Record<string, string> = aliasesJson;
  * Nom d'affichage d'une carte (unité ou amélioration) : le titre français
  * officiel s'il est connu (CARD_NAMES_FR), sinon le nom tel quel (format
  * Tabletop Admiral, anglais) — jamais d'erreur ni de case vide pour une
- * carte pas encore vérifiée. À utiliser UNIQUEMENT pour l'affichage ;
- * toute logique de comparaison/lookup passe par canonicalCardKey()
- * ci-dessous (tagLibrary, CARD_IMAGES, diceProfiles).
+ * carte pas encore vérifiée. À utiliser UNIQUEMENT pour l'affichage.
+ *
+ * Passe par canonicalCardKey() (et donc par CARD_KEY_ALIASES) avant le
+ * lookup — indispensable pour qu'un alias (ex. « Chewbacca Walking Carpet »
+ * -> « Chewbacca ») affiche le vrai nom français au lieu de retomber sur le
+ * nom brut de l'export Tabletop Admiral faute d'entrée CARD_NAMES_FR dédiée
+ * à cette variante précise (signalement utilisateur, 13/09/2026 — jusque-là,
+ * seul « Ahsoka Tano Fulcrum » avait sa propre entrée manuelle). Un nouvel
+ * alias ajouté depuis l'assistant récupère donc automatiquement le bon nom,
+ * sans entrée CARD_NAMES_FR supplémentaire à ajouter à la main.
  */
 export function frenchCardName(name: string): string {
-  return CARD_NAMES_FR[normalizeName(name)] ?? name;
+  return CARD_NAMES_FR[canonicalCardKey(name)] ?? name;
 }
 
 /**

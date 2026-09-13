@@ -117,6 +117,7 @@ assert.match(certificationUi, /Number\.isInteger\(profile\.addedModels\)/, 'Seul
 assert.match(app, /window\.SWL_REFERENCE\?\.aliases/, 'L’assistant doit lire les alias depuis le référentiel central, pas une copie locale')
 assert.doesNotMatch(app, /const cardAliases=\{/, 'Les alias ne doivent plus être dupliqués en dur dans app.js')
 assert.match(cardNames, /import aliasesJson from '\.\.\/data\/cardKeyAliases\.json'/, 'cardNames.ts doit lire les alias depuis le fichier JSON partagé')
+assert.match(cardNames, /CARD_NAMES_FR\[canonicalCardKey\(name\)\]/, 'frenchCardName doit résoudre les alias avant de chercher le nom français (sinon un alias affiche le nom brut Tabletop Admiral)')
 assert.equal(reference.aliases?.['ahsoka tano fulcrum'], 'ahsoka tano', 'Ahsoka Fulcrum doit réutiliser son profil certifié Ahsoka Tano')
 assert.equal(reference.aliases?.['prepared supplies'], 'prepared materiel', 'L’assistant doit reconnaître Prepared Supplies')
 assert.equal(reference.aliases?.['cm 0 93 trooper'], 'cm o 93 trooper', 'L’assistant doit reconnaître la variante CM-0/93')
