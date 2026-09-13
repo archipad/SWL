@@ -358,7 +358,8 @@
     "unitStats": {
       "woundsPerModel": 9,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
     }
   },
   "dh 447 sniper": {
@@ -2853,7 +2854,12 @@
       {
         "index": 0,
         "name": "Grenade à Fragmentation",
-        "dice": [{ "color": "rouge", "count": 1 }],
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
         "range": "1"
       }
     ],
@@ -2864,7 +2870,12 @@
       {
         "index": 0,
         "name": "Grenade à Impact",
-        "dice": [{ "color": "noir", "count": 1 }],
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
         "range": "1"
       }
     ],
@@ -2933,5 +2944,10 @@
   "baron rudor": {
     "weapons": [],
     "addedModels": 0
+  },
+  "darth vader the emperor s apprentice": {
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 7
   }
 }
