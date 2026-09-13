@@ -9,8 +9,9 @@
     "verify:assistant-dice": "npm run test:assistant-engine && npm run test:assistant-contracts && npm run audit:assistant",
     "test:assistant-engine": "node scripts/test-assistant-engine.mjs",
     "test:assistant-contracts": "node scripts/test-assistant-contracts.mjs",
+    "test:import-pipeline": "node scripts/test-import-pipeline.mjs",
     "generate:assistant-data": "node scripts/generate-assistant-reference.mjs",
-    "build": "npm run test:assistant-engine && npm run generate:assistant-data && npm run test:assistant-contracts && node scripts/audit-assistant-automation.mjs && tsc -b && vite build",
+    "build": "npm run test:assistant-engine && npm run generate:assistant-data && npm run test:assistant-contracts && npm run test:import-pipeline && node scripts/audit-assistant-automation.mjs && tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
