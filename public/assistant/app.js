@@ -359,6 +359,62 @@ nextAttackDenied=false;nextAttackDeniedIssue=''}};
    pointer-events pour laisser le clic remonter jusqu'à l'article
    .weapon-choice.disabled, qui reste un élément normal et cliquable. */
 document.addEventListener('click',event=>{const denied=event.target.closest?.('.weapon-choice.disabled');if(denied)pulseEl(denied,'denied-shake')},true);
+
+/* Cockpit tactique v75 : l'action requise domine visuellement la télémétrie,
+   et les effectifs proposés proviennent du roster certifié encore en vie. */
+function suggestedWeaponCount(row){
+  const summary=modelStateSummary(attacker),profile=profileFor(row.card);
+  if(!summary)return 1;
+  const alive=summary.models.filter(model=>model.wounds<model.maxWounds);
+  if(cardKey(row.card)===cardKey(attacker.unit.name))return Math.max(1,alive.filter(model=>cardKey(model.source)===cardKey(attacker.unit.name)).length);
+  if(Number.isInteger(profile?.addedModels)&&profile.addedModels>0)return Math.max(1,alive.filter(model=>cardKey(model.source)===cardKey(row.card)).length);
+  return Math.max(1,alive.length);
+}
+function prefillWeaponCounts(){
+  const cards=[attacker.unit.name,...(attacker.unit.upgrades||[]).map(upgrade=>upgrade.name)];
+  cards.flatMap(card=>(profileFor(card)?.weapons||[]).map((weapon,index)=>({card,weapon,index,key:`${norm(card)}:${index}`}))).forEach(row=>{
+    if(!attackState.manualCounts?.[row.key])attackState.counts[row.key]=suggestedWeaponCount(row);
+  });
+}
+function tacticalStateBadge(suppression,courage,immune){
+  if(immune)return '<span class="tactical-state immune">IMMUNITÉ MENTALE</span>';
+  const value=Math.max(1,Number(courage)||1);
+  if(suppression>=value*2)return '<span class="tactical-state danger">⚠ PANIQUÉE</span>';
+  if(suppression>=value)return '<span class="tactical-state warning">⚠ DÉMORALISÉE</span>';
+  return '<span class="tactical-state stable">✓ MORAL STABLE</span>';
+}
+const readinessTacticalBase=readinessPanel;
+readinessPanel=function(entry){const state=stateFor(entry);if(moraleImmune(entry)||!state.suppression)return'';return readinessTacticalBase(entry)};
+function modelPips(entry,wounds){
+  const stats=certifiedUnitStats(entry);if(!stats)return'';
+  let budget=Math.max(0,wounds);
+  return `<span class="model-pips" aria-label="Figurines restantes">${stats.models.map((model,index)=>{const applied=Math.min(model.maxWounds,budget);budget-=applied;return `<i class="${applied>=model.maxWounds?'lost':'alive'}" title="Figurine ${index+1}"></i>`}).join('')}</span>`;
+}
+unitStatusHud=function(entry,side=false){
+  const state=stateFor(entry),stats=certifiedUnitStats(entry),immune=moraleImmune(entry),isLive=side&&entry===defender&&attackState;
+  const wounds=isLive?attackState.currentWounds+(attackStep>=4?defenseResult().result.wounds:0):state.wounds;
+  const suppression=immune?0:(isLive?attackState.currentSuppression:state.suppression),pvMax=stats?.totalWounds??null,pv=Math.max(0,(pvMax??0)-wounds);
+  let remaining=stats?.totalModels??null;if(stats){let budget=wounds;remaining=stats.models.filter(model=>{const used=Math.min(model.maxWounds,budget);budget-=used;return used<model.maxWounds}).length}
+  const meter=(value,max,type)=>`<i class="hud-meter ${type}" aria-hidden="true"><i style="width:${max?Math.min(100,Math.max(0,value/max*100)):0}%"></i></i>`;
+  return `<div class="unit-hud tactical-hud ${side?'compact':''}" aria-label="État de ${entryName(entry)}"><div class="hud-primary"><span class="pv-remaining"><small>INTÉGRITÉ DE L’UNITÉ</small><b><img class="card-stat-icon" src="./stat-icons/health.svg" alt="">${pvMax!=null?`${pv}<i>/${pvMax} PV</i>`:'?'}</b>${pvMax!=null?meter(pv,pvMax,'health'):''}</span><span class="model-readout"><small>EFFECTIF OPÉRATIONNEL</small><b>${remaining??'?'}<i>/${stats?.totalModels??'?'}</i></b>${modelPips(entry,wounds)}</span></div><div class="hud-vitals"><span><small>BLESSURES</small><b><i class="blood-drop" aria-hidden="true"></i>${wounds}</b></span><span><small>SUPPRESSION</small><b><img class="card-stat-icon" src="./stat-icons/suppression.svg" alt="">${immune?'—':suppression}</b></span>${tacticalStateBadge(suppression,stats?.courage,immune)}</div></div>`
+};
+const bindTacticalCountsBase=bindAttackInputs;
+bindAttackInputs=function(){
+  bindTacticalCountsBase();
+  root.querySelectorAll('[data-range]').forEach(button=>button.addEventListener('click',()=>{attackState.manualCounts=attackState.manualCounts||{};prefillWeaponCounts()},{capture:true}));
+  root.querySelectorAll('[data-key]').forEach(button=>button.addEventListener('click',()=>{attackState.manualCounts=attackState.manualCounts||{};const key=button.dataset.key;if(!attackState.manualCounts[key]){const cards=[attacker.unit.name,...(attacker.unit.upgrades||[]).map(upgrade=>upgrade.name)],row=cards.flatMap(card=>(profileFor(card)?.weapons||[]).map((weapon,index)=>({card,weapon,key:`${norm(card)}:${index}`}))).find(candidate=>candidate.key===key);if(row)attackState.counts[key]=suggestedWeaponCount(row)}},{capture:true}));
+  root.querySelectorAll('[data-count],[data-minus],[data-plus]').forEach(control=>control.addEventListener(control.matches('[data-count]')?'input':'click',()=>{attackState.manualCounts=attackState.manualCounts||{};const key=control.dataset.count||control.dataset.minus||control.dataset.plus;if(key)attackState.manualCounts[key]=true},{capture:true}));
+};
+function decorateTacticalResolution(){
+  const center=root.querySelector('.resolve-center');if(!center)return;
+  const journey=center.querySelector('.dice-journey'),log=center.querySelector('.resolution-log');
+  if(journey)center.insertBefore(journey,log||null);
+  center.querySelectorAll('.range-picker,.weapon-picker,.result-entry,.cover-picker,.conditional-modifiers,.cumbersome-checks,.wound-allocator').forEach(element=>element.classList.add('manual-focus'));
+  center.querySelectorAll('.weapon-choice').forEach(choice=>{const key=choice.querySelector('[data-key]')?.dataset.key,input=choice.querySelector('[data-count]');if(!key||!input)return;const note=document.createElement('small');note.className='autofill-note';note.textContent=attackState.manualCounts?.[key]?'AJUSTÉ MANUELLEMENT':'PRÉREMPLI · MODIFIABLE';choice.querySelector('.count-control')?.prepend(note)});
+  if(attackStep===2){const ctx=coverContext(),hits=attackResults().hit,dice=Math.max(0,hits-(ctx.profileLow?1:0)),panel=document.createElement('section');panel.className=`cover-command ${ctx.effective}`;panel.innerHTML=ctx.effective==='none'?'<small>ACTION COUVERT</small><strong>AUCUN DÉ À LANCER</strong><p>Poursuivez directement vers les esquives.</p>':`<small>ACTION COUVERT · ${ctx.effective==='heavy'?'LOURD':'LÉGER'}</small><strong>${dice} DÉ${dice>1?'S':''} BLANC${dice>1?'S':''} À LANCER</strong><p>${ctx.effective==='heavy'?'Blocages et adrénalines annulent les touches.':'Seuls les blocages annulent les touches.'}${ctx.profileLow?' Profil Bas ajoute déjà 1 blocage.':''}</p>`;center.querySelector('.cover-picker')?.before(panel)}
+}
+const resolveTacticalBase=resolveScreen;
+resolveScreen=function(){resolveTacticalBase();decorateTacticalResolution()};
 applyFactionTheme('rebel');
 $('#restart').onclick=()=>{attacker=null;defender=null;selectedArmy='p1';stage=1;applyFactionTheme('rebel');pick('attacker')};pick('attacker');
 syncUnitStates('pull').then(changed=>{if(changed&&stage===1)pick('attacker')});
