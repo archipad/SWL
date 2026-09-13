@@ -1,5 +1,6 @@
 import type { CardKeywordTag, CardTagLibrary } from '../types';
 import { normalizeName } from '../lib/normalize';
+import { CUSTOM_CARDS } from './customCards';
 
 /**
  * Mots-clés d'unité vérifiés depuis de vraies cartes Unité (Empire et
@@ -1313,6 +1314,14 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   ],
 };
 
-export const SEED_CARD_TAGS: CardTagLibrary = Object.fromEntries(
-  Object.entries(RAW).map(([name, tags]) => [normalizeName(name), tags as CardKeywordTag[]]),
-);
+export const SEED_CARD_TAGS: CardTagLibrary = {
+  ...Object.fromEntries(
+    Object.entries(RAW).map(([name, tags]) => [normalizeName(name), tags as CardKeywordTag[]]),
+  ),
+  // Cartes ajoutées depuis l'écran « Nouvelle carte » de l'assistant.
+  ...Object.fromEntries(
+    Object.entries(CUSTOM_CARDS)
+      .filter(([, card]) => card.keywords?.length)
+      .map(([key, card]) => [key, card.keywords as CardKeywordTag[]]),
+  ),
+};

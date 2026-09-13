@@ -19,6 +19,12 @@
   `scripts/apply-dice-certification.mjs`). Le visuel se colle dans l’issue
   juste après un repère (`IMG-1`, `IMG-2`…) plutôt que d’être encodé dans
   le lot, pour rester dans la même limite de taille.
+- [x] Inclure les mots-clés de la carte dans ce même formulaire « Nouvelle
+  carte » (sélecteur type `KeywordTagEditor`, mêmes identifiants que le
+  glossaire), fusionnés dans `SEED_CARD_TAGS` (`src/data/cardTags.ts`) au
+  lieu de dépendre systématiquement du tag manuel « + mot-clé » séparé de
+  l’onglet Armées (qui reste disponible, notamment pour corriger un tag
+  après coup).
 
 ## Priorité 2 — État persistant des unités
 

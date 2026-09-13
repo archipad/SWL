@@ -25,6 +25,8 @@ export interface CustomCardEntry {
   /** Figurines ajoutées par cette carte d'amélioration (absent pour une carte Unité). */
   addedModels?: number;
   addedModelWounds?: number;
+  /** Mots-clés portés par cette carte précise (fusionnés dans SEED_CARD_TAGS, cardTags.ts). */
+  keywords?: { keywordId: string; value?: number }[];
   verificationSource?: string;
   /** Date ISO de l'ajout, pour l'historique — informatif uniquement. */
   addedAt?: string;

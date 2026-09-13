@@ -20,16 +20,18 @@ if(!cards.length&&!aliases.length&&!newCards.length)throw new Error('Lot de cert
 // pas seulement contre les fichiers JSON pris isolément.
 const { createServer } = await import('vite')
 const server = await createServer({ root: process.cwd(), configFile: false, appType: 'custom', logLevel: 'error', server: { middlewareMode: true } })
-let diceModule, imageModule
+let diceModule, imageModule, keywordModule
 try {
-  ;[diceModule, imageModule] = await Promise.all([
+  ;[diceModule, imageModule, keywordModule] = await Promise.all([
     server.ssrLoadModule('/src/data/diceProfiles.ts'),
     server.ssrLoadModule('/src/data/cardImages.ts'),
+    server.ssrLoadModule('/src/data/keywords.ts'),
   ])
 } finally {
   await server.close()
 }
 const knownCard = (key) => Boolean(diceModule.DICE_PROFILES[key] || imageModule.CARD_IMAGES[key])
+const knownKeywordIds = new Set(keywordModule.SEED_KEYWORDS.map((k) => k.id))
 
 for(const card of cards){
   if(typeof card.card!=='string'||!card.card)throw new Error('Carte invalide')
@@ -67,6 +69,10 @@ for(const card of newCards){
     if(weapon.dice!=='variable')for(const die of weapon.dice||[]){if(!validColors.has(die.color)||!Number.isInteger(die.count)||die.count<1||die.count>20)throw new Error(`Dé invalide pour ${card.key}/${weapon.name}`)}
   }
   if(card.defenseColor&&!['rouge','blanc'].includes(card.defenseColor))throw new Error(`Défense invalide pour ${card.key}`)
+  for(const tag of card.keywords||[]){
+    if(typeof tag.keywordId!=='string'||!knownKeywordIds.has(tag.keywordId))throw new Error(`Mot-clé inconnu pour ${card.key} : ${tag.keywordId}`)
+    if(tag.value!==undefined&&(!Number.isInteger(tag.value)||tag.value<1||tag.value>20))throw new Error(`Valeur de mot-clé invalide pour ${card.key}/${tag.keywordId}`)
+  }
   if(card.unitStats){
     const {woundsPerModel,courage,baseModels}=card.unitStats
     if(!Number.isInteger(woundsPerModel)||woundsPerModel<1||woundsPerModel>20)throw new Error(`Points de vie invalides pour ${card.key}`)
@@ -116,6 +122,7 @@ if(newCards.length){
       nameFr:card.nameFr,
       image:fileName,
       weapons:(card.weapons||[]).map(weaponFields),
+      ...(card.keywords?.length?{keywords:card.keywords}:{}),
       ...(card.defenseColor?{defenseColor:card.defenseColor}:{}),
       ...(card.unitStats?{unitStats:card.unitStats}:{}),
       ...(card.addedModels!==undefined?{addedModels:card.addedModels}:{}),

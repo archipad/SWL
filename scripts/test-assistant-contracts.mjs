@@ -142,6 +142,16 @@ assert.match(diceProfilesSource, /import \{ CUSTOM_CARDS \} from '\.\/customCard
 assert.match(cardImagesSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'CARD_IMAGES doit fusionner les cartes ajoutées depuis l’assistant')
 assert.match(cardNamesFrSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'CARD_NAMES_FR doit fusionner les cartes ajoutées depuis l’assistant')
 
+// Une nouvelle carte peut aussi recevoir ses mots-clés dans le même
+// formulaire (plutôt que de dépendre du tag manuel "+ mot-clé" séparé sur
+// l'onglet Armées), fusionnés dans SEED_CARD_TAGS comme le reste.
+const cardTagsSource = fs.readFileSync(new URL('../src/data/cardTags.ts', import.meta.url), 'utf8')
+assert.match(cardTagsSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'SEED_CARD_TAGS doit fusionner les mots-clés des cartes ajoutées depuis l’assistant')
+assert.match(certificationUi, /data-add-keyword/, 'Le sélecteur de mots-clés est absent du formulaire « Nouvelle carte »')
+assert.match(certificationUi, /data-remove-keyword/, 'Le retrait d’un mot-clé déjà ajouté est absent du formulaire « Nouvelle carte »')
+assert.match(applyScript, /const knownKeywordIds = new Set/, 'Les mots-clés d’une nouvelle carte doivent être validés contre le glossaire réel')
+assert.match(applyScript, /Mot-clé inconnu pour/, 'Un identifiant de mot-clé inventé ne doit jamais pouvoir être enregistré')
+
 // Tout nouvel import doit produire un diagnostic explicite et utiliser le
 // même calcul d'effectif que le tableau de suivi.
 assert.match(setupUi, /ImportCompatibilityReport/, 'Le rapport de compatibilité doit être visible après import')
