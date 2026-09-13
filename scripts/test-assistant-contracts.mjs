@@ -151,6 +151,11 @@ assert.equal(reference.weapons['fragmentation grenades'].weapons[0].attackSurge,
 assert.equal(reference.weapons['impact grenades'].weapons[0].dice[0].color, 'noir', 'La grenade à impact doit lancer un dé noir')
 assert.match(app, /function effectiveAttackProfile\(\)/, 'Les conversions accordées par les armes doivent être calculées au niveau de la réserve')
 assert.match(certificationUiSource, /location\.hash==='\#certification'/, 'Le rapport d’import doit pouvoir ouvrir directement la certification')
+assert.match(app, /function suggestedWeaponCount\(row\)/, 'Les figurines par arme doivent être préremplies depuis l’effectif survivant')
+assert.match(app, /attackState\.manualCounts/, 'Une correction manuelle du nombre de figurines doit rester prioritaire')
+assert.match(app, /PRÉREMPLI · MODIFIABLE/, 'Le caractère modifiable du préremplissage doit être explicite')
+assert.match(app, /function decorateTacticalResolution\(\)/, 'La zone d’action et la télémétrie doivent être hiérarchisées')
+assert.match(app, /DÉ.*BLANC.*À LANCER/, 'L’étape de couvert doit annoncer clairement les dés blancs à lancer')
 
 // Couverture exhaustive des ressources déjà présentes : tout nouveau fichier
 // de carte doit être nommé et raccordé avant qu'une publication puisse passer.
