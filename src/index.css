@@ -860,7 +860,13 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .tracker-player-badge { font-weight: 600; font-size: 0.9rem; }
 .tracker-vp-controls { display: flex; align-items: center; gap: 0.6rem; }
 .tracker-vp-controls .btn { width: 2.2rem; height: 2.2rem; padding: 0; font-size: 1.2rem; line-height: 1; }
-.tracker-vp-value { font-size: 1.6rem; font-weight: 700; min-width: 2.2rem; text-align: center; }
+/* .tracker-vp-controls qualifie le sélecteur (plutôt que .tracker-vp-value
+   seul) pour rester plus spécifique que ".tracker-army > div span" -- sinon
+   cette règle générique (le petit libellé "Round"/"🔵 Bleu" au-dessus)
+   l'emporte aussi sur les points de victoire eux-mêmes, qui héritent malgré
+   eux de la carte .tracker-army réutilisée pour le bandeau round/PV (bug
+   trouvé en vérifiant l'agrandissement demandé, 13/09/2026). */
+.tracker-vp-controls .tracker-vp-value { font-size: 1.6rem; font-weight: 700; min-width: 2.2rem; text-align: center; }
 
 .tracker-section {
   position:relative; background:#0f1621; border:1px solid #294459; border-radius:2px; padding:.85rem 1rem;
@@ -894,7 +900,7 @@ body:has(.app-game-tracker){min-height:100vh;background-color:#0a0e15;background
 .tracker-topbar.tracker-armies{grid-template-columns:repeat(3,minmax(0,1fr))}
 .tracker-round-card>div strong{font-size:1.5rem;color:#ffb45f}
 .tracker-round-controls select{border:1px solid #ff8c1a;background:#090d13;color:#fff;font-size:1.3rem;font-weight:900;text-align:center}
-.tracker-vp-value{font-size:2.2rem;line-height:1}.tracker-vp-controls .btn{width:2.7rem;height:2.7rem}
+.tracker-vp-controls .tracker-vp-value{font-size:3.6rem;line-height:1;min-width:2.8rem}.tracker-vp-controls .btn{width:2.7rem;height:2.7rem}
 .tracker-section{padding:10px 12px}.tracker-section select{max-width:none;min-height:42px}.tracker-visuals{gap:8px;margin-top:8px}.tracker-card-button{display:block;width:auto;padding:0;border:1px solid #294459;background:#050807;cursor:zoom-in}.tracker-card-button:hover,.tracker-card-button:focus-visible{border-color:#ff8c1a;box-shadow:0 0 18px rgba(255,140,26,.25)}.tracker-card-image{display:block;width:auto;max-width:155px;max-height:205px;border:0;object-fit:contain}.tracker-section-objective .tracker-card-image{max-width:190px}.tracker-advantage-columns{gap:10px}.tracker-advantage-side{min-width:0}.tracker-advantage-side .tracker-card-image{max-width:155px}
 .tracker-card-preview{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;padding:32px;background:rgba(0,0,0,.88);cursor:zoom-out}.tracker-card-preview img{max-width:min(88vw,720px);max-height:88vh;object-fit:contain;filter:drop-shadow(0 18px 40px #000)}.tracker-card-preview>button{position:fixed;right:24px;top:18px;width:48px;height:48px;border:1px solid #ff8c1a;background:#101721;color:#fff;font-size:2rem;cursor:pointer}
 @media(min-width:980px){.game-tracker-screen{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:12px}.tracker-command-header,.tracker-armies,.tracker-color-assign,.tracker-combat-cta{grid-column:1/-1}.tracker-section-advantage .tracker-advantage-columns{grid-template-columns:1fr}.tracker-card-image{max-height:175px}.tracker-section-objective .tracker-card-image{max-width:155px}}
