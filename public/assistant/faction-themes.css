@@ -91,7 +91,7 @@ body[data-faction-theme="imperial"] h1,body[data-faction-theme="imperial"] h2,bo
   background-color:color-mix(in srgb,var(--panel) 94%,transparent)!important;
   box-shadow:0 18px 38px rgba(0,0,0,.22);
 }
-body[data-faction-theme="rebel"] .army-switch,body[data-faction-theme="rebel"] .unit-tools,body[data-faction-theme="rebel"] .overview,body[data-faction-theme="rebel"] .attack-workspace {
+body[data-faction-theme="rebel"] .unit-tools,body[data-faction-theme="rebel"] .overview,body[data-faction-theme="rebel"] .attack-workspace {
   box-shadow:inset 2px 2px 0 -1px rgba(127,216,255,.7),inset -2px -2px 0 -1px rgba(127,216,255,.45),0 18px 38px rgba(0,0,0,.28);
 }
 body[data-faction-theme="imperial"] .overview,body[data-faction-theme="imperial"] .attack-workspace,body[data-faction-theme="imperial"] .unit-tools {
