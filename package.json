@@ -7,6 +7,7 @@
     "dev": "vite",
     "audit:assistant": "npm run generate:assistant-data && node scripts/audit-assistant-automation.mjs",
     "verify:assistant-dice": "npm run test:assistant-engine && npm run test:assistant-contracts && npm run audit:assistant",
+    "verify": "npm run build",
     "test:assistant-engine": "node scripts/test-assistant-engine.mjs",
     "test:assistant-contracts": "node scripts/test-assistant-contracts.mjs",
     "test:import-pipeline": "node scripts/test-import-pipeline.mjs",
