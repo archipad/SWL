@@ -175,6 +175,20 @@ assert.match(trackerUi, /'swl\.assistant\.attack-history\.v1', '\[\]'/, 'Nouvell
 assert.match(trackerUi, /update\(DEFAULT_STATE\)/, 'Nouvelle partie doit remettre le round, les VP et les objectifs à zéro')
 assert.match(trackerState, /export const DEFAULT_STATE/, 'DEFAULT_STATE doit être exporté pour que Nouvelle partie puisse le réutiliser')
 
+// Balayage rejoué au changement de joueur (pas à chaque recherche/filtre),
+// et colonnes de catégories équilibrées par nombre de figurines plutôt que
+// par une correspondance catégorie->colonne figée (signalement utilisateur,
+// 13/09/2026).
+const headerSync = fs.readFileSync(new URL('../public/assistant/header-sync.css', import.meta.url), 'utf8')
+assert.match(headerSync, /\.page-wipe\s*\{\s*animation:\s*pageWipe/, 'La classe .page-wipe doit rejouer la même animation pageWipe que le chargement de page')
+assert.match(headerSync, /\.page-wipe\s*\{\s*animation:\s*none/, 'prefers-reduced-motion doit aussi désactiver le balayage au changement de joueur')
+assert.match(app, /animateSwitch=true;pick\('attacker'\)/, 'Changer de joueur doit déclencher le balayage')
+assert.doesNotMatch(app, /unitQuery=e\.target\.value;pick\(role\);.*animateSwitch=true/, 'Taper dans la recherche ne doit pas déclencher le balayage')
+assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
+assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
+assert.match(app, /weight:\(Number\(group\.querySelector\('header small'\)\?\.textContent\)\|\|0\)\+1/, 'Les colonnes de catégories doivent se répartir par nombre de figurines, pas par une règle figée')
+assert.match(app, /const target=totals\.indexOf\(Math\.min\(\.\.\.totals\)\)/, 'La répartition des catégories doit être équilibrée (colonne la moins remplie)')
+
 // Historique des parties précédentes (archivage avant reset/restauration) :
 // consultable entre joueurs, et filet de sécurité en cas de remise à zéro
 // ou de restauration faite par erreur.

@@ -37,6 +37,17 @@ body {
   from { clip-path: inset(0 100% 0 0); opacity: 0.4; }
   to { clip-path: inset(0 0 0 0); opacity: 1; }
 }
+
+/* Même balayage, rejoué cette fois au changement de joueur dans l'écran de
+   sélection d'unité (demande utilisateur, 13/09/2026) : .army-switch button
+   applique cette classe sur le wrapper fraîchement injecté par pick() dans
+   #app (voir app.js) uniquement quand le joueur sélectionné change vraiment
+   -- pas à chaque frappe dans la recherche ni changement de filtre de rang,
+   qui appellent aussi pick(). */
+.page-wipe {
+  animation: pageWipe 420ms cubic-bezier(0.16, 0.84, 0.44, 1);
+}
 @media (prefers-reduced-motion: reduce) {
   body { animation: none; }
+  .page-wipe { animation: none; }
 }
