@@ -181,13 +181,30 @@ assert.match(trackerState, /export const DEFAULT_STATE/, 'DEFAULT_STATE doit êt
 // 13/09/2026).
 const headerSync = fs.readFileSync(new URL('../public/assistant/header-sync.css', import.meta.url), 'utf8')
 assert.match(headerSync, /\.page-wipe\s*\{\s*animation:\s*pageWipe/, 'La classe .page-wipe doit rejouer la même animation pageWipe que le chargement de page')
-assert.match(headerSync, /\.page-wipe\s*\{\s*animation:\s*none/, 'prefers-reduced-motion doit aussi désactiver le balayage au changement de joueur')
-assert.match(app, /animateSwitch=true;pick\('attacker'\)/, 'Changer de joueur doit déclencher le balayage')
-assert.doesNotMatch(app, /unitQuery=e\.target\.value;pick\(role\);.*animateSwitch=true/, 'Taper dans la recherche ne doit pas déclencher le balayage')
+assert.match(headerSync, /\.page-wipe,\s*\.step-wipe\s*\{\s*animation:\s*none/, 'prefers-reduced-motion doit aussi désactiver les deux balayages (plein écran et colonne centrale)')
+assert.match(app, /stageWipe=true;pick\('attacker'\)/, 'Changer de joueur doit déclencher le balayage')
+assert.ok(app.includes("$('#unitSearch').oninput=e=>{unitQuery=e.target.value;pick(role);requestAnimationFrame(()=>{$('#unitSearch')?.focus();$('#unitSearch')?.setSelectionRange(unitQuery.length,unitQuery.length)})};"), 'Taper dans la recherche ne doit pas déclencher le balayage (gestionnaire de recherche modifié de façon inattendue)')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
 assert.match(app, /weight:\(Number\(group\.querySelector\('header small'\)\?\.textContent\)\|\|0\)\+1/, 'Les colonnes de catégories doivent se répartir par nombre de figurines, pas par une règle figée')
 assert.match(app, /const target=totals\.indexOf\(Math\.min\(\.\.\.totals\)\)/, 'La répartition des catégories doit être équilibrée (colonne la moins remplie)')
+
+// Affinages demandés le 13/09/2026 : le balayage ne doit couvrir QUE la
+// zone des unités (pas les cartes Joueur 1/2), l'ordre des catégories doit
+// respecter Commandant -> Agent -> Troupiers -> Forces spéciales -> Soutien
+// -> Lourd (pas juste par poids), et une transition rapide et légère doit
+// aussi jouer lors des changements d'écran (choix d'unité, changement de
+// cible) et entre chaque étape de résolution d'attaque (colonne centrale
+// uniquement, les deux côtés attaquant/défenseur ne bougeant pas).
+assert.match(app, /sort\(\(a,b\)=>\(order\[a\.label\]\?\?9\)-\(order\[b\.label\]\?\?9\)\)/, 'Les catégories doivent être placées dans l’ordre Commandant->Agent->Troupiers->... avant équilibrage, pas par poids décroissant')
+assert.match(app, /'forces speciales':3,soutien:4,lourd:5,'rang a verifier':6/, 'Les clés de la table d’ordre doivent être sans accent (norm() retire toujours les accents, sinon Forces spéciales/Rang à vérifier ne correspondent jamais)')
+assert.doesNotMatch(app, /'forces spéciales':\d/, 'La table d’ordre ne doit plus utiliser de clé accentée (jamais reconnue par norm())')
+assert.match(app, /root\.innerHTML=`<section class="intro">/, 'Le wrapper balayé de pick() doit exclure .intro (le sélecteur Joueur 1\/2)')
+assert.match(app, /<\/section><div class="\$\{wipe\?`page-wipe`:``\}"><section class="unit-tools">/, 'Le balayage doit envelopper uniquement la zone des unités, pas le sélecteur de joueur')
+assert.match(app, /function overview\(entry,role\)\{const wipe=stageWipe;stageWipe=false;/, 'Changer d’unité/de cible doit rejouer le balayage à l’entrée de l’aperçu d’unité')
+assert.match(app, /function resolveScreen\(\)\{stage=4\+attackStep;const wipeStage=stageWipe;stageWipe=false;const wipeCenter=centerWipe;centerWipe=false;/, 'La résolution d’attaque doit distinguer le balayage plein écran (première entrée) du balayage de la seule colonne centrale (changement d’étape)')
+assert.match(app, /<section class="resolve-center \$\{wipeCenter\?`step-wipe`:``\}">/, 'Seule .resolve-center (colonne centrale) doit être balayée entre deux étapes, pas les colonnes attaquant\/défenseur')
+assert.match(headerSync, /\.step-wipe\s*\{\s*animation:\s*pageWipe 240ms/, 'Le balayage entre étapes doit être plus rapide que le balayage plein écran (pas d’interface lourde)')
 
 // Historique des parties précédentes (archivage avant reset/restauration) :
 // consultable entre joueurs, et filet de sécurité en cas de remise à zéro

@@ -38,16 +38,28 @@ body {
   to { clip-path: inset(0 0 0 0); opacity: 1; }
 }
 
-/* Même balayage, rejoué cette fois au changement de joueur dans l'écran de
-   sélection d'unité (demande utilisateur, 13/09/2026) : .army-switch button
-   applique cette classe sur le wrapper fraîchement injecté par pick() dans
-   #app (voir app.js) uniquement quand le joueur sélectionné change vraiment
-   -- pas à chaque frappe dans la recherche ni changement de filtre de rang,
-   qui appellent aussi pick(). */
+/* Même balayage, rejoué cette fois à chaque vrai changement d'écran dans
+   l'assistant (demande utilisateur, 13/09/2026) : changement de joueur,
+   sélection d'une unité, retour en arrière ("Changer d'unité"/"Changer de
+   cible"), entrée dans la résolution d'attaque. Posée sur le wrapper
+   fraîchement injecté par pick()/overview()/resolveScreen() (voir app.js,
+   drapeau stageWipe) -- jamais sur un simple re-rendu du même écran
+   (recherche, filtre de rang, saisie d'un champ), qui appellent aussi ces
+   fonctions. .army-switch (les cartes Joueur 1/2 elles-mêmes) reste en
+   dehors du wrapper : seule la zone des unités en dessous est balayée. */
 .page-wipe {
   animation: pageWipe 420ms cubic-bezier(0.16, 0.84, 0.44, 1);
 }
+/* Même effet, en plus court : rejoué uniquement sur la colonne centrale
+   (.resolve-center) à chaque changement d'étape pendant la résolution
+   d'une attaque (drapeau centerWipe) -- les deux colonnes attaquant/
+   défenseur ne bougent pas, donc pas balayées. Durée réduite pour rester
+   léger sur une action répétée à chaque étape (demande utilisateur :
+   rapide, pas d'interface lourde). */
+.step-wipe {
+  animation: pageWipe 240ms cubic-bezier(0.16, 0.84, 0.44, 1);
+}
 @media (prefers-reduced-motion: reduce) {
   body { animation: none; }
-  .page-wipe { animation: none; }
+  .page-wipe, .step-wipe { animation: none; }
 }
