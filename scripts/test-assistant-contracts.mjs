@@ -133,7 +133,10 @@ assert.match(gistSync, /assistantAttackHistory\?: unknown\[\]/, 'Le journal des 
 assert.match(syncUi, /swl\.assistant\.attack-history\.v1/, 'Le journal distant doit être restauré localement')
 assert.match(app, /assistantAttackHistory:attackHistory/, 'L’assistant doit envoyer son journal de résolution')
 assert.match(trackerUi, /Journal de résolution/, 'Le suivi de partie doit afficher le journal synchronisé des attaques')
-assert.match(jsonImporter, /const unitKey = nextSlug\(u\.name\)/, 'La clé stable d’une unité doit être réservée avant ses améliorations')
+assert.match(jsonImporter, /const unitKey = nextUnitSlug\(u\.name\)/, 'La clé stable d’une unité JSON doit être indépendante de ses améliorations')
+assert.match(jsonImporter, /const upgradeSeen = new Map/, 'Les doublons d’améliorations JSON doivent être identifiés localement dans leur unité')
+const textImporter = fs.readFileSync(new URL('../src/lib/parseList.ts', import.meta.url), 'utf8')
+assert.match(textImporter, /key: nextUnitSlug\(card\.name\)/, 'La clé stable d’une unité texte doit être indépendante de ses améliorations')
 assert.match(cardNames, /'prepared supplies': 'prepared materiel'/, 'Prepared Supplies doit retrouver Matériel Préparé')
 assert.match(cardNames, /'cm 0 93 trooper': 'cm o 93 trooper'/, 'CM-0\/93 doit retrouver la carte CM-O\/93')
 for (const card of ['force reflexes', 'improvised orders', 'prepared materiel', 'fragmentation grenades', 'situational awareness', 'impact grenades', 'hq uplink', 'duck and cover']) {
@@ -142,6 +145,11 @@ for (const card of ['force reflexes', 'improvised orders', 'prepared materiel', 
 }
 assert.match(app, /unit\.key\|\|index/, 'L’assistant doit conserver une identité stable lors d’une réimportation')
 assert.match(app, /legacyId/, 'Les blessures enregistrées avec les anciens identifiants doivent être migrées')
+assert.equal(reference.weapons['fragmentation grenades'].weapons[0].dice[0].color, 'rouge', 'La grenade à fragmentation doit lancer un dé rouge')
+assert.equal(reference.weapons['fragmentation grenades'].weapons[0].range, '1', 'La grenade à fragmentation doit être limitée à portée 1')
+assert.equal(reference.weapons['fragmentation grenades'].weapons[0].attackSurge, 'crit', 'La grenade à fragmentation doit donner Adrénaline vers Critique à la réserve')
+assert.equal(reference.weapons['impact grenades'].weapons[0].dice[0].color, 'noir', 'La grenade à impact doit lancer un dé noir')
+assert.match(app, /function effectiveAttackProfile\(\)/, 'Les conversions accordées par les armes doivent être calculées au niveau de la réserve')
 assert.match(certificationUiSource, /location\.hash==='\#certification'/, 'Le rapport d’import doit pouvoir ouvrir directement la certification')
 
 // Couverture exhaustive des ressources déjà présentes : tout nouveau fichier
