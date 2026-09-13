@@ -165,6 +165,37 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         </div>
       </header>
 
+      {/* Round + points de victoire : les seules données mises à jour en fin de
+          round, donc juste sous le bandeau de titre, dans le même style que le
+          bandeau Joueur 1/2 ci-dessous (demande utilisateur, 13/09/2026). */}
+      <div className="tracker-topbar tracker-armies">
+        <article className="tracker-army tracker-round-card">
+          <div><span>Round</span><strong>{state.round} / {ROUNDS.length}</strong></div>
+          <div className="tracker-round-controls">
+            <select value={state.round} onChange={(e) => changeRound(Number(e.target.value))} aria-label="Choisir le round">
+              {ROUNDS.map((r) => <option key={r} value={r}>{r}</option>)}
+            </select>
+            <button type="button" className="btn btn-primary tracker-next-round" disabled={state.round >= ROUNDS.at(-1)!} onClick={nextRound}>Round suivant →</button>
+          </div>
+        </article>
+        <article className="tracker-army tracker-army-bleu">
+          <div><span>🔵 Bleu</span><strong>{bleuLabel}</strong></div>
+          <div className="tracker-vp-controls">
+            <button type="button" className="btn btn-ghost" onClick={() => update({ vpBleu: Math.max(0, state.vpBleu - 1) })}>−</button>
+            <span className="tracker-vp-value">{state.vpBleu}</span>
+            <button type="button" className="btn btn-ghost" onClick={() => update({ vpBleu: state.vpBleu + 1 })}>+</button>
+          </div>
+        </article>
+        <article className="tracker-army tracker-army-rouge">
+          <div><span>🔴 Rouge</span><strong>{rougeLabel}</strong></div>
+          <div className="tracker-vp-controls">
+            <button type="button" className="btn btn-ghost" onClick={() => update({ vpRouge: Math.max(0, state.vpRouge - 1) })}>−</button>
+            <span className="tracker-vp-value">{state.vpRouge}</span>
+            <button type="button" className="btn btn-ghost" onClick={() => update({ vpRouge: state.vpRouge + 1 })}>+</button>
+          </div>
+        </article>
+      </div>
+
       <div className="tracker-armies">
         {([[listP1, p1Summary, 'Joueur 1', 'bleu'], [listP2, p2Summary, 'Joueur 2', 'rouge']] as const).map(([list, summary, fallback, color]) => (
           <article className={`tracker-army tracker-army-${color}`} key={fallback}>
@@ -178,6 +209,11 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
           </article>
         ))}
       </div>
+
+      {roundHistory.length > 0 && <section className="tracker-round-history tracker-console-panel">
+        <h3>Rounds terminés</h3>
+        <div>{roundHistory.slice().reverse().map((entry) => <article key={entry.round}><b>Round {entry.round}</b><span>{entry.activatedUnitIds.length} activation(s)</span><span>🔵 {entry.vpBleu} · 🔴 {entry.vpRouge}</span></article>)}</div>
+      </section>}
 
       <section className="tracker-unit-status tracker-console-panel" aria-label="État détaillé des armées">
         <h3>État des unités</h3>
@@ -214,6 +250,22 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         </article>)}</div> : <p className="empty-hint">Les attaques terminées dans l’Assistant apparaîtront ici automatiquement.</p>}
       </section>
 
+      {archiveHook.games.length > 0 && <section className="tracker-round-history tracker-game-archive tracker-console-panel" aria-label="Parties précédentes">
+        <h3>Parties précédentes</h3>
+        <div>{archiveHook.games.map((game) => <article key={game.id}>
+          <b>{game.p1Label} vs {game.p2Label}</b>
+          <span>{new Date(game.archivedAt).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })} · round {game.finalRound}</span>
+          <span>🔵 {game.vpBleu} · 🔴 {game.vpRouge} · 🏆 {gameWinner(game)}</span>
+          <div className="tracker-archive-actions">
+            <button type="button" className="btn btn-ghost" onClick={() => restoreGame(game)}>↩ Restaurer</button>
+            <button type="button" className="btn btn-ghost btn-danger" aria-label={`Supprimer la partie du ${new Date(game.archivedAt).toLocaleDateString('fr-FR')}`} onClick={() => { if (window.confirm('Supprimer cette partie de l’historique ? Définitif.')) archiveHook.remove(game.id); }}>🗑</button>
+          </div>
+        </article>)}</div>
+      </section>}
+
+      {/* Juste au-dessus d'Objectif/Avantage : ces éléments, comme l'attribution
+          Bleu/Rouge, ne se choisissent qu'une fois en début de partie (demande
+          utilisateur, 13/09/2026). */}
       <div className="tracker-color-assign tracker-console-panel">
         <strong>Attribution tactique</strong>
         <span>Joueur 1 :</span>
@@ -232,50 +284,6 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
           🔴 Rouge
         </button>
       </div>
-
-      <div className="tracker-topbar tracker-console-panel">
-        <div className="tracker-round field">
-          <label>Round<select value={state.round} onChange={(e) => changeRound(Number(e.target.value))}>{ROUNDS.map((r) => <option key={r} value={r}>{r}</option>)}</select></label>
-          <button type="button" className="btn btn-primary tracker-next-round" disabled={state.round >= ROUNDS.at(-1)!} onClick={nextRound}>Round suivant →</button>
-        </div>
-
-        <div className="tracker-vp">
-          <div className="tracker-vp-side tracker-vp-bleu">
-            <span className="tracker-player-badge">🔵 {bleuLabel}</span>
-            <div className="tracker-vp-controls">
-              <button type="button" className="btn btn-ghost" onClick={() => update({ vpBleu: Math.max(0, state.vpBleu - 1) })}>−</button>
-              <span className="tracker-vp-value">{state.vpBleu}</span>
-              <button type="button" className="btn btn-ghost" onClick={() => update({ vpBleu: state.vpBleu + 1 })}>+</button>
-            </div>
-          </div>
-          <div className="tracker-vp-side tracker-vp-rouge">
-            <span className="tracker-player-badge">🔴 {rougeLabel}</span>
-            <div className="tracker-vp-controls">
-              <button type="button" className="btn btn-ghost" onClick={() => update({ vpRouge: Math.max(0, state.vpRouge - 1) })}>−</button>
-              <span className="tracker-vp-value">{state.vpRouge}</span>
-              <button type="button" className="btn btn-ghost" onClick={() => update({ vpRouge: state.vpRouge + 1 })}>+</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {roundHistory.length > 0 && <section className="tracker-round-history tracker-console-panel">
-        <h3>Rounds terminés</h3>
-        <div>{roundHistory.slice().reverse().map((entry) => <article key={entry.round}><b>Round {entry.round}</b><span>{entry.activatedUnitIds.length} activation(s)</span><span>🔵 {entry.vpBleu} · 🔴 {entry.vpRouge}</span></article>)}</div>
-      </section>}
-
-      {archiveHook.games.length > 0 && <section className="tracker-round-history tracker-game-archive tracker-console-panel" aria-label="Parties précédentes">
-        <h3>Parties précédentes</h3>
-        <div>{archiveHook.games.map((game) => <article key={game.id}>
-          <b>{game.p1Label} vs {game.p2Label}</b>
-          <span>{new Date(game.archivedAt).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })} · round {game.finalRound}</span>
-          <span>🔵 {game.vpBleu} · 🔴 {game.vpRouge} · 🏆 {gameWinner(game)}</span>
-          <div className="tracker-archive-actions">
-            <button type="button" className="btn btn-ghost" onClick={() => restoreGame(game)}>↩ Restaurer</button>
-            <button type="button" className="btn btn-ghost btn-danger" aria-label={`Supprimer la partie du ${new Date(game.archivedAt).toLocaleDateString('fr-FR')}`} onClick={() => { if (window.confirm('Supprimer cette partie de l’historique ? Définitif.')) archiveHook.remove(game.id); }}>🗑</button>
-          </div>
-        </article>)}</div>
-      </section>}
 
       <section className="tracker-section tracker-section-objective">
         <h3>Objectif</h3>
