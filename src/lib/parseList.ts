@@ -73,7 +73,7 @@ function isIndented(rawLine: string): boolean {
  */
 export function parseArmyListText(input: string): ParsedList {
   const lines = input.replace(/\r\n?/g, '\n').split('\n');
-  const nextSlug = slugCounter();
+  const nextUnitSlug = slugCounter();
 
   const result: ParsedList = { units: [], unparsedLines: [] };
   let currentSection = 'Liste';
@@ -142,13 +142,16 @@ export function parseArmyListText(input: string): ParsedList {
 
     if (indented) {
       const upgrade: ParsedCard = {
-        key: nextSlug(card.name), name: card.name, points: card.points, kind: 'upgrade',
+        // La clé d'une amélioration n'entre pas dans le compteur des unités :
+        // modifier l'équipement ne déplace donc jamais leur état de partie.
+        key: `${currentUnit?.key ?? 'autres-cartes'}-${normalizeName(card.name) || 'carte'}-${currentUnit?.upgrades.length ?? 0}`,
+        name: card.name, points: card.points, kind: 'upgrade',
       };
       if (currentUnit) currentUnit.upgrades.push(upgrade);
       else pushOrphan(upgrade);
     } else {
       currentUnit = {
-        key: nextSlug(card.name), name: card.name, points: card.points,
+        key: nextUnitSlug(card.name), name: card.name, points: card.points,
         kind: 'unit', section: currentSection, upgrades: [],
       };
       result.units.push(currentUnit);

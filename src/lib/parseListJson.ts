@@ -54,11 +54,15 @@ export function parseArmyListJson(input: string): ParsedList | null {
   }
   if (!looksLikeTabletopAdmiral(data)) return null;
 
-  const seen = new Map<string, number>();
-  const nextSlug = (name: string) => {
+  // Les identifiants des unités ne doivent dépendre que des unités. Une
+  // amélioration ajoutée lors d'un futur import ne doit jamais renommer une
+  // unité déjà suivie (blessures, suppression et activation sont indexées par
+  // cette clé sur tous les appareils).
+  const unitSeen = new Map<string, number>();
+  const nextUnitSlug = (name: string) => {
     const base = normalizeName(name) || 'carte';
-    const n = (seen.get(base) ?? 0) + 1;
-    seen.set(base, n);
+    const n = (unitSeen.get(base) ?? 0) + 1;
+    unitSeen.set(base, n);
     return n === 1 ? base : `${base}-${n}`;
   };
 
@@ -66,11 +70,19 @@ export function parseArmyListJson(input: string): ParsedList | null {
     // Réserver la clé de l'unité avant celles de ses améliorations. Ainsi,
     // ajouter ou retirer une amélioration ne change jamais l'identité des
     // unités suivantes et ne déplace pas leurs blessures synchronisées.
-    const unitKey = nextSlug(u.name);
+    const unitKey = nextUnitSlug(u.name);
     const upgradeNames = [...(u.upgrades ?? []), ...(u.loadout ?? [])];
-    const upgrades: ParsedCard[] = upgradeNames.map((name) => ({
-      key: nextSlug(name), name, kind: 'upgrade',
-    }));
+    const upgradeSeen = new Map<string, number>();
+    const upgrades: ParsedCard[] = upgradeNames.map((name) => {
+      const base = normalizeName(name) || 'carte';
+      const occurrence = (upgradeSeen.get(base) ?? 0) + 1;
+      upgradeSeen.set(base, occurrence);
+      return {
+        key: occurrence === 1 ? base : `${base}-${occurrence}`,
+        name,
+        kind: 'upgrade',
+      };
+    });
     return {
       key: unitKey, name: u.name, kind: 'unit', section: 'Unités', upgrades,
     };
