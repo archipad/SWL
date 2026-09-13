@@ -4,6 +4,7 @@ import certifications from '../data/diceCertifications.json';
 import { canonicalCardKey, frenchCardName } from '../lib/cardNames';
 import { buildCertifiedUnitRoster } from '../lib/unitModels';
 import { DEFAULT_STATE, type useGameTracker } from '../lib/useGameTracker';
+import { useGameArchive, type ArchivedGame } from '../lib/useGameArchive';
 import type { SyncStatus } from '../lib/useSync';
 import type { ParsedList } from '../types';
 
@@ -40,6 +41,13 @@ function playerLabel(list: ParsedList | null, fallback: string): string {
 
 const unitIdFor = (player: 'p1' | 'p2', unit: ParsedList['units'][number], index: number) => `${player}:${unit.key || index}`;
 
+function gameWinner(game: ArchivedGame): string {
+  const bleuLabel = game.p1Color === 'bleu' ? game.p1Label : game.p2Label;
+  const rougeLabel = game.p1Color === 'bleu' ? game.p2Label : game.p1Label;
+  if (game.vpBleu === game.vpRouge) return 'Égalité';
+  return game.vpBleu > game.vpRouge ? `🔵 ${bleuLabel}` : `🔴 ${rougeLabel}`;
+}
+
 export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus, lastSyncAt }: Props) {
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
   const [unitStates, setUnitStates] = useState<UnitStates>(readUnitStates);
@@ -58,18 +66,44 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
       roundHistory: [...roundHistory.filter((entry) => entry.round !== state.round), { round: state.round, activatedUnitIds, vpBleu: state.vpBleu, vpRouge: state.vpRouge, completedAt: new Date().toISOString() }],
     });
   };
+  const p1Label = playerLabel(listP1, 'Joueur 1');
+  const p2Label = playerLabel(listP2, 'Joueur 2');
+  const bleuLabel = state.p1Color === 'bleu' ? p1Label : p2Label;
+  const rougeLabel = state.p1Color === 'bleu' ? p2Label : p1Label;
+
+  const archiveHook = useGameArchive();
+  // Rien à archiver pour une partie qui n'a pas commencé (évite de polluer
+  // l'historique si le bouton est cliqué par erreur juste après l'import).
+  const hasProgress = state.round > 1 || state.vpBleu > 0 || state.vpRouge > 0 || Object.keys(unitStates).length > 0 || attackHistory.length > 0;
+  const archiveCurrentGame = () => archiveHook.archive({
+    p1Label, p2Label, p1Color: state.p1Color,
+    vpBleu: state.vpBleu, vpRouge: state.vpRouge,
+    finalRound: state.round,
+    objectiveId: state.objectiveId, secondaryId: state.secondaryId,
+    snapshot: { gameTracker: state, unitStates, attackHistory },
+  });
+  const applySnapshot = (snapshot: ArchivedGame['snapshot']) => {
+    localStorage.setItem(UNIT_STATE_KEY, JSON.stringify(snapshot.unitStates));
+    localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(snapshot.attackHistory));
+    setUnitStates(snapshot.unitStates as UnitStates);
+    setAttackHistory(snapshot.attackHistory as AttackHistoryEntry[]);
+    update(snapshot.gameTracker);
+  };
   const startNewGame = () => {
-    if (!window.confirm('Démarrer une nouvelle partie ? Ça efface les blessures, suppressions et pions de toutes les unités, remet le round à 1 et réinitialise le suivi (points de victoire, objectifs, avantage, historique). Les listes importées restent en place.')) return;
+    if (!window.confirm('Démarrer une nouvelle partie ? Ça efface les blessures, suppressions et pions de toutes les unités, remet le round à 1 et réinitialise le suivi (points de victoire, objectifs, avantage, historique). Les listes importées restent en place — la partie en cours est archivée avant, pour pouvoir la restaurer en cas d’erreur.')) return;
+    if (hasProgress) archiveCurrentGame();
     localStorage.setItem(UNIT_STATE_KEY, '{}');
     localStorage.setItem('swl.assistant.attack-history.v1', '[]');
     setUnitStates({});
     setAttackHistory([]);
     update(DEFAULT_STATE);
   };
-  const p1Label = playerLabel(listP1, 'Joueur 1');
-  const p2Label = playerLabel(listP2, 'Joueur 2');
-  const bleuLabel = state.p1Color === 'bleu' ? p1Label : p2Label;
-  const rougeLabel = state.p1Color === 'bleu' ? p2Label : p1Label;
+  const restoreGame = (game: ArchivedGame) => {
+    const label = new Date(game.archivedAt).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+    if (!window.confirm(`Restaurer la partie du ${label} (${game.p1Label} vs ${game.p2Label}) ? L’état actuel sera remplacé — il est archivé avant, au cas où.`)) return;
+    if (hasProgress) archiveCurrentGame();
+    applySnapshot(game.snapshot);
+  };
 
   const objective = OBJECTIVE_CARDS.find((o) => o.id === state.objectiveId) ?? null;
   const secondary = SECONDARY_OBJECTIVE_CARDS.find((o) => o.id === state.secondaryId) ?? null;
@@ -228,6 +262,19 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
       {roundHistory.length > 0 && <section className="tracker-round-history tracker-console-panel">
         <h3>Rounds terminés</h3>
         <div>{roundHistory.slice().reverse().map((entry) => <article key={entry.round}><b>Round {entry.round}</b><span>{entry.activatedUnitIds.length} activation(s)</span><span>🔵 {entry.vpBleu} · 🔴 {entry.vpRouge}</span></article>)}</div>
+      </section>}
+
+      {archiveHook.games.length > 0 && <section className="tracker-round-history tracker-game-archive tracker-console-panel" aria-label="Parties précédentes">
+        <h3>Parties précédentes</h3>
+        <div>{archiveHook.games.map((game) => <article key={game.id}>
+          <b>{game.p1Label} vs {game.p2Label}</b>
+          <span>{new Date(game.archivedAt).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })} · round {game.finalRound}</span>
+          <span>🔵 {game.vpBleu} · 🔴 {game.vpRouge} · 🏆 {gameWinner(game)}</span>
+          <div className="tracker-archive-actions">
+            <button type="button" className="btn btn-ghost" onClick={() => restoreGame(game)}>↩ Restaurer</button>
+            <button type="button" className="btn btn-ghost btn-danger" aria-label={`Supprimer la partie du ${new Date(game.archivedAt).toLocaleDateString('fr-FR')}`} onClick={() => { if (window.confirm('Supprimer cette partie de l’historique ? Définitif.')) archiveHook.remove(game.id); }}>🗑</button>
+          </div>
+        </article>)}</div>
       </section>}
 
       <section className="tracker-section tracker-section-objective">

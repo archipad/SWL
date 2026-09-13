@@ -175,6 +175,15 @@ assert.match(trackerUi, /'swl\.assistant\.attack-history\.v1', '\[\]'/, 'Nouvell
 assert.match(trackerUi, /update\(DEFAULT_STATE\)/, 'Nouvelle partie doit remettre le round, les VP et les objectifs à zéro')
 assert.match(trackerState, /export const DEFAULT_STATE/, 'DEFAULT_STATE doit être exporté pour que Nouvelle partie puisse le réutiliser')
 
+// Historique des parties précédentes (archivage avant reset/restauration) :
+// consultable entre joueurs, et filet de sécurité en cas de remise à zéro
+// ou de restauration faite par erreur.
+const gameArchive = fs.readFileSync(new URL('../src/lib/useGameArchive.ts', import.meta.url), 'utf8')
+assert.match(gameArchive, /const MAX_ENTRIES = 20/, 'L’historique des parties doit rester borné (pas de croissance illimitée du stockage local)')
+assert.match(trackerUi, /if \(hasProgress\) archiveCurrentGame\(\)/, 'Nouvelle partie doit archiver la partie en cours avant de la remettre à zéro')
+assert.match(trackerUi, /const restoreGame = /, 'La restauration d’une partie archivée est absente')
+assert.match(trackerUi, /if \(hasProgress\) archiveCurrentGame\(\);\s*\n\s*applySnapshot/, 'Restaurer une partie doit lui-même archiver l’état en cours avant de l’écraser (double filet de sécurité)')
+
 // État, journal d'attaque et suivi de partie voyagent dans un même format
 // versionné afin que deux appareils affichent le même état de partie.
 assert.match(gistSync, /schemaVersion\?: number/, 'Le format de synchronisation doit être versionné')
