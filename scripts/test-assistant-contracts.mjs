@@ -59,6 +59,7 @@ for (const [card, record] of Object.entries(certifications)) {
 // Toute situation dont la réponse modifie une règle doit avoir trois états :
 // non répondue, oui et non. Une case décochée ne suffit pas à prouver un « non ».
 const mandatoryConditions = [
+  ['tenacityUsed', 'tenacity'],
   ['ramEligible', 'belier-x'],
   ['engaged', 'tenir-bon'],
   ['targetForceUpgrade', 'chasseur-de-jedi'],
@@ -75,6 +76,11 @@ assert.match(app, /data-condition="\$\{id\}" data-value="true"/, 'Bouton Oui man
 assert.match(app, /data-condition="\$\{id\}" data-value="false"/, 'Bouton Non manquant')
 assert.match(app, /if\(stepIssue\(\)\)\{resolveScreen\(\);return\}/, 'Le bouton suivant doit respecter tous les blocages')
 assert.match(app, /\+b\.dataset\.go<=attackStep\|\|!stepIssue\(\)/, 'La navigation directe ne doit pas contourner un blocage')
+assert.match(app, /attackState\.range==='melee'.*hasCard\(attacker,'tenacity'\).*stateFor\(attacker\)\.wounds>0/, 'Ténacité doit exiger une attaque au corps-à-corps et une unité blessée ou ayant perdu une figurine')
+assert.match(app, /rouge:result\.rouge\+tenacity/, 'Ténacité doit ajouter exactement un dé rouge à la réserve')
+assert.match(app, /souhaitez-vous appliquer Ténacité/, 'Ténacité étant facultative, le joueur doit confirmer son application')
+assert.match(cardNames, /while \(CARD_KEY_ALIASES\[current\]/, 'Les alias successifs doivent converger vers la carte canonique finale')
+assert.match(applyScript, /Cycle d'alias détecté/, 'Un lot de certification ne doit jamais pouvoir créer une boucle d’alias')
 
 // Contrats de saisie : chaque résultat doit correspondre exactement à la réserve.
 assert.match(app, /total===expected/, 'Le compteur de saisie exacte est absent')
@@ -85,6 +91,9 @@ assert.match(app, /Object\.values\(attackState\.roll\).*rolled!==expected/, 'Le 
 assert.match(app, /modelWounds/, 'La répartition persistante des blessures par figurine est absente')
 assert.match(app, /eligibleWoundTarget/, 'Le contrôle de la figurine éligible est absent')
 assert.match(app, /progress\.assigned!==progress\.required/, 'La fin d’attaque doit être bloquée tant que les blessures ne sont pas réparties')
+assert.match(app, /required=Math\.min\(rolled,capacity\)/, 'Les blessures excédentaires ne doivent pas bloquer une unité déjà vaincue')
+assert.match(app, /attackHistory\[0\]\.wounds=applied/, 'Le journal doit enregistrer les blessures réellement attribuées, pas les dégâts excédentaires')
+assert.match(app, /if\(summary\)remaining=summary\.remaining/, 'L’Assistant doit afficher le même effectif détaillé que le suivi de partie')
 assert.match(app, /outcome\?\.panicked/, 'Une unité encore paniquée après ralliement doit être détectée')
 assert.match(app, /Unité paniquée : aucune action/, 'La panique doit interdire les actions')
 assert.match(app, /state\.suppression-courage/, 'La fin d’activation paniquée doit retirer la valeur de Courage en suppression')
@@ -94,6 +103,7 @@ assert.match(trackerUi, /round === state\.round \? activatedUnitIds : \[\]/, 'Un
 assert.match(trackerUi, /!unitSnapshot\(unit, player, index\)\.defeated/, 'Une unité vaincue ne doit pas compter parmi les activations restantes')
 assert.match(app, /markUnitActivated\(attacker\)/, 'Une attaque terminée doit marquer automatiquement l’attaquant comme joué')
 assert.match(app, /markUnitActivated\(entry\)/, 'Une activation paniquée terminée doit être marquée comme jouée')
+assert.match(app, /Terminer sans attaquer/, 'Une activation normale doit pouvoir être terminée sans attaque')
 assert.match(trackerState, /roundHistory: RoundHistoryEntry\[\]/, 'L’historique des rounds est absent')
 assert.match(trackerUi, /round: state\.round \+ 1/, 'Le passage contrôlé au round suivant est absent')
 assert.match(trackerUi, /roundHistory: \[\.\.\.roundHistory/, 'Le round terminé doit être archivé avant la remise à zéro')

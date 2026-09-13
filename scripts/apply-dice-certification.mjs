@@ -51,11 +51,14 @@ for(const card of cards){
   if(card.addedModelWounds!==undefined&&(!Number.isInteger(card.addedModelWounds)||card.addedModelWounds<1||card.addedModelWounds>20))throw new Error('PV des figurines ajoutées invalides')
 }
 
+const pendingAliasMap=Object.fromEntries(aliases.map(entry=>[entry.from,entry.to]))
+const resolvePendingAlias=key=>{const visited=new Set;let current=key;while(pendingAliasMap[current]){if(visited.has(current))throw new Error(`Cycle d'alias détecté autour de « ${current} »`);visited.add(current);current=pendingAliasMap[current]}return current}
 for(const entry of aliases){
   if(typeof entry.from!=='string'||!keyPattern.test(entry.from))throw new Error(`Alias invalide : ${entry.from}`)
   if(typeof entry.to!=='string'||!keyPattern.test(entry.to))throw new Error(`Cible d'alias invalide : ${entry.to}`)
   if(knownCard(entry.from))throw new Error(`« ${entry.from} » a déjà sa propre entrée dans le catalogue — un alias l'écraserait silencieusement`)
-  if(!knownCard(entry.to))throw new Error(`« ${entry.to} » est introuvable dans le catalogue, impossible d'aliaser vers cette carte`)
+  const target=resolvePendingAlias(entry.to)
+  if(!knownCard(target))throw new Error(`« ${entry.to} » est introuvable dans le catalogue, impossible d'aliaser vers cette carte`)
 }
 
 const weaponFields=({name,range,dice,keywordIds,keywordValues,attackSurge})=>({name,...(range?{range}:{}),dice,...(keywordIds?{keywordIds}:{}),...(keywordValues?{keywordValues}:{}),...(attackSurge?{attackSurge}:{})})
