@@ -15,12 +15,13 @@ const server = await createServer({
 });
 
 try {
-  const [keywordModule, tagModule, nameModule, diceModule, imageModule] = await Promise.all([
+  const [keywordModule, tagModule, nameModule, diceModule, imageModule, aliasModule] = await Promise.all([
     server.ssrLoadModule('/src/data/keywords.ts'),
     server.ssrLoadModule('/src/data/cardTags.ts'),
     server.ssrLoadModule('/src/data/cardNamesFr.ts'),
     server.ssrLoadModule('/src/data/diceProfiles.ts'),
     server.ssrLoadModule('/src/data/cardImages.ts'),
+    server.ssrLoadModule('/src/data/cardKeyAliases.json'),
   ]);
 
   const certifications = JSON.parse(await readFile(resolve(projectRoot, 'src/data/diceCertifications.json'), 'utf8'));
@@ -102,6 +103,12 @@ try {
     names: nameModule.CARD_NAMES_FR,
     images: assistantImages,
     weapons,
+    // Même table d'alias que src/lib/cardNames.ts (canonicalCardKey) : évite
+    // que l'assistant retombe silencieusement en désaccord avec l'appli
+    // principale sur les cartes Tabletop Admiral exportées sous un titre
+    // complet (ex. « Chewbacca Walking Carpet » -> carte déjà certifiée
+    // « Chewbacca »).
+    aliases: aliasModule.default,
   };
 
   await writeFile(

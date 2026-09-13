@@ -1,24 +1,11 @@
 import { normalizeName } from './normalize';
 import { CARD_NAMES_FR, EN_KEY_BY_FRENCH_NAME } from '../data/cardNamesFr';
+import aliasesJson from '../data/cardKeyAliases.json';
 
-const CARD_KEY_ALIASES: Record<string, string> = {
-  'ahsoka tano fulcrum': 'ahsoka tano',
-  // Tabletop Admiral exporte le titre complet imprimé sur la carte unique ;
-  // le catalogue la garde sous la clé courte déjà certifiée (mêmes dés,
-  // PV/courage et défense — confirmé face à la carte physique le 13/09/2026).
-  'chewbacca walking carpet': 'chewbacca',
-  // Variantes actuellement émises par Tabletop Admiral. Le catalogue
-  // français emploie « Materiel » et la carte CM-O/93 la lettre O, alors
-  // que certains exports utilisent respectivement « Supplies » et 0.
-  'prepared supplies': 'prepared materiel',
-  'cm 0 93 trooper': 'cm o 93 trooper',
-  // Ancienne clé erronée conservée pour les listes déjà enregistrées.
-  'evasive cover': 'duck and cover',
-  'offensive stance': 'offensive posture',
-  'defensive stance': 'offensive posture',
-  'defensive posture': 'offensive posture',
-  'posture defensive': 'offensive posture',
-};
+// Alias de clés de carte partagés entre l'appli principale et l'assistant
+// (public/assistant/, qui lit ce même fichier via reference-data.js généré) --
+// voir src/data/cardKeyAliases.json pour la liste et son historique.
+const CARD_KEY_ALIASES: Record<string, string> = aliasesJson;
 
 /**
  * Nom d'affichage d'une carte (unité ou amélioration) : le titre français

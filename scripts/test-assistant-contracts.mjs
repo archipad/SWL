@@ -17,6 +17,7 @@ const syncUi = fs.readFileSync(new URL('../src/lib/useSync.ts', import.meta.url)
 const gistSync = fs.readFileSync(new URL('../src/lib/gistSync.ts', import.meta.url), 'utf8')
 const jsonImporter = fs.readFileSync(new URL('../src/lib/parseListJson.ts', import.meta.url), 'utf8')
 const cardNames = fs.readFileSync(new URL('../src/lib/cardNames.ts', import.meta.url), 'utf8')
+const cardKeyAliases = JSON.parse(fs.readFileSync(new URL('../src/data/cardKeyAliases.json', import.meta.url), 'utf8'))
 const certificationUiSource = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 
 // Les cartes de personnel et d'armes lourdes ajoutent chacune leur figurine.
@@ -105,12 +106,19 @@ assert.doesNotMatch(referenceData, /"images":\{[^}]*":"\/cards\//, 'Aucun visuel
 assert.match(referenceData, /"offensive posture":\{"weapons":\[\],"note":"carte sans dés ni figurine ajoutée"\}/, 'Toute carte illustrée doit rester raccordée au référentiel')
 assert.doesNotMatch(referenceData, /"offensive posture":\{[^}]*"addedModels"/, 'Une amélioration sans figurine ne doit pas créer un faux contrôle de figurines')
 assert.match(certificationUi, /Number\.isInteger\(profile\.addedModels\)/, 'Seules les cartes déclarées comme ajoutant des figurines doivent entrer dans ce contrôle')
-assert.match(app, /'ahsoka tano fulcrum':'ahsoka tano'/, 'Ahsoka Fulcrum doit réutiliser son profil certifié Ahsoka Tano')
-assert.match(app, /'prepared supplies':'prepared materiel'/, 'L’assistant doit reconnaître Prepared Supplies')
-assert.match(app, /'cm 0 93 trooper':'cm o 93 trooper'/, 'L’assistant doit reconnaître la variante CM-0/93')
-assert.match(app, /'evasive cover':'duck and cover'/, 'L’ancienne clé Evasive Cover doit retrouver Duck and Cover')
+// Les alias de clés de carte vivent dans un seul fichier partagé
+// (src/data/cardKeyAliases.json) -- l'assistant les lit depuis le
+// référentiel généré plutôt que d'en garder une copie en dur, pour ne
+// plus pouvoir diverger de l'appli principale (src/lib/cardNames.ts).
+assert.match(app, /window\.SWL_REFERENCE\?\.aliases/, 'L’assistant doit lire les alias depuis le référentiel central, pas une copie locale')
+assert.doesNotMatch(app, /const cardAliases=\{/, 'Les alias ne doivent plus être dupliqués en dur dans app.js')
+assert.match(cardNames, /import aliasesJson from '\.\.\/data\/cardKeyAliases\.json'/, 'cardNames.ts doit lire les alias depuis le fichier JSON partagé')
+assert.equal(reference.aliases?.['ahsoka tano fulcrum'], 'ahsoka tano', 'Ahsoka Fulcrum doit réutiliser son profil certifié Ahsoka Tano')
+assert.equal(reference.aliases?.['prepared supplies'], 'prepared materiel', 'L’assistant doit reconnaître Prepared Supplies')
+assert.equal(reference.aliases?.['cm 0 93 trooper'], 'cm o 93 trooper', 'L’assistant doit reconnaître la variante CM-0/93')
+assert.equal(reference.aliases?.['evasive cover'], 'duck and cover', 'L’ancienne clé Evasive Cover doit retrouver Duck and Cover')
+assert.equal(reference.aliases?.['chewbacca walking carpet'], 'chewbacca', 'Chewbacca Walking Carpet doit réutiliser son profil certifié Chewbacca')
 assert.match(app, /window\.SWL_REFERENCE\?\.images/, 'L’assistant doit utiliser le catalogue central des visuels')
-assert.match(app, /'ahsoka tano fulcrum':'ahsoka tano'/, 'La variante Tabletop Admiral d’Ahsoka doit utiliser la certification canonique')
 assert.match(app, /const key=cardKey\(unit\.name\)/, 'Le rang des unités importées doit utiliser leur clé canonique')
 
 // Tout nouvel import doit produire un diagnostic explicite et utiliser le
@@ -137,8 +145,10 @@ assert.match(jsonImporter, /const unitKey = nextUnitSlug\(u\.name\)/, 'La clé s
 assert.match(jsonImporter, /const upgradeSeen = new Map/, 'Les doublons d’améliorations JSON doivent être identifiés localement dans leur unité')
 const textImporter = fs.readFileSync(new URL('../src/lib/parseList.ts', import.meta.url), 'utf8')
 assert.match(textImporter, /key: nextUnitSlug\(card\.name\)/, 'La clé stable d’une unité texte doit être indépendante de ses améliorations')
-assert.match(cardNames, /'prepared supplies': 'prepared materiel'/, 'Prepared Supplies doit retrouver Matériel Préparé')
-assert.match(cardNames, /'cm 0 93 trooper': 'cm o 93 trooper'/, 'CM-0\/93 doit retrouver la carte CM-O\/93')
+assert.equal(cardKeyAliases['prepared supplies'], 'prepared materiel', 'Prepared Supplies doit retrouver Matériel Préparé')
+assert.equal(cardKeyAliases['cm 0 93 trooper'], 'cm o 93 trooper', 'CM-0\/93 doit retrouver la carte CM-O\/93')
+assert.equal(cardKeyAliases['chewbacca walking carpet'], 'chewbacca', 'Chewbacca Walking Carpet doit retrouver la carte Chewbacca')
+assert.deepEqual(reference.aliases, cardKeyAliases, 'Le référentiel généré doit refléter exactement src/data/cardKeyAliases.json')
 for (const card of ['force reflexes', 'improvised orders', 'prepared materiel', 'fragmentation grenades', 'situational awareness', 'impact grenades', 'hq uplink', 'duck and cover']) {
   assert.ok(reference.images[card], `${card}: visuel générique non raccordé`)
   assert.ok(reference.names[card], `${card}: nom français générique non raccordé`)
