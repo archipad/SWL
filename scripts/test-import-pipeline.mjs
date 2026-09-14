@@ -23,6 +23,12 @@ try {
   assert.equal(roster.certified, true);
   assert.equal(roster.models.length, 6, '4 soldats de base + Z-6 + soldat supplémentaire');
   assert.equal(roster.models.reduce((sum, model) => sum + model.maxWounds, 0), 6);
+  const squadRoster = buildCertifiedUnitRoster({ name: 'Rebel Troopers', key: 'squad-test', upgrades: [{ name: 'Rebel Trooper Squad', key: 'squad' }] });
+  assert.equal(squadRoster.models.length, 9, 'Une amélioration Escouade doit ajouter ses 5 figurines aux 4 de base');
+  assert.equal(squadRoster.models.reduce((sum, model) => sum + model.maxWounds, 0), 9, 'Les figurines multiples héritent des PV de la carte Unité');
+  const heterogeneousRoster = buildCertifiedUnitRoster({ name: 'Darth Vader, Dark Lord of the Sith', key: 'heterogeneous-test', upgrades: [{ name: "Darth Vader, The Emperor's Apprentice", key: 'apprentice' }] });
+  assert.equal(heterogeneousRoster.models.length, 2, 'L’amélioration doit ajouter un profil distinct au socle de l’unité');
+  assert.deepEqual(heterogeneousRoster.models.map((model) => model.maxWounds), [8, 7], 'Chaque figurine conserve ses propres PV certifiés');
   const grenade = DICE_PROFILES[canonicalCardKey('Grenades à Fragmentation')];
   assert.ok(grenade, 'Le nom français doit résoudre le profil anglais certifié');
   assert.deepEqual(grenade.weapons[0].dice, [{ color: 'rouge', count: 1 }]);

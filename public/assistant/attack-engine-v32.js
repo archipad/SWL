@@ -78,7 +78,7 @@
   function moraleState(options = {}) {
     const current = Math.max(0, Number(options.currentSuppression) || 0);
     const gained = Math.max(0, Number(options.gainedSuppression) || 0);
-    if (options.nullCourage || options.vehicle) return { current: 0, gained: 0, total: 0, courage: null, suppressed: false, panicThreshold: null, panicRisk: false };
+    if (options.nullCourage || options.courage === null || options.suppressionImmune || options.vehicle) return { current: 0, gained: 0, total: 0, courage: null, suppressed: false, panicThreshold: null, panicRisk: false };
     const own = Math.max(1, Number(options.courage) || 1);
     const commander = Math.max(0, Number(options.commanderCourage) || 0);
     const courage = Math.max(own, commander);
@@ -100,7 +100,7 @@
 
   function rallyState(options = {}) {
     const before = Math.max(0, Number(options.suppression) || 0);
-    if (options.nullCourage || options.vehicle) return { before: 0, dice: 0, removed: 0, remaining: 0, courage: null, suppressed: false, panicked: false };
+    if (options.nullCourage || options.courage === null || options.suppressionImmune || options.vehicle) return { before: 0, dice: 0, removed: 0, remaining: 0, courage: null, suppressed: false, panicked: false };
     const successes = Math.max(0, Number(options.block) || 0) + Math.max(0, Number(options.surge) || 0);
     const removed = Math.min(before, successes);
     const remaining = before - removed;

@@ -11,25 +11,29 @@
 - [ ] Valider en conditions réelles sur iPad le cockpit tactique v75.
 - [x] Compléter le ralliement et le cycle d'activation dans le suivi de partie, y compris une fin d’activation sans attaque.
 - [x] Finaliser la résolution des blessures multi-PV, les dégâts excédentaires et la suppression d'une unité vaincue.
-- [ ] Couvrir par scénarios les interactions de mots-clés ayant un impact sur les dés.
+- [x] Couvrir par scénarios les interactions de mots-clés ayant un impact sur les dés (Critical, Impact/Armure, Létal/Perforant/Insensible et Bélier).
+- [x] Protéger le parcours complet attaque → couvert → défense → blessures → suppression par des scénarios bout-en-bout.
+- [x] Traiter automatiquement le courage « — », les véhicules et l’immunité à la suppression dans le moteur de moral et de ralliement.
 
 ## Robustesse des données
 
 - [x] Ajouter un jeu de fixtures Tabletop Admiral Empire et Rebelles plus large.
-- [ ] Détecter automatiquement toute image de `public/cards/` sans entrée canonique exploitable.
-- [ ] Détecter toute carte importée connue dont la traduction, le profil ou la certification manque.
-- [ ] Tester les ajouts de figurines multiples et les PV différents de la carte Unité.
+- [x] Détecter automatiquement toute image de `public/cards/` sans entrée canonique exploitable.
+- [x] Détecter toute carte importée connue dont la traduction, le profil ou la certification manque.
+- [x] Tester les ajouts de figurines multiples et les PV différents de la carte Unité.
 
 ## Suivi de partie
 
 - [x] Afficher clairement ralliement, démoralisation, panique et immunités.
 - [x] Unifier blessures, suppressions, figurines restantes et journal d'attaque entre les deux interfaces.
-- [ ] Valider la synchronisation multiappareil et les conflits de mises à jour.
+- [x] Fusionner et tester les états d’unités et journaux multiappareil sans écrasement par un appareil en retard.
+- [ ] Valider la synchronisation sur deux appareils physiques avec un même Gist.
 
 ## Interface
 
-- [ ] Réaliser une passe responsive iPad portrait et paysage.
-- [ ] Vérifier tailles tactiles, contraste, hiérarchie des actions et hauteur sans défilement.
+- [x] Réaliser une première passe responsive iPad portrait et paysage, isolée des thèmes visuels.
+- [x] Protéger par contrat les tailles tactiles, les zones sûres et la hiérarchie des actions sur tablette.
+- [ ] Valider sur un iPad physique la hauteur sans défilement et les deux orientations.
 - [ ] Harmoniser les thèmes Rebelles/Empire sans modifier leur palette respective.
 
 ## Processus

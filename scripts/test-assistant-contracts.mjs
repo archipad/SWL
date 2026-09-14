@@ -3,6 +3,7 @@ import fs from 'node:fs'
 
 const app = fs.readFileSync(new URL('../public/assistant/app.js', import.meta.url), 'utf8')
 const css = fs.readFileSync(new URL('../public/assistant/engine.css', import.meta.url), 'utf8')
+const ipadCss = fs.readFileSync(new URL('../public/assistant/ipad-compact.css', import.meta.url), 'utf8')
 const index = fs.readFileSync(new URL('../public/assistant/index.html', import.meta.url), 'utf8')
 const certificationUi = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 const referenceData = fs.readFileSync(new URL('../public/assistant/reference-data.js', import.meta.url), 'utf8')
@@ -110,6 +111,10 @@ assert.match(trackerUi, /roundHistory: \[\.\.\.roundHistory/, 'Le round terminé
 
 // Contrats iPad : viewport, trois colonnes adaptatives, cibles tactiles et barre d’action visible.
 assert.match(index, /viewport-fit=cover/, 'Le viewport iPad doit respecter les zones sûres')
+assert.match(index, /ipad-compact\.css/, 'La feuille responsive iPad dédiée doit être chargée en dernier')
+assert.match(ipadCss, /orientation:portrait/, 'La disposition iPad portrait est absente')
+assert.match(ipadCss, /orientation:landscape/, 'La disposition iPad paysage est absente')
+assert.match(ipadCss, /pointer:coarse/, 'Les adaptations tablette doivent cibler les interfaces tactiles')
 assert.match(css, /@media \(min-width:768px\) and \(max-width:1180px\)/, 'Point de rupture iPad absent')
 assert.match(css, /grid-template-columns:minmax\(150px,185px\) minmax\(0,1fr\) minmax\(150px,185px\)/, 'Disposition iPad à trois colonnes absente')
 assert.match(css, /env\(safe-area-inset-bottom\)/, 'La barre basse ne respecte pas la zone sûre iPad')
@@ -229,8 +234,13 @@ assert.match(trackerUi, /if \(hasProgress\) archiveCurrentGame\(\);\s*\n\s*apply
 // versionné afin que deux appareils affichent le même état de partie.
 assert.match(gistSync, /schemaVersion\?: number/, 'Le format de synchronisation doit être versionné')
 assert.match(gistSync, /assistantAttackHistory\?: unknown\[\]/, 'Le journal des attaques doit faire partie de la synchronisation')
+assert.match(gistSync, /assistantUnitStateUpdatedAt\?: Record<string, number>/, 'Chaque unité doit posséder une horloge de conflit indépendante')
+assert.match(gistSync, /mergeAssistantUnitStates/, 'Les états venant de plusieurs appareils doivent être fusionnés')
+assert.match(gistSync, /mergeAttackHistory/, 'Les journaux venant de plusieurs appareils doivent être fusionnés sans doublon')
+assert.match(app, /assistantUnitStateUpdatedAt:merged\.clock/, 'L’Assistant doit envoyer les horodatages par unité')
+assert.doesNotMatch(app, /payload=\{[^\n]*gameTracker/, 'L’Assistant ne doit pas écraser un suivi de partie qu’il n’a pas modifié')
 assert.match(syncUi, /swl\.assistant\.attack-history\.v1/, 'Le journal distant doit être restauré localement')
-assert.match(app, /assistantAttackHistory:attackHistory/, 'L’assistant doit envoyer son journal de résolution')
+assert.match(app, /assistantAttackHistory:mergedHistory/, 'L’assistant doit envoyer son journal de résolution fusionné')
 assert.match(trackerUi, /Journal de résolution/, 'Le suivi de partie doit afficher le journal synchronisé des attaques')
 assert.match(jsonImporter, /const unitKey = nextUnitSlug\(u\.name\)/, 'La clé stable d’une unité JSON doit être indépendante de ses améliorations')
 assert.match(jsonImporter, /const upgradeSeen = new Map/, 'Les doublons d’améliorations JSON doivent être identifiés localement dans leur unité')

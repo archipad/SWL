@@ -75,13 +75,15 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
         setListP1(remote.listP1);
         setListP2(remote.listP2);
         if (remote.gameTracker) setGameTracker(remote.gameTracker);
-        if (remote.assistantUnitStates) localStorage.setItem('swl.assistant.unit-state.v1', JSON.stringify(remote.assistantUnitStates));
-        if (remote.assistantAttackHistory) localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(remote.assistantAttackHistory));
+        const mergedUnits = gistSync.mergeAssistantUnitStates(remote.assistantUnitStates, readAssistantStates(), remote.assistantUnitStateUpdatedAt, readAssistantStateClock());
+        localStorage.setItem('swl.assistant.unit-state.v1', JSON.stringify(mergedUnits.states));
+        localStorage.setItem('swl.assistant.unit-state-clock.v1', JSON.stringify(mergedUnits.clock));
+        localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(gistSync.mergeAttackHistory(remote.assistantAttackHistory, readAttackHistory())));
         knownUpdatedAt.current = remote.updatedAt;
       } else if (remote.updatedAt === 0 && (listP1 || listP2)) {
         // Gist tout juste créé (vide) mais on a déjà des listes localement :
         // on les y envoie pour amorcer la synchro sur les autres appareils.
-        const saved = await gistSync.pushSync(token, { listP1, listP2, gameTracker, assistantUnitStates: readAssistantStates(), assistantAttackHistory: readAttackHistory() });
+        const saved = await gistSync.pushSync(token, { listP1, listP2, gameTracker, assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory() });
         knownUpdatedAt.current = saved.updatedAt;
       }
       setStatus('idle');
@@ -101,7 +103,10 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
       if (!token) return;
       setStatus('syncing');
       try {
-        const saved = await gistSync.pushSync(token, { listP1: nextP1, listP2: nextP2, gameTracker: nextGameTracker, assistantUnitStates: readAssistantStates(), assistantAttackHistory: readAttackHistory() });
+        const saved = await gistSync.pushSync(token, { listP1: nextP1, listP2: nextP2, gameTracker: nextGameTracker, assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory() });
+        if (saved.assistantUnitStates) localStorage.setItem('swl.assistant.unit-state.v1', JSON.stringify(saved.assistantUnitStates));
+        if (saved.assistantUnitStateUpdatedAt) localStorage.setItem('swl.assistant.unit-state-clock.v1', JSON.stringify(saved.assistantUnitStateUpdatedAt));
+        if (saved.assistantAttackHistory) localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(saved.assistantAttackHistory));
         knownUpdatedAt.current = saved.updatedAt;
         setStatus('idle');
         setError(null);
@@ -150,4 +155,9 @@ function readAssistantStates(): Record<string, Record<string, unknown>> {
 function readAttackHistory(): unknown[] {
   try { return JSON.parse(localStorage.getItem('swl.assistant.attack-history.v1') || '[]'); }
   catch { return []; }
+}
+
+function readAssistantStateClock(): Record<string, number> {
+  try { return JSON.parse(localStorage.getItem('swl.assistant.unit-state-clock.v1') || '{}'); }
+  catch { return {}; }
 }
