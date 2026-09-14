@@ -23,6 +23,7 @@ const applyScript = fs.readFileSync(new URL('../scripts/apply-dice-certification
 const diceProfilesSource = fs.readFileSync(new URL('../src/data/diceProfiles.ts', import.meta.url), 'utf8')
 const cardImagesSource = fs.readFileSync(new URL('../src/data/cardImages.ts', import.meta.url), 'utf8')
 const cardNamesFrSource = fs.readFileSync(new URL('../src/data/cardNamesFr.ts', import.meta.url), 'utf8')
+const unitModelsSource = fs.readFileSync(new URL('../src/lib/unitModels.ts', import.meta.url), 'utf8')
 const certificationUiSource = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 
 // Les cartes de personnel et d'armes lourdes ajoutent chacune leur figurine.
@@ -157,6 +158,12 @@ assert.match(applyScript, /execSync\('node scripts\/generate-assistant-reference
 assert.match(diceProfilesSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'DICE_PROFILES doit fusionner les cartes ajoutées depuis l’assistant')
 assert.match(cardImagesSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'CARD_IMAGES doit fusionner les cartes ajoutées depuis l’assistant')
 assert.match(cardNamesFrSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'CARD_NAMES_FR doit fusionner les cartes ajoutées depuis l’assistant')
+// Signalement du 14/09/2026 (ajout de la faction Mercenaire) : unitModels.ts
+// lisait diceCertifications.json en dur, sans fusionner CUSTOM_CARDS comme
+// les quatre autres tables ci-dessus — buildCertifiedUnitRoster() signalait
+// donc à tort « Effectif impossible à calculer avec certitude » pour toute
+// carte ajoutée uniquement via l'écran « Nouvelle carte ».
+assert.match(unitModelsSource, /import \{ CUSTOM_CARDS \} from '\.\.\/data\/customCards';/, 'buildCertifiedUnitRoster() doit fusionner les cartes ajoutées depuis l’assistant (sinon effectif « non certifié » à tort)')
 
 // Une nouvelle carte peut aussi recevoir ses mots-clés dans le même
 // formulaire (plutôt que de dépendre du tag manuel "+ mot-clé" séparé sur

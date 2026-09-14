@@ -1,4 +1,5 @@
 import certifications from '../data/diceCertifications.json';
+import { CUSTOM_CARDS } from '../data/customCards';
 import { canonicalCardKey } from './cardNames';
 import type { ParsedUnit } from '../types';
 
@@ -8,7 +9,22 @@ type CertifiedRecord = {
   addedModelWounds?: number;
 };
 
-const certified = certifications as Record<string, CertifiedRecord>;
+// Les cartes ajoutées depuis l'écran « Nouvelle carte » de l'assistant
+// (src/data/customCards.json, déjà certifiées à l'ajout — voir son en-tête)
+// doivent aussi compter ici : sans cette fusion, buildCertifiedUnitRoster()
+// ne les voit jamais (il ne lisait jusqu'ici que diceCertifications.json en
+// dur) et signale à tort « Effectif impossible à calculer avec certitude »
+// pour toute carte ajoutée par ce circuit — alors que cardImages.ts,
+// cardNamesFr.ts et diceProfiles.ts fusionnent bien CUSTOM_CARDS, eux.
+const certified: Record<string, CertifiedRecord> = {
+  ...(certifications as Record<string, CertifiedRecord>),
+  ...Object.fromEntries(
+    Object.entries(CUSTOM_CARDS).map(([key, card]) => [
+      key,
+      { unitStats: card.unitStats, addedModels: card.addedModels, addedModelWounds: card.addedModelWounds },
+    ]),
+  ),
+};
 
 export interface UnitModel {
   id: string;

@@ -46,6 +46,15 @@ try {
     assert.equal(fixtureAudit.safeForEngine, true, `${fixtureName}: ${fixtureAudit.certificationIssues.map((issue) => issue.message).join('; ')}`);
     assert.ok(fixtureAudit.units.every((unit) => unit.models && unit.maxWounds), `${fixtureName}: effectif ou PV non calculé`);
   }
+  // Régression du 14/09/2026 (ajout de la faction Mercenaire, cartes
+  // certifiées uniquement via src/data/customCards.json, sans entrée dans
+  // diceCertifications.json) : buildCertifiedUnitRoster() signalait à tort
+  // un effectif non calculable pour ce genre de carte avant que la fusion
+  // CUSTOM_CARDS ne soit ajoutée dans unitModels.ts.
+  const customCardRoster = buildCertifiedUnitRoster({ name: 'IG-88', key: 'ig-88-test', upgrades: [] });
+  assert.equal(customCardRoster.certified, true, 'Une unité certifiée seulement via customCards.json doit être reconnue');
+  assert.equal(customCardRoster.models.length, 1);
+  assert.equal(customCardRoster.models[0].maxWounds, 5);
   console.log('Import pipeline OK — JSON Tabletop Admiral, clés stables, doublons, effectifs, grenades et audit vérifiés.');
 } finally {
   await vite.close();

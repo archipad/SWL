@@ -45,4 +45,4 @@ export interface CustomCardEntry {
  * et CARD_NAMES_FR (cardNamesFr.ts) pour l'appli principale, et dans le
  * référentiel généré pour l'assistant (scripts/generate-assistant-reference.mjs).
  */
-export const CUSTOM_CARDS: Record<string, CustomCardEntry> = customCardsJson;
+export const CUSTOM_CARDS: Record<string, CustomCardEntry> = customCardsJson as Record<string, CustomCardEntry>;
