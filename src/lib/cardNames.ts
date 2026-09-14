@@ -7,6 +7,16 @@ import aliasesJson from '../data/cardKeyAliases.json';
 // voir src/data/cardKeyAliases.json pour la liste et son historique.
 const CARD_KEY_ALIASES: Record<string, string> = aliasesJson;
 
+function resolveAlias(key: string): string {
+  const visited = new Set<string>();
+  let current = key;
+  while (CARD_KEY_ALIASES[current] && !visited.has(current)) {
+    visited.add(current);
+    current = CARD_KEY_ALIASES[current];
+  }
+  return current;
+}
+
 /**
  * Nom d'affichage d'une carte (unité ou amélioration) : le titre français
  * officiel s'il est connu (CARD_NAMES_FR), sinon le nom tel quel (format
@@ -39,10 +49,10 @@ export function frenchCardName(name: string): string {
  */
 export function canonicalCardKey(name: string): string {
   const norm = normalizeName(name);
-  if (norm in CARD_KEY_ALIASES) return CARD_KEY_ALIASES[norm];
+  if (norm in CARD_KEY_ALIASES) return resolveAlias(norm);
   if (norm in CARD_NAMES_FR) return norm;
   const translated = EN_KEY_BY_FRENCH_NAME[norm] ?? norm;
-  return CARD_KEY_ALIASES[translated] ?? translated;
+  return resolveAlias(translated);
 }
 
 /**
