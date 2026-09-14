@@ -1,0 +1,10 @@
+{
+  "listname": "Fixture Empire complète",
+  "points": 800,
+  "armyFaction": "empire",
+  "units": [
+    { "name": "Stormtroopers", "upgrades": ["RT-97C Stormtrooper", "Stormtrooper", "Impact Grenades"] },
+    { "name": "Snowtroopers", "upgrades": ["T-7 Ion Snowtrooper", "Snowtrooper Squad Expansion"] },
+    { "name": "Darth Vader Dark Lord of the Sith", "upgrades": ["Force Reflexes", "Tenacity"] }
+  ]
+}

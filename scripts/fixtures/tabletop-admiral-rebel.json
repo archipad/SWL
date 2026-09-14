@@ -1,0 +1,10 @@
+{
+  "listname": "Fixture Rebelles complète",
+  "points": 800,
+  "armyFaction": "rebel",
+  "units": [
+    { "name": "Chewbacca Walking Carpet", "upgrades": ["Tenacity", "Duck and Cover"] },
+    { "name": "Rebel Troopers", "upgrades": ["Z-6 Trooper", "Rebel Trooper", "Fragmentation Grenades"] },
+    { "name": "Rebel Veterans", "upgrades": ["CM-0/93 Trooper", "Rebel Veteran", "Situational Awareness"] }
+  ]
+}
