@@ -1,0 +1,1857 @@
+{
+  "_meta": {
+    "genere": "2026-09-14",
+    "description": "Manifeste d'audit des 13 PDF de cartes SWL (aGENTS + Nouveau dossier, hors Galactic Empire Commands FR exclu à la demande de l'utilisateur). Chaque entrée : pdfSource, page, nameFr, type (unite|amelioration|commandement|bataille|force_de_bataille), statutCatalogue (connue|inconnue), statutDonneesMoteur (certifie|hors_moteur|a_verifier|sans_objet), statutVerification (confirme|a_verifier).",
+    "pdfExclus": [
+      "Galactic Empire Commands FR.pdf (demande utilisateur : faction non utilisée)"
+    ],
+    "totalEntrees": 185
+  },
+  "unit:pyke syndicate foot soldiers": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 1,
+    "nameFr": "Fantassins du Syndicat Pyke",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:swoop bike riders": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 1,
+    "nameFr": "Pilotes de Swoop",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:pyke syndicate capo": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 2,
+    "nameFr": "Capo du Syndicat Pyke",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:black sun vigo": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 2,
+    "nameFr": "Vigo du Soleil Noir",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:black sun enforcers": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 3,
+    "nameFr": "Hommes de Main du Soleil Noir",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:gar saxon militant commando": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 3,
+    "nameFr": "Gar Saxon",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:maul a rival": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 3,
+    "nameFr": "Maul",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:bossk terror of trandosha": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 4,
+    "nameFr": "Bossk",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:boba fett infamous bounty hunter": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 4,
+    "nameFr": "Boba Fett, Infâme Chasseur de Primes",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:boba fett daimyo of mos espa": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 4,
+    "nameFr": "Boba Fett, Daimyo de Mos Espa",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:cad bane": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 4,
+    "nameFr": "Cad Bane",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:ig 88": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 5,
+    "nameFr": "IG-88",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:ig 11": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 5,
+    "nameFr": "IG-11",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:din djarin": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 5,
+    "nameFr": "Din Djarin",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:mandalorian super commandos": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 5,
+    "nameFr": "Super Commandos Mandaloriens",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:grogu": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 6,
+    "nameFr": "Grogu",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:the bad batch": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 6,
+    "nameFr": "Le Bad Batch",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "unit:omega": {
+    "pdfSource": "Mercenary Units FR.pdf",
+    "page": 6,
+    "nameFr": "Omega",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme"
+  },
+  "amelioration:electro whip soldier": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 1,
+    "nameFr": "Soldat avec Électro-fouet",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:pyke syndicate capo leader": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 1,
+    "nameFr": "Capo du Syndicat Pyke (déblocage Chef)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:pyke syndicate foot soldier cache": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 1,
+    "nameFr": "Fantassin du Syndicat Pyke (Cache : Viser 1)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:disruptor p13m soldier": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 2,
+    "nameFr": "Soldat avec Disrupteur P13-M",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:scatter gun trooper mercenary": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 2,
+    "nameFr": "Soldat avec Fusil à Dispersion",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:rook kast": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 2,
+    "nameFr": "Rook Kast",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:twin blaster pistols mercenary": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 2,
+    "nameFr": "Soldat avec Paire de Pistolets Blaster",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:heavy carbine mercenary": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 3,
+    "nameFr": "Soldat avec Carabine Blaster",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:combat training saxon": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 3,
+    "nameFr": "Entraînement au Combat (Gar Saxon)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:gar blaster pistol": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 3,
+    "nameFr": "Pistolet Blaster de Gar",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:saxon combat shield": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 4,
+    "nameFr": "Bouclier de Combat de Saxon",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:saxon galar 90": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 4,
+    "nameFr": "Fusil Galar-90 de Saxon",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:saxon backpack rockets": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 4,
+    "nameFr": "Roquettes Dorsales de Saxon",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:le sabre noir mercenary": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "Le Sabre Noir",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:ig11 programming nanny": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "Programmation « Nounou » (IG-11)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:ig11 programming prime": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "Programmation « Prime » (IG-11)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:din beskar spear": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "Lance en Beskar (Din Djarin)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:din amban rifle": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Fusil Amban (Din Djarin)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:din jetpack": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Jetpack (Din Djarin)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:crosshair": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Crosshair",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:hunter": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Hunter",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:tech": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 7,
+    "nameFr": "Tech",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:echo": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 7,
+    "nameFr": "Echo",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "amelioration:wrecker": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 7,
+    "nameFr": "Wrecker",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+  },
+  "commandement:cmd_merc_duel_des_destins": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "Duel des Destins",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_la_menace_fantôme": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "La Menace Fantôme",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_enfin": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "Enfin!",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_stratagème": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "Stratagème",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_agression": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "Agression",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_discrétion": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "Discrétion",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_marqué_pour_élimination": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "Marqué pour Élimination",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_combattre_un_autre_jour": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "Combattre un Autre Jour",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_la_victoire_ou_la_mort": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 1,
+    "nameFr": "La Victoire ou la Mort!",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_son_éminence": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "Son Éminence",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_sorcellerie": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "Sorcellerie",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_saisir_le_pouvoir_quon_peut": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "Saisir le Pouvoir qu'On Peut",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_je_suis_ton_pire_cauchemar": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "Je Suis ton Pire Cauchemar",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_cest_moi_qui_fixe_les_règles": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "C'est Moi qui Fixe les Règles",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_cest_moi_le_boss": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "C'est Moi le Boss",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_munitions_foudroyantes": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "Munitions Foudroyantes",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_fureur_reptilienne": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "Fureur Reptilienne",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_à_laffût": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 2,
+    "nameFr": "À l'Affût",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_le_truc_de_la_main": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Le Truc de la Main",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_gouverner_avec_respect": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Gouverner avec Respect",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_tracer_son_chemin_dans_la_galaxie": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Tracer son Chemin dans la Galaxie",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_un_homme_simple": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Un Homme Simple",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_roquette_dorsale_z-6": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Roquette Dorsale Z-6",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_lanceur_de_corde": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Lanceur de Corde",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_programme_autonome": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Programme Autonome",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_dédié_à_lassassinat": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Dédié à l'Assassinat",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_conçu_pour_tuer": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 3,
+    "nameFr": "Conçu pour Tuer",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_carnage_mécanique": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 4,
+    "nameFr": "Carnage Mécanique",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_protocoles_anti-capture": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 4,
+    "nameFr": "Protocoles Anti-capture",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_jaime_ces_probabilités": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 4,
+    "nameFr": "J'Aime ces Probabilités",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_oiseaux_siffleurs": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 4,
+    "nameFr": "Oiseaux Siffleurs",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_telle_est_la_voie": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 4,
+    "nameFr": "Telle est la Voie",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_on_les_descend_un_par_un": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 4,
+    "nameFr": "On les Descend Un par Un",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "commandement:cmd_merc_on_les_descend_un_par_un_(le_bad_batch)": {
+    "pdfSource": "Mercenary Commands FR.pdf",
+    "page": 4,
+    "nameFr": "On les Descend un par un (Le Bad Batch)",
+    "type": "commandement",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "confirme",
+    "note": "Carte de Commandement : pas d'écran dédié dans l'appli (décision actée en session) — catalogué pour mémoire uniquement."
+  },
+  "bataille:objectif_0": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "Changement de Priorités",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (OBJECTIVE_CARDS)."
+  },
+  "bataille:objectif_1": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "S'Accaparer la Science",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (OBJECTIVE_CARDS)."
+  },
+  "bataille:objectif_2": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "Interception des Signaux",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (OBJECTIVE_CARDS)."
+  },
+  "bataille:objectif_3": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Percée",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (OBJECTIVE_CARDS)."
+  },
+  "bataille:objectif_4": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "À l'Assaut du Bunker",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (OBJECTIVE_CARDS)."
+  },
+  "bataille:objectif_5": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Encerclement",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (OBJECTIVE_CARDS)."
+  },
+  "bataille:objectif_6": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 3,
+    "nameFr": "Manœuvre de Débordement",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (OBJECTIVE_CARDS)."
+  },
+  "bataille:secondaire_0": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Cibles Marquées",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (SECONDARY_OBJECTIVE_CARDS)."
+  },
+  "bataille:secondaire_1": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Forcer la Reddition",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (SECONDARY_OBJECTIVE_CARDS)."
+  },
+  "bataille:secondaire_2": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Opération de Dégagement",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (SECONDARY_OBJECTIVE_CARDS)."
+  },
+  "bataille:secondaire_3": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Inspection de Surface",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (SECONDARY_OBJECTIVE_CARDS)."
+  },
+  "bataille:secondaire_4": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Détruire la Base Ennemie",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (SECONDARY_OBJECTIVE_CARDS)."
+  },
+  "bataille:secondaire_5": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Mission de Reconnaissance",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (SECONDARY_OBJECTIVE_CARDS)."
+  },
+  "bataille:secondaire_6": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "Approvisionnement",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (SECONDARY_OBJECTIVE_CARDS)."
+  },
+  "bataille:avantage_0": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Renseignements Avancés",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_1": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Déploiement Astucieux",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_2": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Positions Fortifiées",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_3": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Garnison",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_4": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Artillerie",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_5": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Mitraillage au Sol",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_6": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Opérations Secrètes",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_7": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Frappe Coordonnée",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_8": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Prise de Contrôle",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:avantage_9": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Pas de Temps à Perdre",
+    "type": "bataille",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà dans battleCards.ts (ADVANTAGE_CARDS)."
+  },
+  "bataille:embuscade_poussee_assaut_tenir": {
+    "pdfSource": "Battle Cards FR MAJ23.02.2026.pdf",
+    "page": 4,
+    "nameFr": "Embuscade / Poussée / Assaut / Tenir la Position",
+    "type": "bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "hors_moteur",
+    "statutVerification": "a_verifier",
+    "note": "Catégorie de cartes non représentée dans battleCards.ts (ni Objectif, ni Secondaire, ni Avantage) — mécanique de réserve/déploiement à clarifier avant toute intégration. Hors périmètre de ce lot."
+  },
+  "force_de_bataille:212e_bataillon_dattaque": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 2,
+    "nameFr": "212e Bataillon d'Attaque",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction republic) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'republic' non supportée par l'appli (armyFaction limité à rebel/empire/mercenary)."
+  },
+  "force_de_bataille:501e_légion": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 3,
+    "nameFr": "501e Légion",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction republic) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'republic' non supportée par l'appli (armyFaction limité à rebel/empire/mercenary)."
+  },
+  "force_de_bataille:force_blizzard": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 4,
+    "nameFr": "Force Blizzard",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction empire) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'empire' supportée."
+  },
+  "force_de_bataille:village_de_bright_tree": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 5,
+    "nameFr": "Village de Bright Tree",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction rebel) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'rebel' supportée."
+  },
+  "force_de_bataille:défenseurs_de_la_base_echo": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 6,
+    "nameFr": "Défenseurs de la Base Echo",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction rebel) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'rebel' supportée."
+  },
+  "force_de_bataille:droïdes_expérimentaux": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 7,
+    "nameFr": "Droïdes Expérimentaux",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction separatist) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'separatist' non supportée par l'appli (armyFaction limité à rebel/empire/mercenary)."
+  },
+  "force_de_bataille:vestiges_de_lempire": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 8,
+    "nameFr": "Vestiges de l'Empire",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction empire) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'empire' supportée."
+  },
+  "force_de_bataille:invasion_séparatiste": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 9,
+    "nameFr": "Invasion Séparatiste",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction separatist) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'separatist' non supportée par l'appli (armyFaction limité à rebel/empire/mercenary)."
+  },
+  "force_de_bataille:collectif_de_lombre": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 10,
+    "nameFr": "Collectif de l'Ombre",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction mercenary) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'mercenary' supportée."
+  },
+  "force_de_bataille:bataillon_de_stormtroopers": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 11,
+    "nameFr": "Bataillon de Stormtroopers",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction empire) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'empire' supportée."
+  },
+  "force_de_bataille:force_tempest": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 12,
+    "nameFr": "Force Tempest",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction empire) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'empire' supportée."
+  },
+  "force_de_bataille:défenseurs_wookies": {
+    "pdfSource": "BattleForces FR 23.02.2026.pdf",
+    "page": 13,
+    "nameFr": "Défenseurs Wookies",
+    "type": "force_de_bataille",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Livret de règles (liste d'armée thématique, faction rebel) — pas une carte : aucun dé, aucune figurine, aucun visuel individuel. Catalogué pour mémoire (champ 15 de l'audit) ; non intégrable dans customCards.json (pas de schéma adapté). Faction 'rebel' supportée."
+  },
+  "amelioration:nouvelles_harcèlement": {
+    "pdfSource": "Nouvelles cartes amélio 07.25 VF - fantrad.pdf",
+    "page": 1,
+    "nameFr": "Harcèlement",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "confirme",
+    "note": "Remplacée par la version MAJ23.02.2026 (texte affiné) — non reprise."
+  },
+  "amelioration:nouvelles_chef_de_groupe_de_combat": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "Chef de Groupe de Combat",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "amelioration:nouvelles_objectif_de_mission": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "Objectif de Mission",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "amelioration:nouvelles_agent_de_confiance": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "Agent de Confiance",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "amelioration:nouvelles_marche_impériale": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "Marche Impériale",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "amelioration:nouvelles_terreur": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "Terreur",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "amelioration:nouvelles_retranchés": {
+    "pdfSource": "Nouvelles cartes amélio 07.25 VF - fantrad.pdf",
+    "page": 1,
+    "nameFr": "Retranchés",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "confirme",
+    "note": "Remplacée par la version MAJ23.02.2026 (texte affiné) — non reprise."
+  },
+  "amelioration:nouvelles_sérénité": {
+    "pdfSource": "Nouvelles cartes amélio 07.25 VF - fantrad.pdf",
+    "page": 1,
+    "nameFr": "Sérénité",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "confirme",
+    "note": "Remplacée par la version MAJ23.02.2026 (texte affiné) — non reprise."
+  },
+  "amelioration:nouvelles_réserves_supplémentaires": {
+    "pdfSource": "Nouvelles cartes amélio 07.25 VF - fantrad.pdf",
+    "page": 1,
+    "nameFr": "Réserves Supplémentaires",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "confirme",
+    "note": "Remplacée par la version MAJ23.02.2026 (texte affiné) — non reprise."
+  },
+  "amelioration:nouvelles_clairvoyance": {
+    "pdfSource": "Nouvelles cartes amélio 07.25 VF - fantrad.pdf",
+    "page": 1,
+    "nameFr": "Clairvoyance",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "confirme",
+    "note": "Remplacée par la version MAJ23.02.2026 (texte affiné) — non reprise."
+  },
+  "amelioration:nouvelles_module_de_ciblage_avancé": {
+    "pdfSource": "Nouvelles cartes amélio 07.25 VF - fantrad.pdf",
+    "page": 1,
+    "nameFr": "Module de Ciblage Avancé",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "confirme",
+    "note": "Remplacée par la version MAJ23.02.2026 (texte affiné) — non reprise."
+  },
+  "amelioration:nouvelles_mitrailleurs_de_bord": {
+    "pdfSource": "Nouvelles cartes amélio 07.25 VF - fantrad.pdf",
+    "page": 1,
+    "nameFr": "Mitrailleurs de Bord",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "confirme",
+    "note": "Remplacée par la version MAJ23.02.2026 (texte affiné) — non reprise."
+  },
+  "amelioration:nouvelles_frappe_et_repli": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 1,
+    "nameFr": "Frappe et Repli",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "amelioration:nouvelles_kraken_déblocage": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 3,
+    "nameFr": "Kraken (déblocage)",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel).",
+    "nameEn": "Kraken"
+  },
+  "amelioration:nouvelles_agent_kallus_déblocage": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 3,
+    "nameFr": "Agent Kallus (déblocage)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "amelioration:nouvelles_capitaine_clone_rex_déblocage": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 3,
+    "nameFr": "Capitaine Clone Rex (déblocage)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "amelioration:nouvelles_cassian_andor_déblocage,_variante": {
+    "pdfSource": "Nouvelles cartes amélio FR MAJ23.02.2026.pdf",
+    "page": 3,
+    "nameFr": "Cassian Andor (déblocage, variante)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, texte lu, pas encore intégrée à customCards.json (dés/portée à confirmer sur le visuel)."
+  },
+  "resume:empire_units": {
+    "pdfSource": "Galactic Empire Units FR.pdf",
+    "page": "1-11",
+    "nameFr": "Résumé — 11 pages",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Les 11 pages comparées carte par carte au catalogue existant (noms + diceCertifications.json) : Stormtroopers, Snowtroopers, Shoretroopers, Scout Troopers, Death Troopers, Forces Spéciales/Inferno Squad, Speederbikes 74-Z, Dewback, E-Web, TR-TT, TX-225 Occupier, Range Troopers, Krennic, Veers, Vador (x2), Moff Gideon, Iden Versio/ID10, Marquand, 7e Sœur, 5e Frère, Agent Kallus — TOUTES déjà certifiées. Aucun écart trouvé."
+  },
+  "amelioration:empire_hh-12": {
+    "pdfSource": "Galactic Empire Upgrades FR.pdf",
+    "page": 2,
+    "nameFr": "Stormtrooper avec HH-12",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Lance-roquettes HH-12 #2-4, Encombrant+Impact 3, dés lus : 3 rouge. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+  },
+  "amelioration:empire_dlt-19d": {
+    "pdfSource": "Galactic Empire Upgrades FR.pdf",
+    "page": 4,
+    "nameFr": "Soldat avec DLT-19D (Death Troopers)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Fusil Blaster DLT-19D #1-4, Impact 1, dés lus : 2 rouge + 1 noir. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+  },
+  "amelioration:empire_dt-f16": {
+    "pdfSource": "Galactic Empire Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "•DT-F16 (Death Troopers)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Fusil Blaster E-11D #1-3, dés lus : 2 badges noirs — Chef, Contrainte. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+  },
+  "amelioration:empire_capitaine-stormtrooper": {
+    "pdfSource": "Galactic Empire Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "Capitaine Stormtrooper",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Déblocage Chef, pas d'arme propre (icône d'amélioration + option Réserve). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+  },
+  "amelioration:empire_fx-9": {
+    "pdfSource": "Galactic Empire Upgrades FR.pdf",
+    "page": 8,
+    "nameFr": "Droïde Médical FX-9",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Non-combattant, pas d'arme, Traiter 1 : Capacité 2. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+  },
+  "amelioration:empire_lance-mortier-tr-tt": {
+    "pdfSource": "Galactic Empire Upgrades FR.pdf",
+    "page": 9,
+    "nameFr": "Lance-mortier de TR-TT",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #4-#, Fixe : avant, Suppressif, dé lu : 1 (couleur à confirmer). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+  },
+  "amelioration:empire_astromech-r4": {
+    "pdfSource": "Galactic Empire Upgrades FR.pdf",
+    "page": 13,
+    "nameFr": "Astromech R4",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Non-combattant, pas d'arme, Réparation 1 : Capacité 2. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+  },
+  "resume:rebel_units": {
+    "pdfSource": "Rebel Alliance Units FR.pdf",
+    "page": "1-11",
+    "nameFr": "Résumé — 11 pages",
+    "type": "unite",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Les 11 pages comparées carte par carte au catalogue existant : Soldats de la Flotte/Rebelles, Commandos Rebelles, Vétérans Rebelles, Guerriers Wookies, Résistance Mandalorienne, TL-TT, Cellule Dormante, Tauntaun, Équipe Canon Laser 1.4 FD, Airspeeder T-47, Landspeeder X-34, Camion Speeder A-A5, C-3PO, Leia, Cassian Andor, Jyn Erso, Han Solo, Luke Skywalker, Lando, R2-D2, Sabine Wren, Chewbacca, K-2SO, Ahsoka Tano — TOUTES déjà certifiées. Aucun écart trouvé."
+  },
+  "amelioration:rebel_arme-epaule-wookie": {
+    "pdfSource": "Rebel Alliance Upgrades FR.pdf",
+    "page": 3,
+    "nameFr": "Wookie avec Arme d'Épaule",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #1-4, Suppressif, dé lu : 1 (couleur à confirmer). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+  },
+  "amelioration:rebel_duelliste-beskad": {
+    "pdfSource": "Rebel Alliance Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Duelliste avec Beskad",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Vibrolame + mot-clé Duelliste — dés à recontrôler. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+  },
+  "amelioration:rebel_capitaine-soldat-rebelle": {
+    "pdfSource": "Rebel Alliance Upgrades FR.pdf",
+    "page": 7,
+    "nameFr": "Capitaine Soldat Rebelle",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Déblocage Chef, pas d'arme propre. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+  },
+  "amelioration:rebel_wookie-arbalete": {
+    "pdfSource": "Rebel Alliance Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Wookie avec Arbalète",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #1-3, Impact 1 + Perforant 1, dé lu : 1 (couleur à confirmer). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+  },
+  "amelioration:rebel_ryder-azadi": {
+    "pdfSource": "Rebel Alliance Upgrades FR.pdf",
+    "page": 9,
+    "nameFr": "•Ryder Azadi",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Déblocage Chef, Commandant des Opérations, pas d'arme propre. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+  },
+  "amelioration:rebel_harpon-magnetique-modk": {
+    "pdfSource": "Rebel Alliance Upgrades FR.pdf",
+    "page": 13,
+    "nameFr": "Harpon Magnétique Mo/Dk",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #1-2, Fixe:arrière, Impact 1 + Câble de Remorquage, dé lu : 1 rouge. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+  },
+  "amelioration:rebel_electro-grappin-sabine": {
+    "pdfSource": "Rebel Alliance Upgrades FR.pdf",
+    "page": 13,
+    "nameFr": "•Électro-Grappin (Sabine Wren)",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Action de carte, pas de dés d'attaque directs. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+  },
+  "amelioration:rebel_se-14-jyn": {
+    "pdfSource": "Rebel Alliance Upgrades FR.pdf",
+    "page": 13,
+    "nameFr": "•Blaster SE-14 de Jyn",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #1-2, Perforant 1 + Suppressif, dé lu : 1 (couleur à confirmer). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+  },
+  "amelioration:generic_vigilance": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 1,
+    "nameFr": "Vigilance",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Vigilance"
+  },
+  "amelioration:generic_ordres_improvisés": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 1,
+    "nameFr": "Ordres Improvisés",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Improvised Orders"
+  },
+  "amelioration:generic_présence_inspirante": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 1,
+    "nameFr": "Présence Inspirante",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Inspiring Presence"
+  },
+  "amelioration:generic_donner_lexemple": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 1,
+    "nameFr": "Donner l'Exemple",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json. Écart de traduction constaté : le catalogue central utilise « Meneur d’Hommes » pour Lead by Example, alors que le visuel lu cette session affiche « Donner l’Exemple » -- à confirmer laquelle est la traduction officielle actuelle avant de trancher.",
+    "nameEn": "Lead by Example"
+  },
+  "amelioration:generic_ordres_stricts": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 1,
+    "nameFr": "Ordres Stricts",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Strict Orders"
+  },
+  "amelioration:generic_ténacité": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 3,
+    "nameFr": "Ténacité",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Tenacity"
+  },
+  "amelioration:generic_à_bout_portant": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 3,
+    "nameFr": "À Bout Portant",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Point Blank"
+  },
+  "amelioration:generic_évitement_et_couvert": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 4,
+    "nameFr": "Évitement et Couvert",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_stimulants_durgence": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 4,
+    "nameFr": "Stimulants d'Urgence",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_endurance": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 6,
+    "nameFr": "Endurance",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_en_chasse": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 6,
+    "nameFr": "En Chasse",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_dans_la_mêlée_into_the_fray": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 7,
+    "nameFr": "Dans la Mêlée (Into the Fray)",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Into the Fray"
+  },
+  "amelioration:generic_poussée_offensive": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 7,
+    "nameFr": "Poussée Offensive",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_données_de_reconnaissance": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 8,
+    "nameFr": "Données de Reconnaissance",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_matériel_préparé": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 8,
+    "nameFr": "Matériel Préparé",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_lunette_de_visée": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 8,
+    "nameFr": "Lunette de Visée",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_repérage": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 9,
+    "nameFr": "Repérage",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_protecteur": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 9,
+    "nameFr": "Protecteur",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_conscience_de_la_situation": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 9,
+    "nameFr": "Conscience de la Situation",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_système_de_commande": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 12,
+    "nameFr": "Système de Commande",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_brouilleur_comms": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 12,
+    "nameFr": "Brouilleur Comms",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_transpondeur_durgence": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 13,
+    "nameFr": "Transpondeur d'Urgence",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Emergency Transponder"
+  },
+  "amelioration:generic_unité_de_piratage_comms": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 13,
+    "nameFr": "Unité de Piratage Comms",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_système_de_visée_jumelé": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 14,
+    "nameFr": "Système de Visée Jumelé",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_protocoles_dattaque": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 14,
+    "nameFr": "Protocoles d'Attaque",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_canal_comms_de_bord": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 14,
+    "nameFr": "Canal Comms de Bord",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_grenade_à_concussion": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 16,
+    "nameFr": "Grenade à Concussion",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_grenades_anti-droïdes_emp": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 16,
+    "nameFr": "Grenades Anti-droïdes EMP",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_grenade_à_fragmentation": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 16,
+    "nameFr": "Grenade à Fragmentation",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Fragmentation Grenades"
+  },
+  "amelioration:generic_grenade_à_impact": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 16,
+    "nameFr": "Grenade à Impact",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_imploseurs_soniques": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 16,
+    "nameFr": "Imploseurs Soniques",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_grenades_fumigènes": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 16,
+    "nameFr": "Grenades Fumigènes",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_barrière_de_la_force": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 21,
+    "nameFr": "Barrière de la Force",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Force Barrier"
+  },
+  "amelioration:generic_guidé_par_la_force": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 21,
+    "nameFr": "Guidé par la Force",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+  },
+  "amelioration:generic_poussée_de_la_force": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 21,
+    "nameFr": "Poussée de la Force",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Force Push"
+  },
+  "amelioration:generic_réflexes_de_la_force": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 21,
+    "nameFr": "Réflexes de la Force",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Force Reflexes"
+  },
+  "amelioration:generic_sabre_lancé": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 22,
+    "nameFr": "Sabre Lancé",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "nameEn": "Saber Throw"
+  },
+  "amelioration:generic_force_guided_gap": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 21,
+    "nameFr": "Guidé par la Force",
+    "type": "amelioration",
+    "statutCatalogue": "inconnue",
+    "statutDonneesMoteur": "a_verifier",
+    "statutVerification": "a_verifier",
+    "note": "Aucune entrée dans cardNamesFr.ts (contrairement à Force Barrier/Push/Reflexes, déjà mappées) — nom anglais probable « Force Guided », à confirmer."
+  }
+}
