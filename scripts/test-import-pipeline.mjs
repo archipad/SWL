@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { createServer } from 'vite';
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
 try {
@@ -31,6 +32,14 @@ try {
   assert.equal(audit.safeForEngine, true, audit.certificationIssues.map((issue) => issue.message).join('; '));
   assert.equal(audit.units[0].models, 6);
   assert.equal(audit.units[0].maxWounds, 6);
+  for (const fixtureName of ['tabletop-admiral-rebel.json', 'tabletop-admiral-empire.json']) {
+    const fixture = fs.readFileSync(new URL(`./fixtures/${fixtureName}`, import.meta.url), 'utf8');
+    const fixtureList = importArmyList(fixture);
+    const fixtureAudit = auditImportedList(fixtureList);
+    assert.ok(fixtureList.units.length >= 3, `${fixtureName}: unités manquantes après import`);
+    assert.equal(fixtureAudit.safeForEngine, true, `${fixtureName}: ${fixtureAudit.certificationIssues.map((issue) => issue.message).join('; ')}`);
+    assert.ok(fixtureAudit.units.every((unit) => unit.models && unit.maxWounds), `${fixtureName}: effectif ou PV non calculé`);
+  }
   console.log('Import pipeline OK — JSON Tabletop Admiral, clés stables, doublons, effectifs, grenades et audit vérifiés.');
 } finally {
   await vite.close();
