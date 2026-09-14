@@ -237,6 +237,8 @@ assert.match(gistSync, /assistantAttackHistory\?: unknown\[\]/, 'Le journal des 
 assert.match(gistSync, /assistantUnitStateUpdatedAt\?: Record<string, number>/, 'Chaque unité doit posséder une horloge de conflit indépendante')
 assert.match(gistSync, /mergeAssistantUnitStates/, 'Les états venant de plusieurs appareils doivent être fusionnés')
 assert.match(gistSync, /mergeAttackHistory/, 'Les journaux venant de plusieurs appareils doivent être fusionnés sans doublon')
+assert.match(gistSync, /mergeGameTracker/, 'Le suivi de partie doit arbitrer les modifications concurrentes par horodatage')
+assert.match(syncUi, /modification\(s\) concurrente\(s\) réconciliée\(s\)/, 'Une fusion concurrente doit être annoncée au joueur')
 assert.match(app, /assistantUnitStateUpdatedAt:merged\.clock/, 'L’Assistant doit envoyer les horodatages par unité')
 assert.doesNotMatch(app, /payload=\{[^\n]*gameTracker/, 'L’Assistant ne doit pas écraser un suivi de partie qu’il n’a pas modifié')
 assert.match(syncUi, /swl\.assistant\.attack-history\.v1/, 'Le journal distant doit être restauré localement')

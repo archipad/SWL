@@ -1,10 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { SetupScreen } from './components/SetupScreen';
-import { ArmyScreen } from './components/ArmyScreen';
-import { GameTrackerScreen } from './components/GameTrackerScreen';
-import { LibraryScreen } from './components/LibraryScreen';
-import { CheatSheetScreen } from './components/CheatSheetScreen';
-import { PrintCardsScreen } from './components/PrintCardsScreen';
 import { importArmyList } from './lib/importList';
 import { usePersistentState } from './lib/storage';
 import { useKeywordLibrary } from './lib/useKeywordLibrary';
@@ -13,6 +8,12 @@ import { useSync } from './lib/useSync';
 import { useGameTracker } from './lib/useGameTracker';
 import { NavIcon } from './lib/navIcons';
 import type { ParsedList } from './types';
+
+const ArmyScreen = lazy(() => import('./components/ArmyScreen').then((module) => ({ default: module.ArmyScreen })));
+const GameTrackerScreen = lazy(() => import('./components/GameTrackerScreen').then((module) => ({ default: module.GameTrackerScreen })));
+const LibraryScreen = lazy(() => import('./components/LibraryScreen').then((module) => ({ default: module.LibraryScreen })));
+const CheatSheetScreen = lazy(() => import('./components/CheatSheetScreen').then((module) => ({ default: module.CheatSheetScreen })));
+const PrintCardsScreen = lazy(() => import('./components/PrintCardsScreen').then((module) => ({ default: module.PrintCardsScreen })));
 
 type Page = 'setup' | 'army' | 'game' | 'library' | 'cheatsheet' | 'print-cards';
 type PlayerId = 'p1' | 'p2';
@@ -237,7 +238,7 @@ export default function App() {
           page pour rejouer l'animation de transition (« wipe » façon
           Star Wars, voir .page-transition dans index.css) — sans quoi une
           animation CSS ne se rejoue pas au simple changement des enfants. */}
-      <main key={page} className="page-transition">{content}</main>
+      <main key={page} className="page-transition"><Suspense fallback={<p className="screen-loading" role="status">Chargement de la console…</p>}>{content}</Suspense></main>
 
       <footer className="app-footer no-print">
         <p>

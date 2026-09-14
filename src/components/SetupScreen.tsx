@@ -148,6 +148,7 @@ export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, o
           status={sync.status}
           error={sync.error}
           lastSyncAt={sync.lastSyncAt}
+          notice={sync.notice}
           onSaveToken={sync.saveToken}
           onRemoveToken={sync.removeToken}
           onSyncNow={sync.pull}

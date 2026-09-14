@@ -4,6 +4,7 @@ import type { GameTrackerState } from './useGameTracker';
 import * as gistSync from './gistSync';
 
 export type SyncStatus = 'disabled' | 'idle' | 'syncing' | 'error';
+export type SyncNotice = { kind: 'success' | 'conflict'; message: string } | null;
 
 interface UseSyncOptions {
   listP1: ParsedList | null;
@@ -25,6 +26,7 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
   const [status, setStatus] = useState<SyncStatus>(() => (gistSync.getToken() ? 'idle' : 'disabled'));
   const [error, setError] = useState<string | null>(null);
   const [lastSyncAt, setLastSyncAt] = useState<number | null>(null);
+  const [notice, setNotice] = useState<SyncNotice>(null);
   // Horodatage du dernier état connu comme synchronisé (poussé ou tiré), pour
   // ne jamais écraser un import local plus récent par une réponse distante
   // plus ancienne.
@@ -80,10 +82,11 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
         localStorage.setItem('swl.assistant.unit-state-clock.v1', JSON.stringify(mergedUnits.clock));
         localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(gistSync.mergeAttackHistory(remote.assistantAttackHistory, readAttackHistory())));
         knownUpdatedAt.current = remote.updatedAt;
+        setNotice(mergedUnits.conflicts ? { kind: 'conflict', message: `${mergedUnits.conflicts} modification(s) concurrente(s) réconciliée(s) sans perte.` } : { kind: 'success', message: 'Données à jour sur cet appareil.' });
       } else if (remote.updatedAt === 0 && (listP1 || listP2)) {
         // Gist tout juste créé (vide) mais on a déjà des listes localement :
         // on les y envoie pour amorcer la synchro sur les autres appareils.
-        const saved = await gistSync.pushSync(token, { listP1, listP2, gameTracker, assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory() });
+        const saved = await gistSync.pushSync(token, { listP1, listP2, gameTracker, gameTrackerUpdatedAt: Date.now(), assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory() });
         knownUpdatedAt.current = saved.updatedAt;
       }
       setStatus('idle');
@@ -103,7 +106,7 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
       if (!token) return;
       setStatus('syncing');
       try {
-        const saved = await gistSync.pushSync(token, { listP1: nextP1, listP2: nextP2, gameTracker: nextGameTracker, assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory() });
+        const saved = await gistSync.pushSync(token, { listP1: nextP1, listP2: nextP2, gameTracker: nextGameTracker, gameTrackerUpdatedAt: Date.now(), assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory() });
         if (saved.assistantUnitStates) localStorage.setItem('swl.assistant.unit-state.v1', JSON.stringify(saved.assistantUnitStates));
         if (saved.assistantUnitStateUpdatedAt) localStorage.setItem('swl.assistant.unit-state-clock.v1', JSON.stringify(saved.assistantUnitStateUpdatedAt));
         if (saved.assistantAttackHistory) localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(saved.assistantAttackHistory));
@@ -111,6 +114,7 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
         setStatus('idle');
         setError(null);
         setLastSyncAt(Date.now());
+        setNotice({ kind: 'success', message: 'Modifications enregistrées et fusionnées.' });
       } catch (e) {
         setStatus('error');
         setError(e instanceof Error ? e.message : String(e));
@@ -144,7 +148,7 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
     return () => window.clearInterval(timer);
   }, [token, pull]);
 
-  return { token, status, error, lastSyncAt, saveToken, removeToken, pull, push };
+  return { token, status, error, lastSyncAt, notice, saveToken, removeToken, pull, push };
 }
 
 function readAssistantStates(): Record<string, Record<string, unknown>> {

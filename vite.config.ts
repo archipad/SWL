@@ -10,6 +10,9 @@ const base = process.env.BASE_PATH ?? '/SWL/'
 // https://vite.dev/config/
 export default defineConfig({
   base,
+  optimizeDeps: {
+    exclude: ['virtual:pwa-register'],
+  },
   plugins: [
     react(),
     VitePWA({
@@ -45,6 +48,16 @@ export default defineConfig({
         // L'assistant est une page HTML autonome. Sans cette exception,
         // le mode hors-ligne renvoie toute navigation vers l'application React.
         navigateFallbackDenylist: [/^\/SWL\/assistant(?:\/|$)/],
+        runtimeCaching: [
+          {
+            urlPattern: /\/SWL\/cards\/.*\.(?:png|jpe?g|webp)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'swl-card-images-v1',
+              expiration: { maxEntries: 600, maxAgeSeconds: 60 * 60 * 24 * 90 },
+            },
+          },
+        ],
       },
     }),
   ],

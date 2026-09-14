@@ -28,6 +28,7 @@
 - [x] Unifier blessures, suppressions, figurines restantes et journal d'attaque entre les deux interfaces.
 - [x] Fusionner et tester les états d’unités et journaux multiappareil sans écrasement par un appareil en retard.
 - [ ] Valider la synchronisation sur deux appareils physiques avec un même Gist.
+- [x] Arbitrer les suivis concurrents par horodatage et afficher le résultat de la fusion.
 
 ## Interface
 
@@ -35,6 +36,7 @@
 - [x] Protéger par contrat les tailles tactiles, les zones sûres et la hiérarchie des actions sur tablette.
 - [ ] Valider sur un iPad physique la hauteur sans défilement et les deux orientations.
 - [ ] Harmoniser les thèmes Rebelles/Empire sans modifier leur palette respective.
+- [x] Charger les écrans secondaires à la demande et mettre les visuels de cartes en cache PWA.
 
 ## Processus
 

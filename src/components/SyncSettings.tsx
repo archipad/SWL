@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import type { SyncStatus } from '../lib/useSync';
+import type { SyncNotice, SyncStatus } from '../lib/useSync';
 
 interface Props {
   token: string | null;
   status: SyncStatus;
   error: string | null;
   lastSyncAt: number | null;
+  notice: SyncNotice;
   onSaveToken: (token: string) => void;
   onRemoveToken: () => void;
   onSyncNow: () => void;
@@ -107,7 +108,7 @@ function PairingPanel({ token }: { token: string }) {
   );
 }
 
-export function SyncSettings({ token, status, error, lastSyncAt, onSaveToken, onRemoveToken, onSyncNow }: Props) {
+export function SyncSettings({ token, status, error, lastSyncAt, notice, onSaveToken, onRemoveToken, onSyncNow }: Props) {
   const [draft, setDraft] = useState('');
   const [editing, setEditing] = useState(!token);
   const [pairing, setPairing] = useState(false);
@@ -190,6 +191,7 @@ export function SyncSettings({ token, status, error, lastSyncAt, onSaveToken, on
         </>
       )}
       {error && <p className="sync-error">{error}</p>}
+      {notice && status !== 'error' && <p className={`sync-notice sync-notice-${notice.kind}`} role="status">{notice.kind === 'conflict' ? '⚠ ' : '✓ '}{notice.message}</p>}
     </div>
   );
 }

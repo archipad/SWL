@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createServer } from 'vite';
-const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
+const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom', optimizeDeps: { noDiscovery: true } });
 try {
   const { importArmyList } = await vite.ssrLoadModule('/src/lib/importList.ts');
   const { auditImportedList } = await vite.ssrLoadModule('/src/lib/importAudit.ts');

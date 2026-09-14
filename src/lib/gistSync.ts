@@ -27,6 +27,7 @@ export interface SyncPayload {
   listP1: ParsedList | null;
   listP2: ParsedList | null;
   gameTracker?: GameTrackerState;
+  gameTrackerUpdatedAt?: number;
   assistantUnitStates?: Record<string, Record<string, unknown>>;
   assistantUnitStateUpdatedAt?: Record<string, number>;
   assistantAttackHistory?: unknown[];
@@ -160,15 +161,23 @@ export function mergeAssistantUnitStates(
 ) {
   const states: Record<string, Record<string, unknown>> = { ...remote };
   const clock: Record<string, number> = { ...remoteClock };
+  let remoteWins = 0;
+  let incomingWins = 0;
+  let conflicts = 0;
   for (const [unitId, state] of Object.entries(incoming)) {
     const remoteAt = Number(remoteClock[unitId]) || 0;
     const incomingAt = Number(incomingClock[unitId]) || 0;
+    const differs = unitId in states && JSON.stringify(states[unitId]) !== JSON.stringify(state);
+    if (differs && remoteAt > 0 && incomingAt > 0) conflicts++;
     if (!(unitId in states) || (incomingAt > 0 && incomingAt >= remoteAt)) {
       states[unitId] = state;
       clock[unitId] = incomingAt;
+      if (differs) incomingWins++;
+    } else if (differs) {
+      remoteWins++;
     }
   }
-  return { states, clock };
+  return { states, clock, remoteWins, incomingWins, conflicts };
 }
 
 export function mergeAttackHistory(remote: unknown[] = [], incoming: unknown[] = []): unknown[] {
@@ -184,14 +193,28 @@ export function mergeAttackHistory(remote: unknown[] = [], incoming: unknown[] =
     .slice(0, 50);
 }
 
-export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; assistantUnitStates?: Record<string, Record<string, unknown>>; assistantUnitStateUpdatedAt?: Record<string, number>; assistantAttackHistory?: unknown[] }): Promise<SyncPayload> {
+export function mergeGameTracker(
+  remote: GameTrackerState | undefined,
+  incoming: GameTrackerState | undefined,
+  remoteUpdatedAt = 0,
+  incomingUpdatedAt = 0,
+) {
+  const conflict = !!remote && !!incoming && JSON.stringify(remote) !== JSON.stringify(incoming) && remoteUpdatedAt > 0 && incomingUpdatedAt > 0;
+  const remoteWins = remoteUpdatedAt > incomingUpdatedAt;
+  return { state: remoteWins ? remote : incoming ?? remote, updatedAt: remoteWins ? remoteUpdatedAt : incomingUpdatedAt, conflict, remoteWins };
+}
+
+export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; gameTrackerUpdatedAt?: number; assistantUnitStates?: Record<string, Record<string, unknown>>; assistantUnitStateUpdatedAt?: Record<string, number>; assistantAttackHistory?: unknown[] }): Promise<SyncPayload> {
   const gistId = await findOrCreateGistId(token);
   const remote = await pullSync(token);
   const mergedUnits = mergeAssistantUnitStates(remote.assistantUnitStates, payload.assistantUnitStates, remote.assistantUnitStateUpdatedAt, payload.assistantUnitStateUpdatedAt);
+  const mergedTracker = mergeGameTracker(remote.gameTracker, payload.gameTracker, remote.gameTrackerUpdatedAt, payload.gameTrackerUpdatedAt);
   const full: SyncPayload = {
     ...remote,
     schemaVersion: 3,
     ...payload,
+    gameTracker: mergedTracker.state,
+    gameTrackerUpdatedAt: mergedTracker.updatedAt,
     assistantUnitStates: mergedUnits.states,
     assistantUnitStateUpdatedAt: mergedUnits.clock,
     assistantAttackHistory: mergeAttackHistory(remote.assistantAttackHistory, payload.assistantAttackHistory),
