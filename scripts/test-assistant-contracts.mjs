@@ -312,7 +312,22 @@ assert.match(app, /CE QUE CETTE UNITÉ PEUT FAIRE MAINTENANT/, 'Le briefing doit
 assert.match(app, /place-proton.*detonate-proton/, 'Les charges à protons doivent être suivies de la pose à la détonation')
 assert.match(app, /place-sonic.*detonate-sonic/, 'Les charges soniques doivent être suivies de la pose à la détonation')
 assert.match(app, /SABRE LANCÉ.*moitié.*arrondie au supérieur/, 'Sabre Lancé doit rappeler son calcul à partir de l’arme de corps-à-corps')
-assert.match(app, /aim:0,dodge:0,surge:0,exhaustedCards:\[\]/, 'La phase finale doit retirer les pions temporaires et redresser les cartes')
+assert.match(app, /aim:0,dodge:0,surge:0,standby:0,exhaustedCards:\[\]/, 'La phase finale doit retirer les pions temporaires et redresser les cartes')
+assert.match(app, /function activationJourney\(entry\)/, 'La fiche unité doit proposer un parcours d’activation guidé')
+assert.match(app, /Ordre face visible.*Pion de la réserve.*Sans pion Ordre/, 'L’origine de l’activation doit être demandée')
+assert.match(app, /function activationActionLimit\(entry\).*suppressed\?1:2/, 'Une unité démoralisée doit être limitée à une action')
+assert.match(app, /linkedTargetingAppliedRound/, 'Système de Visée Jumelé doit se déclencher avec un ordre face visible')
+assert.match(app, /action==='recover'.*suppression=0.*exhaustedCards=\[\]/, 'Récupérer doit retirer la suppression et redresser les améliorations')
+assert.match(app, /mandatoryMoveDone/, 'Speeder doit imposer le suivi du déplacement obligatoire')
+assert.match(app, /defensive posture.*dodge.*2|dodge.*defensive posture.*2/, 'La posture défensive doit doubler le gain d’esquive')
+assert.match(app, /offensive posture.*aim.*2|aim.*offensive posture.*2/, 'La posture offensive doit doubler le gain de visée')
+assert.match(app, /availableAims.*availableAttackSurges.*availableDodges.*availableDefenseSurges/, 'La résolution doit charger les stocks de pions des deux unités')
+assert.match(app, /Cette unité ne possède que.*pion\(s\) Viser/, 'La dépense de pions Viser doit être plafonnée')
+assert.match(app, /Le défenseur ne possède que.*pion\(s\) Esquive/, 'La dépense de pions Esquive doit être plafonnée')
+assert.match(app, /attackerState\.aim.*attackerState\.surge/, 'Les pions offensifs dépensés doivent être retirés du suivi')
+assert.match(app, /defenderState\.dodge.*defenderState\.surge/, 'Les pions défensifs dépensés doivent être retirés du suivi')
+assert.match(app, /agileReturned/, 'Agile doit restituer une Esquive après sa dépense')
+assert.match(index, /style\.css\?v=78/, 'Le nouveau style du budget de pions doit invalider le cache')
 
 // Couverture exhaustive des ressources déjà présentes : tout nouveau fichier
 // de carte doit être nommé et raccordé avant qu'une publication puisse passer.
