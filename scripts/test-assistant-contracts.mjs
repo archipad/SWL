@@ -298,6 +298,21 @@ for (const card of ['reluctant hero', 'fire control', 'combat armor rebel', 'rep
   assert.ok(reference.images[card], `${card}: visuel anglais absent du référentiel Assistant`)
   assert.ok(reference.names[card], `${card}: nom français absent du référentiel Assistant`)
 }
+assert.match(app, /swl\.assistant\.player-side\.v1/, 'Le camp choisi doit être mémorisé localement sur chaque tablette')
+assert.match(app, /CAMP UTILISÉ SUR CETTE TABLETTE/, 'Le sélecteur doit expliquer que le camp est propre à la tablette')
+assert.match(app, /setInterval\(\(\)=>\{if\(document\.visibilityState!==['"]visible['"]\)return;syncUnitStates\(['"]pull['"]\)/, 'L’Assistant doit relever régulièrement l’état de l’autre tablette')
+for (const effect of ['force-reflexes', 'burst-of-speed', 'offensive-push', 'linked-targeting-array', 'emergency-transponder', 'in-the-fray', 'force-choke']) {
+  assert.ok(app.includes(effect), `${effect}: automatisme d’activation absent`)
+}
+assert.match(app, /hasCard\(attacker,'point blank'\).*attackType\(\)==='ranged'.*attackState\.range\)==='2'/, 'À Bout Portant doit ajouter son esquive uniquement après une attaque à distance 2')
+assert.match(app, /burstOfSpeedRound.*immobilize/, 'Pointe de Vitesse doit appliquer son Immobilisation à la phase finale')
+assert.match(app, /persistWounds\(target,1\).*exhaustCard\(entry,'force-choke'\)/, 'Strangulation doit enregistrer une blessure et incliner la carte')
+assert.match(app, /function activationBriefing\(entry\)/, 'La fiche unité doit synthétiser les décisions de son activation')
+assert.match(app, /CE QUE CETTE UNITÉ PEUT FAIRE MAINTENANT/, 'Le briefing doit être identifiable en un coup d’œil')
+assert.match(app, /place-proton.*detonate-proton/, 'Les charges à protons doivent être suivies de la pose à la détonation')
+assert.match(app, /place-sonic.*detonate-sonic/, 'Les charges soniques doivent être suivies de la pose à la détonation')
+assert.match(app, /SABRE LANCÉ.*moitié.*arrondie au supérieur/, 'Sabre Lancé doit rappeler son calcul à partir de l’arme de corps-à-corps')
+assert.match(app, /aim:0,dodge:0,surge:0,exhaustedCards:\[\]/, 'La phase finale doit retirer les pions temporaires et redresser les cartes')
 
 // Couverture exhaustive des ressources déjà présentes : tout nouveau fichier
 // de carte doit être nommé et raccordé avant qu'une publication puisse passer.
