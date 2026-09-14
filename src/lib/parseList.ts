@@ -1,5 +1,6 @@
 import type { ParsedCard, ParsedList, ParsedUnit } from '../types';
 import { normalizeName } from './normalize';
+import { canonicalImportedUpgradeName } from './cardNames';
 
 const SECTION_HEADERS = [
   'commandant', 'commander', 'commanders',
@@ -141,11 +142,12 @@ export function parseArmyListText(input: string): ParsedList {
     sawAnyStructure = true;
 
     if (indented) {
+      const upgradeName = canonicalImportedUpgradeName(card.name);
       const upgrade: ParsedCard = {
         // La clé d'une amélioration n'entre pas dans le compteur des unités :
         // modifier l'équipement ne déplace donc jamais leur état de partie.
-        key: `${currentUnit?.key ?? 'autres-cartes'}-${normalizeName(card.name) || 'carte'}-${currentUnit?.upgrades.length ?? 0}`,
-        name: card.name, points: card.points, kind: 'upgrade',
+        key: `${currentUnit?.key ?? 'autres-cartes'}-${normalizeName(upgradeName) || 'carte'}-${currentUnit?.upgrades.length ?? 0}`,
+        name: upgradeName, points: card.points, kind: 'upgrade',
       };
       if (currentUnit) currentUnit.upgrades.push(upgrade);
       else pushOrphan(upgrade);

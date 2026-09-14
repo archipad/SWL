@@ -55,6 +55,12 @@ export function canonicalCardKey(name: string): string {
   return resolveAlias(translated);
 }
 
+/** Résout les rares collisions où Tabletop Admiral donne à une amélioration
+ * exactement le même titre qu'à la carte Unité correspondante. */
+export function canonicalImportedUpgradeName(name: string): string {
+  return normalizeName(name) === 'cassian andor' ? 'Cassian Andor Operative' : name;
+}
+
 /**
  * Vrai si cette carte est la variante « Groupe de Combat » (Strike Team,
  * nom Tabletop Admiral) d'une unité — le titre imprimé sur la carte est
