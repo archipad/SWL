@@ -289,6 +289,23 @@
     ],
     "addedModels": 1
   },
+  "cassian andor operative": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "A280 Configuration Sniper",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1
+  },
   "cassian andor": {
     "weapons": [
       {

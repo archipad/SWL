@@ -96,6 +96,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'C-3PO': { weapons: [{ name: 'Coup de Pied Maladroit', dice: [{ color: 'blanc', count: 1 }], range: 'melee' }], note: 'Compagnon (Alter Ego : R2-D2) — pas de défense propre, utilise celle de l\'unité hôte' },
   'CM-O/93 Trooper': { weapons: [{ name: 'CM-O/93', dice: [{ color: 'blanc', count: 4 }], range: '1-4' }] },
   'Cassian Andor': { weapons: [{ name: 'Arts Martiaux', dice: [{ color: 'noir', count: 3 }], range: 'melee' }, { name: 'Blaster Modulaire de Cassian', dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'blanc' },
+  'Cassian Andor Operative': { weapons: [{ name: 'A280 Configuration Sniper', dice: [{ color: 'noir', count: 1 }], range: '1-3', keywordIds: ['longue-distance'] }], addedModels: 1, addedModelWounds: 1, addedModelsVerifiedAgainstCard: true },
   'Chewbacca': { weapons: [{ name: 'Prépotence', dice: [{ color: 'rouge', count: 4 }], range: 'melee', keywordIds: ['letal-x'] }, { name: 'Arbalète de Chewbacca', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }], range: '1-3', keywordIds: ['impact-x', 'perforant-x'] }], defenseColor: 'blanc' },
   'DF-90 Mortar Trooper': { weapons: [], note: 'carte extension d\'unité (personnel), pas de bloc arme propre' },
   'DH-447 Sniper': { weapons: [{ name: 'Fusil de Sniper DH-447', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-5' }] },

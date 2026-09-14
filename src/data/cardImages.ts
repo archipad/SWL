@@ -112,6 +112,7 @@ const RAW: Record<string, string> = {
   'Luke Skywalker Jedi Knight': 'luke-skywalker-jedi-knight.jpg',
   'Jyn Erso': 'jyn-erso.jpg',
   'Cassian Andor': 'cassian-andor.jpg',
+  'Cassian Andor Operative': 'cassian-andor-operative.jpg',
   'Lando Calrissian': 'lando-calrissian.jpg',
   'Chewbacca': 'chewbacca.jpg',
   'Sabine Wren': 'sabine-wren.jpg',
