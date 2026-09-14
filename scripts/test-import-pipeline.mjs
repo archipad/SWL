@@ -107,6 +107,15 @@ try {
   ]);
   assert.equal(repeatingBlaster.weapons[0].range, '1-3');
   assert.deepEqual(repeatingBlaster.weapons[0].keywordValues, { 'critique-x': 1, 'impact-x': 1 });
+  const cassianUpgradeImport = importArmyList(JSON.stringify({
+    armyFaction: 'rebel',
+    units: [{ name: 'Rebel Troopers', upgrades: ['Cassian Andor'] }],
+  }));
+  assert.equal(cassianUpgradeImport.units[0].upgrades[0].name, 'Cassian Andor Operative', 'Cassian placé dans un emplacement d’amélioration ne doit pas devenir la carte Unité');
+  assert.ok(cardImageFor(cassianUpgradeImport.units[0].upgrades[0].name)?.includes('cassian-andor-operative.jpg'));
+  const cassianUpgradeRoster = buildCertifiedUnitRoster(cassianUpgradeImport.units[0]);
+  assert.equal(cassianUpgradeRoster.models.length, 5, 'Cassian doit ajouter une figurine aux 4 Soldats rebelles');
+  assert.equal(cassianUpgradeRoster.models.at(-1)?.maxWounds, 1);
   console.log('Import pipeline OK — JSON Tabletop Admiral, clés stables, doublons, effectifs, grenades et audit vérifiés.');
 } finally {
   await vite.close();

@@ -292,6 +292,8 @@ assert.match(app, /function fireControlCandidates\(\)/, 'Contrôle de Tir doit r
 assert.match(app, /upgradePoolDice\(result,2\)/, 'Contrôle de Tir doit améliorer exactement deux dés de la réserve')
 assert.match(app, /defenseColorOverride/, 'Armure de Combat doit remplacer la couleur du dé de défense')
 assert.match(app, /defenseSurgeOverride/, 'Armure de Combat doit pouvoir retirer la conversion défensive')
+assert.match(app, /rebel agent defender of democracy.*boba fett infamous bounty hunter.*boba fett daimyo of mos espa/, 'L’Agent rebelle et les deux Boba Fett doivent être classés au rang Agent')
+assert.match(app, /upgrade\.name='Cassian Andor Operative'/, 'Une liste déjà enregistrée doit migrer Cassian vers sa carte d’amélioration')
 for (const card of ['reluctant hero', 'fire control', 'combat armor rebel', 'repeating blaster']) {
   assert.ok(reference.images[card], `${card}: visuel anglais absent du référentiel Assistant`)
   assert.ok(reference.names[card], `${card}: nom français absent du référentiel Assistant`)
