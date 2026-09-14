@@ -289,6 +289,8 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .sync-notice { margin:0.6rem 0 0; padding:0.55rem 0.7rem; border-left:3px solid #63d28b; background:#10251b; color:#9ce8b7; font-size:0.82rem; }
 .sync-notice-conflict { border-color:#e7bd49; background:#29230f; color:#ffe58b; }
 .screen-loading { min-height:35vh; display:grid; place-items:center; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
+.import-audit-categories { display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:.7rem; }
+.import-audit-categories span { padding:.35rem .55rem; border:1px solid #5b4b2b; background:#201b10; color:#f4d58b; font-size:.78rem; }
 
 /* --- Appairage sans ressaisie du jeton (QR code / lien) --- */
 .sync-pairing {
@@ -839,6 +841,9 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .tracker-sync i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #63d28b; box-shadow: 0 0 8px #63d28b; }
 .tracker-sync-syncing i { background: #e7bd49; box-shadow: 0 0 8px #e7bd49; animation: pulse 1s infinite alternate; }
 .tracker-sync-error i, .tracker-sync-disabled i { background: #e15b64; box-shadow: none; }
+.tracker-device { padding:.2rem .45rem; border:1px solid #294459; color:#9db3c1; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; }
+.tracker-action-history article { min-width:180px; }
+.tracker-action-history article.undone { opacity:.55; text-decoration:line-through; }
 .tracker-armies { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
 .tracker-army { position:relative; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.65rem 0.8rem; background:#0f1621; border:1px solid #294459; box-shadow:0 12px 26px rgba(0,0,0,.2); }
 .tracker-army::after,.tracker-section::after { content:""; position:absolute; right:-1px; bottom:-1px; width:16px; height:16px; border-right:2px solid #7fd8ff; border-bottom:2px solid #7fd8ff; opacity:.75; }

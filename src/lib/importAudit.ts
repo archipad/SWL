@@ -12,7 +12,8 @@ const certified = certifications as Record<string, CertifiedRecord>;
 
 export type ImportIssueKind = 'visual' | 'translation' | 'unit-stats' | 'dice' | 'models';
 export type ImportIssueScope = 'certification' | 'catalog';
-export interface ImportIssue { card: string; unit: string; kind: ImportIssueKind; scope: ImportIssueScope; message: string }
+export type ImportIssueResolution = 'unknown-card' | 'visual-unmapped' | 'translation-unmapped' | 'engine-certification';
+export interface ImportIssue { card: string; unit: string; kind: ImportIssueKind; scope: ImportIssueScope; resolution: ImportIssueResolution; message: string }
 export interface ImportUnitAudit { name: string; models: number | null; maxWounds: number | null; issues: ImportIssue[] }
 export interface ImportAudit {
   cards: number;
@@ -48,18 +49,19 @@ export function auditImportedList(list: ParsedList): ImportAudit {
       cards += 1;
       const key = canonicalCardKey(name);
       const issuesBefore = unitIssues.length;
-      if (!CARD_IMAGES[key]) unitIssues.push({ card: name, unit: unit.name, kind: 'visual', scope: 'catalog', message: 'Visuel non raccordé au catalogue' });
-      if (!CARD_NAMES_FR[key]) unitIssues.push({ card: name, unit: unit.name, kind: 'translation', scope: 'catalog', message: 'Nom français non raccordé au catalogue' });
       const profile = DICE_PROFILES[key];
       const certification = certified[key];
+      const unknownCard = !CARD_IMAGES[key] && !CARD_NAMES_FR[key] && !profile && !certification;
+      if (!CARD_IMAGES[key]) unitIssues.push({ card: name, unit: unit.name, kind: 'visual', scope: 'catalog', resolution: unknownCard ? 'unknown-card' : 'visual-unmapped', message: unknownCard ? 'Visuel non raccordé au catalogue : carte réellement inconnue' : 'Carte connue, mais visuel non raccordé' });
+      if (!CARD_NAMES_FR[key]) unitIssues.push({ card: name, unit: unit.name, kind: 'translation', scope: 'catalog', resolution: unknownCard ? 'unknown-card' : 'translation-unmapped', message: unknownCard ? 'Traduction indisponible tant que la carte n’est pas raccordée' : 'Nom français non raccordé au catalogue' });
       if (isUnit && !profile?.unitStats?.verifiedAgainstCard && !certification?.unitStats) {
-        unitIssues.push({ card: name, unit: unit.name, kind: 'unit-stats', scope: 'certification', message: 'PV, courage ou effectif non certifiés' });
+        unitIssues.push({ card: name, unit: unit.name, kind: 'unit-stats', scope: 'certification', resolution: 'engine-certification', message: 'PV, courage ou effectif non certifiés' });
       }
       if (profile?.weapons?.some((weapon, index) => !weaponIsCertified(weapon, index, certification))) {
-        unitIssues.push({ card: name, unit: unit.name, kind: 'dice', scope: 'certification', message: "Dés d’attaque non certifiés" });
+        unitIssues.push({ card: name, unit: unit.name, kind: 'dice', scope: 'certification', resolution: 'engine-certification', message: "Dés d’attaque non certifiés" });
       }
       if (profile?.defenseColor && !profile.defenseVerifiedAgainstCard && !certification?.defenseColor) {
-        unitIssues.push({ card: name, unit: unit.name, kind: 'dice', scope: 'certification', message: 'Dé de défense non certifié' });
+        unitIssues.push({ card: name, unit: unit.name, kind: 'dice', scope: 'certification', resolution: 'engine-certification', message: 'Dé de défense non certifié' });
       }
       if (unitIssues.length === issuesBefore) readyCards += 1;
     };
@@ -68,7 +70,7 @@ export function auditImportedList(list: ParsedList): ImportAudit {
     unit.upgrades.forEach((upgrade) => inspect(upgrade.name, false));
     const roster = buildCertifiedUnitRoster(unit);
     const maxWounds = roster.models.length ? roster.models.reduce((sum, model) => sum + model.maxWounds, 0) : null;
-    if (!roster.certified) unitIssues.push({ card: unit.name, unit: unit.name, kind: 'models', scope: 'certification', message: 'Effectif impossible à calculer avec certitude' });
+    if (!roster.certified) unitIssues.push({ card: unit.name, unit: unit.name, kind: 'models', scope: 'certification', resolution: 'engine-certification', message: 'Effectif impossible à calculer avec certitude' });
     allIssues.push(...unitIssues);
     return { name: unit.name, models: roster.models.length || null, maxWounds, issues: unitIssues };
   });

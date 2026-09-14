@@ -3,7 +3,7 @@ import { createServer } from 'vite'
 
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom', optimizeDeps: { noDiscovery: true } })
 try {
-  const { mergeAssistantUnitStates, mergeAttackHistory, mergeGameTracker } = await vite.ssrLoadModule('/src/lib/gistSync.ts')
+  const { mergeAssistantUnitStates, mergeAttackHistory, mergeGameActionHistory, mergeGameTracker } = await vite.ssrLoadModule('/src/lib/gistSync.ts')
   const remote = { 'p1:unit': { wounds: 1 }, 'p2:unit': { wounds: 2 } }
   const local = { 'p1:unit': { wounds: 3 }, 'p3:unit': { wounds: 1 } }
   const merged = mergeAssistantUnitStates(remote, local, { 'p1:unit': 100, 'p2:unit': 150 }, { 'p1:unit': 200, 'p3:unit': 180 })
@@ -30,6 +30,12 @@ try {
   assert.deepEqual(trackerMerge.state, remoteTracker, 'Un appareil en retard ne doit pas écraser le suivi plus récent')
   assert.equal(trackerMerge.conflict, true)
   assert.equal(trackerMerge.remoteWins, true)
+  const actionHistory = mergeGameActionHistory(
+    [{ id: 'score', at: '2026-01-01T10:00:00Z', label: 'Score +1' }],
+    [{ id: 'score', at: '2026-01-01T10:00:00Z', label: 'Score +1', undoneAt: '2026-01-01T10:01:00Z' }],
+  )
+  assert.equal(actionHistory.length, 1)
+  assert.equal(actionHistory[0].undoneAt, '2026-01-01T10:01:00Z', 'Une annulation distante ne doit pas être ressuscitée par un appareil en retard')
   console.log('Synchronisation: fusion multiappareil et conflits vérifiés')
 } finally {
   await vite.close()

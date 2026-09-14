@@ -31,6 +31,7 @@ export interface SyncPayload {
   assistantUnitStates?: Record<string, Record<string, unknown>>;
   assistantUnitStateUpdatedAt?: Record<string, number>;
   assistantAttackHistory?: unknown[];
+  gameActionHistory?: unknown[];
 }
 
 const EMPTY_PAYLOAD: SyncPayload = { updatedAt: 0, listP1: null, listP2: null };
@@ -193,6 +194,22 @@ export function mergeAttackHistory(remote: unknown[] = [], incoming: unknown[] =
     .slice(0, 50);
 }
 
+export function mergeGameActionHistory(remote: unknown[] = [], incoming: unknown[] = []): unknown[] {
+  const byId = new Map<string, unknown>();
+  for (const entry of [...remote, ...incoming]) {
+    if (!entry || typeof entry !== 'object') continue;
+    const record = entry as { id?: unknown; at?: unknown; undoneAt?: unknown };
+    const id = typeof record.id === 'string' ? record.id : JSON.stringify(entry);
+    const previous = byId.get(id) as { at?: unknown; undoneAt?: unknown } | undefined;
+    const version = String(record.undoneAt ?? record.at ?? '');
+    const previousVersion = String(previous?.undoneAt ?? previous?.at ?? '');
+    if (!previous || version >= previousVersion) byId.set(id, entry);
+  }
+  return [...byId.values()]
+    .sort((a, b) => String((b as { at?: unknown }).at ?? '').localeCompare(String((a as { at?: unknown }).at ?? '')))
+    .slice(0, 30);
+}
+
 export function mergeGameTracker(
   remote: GameTrackerState | undefined,
   incoming: GameTrackerState | undefined,
@@ -204,20 +221,21 @@ export function mergeGameTracker(
   return { state: remoteWins ? remote : incoming ?? remote, updatedAt: remoteWins ? remoteUpdatedAt : incomingUpdatedAt, conflict, remoteWins };
 }
 
-export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; gameTrackerUpdatedAt?: number; assistantUnitStates?: Record<string, Record<string, unknown>>; assistantUnitStateUpdatedAt?: Record<string, number>; assistantAttackHistory?: unknown[] }): Promise<SyncPayload> {
+export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; gameTrackerUpdatedAt?: number; assistantUnitStates?: Record<string, Record<string, unknown>>; assistantUnitStateUpdatedAt?: Record<string, number>; assistantAttackHistory?: unknown[]; gameActionHistory?: unknown[] }): Promise<SyncPayload> {
   const gistId = await findOrCreateGistId(token);
   const remote = await pullSync(token);
   const mergedUnits = mergeAssistantUnitStates(remote.assistantUnitStates, payload.assistantUnitStates, remote.assistantUnitStateUpdatedAt, payload.assistantUnitStateUpdatedAt);
   const mergedTracker = mergeGameTracker(remote.gameTracker, payload.gameTracker, remote.gameTrackerUpdatedAt, payload.gameTrackerUpdatedAt);
   const full: SyncPayload = {
     ...remote,
-    schemaVersion: 3,
+    schemaVersion: 4,
     ...payload,
     gameTracker: mergedTracker.state,
     gameTrackerUpdatedAt: mergedTracker.updatedAt,
     assistantUnitStates: mergedUnits.states,
     assistantUnitStateUpdatedAt: mergedUnits.clock,
     assistantAttackHistory: mergeAttackHistory(remote.assistantAttackHistory, payload.assistantAttackHistory),
+    gameActionHistory: mergeGameActionHistory(remote.gameActionHistory, payload.gameActionHistory),
     updatedAt: Date.now(),
   };
   const res = await githubFetch(token, `/gists/${gistId}`, {

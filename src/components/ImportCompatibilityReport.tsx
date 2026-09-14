@@ -16,6 +16,9 @@ export function ImportCompatibilityReport({ list }: { list: ParsedList }) {
     : audit.catalogCards
       ? `${audit.catalogCards} carte(s) à raccorder au catalogue · aucune certification de dés requise`
       : `${audit.readyCards}/${audit.cards} cartes raccordées et certifiées`;
+  const unknownCards = new Set(audit.issues.filter((issue) => issue.resolution === 'unknown-card').map((issue) => issue.card)).size;
+  const visualOnly = new Set(audit.issues.filter((issue) => issue.resolution === 'visual-unmapped').map((issue) => issue.card)).size;
+  const translationOnly = new Set(audit.issues.filter((issue) => issue.resolution === 'translation-unmapped').map((issue) => issue.card)).size;
   return <section className={`import-audit ${audit.complete ? 'import-audit-ok' : 'import-audit-warning'}`}>
     <button type="button" className="import-audit-summary" onClick={() => setExpanded((value) => !value)} aria-expanded={expanded}>
       <span className="import-audit-icon">{audit.safeForEngine ? '✓' : '!'}</span>
@@ -23,6 +26,12 @@ export function ImportCompatibilityReport({ list }: { list: ParsedList }) {
       <span>{expanded ? '▴' : '▾'}</span>
     </button>
     {expanded && <div className="import-audit-details">
+      {!!audit.issues.length && <div className="import-audit-categories" aria-label="Nature des raccordements nécessaires">
+        {!!unknownCards && <span><b>{unknownCards}</b> réellement inconnue{unknownCards > 1 ? 's' : ''}</span>}
+        {!!visualOnly && <span><b>{visualOnly}</b> visuel{visualOnly > 1 ? 's' : ''} à raccorder</span>}
+        {!!translationOnly && <span><b>{translationOnly}</b> traduction{translationOnly > 1 ? 's' : ''} à raccorder</span>}
+        {!!audit.certificationCards && <span><b>{audit.certificationCards}</b> certification{audit.certificationCards > 1 ? 's' : ''} moteur</span>}
+      </div>}
       {audit.units.map((unit) => <article key={unit.name}>
         <div><strong>{frenchCardName(unit.name)}</strong><span>{unit.models === null ? 'Effectif ?' : `${unit.models} figurine${unit.models > 1 ? 's' : ''}`} · {unit.maxWounds === null ? 'PV ?' : `${unit.maxWounds} PV totaux`}</span></div>
         {unit.issues.length ? <ul>{unit.issues.map((issue, index) => <li key={`${issue.card}-${issue.kind}-${index}`}><b>{frenchCardName(issue.card)}</b> — {issue.message}</li>)}</ul> : <span className="import-audit-unit-ok">✓ Données moteur complètes</span>}

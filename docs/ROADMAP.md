@@ -21,6 +21,8 @@
 - [x] Détecter automatiquement toute image de `public/cards/` sans entrée canonique exploitable.
 - [x] Détecter toute carte importée connue dont la traduction, le profil ou la certification manque.
 - [x] Tester les ajouts de figurines multiples et les PV différents de la carte Unité.
+- [x] Distinguer dans chaque import les cartes inconnues, visuels non raccordés, traductions et certifications moteur.
+- [x] Protéger le parcours import → audit → effectif → attaque → blessures par un test utilisateur transversal.
 
 ## Suivi de partie
 
@@ -29,6 +31,7 @@
 - [x] Fusionner et tester les états d’unités et journaux multiappareil sans écrasement par un appareil en retard.
 - [ ] Valider la synchronisation sur deux appareils physiques avec un même Gist.
 - [x] Arbitrer les suivis concurrents par horodatage et afficher le résultat de la fusion.
+- [x] Ajouter un journal borné des modifications, l’appareil d’origine et l’annulation de la dernière action.
 
 ## Interface
 

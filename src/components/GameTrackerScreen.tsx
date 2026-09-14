@@ -7,6 +7,7 @@ import { DEFAULT_STATE, type useGameTracker } from '../lib/useGameTracker';
 import { useGameArchive, type ArchivedGame } from '../lib/useGameArchive';
 import type { SyncStatus } from '../lib/useSync';
 import type { ParsedList } from '../types';
+import { clearGameActions, deviceLabel, readGameActions, recordGameAction, removeGameAction, type GameActionEntry } from '../lib/gameActionHistory';
 
 interface Props {
   listP1: ParsedList | null;
@@ -52,19 +53,33 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
   const [unitStates, setUnitStates] = useState<UnitStates>(readUnitStates);
   const [attackHistory, setAttackHistory] = useState<AttackHistoryEntry[]>(readAttackHistory);
+  const [actionHistory, setActionHistory] = useState<GameActionEntry[]>(readGameActions);
   const { state, patch } = tracker;
-  const update = (changes: Partial<typeof state>) => { const next = { ...state, ...changes }; patch(changes); onSync(next); };
+  const update = (changes: Partial<typeof state>, label = 'Mise à jour du suivi') => {
+    const next = { ...state, ...changes };
+    if (JSON.stringify(next) === JSON.stringify(state)) return;
+    setActionHistory(recordGameAction(label, state));
+    patch(changes);
+    onSync(next);
+  };
+  const undoLastAction = () => {
+    const latest = actionHistory.find((entry) => !entry.undoneAt);
+    if (!latest) return;
+    tracker.replace(latest.before);
+    onSync(latest.before);
+    setActionHistory(removeGameAction(latest.id));
+  };
   const activatedUnitIds = state.activatedUnitIds ?? [];
   const roundHistory = state.roundHistory ?? [];
-  const toggleActivation = (unitId: string) => update({ activatedUnitIds: activatedUnitIds.includes(unitId) ? activatedUnitIds.filter((id) => id !== unitId) : [...activatedUnitIds, unitId] });
-  const changeRound = (round: number) => update({ round, activatedUnitIds: round === state.round ? activatedUnitIds : [] });
+  const toggleActivation = (unitId: string) => update({ activatedUnitIds: activatedUnitIds.includes(unitId) ? activatedUnitIds.filter((id) => id !== unitId) : [...activatedUnitIds, unitId] }, activatedUnitIds.includes(unitId) ? 'Activation annulée' : 'Unité marquée comme jouée');
+  const changeRound = (round: number) => update({ round, activatedUnitIds: round === state.round ? activatedUnitIds : [] }, `Passage au round ${round}`);
   const nextRound = () => {
     if (state.round >= ROUNDS.at(-1)!) return;
     update({
       round: state.round + 1,
       activatedUnitIds: [],
       roundHistory: [...roundHistory.filter((entry) => entry.round !== state.round), { round: state.round, activatedUnitIds, vpBleu: state.vpBleu, vpRouge: state.vpRouge, completedAt: new Date().toISOString() }],
-    });
+    }, `Fin du round ${state.round}`);
   };
   const p1Label = playerLabel(listP1, 'Joueur 1');
   const p2Label = playerLabel(listP2, 'Joueur 2');
@@ -96,7 +111,10 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
     localStorage.setItem('swl.assistant.attack-history.v1', '[]');
     setUnitStates({});
     setAttackHistory([]);
-    update(DEFAULT_STATE);
+    clearGameActions();
+    setActionHistory([]);
+    tracker.replace(DEFAULT_STATE);
+    onSync(DEFAULT_STATE);
   };
   const restoreGame = (game: ArchivedGame) => {
     const label = new Date(game.archivedAt).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
@@ -111,7 +129,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   const advantageRouge = ADVANTAGE_CARDS.find((a) => a.id === state.advantageRougeId) ?? null;
 
   useEffect(() => {
-    const refresh = () => { setUnitStates(readUnitStates()); setAttackHistory(readAttackHistory()); };
+    const refresh = () => { setUnitStates(readUnitStates()); setAttackHistory(readAttackHistory()); setActionHistory(readGameActions()); };
     refresh();
     window.addEventListener('storage', refresh);
     window.addEventListener('focus', refresh);
@@ -160,6 +178,8 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         </div>
         <div className="tracker-header-actions">
           <span className={`tracker-sync tracker-sync-${syncStatus}`}><i />{syncLabel}</span>
+          <span className="tracker-device" title="Identifiant local utilisé dans le journal">{deviceLabel()}</span>
+          <button type="button" className="btn btn-ghost" disabled={!actionHistory.some((entry) => !entry.undoneAt)} onClick={undoLastAction}>↶ Annuler</button>
           <button type="button" className="btn btn-ghost btn-danger" onClick={startNewGame}>🆕 Nouvelle partie</button>
           <a className="btn btn-primary tracker-combat-link" href="./assistant/">⚔ Assistant d’unité</a>
         </div>
@@ -214,6 +234,11 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         <h3>Rounds terminés</h3>
         <div>{roundHistory.slice().reverse().map((entry) => <article key={entry.round}><b>Round {entry.round}</b><span>{entry.activatedUnitIds.length} activation(s)</span><span>🔵 {entry.vpBleu} · 🔴 {entry.vpRouge}</span></article>)}</div>
       </section>}
+
+      <section className="tracker-round-history tracker-action-history tracker-console-panel" aria-label="Historique des actions du suivi">
+        <h3>Dernières modifications</h3>
+        {actionHistory.length ? <div>{actionHistory.slice(0, 8).map((entry) => <article className={entry.undoneAt ? 'undone' : ''} key={entry.id}><b>{entry.undoneAt ? '↶ ' : ''}{entry.label}</b><span>{entry.device}</span><span>{new Date(entry.at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span></article>)}</div> : <p className="empty-hint">Aucune modification manuelle enregistrée.</p>}
+      </section>
 
       <section className="tracker-unit-status tracker-console-panel" aria-label="État détaillé des armées">
         <h3>État des unités</h3>

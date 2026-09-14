@@ -177,6 +177,7 @@ assert.match(importAudit, /Dés d.attaque non certifiés/, 'Une arme non certifi
 assert.match(importAudit, /weapon\.verifiedAgainstCard/, 'L’audit doit respecter la certification portée par le profil de dés')
 assert.match(importAudit, /profile\.defenseVerifiedAgainstCard/, 'L’audit doit respecter la certification de défense portée par le profil')
 assert.match(importAudit, /scope: 'catalog'/, 'Les raccordements de catalogue doivent être séparés des certifications moteur')
+assert.match(importAudit, /resolution: unknownCard \? 'unknown-card' : 'visual-unmapped'/, 'Le rapport doit distinguer une carte inconnue d’un visuel seulement non raccordé')
 assert.match(importAudit, /certificationCards: uniqueCards/, 'Le compteur doit compter les cartes à certifier, pas additionner leurs anomalies')
 assert.match(unitModels, /addedModelWounds \?\? base\.woundsPerModel/, 'Les figurines hétérogènes doivent conserver leurs propres PV')
 assert.match(trackerUi, /buildCertifiedUnitRoster/, 'Le suivi de partie doit utiliser le calcul d’effectif central')
@@ -187,7 +188,7 @@ assert.match(trackerUi, /buildCertifiedUnitRoster/, 'Le suivi de partie doit uti
 assert.match(trackerUi, /window\.confirm\(/, 'Nouvelle partie doit demander confirmation (action destructive)')
 assert.match(trackerUi, /UNIT_STATE_KEY, '\{\}'/, 'Nouvelle partie doit effacer les blessures/suppressions de toutes les unités')
 assert.match(trackerUi, /'swl\.assistant\.attack-history\.v1', '\[\]'/, 'Nouvelle partie doit effacer le journal de résolution')
-assert.match(trackerUi, /update\(DEFAULT_STATE\)/, 'Nouvelle partie doit remettre le round, les VP et les objectifs à zéro')
+assert.match(trackerUi, /tracker\.replace\(DEFAULT_STATE\)/, 'Nouvelle partie doit remettre le round, les VP et les objectifs à zéro')
 assert.match(trackerState, /export const DEFAULT_STATE/, 'DEFAULT_STATE doit être exporté pour que Nouvelle partie puisse le réutiliser')
 
 // Balayage rejoué au changement de joueur (pas à chaque recherche/filtre),
@@ -234,6 +235,8 @@ assert.match(trackerUi, /if \(hasProgress\) archiveCurrentGame\(\);\s*\n\s*apply
 // versionné afin que deux appareils affichent le même état de partie.
 assert.match(gistSync, /schemaVersion\?: number/, 'Le format de synchronisation doit être versionné')
 assert.match(gistSync, /assistantAttackHistory\?: unknown\[\]/, 'Le journal des attaques doit faire partie de la synchronisation')
+assert.match(gistSync, /gameActionHistory\?: unknown\[\]/, 'Le journal manuel du suivi doit être synchronisé entre appareils')
+assert.match(gistSync, /mergeGameActionHistory/, 'Une action annulée doit rester annulée après une fusion multiappareil')
 assert.match(gistSync, /assistantUnitStateUpdatedAt\?: Record<string, number>/, 'Chaque unité doit posséder une horloge de conflit indépendante')
 assert.match(gistSync, /mergeAssistantUnitStates/, 'Les états venant de plusieurs appareils doivent être fusionnés')
 assert.match(gistSync, /mergeAttackHistory/, 'Les journaux venant de plusieurs appareils doivent être fusionnés sans doublon')
