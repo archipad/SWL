@@ -2,6 +2,11 @@
 
 ## Dernier lot prêt à valider
 
+- [x] Ajouter la faction Mercenaire (18 unités : Syndicat Pyke, Soleil Noir, Gar Saxon, Maul, Boba Fett (2 versions), Bossk, Cad Bane, IG-88, IG-11, Din Djarin, Grogu, Super Commandos Mandaloriens, Le Bad Batch, Omega) avec visuels, profils de dés et effectifs certifiés — voir `verificationSource` dans `customCards.json` pour la provenance (planches PDF fournies par l'utilisateur, lecture visuelle IA à spot-checker en jouant).
+- [x] Corriger `unitModels.ts` qui ne fusionnait pas `CUSTOM_CARDS` (contrairement à `diceProfiles.ts`/`cardImages.ts`/`cardNamesFr.ts`) : toute carte ajoutée uniquement via l'écran « Nouvelle carte » se voyait signalée à tort « Effectif impossible à calculer avec certitude ».
+- [ ] Cartes Amélioration de la faction Mercenaire (une trentaine : débloquages d'unité, équipements, armes des personnages) — non incluses dans ce lot faute de nom Tabletop Admiral fiable à vérifier ; à ajouter une fois une liste Mercenaire réellement exportée de Tabletop Admiral disponible pour confirmer les clés exactes.
+- [ ] Cartes de Commandement Mercenaire (Maul, Gar Saxon, IG-11, Super Commandos…) — écran de consultation dédié à construire (aucun équivalent existant dans l'appli, sur le modèle des cartes Objectif/Avantage de `battleCards.ts`).
+
 - [x] Intégrer Ténacité à la constitution de la réserve : corps-à-corps uniquement, unité blessée ou ayant perdu une figurine, choix Oui/Non obligatoire, puis ajout d’un unique dé rouge.
 - [x] Protéger Ténacité par les contrats de l’Assistant et la validation complète du projet.
 - [x] Effectuer un contrôle visuel tactile du parcours Ténacité avant publication (parcours local équivalent tablette ; portrait/paysage matériel reste dans la passe responsive finale).

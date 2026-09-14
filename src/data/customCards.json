@@ -1,1 +1,953 @@
-{}
+{
+  "pyke syndicate foot soldiers": {
+    "nameFr": "Fantassins du Syndicat Pyke",
+    "image": "pyke-syndicate-foot-soldiers.jpg",
+    "weapons": [
+      {
+        "name": "Bâton Étourdissant",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Blaster Long P13",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 6
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "intuition-du-danger-x",
+        "value": 2
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "manoeuvre-improbable"
+      },
+      {
+        "keywordId": "instinct-de-survie"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "swoop bike riders": {
+    "nameFr": "Pilotes de Swoop",
+    "image": "swoop-bike-riders.jpg",
+    "weapons": [
+      {
+        "name": "Vibrohache",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Pistolet Blaster Lourd",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 3,
+      "courage": null,
+      "baseModels": 2
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "couvert-x",
+        "value": 1
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "renforts"
+      },
+      {
+        "keywordId": "speeder-x",
+        "value": 1
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "pyke syndicate capo": {
+    "nameFr": "Capo du Syndicat Pyke",
+    "image": "pyke-syndicate-capo.jpg",
+    "weapons": [
+      {
+        "name": "Blaster Long de Capo",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "aide"
+      },
+      {
+        "keywordId": "intuition-du-danger-x",
+        "value": 2
+      },
+      {
+        "keywordId": "autonome"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "black sun vigo": {
+    "nameFr": "Vigo du Soleil Noir",
+    "image": "black-sun-vigo.jpg",
+    "weapons": [
+      {
+        "name": "Blaster Double de Vigo",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "intrepide"
+      },
+      {
+        "keywordId": "autonome"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "black sun enforcers": {
+    "nameFr": "Hommes de Main du Soleil Noir",
+    "image": "black-sun-enforcers.jpg",
+    "weapons": [
+      {
+        "name": "Combat Rapproché",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Blaster Double",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 6
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "intrepide"
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "precis-x",
+        "value": 1
+      },
+      {
+        "keywordId": "instinct-de-survie"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "gar saxon militant commando": {
+    "nameFr": "Gar Saxon",
+    "image": "gar-saxon-militant-commando.jpg",
+    "weapons": [
+      {
+        "name": "Pistolet Blaster de Gar",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "perforant-x"
+        ]
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 1,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "allies-de-circonstance"
+      },
+      {
+        "keywordId": "contrainte"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "maul a rival": {
+    "nameFr": "Maul",
+    "image": "maul-a-rival.jpg",
+    "weapons": [
+      {
+        "name": "Sabre Laser de Maul",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "keywordIds": [
+          "impact-x",
+          "perforant-x"
+        ],
+        "range": "melee"
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 1
+      },
+      {
+        "keywordId": "allies-de-circonstance"
+      },
+      {
+        "keywordId": "deflexion"
+      },
+      {
+        "keywordId": "immunite-perforant"
+      },
+      {
+        "keywordId": "maitrise-du-juyo"
+      },
+      {
+        "keywordId": "blessure-x",
+        "value": 1
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "bossk terror of trandosha": {
+    "nameFr": "Bossk",
+    "image": "bossk-terror-of-trandosha.jpg",
+    "weapons": [
+      {
+        "name": "Frénésie",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Lance-Grenades",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "2-4",
+        "keywordIds": [
+          "perforant-x",
+          "suppressif"
+        ]
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 7,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "prime"
+      },
+      {
+        "keywordId": "enrage-x",
+        "value": 3
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "regenerer-x",
+        "value": 3
+      },
+      {
+        "keywordId": "ascension"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "boba fett infamous bounty hunter": {
+    "nameFr": "Boba Fett, Infâme Chasseur de Primes",
+    "image": "boba-fett-infamous-bounty-hunter.jpg",
+    "weapons": [
+      {
+        "name": "Crampons de Bottes",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Roquettes Intégrées",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "impact-x",
+          "polyvalent"
+        ]
+      },
+      {
+        "name": "Carabine EE-3",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "perforant-x"
+        ]
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "prime"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 2
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "boba fett daimyo of mos espa": {
+    "nameFr": "Boba Fett, Daimyo de Mos Espa",
+    "image": "boba-fett-daimyo-of-mos-espa.jpg",
+    "weapons": [
+      {
+        "name": "Bâton Gaderffii",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Carabine Blaster EE-3",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "perforant-x"
+        ]
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 1
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "arsenal-x",
+        "value": 2
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "sentinelle"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      },
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "cad bane": {
+    "nameFr": "Cad Bane",
+    "image": "cad-bane.jpg",
+    "weapons": [
+      {
+        "name": "Arts Martiaux",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Pistolets Blaster LL-30",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 4
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "perforant-x"
+        ]
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 1
+      },
+      {
+        "keywordId": "prime"
+      },
+      {
+        "keywordId": "intuition-du-danger-x",
+        "value": 3
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      },
+      {
+        "keywordId": "aguerri"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf -- version mise à jour (Danger Sense 3 / Independent Dodge 2 confirmés par recherche web croisée). Lecture visuelle IA, à spot-checker en jouant."
+  },
+  "ig 88": {
+    "nameFr": "IG-88",
+    "image": "ig-88.jpg",
+    "weapons": [
+      {
+        "name": "Vibrocouperet",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Blaster Modifié E-11",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "perforant-x",
+          "polyvalent"
+        ]
+      },
+      {
+        "name": "DLT-20A Modifié",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 1,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "armure-x",
+        "value": 1
+      },
+      {
+        "keywordId": "arsenal-x",
+        "value": 2
+      },
+      {
+        "keywordId": "prime"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf -- lecture visuelle IA (défense rouge, 5 PV confirmés par thefifthtrooper.com/ig-88-unit-guide). À spot-checker en jouant."
+  },
+  "ig 11": {
+    "nameFr": "IG-11",
+    "image": "ig-11.jpg",
+    "weapons": [
+      {
+        "name": "Blaster E-11 Modifié",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "perforant-x"
+        ]
+      },
+      {
+        "name": "DLT-20A Modifié",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-4"
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 1,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "armure-x",
+        "value": 1
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "programme"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "din djarin": {
+    "nameFr": "Din Djarin",
+    "image": "din-djarin.jpg",
+    "weapons": [
+      {
+        "name": "Vibrolame",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "keywordIds": [
+          "letal-x"
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Pistolet Blaster IB-94",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "letal-x",
+          "longue-distance",
+          "polyvalent"
+        ]
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "arsenal-x",
+        "value": 2
+      },
+      {
+        "keywordId": "prime"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf (planche à découper, fournie par l'utilisateur) -- lecture visuelle IA, à spot-checker en jouant."
+  },
+  "mandalorian super commandos": {
+    "nameFr": "Super Commandos Mandaloriens",
+    "image": "mandalorian-super-commandos.jpg",
+    "weapons": [
+      {
+        "name": "Blasters WESTAR-35",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-3"
+      },
+      {
+        "name": "Carabines Blaster",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "defense-x",
+        "value": 1
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "autonome"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf -- lecture visuelle IA (effectif de base supposé à 4 figurines par cohérence avec les unités Forces Spéciales similaires -- à confirmer). À spot-checker en jouant."
+  },
+  "grogu": {
+    "nameFr": "Grogu",
+    "image": "grogu.jpg",
+    "weapons": [],
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": null,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "alter-ego"
+      },
+      {
+        "keywordId": "traque"
+      },
+      {
+        "keywordId": "pouvoir-latent"
+      },
+      {
+        "keywordId": "petit"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf -- figurine Alter Ego (Din Djarin), sans arme propre. Lecture visuelle IA."
+  },
+  "the bad batch": {
+    "nameFr": "Le Bad Batch",
+    "image": "the-bad-batch.jpg",
+    "weapons": [
+      {
+        "name": "Pistolets Blaster DC-17",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "equipe"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "ascension"
+      },
+      {
+        "keywordId": "aguerri"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      },
+      {
+        "keywordId": "on-est-pas-des-regs"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf -- unité de base (Hunter) ; s'étoffe via les cartes Amélioration Équipe (Crosshair, Echo, Tech, Wrecker). Lecture visuelle IA."
+  },
+  "omega": {
+    "nameFr": "Omega",
+    "image": "omega.jpg",
+    "weapons": [
+      {
+        "name": "Arc Énergétique Zygerrien",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      }
+    ],
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": null,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "alter-ego"
+      },
+      {
+        "keywordId": "je-fais-aussi-partie-de-lequipe"
+      }
+    ],
+    "verificationSource": "Mercenary Units FR.pdf -- figurine Alter Ego (Le Bad Batch). Lecture visuelle IA."
+  }
+}
