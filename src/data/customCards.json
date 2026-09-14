@@ -917,6 +917,109 @@
     ],
     "verificationSource": "Mercenary Units FR.pdf -- unité de base (Hunter) ; s'étoffe via les cartes Amélioration Équipe (Crosshair, Echo, Tech, Wrecker). Lecture visuelle IA."
   },
+  "rebel agent defender of democracy": {
+    "nameFr": "Agent Rebelle, Défenseur de la Démocratie",
+    "image": "rebel-agent-defender-of-democracy.png",
+    "weapons": [
+      {
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "blanc",
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "agile"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      }
+    ],
+    "verificationSource": "Carte anglaise Rebel Agent — Defender of Democracy fournie par l’utilisateur le 14/09/2026 ; lecture visuelle directe."
+  },
+  "reluctant hero": {
+    "nameFr": "Héros Malgré Lui",
+    "image": "reluctant-hero.webp",
+    "weapons": [],
+    "keywords": [
+      { "keywordId": "critique-x", "value": 0 },
+      { "keywordId": "infiltration" },
+      { "keywordId": "implacable" }
+    ],
+    "criticalPerSuppression": true,
+    "note": "Lors de la formation d'une réserve d'attaque, celle-ci gagne Critique 1 pour chaque pion Suppression de l'unité.",
+    "verificationSource": "Carte anglaise officielle Reluctant Hero v1.0, visuel LegionHQ2 contrôlé le 14/09/2026."
+  },
+  "fire control": {
+    "nameFr": "Contrôle de Tir",
+    "image": "fire-control.webp",
+    "weapons": [],
+    "fireControl": true,
+    "note": "Quand une autre unité alliée à portée 1 effectue une attaque à distance contre une cible en ligne de vue du porteur, améliorez 2 de ses dés d'attaque.",
+    "verificationSource": "Carte anglaise officielle Fire Control v1.0, visuel LegionHQ2 contrôlé le 14/09/2026."
+  },
+  "combat armor rebel": {
+    "nameFr": "Armure de Combat",
+    "image": "combat-armor-rebel.webp",
+    "weapons": [],
+    "defenseColorOverride": "rouge",
+    "defenseSurgeOverride": null,
+    "note": "La défense de l'unité devient rouge au lieu de blanche et l'unité perd sa conversion d'adrénaline de défense.",
+    "verificationSource": "Carte anglaise officielle Combat Armor v1.0, visuel LegionHQ2 contrôlé le 14/09/2026."
+  },
+  "repeating blaster": {
+    "nameFr": "Blaster Répétiteur",
+    "image": "repeating-blaster.webp",
+    "weapons": [
+      {
+        "name": "Blaster Répétiteur",
+        "dice": [
+          { "color": "rouge", "count": 1 },
+          { "color": "noir", "count": 2 },
+          { "color": "blanc", "count": 3 }
+        ],
+        "range": "1-3",
+        "keywordIds": ["critique-x", "impact-x", "longue-distance"],
+        "keywordValues": { "critique-x": 1, "impact-x": 1 }
+      }
+    ],
+    "keywords": [
+      { "keywordId": "precis-x", "value": 2 },
+      { "keywordId": "critique-x", "value": 1 },
+      { "keywordId": "impact-x", "value": 1 },
+      { "keywordId": "longue-distance" }
+    ],
+    "note": "Réservé à l'Agent rebelle ou à l'Officier rebelle. Réduit la vitesse maximale de 1.",
+    "verificationSource": "Carte anglaise officielle Repeating Blaster v1.0, visuel LegionHQ2 contrôlé le 14/09/2026."
+  },
   "omega": {
     "nameFr": "Omega",
     "image": "omega.jpg",

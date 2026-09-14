@@ -42,14 +42,22 @@
     return color === 'rouge' ? 'noir' : color === 'noir' ? 'blanc' : 'blanc';
   }
 
-  function buildPool(rows, counts, downgradedKeys = new Set()) {
+  function upgradeColor(color) {
+    return color === 'blanc' ? 'noir' : color === 'noir' ? 'rouge' : 'rouge';
+  }
+
+  function buildPool(rows, counts, downgradedKeys = new Set(), upgradesByKey = {}) {
     const pool = { rouge: 0, noir: 0, blanc: 0, variable: false };
     rows.forEach((row) => {
       const multiplier = Math.max(1, Number(counts[row.key]) || 1);
+      let upgrades = Math.max(0, Number(upgradesByKey[row.key]) || 0);
       if (row.weapon.dice === 'variable') pool.variable = true;
-      else row.weapon.dice.forEach((die) => {
-        const color = downgradedKeys.has(row.key) ? downgradeColor(die.color) : die.color;
-        pool[color] += die.count * multiplier;
+      else [...row.weapon.dice].sort((a, b) => ({ blanc: 0, noir: 1, rouge: 2 }[a.color] - { blanc: 0, noir: 1, rouge: 2 }[b.color])).forEach((die) => {
+        for (let index = 0; index < die.count * multiplier; index++) {
+          let color = downgradedKeys.has(row.key) ? downgradeColor(die.color) : die.color;
+          if (upgrades > 0 && color !== 'rouge') { color = upgradeColor(color); upgrades--; }
+          pool[color] += 1;
+        }
       });
     });
     return pool;
@@ -231,13 +239,26 @@
     return hasBlockKeyword && Math.max(0, Number(dodgesUsed) || 0) > 0 ? 'block' : printedSurge;
   }
 
+  function duelistModifiers(options = {}) {
+    const melee = Boolean(options.melee);
+    return {
+      pierceBonus: melee && Math.max(0, Number(options.aimSpent) || 0) > 0 ? 1 : 0,
+      pierceImmune: melee && Math.max(0, Number(options.dodgeSpent) || 0) > 0,
+    };
+  }
+
+  function weakPointImpact(baseImpact, weakPointX, exposed) {
+    return Math.max(0, Number(baseImpact) || 0) +
+      (exposed ? Math.max(0, Number(weakPointX) || 0) : 0);
+  }
+
   function weaponKeywordActive(profile, weapon, cardKeywordIds, keywordId) {
     if (Array.isArray(weapon?.keywordIds)) return weapon.keywordIds.includes(keywordId);
     return (profile?.weapons?.length || 0) === 1 && (cardKeywordIds || []).includes(keywordId);
   }
 
   window.SWL_ATTACK_ENGINE = {
-    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, moraleState, allocateWounds, rallyState, applyLethal, effectivePierce,
-    convertAttack, applyRam, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, weaponKeywordActive,
+    rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, upgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, moraleState, allocateWounds, rallyState, applyLethal, effectivePierce,
+    convertAttack, applyRam, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, duelistModifiers, weakPointImpact, weaponKeywordActive,
   };
 })();

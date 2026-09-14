@@ -34,9 +34,13 @@ export interface CardDiceProfile {
   weapons: WeaponProfile[];
   /** Couleur du dé de défense de l'unité (absent : carte sans défense propre — compagnon, ou amélioration). */
   defenseColor?: DiceColor;
+  defenseColorOverride?: DiceColor;
   /** Couleur de défense contrôlée directement sur le visuel français de l'unité. */
   defenseVerifiedAgainstCard?: boolean;
   defenseVerificationSource?: string;
+  defenseSurgeOverride?: 'block' | null;
+  criticalPerSuppression?: boolean;
+  fireControl?: boolean;
   /** Caractéristiques imprimées de la carte Unité, certifiées avec le même circuit que les dés. */
   unitStats?: {
     woundsPerModel: number;
@@ -274,6 +278,12 @@ export const DICE_PROFILES: Record<string, CardDiceProfile> = {
               defenseVerificationSource: card.verificationSource,
             }
           : {}),
+        ...(card.defenseColorOverride ? { defenseColorOverride: card.defenseColorOverride } : {}),
+        ...('defenseSurgeOverride' in card ? { defenseSurgeOverride: card.defenseSurgeOverride } : {}),
+        ...(card.criticalPerSuppression ? { criticalPerSuppression: true } : {}),
+        ...(card.fireControl ? { fireControl: true } : {}),
+        ...(card.attackSurge ? { attackSurge: card.attackSurge } : {}),
+        ...(card.defenseSurge ? { defenseSurge: card.defenseSurge } : {}),
         ...(card.unitStats
           ? {
               unitStats: {
@@ -287,6 +297,7 @@ export const DICE_PROFILES: Record<string, CardDiceProfile> = {
           ? { addedModels: card.addedModels, addedModelsVerifiedAgainstCard: true }
           : {}),
         ...(card.addedModelWounds != null ? { addedModelWounds: card.addedModelWounds } : {}),
+        ...(card.note ? { note: card.note } : {}),
       } satisfies CardDiceProfile,
     ]),
   ),

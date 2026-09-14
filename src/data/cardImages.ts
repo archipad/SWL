@@ -244,6 +244,9 @@ const RAW: Record<string, string> = {
   'Impact Grenades': 'impact-grenades.jpg',
   'HQ Uplink': 'hq-uplink.jpg',
   'Duck and Cover': 'evasive-cover.jpg',
+  'In the Fray': 'in-the-fray.jpg',
+  'Point Blank': 'point-blank.jpg',
+  'Emergency Transponder': 'emergency-transponder.jpg',
 };
 
 export const CARD_IMAGES: Record<string, string> = {

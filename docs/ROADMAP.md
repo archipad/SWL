@@ -19,6 +19,7 @@
 - [x] Couvrir par scénarios les interactions de mots-clés ayant un impact sur les dés (Critical, Impact/Armure, Létal/Perforant/Insensible et Bélier).
 - [x] Protéger le parcours complet attaque → couvert → défense → blessures → suppression par des scénarios bout-en-bout.
 - [x] Traiter automatiquement le courage « — », les véhicules et l’immunité à la suppression dans le moteur de moral et de ralliement.
+- [ ] Convertir les 45 mots-clés assistés en automatismes déterministes ou questions contextuelles obligatoires (4 terminés : Anti-matériel, Anti-personnel, Duelliste et Point faible ; 41 restants).
 
 ## Robustesse des données
 

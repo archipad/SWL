@@ -7,6 +7,8 @@ try {
   const { auditImportedList } = await vite.ssrLoadModule('/src/lib/importAudit.ts');
   const { buildCertifiedUnitRoster } = await vite.ssrLoadModule('/src/lib/unitModels.ts');
   const { canonicalCardKey } = await vite.ssrLoadModule('/src/lib/cardNames.ts');
+  const { frenchCardName } = await vite.ssrLoadModule('/src/lib/cardNames.ts');
+  const { cardImageFor } = await vite.ssrLoadModule('/src/data/cardImages.ts');
   const { DICE_PROFILES } = await vite.ssrLoadModule('/src/data/diceProfiles.ts');
   const tabletopAdmiral = { listname: 'Régression import Rebel', points: 800, armyFaction: 'rebel', units: [
     { name: 'Rebel Troopers', upgrades: ['Z-6 Trooper', 'Rebel Trooper', 'Fragmentation Grenades'], loadout: ['Prepared Supplies', 'Prepared Supplies'] },
@@ -34,6 +36,17 @@ try {
   assert.deepEqual(grenade.weapons[0].dice, [{ color: 'rouge', count: 1 }]);
   assert.equal(grenade.weapons[0].range, '1');
   assert.equal(grenade.weapons[0].attackSurge, 'crit');
+  const tabletopAliases = [
+    ['Into the Fray', 'in the fray', 'Dans la Mêlée'],
+    ['AT-RT Laser Cannon', 'tl tt laser cannon', 'Canon Laser de TL-TT'],
+    ['Up Close and Personal', 'point blank', 'À Bout Portant'],
+  ];
+  for (const [importedName, expectedKey, expectedFrenchName] of tabletopAliases) {
+    assert.equal(canonicalCardKey(importedName), expectedKey);
+    assert.equal(frenchCardName(importedName), expectedFrenchName);
+    assert.ok(cardImageFor(importedName), `${importedName}: visuel non raccordé après résolution de l’alias`);
+  }
+  assert.ok(cardImageFor("Transpondeur d'Urgence"), 'Le visuel français du Transpondeur d’Urgence doit être raccordé');
   const audit = auditImportedList(imported);
   assert.equal(audit.safeForEngine, true, audit.certificationIssues.map((issue) => issue.message).join('; '));
   assert.equal(audit.units[0].models, 6);
@@ -55,6 +68,45 @@ try {
   assert.equal(customCardRoster.certified, true, 'Une unité certifiée seulement via customCards.json doit être reconnue');
   assert.equal(customCardRoster.models.length, 1);
   assert.equal(customCardRoster.models[0].maxWounds, 5);
+  const rebelAgent = DICE_PROFILES[canonicalCardKey('Rebel Agent Defender of Democracy')];
+  assert.ok(rebelAgent, 'L’Agent Rebelle personnalisable doit être reconnu directement après import Tabletop Admiral');
+  assert.deepEqual(rebelAgent.weapons.map((weapon) => weapon.dice), [
+    [{ color: 'noir', count: 3 }],
+    [{ color: 'noir', count: 1 }, { color: 'blanc', count: 2 }],
+  ]);
+  assert.equal(rebelAgent.defenseColor, 'blanc');
+  assert.equal(rebelAgent.attackSurge, 'hit');
+  assert.equal(rebelAgent.defenseSurge, 'block');
+  const rebelAgentRoster = buildCertifiedUnitRoster({ name: 'Rebel Agent Defender of Democracy', key: 'rebel-agent-test', upgrades: [] });
+  assert.equal(rebelAgentRoster.models.length, 1);
+  assert.equal(rebelAgentRoster.models[0].maxWounds, 5);
+  assert.ok(cardImageFor('Rebel Agent Defender of Democracy'));
+  assert.equal(frenchCardName('Rebel Agent Defender of Democracy'), 'Agent Rebelle, Défenseur de la Démocratie');
+  for (const [name, french] of [
+    ['Reluctant Hero', 'Héros Malgré Lui'],
+    ['Fire Control', 'Contrôle de Tir'],
+    ['Combat Armor (Rebel)', 'Armure de Combat'],
+    ['Repeating Blaster', 'Blaster Répétiteur'],
+  ]) {
+    assert.ok(cardImageFor(name), `${name}: visuel anglais non raccordé`);
+    assert.equal(frenchCardName(name), french);
+    assert.equal(canonicalCardKey(french), canonicalCardKey(name), `${name}: le titre français doit résoudre la même carte`);
+  }
+  const reluctantHero = DICE_PROFILES[canonicalCardKey('Reluctant Hero')];
+  assert.equal(reluctantHero.criticalPerSuppression, true);
+  const fireControl = DICE_PROFILES[canonicalCardKey('Fire Control')];
+  assert.equal(fireControl.fireControl, true);
+  const combatArmor = DICE_PROFILES[canonicalCardKey('Combat Armor (Rebel)')];
+  assert.equal(combatArmor.defenseColorOverride, 'rouge');
+  assert.equal(combatArmor.defenseSurgeOverride, null);
+  const repeatingBlaster = DICE_PROFILES[canonicalCardKey('Repeating Blaster')];
+  assert.deepEqual(repeatingBlaster.weapons[0].dice, [
+    { color: 'rouge', count: 1 },
+    { color: 'noir', count: 2 },
+    { color: 'blanc', count: 3 },
+  ]);
+  assert.equal(repeatingBlaster.weapons[0].range, '1-3');
+  assert.deepEqual(repeatingBlaster.weapons[0].keywordValues, { 'critique-x': 1, 'impact-x': 1 });
   console.log('Import pipeline OK — JSON Tabletop Admiral, clés stables, doublons, effectifs, grenades et audit vérifiés.');
 } finally {
   await vite.close();

@@ -66,6 +66,12 @@ const cumbersomePool = engine.buildPool([
   { key: 'weapon', weapon: { dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }] } },
 ], { weapon: 1 }, new Set(['weapon']))
 assert.deepEqual({ ...cumbersomePool }, { rouge: 0, noir: 1, blanc: 2, variable: false })
+assert.equal(engine.upgradeColor('blanc'), 'noir')
+assert.equal(engine.upgradeColor('noir'), 'rouge')
+const antiPool = engine.buildPool([
+  { key: 'anti', weapon: { dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 1 }] } },
+], { anti: 1 }, new Set(), { anti: 2 })
+assert.deepEqual({ ...antiPool }, { rouge: 0, noir: 3, blanc: 0, variable: false })
 assert.equal(engine.effectiveCover('heavy', 1, false, false), 'light')
 assert.equal(engine.effectiveCover('heavy', 2, false, false), 'none')
 assert.equal(engine.effectiveCover('heavy', 0, true, false), 'none')
@@ -219,5 +225,10 @@ const persistentEffects = engine.resolveStatusEffects({ wounds: 1, immobilizeX: 
 assert.equal(persistentEffects.immobilize, 2)
 assert.equal(persistentEffects.poison, 1)
 assert.equal(engine.suppressionTokens({ ranged: true, hadAttackResult: true, suppressive: true, vehicle: true }), 0)
+
+assert.deepEqual({ ...engine.duelistModifiers({ melee: true, aimSpent: 1, dodgeSpent: 1 }) }, { pierceBonus: 1, pierceImmune: true })
+assert.deepEqual({ ...engine.duelistModifiers({ melee: false, aimSpent: 3, dodgeSpent: 2 }) }, { pierceBonus: 0, pierceImmune: false })
+assert.equal(engine.weakPointImpact(2, 3, true), 5)
+assert.equal(engine.weakPointImpact(2, 3, false), 2)
 
 console.log('Assistant attack engine: matrice complète OK')

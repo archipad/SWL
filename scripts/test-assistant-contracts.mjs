@@ -261,6 +261,9 @@ assert.match(textImporter, /key: nextUnitSlug\(card\.name\)/, 'La clé stable d�
 assert.equal(cardKeyAliases['prepared supplies'], 'prepared materiel', 'Prepared Supplies doit retrouver Matériel Préparé')
 assert.equal(cardKeyAliases['cm 0 93 trooper'], 'cm o 93 trooper', 'CM-0\/93 doit retrouver la carte CM-O\/93')
 assert.equal(cardKeyAliases['chewbacca walking carpet'], 'chewbacca', 'Chewbacca Walking Carpet doit retrouver la carte Chewbacca')
+assert.equal(cardKeyAliases['into the fray'], 'in the fray', 'Into the Fray doit retrouver Dans la Mêlée')
+assert.equal(cardKeyAliases['at rt laser cannon'], 'tl tt laser cannon', 'AT-RT Laser Cannon doit retrouver le Canon Laser de TL-TT')
+assert.equal(cardKeyAliases['up close and personal'], 'point blank', 'Up Close and Personal doit retrouver À Bout Portant')
 assert.deepEqual(reference.aliases, cardKeyAliases, 'Le référentiel généré doit refléter exactement src/data/cardKeyAliases.json')
 for (const card of ['force reflexes', 'improvised orders', 'prepared materiel', 'fragmentation grenades', 'situational awareness', 'impact grenades', 'hq uplink', 'duck and cover']) {
   assert.ok(reference.images[card], `${card}: visuel générique non raccordé`)
@@ -273,12 +276,26 @@ assert.equal(reference.weapons['fragmentation grenades'].weapons[0].range, '1', 
 assert.equal(reference.weapons['fragmentation grenades'].weapons[0].attackSurge, 'crit', 'La grenade à fragmentation doit donner Adrénaline vers Critique à la réserve')
 assert.equal(reference.weapons['impact grenades'].weapons[0].dice[0].color, 'noir', 'La grenade à impact doit lancer un dé noir')
 assert.match(app, /function effectiveAttackProfile\(\)/, 'Les conversions accordées par les armes doivent être calculées au niveau de la réserve')
+assert.match(app, /weaponKeywordValue\(row,'anti-materiel-x'\)/, 'Anti-matériel doit améliorer automatiquement les dés contre un véhicule')
+assert.match(app, /engine\.duelistModifiers/, 'Duelliste doit être intégré au calcul automatique de Perforant et de son immunité')
+assert.match(app, /weakPointExposed/, 'Point faible doit imposer une réponse contextuelle explicite')
+assert.match(app, /engine\.weakPointImpact/, 'Point faible doit alimenter automatiquement la valeur d’Impact')
+assert.match(app, /weaponKeywordValue\(row,'anti-personnel-x'\)/, 'Anti-personnel doit améliorer automatiquement les dés contre des soldats')
 assert.match(certificationUiSource, /location\.hash==='\#certification'/, 'Le rapport d’import doit pouvoir ouvrir directement la certification')
 assert.match(app, /function suggestedWeaponCount\(row\)/, 'Les figurines par arme doivent être préremplies depuis l’effectif survivant')
 assert.match(app, /attackState\.manualCounts/, 'Une correction manuelle du nombre de figurines doit rester prioritaire')
 assert.match(app, /PRÉREMPLI · MODIFIABLE/, 'Le caractère modifiable du préremplissage doit être explicite')
 assert.match(app, /function decorateTacticalResolution\(\)/, 'La zone d’action et la télémétrie doivent être hiérarchisées')
 assert.match(app, /DÉ.*BLANC.*À LANCER/, 'L’étape de couvert doit annoncer clairement les dés blancs à lancer')
+assert.match(app, /criticalPerSuppression/, 'Héros Malgré Lui doit calculer Critique X depuis la suppression actuelle')
+assert.match(app, /function fireControlCandidates\(\)/, 'Contrôle de Tir doit rechercher une autre unité alliée équipée')
+assert.match(app, /upgradePoolDice\(result,2\)/, 'Contrôle de Tir doit améliorer exactement deux dés de la réserve')
+assert.match(app, /defenseColorOverride/, 'Armure de Combat doit remplacer la couleur du dé de défense')
+assert.match(app, /defenseSurgeOverride/, 'Armure de Combat doit pouvoir retirer la conversion défensive')
+for (const card of ['reluctant hero', 'fire control', 'combat armor rebel', 'repeating blaster']) {
+  assert.ok(reference.images[card], `${card}: visuel anglais absent du référentiel Assistant`)
+  assert.ok(reference.names[card], `${card}: nom français absent du référentiel Assistant`)
+}
 
 // Couverture exhaustive des ressources déjà présentes : tout nouveau fichier
 // de carte doit être nommé et raccordé avant qu'une publication puisse passer.

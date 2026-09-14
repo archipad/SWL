@@ -316,5 +316,6 @@ export const CARD_NAMES_FR: Record<string, string> = {
  * clé anglaise directement.
  */
 export const EN_KEY_BY_FRENCH_NAME: Record<string, string> = Object.fromEntries(
-  Object.entries(RAW).map(([name, fr]) => [normalizeName(fr), normalizeName(name)]),
+  [...Object.entries(RAW), ...Object.entries(CUSTOM_CARDS).map(([key, card]) => [key, card.nameFr])]
+    .map(([name, fr]) => [normalizeName(fr), normalizeName(name)]),
 );

@@ -51,14 +51,16 @@ const automatic = new Set([
   'souffle',
   'accomplir-la-mission',
   'chasseur-de-jedi',
+  'anti-materiel-x',
+  'anti-personnel-x',
+  'duelliste',
+  'point-faible-x',
 ])
 
 const assisted = new Set([
   'arsenal-x',
   'couvert-x',
-  'duelliste',
   'gardien-x',
-  'point-faible-x',
   'tirs-de-soutien',
   'transport-x',
   'autodestruction-x-unite',
@@ -84,8 +86,6 @@ const assisted = new Set([
   'pistolero',
   'surveillance-x',
   'tireur-embusque',
-  'anti-materiel-x',
-  'anti-personnel-x',
   'arme-a-effet-de-zone',
   'assaut-x',
   'autodestruction-x-arme',

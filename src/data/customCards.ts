@@ -16,6 +16,17 @@ export interface CustomCardEntry {
   image?: string;
   weapons?: CustomCardWeapon[];
   defenseColor?: 'blanc' | 'rouge';
+  /** Une amélioration peut remplacer le dé de défense de l'unité qui la porte. */
+  defenseColorOverride?: 'blanc' | 'rouge';
+  attackSurge?: 'hit' | 'crit';
+  defenseSurge?: 'block';
+  /** null retire explicitement la conversion imprimée de l'unité. */
+  defenseSurgeOverride?: 'block' | null;
+  /** Critique X, où X est le nombre actuel de pions Suppression du porteur. */
+  criticalPerSuppression?: boolean;
+  /** Améliore deux dés d'une autre unité alliée à portée 1. */
+  fireControl?: boolean;
+  note?: string;
   unitStats?: {
     woundsPerModel: number;
     courage: number | null;
