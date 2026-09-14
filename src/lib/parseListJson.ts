@@ -1,5 +1,6 @@
 import type { ParsedCard, ParsedList, ParsedUnit } from '../types';
 import { normalizeName } from './normalize';
+import { canonicalImportedUpgradeName } from './cardNames';
 
 /** Forme du JSON exporté par Tabletop Admiral pour Star Wars: Legion. */
 interface TabletopAdmiralUnit {
@@ -73,7 +74,8 @@ export function parseArmyListJson(input: string): ParsedList | null {
     const unitKey = nextUnitSlug(u.name);
     const upgradeNames = [...(u.upgrades ?? []), ...(u.loadout ?? [])];
     const upgradeSeen = new Map<string, number>();
-    const upgrades: ParsedCard[] = upgradeNames.map((name) => {
+    const upgrades: ParsedCard[] = upgradeNames.map((rawName) => {
+      const name = canonicalImportedUpgradeName(rawName);
       const base = normalizeName(name) || 'carte';
       const occurrence = (upgradeSeen.get(base) ?? 0) + 1;
       upgradeSeen.set(base, occurrence);
