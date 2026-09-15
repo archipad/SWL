@@ -489,8 +489,11 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
     { keywordId: 'charge' },
   ],
   'The Darksaber': [
-    { keywordId: 'impact-x', value: 1 },
-    { keywordId: 'perforant-x', value: 1 },
+    // Impact 2 / Perforant 2 relus à fort zoom sur la carte française
+    // Mercenary Upgrades FR.pdf (15/09) — corrige 1/1, qui ne correspondait
+    // pas au texte imprimé sur le bloc d'arme (voir aussi diceProfiles.ts).
+    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'perforant-x', value: 2 },
     { keywordId: 'demoraliser-x', value: 1 },
     { keywordId: 'immunite-perforant-corps-a-corps' },
   ],
