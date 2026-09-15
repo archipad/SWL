@@ -450,7 +450,40 @@
       }
     ],
     "addedModels": 1,
-    "addedModelWounds": 1
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "mission-secrete"
+        },
+        {
+          "keywordId": "coup-de-chance-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "visualPath": "/SWL/cards/cassian-andor-operative.jpg",
+      "verifiedAt": "2026-09-15T09:29:24.790Z",
+      "visualHash": "3fadc71fa10156aeeedc7212235a9a9aaf0aac34b66b95b3d7d8c83dc970e5ec"
+    }
   },
   "cassian andor": {
     "weapons": [
@@ -3698,7 +3731,34 @@
       }
     ],
     "addedModels": 1,
-    "addedModelWounds": 1
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "visualPath": "/SWL/cards/dlt-19-stormtrooper.jpg",
+      "verifiedAt": "2026-09-15T09:29:24.790Z",
+      "visualHash": "be9a58e729a40599d1171e72cf4fdaf071cb407450208a1945d0bac5765ccfd7"
+    }
   },
   "dlt 19d trooper": {
     "weapons": [],
@@ -4268,7 +4328,7 @@
       ],
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/jyns-se-14-blaster.jpg",
-      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "verifiedAt": "2026-09-15T09:29:24.790Z",
       "visualHash": "de76e8981b14e1416653e9d460d4d6f32a85ad057e2086decb3cd7ad303e03dc"
     }
   },
