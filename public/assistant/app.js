@@ -609,6 +609,50 @@ function buildLiveGameReport(){
 function downloadLiveGameReport(report){const clean=JSON.stringify(report,null,2),blob=new Blob([clean],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`swl-test-partie-${new Date().toISOString().slice(0,10)}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
 function showLiveGameReport(){const report=buildLiveGameReport(),status=report.safeForEngine?'ready':'blocked';stage=1;root.innerHTML=`<section class="live-game-report ${status}"><header><div><small>CONTRÔLE DES DONNÉES RÉELLEMENT IMPORTÉES</small><h1>${report.safeForEngine?'✓ LISTES PRÊTES POUR LE MOTEUR':'⚠ BLOCAGE MOTEUR DÉTECTÉ'}</h1><p>Test exécuté sur les listes actuellement stockées dans ce navigateur, et non sur une liste de démonstration.</p></div><b>${report.summary.simulatedAttacks}<small>couples arme/cible</small></b></header><div class="report-counters"><span><b>${report.summary.units}</b> unités</span><span><b>${report.summary.cards}</b> cartes</span><span class="danger"><b>${report.summary.blocking}</b> blocage(s)</span><span class="warning"><b>${report.summary.warnings}</b> avertissement(s)</span></div>${report.blocking.length?`<section><h2>BLOCAGES À CORRIGER</h2>${report.blocking.map(issue=>`<article class="report-issue danger"><b>${issue.unit}</b><span>${issue.card} · ${issue.message}</span></article>`).join('')}</section>`:''}${report.warnings.length?`<section><h2>CONTRÔLES DE CATALOGUE</h2>${report.warnings.map(issue=>`<article class="report-issue warning"><b>${issue.unit}</b><span>${issue.card} · ${issue.message}</span></article>`).join('')}</section>`:'<section class="report-clear"><b>✓ Tous les visuels et noms français sont raccordés.</b></section>'}<section><h2>UNITÉS TESTÉES</h2><div class="report-units">${report.armies.flatMap(army=>army.units).map(unit=>`<article><b>${unit.name}</b><span>${unit.models??'?'} figurine(s) · ${unit.totalWounds??'?'} PV · défense ${unit.defenseColor||'?'}</span><small>${unit.weapons.length} arme(s) · ${unit.assistedRules.length} règle(s) assistée(s)</small></article>`).join('')}</div></section><footer><button class="secondary" id="closeLiveReport">Retour aux unités</button><button class="primary" id="downloadLiveReport">Télécharger le rapport JSON</button></footer><small class="privacy-note">Aucun jeton GitHub, identifiant Gist ou secret de synchronisation n’est inclus.</small></section>`;$('#closeLiveReport').onclick=()=>pick('attacker');$('#downloadLiveReport').onclick=()=>downloadLiveGameReport(report);progress()}
 
+// Attaques gratuites accordées par un déplacement. Elles empruntent le moteur
+// normal, mais ne consomment pas d'action et ne terminent pas l'activation.
+let freeAttackContext=null;
+function movementFreeAttack(entry){
+  const state=stateFor(entry),actions=state.activationActions||[],moved=actions.includes('move'),used=state.freeAttackRound===currentRound()||actions.includes('attack');
+  if(!moved||used)return null;
+  if(hasResolvedKeyword(entry,'charge'))return{kind:'charge',label:'CHARGE',range:'melee',help:'Après le déplacement : attaque gratuite au corps-à-corps contre l’unité contactée.'};
+  if(hasResolvedKeyword(entry,'aguerri'))return{kind:'aguerri',label:'AGUERRI',range:'ranged',help:'Après l’action Se déplacer : attaque gratuite avec des armes à distance uniquement.'};
+  if(hasResolvedKeyword(entry,'implacable'))return{kind:'implacable',label:'IMPLACABLE',range:'any',help:'Après l’action Se déplacer : attaque gratuite.'};
+  return null;
+}
+const activationAutomationFreeAttackBase=activationAutomationPanel;
+activationAutomationPanel=function(entry){
+  const base=activationAutomationFreeAttackBase(entry),free=movementFreeAttack(entry);
+  if(!free)return base;
+  const card=`<section class="activation-automation free-attack"><header><strong>ATTAQUE GRATUITE DISPONIBLE</strong><small>Cette attaque ne consomme aucune des actions normales.</small></header><div><button data-free-attack="${free.kind}"><b>${free.label}</b><small>${free.help}</small></button></div></section>`;
+  return base+card;
+};
+const bindActivationAutomationFreeAttackBase=bindActivationAutomation;
+bindActivationAutomation=function(entry,role){
+  bindActivationAutomationFreeAttackBase(entry,role);
+  root.querySelectorAll('[data-free-attack]').forEach(button=>button.onclick=()=>{const free=movementFreeAttack(entry);if(!free)return;freeAttackContext={attackerId:entry.id,kind:free.kind,range:free.range};attacker=entry;defender=null;stage=3;stageWipe=true;pick('defender')});
+};
+const initAttackFreeBase=initAttack;
+initAttack=function(){initAttackFreeBase();if(freeAttackContext?.attackerId===attacker?.id&&attackState){attackState.freeAttack=freeAttackContext.kind;attackState.freeAttackRange=freeAttackContext.range}};
+const stepIssueFreeBase=stepIssue;
+stepIssue=function(){const base=stepIssueFreeBase();if(base)return base;if(attackStep===0&&attackState?.freeAttackRange==='melee'&&attackType()!=='melee')return 'Charge autorise uniquement une attaque au corps-à-corps.';if(attackStep===0&&attackState?.freeAttackRange==='ranged'&&attackType()!=='ranged')return 'Aguerri autorise uniquement une attaque à distance.';return null};
+const markUnitActivatedFreeBase=markUnitActivated;
+markUnitActivated=function(entry){if(attackState?.freeAttack)return;markUnitActivatedFreeBase(entry)};
+const saveAttackHistoryFreeBase=saveAttackHistory;
+saveAttackHistory=function(){const free=attackState?.freeAttack;saveAttackHistoryFreeBase();if(!free)return;const state=stateFor(attacker);unitStates[attacker.id]={...state,freeAttackRound:currentRound(),freeAttackKind:free};persistUnitStates();if(attackHistory[0]){attackHistory[0].origin=free==='charge'?'Charge':free==='aguerri'?'Aguerri':'Implacable';attackHistory[0].event='Attaque gratuite après déplacement';localStorage.setItem(historyKey,JSON.stringify(attackHistory))}};
+const resolveScreenFreeBase=resolveScreen;
+resolveScreen=function(){resolveScreenFreeBase();if(!attackState?.freeAttack||attackStep!==5)return;const old=$('#nextAttack');if(!old)return;const next=old.cloneNode(true);old.replaceWith(next);next.textContent=defenseResult().result.wounds?'Appliquer et reprendre l’activation':'Terminer et reprendre l’activation';next.onclick=()=>{if(stepIssue()){resolveScreen();return}const active=attacker;saveAttackHistory();freeAttackContext=null;attackState=null;attackStep=0;attacker=active;defender=null;stage=2;stageWipe=true;overview(active,'attack')};};
+const overviewSingleAttackBase=overview;
+overview=function(entry,role){overviewSingleAttackBase(entry,role);if(role!=='attack')return;const state=stateFor(entry),attackAlreadyDone=state.freeAttackRound===currentRound()||(state.activationActions||[]).includes('attack');if(!attackAlreadyDone)return;const attackButton=root.querySelector('[data-activation-action="attack"]'),next=$('#next');if(attackButton){attackButton.disabled=true;attackButton.querySelector('small').textContent='ATTAQUE DÉJÀ EFFECTUÉE'}if(next){next.disabled=true;next.textContent='Attaque déjà effectuée'}};
+
+// Rapport de préparation enrichi : empreinte de liste, couverture des règles et
+// points qui nécessitent encore une décision humaine pendant la partie.
+const buildLiveGameReportBase=buildLiveGameReport;
+function reportFingerprint(value){let hash=2166136261;for(const char of JSON.stringify(value)){hash^=char.charCodeAt(0);hash=Math.imul(hash,16777619)}return`SWL-${(hash>>>0).toString(16).padStart(8,'0').toUpperCase()}`}
+buildLiveGameReport=function(){const report=buildLiveGameReportBase();for(const army of report.armies){army.fingerprint=reportFingerprint({name:army.listName,faction:army.faction,units:army.units.map(unit=>[unit.sourceName,unit.upgrades])});for(const unit of army.units){const entry=entries.find(candidate=>candidate.id===unit.id),rules=entry?resolved(entry):[];unit.automaticRules=[...new Set(rules.filter(item=>item.def.impact==='attaque'||item.def.impact==='défense').map(item=>item.def.name))];unit.humanChecks=[...new Set(rules.filter(item=>item.def.impact==='autre').map(item=>item.def.name))];unit.addedModels=(entry?.unit?.upgrades||[]).map(card=>({card:card.name,models:Number(profileFor(card.name)?.addedModels)||0})).filter(item=>item.models>0)}}report.summary.automaticRules=report.armies.flatMap(army=>army.units).reduce((sum,unit)=>sum+unit.automaticRules.length,0);report.summary.humanChecks=report.armies.flatMap(army=>army.units).reduce((sum,unit)=>sum+unit.humanChecks.length,0);report.schemaVersion=2;return report};
+const showLiveGameReportBase=showLiveGameReport;
+showLiveGameReport=function(){showLiveGameReportBase();const counters=root.querySelector('.report-counters');if(counters){counters.insertAdjacentHTML('beforeend',`<span><b>${buildLiveGameReport().summary.automaticRules}</b> automatismes</span><span><b>${buildLiveGameReport().summary.humanChecks}</b> contrôles de table</span>`)}root.querySelectorAll('.report-units article').forEach((article,index)=>{const unit=buildLiveGameReport().armies.flatMap(army=>army.units)[index];if(unit)article.insertAdjacentHTML('beforeend',`<small>Empreinte ${buildLiveGameReport().armies.find(army=>army.units.includes(unit))?.fingerprint} · ${unit.automaticRules.length} auto · ${unit.humanChecks.length} assisté(s)</small>`)})};
+
 applyFactionTheme('rebel');
 $('#gameReadiness').onclick=showLiveGameReport;
 $('#restart').onclick=()=>{attacker=null;defender=null;stage=1;applyFactionTheme(factionClass(armies.find(army=>army.id===selectedArmy)));pick('attacker')};reconcileRoundEffects();applyFactionTheme(factionClass(armies.find(army=>army.id===selectedArmy)));pick('attacker');

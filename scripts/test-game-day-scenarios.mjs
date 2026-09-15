@@ -60,6 +60,29 @@ try {
   const chewbaccaWookiees = buildCertifiedUnitRoster({ name: 'Wookiee Warriors Freedom Fighters', key: 'live-chewbacca', upgrades: [{ name: 'Chewbacca', key: 'chewbacca' }] })
   assert.equal(chewbaccaWookiees.models.length, 4)
   assert.equal(chewbaccaWookiees.models.reduce((sum, model) => sum + model.maxWounds, 0), 12)
+  // Une partie complète doit pouvoir enchaîner six rounds sans perdre les PV,
+  // sans ressusciter une figurine et en remettant à zéro les pions temporaires.
+  const tracked = new Map([...rebel.units, ...empire.units].map((unit) => [unit, { wounds: 0, aim: 0, dodge: 0, surge: 0, standby: 0 }]))
+  for (let round = 1; round <= 6; round += 1) {
+    for (const list of [rebel, empire]) for (const unit of list.units) {
+      const roster = buildCertifiedUnitRoster(unit)
+      const state = tracked.get(unit)
+      state.aim += 1
+      state.dodge += 1
+      state.surge += 1
+      state.standby = 1
+      const damage = round % 2 === 0 ? 1 : 0
+      state.wounds = Math.min(roster.models.reduce((sum, model) => sum + model.maxWounds, 0), state.wounds + damage)
+      assert.ok(state.wounds >= 0, `${unit.name}: blessures négatives au round ${round}`)
+    }
+    for (const state of tracked.values()) {
+      state.aim = 0
+      state.dodge = 0
+      state.surge = 0
+      state.standby = 0
+      assert.deepEqual([state.aim, state.dodge, state.surge, state.standby], [0, 0, 0, 0], `Les pions temporaires doivent expirer au round ${round}`)
+    }
+  }
   console.log(`Scénarios partie du jour : ${attacks} couples arme/cible validés sur les imports Rebelles et Empire`)
 } finally {
   await vite.close()
