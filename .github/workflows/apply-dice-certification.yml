@@ -7,6 +7,7 @@ on:
 permissions:
   contents: write
   issues: write
+  actions: write
 
 jobs:
   apply:
@@ -46,6 +47,21 @@ jobs:
           git add src/data/diceCertifications.json src/data/cardKeyAliases.json src/data/customCards.json public/cards public/assistant/reference-data.js public/assistant/index.html
           git commit -m "Certifie les dés : ${{ github.event.issue.title }}"
           git push origin HEAD:claude/star-wars-legion-app-49rc3z
+      - name: Déclenche le déploiement
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Un push effectué avec le jeton automatique du workflow ne
+            // redéclenche jamais les autres workflows (garde-fou anti-boucle
+            // de GitHub Actions) : le déploiement doit donc être demandé
+            // explicitement ici, sans quoi le site resterait sur l'ancienne
+            // version malgré la certification déjà fusionnée sur la branche.
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy-pages.yml',
+              ref: 'claude/star-wars-legion-app-49rc3z',
+            })
       - uses: actions/github-script@v7
         with:
           script: |
