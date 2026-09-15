@@ -302,7 +302,7 @@ for (const card of ['reluctant hero', 'fire control', 'combat armor rebel', 'rep
 }
 assert.match(app, /swl\.assistant\.player-side\.v1/, 'Le camp choisi doit être mémorisé localement sur chaque tablette')
 assert.match(app, /CAMP UTILISÉ SUR CETTE TABLETTE/, 'Le sélecteur doit expliquer que le camp est propre à la tablette')
-assert.match(app, /setInterval\(\(\)=>\{if\(document\.visibilityState!==['"]visible['"]\)return;syncUnitStates\(['"]pull['"]\)/, 'L’Assistant doit relever régulièrement l’état de l’autre tablette')
+assert.match(app, /setInterval\(\(\)=>\{if\(document\.visibilityState!==['"]visible['"]\|\|secondaryScreenOpen\(\)\)return;syncUnitStates\(['"]pull['"]\)/, 'L’Assistant doit relever régulièrement l’état de l’autre tablette hors écran secondaire')
 for (const effect of ['force-reflexes', 'burst-of-speed', 'offensive-push', 'linked-targeting-array', 'emergency-transponder', 'in-the-fray', 'force-choke']) {
   assert.ok(app.includes(effect), `${effect}: automatisme d’activation absent`)
 }
@@ -325,7 +325,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 assert.match(app, /actions\.before\(automation\)/, 'Les effets de carte doivent être placés entre les obligations et les actions normales')
 assert.match(app, /CHOISISSEZ D’ABORD LE PION/, 'Les actions doivent rester verrouillées tant que l’origine de l’activation est inconnue')
-assert.match(index, /app\.js\?v=84/, 'La correction Agile et Autonome doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=85/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 assert.match(app, /function movementFreeAttack\(entry\)/, 'Charge, Aguerri et Implacable doivent proposer leur attaque gratuite après le déplacement')
 assert.match(app, /attackState\?\.freeAttackRange==='melee'/, 'Charge doit limiter la réserve aux armes de corps-à-corps')
 assert.match(app, /attackState\?\.freeAttackRange==='ranged'/, 'Aguerri doit limiter la réserve aux armes à distance')
@@ -369,7 +369,10 @@ assert.match(app, /source:'Listes réellement chargées dans le navigateur'/, 'L
 assert.match(app, /simulatedAttacks/, 'Le rapport doit compter la matrice arme/cible réellement testée')
 assert.match(app, /downloadLiveGameReport/, 'Le rapport complet doit pouvoir être téléchargé')
 assert.doesNotMatch(app.slice(app.indexOf('function buildLiveGameReport'),app.indexOf('applyFactionTheme',app.indexOf('function buildLiveGameReport'))), /syncTokenKey|syncGistKey|localStorage\.getItem/, 'Le rapport ne doit lire aucun secret de synchronisation')
-assert.match(app, /stage===1&&!root\.querySelector\('\.live-game-report'\)/, 'La synchronisation ne doit jamais fermer le rapport de test ouvert')
+assert.match(app, /stage===1&&!secondaryScreenOpen\(\)/, 'La synchronisation initiale ne doit jamais fermer un écran secondaire')
+assert.match(app, /const secondaryScreenOpen=.*certification-open.*live-game-report/, 'La synchronisation doit reconnaître tous les écrans secondaires')
+assert.match(app, /document\.visibilityState!=='visible'\|\|secondaryScreenOpen\(\)/, 'La synchronisation périodique ne doit jamais fermer la certification')
+assert.match(app, /if\(!secondaryScreenOpen\(\)\)location\.reload\(\)/, 'Une mise à jour de liste ne doit pas recharger la page pendant la certification')
 assert.match(index, /upgrades\.css\?v=2/, 'Le déplacement du bouton de fermeture doit invalider son cache CSS')
 assert.match(index, /certification\.js\?v=74/, 'La certification V2 doit invalider le cache de son interface')
 assert.match(certificationUiSource, /function fullCardPanel\(card,d\)/, 'La certification doit proposer une fiche complète par carte')
