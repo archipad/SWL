@@ -612,6 +612,6 @@ function showLiveGameReport(){const report=buildLiveGameReport(),status=report.s
 applyFactionTheme('rebel');
 $('#gameReadiness').onclick=showLiveGameReport;
 $('#restart').onclick=()=>{attacker=null;defender=null;stage=1;applyFactionTheme(factionClass(armies.find(army=>army.id===selectedArmy)));pick('attacker')};reconcileRoundEffects();applyFactionTheme(factionClass(armies.find(army=>army.id===selectedArmy)));pick('attacker');
-syncUnitStates('pull').then(changed=>{if(changed&&stage===1)pick('attacker')});
-setInterval(()=>{if(document.visibilityState!=='visible')return;syncUnitStates('pull').then(changed=>{if(!changed)return;if(stage===1)pick('attacker');else if(!attackState&&stage===2&&attacker)overview(attacker,'attack');else if(!attackState&&stage===4&&defender)overview(defender,'defense')})},5000);
-window.addEventListener('storage',event=>{if(event.key==='swl.list.p1.v1'||event.key==='swl.list.p2.v1')location.reload();if(event.key===unitStateKey&&event.newValue){unitStates=read(unitStateKey,{});if(stage===1)pick('attacker')}});
+syncUnitStates('pull').then(changed=>{if(changed&&stage===1&&!root.querySelector('.live-game-report'))pick('attacker')});
+setInterval(()=>{if(document.visibilityState!=='visible')return;syncUnitStates('pull').then(changed=>{if(!changed)return;if(stage===1&&!root.querySelector('.live-game-report'))pick('attacker');else if(!attackState&&stage===2&&attacker)overview(attacker,'attack');else if(!attackState&&stage===4&&defender)overview(defender,'defense')})},5000);
+window.addEventListener('storage',event=>{if(event.key==='swl.list.p1.v1'||event.key==='swl.list.p2.v1')location.reload();if(event.key===unitStateKey&&event.newValue){unitStates=read(unitStateKey,{});if(stage===1&&!root.querySelector('.live-game-report'))pick('attacker')}});

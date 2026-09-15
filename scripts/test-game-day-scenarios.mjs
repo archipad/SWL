@@ -57,6 +57,9 @@ try {
     }
   }
   assert.ok(attacks >= 20, 'La matrice de partie doit couvrir les deux armées dans les deux sens')
+  const chewbaccaWookiees = buildCertifiedUnitRoster({ name: 'Wookiee Warriors Freedom Fighters', key: 'live-chewbacca', upgrades: [{ name: 'Chewbacca', key: 'chewbacca' }] })
+  assert.equal(chewbaccaWookiees.models.length, 4)
+  assert.equal(chewbaccaWookiees.models.reduce((sum, model) => sum + model.maxWounds, 0), 12)
   console.log(`Scénarios partie du jour : ${attacks} couples arme/cible validés sur les imports Rebelles et Empire`)
 } finally {
   await vite.close()

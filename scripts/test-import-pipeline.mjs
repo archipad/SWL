@@ -116,6 +116,16 @@ try {
   const cassianUpgradeRoster = buildCertifiedUnitRoster(cassianUpgradeImport.units[0]);
   assert.equal(cassianUpgradeRoster.models.length, 5, 'Cassian doit ajouter une figurine aux 4 Soldats rebelles');
   assert.equal(cassianUpgradeRoster.models.at(-1)?.maxWounds, 1);
+  const chewbaccaUpgradeRoster = buildCertifiedUnitRoster({
+    name: 'Wookiee Warriors Freedom Fighters',
+    key: 'wookiees-chewbacca-test',
+    upgrades: [{ name: 'Chewbacca', key: 'chewbacca-upgrade' }],
+  });
+  assert.equal(chewbaccaUpgradeRoster.models.length, 4, 'Chewbacca amélioration doit ajouter une figurine aux 3 Guerriers Wookies');
+  assert.deepEqual(chewbaccaUpgradeRoster.models.map((model) => model.maxWounds), [3, 3, 3, 3], 'Chewbacca amélioration doit reprendre les PV par figurine de l’unité porteuse');
+  const standaloneChewbacca = buildCertifiedUnitRoster({ name: 'Chewbacca Walking Carpet', key: 'chewbacca-unit-test', upgrades: [] });
+  assert.equal(standaloneChewbacca.models.length, 1, 'La carte Unité Chewbacca doit rester une unité autonome à une figurine');
+  assert.equal(standaloneChewbacca.models[0].maxWounds, 9, 'La carte Unité Chewbacca doit conserver ses 9 PV propres');
   console.log('Import pipeline OK — JSON Tabletop Admiral, clés stables, doublons, effectifs, grenades et audit vérifiés.');
 } finally {
   await vite.close();

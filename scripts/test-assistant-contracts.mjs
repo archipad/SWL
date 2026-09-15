@@ -4,6 +4,7 @@ import fs from 'node:fs'
 const app = fs.readFileSync(new URL('../public/assistant/app.js', import.meta.url), 'utf8')
 const css = fs.readFileSync(new URL('../public/assistant/engine.css', import.meta.url), 'utf8')
 const ipadCss = fs.readFileSync(new URL('../public/assistant/ipad-compact.css', import.meta.url), 'utf8')
+const upgrades = fs.readFileSync(new URL('../public/assistant/upgrades.css', import.meta.url), 'utf8')
 const index = fs.readFileSync(new URL('../public/assistant/index.html', import.meta.url), 'utf8')
 const certificationUi = fs.readFileSync(new URL('../public/assistant/certification.js', import.meta.url), 'utf8')
 const referenceData = fs.readFileSync(new URL('../public/assistant/reference-data.js', import.meta.url), 'utf8')
@@ -323,7 +324,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 assert.match(app, /actions\.before\(automation\)/, 'Les effets de carte doivent être placés entre les obligations et les actions normales')
 assert.match(app, /CHOISISSEZ D’ABORD LE PION/, 'Les actions doivent rester verrouillées tant que l’origine de l’activation est inconnue')
-assert.match(index, /app\.js\?v=81/, 'Le test des listes en ligne doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=82/, 'La stabilité du rapport synchronisé doit invalider le cache JavaScript')
 assert.match(app, /function activationActionLimit\(entry\).*suppressed\?1:2/, 'Une unité démoralisée doit être limitée à une action')
 assert.match(app, /linkedTargetingAppliedRound/, 'Système de Visée Jumelé doit se déclencher avec un ordre face visible')
 assert.match(app, /action==='recover'.*suppression=0.*exhaustedCards=\[\]/, 'Récupérer doit retirer la suppression et redresser les améliorations')
@@ -337,6 +338,7 @@ assert.match(app, /attackerState\.aim.*attackerState\.surge/, 'Les pions offensi
 assert.match(app, /defenderState\.dodge.*defenderState\.surge/, 'Les pions défensifs dépensés doivent être retirés du suivi')
 assert.match(app, /agileReturned/, 'Agile doit restituer une Esquive après sa dépense')
 assert.match(index, /style\.css\?v=81/, 'Le rapport des listes en ligne doit invalider le cache CSS')
+assert.match(index, /reference-data\.js\?v=75/, 'La correction d’effectif de Chewbacca doit invalider le cache du référentiel')
 assert.match(app, /const standbyRange=entry=>hasResolvedKeyword\(entry,'sentinelle'\)\?3:2/, 'Sentinelle doit étendre le déclenchement d’Attente à portée 3')
 assert.match(app, /standby:Math\.max\(0,\(state\.standby\|\|0\)-1\)/, 'Le pion Attente doit être consommé par la réaction')
 assert.match(app, /attackState\.standbyReaction=true/, 'Une attaque issue d’Attente doit être identifiée comme gratuite')
@@ -352,6 +354,9 @@ assert.match(app, /source:'Listes réellement chargées dans le navigateur'/, 'L
 assert.match(app, /simulatedAttacks/, 'Le rapport doit compter la matrice arme/cible réellement testée')
 assert.match(app, /downloadLiveGameReport/, 'Le rapport complet doit pouvoir être téléchargé')
 assert.doesNotMatch(app.slice(app.indexOf('function buildLiveGameReport'),app.indexOf('applyFactionTheme',app.indexOf('function buildLiveGameReport'))), /syncTokenKey|syncGistKey|localStorage\.getItem/, 'Le rapport ne doit lire aucun secret de synchronisation')
+assert.match(app, /stage===1&&!root\.querySelector\('\.live-game-report'\)/, 'La synchronisation ne doit jamais fermer le rapport de test ouvert')
+assert.match(index, /upgrades\.css\?v=2/, 'Le déplacement du bouton de fermeture doit invalider son cache CSS')
+assert.match(upgrades, /\.dialog-close \{ position: absolute; left: 8px; top: 8px; right: auto;/, 'Le bouton de fermeture des visuels doit être compact et placé en haut à gauche')
 
 // Couverture exhaustive des ressources déjà présentes : tout nouveau fichier
 // de carte doit être nommé et raccordé avant qu'une publication puisse passer.
