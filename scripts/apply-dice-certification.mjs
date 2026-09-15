@@ -1,11 +1,13 @@
 import fs from 'node:fs'
 import { execSync } from 'node:child_process'
+import { createHash } from 'node:crypto'
+import { basename, resolve } from 'node:path'
 
 const payloadPath=process.argv[2]
 const issueBodyPath=process.argv[3]
 if(!payloadPath)throw new Error('Fichier de certification manquant')
 const payload=JSON.parse(fs.readFileSync(payloadPath,'utf8'))
-if(![1,2,3,4].includes(payload.version))throw new Error('Certification invalide')
+if(![1,2,3,4,5].includes(payload.version))throw new Error('Certification invalide')
 if(payload.branch!=='claude/star-wars-legion-app-49rc3z')throw new Error('Branche de certification invalide')
 const validColors=new Set(['rouge','noir','blanc'])
 const keyPattern=/^[a-z0-9]+( [a-z0-9]+)*$/
@@ -32,6 +34,7 @@ try {
 }
 const knownCard = (key) => Boolean(diceModule.DICE_PROFILES[key] || imageModule.CARD_IMAGES[key])
 const knownKeywordIds = new Set(keywordModule.SEED_KEYWORDS.map((k) => k.id))
+const visualHashFor=card=>{const mapped=imageModule.CARD_IMAGES[card];if(!mapped)throw new Error(`Visuel catalogue introuvable pour ${card}`);const path=resolve(process.cwd(),'public','cards',basename(mapped));return createHash('sha256').update(fs.readFileSync(path)).digest('hex')}
 
 for(const card of cards){
   if(typeof card.card!=='string'||!card.card)throw new Error('Carte invalide')
@@ -49,6 +52,14 @@ for(const card of cards){
   }
   if(card.addedModels!==undefined&&(!Number.isInteger(card.addedModels)||card.addedModels<0||card.addedModels>30))throw new Error('Figurines ajoutées invalides')
   if(card.addedModelWounds!==undefined&&(!Number.isInteger(card.addedModelWounds)||card.addedModelWounds<1||card.addedModelWounds>20))throw new Error('PV des figurines ajoutées invalides')
+  if(card.fullCardCertification){
+    const full=card.fullCardCertification,required=['identity','visual','stats','weapons','conversions','keywords'];
+    if(full.schemaVersion!==2||!['unit','upgrade'].includes(full.cardType))throw new Error('Certification complète invalide')
+    if(!Array.isArray(full.checks)||required.some(check=>!full.checks.includes(check)))throw new Error(`Certification complète inachevée pour ${card.card}`)
+    if(typeof full.visualPath!=='string'||!full.visualPath||typeof full.rulesVersion!=='string'||!full.rulesVersion)throw new Error(`Preuve de certification manquante pour ${card.card}`)
+    for(const tag of full.keywords||[]){if(!knownKeywordIds.has(tag.keywordId))throw new Error(`Mot-clé inconnu pour ${card.card} : ${tag.keywordId}`);if(tag.value!==undefined&&(!Number.isInteger(tag.value)||tag.value<1||tag.value>20))throw new Error(`Valeur de mot-clé invalide pour ${card.card}/${tag.keywordId}`)}
+    full.visualHash=visualHashFor(card.card)
+  }
 }
 
 const pendingAliasMap=Object.fromEntries(aliases.map(entry=>[entry.from,entry.to]))
@@ -99,7 +110,7 @@ for(const card of cards){
   const previous=database[card.card]||{}
   const byIndex=new Map((previous.weapons||[]).map(weapon=>[weapon.index,weapon]))
   for(const weapon of card.weapons||[])byIndex.set(weapon.index,weapon)
-  database[card.card]={weapons:[...byIndex.values()].sort((a,b)=>a.index-b.index),...(card.defenseColor?{defenseColor:card.defenseColor}:previous.defenseColor?{defenseColor:previous.defenseColor}:{}),...(card.unitStats?{unitStats:card.unitStats}:previous.unitStats?{unitStats:previous.unitStats}:{}),...(card.addedModels!==undefined?{addedModels:card.addedModels}:previous.addedModels!==undefined?{addedModels:previous.addedModels}:{}),...(card.addedModelWounds!==undefined?{addedModelWounds:card.addedModelWounds}:previous.addedModelWounds!==undefined?{addedModelWounds:previous.addedModelWounds}:{})}
+  database[card.card]={weapons:[...byIndex.values()].sort((a,b)=>a.index-b.index),...(card.defenseColor?{defenseColor:card.defenseColor}:previous.defenseColor?{defenseColor:previous.defenseColor}:{}),...(card.unitStats?{unitStats:card.unitStats}:previous.unitStats?{unitStats:previous.unitStats}:{}),...(card.addedModels!==undefined?{addedModels:card.addedModels}:previous.addedModels!==undefined?{addedModels:previous.addedModels}:{}),...(card.addedModelWounds!==undefined?{addedModelWounds:card.addedModelWounds}:previous.addedModelWounds!==undefined?{addedModelWounds:previous.addedModelWounds}:{}),...(card.fullCardCertification?{fullCardCertification:card.fullCardCertification}:previous.fullCardCertification?{fullCardCertification:previous.fullCardCertification}:{})}
 }
 if(cards.length)fs.writeFileSync(databasePath,`${JSON.stringify(database,null,2)}\n`)
 

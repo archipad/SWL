@@ -42,6 +42,23 @@ export interface CardDiceProfile {
   criticalPerSuppression?: boolean;
   fireControl?: boolean;
   autonomousTokens?: { token: 'aim' | 'dodge' | 'surge'; count: number }[];
+  /** Certification exhaustive de la carte et version des règles contrôlée. */
+  fullCardCertification?: {
+    schemaVersion: 2;
+    cardType: 'unit' | 'upgrade';
+    rank?: string;
+    unitType?: string;
+    speed?: string;
+    attackSurge?: 'none' | 'hit' | 'crit';
+    defenseSurge?: 'none' | 'block';
+    keywords: { keywordId: string; value?: number; detail?: string }[];
+    checks: string[];
+    visualPath: string;
+    visualHash?: string;
+    rulesVersion: string;
+    verifiedAt: string;
+  };
+  staleFullCardCertification?: CardDiceProfile['fullCardCertification'] & { staleReason: string };
   /** Caractéristiques imprimées de la carte Unité, certifiées avec le même circuit que les dés. */
   unitStats?: {
     woundsPerModel: number;

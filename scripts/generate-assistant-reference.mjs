@@ -1,6 +1,7 @@
 import { readFile, readdir, writeFile } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { basename, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { createServer } from 'vite';
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
@@ -65,6 +66,13 @@ try {
     }
     if (Number.isInteger(certification.addedModelWounds)) {
       profile.addedModelWounds = certification.addedModelWounds;
+    }
+    if (certification.fullCardCertification) {
+      const mapped=imageModule.CARD_IMAGES[card];
+      const visualPath=mapped&&resolve(projectRoot,'public','cards',basename(mapped));
+      const currentHash=visualPath?createHash('sha256').update(await readFile(visualPath)).digest('hex'):null;
+      if(currentHash&&currentHash===certification.fullCardCertification.visualHash)profile.fullCardCertification=certification.fullCardCertification;
+      else profile.staleFullCardCertification={...certification.fullCardCertification,staleReason:'Le visuel de la carte a changé depuis sa certification.'};
     }
   }
 
