@@ -1077,9 +1077,16 @@
     "image": "reluctant-hero.webp",
     "weapons": [],
     "keywords": [
-      { "keywordId": "critique-x", "value": 0 },
-      { "keywordId": "infiltration" },
-      { "keywordId": "implacable" }
+      {
+        "keywordId": "critique-x",
+        "value": 0
+      },
+      {
+        "keywordId": "infiltration"
+      },
+      {
+        "keywordId": "implacable"
+      }
     ],
     "criticalPerSuppression": true,
     "note": "Lors de la formation d'une réserve d'attaque, celle-ci gagne Critique 1 pour chaque pion Suppression de l'unité.",
@@ -1109,20 +1116,47 @@
       {
         "name": "Blaster Répétiteur",
         "dice": [
-          { "color": "rouge", "count": 1 },
-          { "color": "noir", "count": 2 },
-          { "color": "blanc", "count": 3 }
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
         ],
         "range": "1-3",
-        "keywordIds": ["critique-x", "impact-x", "longue-distance"],
-        "keywordValues": { "critique-x": 1, "impact-x": 1 }
+        "keywordIds": [
+          "critique-x",
+          "impact-x",
+          "longue-distance"
+        ],
+        "keywordValues": {
+          "critique-x": 1,
+          "impact-x": 1
+        }
       }
     ],
     "keywords": [
-      { "keywordId": "precis-x", "value": 2 },
-      { "keywordId": "critique-x", "value": 1 },
-      { "keywordId": "impact-x", "value": 1 },
-      { "keywordId": "longue-distance" }
+      {
+        "keywordId": "precis-x",
+        "value": 2
+      },
+      {
+        "keywordId": "critique-x",
+        "value": 1
+      },
+      {
+        "keywordId": "impact-x",
+        "value": 1
+      },
+      {
+        "keywordId": "longue-distance"
+      }
     ],
     "note": "Réservé à l'Agent rebelle ou à l'Officier rebelle. Réduit la vitesse maximale de 1.",
     "verificationSource": "Carte anglaise officielle Repeating Blaster v1.0, visuel LegionHQ2 contrôlé le 14/09/2026."
@@ -1159,5 +1193,677 @@
       }
     ],
     "verificationSource": "Mercenary Units FR.pdf -- figurine Alter Ego (Le Bad Batch). Lecture visuelle IA sur visuel corrige."
+  },
+  "pyke foot soldier concealment": {
+    "nameFr": "Fantassin du Syndicat Pyke",
+    "image": "pyke-foot-soldier-concealment.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "cache"
+      }
+    ],
+    "note": "Amélioration Fantassins du Syndicat Pyke uniquement — Cache : Viser 1 (pion placé à la mise en place, utilisable même si la figurine ajoutée est vaincue).",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "pyke soldier p13m disruptor": {
+    "nameFr": "Soldat avec Disrupteur P13-M",
+    "image": "pyke-soldier-p13m-disruptor.jpg",
+    "weapons": [
+      {
+        "name": "Disrupteur P13-M",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Amélioration Fantassins du Syndicat Pyke uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "black sun enforcer magnetic detonator": {
+    "nameFr": "Homme de Main avec Détonateur Magnétique",
+    "image": "black-sun-enforcer-magnetic-detonator.jpg",
+    "weapons": [
+      {
+        "name": "Détonateur Magnétique",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1",
+        "keywordIds": [
+          "deflagration",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 3
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Amélioration Hommes de Main du Soleil Noir uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "black sun enforcer scatter gun": {
+    "nameFr": "Homme de Main avec Fusil à Dispersion",
+    "image": "black-sun-enforcer-scatter-gun.jpg",
+    "weapons": [
+      {
+        "name": "Fusil à Dispersion",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "2",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Amélioration Hommes de Main du Soleil Noir uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "black sun enforcer concealment": {
+    "nameFr": "Homme de Main du Soleil Noir",
+    "image": "black-sun-enforcer-concealment.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "cache"
+      }
+    ],
+    "note": "Amélioration Hommes de Main du Soleil Noir uniquement — Cache : Esquive 1 (pion placé à la mise en place, utilisable même si la figurine ajoutée est vaincue).",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "super commando pistoleer": {
+    "nameFr": "Super Commando Pistolero",
+    "image": "super-commando-pistoleer.jpg",
+    "weapons": [
+      {
+        "name": "Paire de Pistolets Blaster",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "2",
+        "keywordIds": [
+          "letal-x"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Amélioration Super Commandos Mandaloriens uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "super commando marksman": {
+    "nameFr": "Super Commando Tireur Embusqué",
+    "image": "super-commando-marksman.jpg",
+    "weapons": [
+      {
+        "name": "Carabine Blaster",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "precis-x",
+        "value": 1
+      }
+    ],
+    "note": "Amélioration Super Commandos Mandaloriens uniquement — cette unité gagne Précis 1.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "super commando concealment": {
+    "nameFr": "Super Commando Mandalorien",
+    "image": "super-commando-concealment.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "cache"
+      }
+    ],
+    "note": "Amélioration Super Commandos Mandaloriens uniquement — Cache : Adrénaline 2 (pion placé à la mise en place, utilisable même si la figurine ajoutée est vaincue).",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "super commando combat shields": {
+    "nameFr": "Super Commando avec Boucliers de Combat",
+    "image": "super-commando-combat-shields.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "bouclier-x",
+        "value": 2
+      }
+    ],
+    "note": "Amélioration Super Commandos Mandaloriens uniquement — cette unité gagne Bouclier 2.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "rook kast": {
+    "nameFr": "Rook Kast",
+    "image": "rook-kast.jpg",
+    "weapons": [
+      {
+        "name": "Pistolets Blaster de Rook",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "2"
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "escorte"
+      }
+    ],
+    "note": "Amélioration Super Commandos Mandaloriens uniquement — Chef, gagne Escorte : Maul. Personnage nommé ajouté à l'unité (Ajoutez 1 figurine de Rook Kast) ; points de vie non imprimés sur cette carte d'amélioration, donc addedModelWounds volontairement omis (non certifié) plutôt que deviné à partir des PV d'un Super Commando de base.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "din djarin beskar spear": {
+    "nameFr": "Lance en Beskar",
+    "image": "din-djarin-beskar-spear.jpg",
+    "weapons": [
+      {
+        "name": "Lance en Beskar",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee"
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "duelliste"
+      }
+    ],
+    "note": "Amélioration Din Djarin uniquement — cette unité gagne Duelliste.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "din djarin flamethrower": {
+    "nameFr": "Projecteur de Flammes de Din",
+    "image": "din-djarin-flamethrower.jpg",
+    "weapons": [
+      {
+        "name": "Projecteur de Flammes",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1",
+        "keywordIds": [
+          "deflagration",
+          "souffle",
+          "suppressif"
+        ]
+      }
+    ],
+    "note": "Amélioration Din Djarin uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "din djarin amban rifle": {
+    "nameFr": "Fusil Amban de Din",
+    "image": "din-djarin-amban-rifle.jpg",
+    "weapons": [
+      {
+        "name": "Fusil Amban",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "keywordIds": [
+          "immobiliser-x",
+          "suppressif"
+        ],
+        "keywordValues": {
+          "immobiliser-x": 2
+        },
+        "range": "melee"
+      }
+    ],
+    "note": "Amélioration Din Djarin uniquement. Badge de portée imprimé : icône mêlée seule (pas de plage numérique) — modélisé en range:'melee' par défaut faute de meilleure correspondance. Effet de carte distinct (non automatisé) : si l'unité n'est pas engagée, déplacement vitesse 1 puis 1 dé d'attaque ROUGE contre une unité ennemie en LdV (texte de la carte) — ce dé rouge spécial s'ajoute au profil d'arme imprimé (noir 3) et n'est pas automatisé.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "din djarin jetpack": {
+    "nameFr": "Jetpack de Din",
+    "image": "din-djarin-jetpack.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      }
+    ],
+    "note": "Amélioration Din Djarin uniquement — augmente la vitesse de 1 et gagne Saut 2.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "gar saxon combat shield": {
+    "nameFr": "Bouclier de Combat de Saxon",
+    "image": "gar-saxon-combat-shield.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "bouclier-x",
+        "value": 1
+      },
+      {
+        "keywordId": "recharger-x",
+        "value": 1
+      }
+    ],
+    "note": "Amélioration Gar Saxon uniquement — gagne Bouclier 1 et Recharger 1.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "gar saxon galar90 rifle": {
+    "nameFr": "Fusil Galar-90 de Saxon",
+    "image": "gar-saxon-galar90-rifle.jpg",
+    "weapons": [
+      {
+        "name": "Fusil Sniper Galar-90",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": [
+          "haute-velocite",
+          "letal-x",
+          "longue-distance"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "note": "Amélioration Gar Saxon uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "gar saxon zx flamethrower": {
+    "nameFr": "Projecteur de Flammes ZX de Saxon",
+    "image": "gar-saxon-zx-flamethrower.jpg",
+    "weapons": [
+      {
+        "name": "Projecteur de Flammes ZX",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1",
+        "keywordIds": [
+          "deflagration",
+          "souffle",
+          "suppressif"
+        ]
+      }
+    ],
+    "note": "Amélioration Gar Saxon uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "boba fett flamethrower": {
+    "nameFr": "Projecteur de Flammes de Boba",
+    "image": "boba-fett-flamethrower.jpg",
+    "weapons": [
+      {
+        "name": "Projecteur de Flammes",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1",
+        "keywordIds": [
+          "deflagration",
+          "souffle",
+          "suppressif"
+        ]
+      }
+    ],
+    "note": "Amélioration Boba Fett uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "ig11 prime programming": {
+    "nameFr": "Programmation « Prime »",
+    "image": "ig11-prime-programming.jpg",
+    "weapons": [],
+    "note": "Amélioration IG-11 uniquement — gagne Prime et IA : Viser, Attaque. Si IG-11 choisit une unité de troupiers comme cible de Prime, ses armes gagnent Perforant 1 ; si véhicule, Suppressif (effet conditionnel de texte de carte, non modélisé comme dés bonus).",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "ig11 nanny programming": {
+    "nameFr": "Programmation « Nounou »",
+    "image": "ig11-nanny-programming.jpg",
+    "weapons": [],
+    "note": "Amélioration IG-11 uniquement — lors de la création d'armée, un Grogu allié gagne Alter Ego : IG-11. Cette unité gagne IA : Esquive, Déplacement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "crosshair": {
+    "nameFr": "Crosshair",
+    "image": "crosshair.jpg",
+    "weapons": [
+      {
+        "name": "Fusil Firepuncher",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1-5",
+        "keywordIds": [
+          "haute-velocite",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "precis-x",
+        "value": 1
+      }
+    ],
+    "note": "Amélioration Le Bad Batch uniquement — Précis 1 ; tant qu'une réserve d'attaque ne contient que cette arme, elle gagne Critique 1 (effet conditionnel de texte de carte).",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "hunter": {
+    "nameFr": "Hunter",
+    "image": "hunter.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "chef"
+      }
+    ],
+    "note": "Amélioration Le Bad Batch uniquement — Chef. Capacité de carte : choisir une unité ennemie de soldats non-Massive/Énorme à portée 1 et en LdV, lancer 1 dé d'attaque noir ; Critique ou Frappe inflige 1 blessure (non automatisé).",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "tech": {
+    "nameFr": "Tech",
+    "image": "tech.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      },
+      {
+        "keywordId": "cache"
+      }
+    ],
+    "note": "Amélioration Le Bad Batch uniquement — Tacticien 1 et Cache : Viser 1 et Esquive 1.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "echo clone force 99": {
+    "nameFr": "Echo, Clone Force 99",
+    "image": "echo-clone-force-99.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "fiable-x",
+        "value": 3
+      }
+    ],
+    "note": "Amélioration Le Bad Batch uniquement — Fiable 3.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "wrecker": {
+    "nameFr": "Wrecker",
+    "image": "wrecker.jpg",
+    "weapons": [
+      {
+        "name": "Blaster de Wrecker",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "2"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Amélioration Le Bad Batch uniquement — tant que cette figurine est sur le champ de bataille, l'Alter Ego Omega de l'unité ne peut pas se voir assigner de blessures (effet spécial non automatisé).",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "pyke soldier electro whip": {
+    "nameFr": "Soldat avec Électro-fouet",
+    "image": "pyke-soldier-electro-whip.jpg",
+    "weapons": [
+      {
+        "name": "Électro-fouet",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1",
+        "keywordIds": [
+          "immobiliser-x",
+          "suppressif"
+        ],
+        "keywordValues": {
+          "immobiliser-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Amélioration Fantassins du Syndicat Pyke uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "gar saxon back mounted rockets": {
+    "nameFr": "Roquettes Dorsales de Saxon",
+    "image": "gar-saxon-back-mounted-rockets.jpg",
+    "weapons": [
+      {
+        "name": "Roquettes Dorsales",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "2-3",
+        "keywordIds": [
+          "deflagration",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2
+        }
+      }
+    ],
+    "note": "Amélioration Gar Saxon uniquement (Cycle).",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "cad bane electro gauntlets": {
+    "nameFr": "Électro-Gantelets",
+    "image": "cad-bane-electro-gauntlets.jpg",
+    "weapons": [
+      {
+        "name": "Électro-Gantelets",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "immobiliser-x",
+          "suppressif"
+        ],
+        "keywordValues": {
+          "immobiliser-x": 3
+        }
+      }
+    ],
+    "note": "Amélioration Cad Bane uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
+  },
+  "super commando back mounted rockets": {
+    "nameFr": "Super Commando avec Roquettes Dorsales",
+    "image": "super-commando-back-mounted-rockets.jpg",
+    "weapons": [
+      {
+        "name": "Roquettes Dorsales",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "3-4",
+        "keywordIds": [
+          "deflagration",
+          "critique-x",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "critique-x": 1,
+          "impact-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Amélioration Super Commandos Mandaloriens uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "addedAt": "2026-09-15"
   }
 }

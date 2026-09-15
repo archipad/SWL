@@ -5,13 +5,12 @@
   "cm 0 93 trooper": "cm o 93 trooper",
   "evasive cover": "duck and cover",
   "offensive stance": "offensive posture",
-  "defensive stance": "offensive posture",
-  "defensive posture": "offensive posture",
-  "posture defensive": "offensive posture",
+  "defensive stance": "defensive posture",
   "maul": "maul a rival",
   "bossk": "bossk terror of trandosha",
   "boba fett": "boba fett infamous bounty hunter",
   "into the fray": "in the fray",
   "at rt laser cannon": "tl tt laser cannon",
-  "up close and personal": "point blank"
+  "up close and personal": "point blank",
+  "meneur d hommes": "lead by example"
 }

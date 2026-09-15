@@ -16,7 +16,7 @@ import { createServer } from 'vite';
 //    visuel ou certification retirés par erreur), ce test échoue.
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom', optimizeDeps: { noDiscovery: true } });
 try {
-  const { canonicalCardKey } = await vite.ssrLoadModule('/src/lib/cardNames.ts');
+  const { canonicalCardKey, frenchCardName } = await vite.ssrLoadModule('/src/lib/cardNames.ts');
   const { cardImageFor } = await vite.ssrLoadModule('/src/data/cardImages.ts');
   const { CARD_NAMES_FR } = await vite.ssrLoadModule('/src/data/cardNamesFr.ts');
   const { DICE_PROFILES } = await vite.ssrLoadModule('/src/data/diceProfiles.ts');
@@ -80,6 +80,63 @@ try {
   for (const [, entry] of merceUnitKeys) {
     const img = cardImageFor(entry.nameFr);
     assert.ok(img, `${entry.nameFr}: visuel français absent du catalogue (régression) alors que le manifeste le déclare "certifie"`);
+  }
+
+  // Garde-fou anti-régression pour le lot Mercenary Upgrades (15/09) : dés et
+  // visuels exacts lus à fort zoom sur les cartes françaises, ne doivent pas
+  // dériver silencieusement lors d'une future modification du catalogue.
+  const mercUpgradeChecks = [
+    ['pyke soldier electro whip', 'Électro-fouet', [{ color: 'rouge', count: 2 }]],
+    ['pyke soldier p13m disruptor', 'Disrupteur P13-M', [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }]],
+    ['super commando pistoleer', 'Paire de Pistolets Blaster', [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }]],
+    ['super commando marksman', 'Carabine Blaster', [{ color: 'rouge', count: 1 }, { color: 'noir', count: 1 }]],
+    ['rook kast', 'Pistolets Blaster de Rook', [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }]],
+    ['din djarin beskar spear', 'Lance en Beskar', [{ color: 'rouge', count: 2 }, { color: 'noir', count: 1 }]],
+    ['cad bane electro gauntlets', 'Électro-Gantelets', [{ color: 'rouge', count: 4 }]],
+    ['crosshair', 'Fusil Firepuncher', [{ color: 'rouge', count: 1 }]],
+    ['wrecker', 'Blaster de Wrecker', [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }]],
+    ['The Darksaber', 'Le Sabre Noir', [{ color: 'noir', count: 6 }]],
+  ];
+  for (const [key, weaponName, dice] of mercUpgradeChecks) {
+    const profile = DICE_PROFILES[canonicalCardKey(key)];
+    assert.ok(profile, `${key}: profil de dés absent du catalogue (régression sur le lot Mercenary Upgrades)`);
+    const weapon = profile.weapons.find((w) => w.name === weaponName);
+    assert.ok(weapon, `${key}: arme « ${weaponName} » absente (régression)`);
+    assert.deepEqual(weapon.dice, dice, `${key}/${weaponName}: dés attendus ${JSON.stringify(dice)}, trouvé ${JSON.stringify(weapon.dice)} (régression)`);
+    const img = cardImageFor(key);
+    assert.ok(img, `${key}: visuel français absent du catalogue (régression)`);
+  }
+
+  // Garde-fou anti-régression pour le lot Generic Upgrades FR.pdf (15/09) :
+  // armes à dés certifiées et corrections de traduction confirmées.
+  const genericUpgradeChecks = [
+    ['Concussion Grenades', 'Grenade à Concussion', [{ color: 'noir', count: 1 }]],
+    ['EMP Grenades', 'Grenade « Anti-Droïdes » EMP', [{ color: 'noir', count: 1 }]],
+    ['Sonic Imploders', 'Imploseur Sonique', [{ color: 'noir', count: 1 }]],
+    ['Armor-Piercing Shells', 'Obus Antiblindage', [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }]],
+    ['High-Energy Shells', 'Obus à Haute Énergie', [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 1 }]],
+    ['Anti-Bunker Shells', 'Obus « Antibunker »', [{ color: 'blanc', count: 3 }, { color: 'noir', count: 1 }]],
+  ];
+  for (const [key, weaponName, dice] of genericUpgradeChecks) {
+    const profile = DICE_PROFILES[canonicalCardKey(key)];
+    assert.ok(profile, `${key}: profil de dés absent du catalogue (régression sur le lot Generic Upgrades)`);
+    const weapon = profile.weapons.find((w) => w.name === weaponName);
+    assert.ok(weapon, `${key}: arme « ${weaponName} » absente (régression)`);
+    assert.deepEqual(weapon.dice, dice, `${key}/${weaponName}: dés attendus ${JSON.stringify(dice)}, trouvé ${JSON.stringify(weapon.dice)} (régression)`);
+    const img = cardImageFor(key);
+    assert.ok(img, `${key}: visuel absent du catalogue (régression)`);
+  }
+  // Corrections de traduction confirmées visuellement (15/09) : ne doivent
+  // pas être écrasées par erreur (ex. régression de l'alias Posture).
+  const translationChecks = [
+    ['Offensive Stance', 'Posture Offensive'],
+    ['Defensive Stance', 'Posture Défensive'],
+    ['Lead by Example', "Donner l'Exemple"],
+    ['Command System', 'Système de Commande'],
+    ['Comms Hacking Unit', 'Unité de Piratage Comms'],
+  ];
+  for (const [enName, frName] of translationChecks) {
+    assert.equal(frenchCardName(enName), frName, `${enName}: doit se traduire par « ${frName} » (régression de traduction)`);
   }
 
   console.log(`Manifeste PDF : ${entryList.length} cartes cataloguées (${connuesCertifiees} certifiées, ${connuesNomSeul} connues sans certification, ${horsMoteur} hors moteur, ${aVerifier} encore à vérifier).`);

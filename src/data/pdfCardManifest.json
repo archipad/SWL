@@ -5,7 +5,7 @@
     "pdfExclus": [
       "Galactic Empire Commands FR.pdf (demande utilisateur : faction non utilisée)"
     ],
-    "totalEntrees": 185
+    "totalEntrees": 214
   },
   "unit:pyke syndicate foot soldiers": {
     "pdfSource": "Mercenary Units FR.pdf",
@@ -174,240 +174,264 @@
     "page": 1,
     "nameFr": "Soldat avec Électro-fouet",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "pyke soldier electro whip"
   },
   "amelioration:pyke syndicate capo leader": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 1,
     "nameFr": "Capo du Syndicat Pyke (déblocage Chef)",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà couvert par une entrée existante du catalogue (lot Mercenaire précédent) — aucune nouvelle entrée nécessaire.",
+    "nameEn": "pyke syndicate capo"
   },
   "amelioration:pyke syndicate foot soldier cache": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 1,
     "nameFr": "Fantassin du Syndicat Pyke (Cache : Viser 1)",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "pyke foot soldier concealment"
   },
   "amelioration:disruptor p13m soldier": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 2,
     "nameFr": "Soldat avec Disrupteur P13-M",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "pyke soldier p13m disruptor"
   },
   "amelioration:scatter gun trooper mercenary": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 2,
     "nameFr": "Soldat avec Fusil à Dispersion",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "black sun enforcer scatter gun"
   },
   "amelioration:rook kast": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 2,
     "nameFr": "Rook Kast",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "rook kast"
   },
   "amelioration:twin blaster pistols mercenary": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 2,
     "nameFr": "Soldat avec Paire de Pistolets Blaster",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "super commando pistoleer"
   },
   "amelioration:heavy carbine mercenary": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 3,
     "nameFr": "Soldat avec Carabine Blaster",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "super commando marksman"
   },
   "amelioration:combat training saxon": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 3,
     "nameFr": "Entraînement au Combat (Gar Saxon)",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà couvert par une entrée existante du catalogue (lot Mercenaire précédent) — aucune nouvelle entrée nécessaire.",
+    "nameEn": "gar saxon militant commando"
   },
   "amelioration:gar blaster pistol": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 3,
     "nameFr": "Pistolet Blaster de Gar",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà couvert par une entrée existante du catalogue (lot Mercenaire précédent) — aucune nouvelle entrée nécessaire.",
+    "nameEn": "gar saxon militant commando"
   },
   "amelioration:saxon combat shield": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 4,
     "nameFr": "Bouclier de Combat de Saxon",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "gar saxon combat shield"
   },
   "amelioration:saxon galar 90": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 4,
     "nameFr": "Fusil Galar-90 de Saxon",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "gar saxon galar90 rifle"
   },
   "amelioration:saxon backpack rockets": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 4,
     "nameFr": "Roquettes Dorsales de Saxon",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "gar saxon back mounted rockets"
   },
   "amelioration:le sabre noir mercenary": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 5,
     "nameFr": "Le Sabre Noir",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà couvert par une entrée existante du catalogue (lot Mercenaire précédent) — aucune nouvelle entrée nécessaire.",
+    "nameEn": "The Darksaber"
   },
   "amelioration:ig11 programming nanny": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 5,
     "nameFr": "Programmation « Nounou » (IG-11)",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "ig11 nanny programming"
   },
   "amelioration:ig11 programming prime": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 5,
     "nameFr": "Programmation « Prime » (IG-11)",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "ig11 prime programming"
   },
   "amelioration:din beskar spear": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 5,
     "nameFr": "Lance en Beskar (Din Djarin)",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "din djarin beskar spear"
   },
   "amelioration:din amban rifle": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 6,
     "nameFr": "Fusil Amban (Din Djarin)",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "din djarin amban rifle"
   },
   "amelioration:din jetpack": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 6,
     "nameFr": "Jetpack (Din Djarin)",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "din djarin jetpack"
   },
   "amelioration:crosshair": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 6,
     "nameFr": "Crosshair",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "crosshair"
   },
   "amelioration:hunter": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 6,
     "nameFr": "Hunter",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "hunter"
   },
   "amelioration:tech": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 7,
     "nameFr": "Tech",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "tech"
   },
   "amelioration:echo": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 7,
     "nameFr": "Echo",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "echo clone force 99"
   },
   "amelioration:wrecker": {
     "pdfSource": "Mercenary Upgrades FR.pdf",
     "page": 7,
     "nameFr": "Wrecker",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Lu visuellement cette session (planche à découper) ; pas encore ajouté à customCards.json — clé Tabletop Admiral anglaise non confirmée, dés/portée à recontrôler avant certification."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant.",
+    "nameEn": "wrecker"
   },
   "commandement:cmd_merc_duel_des_destins": {
     "pdfSource": "Mercenary Commands FR.pdf",
@@ -1304,71 +1328,78 @@
     "pdfSource": "Galactic Empire Upgrades FR.pdf",
     "page": 2,
     "nameFr": "Stormtrooper avec HH-12",
+    "nameEn": "HH-12 Stormtrooper",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Lance-roquettes HH-12 #2-4, Encombrant+Impact 3, dés lus : 3 rouge. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : recontrôlé à fort zoom sur le visuel — Lance-roquettes HH-12 #2-4, Encombrant + Impact 3, 3 dés NOIRS (et non rouges comme lu en première passe rapide). Correspond exactement à la clé DICE_PROFILES existante 'HH-12 Stormtrooper' (déjà verifiedAgainstCard:true, ajoutée en parallèle par une autre session) et à cardTags.ts (encombrant, impact-x:3)."
   },
   "amelioration:empire_dlt-19d": {
     "pdfSource": "Galactic Empire Upgrades FR.pdf",
     "page": 4,
     "nameFr": "Soldat avec DLT-19D (Death Troopers)",
+    "nameEn": "DLT-19D Trooper",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Fusil Blaster DLT-19D #1-4, Impact 1, dés lus : 2 rouge + 1 noir. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : recontrôlé sur le visuel — Fusil Blaster DLT-19D #1-4, 2 dés rouges + 1 dé blanc (et non 1 noir comme lu en première passe rapide). Correspond exactement à la clé DICE_PROFILES existante 'DLT-19D Trooper' (déjà verifiedAgainstCard:true, ajoutée en parallèle par une autre session)."
   },
   "amelioration:empire_dt-f16": {
     "pdfSource": "Galactic Empire Upgrades FR.pdf",
     "page": 5,
     "nameFr": "•DT-F16 (Death Troopers)",
+    "nameEn": "DT-F16",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Fusil Blaster E-11D #1-3, dés lus : 2 badges noirs — Chef, Contrainte. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : recontrôlé sur le visuel — Fusil Blaster E-11D #1-3, 1 dé blanc + 1 dé noir, mots-clés unité Chef + Contrainte. Correspond exactement à la clé DICE_PROFILES 'DT-F16' (verifiedAgainstCard ajouté ce lot) et à cardTags.ts (contrainte, chef)."
   },
   "amelioration:empire_capitaine-stormtrooper": {
     "pdfSource": "Galactic Empire Upgrades FR.pdf",
     "page": 5,
     "nameFr": "Capitaine Stormtrooper",
+    "nameEn": "Stormtrooper Captain",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Déblocage Chef, pas d'arme propre (icône d'amélioration + option Réserve). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : Déblocage Chef, pas d'arme propre (icône d'amélioration + option Réserve) — confirmé sur le visuel. Correspond à la clé DICE_PROFILES 'Stormtrooper Captain' (weapons:[]) et cardTags.ts (chef)."
   },
   "amelioration:empire_fx-9": {
     "pdfSource": "Galactic Empire Upgrades FR.pdf",
     "page": 8,
     "nameFr": "Droïde Médical FX-9",
+    "nameEn": "FX-9 Medical Droid",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Non-combattant, pas d'arme, Traiter 1 : Capacité 2. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : Non-combattant, pas d'arme, Traiter 1 : Capacité 2 — confirmé sur le visuel. Correspond à la clé DICE_PROFILES 'FX-9 Medical Droid' (weapons:[], note Non-combattant) et cardTags.ts (non-combattant, traiter-x:1)."
   },
   "amelioration:empire_lance-mortier-tr-tt": {
     "pdfSource": "Galactic Empire Upgrades FR.pdf",
-    "page": 9,
+    "page": 11,
     "nameFr": "Lance-mortier de TR-TT",
+    "nameEn": "AT-ST Mortar Launcher",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #4-#, Fixe : avant, Suppressif, dé lu : 1 (couleur à confirmer). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : page corrigée de 9 à 11 (grille étiquetée relue). #4-#, Fixe : avant, Suppressif, 3 dés blancs — confirmé sur le visuel. Correspond exactement à la clé DICE_PROFILES existante 'AT-ST Mortar Launcher' (déjà verifiedAgainstCard:true, ajoutée en parallèle par une autre session)."
   },
   "amelioration:empire_astromech-r4": {
     "pdfSource": "Galactic Empire Upgrades FR.pdf",
     "page": 13,
     "nameFr": "Astromech R4",
+    "nameEn": "R4 Astromech Droid",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Non-combattant, pas d'arme, Réparation 1 : Capacité 2. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : Non-combattant, pas d'arme, Réparation 1 : Capacité 2 — confirmé sur le visuel. Correspond à la clé DICE_PROFILES 'R4 Astromech Droid' (weapons:[]) et cardTags.ts (non-combattant, reparation-x:1)."
   },
   "resume:rebel_units": {
     "pdfSource": "Rebel Alliance Units FR.pdf",
@@ -1382,83 +1413,91 @@
   },
   "amelioration:rebel_arme-epaule-wookie": {
     "pdfSource": "Rebel Alliance Upgrades FR.pdf",
-    "page": 3,
+    "page": 5,
     "nameFr": "Wookie avec Arme d'Épaule",
+    "nameEn": "Long Gun Wookiee",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #1-4, Suppressif, dé lu : 1 (couleur à confirmer). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : page corrigée de 3 à 5 (grille étiquetée relue). Arme d'Épaule #1-4, Suppressif, 2 dés noirs — confirmé sur le visuel. Correspond exactement à la clé DICE_PROFILES existante 'Long Gun Wookiee' (verifiedAgainstCard ajouté ce lot)."
   },
   "amelioration:rebel_duelliste-beskad": {
     "pdfSource": "Rebel Alliance Upgrades FR.pdf",
-    "page": 6,
+    "page": 5,
     "nameFr": "Duelliste avec Beskad",
+    "nameEn": "Beskad Duelist",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Vibrolame + mot-clé Duelliste — dés à recontrôler. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : page corrigée de 6 à 5 (grille étiquetée relue). Vibrolame, mêlée, 2 dés rouges (et non 1 comme lu en première passe rapide), mot-clé unité Duelliste. Correspond exactement à la clé DICE_PROFILES existante 'Beskad Duelist' (verifiedAgainstCard ajouté ce lot) et cardTags.ts (duelliste)."
   },
   "amelioration:rebel_capitaine-soldat-rebelle": {
     "pdfSource": "Rebel Alliance Upgrades FR.pdf",
     "page": 7,
     "nameFr": "Capitaine Soldat Rebelle",
+    "nameEn": "Rebel Trooper Captain",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Déblocage Chef, pas d'arme propre. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : Déblocage Chef, pas d'arme propre — confirmé sur le visuel (page 7 correcte). Correspond à la clé DICE_PROFILES 'Rebel Trooper Captain' (weapons:[]) et cardTags.ts (chef)."
   },
   "amelioration:rebel_wookie-arbalete": {
     "pdfSource": "Rebel Alliance Upgrades FR.pdf",
-    "page": 6,
+    "page": 5,
     "nameFr": "Wookie avec Arbalète",
+    "nameEn": "Bowcaster Wookiee",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #1-3, Impact 1 + Perforant 1, dé lu : 1 (couleur à confirmer). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : page corrigée de 6 à 5 (grille étiquetée relue). Arbalète #1-3, Impact 1 + Perforant 1, 1 dé rouge + 1 dé blanc — confirmé sur le visuel. Correspond exactement à la clé DICE_PROFILES existante 'Bowcaster Wookiee' (verifiedAgainstCard ajouté ce lot)."
   },
   "amelioration:rebel_ryder-azadi": {
     "pdfSource": "Rebel Alliance Upgrades FR.pdf",
-    "page": 9,
+    "page": 10,
     "nameFr": "•Ryder Azadi",
+    "nameEn": "Ryder Azadi",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Déblocage Chef, Commandant des Opérations, pas d'arme propre. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : page corrigée de 9 à 10 (grille étiquetée relue — la page 9 contient en réalité •Shriv Suurgav, pas Ryder Azadi). Véhicule à Répulseurs (Airspeeder T-47) uniquement, modifie la vitesse, pas d'arme propre — confirmé sur le visuel. Nouvelle entrée ajoutée à DICE_PROFILES ('Ryder Azadi', weapons:[]) ce lot."
   },
   "amelioration:rebel_harpon-magnetique-modk": {
     "pdfSource": "Rebel Alliance Upgrades FR.pdf",
-    "page": 13,
+    "page": 11,
     "nameFr": "Harpon Magnétique Mo/Dk",
+    "nameEn": "Mo/DK Power Harpoon",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #1-2, Fixe:arrière, Impact 1 + Câble de Remorquage, dé lu : 1 rouge. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : page corrigée de 13 à 11 (grille étiquetée relue). Airspeeder T-47 uniquement, #1-2, Fixe:arrière, Impact 1 + Câble de Remorquage, 1 dé rouge — confirmé sur le visuel à fort zoom. Correspond exactement à la clé DICE_PROFILES existante 'Mo/DK Power Harpoon' (verifiedAgainstCard ajouté ce lot)."
   },
   "amelioration:rebel_electro-grappin-sabine": {
     "pdfSource": "Rebel Alliance Upgrades FR.pdf",
     "page": 13,
     "nameFr": "•Électro-Grappin (Sabine Wren)",
+    "nameEn": "Sabine's Grapple Line",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : Action de carte, pas de dés d'attaque directs. Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Écart résolu (15/09) : confirmé sur le visuel (page 13) — Sabine Wren uniquement, choisit une unité ennemie à porte 1/LdV et lui donne 2 pions Immobilisation + 2 pions Suppression, pas d'arme propre. Nouvelle entrée ajoutée à DICE_PROFILES (\"Sabine's Grapple Line\", weapons:[]) ce lot. Nom catalogue existant : cardNamesFr.ts mappe déjà cette clé EN vers « Électro-grappin » (minuscule)."
   },
   "amelioration:rebel_se-14-jyn": {
     "pdfSource": "Rebel Alliance Upgrades FR.pdf",
     "page": 13,
     "nameFr": "•Blaster SE-14 de Jyn",
+    "nameEn": "Jyn's SE-14 Blaster",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
+    "statutCatalogue": "connue",
     "statutDonneesMoteur": "a_verifier",
     "statutVerification": "a_verifier",
-    "note": "Écart confirmé par comparaison au catalogue central (grep sur cardNamesFr.ts/diceCertifications.json) : #1-2, Perforant 1 + Suppressif, dé lu : 1 (couleur à confirmer). Dés lus sur le visuel mais couleurs non recontrôlées avec la même rigueur que les unités Mercenaires (leçon de la rotation à 90°) — volontairement marqué à vérifier plutôt que certifié à tort. Un nom proche existe dans cardNamesFr.ts (trouvé par recherche approximative) mais la clé anglaise exacte n’a pas été confirmée avec certitude -- classé « inconnue » par prudence plutôt que de deviner."
+    "note": "Page 13 confirmée. K-2SO uniquement, #1-2, Perforant 1 + Suppressif — mais le badge de dés lu sur le visuel à très fort zoom affiche un losange BLANC marqué « 5 », un compte anormalement élevé pour un pistolet comparé à toutes les autres armes vérifiées dans ce lot (1-3 dés). Nouvelle entrée ajoutée à DICE_PROFILES (\"Jyn's SE-14 Blaster\") avec cette lecture littérale, volontairement SANS verifiedAgainstCard — à recontrôler sur un second exemplaire avant de considérer la donnée fiable, conformément à la consigne de ne jamais deviner ni forcer une valeur douteuse."
   },
   "amelioration:generic_vigilance": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
@@ -1466,9 +1505,9 @@
     "nameFr": "Vigilance",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Vigilance"
   },
   "amelioration:generic_ordres_improvisés": {
@@ -1477,9 +1516,9 @@
     "nameFr": "Ordres Improvisés",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Improvised Orders"
   },
   "amelioration:generic_présence_inspirante": {
@@ -1488,9 +1527,9 @@
     "nameFr": "Présence Inspirante",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Inspiring Presence"
   },
   "amelioration:generic_donner_lexemple": {
@@ -1499,9 +1538,9 @@
     "nameFr": "Donner l'Exemple",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json. Écart de traduction constaté : le catalogue central utilise « Meneur d’Hommes » pour Lead by Example, alors que le visuel lu cette session affiche « Donner l’Exemple » -- à confirmer laquelle est la traduction officielle actuelle avant de trancher.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Lead by Example"
   },
   "amelioration:generic_ordres_stricts": {
@@ -1510,9 +1549,9 @@
     "nameFr": "Ordres Stricts",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Strict Orders"
   },
   "amelioration:generic_ténacité": {
@@ -1521,9 +1560,9 @@
     "nameFr": "Ténacité",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Tenacity"
   },
   "amelioration:generic_à_bout_portant": {
@@ -1532,9 +1571,9 @@
     "nameFr": "À Bout Portant",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Point Blank"
   },
   "amelioration:generic_évitement_et_couvert": {
@@ -1542,40 +1581,44 @@
     "page": 4,
     "nameFr": "Évitement et Couvert",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Duck and Cover"
   },
   "amelioration:generic_stimulants_durgence": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 4,
     "nameFr": "Stimulants d'Urgence",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Emergency Stims"
   },
   "amelioration:generic_endurance": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 6,
     "nameFr": "Endurance",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Endurance"
   },
   "amelioration:generic_en_chasse": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 6,
     "nameFr": "En Chasse",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "On the Hunt"
   },
   "amelioration:generic_dans_la_mêlée_into_the_fray": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
@@ -1583,100 +1626,109 @@
     "nameFr": "Dans la Mêlée (Into the Fray)",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
-    "nameEn": "Into the Fray"
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "In the Fray"
   },
   "amelioration:generic_poussée_offensive": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 7,
     "nameFr": "Poussée Offensive",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Offensive Push"
   },
   "amelioration:generic_données_de_reconnaissance": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 8,
     "nameFr": "Données de Reconnaissance",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Recon Intel"
   },
   "amelioration:generic_matériel_préparé": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 8,
     "nameFr": "Matériel Préparé",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Prepared Materiel"
   },
   "amelioration:generic_lunette_de_visée": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 8,
     "nameFr": "Lunette de Visée",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Targeting Scopes"
   },
   "amelioration:generic_repérage": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 9,
     "nameFr": "Repérage",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Spotting"
   },
   "amelioration:generic_protecteur": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 9,
     "nameFr": "Protecteur",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Protector"
   },
   "amelioration:generic_conscience_de_la_situation": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 9,
     "nameFr": "Conscience de la Situation",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Situational Awareness"
   },
   "amelioration:generic_système_de_commande": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 12,
     "nameFr": "Système de Commande",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Command System"
   },
   "amelioration:generic_brouilleur_comms": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 12,
     "nameFr": "Brouilleur Comms",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Comms Jammer"
   },
   "amelioration:generic_transpondeur_durgence": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
@@ -1684,9 +1736,9 @@
     "nameFr": "Transpondeur d'Urgence",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Emergency Transponder"
   },
   "amelioration:generic_unité_de_piratage_comms": {
@@ -1694,60 +1746,66 @@
     "page": 13,
     "nameFr": "Unité de Piratage Comms",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Comms Hacking Unit"
   },
   "amelioration:generic_système_de_visée_jumelé": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 14,
     "nameFr": "Système de Visée Jumelé",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Linked Targeting Array"
   },
   "amelioration:generic_protocoles_dattaque": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 14,
     "nameFr": "Protocoles d'Attaque",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Attack Protocols"
   },
   "amelioration:generic_canal_comms_de_bord": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 14,
     "nameFr": "Canal Comms de Bord",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Onboard Comms Channel"
   },
   "amelioration:generic_grenade_à_concussion": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 16,
     "nameFr": "Grenade à Concussion",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : dés lus à fort zoom sur la carte française, profil DICE_PROFILES certifié verifiedAgainstCard, visuel raccordé.",
+    "nameEn": "Concussion Grenades"
   },
   "amelioration:generic_grenades_anti-droïdes_emp": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 16,
     "nameFr": "Grenades Anti-droïdes EMP",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : dés lus à fort zoom sur la carte française, profil DICE_PROFILES certifié verifiedAgainstCard, visuel raccordé.",
+    "nameEn": "EMP Grenades"
   },
   "amelioration:generic_grenade_à_fragmentation": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
@@ -1755,9 +1813,9 @@
     "nameFr": "Grenade à Fragmentation",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Fragmentation Grenades"
   },
   "amelioration:generic_grenade_à_impact": {
@@ -1765,30 +1823,33 @@
     "page": 16,
     "nameFr": "Grenade à Impact",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Impact Grenades"
   },
   "amelioration:generic_imploseurs_soniques": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 16,
     "nameFr": "Imploseurs Soniques",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : dés lus à fort zoom sur la carte française, profil DICE_PROFILES certifié verifiedAgainstCard, visuel raccordé.",
+    "nameEn": "Sonic Imploders"
   },
   "amelioration:generic_grenades_fumigènes": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
     "page": 16,
     "nameFr": "Grenades Fumigènes",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Smoke Grenades"
   },
   "amelioration:generic_barrière_de_la_force": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
@@ -1796,9 +1857,9 @@
     "nameFr": "Barrière de la Force",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Force Barrier"
   },
   "amelioration:generic_guidé_par_la_force": {
@@ -1806,10 +1867,11 @@
     "page": 21,
     "nameFr": "Guidé par la Force",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte identifiée, aucune entrée catalogue existante — nom français et mots-clés à ajouter."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
+    "nameEn": "Force Guidance"
   },
   "amelioration:generic_poussée_de_la_force": {
     "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
@@ -1817,9 +1879,9 @@
     "nameFr": "Poussée de la Force",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Force Push"
   },
   "amelioration:generic_réflexes_de_la_force": {
@@ -1828,9 +1890,9 @@
     "nameFr": "Réflexes de la Force",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Force Reflexes"
   },
   "amelioration:generic_sabre_lancé": {
@@ -1839,9 +1901,9 @@
     "nameFr": "Sabre Lancé",
     "type": "amelioration",
     "statutCatalogue": "connue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Carte à texte structuré, pas d'arme (la plupart) — nom français déjà raccordé mais mots-clés/keywords pas encore ajoutés à customCards.json.",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant.",
     "nameEn": "Saber Throw"
   },
   "amelioration:generic_force_guided_gap": {
@@ -1849,9 +1911,329 @@
     "page": 21,
     "nameFr": "Guidé par la Force",
     "type": "amelioration",
-    "statutCatalogue": "inconnue",
-    "statutDonneesMoteur": "a_verifier",
-    "statutVerification": "a_verifier",
-    "note": "Aucune entrée dans cardNamesFr.ts (contrairement à Force Barrier/Push/Reflexes, déjà mappées) — nom anglais probable « Force Guided », à confirmer."
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Doublon de amelioration:generic_guidé_par_la_force (même carte) — conservé pour mémoire, voir cette entrée pour le statut à jour.",
+    "nameEn": "Force Guidance"
+  },
+  "amelioration:black-sun-magnetic-detonator": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 2,
+    "nameFr": "Homme de Main avec Détonateur Magnétique",
+    "nameEn": "black sun enforcer magnetic detonator",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:black-sun-enforcer-concealment": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Homme de Main du Soleil Noir (figurine supplémentaire, Cache : Esquive 1)",
+    "nameEn": "black sun enforcer concealment",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:black-sun-vigo-leader": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 3,
+    "nameFr": "Vigo du Soleil Noir (déblocage Chef)",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Déjà couvert par une entrée existante du catalogue (lot Mercenaire précédent) — aucune nouvelle entrée nécessaire.",
+    "nameEn": "black sun vigo"
+  },
+  "amelioration:super-commando-concealment": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 3,
+    "nameFr": "Super Commando Mandalorien (figurine supplémentaire, Cache : Adrénaline 2)",
+    "nameEn": "super commando concealment",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:super-commando-combat-shields": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Super Commando avec Boucliers de Combat",
+    "nameEn": "super commando combat shields",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:super-commando-back-mounted-rockets": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Super Commando avec Roquettes Dorsales",
+    "nameEn": "super commando back mounted rockets",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:boba-fett-flamethrower": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "Projecteur de Flammes de Boba",
+    "nameEn": "boba fett flamethrower",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:din-djarin-flamethrower": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "Projecteur de Flammes de Din",
+    "nameEn": "din djarin flamethrower",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:gar-saxon-zx-flamethrower": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 5,
+    "nameFr": "Projecteur de Flammes ZX de Saxon",
+    "nameEn": "gar saxon zx flamethrower",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:cad-bane-electro-gauntlets": {
+    "pdfSource": "Mercenary Upgrades FR.pdf",
+    "page": 6,
+    "nameFr": "Électro-Gantelets",
+    "nameEn": "cad bane electro gauntlets",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français, alias interne, dés/mots-clés et visuel recadré ajoutés à customCards.json à partir d'une lecture visuelle à fort zoom de la carte française. verificationSource dans customCards.json précise la provenance ; à spot-checker en jouant."
+  },
+  "amelioration:generic_cables_ascensionnels": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 2,
+    "nameFr": "Câbles Ascensionnels",
+    "nameEn": "Ascension Cables",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_electrojumelles": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 2,
+    "nameFr": "Électrojumelles",
+    "nameEn": "Electrobinoculars",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_contacts_dans_la_pegre": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 2,
+    "nameFr": "Contacts dans la Pègre",
+    "nameEn": "Underworld Contacts",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_equipement_environnemental": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 3,
+    "nameFr": "Équipement Environnemental",
+    "nameEn": "Environmental Gear",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_scanner_portatif": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 3,
+    "nameFr": "Scanner Portatif",
+    "nameEn": "Handheld Scanner",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_grappins": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 3,
+    "nameFr": "Grappins",
+    "nameEn": "Grapnel Hooks",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_posture_defensive": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 11,
+    "nameFr": "Posture Défensive",
+    "nameEn": "Defensive Posture",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_posture_offensive": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 11,
+    "nameFr": "Posture Offensive",
+    "nameEn": "Offensive Posture",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_obus_antiblindage": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 18,
+    "nameFr": "Obus Antiblindage",
+    "nameEn": "Armor-Piercing Shells",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : dés lus à fort zoom sur la carte française, profil DICE_PROFILES certifié verifiedAgainstCard, visuel raccordé."
+  },
+  "amelioration:generic_obus_haute_energie": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 18,
+    "nameFr": "Obus à Haute Énergie",
+    "nameEn": "High-Energy Shells",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : dés lus à fort zoom sur la carte française, profil DICE_PROFILES certifié verifiedAgainstCard, visuel raccordé."
+  },
+  "amelioration:generic_obus_antibunker": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 18,
+    "nameFr": "Obus « Antibunker »",
+    "nameEn": "Anti-Bunker Shells",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "certifie",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : dés lus à fort zoom sur la carte française, profil DICE_PROFILES certifié verifiedAgainstCard, visuel raccordé."
+  },
+  "amelioration:generic_generateur_de_barrage": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 17,
+    "nameFr": "Générateur de Barrage",
+    "nameEn": "Barrage Generator",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_surcharge_du_generateur": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 17,
+    "nameFr": "Surcharge du Générateur",
+    "nameEn": "Generator Overcharge",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_colere": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 18,
+    "nameFr": "Colère",
+    "nameEn": "Anger",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_peur": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 19,
+    "nameFr": "Peur",
+    "nameEn": "Fear",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_espoir": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 19,
+    "nameFr": "Espoir",
+    "nameEn": "Hope",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_strangulation_de_la_force": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 19,
+    "nameFr": "Strangulation de la Force",
+    "nameEn": "Force Choke",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_vieille_ruse_jedi": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 20,
+    "nameFr": "Vieille Ruse Jedi",
+    "nameEn": "Old Jedi Trick",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
+  },
+  "amelioration:generic_pointe_de_vitesse": {
+    "pdfSource": "Generic Upgrades FR.pdf (= general upgrade FR couleur.pdf, contenu identique)",
+    "page": 20,
+    "nameFr": "Pointe de Vitesse",
+    "nameEn": "Burst of Speed",
+    "type": "amelioration",
+    "statutCatalogue": "connue",
+    "statutDonneesMoteur": "sans_objet",
+    "statutVerification": "confirme",
+    "note": "Intégré (15/09) : nom français corrigé si nécessaire, alias anglais, visuel raccordé (recadrage propre ou visuel orphelin déjà présent réutilisé), dés/mots-clés ajoutés le cas échéant. À spot-checker en jouant."
   }
 }
