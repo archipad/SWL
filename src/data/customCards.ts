@@ -22,6 +22,8 @@ export interface CustomCardEntry {
   defenseSurge?: 'block';
   /** null retire explicitement la conversion imprimée de l'unité. */
   defenseSurgeOverride?: 'block' | null;
+  /** Pions proposés par Autonome, lus sur la carte (un choix peut en contenir plusieurs). */
+  autonomousTokens?: { token: 'aim' | 'dodge' | 'surge'; count: number }[];
   /** Critique X, où X est le nombre actuel de pions Suppression du porteur. */
   criticalPerSuppression?: boolean;
   /** Améliore deux dés d'une autre unité alliée à portée 1. */

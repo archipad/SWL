@@ -491,7 +491,7 @@
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
-      "courage": 2,
+      "courage": 3,
       "baseModels": 1
     },
     "keywords": [
@@ -514,9 +514,23 @@
       {
         "keywordId": "tireur-delite-x",
         "value": 2
+      },
+      {
+        "keywordId": "arsenal-x",
+        "value": 2
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant."
+    "verificationSource": "Carte française Boba Fett, Infâme Chasseur de Primes présente dans public/cards — Courage 3, Arsenal 2 et Autonome : Viser 1 ou Esquive 1 contrôlés visuellement le 15/09/2026.",
+    "autonomousTokens": [
+      {
+        "token": "aim",
+        "count": 1
+      },
+      {
+        "token": "dodge",
+        "count": 1
+      }
+    ]
   },
   "boba fett daimyo of mos espa": {
     "nameFr": "Boba Fett, Daimyo de Mos Espa",
@@ -1070,7 +1084,13 @@
         "value": 1
       }
     ],
-    "verificationSource": "Carte anglaise Rebel Agent — Defender of Democracy fournie par l’utilisateur le 14/09/2026 ; lecture visuelle directe."
+    "verificationSource": "Carte anglaise Rebel Agent — Defender of Democracy fournie par l’utilisateur le 14/09/2026 ; lecture visuelle directe.",
+    "autonomousTokens": [
+      {
+        "token": "dodge",
+        "count": 1
+      }
+    ]
   },
   "reluctant hero": {
     "nameFr": "Héros Malgré Lui",

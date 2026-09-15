@@ -41,6 +41,7 @@ export interface CardDiceProfile {
   defenseSurgeOverride?: 'block' | null;
   criticalPerSuppression?: boolean;
   fireControl?: boolean;
+  autonomousTokens?: { token: 'aim' | 'dodge' | 'surge'; count: number }[];
   /** Caractéristiques imprimées de la carte Unité, certifiées avec le même circuit que les dés. */
   unitStats?: {
     woundsPerModel: number;
@@ -292,6 +293,7 @@ export const DICE_PROFILES: Record<string, CardDiceProfile> = {
         ...('defenseSurgeOverride' in card ? { defenseSurgeOverride: card.defenseSurgeOverride } : {}),
         ...(card.criticalPerSuppression ? { criticalPerSuppression: true } : {}),
         ...(card.fireControl ? { fireControl: true } : {}),
+        ...(card.autonomousTokens ? { autonomousTokens: card.autonomousTokens } : {}),
         ...(card.attackSurge ? { attackSurge: card.attackSurge } : {}),
         ...(card.defenseSurge ? { defenseSurge: card.defenseSurge } : {}),
         ...(card.unitStats
