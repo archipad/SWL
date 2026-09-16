@@ -57,6 +57,8 @@ const automatic = new Set([
   'point-faible-x',
   'tireur-embusque',
   'maitrise-du-jarkai',
+  'maitrise-du-makashi',
+  'maitrise-du-soresu',
 ])
 
 const assisted = new Set([
@@ -79,9 +81,7 @@ const assisted = new Set([
   'intuition-du-danger-x',
   'la-victoire-ou-la-mort',
   'les-mandaloriens-sont-plus-forts-ensemble',
-  'maitrise-du-makashi',
   'maitrise-du-shien',
-  'maitrise-du-soresu',
   'maitrise-du-vaapad',
   'nous-nous-battons-pour-notre-famille',
   'pistolero',

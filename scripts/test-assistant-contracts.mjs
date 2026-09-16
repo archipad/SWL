@@ -94,6 +94,20 @@ assert.match(app, /function marksmanEligible\(\)\{return allResolved\(attacker\)
 assert.match(app, /function jarkaiEligible\(\)\{return attackType\(\)==='melee'&&allResolved\(attacker\)\.some\(x=>x\.def\.id==='maitrise-du-jarkai'\)\}/, 'Maîtrise du Jar’Kai doit être réservée au corps-à-corps')
 assert.match(app, /engine\.applyBlankUpgrade\(result\.hit,result\.crit,attackState\.roll\.blank,blankToHit,hitToCrit\)/, 'La conversion vierge/touche/critique doit utiliser le moteur partagé')
 assert.match(app, /'marksmanBlankToHit','marksmanBlankToHit'.*'jarkaiHitToCrit','jarkaiHitToCrit'/, 'Les compteurs Tireur Embusqué/Jar’Kai doivent être branchés aux champs de saisie')
+
+// Maîtrise du Makashi (16/09/2026) : passée en automatique — réduction de
+// Perforant et refus d'Immunité : perforant (corps-à-corps), une fois la
+// question Oui/Non répondue, sans dépendance de table.
+assert.match(app, /function makashiEligible\(\)\{return attackStep===0&&attackType\(\)==='melee'&&allResolved\(attacker\)\.some\(x=>x\.def\.id==='maitrise-du-makashi'\)&&attackKeywordValue\('perforant-x'\)>0\}/, 'Maîtrise du Makashi doit être réservée au corps-à-corps avec du Perforant dans la réserve')
+assert.match(app, /souhaitez-vous appliquer Maîtrise du Makashi/, 'Maîtrise du Makashi étant facultative, le joueur doit confirmer son application')
+assert.match(app, /perforant-x'\)\+duelistAttack\.pierceBonus-\(makashiUsed\?1:0\)/, 'Maîtrise du Makashi doit réduire le Perforant total de 1 quand elle est utilisée')
+assert.match(app, /immunite-perforant-corps-a-corps'&&attackType\(\)==='melee'&&!makashiUsed/, 'Maîtrise du Makashi doit interdire Immunité : perforant (corps-à-corps) quand elle est utilisée')
+
+// Maîtrise du Soresu (16/09/2026) : passée en automatique — relance de tous
+// les dés de défense en défense à distance, sans dépendance de table.
+// Simplification documentée : le sous-cas « en utilisant Gardien X, dépenser
+// un pion Esquive pour relancer les dés du Gardien » n'est pas couvert.
+assert.match(app, /ranged&&allResolved\(defender\)\.some\(x=>x\.def\.id==='maitrise-du-soresu'\)\?a\.hit\+a\.crit:0/, 'Maîtrise du Soresu doit permettre de relancer tous les dés de défense à distance')
 assert.match(cardNames, /while \(CARD_KEY_ALIASES\[current\]/, 'Les alias successifs doivent converger vers la carte canonique finale')
 assert.match(applyScript, /Cycle d'alias détecté/, 'Un lot de certification ne doit jamais pouvoir créer une boucle d’alias')
 
