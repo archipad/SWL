@@ -7,14 +7,14 @@ const vite = await createServer({ server: { middlewareMode: true }, appType: 'cu
 try {
   const { importArmyList } = await vite.ssrLoadModule('/src/lib/importList.ts')
   const { auditImportedList } = await vite.ssrLoadModule('/src/lib/importAudit.ts')
-  const { buildCertifiedUnitRoster } = await vite.ssrLoadModule('/src/lib/unitModels.ts')
+  const { getUnitMoraleProfile } = await vite.ssrLoadModule('/src/lib/unitModels.ts')
 
-  // Parcours utilisateur : import Tabletop Admiral -> audit -> effectif exploitable.
+  // Parcours utilisateur : import Tabletop Admiral -> audit -> profil de moral exploitable.
   const imported = importArmyList(fs.readFileSync(new URL('./fixtures/tabletop-admiral-rebel.json', import.meta.url), 'utf8'))
   const audit = auditImportedList(imported)
   assert.ok(imported.units.length > 0, 'La liste importée doit proposer des unités')
   assert.ok(audit.cards >= imported.units.length, 'Toutes les cartes importées doivent être auditées')
-  assert.ok(buildCertifiedUnitRoster(imported.units[0]).models.length > 0, 'Une unité certifiée doit produire son effectif')
+  assert.ok(getUnitMoraleProfile(imported.units[0]).certified, 'Une unité certifiée doit produire son profil de moral')
 
   // Une future carte ne doit jamais être prise pour une simple traduction manquante.
   const future = importArmyList(JSON.stringify({ listname: 'Future', armyFaction: 'empire', units: [{ name: 'Future Unit Alpha', upgrades: ['Future Upgrade Beta'] }] }))

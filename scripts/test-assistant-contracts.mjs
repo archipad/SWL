@@ -14,7 +14,6 @@ const trackerState = fs.readFileSync(new URL('../src/lib/useGameTracker.ts', imp
 const certifications = JSON.parse(fs.readFileSync(new URL('../src/data/diceCertifications.json', import.meta.url), 'utf8'))
 const customCards = JSON.parse(fs.readFileSync(new URL('../src/data/customCards.json', import.meta.url), 'utf8'))
 const importAudit = fs.readFileSync(new URL('../src/lib/importAudit.ts', import.meta.url), 'utf8')
-const unitModels = fs.readFileSync(new URL('../src/lib/unitModels.ts', import.meta.url), 'utf8')
 const setupUi = fs.readFileSync(new URL('../src/components/SetupScreen.tsx', import.meta.url), 'utf8')
 const syncUi = fs.readFileSync(new URL('../src/lib/useSync.ts', import.meta.url), 'utf8')
 const gistSync = fs.readFileSync(new URL('../src/lib/gistSync.ts', import.meta.url), 'utf8')
@@ -104,7 +103,7 @@ assert.match(app, /state\.suppression-courage/, 'La fin d’activation paniquée
 assert.match(trackerState, /activatedUnitIds: string\[\]/, 'Le suivi persistant des activations est absent')
 assert.match(trackerUi, /toggleActivation/, 'Le bouton Jouée / À jouer est absent')
 assert.match(trackerUi, /round === state\.round \? activatedUnitIds : \[\]/, 'Un nouveau round doit remettre les activations à zéro')
-assert.match(trackerUi, /!unitSnapshot\(unit, player, index\)\.defeated/, 'Une unité vaincue ne doit pas compter parmi les activations restantes')
+assert.match(trackerUi, /!unitSnapshot\(unit, player, index\)\.outOfAction/, 'Une unité hors combat ne doit pas compter parmi les activations restantes')
 assert.match(app, /markUnitActivated\(attacker\)/, 'Une attaque terminée doit marquer automatiquement l’attaquant comme joué')
 assert.match(app, /markUnitActivated\(entry\)/, 'Une activation paniquée terminée doit être marquée comme jouée')
 assert.match(app, /Terminer sans attaquer/, 'Une activation normale doit pouvoir être terminée sans attaque')
@@ -165,7 +164,7 @@ assert.match(cardNamesFrSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards
 // les quatre autres tables ci-dessus — buildCertifiedUnitRoster() signalait
 // donc à tort « Effectif impossible à calculer avec certitude » pour toute
 // carte ajoutée uniquement via l'écran « Nouvelle carte ».
-assert.match(unitModelsSource, /import \{ CUSTOM_CARDS \} from '\.\.\/data\/customCards';/, 'buildCertifiedUnitRoster() doit fusionner les cartes ajoutées depuis l’assistant (sinon effectif « non certifié » à tort)')
+assert.match(unitModelsSource, /import \{ CUSTOM_CARDS \} from '\.\.\/data\/customCards';/, 'getUnitMoraleProfile() doit fusionner les cartes ajoutées depuis l’assistant (sinon courage « non certifié » à tort)')
 
 // Une nouvelle carte peut aussi recevoir ses mots-clés dans le même
 // formulaire (plutôt que de dépendre du tag manuel "+ mot-clé" séparé sur
@@ -177,19 +176,17 @@ assert.match(certificationUi, /data-remove-keyword/, 'Le retrait d’un mot-clé
 assert.match(applyScript, /const knownKeywordIds = new Set/, 'Les mots-clés d’une nouvelle carte doivent être validés contre le glossaire réel')
 assert.match(applyScript, /Mot-clé inconnu pour/, 'Un identifiant de mot-clé inventé ne doit jamais pouvoir être enregistré')
 
-// Tout nouvel import doit produire un diagnostic explicite et utiliser le
-// même calcul d'effectif que le tableau de suivi.
+// Tout nouvel import doit produire un diagnostic explicite.
 assert.match(setupUi, /ImportCompatibilityReport/, 'Le rapport de compatibilité doit être visible après import')
 assert.match(importAudit, /Visuel non raccordé/, 'Un visuel inconnu doit être signalé')
-assert.match(importAudit, /PV, courage ou effectif non certifiés/, 'Une unité non certifiée doit être signalée')
+assert.match(importAudit, /Courage non certifié/, 'Une unité au courage non certifié doit être signalée')
 assert.match(importAudit, /Dés d.attaque non certifiés/, 'Une arme non certifiée doit être signalée')
 assert.match(importAudit, /weapon\.verifiedAgainstCard/, 'L’audit doit respecter la certification portée par le profil de dés')
 assert.match(importAudit, /profile\.defenseVerifiedAgainstCard/, 'L’audit doit respecter la certification de défense portée par le profil')
 assert.match(importAudit, /scope: 'catalog'/, 'Les raccordements de catalogue doivent être séparés des certifications moteur')
 assert.match(importAudit, /resolution: unknownCard \? 'unknown-card' : 'visual-unmapped'/, 'Le rapport doit distinguer une carte inconnue d’un visuel seulement non raccordé')
 assert.match(importAudit, /certificationCards: uniqueCards/, 'Le compteur doit compter les cartes à certifier, pas additionner leurs anomalies')
-assert.match(unitModels, /addedModelWounds \?\? base\.woundsPerModel/, 'Les figurines hétérogènes doivent conserver leurs propres PV')
-assert.match(trackerUi, /buildCertifiedUnitRoster/, 'Le suivi de partie doit utiliser le calcul d’effectif central')
+assert.match(trackerUi, /getUnitMoraleProfile/, 'Le suivi de partie doit utiliser le calcul de moral central')
 
 // "Nouvelle partie" doit repartir de zéro sans exiger de réimporter les
 // listes : round/activations/VP/objectifs (tracker) ET blessures/suppression

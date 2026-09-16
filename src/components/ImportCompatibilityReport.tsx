@@ -33,7 +33,7 @@ export function ImportCompatibilityReport({ list }: { list: ParsedList }) {
         {!!audit.certificationCards && <span><b>{audit.certificationCards}</b> certification{audit.certificationCards > 1 ? 's' : ''} moteur</span>}
       </div>}
       {audit.units.map((unit) => <article key={unit.name}>
-        <div><strong>{frenchCardName(unit.name)}</strong><span>{unit.models === null ? 'Effectif ?' : `${unit.models} figurine${unit.models > 1 ? 's' : ''}`} · {unit.maxWounds === null ? 'PV ?' : `${unit.maxWounds} PV totaux`}</span></div>
+        <div><strong>{frenchCardName(unit.name)}</strong></div>
         {unit.issues.length ? <ul>{unit.issues.map((issue, index) => <li key={`${issue.card}-${issue.kind}-${index}`}><b>{frenchCardName(issue.card)}</b> — {issue.message}</li>)}</ul> : <span className="import-audit-unit-ok">✓ Données moteur complètes</span>}
       </article>)}
       {!!audit.certificationIssues.length && <p className="import-audit-blocking">Les données moteur signalées doivent être certifiées avant d’être appliquées automatiquement.</p>}

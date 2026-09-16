@@ -7,7 +7,6 @@ const vite = await createServer({ server: { middlewareMode: true }, appType: 'cu
 try {
   const { importArmyList } = await vite.ssrLoadModule('/src/lib/importList.ts')
   const { auditImportedList } = await vite.ssrLoadModule('/src/lib/importAudit.ts')
-  const { buildCertifiedUnitRoster } = await vite.ssrLoadModule('/src/lib/unitModels.ts')
   const { canonicalCardKey } = await vite.ssrLoadModule('/src/lib/cardNames.ts')
   const { DICE_PROFILES } = await vite.ssrLoadModule('/src/data/diceProfiles.ts')
   const certifications = JSON.parse(fs.readFileSync(new URL('../src/data/diceCertifications.json', import.meta.url), 'utf8'))
@@ -22,10 +21,6 @@ try {
     const audit = auditImportedList(list)
     assert.equal(audit.safeForEngine, true, `${list.name}: des données moteur restent non certifiées`)
     for (const unit of list.units) {
-      const roster = buildCertifiedUnitRoster(unit)
-      assert.equal(roster.certified, true, `${unit.name}: effectif non certifié`)
-      assert.ok(roster.models.length > 0, `${unit.name}: aucune figurine calculée`)
-      assert.ok(roster.models.every((model) => model.maxWounds > 0), `${unit.name}: PV de figurine invalide`)
       const unitProfile = DICE_PROFILES[canonicalCardKey(unit.name)]
       const certification = certifications[canonicalCardKey(unit.name)]
       assert.ok(unitProfile?.defenseColor, `${unit.name}: couleur de défense absente`)
@@ -57,23 +52,17 @@ try {
     }
   }
   assert.ok(attacks >= 20, 'La matrice de partie doit couvrir les deux armées dans les deux sens')
-  const chewbaccaWookiees = buildCertifiedUnitRoster({ name: 'Wookiee Warriors Freedom Fighters', key: 'live-chewbacca', upgrades: [{ name: 'Chewbacca', key: 'chewbacca' }] })
-  assert.equal(chewbaccaWookiees.models.length, 4)
-  assert.equal(chewbaccaWookiees.models.reduce((sum, model) => sum + model.maxWounds, 0), 12)
-  // Une partie complète doit pouvoir enchaîner six rounds sans perdre les PV,
-  // sans ressusciter une figurine et en remettant à zéro les pions temporaires.
-  const tracked = new Map([...rebel.units, ...empire.units].map((unit) => [unit, { wounds: 0, aim: 0, dodge: 0, surge: 0, standby: 0 }]))
+  // Une partie complète doit pouvoir enchaîner six rounds en remettant à zéro
+  // les pions temporaires (l'appli ne suit plus les PV/effectif : voir
+  // src/lib/unitModels.ts).
+  const tracked = new Map([...rebel.units, ...empire.units].map((unit) => [unit, { aim: 0, dodge: 0, surge: 0, standby: 0 }]))
   for (let round = 1; round <= 6; round += 1) {
     for (const list of [rebel, empire]) for (const unit of list.units) {
-      const roster = buildCertifiedUnitRoster(unit)
       const state = tracked.get(unit)
       state.aim += 1
       state.dodge += 1
       state.surge += 1
       state.standby = 1
-      const damage = round % 2 === 0 ? 1 : 0
-      state.wounds = Math.min(roster.models.reduce((sum, model) => sum + model.maxWounds, 0), state.wounds + damage)
-      assert.ok(state.wounds >= 0, `${unit.name}: blessures négatives au round ${round}`)
     }
     for (const state of tracked.values()) {
       state.aim = 0

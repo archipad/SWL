@@ -26,56 +26,27 @@ const certified: Record<string, CertifiedRecord> = {
   ),
 };
 
-export interface UnitModel {
-  id: string;
-  sourceCard: string;
-  maxWounds: number;
-  isUpgrade: boolean;
-}
-
-export interface CertifiedUnitRoster {
-  models: UnitModel[];
+export interface UnitMoraleProfile {
   courage: number | null;
   suppressionImmune: boolean;
+  /** Le courage/l'immunité de cette carte ont été vérifiés sur une carte réelle. */
   certified: boolean;
-  missingCards: string[];
 }
 
-/** Source unique du calcul d'effectif pour l'assistant et le suivi de partie. */
-export function buildCertifiedUnitRoster(unit: ParsedUnit): CertifiedUnitRoster {
+/**
+ * Source unique du courage/immunité à la suppression pour l'assistant et le
+ * suivi de partie. L'application ne suit plus les PV ni l'effectif d'une
+ * unité (choix produit) : seul ce qui alimente le moral (démoralisé/paniqué)
+ * reste calculé ici.
+ */
+export function getUnitMoraleProfile(unit: ParsedUnit): UnitMoraleProfile {
   const base = certified[canonicalCardKey(unit.name)]?.unitStats;
   if (!base) {
-    return { models: [], courage: null, suppressionImmune: false, certified: false, missingCards: [unit.name] };
+    return { courage: null, suppressionImmune: false, certified: false };
   }
-
-  const models: UnitModel[] = Array.from({ length: base.baseModels }, (_, index) => ({
-    id: `base-${index}`,
-    sourceCard: unit.name,
-    maxWounds: base.woundsPerModel,
-    isUpgrade: false,
-  }));
-  const missingCards: string[] = [];
-
-  unit.upgrades.forEach((upgrade, upgradeIndex) => {
-    const profile = certified[canonicalCardKey(upgrade.name)];
-    if (!profile || !Number.isInteger(profile.addedModels)) return;
-    const addedModels = Math.max(0, profile.addedModels ?? 0);
-    if (addedModels && !profile.addedModelWounds && !base.woundsPerModel) missingCards.push(upgrade.name);
-    for (let modelIndex = 0; modelIndex < addedModels; modelIndex += 1) {
-      models.push({
-        id: `upgrade-${upgradeIndex}-${canonicalCardKey(upgrade.name)}-${modelIndex}`,
-        sourceCard: upgrade.name,
-        maxWounds: profile.addedModelWounds ?? base.woundsPerModel,
-        isUpgrade: true,
-      });
-    }
-  });
-
   return {
-    models,
     courage: base.courage,
     suppressionImmune: !!base.suppressionImmune || base.courage === null,
-    certified: missingCards.length === 0,
-    missingCards,
+    certified: true,
   };
 }

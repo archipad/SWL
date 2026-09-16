@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ADVANTAGE_CARDS, OBJECTIVE_CARDS, SECONDARY_OBJECTIVE_CARDS } from '../data/battleCards';
-import certifications from '../data/diceCertifications.json';
-import { canonicalCardKey, frenchCardName } from '../lib/cardNames';
-import { buildCertifiedUnitRoster } from '../lib/unitModels';
+import { frenchCardName } from '../lib/cardNames';
+import { getUnitMoraleProfile } from '../lib/unitModels';
 import { DEFAULT_STATE, type useGameTracker } from '../lib/useGameTracker';
 import { useGameArchive, type ArchivedGame } from '../lib/useGameArchive';
 import type { SyncStatus } from '../lib/useSync';
@@ -20,11 +19,9 @@ interface Props {
 
 const ROUNDS = [1, 2, 3, 4, 5];
 const UNIT_STATE_KEY = 'swl.assistant.unit-state.v1';
-type UnitState = { wounds?: number; suppression?: number; ion?: number; immobilize?: number; poison?: number; shield?: number; modelWounds?: Record<string, number> };
+type UnitState = { suppression?: number; ion?: number; immobilize?: number; poison?: number; shield?: number; outOfAction?: boolean };
 type UnitStates = Record<string, UnitState>;
 type AttackHistoryEntry = { id: string; at: string; attacker: string; defender: string; weapons?: string[]; wounds: number; blocks?: number };
-type CertifiedRecord = { unitStats?: { woundsPerModel: number; courage: number | null; baseModels: number; suppressionImmune?: boolean }; addedModels?: number; addedModelWounds?: number };
-const certified = certifications as Record<string, CertifiedRecord>;
 
 function readUnitStates(): UnitStates {
   try { return JSON.parse(localStorage.getItem(UNIT_STATE_KEY) || '{}') as UnitStates; }
@@ -138,30 +135,25 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
 
   const unitSnapshot = (unit: ParsedList['units'][number], player: 'p1' | 'p2', index: number) => {
     const state = unitStates[unitIdFor(player, unit, index)] ?? unitStates[`${player}:${index}`] ?? {};
-    const base = certified[canonicalCardKey(unit.name)]?.unitStats;
-    const roster = buildCertifiedUnitRoster(unit);
-    const models = roster.models.map((model) => ({ id: model.id, health: model.maxWounds }));
-    const detailedTotal = models.reduce((sum, model) => sum + Math.max(0, Math.min(model.health, state.modelWounds?.[model.id] ?? 0)), 0);
-    const hasConsistentDetail = !!state.modelWounds && detailedTotal === Math.max(0, state.wounds ?? 0);
-    let budget = Math.max(0, state.wounds ?? 0);
-    const remaining = models.reduce((sum, model) => {
-      const applied = hasConsistentDetail ? Math.max(0, Math.min(model.health, state.modelWounds?.[model.id] ?? 0)) : Math.min(model.health, budget);
-      if (!hasConsistentDetail) budget -= applied;
-      return sum + (applied < model.health ? 1 : 0);
-    }, 0);
-    const totalWounds = models.reduce((sum, model) => sum + model.health, 0);
-    const suppression = base?.suppressionImmune || base?.courage === null ? 0 : Math.max(0, state.suppression ?? 0);
-    const courage = base?.courage ?? null;
-    return { state, base, totalModels: models.length, remaining, totalWounds, suppression, panicked: courage !== null && suppression >= courage * 2, suppressed: courage !== null && suppression >= courage, defeated: !!models.length && remaining === 0 };
+    const moraleProfile = getUnitMoraleProfile(unit);
+    const suppression = moraleProfile.suppressionImmune ? 0 : Math.max(0, state.suppression ?? 0);
+    const courage = moraleProfile.courage;
+    return {
+      state,
+      moraleProfile,
+      suppression,
+      panicked: courage !== null && suppression >= courage * 2,
+      suppressed: courage !== null && suppression >= courage,
+      outOfAction: !!state.outOfAction,
+    };
   };
 
   const armySummary = (list: ParsedList | null, player: 'p1' | 'p2') => {
     const units = list?.units ?? [];
     return {
       units: units.length,
-      wounded: units.filter((unit, index) => (unitSnapshot(unit, player, index).state.wounds ?? 0) > 0).length,
       suppression: units.reduce((sum, unit, index) => sum + unitSnapshot(unit, player, index).suppression, 0),
-      remainingActivations: units.filter((unit, index) => !activatedUnitIds.includes(unitIdFor(player, unit, index)) && !unitSnapshot(unit, player, index).defeated).length,
+      remainingActivations: units.filter((unit, index) => !activatedUnitIds.includes(unitIdFor(player, unit, index)) && !unitSnapshot(unit, player, index).outOfAction).length,
     };
   };
   const p1Summary = armySummary(listP1, 'p1');
@@ -222,7 +214,6 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
             <div><span>{fallback}</span><strong>{playerLabel(list, fallback)}</strong></div>
             <dl>
               <div><dt>Unités</dt><dd>{summary.units}</dd></div>
-              <div><dt>Touchées</dt><dd>{summary.wounded}</dd></div>
               <div><dt>Suppression</dt><dd>{summary.suppression}</dd></div>
               <div><dt>À jouer</dt><dd>{summary.remainingActivations}</dd></div>
             </dl>
@@ -248,17 +239,15 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
               <strong>{playerLabel(list, fallback)}</strong>
               {(list?.units ?? []).map((unit, index) => {
                 const snapshot = unitSnapshot(unit, player, index);
-                const morale = snapshot.defeated ? 'Vaincue' : snapshot.panicked ? 'Paniquée' : snapshot.suppressed ? 'Démoralisée' : snapshot.suppression ? 'Ralliement' : 'Stable';
+                const morale = snapshot.outOfAction ? 'Hors combat' : snapshot.panicked ? 'Paniquée' : snapshot.suppressed ? 'Démoralisée' : snapshot.suppression ? 'Ralliement' : 'Stable';
                 const unitId = unitIdFor(player, unit, index);
                 const activated = activatedUnitIds.includes(unitId);
-                return <article className={`tracker-unit-row ${activated ? 'activated' : ''} ${snapshot.defeated ? 'defeated' : snapshot.panicked ? 'panicked' : snapshot.suppressed ? 'suppressed' : ''}`} key={unitId}>
+                return <article className={`tracker-unit-row ${activated ? 'activated' : ''} ${snapshot.outOfAction ? 'defeated' : snapshot.panicked ? 'panicked' : snapshot.suppressed ? 'suppressed' : ''}`} key={unitId}>
                   <div><b>{frenchCardName(unit.name)}</b><small>{morale}</small></div>
                   <dl>
-                    <div><dt>Fig.</dt><dd>{snapshot.base ? `${snapshot.remaining}/${snapshot.totalModels}` : '?'}</dd></div>
-                    <div><dt>Bless.</dt><dd>{snapshot.state.wounds ?? 0}{snapshot.totalWounds ? `/${snapshot.totalWounds}` : ''}</dd></div>
-                    <div><dt>Supp.</dt><dd>{snapshot.base?.suppressionImmune || snapshot.base?.courage === null ? '—' : snapshot.suppression}</dd></div>
+                    <div><dt>Supp.</dt><dd>{snapshot.moraleProfile.suppressionImmune ? '—' : snapshot.suppression}</dd></div>
                   </dl>
-                  <button type="button" className={`tracker-activation ${activated ? 'done' : ''}`} disabled={snapshot.defeated} onClick={() => toggleActivation(unitId)}>{snapshot.defeated ? '☠' : activated ? '✓ Jouée' : 'À jouer'}</button>
+                  <button type="button" className={`tracker-activation ${activated ? 'done' : ''}`} disabled={snapshot.outOfAction} onClick={() => toggleActivation(unitId)}>{snapshot.outOfAction ? '☠' : activated ? '✓ Jouée' : 'À jouer'}</button>
                 </article>;
               })}
             </div>
