@@ -18,6 +18,22 @@
   `unitModels.ts` expose désormais `getUnitMoraleProfile()` (courage
   seulement) à la place de `buildCertifiedUnitRoster()`.
 
+- [x] (16/09/2026, décision produit utilisateur) Réorganisé l'écran d'unité
+  de l'Assistant : « Cartes et mots-clés » remonte juste après l'identité/
+  Suppression (voir toutes les compétences avant de décider comment jouer
+  l'unité, plutôt qu'après) ; le Briefing tactique se restructure en deux
+  sections dans l'ordre où elles servent (Activation & Déplacement, puis
+  Attaque — la Défense de l'unité n'y figure plus, elle s'affiche côté
+  défenseur). Le Parcours guidé (Ordre/Effets/Actions/Fin, sélecteur à 7
+  boutons) est retiré, jugé trop de clics pour la valeur apportée ; seul
+  le bouton Résoudre une attaque subsiste. Les pions Viser/Esquive/
+  Adrénaline, qui n'étaient mis à jour que par ce sélecteur, deviennent
+  une saisie manuelle au moment de l'attaque (comme les PV). Restent
+  inatteignables sans remplacement : la réaction Attente, l'attaque
+  gratuite après déplacement (Charge/Aguerri/Implacable), le doublement
+  Viser/Esquive par les cartes Posture — leur code reste en place au cas
+  où une autre voie leur serait donnée plus tard.
+
 - [x] Audit exhaustif des 13 PDF de cartes (`aGENTS` + `Nouveau dossier`, hors Galactic Empire Commands FR exclu sur demande) : 185 cartes cataloguées dans `src/data/pdfCardManifest.json`, comparées carte par carte au catalogue central. Résultat : Empire Units et Rebel Alliance Units 100 % déjà certifiés (aucun écart) ; 15 écarts confirmés (7 Empire Upgrades, 8 Rebel Upgrades) ; ~50 cartes Mercenary/Generic Upgrades identifiées mais non certifiées ; 1 écart de traduction repéré (Lead by Example = « Meneur d'Hommes » au catalogue vs « Donner l'Exemple » sur le visuel lu). Détail complet : `docs/PDF_CATALOG_AUDIT.md`. Nouveau test bloquant `scripts/test-pdf-catalog-manifest.mjs` (intégré à `npm run build`) protégeant ces constats contre toute régression future.
 
 - [x] Ajouter la faction Mercenaire (18 unités : Syndicat Pyke, Soleil Noir, Gar Saxon, Maul, Boba Fett (2 versions), Bossk, Cad Bane, IG-88, IG-11, Din Djarin, Grogu, Super Commandos Mandaloriens, Le Bad Batch, Omega) avec visuels, profils de dés et effectifs certifiés — voir `verificationSource` dans `customCards.json` pour la provenance (planches PDF fournies par l'utilisateur, lecture visuelle IA à spot-checker en jouant).
