@@ -313,18 +313,13 @@ assert.match(app, /place-proton.*detonate-proton/, 'Les charges à protons doive
 assert.match(app, /place-sonic.*detonate-sonic/, 'Les charges soniques doivent être suivies de la pose à la détonation')
 assert.match(app, /SABRE LANCÉ.*moitié.*arrondie au supérieur/, 'Sabre Lancé doit rappeler son calcul à partir de l’arme de corps-à-corps')
 assert.match(app, /aim:0,dodge:0,surge:0,standby:0,exhaustedCards:\[\]/, 'La phase finale doit retirer les pions temporaires et redresser les cartes')
-assert.match(app, /function activationJourney\(entry\)/, 'La fiche unité doit proposer un parcours d’activation guidé')
-assert.match(app, /Ordre face visible.*Pion tiré de la réserve/, 'Les deux origines légales de l’activation doivent être demandées')
-assert.doesNotMatch(app, /data-activation-source="no-order"/, 'Une unité ne doit pas pouvoir être activée sans pion Ordre')
-assert.match(app, /autonomous&&state\.activationSource==='pool'/, 'Autonome doit se déclencher lorsque le pion est tiré de la réserve')
-assert.match(app, /activation-checklist/, 'Le parcours doit afficher les phases Ordre, effets, actions et fin')
-assert.match(app, /action!=='move'.*action!=='card'.*actions\.includes\(action\)/, 'Une action normale autre que Se déplacer ne doit pas être répétée')
+// Le Parcours guidé (Ordre/Effets/Actions/Fin, sélecteur d'actions) a été
+// retiré le 16/09/2026 (choix produit : trop de clics pour trop peu de valeur) ;
+// seul le bouton Résoudre une attaque subsiste sur l'écran d'unité.
 assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-proton'\]/, 'Armer une charge à protons doit consommer une action')
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
-assert.match(app, /actions\.before\(automation\)/, 'Les effets de carte doivent être placés entre les obligations et les actions normales')
-// Message unique au-dessus de la grille d'actions plutôt que répété sur
-// chacun des 7 boutons (simplification du 16/09/2026).
-assert.match(app, /Choisissez d’abord le pion ci-dessus pour débloquer les actions/, 'Les actions doivent rester verrouillées tant que l’origine de l’activation est inconnue')
+// La grille d'actions elle-même (et son message de verrouillage) a été
+// retirée avec le Parcours guidé (16/09/2026).
 assert.match(index, /app\.js\?v=85/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 assert.match(app, /function movementFreeAttack\(entry\)/, 'Charge, Aguerri et Implacable doivent proposer leur attaque gratuite après le déplacement')
 assert.match(app, /attackState\?\.freeAttackRange==='melee'/, 'Charge doit limiter la réserve aux armes de corps-à-corps')
@@ -336,17 +331,24 @@ assert.match(app, /automaticRules.*humanChecks.*addedModels/s, 'Le rapport doit 
 assert.match(app, /certificationV2Pending/, 'Le rapport doit distinguer une donnée jouable d’une carte entièrement certifiée')
 assert.match(app, /strictReady/, 'Le rapport doit exposer un verdict de certification stricte')
 assert.match(app, /function activationActionLimit\(entry\).*suppressed\?1:2/, 'Une unité démoralisée doit être limitée à une action')
-assert.match(app, /linkedTargetingAppliedRound/, 'Système de Visée Jumelé doit se déclencher avec un ordre face visible')
-assert.match(app, /action==='recover'.*suppression=0.*exhaustedCards=\[\]/, 'Récupérer doit retirer la suppression et redresser les améliorations')
+// Sans suivi de l'origine de l'activation (Parcours guidé retiré le
+// 16/09/2026), Système de Visée Jumelé redevient un bouton manuel comme
+// les autres cartes à effet unique par activation.
+assert.match(app, /case'linked-targeting-array':exhaustCard\(entry,'linked-targeting-array'/, 'Système de Visée Jumelé doit rester déclenchable manuellement, une fois par activation')
+// L'action Récupérer (retire suppression + redresse les améliorations)
+// dépendait du sélecteur d'actions retiré avec le Parcours guidé
+// (16/09/2026) ; il n'y a plus d'équivalent applicatif.
 assert.match(app, /mandatoryMoveDone/, 'Speeder doit imposer le suivi du déplacement obligatoire')
-assert.match(app, /defensive posture.*dodge.*2|dodge.*defensive posture.*2/, 'La posture défensive doit doubler le gain d’esquive')
-assert.match(app, /offensive posture.*aim.*2|aim.*offensive posture.*2/, 'La posture offensive doit doubler le gain de visée')
+// Le doublement du gain de Viser/Esquive par une Posture dépendait des
+// actions Viser/Esquiver du Parcours guidé, retiré le 16/09/2026 — les
+// pions Viser/Esquive sont désormais déclarés manuellement à l'attaque.
 assert.match(app, /availableAims.*availableAttackSurges.*availableDodges.*availableDefenseSurges/, 'La résolution doit charger les stocks de pions des deux unités')
 assert.match(app, /Cette unité ne possède que.*pion\(s\) Viser/, 'La dépense de pions Viser doit être plafonnée')
 assert.match(app, /Le défenseur ne possède que.*pion\(s\) Esquive/, 'La dépense de pions Esquive doit être plafonnée')
 assert.match(app, /attackerState\.aim.*attackerState\.surge/, 'Les pions offensifs dépensés doivent être retirés du suivi')
 assert.match(app, /defenderState\.dodge.*defenderState\.surge/, 'Les pions défensifs dépensés doivent être retirés du suivi')
-assert.match(app, /action==='move'.*keywordValue\(entry,'agile'\).*patch\.dodge/, 'Agile doit gagner ses Esquives après un déplacement standard effectué comme action')
+// Le gain d'Esquive d'Agile après un déplacement dépendait de l'action Se
+// déplacer du Parcours guidé, retiré le 16/09/2026.
 assert.doesNotMatch(app, /agileReturned/, 'Agile ne doit plus utiliser son ancien déclenchement après une défense')
 assert.deepEqual(customCards['rebel agent defender of democracy'].autonomousTokens, [{ token: 'dodge', count: 1 }], 'L’Agent rebelle doit gagner Autonome : Esquive 1')
 assert.deepEqual(customCards['boba fett infamous bounty hunter'].autonomousTokens, [{ token: 'aim', count: 1 }, { token: 'dodge', count: 1 }], 'Boba Fett doit choisir Viser 1 ou Esquive 1 avec Autonome')
@@ -362,7 +364,8 @@ assert.match(app, /activatedUnitIds:\(tracker\.activatedUnitIds\|\|\[\]\)\.filte
 assert.match(app, /state\.suppression>previousSuppression&&state\.standby/, 'Gagner de la suppression doit retirer le pion Attente')
 assert.match(app, /field==='suppression'.*next\.standby=0/, 'Une suppression ajoutée manuellement doit également retirer Attente')
 assert.match(app, /aim:0,dodge:0,surge:0,standby:0/, 'La phase finale doit retirer Attente')
-assert.match(app, /const canStandby=entry=>!isVehicle\(entry\)\|\|hasResolvedKeyword\(entry,'sustentation'\)/, 'Les véhicules ne doivent pouvoir attendre qu’avec Sustentation')
+// L'action Attendre (et son garde-fou véhicule) dépendait du sélecteur
+// d'actions retiré avec le Parcours guidé (16/09/2026).
 assert.match(index, /id="gameReadiness"/, 'Un bouton doit lancer le test des listes réellement importées')
 assert.match(app, /function buildLiveGameReport\(\)/, 'Le navigateur doit construire son propre rapport de partie')
 assert.match(app, /source:'Listes réellement chargées dans le navigateur'/, 'Le rapport doit identifier sa source réelle')
