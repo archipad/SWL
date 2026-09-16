@@ -34,6 +34,21 @@
   Viser/Esquive par les cartes Posture — leur code reste en place au cas
   où une autre voie leur serait donnée plus tard.
 
+- [x] (16/09/2026) Audité les 41 mots-clés « assistés » contre la séquence
+  de résolution d'attaque de legion.takras.net (référence croisée externe,
+  pas recopiée dans le dépôt). Triage : 24 resteront assistés durablement
+  (dépendance de ligne de vue/position que l'appli ne modélise pas —
+  Gardien, Tir de Soutien, Ciblage Avancé, Déflexion, Exemplaire, Fumée,
+  Influence Divine, Discret, Intuition du Danger, etc.) ; 4 sont devenus
+  sans objet avec les retraits récents (Non-combattant : plus de PV ;
+  Charge/Implacable/Barrage : plus de suivi des actions) ; le reste est
+  du calcul pur, sans dépendance de table, et peut devenir automatique.
+  Tireur Embusqué et Maîtrise du Jar'Kai faits (voir commit) : 46
+  automatiques / 39 assistés (était 44/41). Restent dans le même esprit :
+  Maîtrise du Makashi, Maîtrise du Soresu, et Déflexion (aucun code
+  aujourd'hui — préalable à Maîtrise du Shien et Immunité : Déflexion, qui
+  en dépendent).
+
 - [x] Audit exhaustif des 13 PDF de cartes (`aGENTS` + `Nouveau dossier`, hors Galactic Empire Commands FR exclu sur demande) : 185 cartes cataloguées dans `src/data/pdfCardManifest.json`, comparées carte par carte au catalogue central. Résultat : Empire Units et Rebel Alliance Units 100 % déjà certifiés (aucun écart) ; 15 écarts confirmés (7 Empire Upgrades, 8 Rebel Upgrades) ; ~50 cartes Mercenary/Generic Upgrades identifiées mais non certifiées ; 1 écart de traduction repéré (Lead by Example = « Meneur d'Hommes » au catalogue vs « Donner l'Exemple » sur le visuel lu). Détail complet : `docs/PDF_CATALOG_AUDIT.md`. Nouveau test bloquant `scripts/test-pdf-catalog-manifest.mjs` (intégré à `npm run build`) protégeant ces constats contre toute régression future.
 
 - [x] Ajouter la faction Mercenaire (18 unités : Syndicat Pyke, Soleil Noir, Gar Saxon, Maul, Boba Fett (2 versions), Bossk, Cad Bane, IG-88, IG-11, Din Djarin, Grogu, Super Commandos Mandaloriens, Le Bad Batch, Omega) avec visuels, profils de dés et effectifs certifiés — voir `verificationSource` dans `customCards.json` pour la provenance (planches PDF fournies par l'utilisateur, lecture visuelle IA à spot-checker en jouant).
