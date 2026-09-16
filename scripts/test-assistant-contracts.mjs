@@ -86,6 +86,14 @@ assert.match(app, /\+b\.dataset\.go<=attackStep\|\|!stepIssue\(\)/, 'La navigati
 assert.match(app, /function tenacityEligible\(\)\{return attackStep===0&&attackState\.range==='melee'&&hasCard\(attacker,'tenacity'\)&&selectedWeaponRows\(\)\.length>0\}/, 'Ténacité doit rester proposée pour toute attaque au corps-à-corps avec la carte, en laissant le joueur confirmer si l’unité est blessée')
 assert.match(app, /rouge:result\.rouge\+tenacity/, 'Ténacité doit ajouter exactement un dé rouge à la réserve')
 assert.match(app, /souhaitez-vous appliquer Ténacité/, 'Ténacité étant facultative, le joueur doit confirmer son application')
+
+// Tireur Embusqué / Maîtrise du Jar'Kai (16/09/2026) : passés en automatique
+// — calcul pur (vierge→touche, touche→critique après conversion), sans
+// dépendance de table contrairement aux autres mots-clés assistés.
+assert.match(app, /function marksmanEligible\(\)\{return allResolved\(attacker\)\.some\(x=>x\.def\.id==='tireur-embusque'\)\}/, 'Tireur Embusqué doit être détecté sans condition de portée')
+assert.match(app, /function jarkaiEligible\(\)\{return attackType\(\)==='melee'&&allResolved\(attacker\)\.some\(x=>x\.def\.id==='maitrise-du-jarkai'\)\}/, 'Maîtrise du Jar’Kai doit être réservée au corps-à-corps')
+assert.match(app, /engine\.applyBlankUpgrade\(result\.hit,result\.crit,attackState\.roll\.blank,blankToHit,hitToCrit\)/, 'La conversion vierge/touche/critique doit utiliser le moteur partagé')
+assert.match(app, /'marksmanBlankToHit','marksmanBlankToHit'.*'jarkaiHitToCrit','jarkaiHitToCrit'/, 'Les compteurs Tireur Embusqué/Jar’Kai doivent être branchés aux champs de saisie')
 assert.match(cardNames, /while \(CARD_KEY_ALIASES\[current\]/, 'Les alias successifs doivent converger vers la carte canonique finale')
 assert.match(applyScript, /Cycle d'alias détecté/, 'Un lot de certification ne doit jamais pouvoir créer une boucle d’alias')
 

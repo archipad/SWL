@@ -235,4 +235,12 @@ assert.deepEqual({ ...engine.duelistModifiers({ melee: false, aimSpent: 3, dodge
 assert.equal(engine.weakPointImpact(2, 3, true), 5)
 assert.equal(engine.weakPointImpact(2, 3, false), 2)
 
+// Tireur Embusqué / Maîtrise du Jar'Kai : dépense de pions après conversion,
+// sans relance, pour transformer des vierges en touches et/ou des touches
+// en critiques.
+assert.deepEqual({ ...engine.applyBlankUpgrade(2, 1, 3, 1, 1) }, { hit: 2, crit: 2, blank: 2 }, '1 vierge->touche puis 1 touche->critique')
+assert.deepEqual({ ...engine.applyBlankUpgrade(0, 0, 2, 2, 1) }, { hit: 1, crit: 1, blank: 0 }, '2 pions transforment un vierge en critique (1 vierge->touche + 1 touche->critique sur le même résultat)')
+assert.deepEqual({ ...engine.applyBlankUpgrade(1, 0, 0, 3, 1) }, { hit: 0, crit: 1, blank: 0 }, 'Ne peut pas convertir plus de vierges qu’il n’en existe')
+assert.deepEqual({ ...engine.applyBlankUpgrade(1, 0, 2, 0, 5) }, { hit: 0, crit: 1, blank: 2 }, 'Ne peut pas convertir plus de touches qu’il n’en existe')
+
 console.log('Assistant attack engine: matrice complète OK')

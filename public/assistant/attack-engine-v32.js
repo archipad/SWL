@@ -157,6 +157,17 @@
     return { hit: hitsAfterImpact - armorCancelled, crit: critAfterPrimitive, impactUsed, ...(primitiveConverted ? { primitiveConverted } : {}), armorCancelled };
   }
 
+  // Tireur Embusqué / Maîtrise du Jar'Kai : après conversion des adrénalines,
+  // dépense de pions (Viser ou Esquive selon le mot-clé) pour transformer des
+  // vierges en touches et/ou des touches en critiques, sans relancer.
+  function applyBlankUpgrade(hit, crit, blank, blankToHit, hitToCrit) {
+    const availableBlank = clamp(blank, 0, Infinity);
+    const bth = clamp(blankToHit, 0, availableBlank);
+    const hitPool = Math.max(0, Number(hit) || 0) + bth;
+    const htc = clamp(hitToCrit, 0, hitPool);
+    return { hit: hitPool - htc, crit: Math.max(0, Number(crit) || 0) + htc, blank: availableBlank - bth };
+  }
+
   function applyRam(results, ramX, eligible) {
     const availableSurges = Math.max(0, Number(results.unusedSurge) || 0);
     const availableHits = Math.max(0, Number(results.hit) || 0);
@@ -260,6 +271,6 @@
 
   window.SWL_ATTACK_ENGINE = {
     rangeBounds, weaponEligible, weaponBlockedByImmunity, rangeOptions, downgradeColor, upgradeColor, buildPool, effectiveCover, rerollCapacity, defenseRerollCapacity, suppressionTokens, moraleState, allocateWounds, rallyState, applyLethal, effectivePierce,
-    convertAttack, applyRam, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, duelistModifiers, weakPointImpact, weaponKeywordActive,
+    convertAttack, applyRam, applyBlankUpgrade, applyShields, applyGuardian, applyImpactArmor, applyCover, resolveStatusEffects, applyDefense, effectiveDefenseSurge, duelistModifiers, weakPointImpact, weaponKeywordActive,
   };
 })();
