@@ -132,7 +132,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'FX-9 Medical Droid': { weapons: [], note: 'Non-combattant' },
   'Flametrooper': { weapons: [{ name: 'Lance-flammes', dice: [{ color: 'noir', count: 1 }], range: '1' }] },
   'Fleet Trooper Squad': { weapons: [], note: 'règle de cohésion, pas d\'arme' },
-  'Fleet Troopers': { weapons: [{ name: 'Pistolet Blaster DH-17', dice: [{ color: 'blanc', count: 2 }], range: 'melee' }], defenseColor: 'blanc' },
+  'Fleet Troopers': { weapons: [{ name: 'Pistolet Blaster DH-17', dice: [{ color: 'blanc', count: 2 }], range: 'melee-2' }], defenseColor: 'blanc' },
   'Force Choke': { weapons: [], note: 'carte de commandement (Force), pas d\'arme à dés' },
   'General Veers': { weapons: [{ name: 'Expertise du Combat', dice: [{ color: 'noir', count: 2 }], range: 'melee' }, { name: 'Fusil Blaster de Veers', dice: [{ color: 'rouge', count: 3 }], range: '1-3' }], defenseColor: 'rouge' },
   'HH-12 Stormtrooper': { weapons: [{ name: 'Lance-roquettes HH-12', dice: [{ color: 'noir', count: 3 }], range: '2-4', verifiedAgainstCard: true, verificationSource: 'Carte française Stormtrooper avec HH-12' }] },

@@ -3,7 +3,8 @@
 
   function rangeBounds(range) {
     if (range === 'melee') return { melee: true };
-    if (range === 'melee-1') return { melee: true, min: 1, max: 1 };
+    const meleeMatch = String(range || '').match(/^melee-(\d+)$/);
+    if (meleeMatch) return { melee: true, min: 1, max: Number(meleeMatch[1]) };
     if (range === 'grenade') return { min: 1, max: 1 };
     const match = String(range || '').match(/^(\d+)-(\d+|#)$/);
     if (match) return { min: Number(match[1]), max: match[2] === '#' ? Infinity : Number(match[2]) };

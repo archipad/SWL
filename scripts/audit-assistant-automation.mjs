@@ -140,7 +140,7 @@ if (weaponDataErrors.length) {
 const invalidWeaponRanges = Object.entries(reference.weapons).flatMap(([card, profile]) =>
   (profile.weapons || []).flatMap((weapon) => {
     const range = String(weapon.range || '').trim()
-    if (range === 'melee' || range === 'melee-1' || range === 'grenade' || /^\d+$/.test(range)) return []
+    if (range === 'melee' || /^melee-\d+$/.test(range) || range === 'grenade' || /^\d+$/.test(range)) return []
     const interval = range.match(/^(\d+)-(\d+|#)$/)
     if (interval && (interval[2] === '#' || Number(interval[1]) <= Number(interval[2]))) return []
     return [`${card} · ${weapon.name}: ${range || '(absente)'}`]
