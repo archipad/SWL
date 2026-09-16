@@ -79,7 +79,11 @@ assert.match(app, /data-condition="\$\{id\}" data-value="true"/, 'Bouton Oui man
 assert.match(app, /data-condition="\$\{id\}" data-value="false"/, 'Bouton Non manquant')
 assert.match(app, /if\(stepIssue\(\)\)\{resolveScreen\(\);return\}/, 'Le bouton suivant doit respecter tous les blocages')
 assert.match(app, /\+b\.dataset\.go<=attackStep\|\|!stepIssue\(\)/, 'La navigation directe ne doit pas contourner un blocage')
-assert.match(app, /attackState\.range==='melee'.*hasCard\(attacker,'tenacity'\).*stateFor\(attacker\)\.wounds>0/, 'Ténacité doit exiger une attaque au corps-à-corps et une unité blessée ou ayant perdu une figurine')
+// L'appli ne suit plus les PV/effectif (choix produit) : l'éligibilité de
+// Ténacité ne peut plus se déduire automatiquement des blessures. Le joueur
+// répond lui-même Oui/Non (voir unansweredConditional() ci-dessous) —
+// question devenue obligatoire dès que l'unité est en mesure de l'utiliser.
+assert.match(app, /function tenacityEligible\(\)\{return attackStep===0&&attackState\.range==='melee'&&hasCard\(attacker,'tenacity'\)&&selectedWeaponRows\(\)\.length>0\}/, 'Ténacité doit rester proposée pour toute attaque au corps-à-corps avec la carte, en laissant le joueur confirmer si l’unité est blessée')
 assert.match(app, /rouge:result\.rouge\+tenacity/, 'Ténacité doit ajouter exactement un dé rouge à la réserve')
 assert.match(app, /souhaitez-vous appliquer Ténacité/, 'Ténacité étant facultative, le joueur doit confirmer son application')
 assert.match(cardNames, /while \(CARD_KEY_ALIASES\[current\]/, 'Les alias successifs doivent converger vers la carte canonique finale')
@@ -90,13 +94,8 @@ assert.match(app, /total===expected/, 'Le compteur de saisie exacte est absent')
 assert.match(app, /rolled!==expected/, 'Le verrou du jet de défense est absent')
 assert.match(app, /Object\.values\(attackState\.roll\).*rolled!==expected/, 'Le verrou du jet d’attaque est absent')
 
-// Contrats de suivi de partie : les blessures restent affectées aux bonnes figurines.
-assert.match(app, /modelWounds/, 'La répartition persistante des blessures par figurine est absente')
-assert.match(app, /eligibleWoundTarget/, 'Le contrôle de la figurine éligible est absent')
-assert.match(app, /progress\.assigned!==progress\.required/, 'La fin d’attaque doit être bloquée tant que les blessures ne sont pas réparties')
-assert.match(app, /required=Math\.min\(rolled,capacity\)/, 'Les blessures excédentaires ne doivent pas bloquer une unité déjà vaincue')
-assert.match(app, /attackHistory\[0\]\.wounds=applied/, 'Le journal doit enregistrer les blessures réellement attribuées, pas les dégâts excédentaires')
-assert.match(app, /if\(summary\)remaining=summary\.remaining/, 'L’Assistant doit afficher le même effectif détaillé que le suivi de partie')
+// L'appli ne suit plus les PV/effectif ni la répartition des blessures par
+// figurine (choix produit) : ce contrat est retiré plutôt que contourné.
 assert.match(app, /outcome\?\.panicked/, 'Une unité encore paniquée après ralliement doit être détectée')
 assert.match(app, /Unité paniquée : aucune action/, 'La panique doit interdire les actions')
 assert.match(app, /state\.suppression-courage/, 'La fin d’activation paniquée doit retirer la valeur de Courage en suppression')
@@ -161,9 +160,9 @@ assert.match(cardImagesSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards'
 assert.match(cardNamesFrSource, /import \{ CUSTOM_CARDS \} from '\.\/customCards';/, 'CARD_NAMES_FR doit fusionner les cartes ajoutées depuis l’assistant')
 // Signalement du 14/09/2026 (ajout de la faction Mercenaire) : unitModels.ts
 // lisait diceCertifications.json en dur, sans fusionner CUSTOM_CARDS comme
-// les quatre autres tables ci-dessus — buildCertifiedUnitRoster() signalait
-// donc à tort « Effectif impossible à calculer avec certitude » pour toute
-// carte ajoutée uniquement via l'écran « Nouvelle carte ».
+// les quatre autres tables ci-dessus — la fonction de profil de moral
+// signalait donc à tort un courage « non certifié » pour toute carte ajoutée
+// uniquement via l'écran « Nouvelle carte ».
 assert.match(unitModelsSource, /import \{ CUSTOM_CARDS \} from '\.\.\/data\/customCards';/, 'getUnitMoraleProfile() doit fusionner les cartes ajoutées depuis l’assistant (sinon courage « non certifié » à tort)')
 
 // Une nouvelle carte peut aussi recevoir ses mots-clés dans le même
@@ -281,7 +280,7 @@ assert.match(app, /weakPointExposed/, 'Point faible doit imposer une réponse co
 assert.match(app, /engine\.weakPointImpact/, 'Point faible doit alimenter automatiquement la valeur d’Impact')
 assert.match(app, /weaponKeywordValue\(row,'anti-personnel-x'\)/, 'Anti-personnel doit améliorer automatiquement les dés contre des soldats')
 assert.match(certificationUiSource, /location\.hash==='\#certification'/, 'Le rapport d’import doit pouvoir ouvrir directement la certification')
-assert.match(app, /function suggestedWeaponCount\(row\)/, 'Les figurines par arme doivent être préremplies depuis l’effectif survivant')
+assert.match(app, /function suggestedWeaponCount\(row\)/, 'Les figurines par arme doivent être préremplies depuis l’effectif certifié de la carte')
 assert.match(app, /attackState\.manualCounts/, 'Une correction manuelle du nombre de figurines doit rester prioritaire')
 assert.match(app, /PRÉREMPLI · MODIFIABLE/, 'Le caractère modifiable du préremplissage doit être explicite')
 assert.match(app, /function decorateTacticalResolution\(\)/, 'La zone d’action et la télémétrie doivent être hiérarchisées')
@@ -305,7 +304,9 @@ for (const effect of ['force-reflexes', 'burst-of-speed', 'offensive-push', 'lin
 }
 assert.match(app, /hasCard\(attacker,'point blank'\).*attackType\(\)==='ranged'.*attackState\.range\)==='2'/, 'À Bout Portant doit ajouter son esquive uniquement après une attaque à distance 2')
 assert.match(app, /burstOfSpeedRound.*immobilize/, 'Pointe de Vitesse doit appliquer son Immobilisation à la phase finale')
-assert.match(app, /persistWounds\(target,1\).*exhaustCard\(entry,'force-choke'\)/, 'Strangulation doit enregistrer une blessure et incliner la carte')
+// L'appli ne suit plus les PV (choix produit) : Strangulation incline la
+// carte de commandement, la blessure s'applique manuellement à la table.
+assert.match(app, /data-force-choke.*exhaustCard\(entry,'force-choke'\)/, 'Strangulation doit incliner la carte de commandement')
 assert.match(app, /function activationBriefing\(entry\)/, 'La fiche unité doit synthétiser les décisions de son activation')
 assert.match(app, /CE QUE CETTE UNITÉ PEUT FAIRE MAINTENANT/, 'Le briefing doit être identifiable en un coup d’œil')
 assert.match(app, /place-proton.*detonate-proton/, 'Les charges à protons doivent être suivies de la pose à la détonation')
