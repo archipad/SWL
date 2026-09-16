@@ -23,12 +23,14 @@
 <body>
   <div class="starfield" aria-hidden="true"><i class="shooting-star"></i></div>
   <div class="hologram-flicker" aria-hidden="true"></div>
-  <header class="topbar">
-    <a href="../" aria-label="Retour à Legion Compagnon">‹ Legion Compagnon</a>
-    <div><small>NOUVELLE PAGE ISOLÉE</small><strong>Assistant d’unité</strong></div>
-    <div class="topbar-actions"><a class="tracker-shortcut" href="../#suivi-partie">Suivi de partie</a><button id="gameReadiness" type="button">Tester mes listes</button><button id="certification" type="button">⚠ Certification des cartes <b id="certificationCount"></b></button><button id="quickMode" type="button" aria-pressed="true">Mode rapide</button><button id="history" type="button">Historique</button><button id="restart" type="button">Recommencer</button></div>
-  </header>
-  <nav id="progress" aria-label="Étapes"><i class="active"><b>1</b><span>Unités</span></i><i><b>2</b><span>Cible</span></i><i><b>3</b><span>Armes</span></i><i><b>4</b><span>Jet</span></i><i><b>5</b><span>Couvert</span></i><i><b>6</b><span>Modifications</span></i><i><b>7</b><span>Défense</span></i><i><b>8</b><span>Suppression</span></i></nav>
+  <div class="app-header-sticky">
+    <header class="topbar">
+      <a href="../" aria-label="Retour à Legion Compagnon">‹ Legion Compagnon</a>
+      <div><small>NOUVELLE PAGE ISOLÉE</small><strong>Assistant d’unité</strong></div>
+      <div class="topbar-actions"><a class="tracker-shortcut" href="../#suivi-partie">Suivi de partie</a><button id="gameReadiness" type="button">Tester mes listes</button><button id="certification" type="button">⚠ Certification des cartes <b id="certificationCount"></b></button><button id="quickMode" type="button" aria-pressed="true">Mode rapide</button><button id="history" type="button">Historique</button><button id="restart" type="button">Recommencer</button></div>
+    </header>
+    <nav id="progress" aria-label="Étapes"><i class="active"><b>1</b><span>Unités</span></i><i><b>2</b><span>Cible</span></i><i><b>3</b><span>Armes</span></i><i><b>4</b><span>Jet</span></i><i><b>5</b><span>Couvert</span></i><i><b>6</b><span>Modifications</span></i><i><b>7</b><span>Défense</span></i><i><b>8</b><span>Suppression</span></i></nav>
+  </div>
   <main id="app" aria-live="polite"></main>
   <script src="./reference-data.js?v=78" defer></script>
   <script src="./reference-keyword-sections.js" defer></script>

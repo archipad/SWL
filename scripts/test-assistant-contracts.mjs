@@ -322,7 +322,9 @@ assert.match(app, /action!=='move'.*action!=='card'.*actions\.includes\(action\)
 assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-proton'\]/, 'Armer une charge à protons doit consommer une action')
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 assert.match(app, /actions\.before\(automation\)/, 'Les effets de carte doivent être placés entre les obligations et les actions normales')
-assert.match(app, /CHOISISSEZ D’ABORD LE PION/, 'Les actions doivent rester verrouillées tant que l’origine de l’activation est inconnue')
+// Message unique au-dessus de la grille d'actions plutôt que répété sur
+// chacun des 7 boutons (simplification du 16/09/2026).
+assert.match(app, /Choisissez d’abord le pion ci-dessus pour débloquer les actions/, 'Les actions doivent rester verrouillées tant que l’origine de l’activation est inconnue')
 assert.match(index, /app\.js\?v=85/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 assert.match(app, /function movementFreeAttack\(entry\)/, 'Charge, Aguerri et Implacable doivent proposer leur attaque gratuite après le déplacement')
 assert.match(app, /attackState\?\.freeAttackRange==='melee'/, 'Charge doit limiter la réserve aux armes de corps-à-corps')

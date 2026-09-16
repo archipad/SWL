@@ -16,11 +16,36 @@
   min-height: 30px;
   padding: 4px 10px;
 }
-/* #progress est en position sticky juste sous le bandeau (voir
-   faction-themes.css) : son décalage doit suivre la nouvelle hauteur,
-   mesurée à l'écran après les réglages ci-dessus. */
+
+/* Un bandeau trop chargé (6 actions) débordait de l'écran sur iPad/1024px
+   plutôt que de passer à la ligne (bouton "Recommencer" coupé, signalement
+   utilisateur). Autoriser le retour à la ligne plutôt que le débordement. */
+.topbar-actions {
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+
+/* .topbar et #progress étaient chacun en position:sticky avec un décalage
+   top codé en dur pour empiler le second juste sous le premier (voir
+   faction-themes.css) — dès que la hauteur réelle du bandeau change (texte
+   qui repasse à la ligne ci-dessus, tablette, thème...), le décalage devient
+   faux et laisse un vide au défilement (signalement utilisateur). Un seul
+   conteneur sticky (.app-header-sticky, voir index.html) autour des deux
+   élimine le besoin de deviner une hauteur : #progress suit toujours
+   directement .topbar, quelle que soit sa hauteur réelle.
+   `!important` nécessaire : `.topbar{position:sticky}` vient de style.css,
+   chargé avant, avec la même spécificité. */
+.app-header-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar {
+  position: static !important;
+}
 #progress {
-  top: 55px;
+  position: static !important;
+  top: auto !important;
 }
 
 /* Rejoue la même animation qu'à un changement d'onglet dans la SPA : un
