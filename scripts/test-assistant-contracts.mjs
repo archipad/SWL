@@ -108,6 +108,17 @@ assert.match(app, /immunite-perforant-corps-a-corps'&&attackType\(\)==='melee'&&
 // Simplification documentée : le sous-cas « en utilisant Gardien X, dépenser
 // un pion Esquive pour relancer les dés du Gardien » n'est pas couvert.
 assert.match(app, /ranged&&allResolved\(defender\)\.some\(x=>x\.def\.id==='maitrise-du-soresu'\)\?a\.hit\+a\.crit:0/, 'Maîtrise du Soresu doit permettre de relancer tous les dés de défense à distance')
+
+// Déflexion / Maîtrise du Shien / Immunité : Déflexion (16/09/2026) : passés
+// en automatique. Simplification documentée : le sous-cas Déflexion via
+// Gardien X (dés du Gardien, pas ceux de la défense normale) n'est pas
+// couvert — seule la défense directe à distance l'est.
+assert.match(app, /deflexionEligible=attackType\(\)==='ranged'&&allResolved\(defender\)\.some\(x=>x\.def\.id==='deflexion'\).*!selectedWeaponRows\(\)\.every\(row=>weaponHasKeyword\(row,'haute-velocite'\)\)/, 'Déflexion doit être ignorée si la réserve d’attaque n’a que des armes Haute Vélocité')
+assert.match(app, /deflexionImmune=selectedWeaponRows\(\)\.some\(row=>weaponHasKeyword\(row,'immunite-deflexion'\)\)/, 'Immunité : Déflexion doit être détectée sur les armes de la réserve')
+assert.match(app, /shienActive=deflexionEligible&&allResolved\(defender\)\.some\(x=>x\.def\.id==='maitrise-du-shien'\)/, 'Maîtrise du Shien ne doit s’activer qu’avec Déflexion effectivement en jeu')
+assert.match(app, /deflexionWounds=deflexionEligible&&!deflexionImmune&&Number\(d\.surge\)>0\?\(shienActive\?Number\(d\.surge\):1\):0/, 'Maîtrise du Shien doit remplacer la blessure fixe de Déflexion par 1 par adrénaline de défense')
+assert.match(app, /holdFast\|\|missionDefense\|\|deflexionEligible\?'block'/, 'Déflexion doit forcer la conversion d’adrénaline de défense en blocage')
+assert.match(app, /shienDeniesSuppression=shienActive&&ranged&&result\.wounds===0/, 'Maîtrise du Shien doit annuler la suppression si aucune blessure n’a été subie')
 assert.match(cardNames, /while \(CARD_KEY_ALIASES\[current\]/, 'Les alias successifs doivent converger vers la carte canonique finale')
 assert.match(applyScript, /Cycle d'alias détecté/, 'Un lot de certification ne doit jamais pouvoir créer une boucle d’alias')
 

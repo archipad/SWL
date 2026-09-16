@@ -59,6 +59,9 @@ const automatic = new Set([
   'maitrise-du-jarkai',
   'maitrise-du-makashi',
   'maitrise-du-soresu',
+  'deflexion',
+  'maitrise-du-shien',
+  'immunite-deflexion',
 ])
 
 const assisted = new Set([
@@ -71,7 +74,6 @@ const assisted = new Set([
   'barrage',
   'charge',
   'ciblage-avance',
-  'deflexion',
   'discret',
   'exemplaire',
   'fumee-x',
@@ -81,7 +83,6 @@ const assisted = new Set([
   'intuition-du-danger-x',
   'la-victoire-ou-la-mort',
   'les-mandaloriens-sont-plus-forts-ensemble',
-  'maitrise-du-shien',
   'maitrise-du-vaapad',
   'nous-nous-battons-pour-notre-famille',
   'pistolero',
@@ -93,7 +94,6 @@ const assisted = new Set([
   'equipe-sniper',
   'explosion-x',
   'fixe',
-  'immunite-deflexion',
   'polyvalent',
   'rayons-x',
   'arme-de-poing',
