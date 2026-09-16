@@ -2,6 +2,22 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (16/09/2026, décision produit utilisateur) Retiré le suivi des PV et de
+  l'effectif des deux interfaces (site principal et Assistant) : plus de
+  compteur de PV, d'effectif ni de répartition des blessures par figurine
+  nulle part dans l'appli — ça se gère à la table, comme le reste du jeu de
+  figurines. Le moteur continue de calculer et d'afficher le résultat
+  d'une attaque (succès/critiques → blessures) mais n'applique/ne retient
+  plus rien automatiquement ensuite. « Unité vaincue » et « Enragé »
+  deviennent des états manuels (« Hors combat » / « Enragé atteint »).
+  Ténacité reste une question Oui/Non obligatoire, sans plus être doublée
+  d'une détection automatique sur les PV — voir le commit pour le détail
+  complet des conséquences assumées. Le moral, la suppression et
+  Ionisant/Immobilisant/Poison/Bouclier restent entièrement automatiques
+  (ils dépendent du courage et des pions Suppression, pas des PV).
+  `unitModels.ts` expose désormais `getUnitMoraleProfile()` (courage
+  seulement) à la place de `buildCertifiedUnitRoster()`.
+
 - [x] Audit exhaustif des 13 PDF de cartes (`aGENTS` + `Nouveau dossier`, hors Galactic Empire Commands FR exclu sur demande) : 185 cartes cataloguées dans `src/data/pdfCardManifest.json`, comparées carte par carte au catalogue central. Résultat : Empire Units et Rebel Alliance Units 100 % déjà certifiés (aucun écart) ; 15 écarts confirmés (7 Empire Upgrades, 8 Rebel Upgrades) ; ~50 cartes Mercenary/Generic Upgrades identifiées mais non certifiées ; 1 écart de traduction repéré (Lead by Example = « Meneur d'Hommes » au catalogue vs « Donner l'Exemple » sur le visuel lu). Détail complet : `docs/PDF_CATALOG_AUDIT.md`. Nouveau test bloquant `scripts/test-pdf-catalog-manifest.mjs` (intégré à `npm run build`) protégeant ces constats contre toute régression future.
 
 - [x] Ajouter la faction Mercenaire (18 unités : Syndicat Pyke, Soleil Noir, Gar Saxon, Maul, Boba Fett (2 versions), Bossk, Cad Bane, IG-88, IG-11, Din Djarin, Grogu, Super Commandos Mandaloriens, Le Bad Batch, Omega) avec visuels, profils de dés et effectifs certifiés — voir `verificationSource` dans `customCards.json` pour la provenance (planches PDF fournies par l'utilisateur, lecture visuelle IA à spot-checker en jouant).
@@ -19,7 +35,7 @@
 
 - [ ] Valider en conditions réelles sur iPad le cockpit tactique v75.
 - [x] Compléter le ralliement et le cycle d'activation dans le suivi de partie, y compris une fin d’activation sans attaque.
-- [x] Finaliser la résolution des blessures multi-PV, les dégâts excédentaires et la suppression d'une unité vaincue.
+- [x] ~~Finaliser la résolution des blessures multi-PV, les dégâts excédentaires et la suppression d'une unité vaincue.~~ Retiré le 16/09/2026 (voir plus haut) : le suivi des PV n'existe plus.
 - [x] Couvrir par scénarios les interactions de mots-clés ayant un impact sur les dés (Critical, Impact/Armure, Létal/Perforant/Insensible et Bélier).
 - [x] Protéger le parcours complet attaque → couvert → défense → blessures → suppression par des scénarios bout-en-bout.
 - [x] Traiter automatiquement le courage « — », les véhicules et l’immunité à la suppression dans le moteur de moral et de ralliement.
@@ -30,14 +46,14 @@
 - [x] Ajouter un jeu de fixtures Tabletop Admiral Empire et Rebelles plus large.
 - [x] Détecter automatiquement toute image de `public/cards/` sans entrée canonique exploitable.
 - [x] Détecter toute carte importée connue dont la traduction, le profil ou la certification manque.
-- [x] Tester les ajouts de figurines multiples et les PV différents de la carte Unité.
+- [x] ~~Tester les ajouts de figurines multiples et les PV différents de la carte Unité.~~ Retiré le 16/09/2026 : ce calcul n'existe plus dans l'appli.
 - [x] Distinguer dans chaque import les cartes inconnues, visuels non raccordés, traductions et certifications moteur.
 - [x] Protéger le parcours import → audit → effectif → attaque → blessures par un test utilisateur transversal.
 
 ## Suivi de partie
 
 - [x] Afficher clairement ralliement, démoralisation, panique et immunités.
-- [x] Unifier blessures, suppressions, figurines restantes et journal d'attaque entre les deux interfaces.
+- [x] Unifier suppression et journal d'attaque entre les deux interfaces (blessures/figurines retirées du suivi le 16/09/2026, voir plus haut).
 - [x] Fusionner et tester les états d’unités et journaux multiappareil sans écrasement par un appareil en retard.
 - [ ] Valider la synchronisation sur deux appareils physiques avec un même Gist.
 - [x] Arbitrer les suivis concurrents par horodatage et afficher le résultat de la fusion.
