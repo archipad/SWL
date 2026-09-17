@@ -2,6 +2,30 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (17/09/2026, demande utilisateur) Audité les 85 mots-clés
+  automatiques/assistés (plus Intrépide, Contrainte, Démoraliser X,
+  Indomptable, Enragé X) un par un contre l'app : 56 ont déjà un rappel
+  dédié (encart, question ou saisie) au bon endroit ; 4 s'appliquaient
+  correctement mais sans être nommés à l'écran (Suppressif, Immunité :
+  Déflagration, Immunité : Déflexion, Maîtrise du Soresu — non corrigé,
+  jugé mineur) ; les 24 restants sont les mots-clés « assistés » déjà
+  identifiés le 16/09/2026 comme dépendant du jugement de table (ligne de
+  vue, position, timing entre joueurs), déjà listés par nom et définition
+  dans le Briefing tactique, volontairement non automatisés.
+  Suite à cet audit, ajouté un pop-up de fin d'attaque
+  (`attackConclusionPopupContent`, déclenché une seule fois par attaque à
+  l'arrivée sur l'étape Suppression) qui regroupe, filtrés sur les
+  mots-clés réels de l'attaquant et du défenseur de cette attaque
+  précise, tous les effets de fin d'attaque purement informatifs :
+  Suppression et Ionique à poser, Immobilisation/Poison/Câble de
+  remorquage/Dispersion, Déflexion, Agile, Maîtrise de l'Ataru, Matamore,
+  Maîtrise du Djem So. Les effets liés à une case à cocher
+  (Immobilisation/Poison/Câble/Dispersion) restent aussi affichés en
+  ligne à côté de leur case pour rester corrigibles après coup. Les
+  encarts désormais redondants sont retirés : `combatFollowupPanel`
+  (Ataru/Matamore/Djem So), l'encart Agile de l'écran Défense, la note
+  Déflexion de l'écran Suppression.
+
 - [x] (17/09/2026, demande utilisateur) Deuxième passe de polish sur
   l'écran d'unité iPad, suite aux retours sur le premier rendu réel :
   bandeau d'identité (`.hero`/`.unit-identity-panel`) nettement réduit

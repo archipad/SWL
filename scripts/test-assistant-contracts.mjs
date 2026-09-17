@@ -385,7 +385,20 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=88/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=89/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+// Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
+// purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
+// Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
+// sont regroupés dans un seul pop-up filtré sur les mots-clés réels de
+// l'attaquant et du défenseur, au lieu d'encarts dispersés — sauf ceux
+// liés à une case à cocher (Immobilisation/Poison/Câble/Dispersion), qui
+// restent en ligne pour rester corrigibles.
+assert.match(app, /function attackConclusionPopupContent\(\)/, 'Le pop-up de fin d’attaque doit exister')
+assert.match(app, /FIN D’ATTAQUE — ACTIONS À LA TABLE/, 'Le pop-up de fin d’attaque doit avoir un titre explicite')
+assert.match(app, /attackState!==lastConclusionAttackState.*attackConclusionPopupContent\(\)/, 'Le pop-up de fin d’attaque ne doit se déclencher qu’une fois par attaque, pas à chaque re-rendu')
+assert.doesNotMatch(app, /function combatFollowupPanel\(\)/, 'L’encart Ataru/Matamore/Djem So doit être retiré au profit du pop-up de fin d’attaque')
+assert.doesNotMatch(app, /AGILE : GAGNEZ 1 PION ESQUIVE/, 'Le rappel Agile doit être retiré de l’écran Défense au profit du pop-up de fin d’attaque')
+assert.doesNotMatch(app, /class="deflexion-note"/, 'La note Déflexion doit être retirée de l’écran Suppression au profit du pop-up de fin d’attaque')
 assert.match(app, /function movementFreeAttack\(entry\)/, 'Charge, Aguerri et Implacable doivent proposer leur attaque gratuite après le déplacement')
 assert.match(app, /attackState\?\.freeAttackRange==='melee'/, 'Charge doit limiter la réserve aux armes de corps-à-corps')
 assert.match(app, /attackState\?\.freeAttackRange==='ranged'/, 'Aguerri doit limiter la réserve aux armes à distance')
