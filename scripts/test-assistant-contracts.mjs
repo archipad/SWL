@@ -419,7 +419,7 @@ assert.deepEqual(customCards['rebel agent defender of democracy'].autonomousToke
 assert.deepEqual(customCards['boba fett infamous bounty hunter'].autonomousTokens, [{ token: 'aim', count: 1 }, { token: 'dodge', count: 1 }], 'Boba Fett doit choisir Viser 1 ou Esquive 1 avec Autonome')
 assert.equal(customCards['boba fett infamous bounty hunter'].unitStats.courage, 3, 'Boba Fett doit avoir Courage 3')
 assert.ok(customCards['boba fett infamous bounty hunter'].keywords.some(tag=>tag.keywordId==='arsenal-x'&&tag.value===2), 'Boba Fett doit avoir Arsenal 2')
-assert.match(index, /style\.css\?v=83/, 'La certification complète doit invalider le cache CSS')
+assert.match(index, /style\.css\?v=84/, 'La certification complète doit invalider le cache CSS')
 assert.match(index, /reference-data\.js\?v=\d+/, 'Les valeurs certifiées doivent invalider le cache du référentiel')
 assert.match(app, /const standbyRange=entry=>hasResolvedKeyword\(entry,'sentinelle'\)\?3:2/, 'Sentinelle doit étendre le déclenchement d’Attente à portée 3')
 assert.match(app, /standby:Math\.max\(0,\(state\.standby\|\|0\)-1\)/, 'Le pion Attente doit être consommé par la réaction')

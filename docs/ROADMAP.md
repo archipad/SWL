@@ -2,6 +2,22 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (17/09/2026, demande utilisateur) Deuxième passe de polish sur
+  l'écran d'unité iPad, suite aux retours sur le premier rendu réel :
+  bandeau d'identité (`.hero`/`.unit-identity-panel`) nettement réduit
+  (padding, icône de rang et titre plus petits) ; bandeau des étapes
+  (`<nav id="progress">`, 1 Unités → 8 Suppression) supprimé du header —
+  il ne faisait que passif (aucun clic dessus n'a jamais eu d'effet) et
+  prenait de la hauteur sur chaque écran ; réagencement de la colonne de
+  droite en grand écran pour suivre l'ordre d'usage réel : Automatismes
+  d'activation en haut, Briefing tactique (« ce que cette unité peut
+  faire ») en dessous, la bande de cartes remontant juste sous l'identité
+  à gauche. Rendu du Briefing tactique amélioré : titres de section
+  agrandis, et les trois blocs (Activation & Déplacement, Attaque, Effets
+  de carte) reçoivent chacun une couleur dédiée (bleu/rouge/or, déjà
+  présentes dans la palette) via un liseré de gauche, pour les distinguer
+  au premier coup d'œil.
+
 - [x] (17/09/2026, demande utilisateur) Mis en place la disposition à deux
   colonnes proposée dans la maquette « refonte iPad », qui n'avait pas
   encore été implémentée (seul le contenu de la bande de cartes l'avait
