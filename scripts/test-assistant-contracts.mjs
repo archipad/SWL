@@ -129,9 +129,13 @@ assert.match(app, /Object\.values\(attackState\.roll\).*rolled!==expected/, 'Le 
 
 // L'appli ne suit plus les PV/effectif ni la répartition des blessures par
 // figurine (choix produit) : ce contrat est retiré plutôt que contourné.
-assert.match(app, /outcome\?\.panicked/, 'Une unité encore paniquée après ralliement doit être détectée')
-assert.match(app, /Unité paniquée : aucune action/, 'La panique doit interdire les actions')
-assert.match(app, /state\.suppression-courage/, 'La fin d’activation paniquée doit retirer la valeur de Courage en suppression')
+// Ralliement (17/09/2026, décision produit utilisateur) : plus de mini-jeu de
+// saisie des dés ni de verrouillage automatique du bouton Suivant en cas de
+// panique détectée par l'appli — remplacé par un pop-up de rappel de règle à
+// l'ouverture de l'unité ; la suppression est ensuite corrigée à la main.
+assert.match(app, /function moralPopupContent\(entry\)/, 'Le pop-up de rappel de ralliement/panique doit exister')
+assert.match(app, /freshOpen&&role==='attack'&&!lost.*moralPopupContent\(entry\)/, 'Le pop-up de moral doit apparaître à l’ouverture de l’unité, pas à chaque re-rendu')
+assert.match(app, /function showRulePopup\(innerHtml,className\)/, 'Les pop-up de rappel de règle doivent passer par un helper de dialogue commun')
 assert.match(trackerState, /activatedUnitIds: string\[\]/, 'Le suivi persistant des activations est absent')
 assert.match(trackerUi, /toggleActivation/, 'Le bouton Jouée / À jouer est absent')
 assert.match(trackerUi, /round === state\.round \? activatedUnitIds : \[\]/, 'Un nouveau round doit remettre les activations à zéro')
@@ -362,7 +366,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=86/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=87/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 assert.match(app, /function movementFreeAttack\(entry\)/, 'Charge, Aguerri et Implacable doivent proposer leur attaque gratuite après le déplacement')
 assert.match(app, /attackState\?\.freeAttackRange==='melee'/, 'Charge doit limiter la réserve aux armes de corps-à-corps')
 assert.match(app, /attackState\?\.freeAttackRange==='ranged'/, 'Aguerri doit limiter la réserve aux armes à distance')

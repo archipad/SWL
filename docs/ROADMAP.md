@@ -2,6 +2,33 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (17/09/2026, décision produit utilisateur) Retiré le mini-jeu de
+  ralliement de l'Assistant (saisie des résultats de dés Blocage/Adrénaline/
+  Vierge, case Courage d'un commandant, bouton « Appliquer le ralliement »,
+  verrouillage automatique du bouton Suivant en cas de panique détectée) :
+  cette manipulation se fait maintenant entièrement à la table, comme le
+  reste du jeu. À la place, un pop-up de rappel de règle s'affiche une seule
+  fois à l'ouverture d'une unité démoralisée ou à risque de panique
+  (`moralPopupContent`/`showRulePopup`), indiquant combien de dés lancer, la
+  conversion Blocage/Adrénaline, la limite de rétention Discret/Intuition du
+  Danger et la conséquence d'une panique (aucune action, retrait de
+  Suppression égal au Courage en fin d'activation) — sans jamais attendre ou
+  calculer le résultat réel, qui reste saisi à la main dans le compteur
+  Suppression déjà existant. Le pop-up n'apparaît qu'à l'ouverture réelle de
+  l'unité (pas à chaque clic sur les compteurs d'état) grâce à un suivi de
+  dernière unité ouverte (`lastOverviewEntryId`). Intrépide, Contrainte et
+  Démoraliser X restent disponibles (`postRallyPanel`, renommé « Options
+  unité démoralisée ») mais sont désormais dérivés en continu de l'état
+  Suppression/Courage actuel plutôt que d'un indicateur « ralliement
+  effectué » — bug corrigé au passage : ce panneau s'affichait par erreur
+  même à Suppression 0 dès qu'une unité alliée portait Contrainte. Le bloc
+  redondant « Suppression à prévoir » du dernier écran d'attaque est retiré
+  (l'écran affichait déjà les mêmes informations, en plus complet et
+  éditable, via le panneau Suppression et moral existant). CSS : nouvelle
+  classe `.rule-popup` (remplace `.panic-resolution`), `.rally-panel` /
+  `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
+  `.rally-result` supprimées (plus émises par l'appli).
+
 - [x] (17/09/2026, décision produit utilisateur) Refonte visuelle de l'écran
   d'unité de l'Assistant, étape 1 (mise en page) : la carte Unité et ses
   cartes Amélioration deviennent une bande de vignettes cliquables
