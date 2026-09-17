@@ -219,7 +219,7 @@ body[data-faction-theme="imperial"] button.primary { color:#fff; }
    du haut, elles deviennent des cartes à part entière (bordure complète,
    coins arrondis), pour rester visuellement cohérentes avec le bloc du
    dessus. Design uniquement, aucun changement de fonctionnement. */
-.upgrades{margin:12px 0;border:1px solid #27445a;border-radius:10px}
+.card-strip{margin:12px 0;border:1px solid #27445a;border-radius:10px}
 .columns{margin:12px 0;border:1px solid #27445a;border-radius:10px;overflow:hidden}
 
 /* Navigation et introduction ultra-compactes v61 : davantage de plateau visible sur iPad. */

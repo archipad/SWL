@@ -2,6 +2,26 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (17/09/2026, décision produit utilisateur) Refonte visuelle de l'écran
+  d'unité de l'Assistant, étape 1 (mise en page) : la carte Unité et ses
+  cartes Amélioration deviennent une bande de vignettes cliquables
+  (`card-strip`) — grande carte Unité à gauche, améliorations en petites
+  vignettes à droite (pas besoin d'être grandes, elles s'agrandissent au
+  clic). Le texte de mot-clé qui s'affichait sous chaque carte de l'ancienne
+  galerie disparaît de cet endroit et rejoint le Briefing tactique dans une
+  nouvelle section « Effets de carte » (troisième section, après Activation &
+  Déplacement et Attaque), alimentée par les notes de la carte Unité et de
+  toutes les améliorations. Le Briefing tactique devient ainsi le bloc de
+  référence qui réunit tous les mots-clés de l'unité, comme demandé.
+  `cardGalleryEntry`/`upgradeGallery` sont remplacés par
+  `cardStripEntry`/`upgradeGallery` ; `bindCardViewer` reconnaît les
+  nouvelles classes `.unit-card-visual`/`.upgrade-card-visual` en plus de
+  `.upgrade-visual`/`.unit-card-zoom` (toujours utilisées par la colonne de
+  résolution d'attaque). CSS dédiée dans `upgrades.css` (nouvelle mise en
+  page) et `style.css` (titres de section du Briefing). Étapes suivantes du
+  même lot (popups Suppression/Moral, retrait du mini-jeu de ralliement,
+  extension de l'animation de balayage) à venir.
+
 - [x] (16/09/2026, décision produit utilisateur) Retiré le suivi des PV et de
   l'effectif des deux interfaces (site principal et Assistant) : plus de
   compteur de PV, d'effectif ni de répartition des blessures par figurine

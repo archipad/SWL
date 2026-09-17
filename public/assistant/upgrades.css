@@ -1,20 +1,20 @@
-.upgrades { padding: 16px 18px 20px; border-top: 1px solid var(--line); background: #0e1612; }
-.section-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; color: var(--acid); font-size: .72rem; font-weight: 900; letter-spacing: .1em; }
-.section-heading b { display: grid; place-items: center; min-width: 28px; height: 28px; border: 1px solid var(--line); border-radius: 50%; color: var(--text); }
-.upgrade-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
-.upgrade-card { display: grid; grid-template-columns: 150px 1fr; min-height: 205px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
+.card-strip { display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px 20px; border-top: 1px solid var(--line); background: #0e1612; }
+.unit-card-visual, .upgrade-card-visual { position: relative; flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 7px; border: 1px solid var(--line); border-radius: 10px; background: #050806; color: var(--text); cursor: zoom-in; }
+.unit-card-visual { width: 156px; }
+.unit-card-visual img { width: 100%; height: 196px; object-fit: contain; }
+.upgrade-row { flex: 1 1 auto; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px; min-width: 0; }
+.upgrade-card-visual { width: 96px; }
+.upgrade-card-visual img { width: 100%; height: 120px; object-fit: contain; }
+.unit-card-visual img.missing, .upgrade-card-visual img.missing { display: none; }
+.unit-card-visual small, .upgrade-card-visual small { width: 100%; overflow: hidden; color: var(--muted); font-size: .64rem; line-height: 1.25; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.unit-card-visual .zoom, .upgrade-card-visual .zoom { position: absolute; right: 5px; bottom: 5px; display: grid; width: 20px; height: 20px; place-items: center; border-radius: 50%; background: rgba(5,8,6,.88); color: var(--acid); font-size: .8rem; font-weight: 900; font-style: normal; }
+.unavailable, .empty-upgrades { margin: 4px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+.empty-upgrades { padding: 12px; border: 1px dashed var(--line); border-radius: 9px; }
 .upgrade-visual { position: relative; display: grid; place-items: center; min-height: 205px; padding: 8px; border: 0; border-right: 1px solid var(--line); background: #050806; color: var(--text); cursor: zoom-in; }
 .upgrade-visual img { width: 100%; height: 190px; object-fit: contain; }
 .upgrade-visual span { position: absolute; right: 7px; bottom: 7px; padding: 5px 8px; border-radius: 6px; background: rgba(5,8,6,.88); color: var(--acid); font-size: .68rem; font-weight: 900; text-transform: uppercase; }
 .upgrade-visual.missing img { display: none; }
 .upgrade-visual.missing::before { content: 'Visuel à vérifier'; color: var(--muted); font-size: .8rem; }
-.upgrade-copy { padding: 13px; }
-.upgrade-copy > small { color: var(--acid); font-size: .63rem; font-weight: 900; letter-spacing: .08em; }
-.upgrade-copy h3 { margin: 4px 0 10px; font-size: 1rem; }
-.upgrade-definition { padding: 8px 0; border-top: 1px solid var(--line); }
-.upgrade-definition strong { color: var(--gold); font-size: .85rem; }
-.upgrade-definition p, .unavailable, .empty-upgrades { margin: 4px 0 0; color: var(--muted); font-size: .78rem; line-height: 1.4; }
-.empty-upgrades { padding: 12px; border: 1px dashed var(--line); border-radius: 9px; }
 .card-dialog { width: min(92vw,680px); max-height: 92vh; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: #080d0a; color: var(--text); }
 .card-dialog::backdrop { background: rgba(0,0,0,.82); backdrop-filter: blur(4px); }
 .card-dialog img { display: block; width: 100%; max-height: 78vh; object-fit: contain; }
@@ -34,5 +34,5 @@
 .surge-panel small { color: var(--muted); font-size: .68rem; }
 .surge-panel.unknown { border-left-color: var(--gold); }
 .surge-panel.unknown > span { color: var(--gold); }
-@media (max-width: 900px) { .upgrade-grid { grid-template-columns: 1fr; } }
-@media (max-width: 560px) { .upgrades { padding: 13px 10px; } .upgrade-card { grid-template-columns: 112px 1fr; } .upgrade-visual { min-height: 175px; } .upgrade-visual img { height: 160px; } .upgrade-copy { padding: 10px; } }
+@media (max-width: 900px) { .card-strip { flex-wrap: wrap; } }
+@media (max-width: 560px) { .card-strip { padding: 13px 10px; gap: 10px; } .unit-card-visual { width: 120px; } .unit-card-visual img { height: 150px; } .upgrade-card-visual { width: 78px; } .upgrade-card-visual img { height: 96px; } }

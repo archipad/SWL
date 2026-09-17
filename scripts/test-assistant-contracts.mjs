@@ -342,6 +342,15 @@ assert.match(app, /burstOfSpeedRound.*immobilize/, 'Pointe de Vitesse doit appli
 assert.match(app, /data-force-choke.*exhaustCard\(entry,'force-choke'\)/, 'Strangulation doit incliner la carte de commandement')
 assert.match(app, /function activationBriefing\(entry\)/, 'La fiche unité doit synthétiser les décisions de son activation')
 assert.match(app, /CE QUE CETTE UNITÉ PEUT FAIRE MAINTENANT/, 'Le briefing doit être identifiable en un coup d’œil')
+// Refonte iPad (16/09/2026, décision produit utilisateur) : la carte unité et
+// ses améliorations deviennent une bande de vignettes cliquables (card-strip)
+// sans texte de mot-clé sous les cartes ; ce texte rejoint le Briefing
+// tactique dans une section « Effets de carte » alimentée par noteFor().
+assert.match(app, /function cardStripEntry\(name,label,isUnit\)/, 'Les cartes doivent se rendre comme des vignettes compactes réutilisables')
+assert.match(app, /function upgradeGallery\(entry\)\{[\s\S]*?class="card-strip"/, 'La bande de cartes doit regrouper la carte Unité et ses améliorations')
+assert.match(app, /querySelectorAll\('\.upgrade-visual,\.unit-card-zoom,\.unit-card-visual,\.upgrade-card-visual'\)/, 'Le visualiseur de carte doit aussi s’ouvrir depuis la nouvelle bande de vignettes')
+assert.match(app, /noteSources=\[\{label:'Carte unité',name:entry\.unit\.name\}/, 'Le Briefing tactique doit rassembler les notes de la carte Unité et des améliorations')
+assert.match(app, /EFFETS DE CARTE/, 'Le Briefing tactique doit exposer une section dédiée aux effets textuels des cartes')
 assert.match(app, /place-proton.*detonate-proton/, 'Les charges à protons doivent être suivies de la pose à la détonation')
 assert.match(app, /place-sonic.*detonate-sonic/, 'Les charges soniques doivent être suivies de la pose à la détonation')
 assert.match(app, /SABRE LANCÉ.*moitié.*arrondie au supérieur/, 'Sabre Lancé doit rappeler son calcul à partir de l’arme de corps-à-corps')
@@ -353,7 +362,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=85/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=86/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 assert.match(app, /function movementFreeAttack\(entry\)/, 'Charge, Aguerri et Implacable doivent proposer leur attaque gratuite après le déplacement')
 assert.match(app, /attackState\?\.freeAttackRange==='melee'/, 'Charge doit limiter la réserve aux armes de corps-à-corps')
 assert.match(app, /attackState\?\.freeAttackRange==='ranged'/, 'Aguerri doit limiter la réserve aux armes à distance')
