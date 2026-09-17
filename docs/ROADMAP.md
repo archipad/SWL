@@ -2,6 +2,18 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (17/09/2026, demande utilisateur) Étendu le balayage « Star Wars »
+  (`.page-wipe`/`.step-wipe`, déjà utilisé aux changements d'écran) aux
+  fenêtres modales (`<dialog>`) : nouveau pop-up de rappel Moral/
+  Suppression, zoom de carte et avertissement de réserve mixte s'ouvrent
+  désormais avec la même animation (`.dialog-wipe`, classe commune posée
+  sur chaque `<dialog>` à sa création) plutôt qu'un simple fondu natif —
+  pour renforcer l'identité visuelle de l'appli. Corrigé au passage un bug
+  latent sur les trois fenêtres : `dialog.close()` ne déclenchait pas de
+  façon fiable l'événement `close` dans ce moteur, laissant l'élément
+  fermé mais jamais retiré du DOM ; chaque bouton de fermeture appelle
+  maintenant `remove()` explicitement en plus de `close()`.
+
 - [x] (17/09/2026, décision produit utilisateur) Retiré le mini-jeu de
   ralliement de l'Assistant (saisie des résultats de dés Blocage/Adrénaline/
   Vierge, case Courage d'un commandant, bouton « Appliquer le ralliement »,

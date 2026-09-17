@@ -84,7 +84,15 @@ body {
 .step-wipe {
   animation: pageWipe 240ms cubic-bezier(0.16, 0.84, 0.44, 1);
 }
+/* Même balayage, étendu (17/09/2026, demande utilisateur) aux fenêtres
+   modales (dialog) : rappel de règle Moral/Suppression, zoom de carte,
+   avertissement de réserve mixte — pour qu'elles s'ouvrent avec la même
+   signature « Star Wars » que le reste de l'appli plutôt qu'un simple
+   fondu natif de <dialog>. */
+.dialog-wipe {
+  animation: pageWipe 320ms cubic-bezier(0.16, 0.84, 0.44, 1);
+}
 @media (prefers-reduced-motion: reduce) {
   body { animation: none; }
-  .page-wipe, .step-wipe { animation: none; }
+  .page-wipe, .step-wipe, .dialog-wipe { animation: none; }
 }

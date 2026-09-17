@@ -239,7 +239,13 @@ assert.match(trackerState, /export const DEFAULT_STATE/, 'DEFAULT_STATE doit êt
 // 13/09/2026).
 const headerSync = fs.readFileSync(new URL('../public/assistant/header-sync.css', import.meta.url), 'utf8')
 assert.match(headerSync, /\.page-wipe\s*\{\s*animation:\s*pageWipe/, 'La classe .page-wipe doit rejouer la même animation pageWipe que le chargement de page')
-assert.match(headerSync, /\.page-wipe,\s*\.step-wipe\s*\{\s*animation:\s*none/, 'prefers-reduced-motion doit aussi désactiver les deux balayages (plein écran et colonne centrale)')
+// Balayage étendu (17/09/2026, demande utilisateur) aux pop-up (dialog) :
+// rappel de règle Moral/Suppression, zoom de carte, avertissement mixte.
+assert.match(headerSync, /\.dialog-wipe\s*\{\s*animation:\s*pageWipe/, 'Les pop-up (dialog) doivent rejouer la même animation pageWipe que le reste de l’appli')
+assert.match(headerSync, /\.page-wipe,\s*\.step-wipe,\s*\.dialog-wipe\s*\{\s*animation:\s*none/, 'prefers-reduced-motion doit aussi désactiver les trois balayages (plein écran, colonne centrale et pop-up)')
+assert.match(app, /dialog\.className=`rule-popup dialog-wipe/, 'Le pop-up de rappel de règle doit utiliser le balayage commun')
+assert.match(app, /dialog\.className='card-dialog dialog-wipe'/, 'Le zoom de carte doit utiliser le balayage commun')
+assert.match(app, /dialog\.className='warning-dialog dialog-wipe'/, 'L’avertissement de réserve mixte doit utiliser le balayage commun')
 assert.match(app, /stageWipe=true;pick\('attacker'\)/, 'Changer de joueur doit déclencher le balayage')
 assert.ok(app.includes("$('#unitSearch').oninput=e=>{unitQuery=e.target.value;pick(role);requestAnimationFrame(()=>{$('#unitSearch')?.focus();$('#unitSearch')?.setSelectionRange(unitQuery.length,unitQuery.length)})};"), 'Taper dans la recherche ne doit pas déclencher le balayage (gestionnaire de recherche modifié de façon inattendue)')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
