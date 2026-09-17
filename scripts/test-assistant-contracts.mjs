@@ -361,6 +361,19 @@ assert.match(app, /function upgradeGallery\(entry\)\{[\s\S]*?class="card-strip"/
 assert.match(app, /querySelectorAll\('\.upgrade-visual,\.unit-card-zoom,\.unit-card-visual,\.upgrade-card-visual'\)/, 'Le visualiseur de carte doit aussi s’ouvrir depuis la nouvelle bande de vignettes')
 assert.match(app, /noteSources=\[\{label:'Carte unité',name:entry\.unit\.name\}/, 'Le Briefing tactique doit rassembler les notes de la carte Unité et des améliorations')
 assert.match(app, /EFFETS DE CARTE/, 'Le Briefing tactique doit exposer une section dédiée aux effets textuels des cartes')
+// Disposition iPad (17/09/2026, demande utilisateur : mise en place de la
+// disposition proposée dans la maquette « refonte iPad »). Le grand visuel
+// de la carte Unité, dupliqué avec la vignette de .card-strip, est retiré
+// du bandeau .hero ; à partir d'environ la largeur d'un iPad Air en
+// paysage, l'écran de l'attaquant passe en deux colonnes avec le Briefing
+// tactique dominant à droite (voir ipad-compact.css).
+assert.doesNotMatch(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}\$\{unitVisual/, 'Le bandeau d’identité ne doit plus dupliquer le grand visuel de la carte Unité')
+assert.match(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}<\/div>/, 'Le bandeau d’identité ne doit contenir que le panneau d’identité')
+const ipadCompact = fs.readFileSync(new URL('../public/assistant/ipad-compact.css', import.meta.url), 'utf8')
+assert.match(ipadCompact, /\.overview\.attack\s*\{\s*display:grid/, 'L’écran de l’attaquant doit passer en grille à deux colonnes sur grand écran')
+assert.match(ipadCompact, /\.overview\.attack\s*>\s*\.activation-briefing\s*\{\s*grid-column:2/, 'Le Briefing tactique doit dominer la colonne de droite')
+assert.doesNotMatch(ipadCompact, /\.overview\s*\{\s*display:grid/, 'La grille deux colonnes ne doit pas s’appliquer à l’écran du défenseur (pas de Briefing à y afficher)')
+assert.match(fs.readFileSync(new URL('../public/assistant/style.css', import.meta.url), 'utf8'), /\.brief-empty\{grid-column:1\/-1!important;grid-template-columns:1fr!important/, 'Le texte d’une section de briefing sans mot-clé ne doit pas hériter de la grille 82px/1fr des lignes de mot-clé')
 assert.match(app, /place-proton.*detonate-proton/, 'Les charges à protons doivent être suivies de la pose à la détonation')
 assert.match(app, /place-sonic.*detonate-sonic/, 'Les charges soniques doivent être suivies de la pose à la détonation')
 assert.match(app, /SABRE LANCÉ.*moitié.*arrondie au supérieur/, 'Sabre Lancé doit rappeler son calcul à partir de l’arme de corps-à-corps')
@@ -372,7 +385,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=87/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=88/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 assert.match(app, /function movementFreeAttack\(entry\)/, 'Charge, Aguerri et Implacable doivent proposer leur attaque gratuite après le déplacement')
 assert.match(app, /attackState\?\.freeAttackRange==='melee'/, 'Charge doit limiter la réserve aux armes de corps-à-corps')
 assert.match(app, /attackState\?\.freeAttackRange==='ranged'/, 'Aguerri doit limiter la réserve aux armes à distance')
@@ -406,7 +419,7 @@ assert.deepEqual(customCards['rebel agent defender of democracy'].autonomousToke
 assert.deepEqual(customCards['boba fett infamous bounty hunter'].autonomousTokens, [{ token: 'aim', count: 1 }, { token: 'dodge', count: 1 }], 'Boba Fett doit choisir Viser 1 ou Esquive 1 avec Autonome')
 assert.equal(customCards['boba fett infamous bounty hunter'].unitStats.courage, 3, 'Boba Fett doit avoir Courage 3')
 assert.ok(customCards['boba fett infamous bounty hunter'].keywords.some(tag=>tag.keywordId==='arsenal-x'&&tag.value===2), 'Boba Fett doit avoir Arsenal 2')
-assert.match(index, /style\.css\?v=82/, 'La certification complète doit invalider le cache CSS')
+assert.match(index, /style\.css\?v=83/, 'La certification complète doit invalider le cache CSS')
 assert.match(index, /reference-data\.js\?v=\d+/, 'Les valeurs certifiées doivent invalider le cache du référentiel')
 assert.match(app, /const standbyRange=entry=>hasResolvedKeyword\(entry,'sentinelle'\)\?3:2/, 'Sentinelle doit étendre le déclenchement d’Attente à portée 3')
 assert.match(app, /standby:Math\.max\(0,\(state\.standby\|\|0\)-1\)/, 'Le pion Attente doit être consommé par la réaction')

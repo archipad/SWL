@@ -39,3 +39,40 @@
   .attack-workspace { grid-template-columns:minmax(165px,205px) minmax(0,1fr) minmax(165px,205px); }
   .combat-side .unit-card-zoom img { max-height:210px; }
 }
+
+/* Écran d'unité (17/09/2026, demande utilisateur : mise en place de la
+   disposition proposée dans la maquette « refonte iPad »). Le grand
+   visuel de la carte Unité, autrefois dupliqué dans le bandeau .hero
+   à côté de l'identité, est retiré côté app.js — la carte ne s'affiche
+   plus qu'en petit format cliquable dans .card-strip. .hero n'a donc
+   plus qu'un seul enfant (.unit-identity-panel) : on le repasse en bloc
+   simple, à toutes les tailles d'écran. */
+.hero { display:block; padding:14px 16px 0; }
+.hero .unit-identity-panel { max-width:none; }
+
+/* À partir d'environ la largeur d'un iPad Air en paysage (1180pt), deux
+   colonnes comme dans la maquette validée : identité, bande de cartes et
+   état de l'unité à gauche (~30%, largeur mini pour rester lisible) ;
+   Briefing tactique domine la colonne de droite sur toute la hauteur du
+   bloc. Les panneaux d'automatismes/options de ralliement rejoignent la
+   colonne de gauche, dans l'ordre où app.js les insère. Limité à l'écran
+   de l'attaquant (.overview.attack) : côté défenseur, activationBriefing
+   ne s'affiche pas (elle ne concerne que l'activation de l'unité), la
+   colonne de droite resterait donc vide sans cette restriction. */
+@media (min-width:1000px) {
+  .overview.attack { display:grid; grid-template-columns:minmax(300px,30%) 1fr; align-items:start; column-gap:18px; }
+  .overview.attack > .hero,
+  .overview.attack > .card-strip,
+  .overview.attack > .unit-state-editor,
+  .overview.attack > .activation-automation,
+  .overview.attack > .post-rally-panel { grid-column:1; }
+  /* La colonne de gauche est trop étroite pour la bande de cartes en
+     ligne (unité + améliorations côte à côte en pleine largeur) : on
+     repasse .card-strip lui-même en grille, comme dans la maquette
+     (carte Unité ~38%, améliorations en grille 2 colonnes à droite). */
+  .overview.attack > .card-strip { display:grid; grid-template-columns:minmax(96px,38%) 1fr; gap:10px; }
+  .overview.attack > .card-strip .unit-card-visual { width:100%; }
+  .overview.attack > .card-strip .upgrade-row { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+  .overview.attack > .card-strip .upgrade-card-visual { width:100%; }
+  .overview.attack > .activation-briefing { grid-column:2; grid-row:1/-1; margin:0; }
+}

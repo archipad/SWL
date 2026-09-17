@@ -2,6 +2,27 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (17/09/2026, demande utilisateur) Mis en place la disposition à deux
+  colonnes proposée dans la maquette « refonte iPad », qui n'avait pas
+  encore été implémentée (seul le contenu de la bande de cartes l'avait
+  été jusque-là) : à partir d'environ la largeur d'un iPad Air en paysage
+  (1180pt), l'écran de l'attaquant passe en grille (`.overview.attack`)
+  avec identité, bande de cartes et état de l'unité dans une colonne de
+  gauche étroite (~30%) et le Briefing tactique dominant toute la hauteur
+  de la colonne de droite — sans changement de DOM/JS, uniquement via
+  `grid-area`/`grid-column` en CSS (`ipad-compact.css`). En dessous de ce
+  seuil (iPad portrait, mobile), l'écran repasse automatiquement en une
+  seule colonne empilée, comme avant. Limité à l'écran de l'attaquant :
+  côté défenseur, le Briefing tactique ne s'affiche pas (il ne concerne
+  que l'activation de l'unité), la grille y serait donc inutile.
+  Supprimé au passage le grand visuel de la carte Unité du bandeau
+  d'identité (`.hero`), devenu redondant avec la vignette cliquable de
+  `.card-strip` : `.hero` ne contient plus que l'identité et les pastilles
+  Suppression/Moral. Corrigé un bug latent (pas causé par ce lot) où le
+  texte d'une section de Briefing sans mot-clé (« Aucun effet spécial
+  d'activation... ») héritait par erreur de la grille 82px/1fr prévue pour
+  les lignes de mot-clé, le confinant à une colonne de 82px de large.
+
 - [x] (17/09/2026, demande utilisateur) Étendu le balayage « Star Wars »
   (`.page-wipe`/`.step-wipe`, déjà utilisé aux changements d'écran) aux
   fenêtres modales (`<dialog>`) : nouveau pop-up de rappel Moral/
