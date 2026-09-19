@@ -44,13 +44,20 @@
 .unit-picker-grid .unit-tile strong { overflow: hidden; font-size: 1rem; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
 .unit-picker-grid .unit-tile small { font-size: .7rem; }
 
-/* Rang : pastille sur le coin de la carte. Les pions d'état restent sous la
-   carte (en haut ils masqueraient le nom imprimé) ; les tuiles d'une même
-   rangée ont la même hauteur (flex, étirement par défaut). */
-.unit-picker-grid .unit-tile > .rank-icon {
-  position: absolute; z-index: 2; top: 14px; right: 14px; width: 30px; height: 27px; padding: 0;
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .9));
+/* Rang : grande icône au centre de la carte, dans la couleur de l'armée de
+   l'unité (orange Rebelles, rouge Empire — et non celle du thème courant :
+   côté défenseur, les unités affichées sont celles de l'autre camp). Les pions
+   d'état restent sous la carte (en haut ils masqueraient le nom imprimé) ;
+   les tuiles d'une même rangée ont la même hauteur (flex, étirement par
+   défaut). */
+.unit-picker-grid .tile-visual { position: relative; }
+.unit-picker-grid .tile-visual > .rank-icon {
+  position: absolute; z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: clamp(40px, 22%, 84px); height: auto; aspect-ratio: 30 / 27; padding: 0; pointer-events: none;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, .95)) drop-shadow(0 2px 8px rgba(0, 0, 0, .8));
 }
+.unit-picker-grid .unit-tile[data-faction="rebel"] .tile-visual > .rank-icon { background: #ff8c1a; }
+.unit-picker-grid .unit-tile[data-faction="imperial"] .tile-visual > .rank-icon { background: #ff4550; }
 .unit-picker-grid .unit-status { margin-top: 4px; }
 
 @media (max-width: 999px) {
