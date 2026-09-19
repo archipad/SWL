@@ -260,7 +260,7 @@ assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne do
 assert.match(app, /\[warning,range,fire,weapons,pool,poolNote\]\.filter\(Boolean\)\.forEach\(element=>\{anchor\.after\(element\);anchor=element\}\)/, 'Étape 1 : la portée est en haut, puis le Contrôle de Tir, puis les armes, et les dés à lancer tout en bas, sous les armes')
 assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.token-card'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=23/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=26/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} · carte \$\{cardName\}/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
@@ -330,10 +330,22 @@ assert.match(app, /<li>\$\{sources\.length>1\?'L’une de ces unités':who\} est
 assert.match(app, /bar\.className='dice-pool cover-pool';bar\.innerHTML=\`<span>DÉS DE COUVERT À LANCER<\/span>/, 'Le couvert doit avoir sa barre « dés à lancer » comme les autres étapes')
 assert.match(app, /counterHtml\('dodges',attackState\.dodges,stock\)[\s\S]*PIONS ESQUIVE DISPONIBLES : \$\{stock\}/, 'L’Esquive doit tenir sur une ligne : stock en lecture seule, dépense à droite')
 assert.match(app, /modifierScreen=function\(\)\{[\s\S]*if\(impactX>0&&armor\.hasArmor\)return html;[\s\S]*NE S’APPLIQUE PAS ICI/, 'Impact / Armure ne se saisissent que si l’attaquant a Impact et le défenseur Armure ; sinon information')
-assert.match(app, /const beforeStrip=attackStep===3\?center\.querySelector\(':scope > \.result-strip:not\(\.live-result-strip\)'\):null;if\(beforeStrip\)sticky\.append\(beforeStrip\)/, 'Modifications : « avant » et « après » côte à côte en haut')
+assert.match(app, /class="was">avant : \$\{counts\[0\]\|\|0\} touche\(s\)/, 'Couvert et Modifications : le résultat « avant » est une mention dans la barre « après »')
 assert.match(app, /function attackRecapHtml\(\)[\s\S]*BLESSURES À APPLIQUER[\s\S]*SUPPRESSION À ATTRIBUER[\s\S]*PIONS DÉPENSÉS PENDANT L’ATTAQUE/, 'L’écran Suppression doit résumer blessures, suppression et pions dépensés')
 assert.match(app, /suppressionScreen=function\(\)\{return suppressionScreenRecapBase\(\)\.replace/, 'Le résumé doit remplacer l’ancien bloc de blessures')
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.recap-card \{[\s\S]*rgba\(255, 102, 92[\s\S]*\.recap-spent \{[\s\S]*rgba\(111, 189, 219/, 'Le résumé doit utiliser le rouge pour les résultats à appliquer et le bleu pour les pions dépensés')
+// Audit du 19/09/2026 : moins de défilement, vierges automatiques, une seule pulsation, fiche d'unité alignée. Le comportement est vérifié par test-assistant-parcours.mjs (jsdom) ; ici, seulement les garde-fous de structure.
+assert.match(app, /function applyAutoBlank\(\)/, 'Les vierges doivent se calculer automatiquement')
+assert.match(app, /classList\.add\('blocker-current'\)/, 'Un seul point bloquant courant doit être repéré (pulsation unique)')
+assert.match(app, /pulseEl\(blocker,'denied-shake'\)/, 'Toucher une section grisée doit ramener au point bloquant')
+assert.match(app, /className='morale-fold'/, 'Suppression et moral doit être replié par défaut')
+assert.match(app, /function tokenMini\(entry,field,label,value,icon\)/, 'La fiche d’unité doit permettre d’éditer les pions Viser, Esquive et Adrénaline')
+assert.match(app, /function unitModelsChip\(entry\)/, 'La fiche d’unité doit afficher l’effectif certifié')
+assert.match(app, /className='side-upgrades'/, 'Les améliorations des colonnes latérales doivent être repliées')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /body\.resolving \.app-header-sticky \{ position: static; \}/, 'Le bandeau du haut ne doit pas rester collé pendant la résolution')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.resolve-center > \.is-dimmed \{ pointer-events: auto/, 'Une section grisée doit capter le toucher')
+assert.match(fs.readFileSync(new URL('../public/assistant/unit-screen.css', import.meta.url), 'utf8'), /\.overview \.token-mini \{/, 'Les cartes de pions de la fiche d’unité doivent être stylées')
+assert.match(JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8')).scripts.build, /test:assistant-parcours/, 'Le test de parcours doit faire partie du build')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -461,7 +473,7 @@ assert.match(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}<\/div>/, 'Le ba
 // (.ov-left/.ov-right, posées par app.js) qui partent du même bord haut,
 // un seul habillage de panneau, un bandeau du haut sur une seule ligne.
 const unitScreen = fs.readFileSync(new URL('../public/assistant/unit-screen.css', import.meta.url), 'utf8')
-assert.match(index, /unit-screen\.css\?v=2/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
+assert.match(index, /unit-screen\.css\?v=4/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
 assert.ok(index.indexOf('unit-screen.css') > index.indexOf('ipad-compact.css'), 'unit-screen.css doit être chargée après ipad-compact.css pour gagner les égalités de spécificité')
 assert.match(app, /overviewColumnsBase=overview;\s*overview=function\(entry,role\)\{overviewColumnsBase\(entry,role\);.*ov-left.*ov-right/, 'app.js doit regrouper les blocs de l’écran d’unité en deux colonnes réelles')
 assert.match(app, /matches\('\.activation-automation,\.post-rally-panel,\.activation-briefing,\.unit-state-editor'\)\?right:left/, 'Automatismes, options de démoralisation, Briefing et état de l’unité doivent aller dans la colonne de droite')
@@ -482,7 +494,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=115/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=120/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)

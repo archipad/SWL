@@ -102,6 +102,24 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, suite de l'audit) Résolution : bandeau du haut non collant (≈55 px
+  rendus), résultat « avant » fusionné dans la barre « après », « Suppression et
+  moral » replié (une ligne de résumé), améliorations des colonnes latérales
+  repliées ; vierges automatiques (après la 1re saisie : vierges = dés de la
+  réserve − autres résultats ; « Tout vierge » ; saisie manuelle reprend la main,
+  bouton « ↺ Vierges automatiques ») ; textes utiles ≥ 11 px, cibles ≥ 40-44 px,
+  bouton principal rouge à contraste ≥ 4,5:1 ; une seule pulsation (le point
+  bloquant courant) ; toucher une section grisée ramène au point bloquant.
+  Fiche d'unité : pions Viser / Esquive / Adrénaline éditables (seule source de
+  leur stock), effectif certifié (« 6 figurines (4 + 1 + 1) »), briefing en
+  sections repliables (effets de carte repliés), carte Unité de hauteur limitée
+  et améliorations sur une rangée, libellés À SAISIR / INFO.
+  Test de parcours réel : `scripts/test-assistant-parcours.mjs` exécute app.js dans
+  jsdom et rejoue 6 scénarios (attaque complète, escouade + Contrôle de Tir,
+  couvert + esquives, Impact/Armure + Encombrant, régression Adrénaline, saisie des
+  dés) ; il fait partie de `npm run build`. Limite : pas de rendu CSS (structure,
+  états et textes seulement). Dépendance ajoutée : jsdom (devDependency).
+
 - [x] (19/09/2026, demande utilisateur) Refonte des écrans 3 à 6. Contrôle de Tir :
   reformulé d'après la carte (« améliorez 2 dés d'attaque quand une autre unité
   alliée à portée 1 attaque une cible en ligne de vue DU PORTEUR ») — le porteur

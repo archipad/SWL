@@ -503,3 +503,68 @@
 .resolve-center .recap-icon img { filter: none; }
 /* Titre du bloc Suppression et moral : famille orange (à saisir), comme les autres titres d'action. */
 .resolve-center .morale-panel > strong { color: #ffd9a8; font: 800 .95rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; }
+
+/* =====================================================================
+   Audit du 19/09/2026 : moins de défilement, une seule pulsation, vierges automatiques, lisibilité
+   ===================================================================== */
+/* --- Le bandeau du haut ne reste pas collé pendant la résolution (~55 px d'écran rendus) --- */
+body.resolving .app-header-sticky { position: static; }
+
+/* --- Résultat « avant » : mention discrète dans la barre « après » --- */
+.resolve-center .live-result-strip > b:first-child .was,
+.resolve-center .live-defense-strip > b:first-child .was { display: block; margin-top: 2px; color: #ffd2cd; font: 500 .68rem/1.2 inherit; letter-spacing: 0; text-transform: none; }
+
+/* --- Suppression et moral : replié, une ligne de résumé --- */
+.resolve-center details.morale-fold { border: 1px solid var(--r-line); border-left: 4px solid var(--r-input); border-radius: var(--r-radius); background: rgba(255, 255, 255, .03); }
+.resolve-center details.morale-fold > summary { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 14px; padding: 10px 12px; cursor: pointer; list-style: none; }
+.resolve-center details.morale-fold > summary b { color: #ffd9a8; font: 800 .82rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; }
+.resolve-center details.morale-fold > summary span { flex: 1 1 auto; color: #c9dbe4; font-size: .82rem; }
+.resolve-center details.morale-fold > summary i { color: var(--muted); font-size: .72rem; font-style: normal; text-decoration: underline; }
+.resolve-center details.morale-fold[open] > .morale-panel { margin: 0 8px 8px; }
+
+/* --- Vierges automatiques --- */
+.resolve-center .tray-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 8px; }
+.resolve-center .auto-chip {
+  min-height: 40px; padding: 0 14px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 999px; background: rgba(255, 255, 255, .05);
+  color: var(--text); font: 700 .8rem/1 inherit; cursor: pointer;
+}
+.resolve-center .auto-chip:active { transform: translateY(1px); }
+.resolve-center .dice-tray > .quick-field.auto-blank { border-style: dashed; }
+.resolve-center .dice-tray > .quick-field.auto-blank .quick-label { color: #b5f2d6; }
+
+/* --- Une seule pulsation : le point bloquant courant --- */
+.resolve-center :is(.range-picker.todo, .weapon-picker.todo, .fire-control-card.todo, .cover-options.unset, .phase-confirm.todo),
+.resolve-center[data-entry-state="pending"] .dice-tray > .quick-field.is-empty { animation: none; }
+.resolve-center > .blocker-current { animation: todo-pulse 1.8s ease-in-out infinite; }
+.resolve-center > .blocker-current:has(.dice-tray) { animation: none; }
+.resolve-center[data-entry-state="pending"] > .blocker-current .dice-tray > .quick-field.is-empty { animation: todo-pulse 1.8s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .resolve-center > .blocker-current, .resolve-center[data-entry-state="pending"] > .blocker-current .dice-tray > .quick-field.is-empty { animation: none; }
+}
+
+/* --- Section grisée : elle capte le toucher (qui ramène au point bloquant) mais rien à l'intérieur n'est actif --- */
+.resolve-center > .is-dimmed { pointer-events: auto; cursor: not-allowed; }
+.resolve-center > .is-dimmed * { pointer-events: none !important; }
+@keyframes denied-shake-x { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+.resolve-center .denied-shake, .actions .denied-shake { animation: denied-shake-x .38s ease-in-out; }
+
+/* --- Lisibilité : plus aucun texte utile sous 11,5 px, cibles tactiles >= 40 px --- */
+.resolve-center .attack-stepper button { min-height: 44px; }
+.resolve-center .attack-stepper button span { font-size: .72rem; line-height: 1.15; }
+.resolve-center .attack-stepper button b { font-size: .8rem; }
+.combat-side small, .combat-side .side-status small, .combat-side h3 { font-size: max(.68rem, 11px); }
+.combat-side .side-status b { font-size: .95rem; }
+.combat-side .side-heading, .combat-side .side-detail { font-size: .78rem; }
+.topbar > a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; }
+.intro .kicker, .intro small, .army-switch small, .unit-tile small { font-size: max(.7rem, 11.2px); }
+.unit-identity-panel small, .unit-identity-panel .unit-hud small { font-size: max(.68rem, 11px) !important; }
+/* Bouton principal rouge (thème Empire) : texte blanc >= 4,5:1 */
+body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border-color: #cf2b37; color: #fff; }
+/* Plateau : les tuiles se partagent la largeur ; une tuile seule reste de taille raisonnable. */
+.resolve-center .dice-tray { grid-template-columns: repeat(auto-fit, minmax(126px, 1fr)); justify-content: stretch; }
+.resolve-center .dice-tray:has(> .quick-field:only-child) { grid-template-columns: minmax(126px, 220px); justify-content: center; }
+
+/* Colonnes latérales : améliorations repliées (rappel occasionnel, ~300 px de page en moins). */
+.combat-side .side-upgrades { order: 3; }
+.combat-side .side-upgrades > summary { cursor: pointer; padding: 6px 4px; color: var(--muted); font-size: max(.7rem, 11.2px); }
+.combat-side .side-upgrades[open] > summary { color: var(--text); }
