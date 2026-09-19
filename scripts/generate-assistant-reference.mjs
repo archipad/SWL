@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { basename, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -106,9 +107,38 @@ try {
     .map(([card]) => card);
   if (incompleteModels.length) throw new Error(`Ajouts de figurines non certifiés : ${incompleteModels.join(', ')}`);
 
+  // Mots-clés : deux sources (étiquettes de base, certification complète). En cas de désaccord, le moteur
+  // n'ignore JAMAIS un mot-clé : il utilise l'UNION des deux (une certification ancienne ne peut pas faire
+  // disparaître Arsenal de Boba Fett, ni une certification vide Précis des Stormtroopers -- incident du
+  // 19/09/2026). La certification ne devient seule autorité (retraits compris) que si elle porte
+  // keywordsReviewed : posé par l'écran de certification après affichage du désaccord au joueur.
+  // Le désaccord reste listé dans keywordConflicts : l'écran de certification le demande tant qu'il existe.
+  const tags = structuredClone(tagModule.SEED_CARD_TAGS);
+  const keywordConflicts = {};
+  for (const [card, profile] of Object.entries(weapons)) {
+    const full = profile.fullCardCertification;
+    if (!full || !Array.isArray(full.keywords)) continue;
+    const seed = tags[card] || [];
+    const seedById = new Map(seed.map((tag) => [tag.keywordId, tag.value ?? null]));
+    const certById = new Map(full.keywords.map((tag) => [tag.keywordId, tag.value ?? null]));
+    const certifiedOnly = [...certById.keys()].filter((id) => !seedById.has(id)).sort();
+    const tagsOnly = [...seedById.keys()].filter((id) => !certById.has(id)).sort();
+    const valueDiffs = [...certById.keys()].filter((id) => seedById.has(id) && certById.get(id) !== seedById.get(id)).sort();
+    if (!certifiedOnly.length && !tagsOnly.length && !valueDiffs.length) continue;
+    const suspiciousEmpty = full.keywords.length === 0 && seed.length > 0 && !full.noKeywordsConfirmed;
+    keywordConflicts[card] = { certifiedOnly, tagsOnly, valueDiffs, suspiciousEmpty };
+    if (full.keywordsReviewed === true) tags[card] = full.keywords.map((tag) => ({ ...tag }));
+    else for (const tag of full.keywords) if (!seedById.has(tag.keywordId)) tags[card] = [...(tags[card] || []), { ...tag }];
+    keywordConflicts[card].reviewed = full.keywordsReviewed === true;
+  }
+  const crosscheckPath = resolve(projectRoot, 'src/data/crosscheckTakras.json');
+  const crosscheck = existsSync(crosscheckPath) ? JSON.parse(await readFile(crosscheckPath, 'utf8')) : {};
+
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,
-    tags: tagModule.SEED_CARD_TAGS,
+    tags,
+    keywordConflicts,
+    crosscheck,
     names: nameModule.CARD_NAMES_FR,
     images: assistantImages,
     weapons,

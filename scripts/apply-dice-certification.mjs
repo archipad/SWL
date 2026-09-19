@@ -58,6 +58,8 @@ for(const card of cards){
     if(!Array.isArray(full.checks)||required.some(check=>!full.checks.includes(check)))throw new Error(`Certification complète inachevée pour ${card.card}`)
     if(typeof full.visualPath!=='string'||!full.visualPath||typeof full.rulesVersion!=='string'||!full.rulesVersion)throw new Error(`Preuve de certification manquante pour ${card.card}`)
     for(const tag of full.keywords||[]){if(!knownKeywordIds.has(tag.keywordId))throw new Error(`Mot-clé inconnu pour ${card.card} : ${tag.keywordId}`);if(tag.value!==undefined&&(!Number.isInteger(tag.value)||tag.value<1||tag.value>20))throw new Error(`Valeur de mot-clé invalide pour ${card.card}/${tag.keywordId}`)}
+    if(!(full.keywords||[]).length&&full.noKeywordsConfirmed!==true)throw new Error(`Liste de mots-clés vide non confirmée pour ${card.card} : cocher « aucun mot-clé » après vérification de la carte`)
+    if(full.keywordsReviewed!==true)throw new Error(`Les mots-clés de ${card.card} n'ont pas été relus avec les écarts affichés`)
     full.visualHash=visualHashFor(card.card)
   }
 }

@@ -1,0 +1,233 @@
+{
+  "1 4 fd laser cannon team": {
+    "keywords": [
+      "Legion Helper indique « Impact X » : absent de la base de l’appli",
+      "Legion Helper indique « Fixe : Avant/Arrière/Flancs » : absent de la base de l’appli"
+    ],
+    "stats": [],
+    "signature": "848407bbb3"
+  },
+  "agent kallus": {
+    "keywords": [],
+    "stats": [
+      "armes (dés@portée) : site [1r+3n@melee] / appli [1r+3n@1-2]"
+    ],
+    "signature": "74a1f199f0"
+  },
+  "ahsoka tano": {
+    "keywords": [
+      "Legion Helper indique « Maîtrise du Shien » : absent de la base de l’appli",
+      "Legion Helper indique « Associé : Nom d'Unité » : absent de la base de l’appli",
+      "Legion Helper indique « Autonome : Pion X/Action » : absent de la base de l’appli",
+      "Legion Helper indique « Éclaireur X » : absent de la base de l’appli",
+      "La base de l’appli a « Charge » : absent chez Legion Helper",
+      "La base de l’appli a « Défense X » : absent chez Legion Helper",
+      "perforant-x : site 1 / appli 2"
+    ],
+    "stats": [
+      "armes (dés@portée) : site [3b+5n@melee] / appli [2b+2n+2r@melee]"
+    ],
+    "signature": "3fddd96a75"
+  },
+  "at rt": {
+    "keywords": [
+      "Legion Helper indique « Critique X » : absent de la base de l’appli"
+    ],
+    "stats": [
+      "dés de défense : site rouge / appli blanc",
+      "armes (dés@portée) : site [1n+2b@1-3 ; 3r@melee] / appli [2b@1-3 ; 3r@melee]"
+    ],
+    "signature": "de3c66f379"
+  },
+  "barrage generator": {
+    "keywords": [
+      "Legion Helper indique « Fixe : Avant/Arrière/Flancs » : absent de la base de l’appli"
+    ],
+    "stats": [],
+    "signature": "79eee965ff"
+  },
+  "black sun vigo": {
+    "keywords": [
+      "Legion Helper indique « Chef » : absent de la base de l’appli",
+      "La base de l’appli a « Mercenaire : Faction » : absent chez Legion Helper",
+      "La base de l’appli a « Intrépide » : absent chez Legion Helper"
+    ],
+    "stats": [],
+    "signature": "574e02203e"
+  },
+  "chewbacca": {
+    "keywords": [
+      "Legion Helper indique « Charge » : absent de la base de l’appli"
+    ],
+    "stats": [],
+    "signature": "f48a0b547c"
+  },
+  "crosshair": {
+    "keywords": [
+      "Legion Helper indique « Critique X » : absent de la base de l’appli",
+      "perforant-x : site 1 / appli —"
+    ],
+    "stats": [],
+    "signature": "6344394b32"
+  },
+  "dewback rider": {
+    "keywords": [],
+    "stats": [
+      "armes (dés@portée) : site [3b+3r@melee] / appli []"
+    ],
+    "signature": "3ad2b955f2"
+  },
+  "df 90 mortar trooper": {
+    "keywords": [
+      "Legion Helper indique « Fixe : Avant/Arrière/Flancs » : absent de la base de l’appli"
+    ],
+    "stats": [
+      "armes (dés@portée) : site [1n@melee ; 2n@3-4] / appli []"
+    ],
+    "signature": "318a45a528"
+  },
+  "din djarin": {
+    "keywords": [
+      "Legion Helper indique « Telle est la Voie » : absent de la base de l’appli",
+      "Legion Helper indique « Chef » : absent de la base de l’appli",
+      "La base de l’appli a « Mercenaire : Faction » : absent chez Legion Helper",
+      "La base de l’appli a « Arsenal X » : absent chez Legion Helper",
+      "La base de l’appli a « Prime » : absent chez Legion Helper",
+      "La base de l’appli a « Insensible » : absent chez Legion Helper",
+      "La base de l’appli a « Autonome : Pion X/Action » : absent chez Legion Helper",
+      "La base de l’appli a « Tacticien X » : absent chez Legion Helper",
+      "La base de l’appli a « Longue Distance » : absent chez Legion Helper",
+      "La base de l’appli a « Polyvalent » : absent chez Legion Helper",
+      "letal-x : site 1 / appli —"
+    ],
+    "stats": [],
+    "signature": "27fbe1acce"
+  },
+  "e web heavy blaster team": {
+    "keywords": [
+      "Legion Helper indique « Fixe : Avant/Arrière/Flancs » : absent de la base de l’appli"
+    ],
+    "stats": [
+      "armes (dés@portée) : site [1r+2b+2n@1-4 ; 2b@1-3 ; 2n@melee] / appli []"
+    ],
+    "signature": "45c032166a"
+  },
+  "engagement protocols": {
+    "keywords": [
+      "La base de l’appli a « IA : Action » : absent chez Legion Helper"
+    ],
+    "stats": [],
+    "signature": "38a308017a"
+  },
+  "fleet troopers": {
+    "keywords": [],
+    "stats": [
+      "armes (dés@portée) : site [2b@melee] / appli [2b@melee-2]"
+    ],
+    "signature": "6ccbdc09f2"
+  },
+  "iden versio": {
+    "keywords": [],
+    "stats": [
+      "armes (dés@portée) : site [1n+2b+2r@1-3 ; 2n@1-6 ; 3n@melee] / appli [1n+2b+2r@1-3 ; 2n@1-# ; 3n@melee]"
+    ],
+    "signature": "5345ca5dc2"
+  },
+  "imperial special forces": {
+    "keywords": [
+      "Legion Helper indique « Équipe » : absent de la base de l’appli",
+      "Legion Helper indique « Escorte : Nom/Type d'Unité » : absent de la base de l’appli"
+    ],
+    "stats": [
+      "figurines : site 1 / appli 4",
+      "armes (dés@portée) : site [1n@1-3 ; 1r@melee] / appli [1n@1-3 ; 1n@melee]"
+    ],
+    "signature": "051da9cbfc"
+  },
+  "kraken": {
+    "keywords": [
+      "Legion Helper indique « Stratège X » : absent de la base de l’appli",
+      "Legion Helper indique « Charge » : absent de la base de l’appli",
+      "Legion Helper indique « Exemplaire » : absent de la base de l’appli",
+      "Legion Helper indique « Tireur d'Élite X » : absent de la base de l’appli",
+      "Legion Helper indique « Létal X » : absent de la base de l’appli"
+    ],
+    "stats": [],
+    "signature": "45f6b3d9d4"
+  },
+  "major marquand": {
+    "keywords": [
+      "impact-x : site 1 / appli —"
+    ],
+    "stats": [
+      "armes (dés@portée) : site [1b+1n+1r@melee ; 2b+2n+2r@1-4 ; 2n@melee] / appli [1b+1n+1r@1-3 ; 2b+2n+2r@1-4 ; 2n@1-2]"
+    ],
+    "signature": "58a3dbd043"
+  },
+  "mandalorian resistance": {
+    "keywords": [
+      "Legion Helper indique « Escorte : Nom/Type d'Unité » : absent de la base de l’appli",
+      "Legion Helper indique « Équipe » : absent de la base de l’appli"
+    ],
+    "stats": [
+      "figurines : site 1 / appli 3",
+      "armes (dés@portée) : site [2n@melee] / appli [2n@1-2]"
+    ],
+    "signature": "29854778ec"
+  },
+  "protector": {
+    "keywords": [
+      "Legion Helper indique « Gardien X » : absent de la base de l’appli"
+    ],
+    "stats": [],
+    "signature": "2358a587be"
+  },
+  "pyke syndicate capo": {
+    "keywords": [
+      "Legion Helper indique « Chef » : absent de la base de l’appli",
+      "La base de l’appli a « Mercenaire : Faction » : absent chez Legion Helper",
+      "La base de l’appli a « Aide : Affiliation/Type d'Unité » : absent chez Legion Helper",
+      "La base de l’appli a « Intuition du Danger X » : absent chez Legion Helper",
+      "La base de l’appli a « Autonome : Pion X/Action » : absent chez Legion Helper"
+    ],
+    "stats": [],
+    "signature": "645640c4f6"
+  },
+  "r2 d2": {
+    "keywords": [],
+    "stats": [
+      "armes (dés@portée) : site [3b@melee] / appli [3b@1]"
+    ],
+    "signature": "9e6391a8e0"
+  },
+  "sabine wren": {
+    "keywords": [
+      "Legion Helper indique « Chef » : absent de la base de l’appli",
+      "La base de l’appli a « Saut X » : absent chez Legion Helper",
+      "La base de l’appli a « Pistolero » : absent chez Legion Helper",
+      "La base de l’appli a « Insensible » : absent chez Legion Helper",
+      "La base de l’appli a « Agile X » : absent chez Legion Helper",
+      "La base de l’appli a « Perforant X » : absent chez Legion Helper"
+    ],
+    "stats": [],
+    "signature": "2ba49226e8"
+  },
+  "the bad batch": {
+    "keywords": [
+      "La base de l’appli a « Mercenaire : Faction » : absent chez Legion Helper"
+    ],
+    "stats": [
+      "figurines : site 0 / appli 1"
+    ],
+    "signature": "a12fad37e1"
+  },
+  "the darksaber": {
+    "keywords": [
+      "La base de l’appli a « Immunité : Perforant au Corps-à-Corps » : absent chez Legion Helper",
+      "perforant-x : site 1 / appli 2",
+      "impact-x : site 1 / appli 2"
+    ],
+    "stats": [],
+    "signature": "fdffd8eb15"
+  }
+}

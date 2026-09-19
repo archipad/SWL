@@ -257,10 +257,10 @@ assert.match(fs.readFileSync(new URL('../public/assistant/unit-picker.css', impo
 assert.match(app, /function squadAddedModels\(entry\)\{return \(entry\?\.unit\?\.upgrades\|\|\[\]\)\.reduce\(\(sum,card\)=>\{const profile=profileFor\(card\.name\),added=Number\(profile\?\.addedModels\)\|\|0;return added>0&&!\(profile\?\.weapons\|\|\[\]\)\.length\?sum\+added:sum\}/, 'Les améliorations d’escouade certifiées (addedModels, sans arme propre) doivent s’ajouter à l’effectif de la carte Unité')
 assert.match(app, /if\(cardKey\(row\.card\)===cardKey\(attacker\.unit\.name\)\)return unitWeaponModels\(attacker\)/, 'Les armes de la carte Unité doivent être proposées avec l’effectif de base + les figurines d’escouade')
 assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne doit plus être affiché en bas des écrans de résolution')
-assert.match(app, /\[warning,range,fire,weapons,pool,poolNote\]\.filter\(Boolean\)\.forEach\(element=>\{anchor\.after\(element\);anchor=element\}\)/, 'Étape 1 : la portée est en haut, puis le Contrôle de Tir, puis les armes, et les dés à lancer tout en bas, sous les armes')
+assert.match(app, /\[warning,range,fire,arsenal,weapons,pool,poolNote\]\.filter\(Boolean\)\.forEach\(element=>\{anchor\.after\(element\);anchor=element\}\)/, 'Étape 1 : la portée est en haut, puis le Contrôle de Tir, puis les armes, et les dés à lancer tout en bas, sous les armes')
 assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.token-card'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=26/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=27/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} · carte \$\{cardName\}/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
@@ -494,7 +494,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=121/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=122/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
@@ -541,7 +541,7 @@ assert.deepEqual(customCards['rebel agent defender of democracy'].autonomousToke
 assert.deepEqual(customCards['boba fett infamous bounty hunter'].autonomousTokens, [{ token: 'aim', count: 1 }, { token: 'dodge', count: 1 }], 'Boba Fett doit choisir Viser 1 ou Esquive 1 avec Autonome')
 assert.equal(customCards['boba fett infamous bounty hunter'].unitStats.courage, 3, 'Boba Fett doit avoir Courage 3')
 assert.ok(customCards['boba fett infamous bounty hunter'].keywords.some(tag=>tag.keywordId==='arsenal-x'&&tag.value===2), 'Boba Fett doit avoir Arsenal 2')
-assert.match(index, /style\.css\?v=84/, 'La certification complète doit invalider le cache CSS')
+assert.match(index, /style\.css\?v=85/, 'La certification complète doit invalider le cache CSS')
 assert.match(index, /reference-data\.js\?v=\d+/, 'Les valeurs certifiées doivent invalider le cache du référentiel')
 assert.match(app, /const standbyRange=entry=>hasResolvedKeyword\(entry,'sentinelle'\)\?3:2/, 'Sentinelle doit étendre le déclenchement d’Attente à portée 3')
 assert.match(app, /standby:Math\.max\(0,\(state\.standby\|\|0\)-1\)/, 'Le pion Attente doit être consommé par la réaction')
@@ -564,7 +564,7 @@ assert.match(app, /const secondaryScreenOpen=.*certification-open.*live-game-rep
 assert.match(app, /document\.visibilityState!=='visible'\|\|secondaryScreenOpen\(\)/, 'La synchronisation périodique ne doit jamais fermer la certification')
 assert.match(app, /if\(!secondaryScreenOpen\(\)\)location\.reload\(\)/, 'Une mise à jour de liste ne doit pas recharger la page pendant la certification')
 assert.match(index, /upgrades\.css\?v=2/, 'Le déplacement du bouton de fermeture doit invalider son cache CSS')
-assert.match(index, /certification\.js\?v=74/, 'La certification V2 doit invalider le cache de son interface')
+assert.match(index, /certification\.js\?v=75/, 'La certification V2 doit invalider le cache de son interface')
 assert.match(certificationUiSource, /function fullCardPanel\(card,d\)/, 'La certification doit proposer une fiche complète par carte')
 assert.match(certificationUiSource, /CERTIFIER TOUTE LA CARTE EN UNE FOIS/, 'La carte complète doit pouvoir être validée en une seule action')
 assert.match(certificationUiSource, /\['identity','visual','stats','weapons','conversions','keywords'\]/, 'Les six familles de données doivent être confirmées')

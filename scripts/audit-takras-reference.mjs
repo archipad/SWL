@@ -18,6 +18,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import vm from 'node:vm'
+import { createHash } from 'node:crypto'
 import { fileURLToPath } from 'node:url'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
@@ -200,6 +201,25 @@ const defRows = defs.map((def) => {
 })
 const appIdsCovered = new Set(defRows.map((r) => r.appId).filter(Boolean))
 const appOnly = ref.keywords.filter((k) => !appIdsCovered.has(k.id))
+
+/* ---------- Données pour l'écran « Certification des cartes » ---------- */
+// Instantané des écarts (texte français, sans donnée recopiée du site) embarqué dans l'Assistant :
+// chaque carte à écart reste « à contrôler » tant que sa certification ne porte pas la signature de ces écarts.
+const frName = (id) => appKeywordById[id]?.name || id
+const crosscheckData = {}
+for (const m of mismatches) {
+  const keywords = [
+    ...m.missingInApp.map((item) => 'Legion Helper indique « ' + frName(item.split(' → ')[1]) + ' » : absent de la base de l’appli'),
+    ...m.extraInApp.map((id) => 'La base de l’appli a « ' + frName(id) + ' » : absent chez Legion Helper'),
+    ...m.valueDiffs,
+  ]
+  crosscheckData[m.key] = { keywords, stats: [] }
+}
+for (const s of statMismatches) (crosscheckData[s.key] ||= { keywords: [], stats: [] }).stats = s.problems
+for (const [key, entry] of Object.entries(crosscheckData)) {
+  entry.signature = createHash('sha1').update(JSON.stringify([entry.keywords, entry.stats])).digest('hex').slice(0, 10)
+}
+fs.writeFileSync(path.join(root, 'src/data/crosscheckTakras.json'), JSON.stringify(Object.fromEntries(Object.entries(crosscheckData).sort(([a], [b]) => a.localeCompare(b))), null, 2) + '\n')
 
 /* ---------- Rapport ---------- */
 const today = new Date().toISOString().slice(0, 10)

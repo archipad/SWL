@@ -458,7 +458,8 @@
             "count": 3
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "name": "Roquettes Intégrées",

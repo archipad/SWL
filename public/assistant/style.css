@@ -31,3 +31,21 @@
 .brief-section:nth-of-type(1){border-left-color:var(--blue,#6db6e8)}.brief-section:nth-of-type(1)>small{color:var(--blue,#6db6e8)}
 .brief-section:nth-of-type(2){border-left-color:var(--red,#e76b63)}.brief-section:nth-of-type(2)>small{color:var(--red,#e76b63)}
 .brief-section:nth-of-type(3){border-left-color:var(--gold,#e6b94f)}.brief-section:nth-of-type(3)>small{color:var(--gold,#e6b94f)}
+
+/* Certification : comparaison des sources, filtres, drapeaux */
+.cert-sources{display:grid;gap:8px;margin:10px 0;padding:12px 14px;border:1px solid #2f5566;border-radius:10px;background:rgba(94,178,255,.06)}
+.cert-sources dl{display:grid;grid-template-columns:minmax(0,180px) 1fr;gap:4px 12px;margin:0}
+.cert-sources dt{color:#9db6c2;font-size:.78rem}
+.cert-sources dd{margin:0;color:#e8f2f7;font-size:.86rem;overflow-wrap:anywhere}
+.cert-gap{padding:10px 12px;border:1px solid rgba(255,180,94,.6);border-radius:8px;background:rgba(255,180,94,.08)}
+.cert-gap b{color:#ffb45e}
+.cert-gap ul{margin:6px 0 0;padding-left:18px;display:grid;gap:3px;color:#ffe3c2;font-size:.84rem}
+.cert-confirm{display:flex;gap:8px;align-items:flex-start;padding:10px 12px;border:1px solid #ffb45e;border-radius:8px;background:rgba(255,180,94,.08);font-size:.86rem}
+.cert-confirm input{margin-top:3px}
+.cert-range{display:grid;gap:3px;font-size:.78rem;color:#ffb45e}
+.cert-range input{max-width:180px;padding:6px 8px;border:1px solid #ffb45e;border-radius:6px;background:#04080a;color:#ffb45e;font-weight:800}
+.cert-weapon-keywords{display:block;color:#9db6c2}
+.cert-filters{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.cert-filters button{padding:7px 11px;border:1px solid #2f5566;border-radius:999px;background:transparent;color:#c9dbe4;font-size:.8rem}
+.cert-filters button.on{border-color:#ffb45e;background:#ffb45e;color:#1b1206;font-weight:800}
+.cert-flag{color:#ffb45e}

@@ -568,3 +568,15 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 .combat-side .side-upgrades { order: 3; }
 .combat-side .side-upgrades > summary { cursor: pointer; padding: 6px 4px; color: var(--muted); font-size: max(.7rem, 11.2px); }
 .combat-side .side-upgrades[open] > summary { color: var(--text); }
+
+/* Portée des armes : orange, comme les valeurs à repérer d'un coup d'œil */
+.resolve-center .weapon-copy .range-tag { display: inline-block; font-style: normal; font-weight: 800; color: #ffb45e; letter-spacing: .02em; }
+
+/* Arsenal X : carte d'information (bleu), sans saisie -- même gabarit que le Contrôle de Tir */
+.resolve-center .arsenal-card { display: grid; gap: 8px; padding: 14px 16px !important; border: 1px solid rgba(94, 178, 255, .55); border-radius: 12px; background: linear-gradient(135deg, rgba(94, 178, 255, .12), rgba(94, 178, 255, .04)); }
+.resolve-center .arsenal-card > strong { color: #b9dcff; font: 800 1rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; }
+.resolve-center .arsenal-card .ar-source { margin: 0; color: #c9dbe4; font-size: .84rem; }
+.resolve-center .arsenal-card .ar-source b { color: #fff; }
+.resolve-center .arsenal-card .ar-rules { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.resolve-center .arsenal-card .ar-rules li { padding: 8px 10px; border: 1px solid rgba(94, 178, 255, .3); border-radius: 8px; background: rgba(94, 178, 255, .06); color: #dbe9f3; font-size: .86rem; }
+.resolve-center .arsenal-card .ar-rules b { color: #8fc9ff; }

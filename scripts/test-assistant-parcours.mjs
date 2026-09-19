@@ -372,6 +372,62 @@ scenario('Précis : les Stormtroopers ont Précis 1 sur leur carte (2 avec la Lu
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Arsenal : carte d’information bleue avant le choix des armes ; portée des armes en orange', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Boba Fett Infamous Bounty Hunter', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  await app.pickUnit('Boba Fett')
+  await app.click('#next')
+  await app.pickUnit('Soldats Rebelles')
+  await app.click('[data-range="2"]')
+  const card = app.$('.arsenal-card', app.center())
+  assert.ok(card, 'la carte Arsenal est affichée à l’étape des armes')
+  assert.match(app.text(card), /ARSENAL 2/)
+  assert.match(app.text(card), /jusqu’à 2 armes/)
+  const picker = app.$('.weapon-picker', app.center())
+  assert.ok(picker && card !== picker && (card.compareDocumentPosition(picker) & 4), 'la carte précède le choix des armes : ' + card.outerHTML.slice(0, 80) + ' / ' + [...app.center().children].map((child) => child.className.split(' ')[0]).join(','))
+  assert.ok(app.$('.weapon-copy .range-tag'), 'la portée de chaque arme est balisée pour l’affichage orange')
+  assert.match(app.text(app.$('.weapon-copy .range-tag')), /^portée /)
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé, les écarts doivent être relus avant de certifier', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click, document } = app
+  await click('#certification')
+  const total = Number(text($('#certificationCount')))
+  assert.ok(total > 250, 'toutes les cartes sans certification complète comptent : ' + total)
+  assert.ok($$('[data-cert-filter]').length === 4, 'filtres : toutes, mes listes, écarts, jamais certifiées')
+  await click('[data-cert-filter="gaps"]')
+  const gaps = $$('.cert-list button[data-cert-card]')
+  assert.ok(gaps.length >= 20, 'les cartes avec écart Legion Helper ou base ≠ certification sont listées : ' + gaps.length)
+  assert.match(text($('.cert-list')), /Écart Legion Helper/)
+
+  // Une carte déjà certifiée mais avec écart : reste à contrôler, et exige la lecture des écarts.
+  const chewie = gaps.find((button) => decodeURIComponent(button.dataset.certCard) === 'chewbacca')
+  assert.ok(chewie, 'Chewbacca (certifié, écart Charge chez Legion Helper) est à relire')
+  await click(chewie)
+  assert.match(text($('.cert-sources')), /COMPARAISON DES SOURCES/)
+  assert.match(text($('.cert-sources')), /Charge/, 'l’écart signalé est affiché')
+  assert.ok($$('input[data-weapon-range]').length >= 1, 'la portée de chaque arme est modifiable')
+  assert.ok($('#queueFullCard').disabled, 'certifier est impossible sans relire les écarts')
+  for (const box of $$('[data-full-check]')) { box.checked = true; box.dispatchEvent(new app.window.Event('change', { bubbles: true })); await app.settle() }
+  assert.ok($('#queueFullCard').disabled, 'les six contrôles ne suffisent pas : la lecture des écarts est obligatoire')
+  const ack = $('[data-full-ack]')
+  assert.ok(ack, 'case de lecture des écarts')
+  ack.checked = true
+  ack.dispatchEvent(new app.window.Event('change', { bubbles: true }))
+  await app.settle()
+  assert.ok(!$('#queueFullCard').disabled, 'certification possible après relecture')
+  await click('#queueFullCard')
+  await click('#backCertification')
+  assert.match(text($('.cert-batch-bar')), /correction/)
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

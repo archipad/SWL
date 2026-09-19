@@ -14,9 +14,10 @@
 - [ ] Trancher sur les cartes physiques les écarts ouverts : `KNOWN_DISCREPANCIES`
   (6 cartes) et le rapport docs/audit/recoupement-legion-helper-2026-09-19.md
   (20 écarts de mots-clés, 13 de caractéristiques).
-- [ ] Certification des mots-clés : case « aucun mot-clé » obligatoire, affichage
-  côte à côte des étiquettes existantes, et porte à l'import qui refuse un lot
-  incohérent (aujourd'hui seuls 48 profils sur ~300 ont une certification complète).
+- [x] (19/09/2026) Écran de certification : liste toute carte non certifiée à 100 %, comparaison des sources,
+  écarts Legion Helper à relire, « aucun mot-clé » explicite, portée modifiable. Reste : porte à l'import qui
+  refuse un lot incohérent, et mots-clés d'arme éditables (seuls 48 profils sur ~300 ont une certification complète).
+- [x] (19/09/2026) Arsenal X : carte d'information bleue avant le choix des armes ; portée des armes en orange.
 
 - [x] (17/09/2026, demande utilisateur) Audité les 85 mots-clés
   automatiques/assistés (plus Intrépide, Contrainte, Démoraliser X,
