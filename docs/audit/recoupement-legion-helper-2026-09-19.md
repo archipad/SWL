@@ -6,19 +6,16 @@
 
 - Site : 105 cartes Unité, 464 cartes Amélioration, 195 mots-clés d’unité / d’arme / d’amélioration.
 - Appli : 281 cartes avec étiquettes, 199 mots-clés, 300 profils d’armes.
-- Cartes appariées par le nom : **136** (les autres portent un nom différent des deux côtés : à apparier à la main).
+- Cartes appariées par le nom : **131** (les autres portent un nom différent des deux côtés : à apparier à la main).
 - Mots-clés du site : 195, dont 176 appariés à l’appli via scripts/data/takras-keyword-map.json (12 « probables », à confirmer). **Non appariés : 19.**
-- Appariements contredits par les cartes communes : **10** ; ids de la table inconnus de l’appli : **0**.
-- **Écarts de mots-clés** sur les cartes appariées (mots-clés à appariement sûr) : **20**.
-- **Écarts de caractéristiques** (figurines, PV, dés de défense, armes) : **13**.
+- Appariements contredits par les cartes communes : **5** ; ids de la table inconnus de l’appli : **0**.
+- **Écarts de mots-clés** sur les cartes appariées (mots-clés à appariement sûr) : **15**.
+- **Écarts de caractéristiques** (figurines, PV, dés de défense, armes) : **12**.
 
 ## Écarts de mots-clés par carte
 
 ### DF-90 Mortar Trooper (unité) — clé appli `df 90 mortar trooper`
 - Sur le site mais **absent de l’appli** : fixed → fixe
-
-### Imperial Special Forces (unité) — clé appli `imperial special forces`
-- Sur le site mais **absent de l’appli** : equip → equipe, retinue_x → escorte
 
 ### E-Web Heavy Blaster Team (unité) — clé appli `e web heavy blaster team`
 - Sur le site mais **absent de l’appli** : fixed → fixe
@@ -36,10 +33,6 @@
 
 ### Chewbacca (unité) — clé appli `chewbacca`
 - Sur le site mais **absent de l’appli** : charge → charge
-
-### •Sabine Wren (amélioration) — clé appli `sabine wren`
-- Sur le site mais **absent de l’appli** : leader → chef
-- Dans l’appli mais **absent du site** : saut-x, pistolero, insensible, agile, perforant-x
 
 ### Ahsoka Tano (unité) — clé appli `ahsoka tano`
 - Sur le site mais **absent de l’appli** : shien_mastery → maitrise-du-shien, associate → associe, independent_x → autonome, scout_x → eclaireur-x
@@ -61,22 +54,9 @@
 ### Barrage Generator (amélioration) — clé appli `barrage generator`
 - Sur le site mais **absent de l’appli** : fixed → fixe
 
-### Kraken (unité) — clé appli `kraken`
-- Sur le site mais **absent de l’appli** : strategize_x → stratege-x, charge → charge, exemplar → exemplaire, sharpshooter_x → tireur-delite-x, lethal_x → letal-x
-- Non comparés (appariement à confirmer) : override
-
-### Pyke Syndicate Capo (amélioration) — clé appli `pyke syndicate capo`
-- Sur le site mais **absent de l’appli** : leader → chef
-- Dans l’appli mais **absent du site** : mercenaire, aide, intuition-du-danger-x, autonome
-
-### Black Sun Vigo (amélioration) — clé appli `black sun vigo`
-- Sur le site mais **absent de l’appli** : leader → chef
-- Dans l’appli mais **absent du site** : mercenaire, intrepide
-
-### •Din Djarin (amélioration) — clé appli `din djarin`
-- Sur le site mais **absent de l’appli** : this_is_the_way → telle-est-la-voie, leader → chef
-- Dans l’appli mais **absent du site** : mercenaire, arsenal-x, prime, insensible, autonome, tacticien-x, longue-distance, polyvalent
-- Valeur différente : letal-x : site 1 / appli —
+### •Kraken (amélioration) — clé appli `kraken`
+- Sur le site mais **absent de l’appli** : ai_action → ia, leader → chef
+- Non comparés (appariement à confirmer) : droid_trooper
 
 ### The Bad Batch (unité) — clé appli `the bad batch`
 - Dans l’appli mais **absent du site** : mercenaire
@@ -89,10 +69,6 @@
 
 ### DF-90 Mortar Trooper — `df 90 mortar trooper`
 - armes (dés@portée) : site [1n@melee ; 2n@3-4] / appli []
-
-### Imperial Special Forces — `imperial special forces`
-- figurines : site 1 / appli 4
-- armes (dés@portée) : site [1n@1-3 ; 1r@melee] / appli [1n@1-3 ; 1n@melee]
 
 ### E-Web Heavy Blaster Team — `e web heavy blaster team`
 - armes (dés@portée) : site [1r+2b+2n@1-4 ; 2b@1-3 ; 2n@melee] / appli []
@@ -131,16 +107,11 @@
 
 ## Contrôle de la table d’appariement
 
-- `ai_action` → `ia` : 0 carte(s) en commun, 0 avec le mot-clé du site seul, 1 avec celui de l’appli seul
-- `aid` → `aide` : 0 carte(s) en commun, 0 avec le mot-clé du site seul, 1 avec celui de l’appli seul
+- `ai_action` → `ia` : 0 carte(s) en commun, 1 avec le mot-clé du site seul, 1 avec celui de l’appli seul
 - `associate` → `associe` : 0 carte(s) en commun, 1 avec le mot-clé du site seul, 0 avec celui de l’appli seul
 - `defend_x` → `defense-x` : 0 carte(s) en commun, 0 avec le mot-clé du site seul, 1 avec celui de l’appli seul
-- `independent_x` → `autonome` : 2 carte(s) en commun, 1 avec le mot-clé du site seul, 2 avec celui de l’appli seul
-- `mercenary` → `mercenaire` : 0 carte(s) en commun, 0 avec le mot-clé du site seul, 4 avec celui de l’appli seul
+- `mercenary` → `mercenaire` : 0 carte(s) en commun, 0 avec le mot-clé du site seul, 1 avec celui de l’appli seul
 - `shien_mastery` → `maitrise-du-shien` : 0 carte(s) en commun, 1 avec le mot-clé du site seul, 0 avec celui de l’appli seul
-- `this_is_the_way` → `telle-est-la-voie` : 0 carte(s) en commun, 1 avec le mot-clé du site seul, 0 avec celui de l’appli seul
-- `strategize_x` → `stratege-x` : 0 carte(s) en commun, 1 avec le mot-clé du site seul, 0 avec celui de l’appli seul
-- `versatile` → `polyvalent` : 0 carte(s) en commun, 0 avec le mot-clé du site seul, 1 avec celui de l’appli seul
 
 ## Mots-clés du site et leur prise en compte dans l’appli
 

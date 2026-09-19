@@ -111,6 +111,7 @@ const idsOf = (u) => [...new Set([...(u.keywords || []), ...weaponKeywords(u.pri
 for (const u of takras.units) push(norm(u.name), { kind: 'unité', name: u.name, ids: idsOf(u), values: siteValues(u, u.printData.keywords), u })
 for (const u of takras.upgrades) push(norm(u.name[0]), { kind: 'amélioration', name: u.name[0], ids: idsOf(u), values: siteValues(u, []), u })
 
+const keywordMapAppId = (id) => keywordMapRaw[id]?.[0]
 const appKeywordList = (key) => {
   const list = [...(ref.tags[key] || [])]
   for (const weapon of ref.weapons[key]?.weapons || []) for (const id of weapon.keywordIds || []) if (!list.some((tag) => tag.keywordId === id)) list.push({ keywordId: id })
@@ -118,19 +119,21 @@ const appKeywordList = (key) => {
 }
 // Plusieurs fiches du site peuvent porter le même nom (unité + amélioration) : on retient celle dont le type correspond à la carte certifiée, sinon la plus proche.
 const pickEntry = (key) => {
-  const candidates = cards.get(norm(key))
+  const all = cards.get(norm(key))
+  // Carte Unité de l'appli (caractéristiques certifiées) -> fiches Unité du site ; sinon fiches Amélioration.
+  const wantUnit = Boolean(ref.weapons[key]?.unitStats) || ref.weapons[key]?.fullCardCertification?.cardType === 'unit'
+  const sameKind = all.filter((c) => (c.kind === 'unité') === wantUnit)
+  // Jamais de comparaison Unité <-> Amélioration : sans fiche du même type côté site, la carte n'est pas recoupée.
+  const candidates = sameKind
+  if (!candidates.length) return null
   if (candidates.length === 1) return candidates[0]
-  const cardType = ref.weapons[key]?.fullCardCertification?.cardType
-  const byType = candidates.filter((c) => (cardType === 'unit') === (c.kind === 'unité'))
-  if (cardType && byType.length === 1) return byType[0]
   const appIds = new Set(appKeywordList(key).map((tag) => tag.keywordId))
-  const score = (c) => c.ids.filter((id) => appIds.has(keywordMapAppId(id))).length
+  const score = (c) => c.ids.filter((id) => appIds.has(keywordMapAppId(id))).length - c.ids.filter((id) => keywordMapAppId(id) && !appIds.has(keywordMapAppId(id))).length * 0.5
   return [...candidates].sort((a, b) => score(b) - score(a))[0]
 }
-const matched = Object.keys(ref.tags).filter((key) => cards.has(norm(key)))
+const matched = Object.keys(ref.tags).filter((key) => cards.has(norm(key)) && pickEntry(key))
 
 // Appariement anglais ↔ français par co-occurrence sur les cartes communes.
-const keywordMapAppId = (id) => keywordMapRaw[id]?.[0]
 const co = new Map(), tCount = new Map(), aCount = new Map()
 for (const key of matched) {
   const entry = pickEntry(key)

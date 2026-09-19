@@ -46,15 +46,6 @@
     "stats": [],
     "signature": "79eee965ff"
   },
-  "black sun vigo": {
-    "keywords": [
-      "Legion Helper indique « Chef » : absent de la base de l’appli",
-      "La base de l’appli a « Mercenaire : Faction » : absent chez Legion Helper",
-      "La base de l’appli a « Intrépide » : absent chez Legion Helper"
-    ],
-    "stats": [],
-    "signature": "574e02203e"
-  },
   "chewbacca": {
     "keywords": [
       "Legion Helper indique « Charge » : absent de la base de l’appli"
@@ -86,23 +77,6 @@
     ],
     "signature": "318a45a528"
   },
-  "din djarin": {
-    "keywords": [
-      "Legion Helper indique « Telle est la Voie » : absent de la base de l’appli",
-      "Legion Helper indique « Chef » : absent de la base de l’appli",
-      "La base de l’appli a « Mercenaire : Faction » : absent chez Legion Helper",
-      "La base de l’appli a « Arsenal X » : absent chez Legion Helper",
-      "La base de l’appli a « Prime » : absent chez Legion Helper",
-      "La base de l’appli a « Insensible » : absent chez Legion Helper",
-      "La base de l’appli a « Autonome : Pion X/Action » : absent chez Legion Helper",
-      "La base de l’appli a « Tacticien X » : absent chez Legion Helper",
-      "La base de l’appli a « Longue Distance » : absent chez Legion Helper",
-      "La base de l’appli a « Polyvalent » : absent chez Legion Helper",
-      "letal-x : site 1 / appli —"
-    ],
-    "stats": [],
-    "signature": "27fbe1acce"
-  },
   "e web heavy blaster team": {
     "keywords": [
       "Legion Helper indique « Fixe : Avant/Arrière/Flancs » : absent de la base de l’appli"
@@ -133,27 +107,13 @@
     ],
     "signature": "5345ca5dc2"
   },
-  "imperial special forces": {
-    "keywords": [
-      "Legion Helper indique « Équipe » : absent de la base de l’appli",
-      "Legion Helper indique « Escorte : Nom/Type d'Unité » : absent de la base de l’appli"
-    ],
-    "stats": [
-      "figurines : site 1 / appli 4",
-      "armes (dés@portée) : site [1n@1-3 ; 1r@melee] / appli [1n@1-3 ; 1n@melee]"
-    ],
-    "signature": "051da9cbfc"
-  },
   "kraken": {
     "keywords": [
-      "Legion Helper indique « Stratège X » : absent de la base de l’appli",
-      "Legion Helper indique « Charge » : absent de la base de l’appli",
-      "Legion Helper indique « Exemplaire » : absent de la base de l’appli",
-      "Legion Helper indique « Tireur d'Élite X » : absent de la base de l’appli",
-      "Legion Helper indique « Létal X » : absent de la base de l’appli"
+      "Legion Helper indique « IA : Action » : absent de la base de l’appli",
+      "Legion Helper indique « Chef » : absent de la base de l’appli"
     ],
     "stats": [],
-    "signature": "45f6b3d9d4"
+    "signature": "82662ee16b"
   },
   "major marquand": {
     "keywords": [
@@ -182,35 +142,12 @@
     "stats": [],
     "signature": "2358a587be"
   },
-  "pyke syndicate capo": {
-    "keywords": [
-      "Legion Helper indique « Chef » : absent de la base de l’appli",
-      "La base de l’appli a « Mercenaire : Faction » : absent chez Legion Helper",
-      "La base de l’appli a « Aide : Affiliation/Type d'Unité » : absent chez Legion Helper",
-      "La base de l’appli a « Intuition du Danger X » : absent chez Legion Helper",
-      "La base de l’appli a « Autonome : Pion X/Action » : absent chez Legion Helper"
-    ],
-    "stats": [],
-    "signature": "645640c4f6"
-  },
   "r2 d2": {
     "keywords": [],
     "stats": [
       "armes (dés@portée) : site [3b@melee] / appli [3b@1]"
     ],
     "signature": "9e6391a8e0"
-  },
-  "sabine wren": {
-    "keywords": [
-      "Legion Helper indique « Chef » : absent de la base de l’appli",
-      "La base de l’appli a « Saut X » : absent chez Legion Helper",
-      "La base de l’appli a « Pistolero » : absent chez Legion Helper",
-      "La base de l’appli a « Insensible » : absent chez Legion Helper",
-      "La base de l’appli a « Agile X » : absent chez Legion Helper",
-      "La base de l’appli a « Perforant X » : absent chez Legion Helper"
-    ],
-    "stats": [],
-    "signature": "2ba49226e8"
   },
   "the bad batch": {
     "keywords": [

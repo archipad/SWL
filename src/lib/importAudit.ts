@@ -51,6 +51,7 @@ export function auditImportedList(list: ParsedList): ImportAudit {
       const profile = DICE_PROFILES[key];
       const certification = certified[key];
       const unknownCard = !CARD_IMAGES[key] && !CARD_NAMES_FR[key] && !profile && !certification;
+      if (!isUnit && (profile?.unitStats || certification?.unitStats)) unitIssues.push({ card: name, unit: unit.name, kind: 'visual', scope: 'catalog', resolution: 'unknown-card', message: 'Cette amélioration porte le même nom qu’une carte Unité : elle doit être raccordée comme carte d’amélioration distincte (src/data/upgradeNameCollisions.json)' });
       if (!CARD_IMAGES[key]) unitIssues.push({ card: name, unit: unit.name, kind: 'visual', scope: 'catalog', resolution: unknownCard ? 'unknown-card' : 'visual-unmapped', message: unknownCard ? 'Visuel non raccordé au catalogue : carte réellement inconnue' : 'Carte connue, mais visuel non raccordé' });
       if (!CARD_NAMES_FR[key]) unitIssues.push({ card: name, unit: unit.name, kind: 'translation', scope: 'catalog', resolution: unknownCard ? 'unknown-card' : 'translation-unmapped', message: unknownCard ? 'Traduction indisponible tant que la carte n’est pas raccordée' : 'Nom français non raccordé au catalogue' });
       if (isUnit && !profile?.unitStats?.verifiedAgainstCard && !certification?.unitStats) {

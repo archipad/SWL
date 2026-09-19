@@ -49,3 +49,24 @@
 .cert-filters button{padding:7px 11px;border:1px solid #2f5566;border-radius:999px;background:transparent;color:#c9dbe4;font-size:.8rem}
 .cert-filters button.on{border-color:#ffb45e;background:#ffb45e;color:#1b1206;font-weight:800}
 .cert-flag{color:#ffb45e}
+
+/* Certification : sélecteur de mots-clés avec recherche, envoi par lots, validation en un clic */
+.cert-kw{display:grid;gap:8px;margin:8px 0}
+.kw-picker{display:grid;gap:8px}
+.kw-chips{display:flex;flex-wrap:wrap;gap:6px}
+.kw-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 4px 4px 10px;border:1px solid #2f5566;border-radius:999px;background:rgba(94,178,255,.1);color:#e8f2f7;font-size:.82rem}
+.kw-chip i{color:#9db6c2;font-size:.74rem}
+.kw-chip button{min-width:26px;min-height:26px;border:0;border-radius:50%;background:#3a2a20;color:#ffb45e;font-weight:800}
+.kw-empty{color:#9db6c2;font-size:.82rem;padding:4px 0}
+.kw-search{display:grid;gap:4px;font-size:.78rem;color:#9db6c2}
+.kw-search input{padding:9px 10px;border:1px solid #2f5566;border-radius:8px;background:#04080a;color:#fff;font-size:.95rem}
+.kw-results{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px;margin:0;padding:0;list-style:none}
+.kw-results button{width:100%;min-height:42px;padding:8px 10px;border:1px solid #2f5566;border-radius:8px;background:#0b141a;color:#e8f2f7;text-align:left}
+.kw-none{margin:0;color:#ffb45e;font-size:.82rem}
+.kw-pending{display:flex;flex-wrap:wrap;gap:8px;align-items:end;padding:10px;border:1px solid #ffb45e;border-radius:8px;background:rgba(255,180,94,.08)}
+.kw-pending label{display:grid;gap:3px;font-size:.76rem;color:#ffb45e}
+.kw-pending input{padding:7px 9px;border:1px solid #ffb45e;border-radius:6px;background:#04080a;color:#fff}
+.cert-parts{display:flex;gap:8px;margin:8px 0}
+.big-confirm{width:100%;min-height:58px;margin:10px 0 6px;font-size:1rem;background:#5cdda3;color:#062014;border-color:#5cdda3}
+.big-confirm:disabled{opacity:.45}
+button.primary.big-confirm{background:#5cdda3;border-color:#5cdda3;color:#062014}

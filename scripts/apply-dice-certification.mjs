@@ -52,6 +52,13 @@ for(const card of cards){
   }
   if(card.addedModels!==undefined&&(!Number.isInteger(card.addedModels)||card.addedModels<0||card.addedModels>30))throw new Error('Figurines ajoutées invalides')
   if(card.addedModelWounds!==undefined&&(!Number.isInteger(card.addedModelWounds)||card.addedModelWounds<1||card.addedModelWounds>20))throw new Error('PV des figurines ajoutées invalides')
+  for(const weapon of card.weapons||[]){
+    if(weapon.keywordIds!==undefined){
+      if(!Array.isArray(weapon.keywordIds))throw new Error(`Mots-clés d'arme invalides pour ${card.card}/${weapon.name}`)
+      for(const id of weapon.keywordIds)if(!knownKeywordIds.has(id))throw new Error(`Mot-clé d'arme inconnu pour ${card.card}/${weapon.name} : ${id}`)
+    }
+    for(const [id,value] of Object.entries(weapon.keywordValues||{}))if(!Number.isInteger(value)||value<1||value>20||!(weapon.keywordIds||[]).includes(id))throw new Error(`Valeur de mot-clé d'arme invalide pour ${card.card}/${weapon.name}/${id}`)
+  }
   if(card.fullCardCertification){
     const full=card.fullCardCertification,required=['identity','visual','stats','weapons','conversions','keywords'];
     if(full.schemaVersion!==2||!['unit','upgrade'].includes(full.cardType))throw new Error('Certification complète invalide')

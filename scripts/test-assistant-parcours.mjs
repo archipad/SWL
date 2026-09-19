@@ -428,6 +428,68 @@ scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé,
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Certification : recherche de mots-clés (carte et armes), validation en un clic, passage à la carte suivante', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click, settle, window } = app
+  const fire = async (element, type = 'input') => { element.dispatchEvent(new window.Event(type, { bubbles: true })); await settle() }
+  await click('#certification')
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'stormtroopers'))
+  const before = text($('.cert-detail h2'))
+
+  // Recherche : seuls les mots-clés du glossaire sont proposés (orthographe et syntaxe garanties), ceux déjà présents sont exclus.
+  const search = $('[data-kw-search="card"]')
+  assert.ok(search, 'champ de recherche des mots-clés de la carte')
+  search.value = 'prec'
+  await fire(search)
+  assert.ok(!$$('[data-kw-add]').some((button) => /Précis/.test(text(button))), 'un mot-clé déjà présent n’est pas reproposé')
+  const box = $('[data-kw-search="card"]')
+  box.value = 'zzzz'
+  await fire(box)
+  assert.match(text($('.kw-none')), /Aucun mot-clé du glossaire/)
+
+  // Mot-clé d'arme avec valeur : recherche, valeur obligatoire, puis ajout à l'arme ET à la liste de la carte.
+  const weaponSearch = $('[data-kw-search="w0"]')
+  assert.ok(weaponSearch, 'champ de recherche des mots-clés de la première arme')
+  weaponSearch.value = 'perfo'
+  await fire(weaponSearch)
+  const perforant = $$('[data-kw-add]').find((button) => /^Perforant X/.test(text(button)))
+  assert.ok(perforant, 'Perforant X est proposé')
+  await click(perforant)
+  const value = $('[data-kw-value]')
+  assert.ok(value, 'la valeur X est demandée')
+  value.value = '2'
+  await fire(value)
+  await click('[data-kw-confirm]')
+  assert.match(text($('[data-kw-scope="w0"] .kw-chips')), /Perforant X 2/, 'le mot-clé est ajouté à l’arme avec sa valeur')
+  assert.match(text($('[data-kw-scope="card"] .kw-chips')), /Perforant X 2/, 'et reporté dans la liste de la carte')
+
+  // Validation en un clic : la carte part dans le lot et la carte suivante s'ouvre.
+  await click('#certifyAndNext')
+  const after = text($('.cert-detail h2'))
+  assert.ok(after && after !== before, 'la carte suivante à contrôler s’ouvre')
+  await click('#backCertification')
+  assert.match(text($('.cert-batch-bar')), /1 correction/)
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Import : l’amélioration « Chewbacca » n’est jamais la carte Unité Chewbacca (armes, mots-clés) et réclame sa propre carte', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Wookiee Warriors Kashyyyk Resistance', upgrades: [{ name: 'Chewbacca' }] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+  })
+  await app.pickUnit('Guerriers Wookies')
+  await app.click('#next')
+  await app.pickUnit('Stormtroopers')
+  await app.click('[data-range="2"]')
+  const weapons = app.text(app.$('.weapon-picker'))
+  assert.ok(!/Prépotence|Arbalète de Chewbacca/.test(weapons), 'les armes de l’unité Chewbacca ne sont pas attribuées à l’amélioration')
+  await app.click('#certification')
+  assert.match(app.text(app.$('.cert-page')), /Chewbacca Upgrade/, 'l’amélioration à raccorder est listée parmi les cartes inconnues')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

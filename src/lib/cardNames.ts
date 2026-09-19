@@ -1,6 +1,7 @@
 import { normalizeName } from './normalize';
 import { CARD_NAMES_FR, EN_KEY_BY_FRENCH_NAME } from '../data/cardNamesFr';
 import aliasesJson from '../data/cardKeyAliases.json';
+import upgradeCollisionsJson from '../data/upgradeNameCollisions.json';
 
 // Alias de clés de carte partagés entre l'appli principale et l'assistant
 // (public/assistant/, qui lit ce même fichier via reference-data.js généré) --
@@ -55,10 +56,16 @@ export function canonicalCardKey(name: string): string {
   return resolveAlias(translated);
 }
 
-/** Résout les rares collisions où Tabletop Admiral donne à une amélioration
+// Améliorations que Tabletop Admiral nomme exactement comme une carte Unité (clé normalisée -> nom distinct).
+// Sans cette table, l'importeur rattachait l'amélioration à la carte UNITÉ (ex. l'amélioration
+// « Chewbacca » recevait les armes et les mots-clés de l'unité Chewbacca). Voir src/data/upgradeNameCollisions.json ;
+// src/lib/importAudit.ts signale toute autre collision non répertoriée.
+const UPGRADE_NAME_COLLISIONS: Record<string, string> = upgradeCollisionsJson;
+
+/** Résout les collisions où Tabletop Admiral donne à une amélioration
  * exactement le même titre qu'à la carte Unité correspondante. */
 export function canonicalImportedUpgradeName(name: string): string {
-  return normalizeName(name) === 'cassian andor' ? 'Cassian Andor Operative' : name;
+  return UPGRADE_NAME_COLLISIONS[normalizeName(name)] ?? name;
 }
 
 /**

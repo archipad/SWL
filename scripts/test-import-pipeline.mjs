@@ -101,6 +101,19 @@ try {
   }));
   assert.equal(cassianUpgradeImport.units[0].upgrades[0].name, 'Cassian Andor Operative', 'Cassian placé dans un emplacement d’amélioration ne doit pas devenir la carte Unité');
   assert.ok(cardImageFor(cassianUpgradeImport.units[0].upgrades[0].name)?.includes('cassian-andor-operative.jpg'));
+  // Amélioration « Chewbacca » (Guerriers Wookiees) : ne doit JAMAIS devenir la carte Unité Chewbacca (armes, mots-clés, visuel).
+  const chewbaccaUpgradeImport = importArmyList(JSON.stringify({
+    armyFaction: 'rebel',
+    units: [{ name: 'Wookiee Warriors Kashyyyk Resistance', upgrades: ['Chewbacca'] }],
+  }));
+  const chewbaccaUpgrade = chewbaccaUpgradeImport.units[0].upgrades[0];
+  assert.notEqual(canonicalCardKey(chewbaccaUpgrade.name), 'chewbacca', 'L’amélioration Chewbacca ne doit pas pointer vers la carte Unité');
+  assert.equal(DICE_PROFILES[canonicalCardKey(chewbaccaUpgrade.name)]?.unitStats, undefined, 'L’amélioration ne doit pas hériter des caractéristiques de l’unité');
+  const chewbaccaAudit = auditImportedList(chewbaccaUpgradeImport);
+  assert.ok(chewbaccaAudit.catalogIssues.some((issue) => canonicalCardKey(issue.card) === canonicalCardKey(chewbaccaUpgrade.name)), 'La carte d’amélioration à raccorder doit être signalée par l’audit d’import');
+  // Toute amélioration qui résoudrait vers une carte Unité (collision non répertoriée) est signalée.
+  const unlisted = auditImportedList({ units: [{ key: 'u', name: 'Rebel Troopers', kind: 'unit', section: 'Unités', upgrades: [{ key: 'x', name: 'Agent Kallus', kind: 'upgrade' }] }] });
+  assert.ok(unlisted.catalogIssues.some((issue) => /même nom qu’une carte Unité/.test(issue.message)), 'Une collision unité/amélioration non répertoriée doit être signalée');
   console.log('Import pipeline OK — JSON Tabletop Admiral, clés stables, doublons, grenades et audit vérifiés.');
 } finally {
   await vite.close();

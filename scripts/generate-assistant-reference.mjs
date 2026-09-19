@@ -46,6 +46,13 @@ try {
       if (!weapon || weapon.name !== certifiedWeapon.name) throw new Error(`Arme de certification introuvable : ${card} #${certifiedWeapon.index}`);
       weapon.dice = certifiedWeapon.dice;
       weapon.range = certifiedWeapon.range;
+      // Mots-clés de l'arme : la certification (relue sur la carte) remplace ceux du catalogue.
+      if (Array.isArray(certifiedWeapon.keywordIds)) {
+        weapon.keywordIds = [...certifiedWeapon.keywordIds];
+        if (certifiedWeapon.keywordValues && Object.keys(certifiedWeapon.keywordValues).length) weapon.keywordValues = { ...certifiedWeapon.keywordValues };
+        else delete weapon.keywordValues;
+        weapon.keywordsVerifiedAgainstCard = true;
+      }
       weapon.verifiedAgainstCard = true;
       weapon.verificationSource = 'Certification visuelle centralisée GitHub';
     }
@@ -139,6 +146,7 @@ try {
     tags,
     keywordConflicts,
     crosscheck,
+    upgradeNameCollisions: JSON.parse(await readFile(resolve(projectRoot, 'src/data/upgradeNameCollisions.json'), 'utf8')),
     names: nameModule.CARD_NAMES_FR,
     images: assistantImages,
     weapons,
