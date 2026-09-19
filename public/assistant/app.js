@@ -259,18 +259,17 @@ bindAttackInputs=function(){bindAttackInputsBase();const lethal=$('#lethalAims')
    amélioration équipée, conservés dans le référentiel généré. */
 const stepIssueOfficerCardsBase=stepIssue;
 stepIssue=function(){
-  const issue=stepIssueOfficerCardsBase();
-  if(issue)return issue;
-  if(attackStep===0&&fireControlCandidates().length&&attackState.fireControlUsed===null)return 'Contrôle de Tir disponible : indiquez Oui ou Non avant de poursuivre.';
-  return null;
+  // Le Contrôle de Tir dépend de la portée : une fois la portée saisie, il passe avant le choix des armes.
+  if(attackStep===0&&attackState.range!=null&&fireControlCandidates().length&&attackState.fireControlUsed===null)return 'Contrôle de Tir disponible : indiquez Oui ou Non avant de poursuivre.';
+  return stepIssueOfficerCardsBase();
 };
 function decorateFireControl(){
   if(attackStep!==0)return;
   const candidates=fireControlCandidates();
   if(!candidates.length)return;
   const panel=document.createElement('section');
-  panel.className='automation-card rule-highlight conditional-card';
-  const sources=fireControlSources(),who=sources.map(item=>`<b>${entryName(item.entry)}</b>`).join(', '),cardName=displayName(sources[0]?.card||'Fire Control');panel.innerHTML=`<strong>CONTRÔLE DE TIR DISPONIBLE</strong><small>Fourni par ${who} (carte ${cardName}). Si ${sources.length>1?'l’une de ces unités':'cette unité'} est à portée 1 de <b>${entryName(attacker)}</b> et a la cible en ligne de vue, 2 des dés d’attaque sont améliorés automatiquement.</small><small class="fire-control-question">${sources.length>1?'L’une d’elles remplit-elle':'Remplit-elle'} ces deux conditions ?</small><div class="yes-no"><button type="button" data-fire-control="true" class="${attackState.fireControlUsed===true?'on':''}">OUI</button><button type="button" data-fire-control="false" class="${attackState.fireControlUsed===false?'on':''}">NON</button></div>`;
+  panel.className=`fire-control-card conditional-card manual-focus ${attackState.fireControlUsed===null?'':'answered'}`;
+  const sources=fireControlSources(),who=sources.map(item=>`<b>${entryName(item.entry)}</b>`).join(', '),cardName=displayName(sources[0]?.card||'Fire Control');panel.innerHTML=`<strong>CONTRÔLE DE TIR DISPONIBLE</strong><p class="fc-source">Fourni par ${who} · carte ${cardName}${sources.length>1?' (une seule de ces unités suffit)':''}</p><ul class="fc-conditions"><li>${sources.length>1?'L’une de ces unités est':'Cette unité est'} à <b>portée 1</b> de <b>${entryName(attacker)}</b></li><li>${sources.length>1?'Elle a':'Elle a'} la <b>cible en ligne de vue</b></li></ul><p class="fc-effect">Si les deux conditions sont remplies : <b>2 dés d’attaque améliorés</b> automatiquement.</p><div class="yes-no"><button type="button" data-fire-control="true" class="${attackState.fireControlUsed===true?'on':''}">OUI · conditions remplies</button><button type="button" data-fire-control="false" class="${attackState.fireControlUsed===false?'on':''}">NON</button></div>`;
   const picker=root.querySelector('.weapon-picker');
   picker?.before(panel);
   if(attackState.fireControlUsed===true)root.querySelector('.dice-pool')?.insertAdjacentHTML('afterend',`<p class="pool-note">↑ Contrôle de Tir (${who}) : 2 dés d’attaque améliorés automatiquement.</p>`);
@@ -461,7 +460,7 @@ function decorateTacticalResolution(){
     // Les dés à lancer (ou à défendre) sont toujours tout en haut, sous les étapes, puis le résumé des touches/critiques en cours ; les vérifications viennent ensuite. Étape 1 : la portée reste juste au-dessus des dés (voir plus bas).
     if(attackStep!==0){const bar=center.querySelector(':scope > .dice-pool,:scope > .defense-dice-pool'),summary=center.querySelector(':scope > .result-strip:not(.live-result-strip):not(.live-defense-strip)');[bar,summary].filter(Boolean).forEach(element=>{anchor.after(element);anchor=element})}
     checks.forEach(element=>{anchor.after(element);anchor=element});
-    if(attackStep===0){const range=center.querySelector('.range-picker'),pool=center.querySelector('.dice-pool'),warning=center.querySelector('.strict-warning');if(range&&pool){pool.before(range);if(warning)range.before(warning)}}
+    if(attackStep===0){const warning=center.querySelector(':scope > .strict-warning'),range=center.querySelector(':scope > .range-picker'),fire=center.querySelector(':scope > .fire-control-card'),weapons=center.querySelector(':scope > .weapon-picker'),pool=center.querySelector(':scope > .dice-pool'),poolNote=center.querySelector(':scope > .pool-note');[warning,range,fire,weapons,pool,poolNote].filter(Boolean).forEach(element=>{anchor.after(element);anchor=element})}
   }
   // Barre collante (19/09/2026, demande utilisateur) : dés à lancer + progression de saisie + RÉSULTAT en cours restent visibles pendant qu'on défile dans les saisies. Les décalages sticky suivent la hauteur réelle du bandeau du haut et des étapes.
   if(stepper){const header=document.querySelector('.app-header-sticky');center.style.setProperty('--hdr',(header?header.offsetHeight:0)+'px');center.style.setProperty('--stepper-h',stepper.offsetHeight+'px');
@@ -480,7 +479,7 @@ function decorateTacticalResolution(){
   // Journal de résolution : replié par défaut (demande utilisateur du 19/09/2026).
   const journal=center.querySelector('.resolution-log');if(journal&&journal.tagName!=='DETAILS'){const folded=document.createElement('details');folded.className=journal.className;const title=journal.querySelector('strong')?.textContent||'JOURNAL DE RÉSOLUTION';journal.querySelector('strong')?.remove();folded.innerHTML=`<summary>${title}</summary>${journal.innerHTML}`;journal.replaceWith(folded)}
   // Informations seules (rappels de règle sans saisie, notes) : repliées en une ligne « ℹ n rappels de règle ». Les encadrés qui portent un résultat ou une action (couvert effectif, conversion, relances, Impact, fin d'attaque…) restent visibles.
-  const infoBlocks=[...center.children].filter(element=>(element.matches('.automation-card')&&!element.matches('[class*="cover-"],.roll-conversion-panel,.roll-reroll-panel')&&!element.querySelector('input,button,select,textarea')&&!/Impact disponible|EFFETS DE FIN|ATTAQUE GRATUITE|BLOCAGE ACTIF|SUPPRESSION ANNULÉE|IMMUNITÉ DU DÉFENSEUR|GARDIEN/i.test(element.textContent))||element.matches('.pool-note,.conversion-note'));
+  const infoBlocks=[...center.children].filter(element=>(element.matches('.automation-card')&&!element.matches('[class*="cover-"],.roll-conversion-panel,.roll-reroll-panel')&&!element.querySelector('input,button,select,textarea')&&!/Impact disponible|EFFETS DE FIN|ATTAQUE GRATUITE|BLOCAGE ACTIF|SUPPRESSION ANNULÉE|IMMUNITÉ DU DÉFENSEUR|GARDIEN/i.test(element.textContent))||element.matches('.conversion-note'));
   if(infoBlocks.length){const fold=document.createElement('details');fold.className='info-fold';fold.innerHTML=`<summary>ℹ ${infoBlocks.length} rappel${infoBlocks.length>1?'s':''} de règle</summary>`;infoBlocks[0].before(fold);fold.append(...infoBlocks)}
   // Pions en réserve : une fois la saisie des dés complète, le bloc se réduit à une ligne récapitulative, rouvrable.
   center.querySelectorAll('.token-budget').forEach(budget=>{if(budget.querySelector('.budget-summary'))return;const title=(budget.querySelector(':scope > strong')?.textContent||'Pions en réserve').toLowerCase(),summary=document.createElement('button');summary.type='button';summary.className='budget-summary';summary.innerHTML=`<b>✓ ${title.charAt(0).toUpperCase()+title.slice(1)}</b><span></span><i>modifier</i>`;summary.onclick=()=>{attackState.budgetOpen=attackStep;refreshResolveUi()};budget.append(summary)});
@@ -504,7 +503,7 @@ function refreshFieldStates(){
   if(state)center.dataset.entryState=state;else delete center.dataset.entryState;
   center.querySelectorAll('.dice-tray > .quick-field').forEach(field=>{const input=field.querySelector('input');field.classList.toggle('is-empty',!input||!(Number(input.value)>0))});
   const issue=stepIssue()||'';
-  center.querySelector('.range-picker')?.classList.toggle('todo',/portée/i.test(issue));
+  center.querySelector('.range-picker')?.classList.toggle('todo',/portée/i.test(issue));center.querySelector('.fire-control-card')?.classList.toggle('todo',attackState.range!=null&&attackState.fireControlUsed===null);
   center.querySelector('.weapon-picker')?.classList.toggle('todo',/arme/i.test(issue)&&!/portée/i.test(issue));
   center.querySelectorAll('.token-budget').forEach(budget=>{
     const summary=budget.querySelector('.budget-summary');if(!summary)return;
@@ -516,13 +515,14 @@ function refreshFieldStates(){
 // Fil du processus (19/09/2026, demande utilisateur) : tant qu'un résultat ou une information obligatoire manque (stepIssue()), tout ce qui suit est grisé ; dès qu'il est saisi, la suite se dégrise et l'écran défile jusqu'à elle.
 function gateBlocker(center,issue){
   if(!issue)return null;
-  if(/Contrôle de Tir/i.test(issue))return center.querySelector(':scope > .conditional-card');
+  if(attackStep===0){const fire=center.querySelector(':scope > .fire-control-card');if(attackState.range==null)return center.querySelector('.range-picker');if(fire&&attackState.fireControlUsed===null)return fire}
+  if(/Contrôle de Tir/i.test(issue))return center.querySelector(':scope > .fire-control-card');
   if(/portée/i.test(issue))return center.querySelector('.range-picker');
   if(/^Le jet (saisi|de défense saisi) contient/.test(issue))return center.querySelector('.result-entry:has(#rollHit),.result-entry:has(#defBlock)');
   if(/arme/i.test(issue))return center.querySelector('.weapon-picker');
   const warning=center.querySelector(':scope > .input-warning:not([hidden])');
   if(warning&&warning.nextElementSibling)return warning.nextElementSibling;
-  return center.querySelector(':scope > .conditional-card,:scope > .situation-check.mandatory-check');
+  return center.querySelector(':scope > .fire-control-card.conditional-card,:scope > .situation-check.mandatory-check');
 }
 function applyProcessGate(){
   const center=root.querySelector('.resolve-center');if(!center||!attackState)return;
@@ -534,10 +534,11 @@ function applyProcessGate(){
     kids.forEach((element,index)=>{if(index>from&&!element.matches(neutral))element.classList.add('is-dimmed')});
     // Le blocage avance (ex. portée saisie, il reste les armes) : l'écran suit jusqu'au nouvel élément à faire.
     if(attackState.gateStep===attackStep&&Number.isInteger(attackState.gateIndex)&&from>attackState.gateIndex){const rect=top.getBoundingClientRect();if(rect.top<150||rect.bottom>window.innerHeight-110)top.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'})}
-    attackState.gateStep=attackStep;attackState.gateIndex=from;
+    attackState.gateStep=attackStep;attackState.gateIndex=from;attackState.gateKey=['range-picker','fire-control-card','weapon-picker','result-entry','situation-check'].find(name=>top.classList.contains(name))||null;
   }else if(attackState.gateStep===attackStep&&Number.isInteger(attackState.gateIndex)){
     // Débloqué : la section suivante s'illumine un instant et l'écran défile jusqu'à elle si elle n'est pas déjà bien visible.
-    const next=kids.slice(attackState.gateIndex+1).find(element=>!element.matches(neutral)&&!element.hidden);
+    // Le point d'ancrage est retrouvé par sa classe (les index bougent quand l'avertissement disparaît).
+    const anchorEl=attackState.gateKey?(attackState.gateKey==='result-entry'?center.querySelector(':scope > .result-entry:has(#rollHit),:scope > .result-entry:has(#defBlock)'):center.querySelector(':scope > .'+attackState.gateKey)):null,following=anchorEl?kids.slice(kids.indexOf(anchorEl)+1):kids.slice(attackState.gateIndex+1),next=following.find(element=>!element.matches(neutral)&&!element.hidden);
     attackState.gateStep=null;attackState.gateIndex=null;
     if(next){next.classList.add('just-unlocked');setTimeout(()=>next.classList.remove('just-unlocked'),1400);const rect=next.getBoundingClientRect();if(rect.top<150||rect.top>window.innerHeight*0.6)next.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}
   }
@@ -546,13 +547,22 @@ function refreshResolveUi(){if(!attackState||!root.querySelector('.resolve-cente
 // À l'arrivée sur une étape : défilement jusqu'au premier élément à faire, s'il n'est pas déjà bien visible (sans donner le focus : pas de clavier qui s'ouvre sur iPad).
 function focusFirstTodo(){
   const center=root.querySelector('.resolve-center');if(!center)return;
-  const target=center.querySelector('.range-picker.todo,.weapon-picker.todo')||(center.dataset.entryState==='pending'?center.querySelector('.dice-tray > .quick-field.is-empty'):null);
+  const target=center.querySelector('.range-picker.todo,.fire-control-card.todo,.weapon-picker.todo')||(center.dataset.entryState==='pending'?center.querySelector('.dice-tray > .quick-field.is-empty'):null);
   if(!target)return;
   const rect=target.getBoundingClientRect();
   if(rect.top>140&&rect.bottom<window.innerHeight-110)return;
   target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
 }
 ['input','click'].forEach(type=>document.addEventListener(type,event=>{if(event.target.closest?.('.resolve-center, .actions'))requestAnimationFrame(refreshResolveUi)},true));
+// Encadré « Conversion Adrénaline » : replié en mode rapide, déplié sinon (comme « Règles qui interviennent »). L'état ouvert/fermé choisi par l'utilisateur est mémorisé pour la durée de l'attaque, car l'encadré est régénéré à chaque saisie.
+const rollConversionFoldBase=rollConversionPanel;
+rollConversionPanel=function(p,converted,critical){
+  const html=rollConversionFoldBase(p,converted,critical),match=html.match(/^<div class="(automation-card rule-highlight roll-conversion-panel)">(<strong>[\s\S]*?<\/strong>)([\s\S]*)<\/div>$/);
+  if(!match)return html;
+  const open=attackState&&attackState.convOpen!==undefined?attackState.convOpen:!quickMode;
+  return `<details class="${match[1]}" ${open?'open':''}><summary>${match[2]}${quickMode&&!open?'<em> · toucher pour le détail</em>':''}</summary>${match[3]}</details>`;
+};
+document.addEventListener('toggle',event=>{if(attackState&&event.target.matches?.('details.roll-conversion-panel'))attackState.convOpen=event.target.open},true);
 const resolveTacticalBase=resolveScreen;
 resolveScreen=function(){if(attackStep===0)prefillWeaponCounts();resolveTacticalBase();decorateTacticalResolution()};
 const overviewActivationBase=overview;

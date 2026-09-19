@@ -257,13 +257,13 @@ assert.match(fs.readFileSync(new URL('../public/assistant/unit-picker.css', impo
 assert.match(app, /function squadAddedModels\(entry\)\{return \(entry\?\.unit\?\.upgrades\|\|\[\]\)\.reduce\(\(sum,card\)=>\{const profile=profileFor\(card\.name\),added=Number\(profile\?\.addedModels\)\|\|0;return added>0&&!\(profile\?\.weapons\|\|\[\]\)\.length\?sum\+added:sum\}/, 'Les améliorations d’escouade certifiées (addedModels, sans arme propre) doivent s’ajouter à l’effectif de la carte Unité')
 assert.match(app, /if\(cardKey\(row\.card\)===cardKey\(attacker\.unit\.name\)\)return unitWeaponModels\(attacker\)/, 'Les armes de la carte Unité doivent être proposées avec l’effectif de base + les figurines d’escouade')
 assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne doit plus être affiché en bas des écrans de résolution')
-assert.match(app, /pool\.before\(range\);if\(warning\)range\.before\(warning\)/, 'À l’étape 1, la sélection de portée doit être juste au-dessus des dés')
+assert.match(app, /\[warning,range,fire,weapons,pool,poolNote\]\.filter\(Boolean\)\.forEach\(element=>\{anchor\.after\(element\);anchor=element\}\)/, 'Étape 1 : la portée est en haut, puis le Contrôle de Tir, puis les armes, et les dés à lancer tout en bas, sous les armes')
 assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.token-card'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=15/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=18/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
-assert.match(app, /Fourni par \$\{who\} \(carte \$\{cardName\}\)/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
+assert.match(app, /Fourni par \$\{who\} · carte \$\{cardName\}/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
 assert.match(app, /Journal de résolution : replié par défaut/, 'Le journal de résolution doit être replié par défaut')
 assert.match(app, /idle-step[\s\S]*Passer à la défense/, 'Une étape Modifications sans effet doit proposer un bandeau « Passer »')
 assert.match(app, /poolBar=center\.querySelector\('\.dice-pool,\.defense-dice-pool'\)\;[^]*poolBar\.append\(entryProgress\)/, 'La progression de saisie doit être sur la même ligne que la barre « Dés à lancer »')
@@ -305,6 +305,13 @@ assert.match(app, /refreshFieldStates\(\);refreshGate\(\);applyProcessGate\(\)/,
 assert.match(app, /medal\.className='face-medal'/, 'Les faces de dés doivent être dans des médaillons (relief)')
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.resolve-center > \.is-dimmed \{ opacity: \.34; filter: grayscale\(\.85\); pointer-events: none/, 'Les parties grisées doivent être translucides, désaturées et non interactives')
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.face-medal \{[\s\S]*radial-gradient[\s\S]*inset 0 -3px 6px/, 'Les médaillons de dés doivent avoir du relief')
+// Contrôle de Tir en action à saisir, ordre portée -> Contrôle de Tir -> armes -> dés ; conversion dépliable.
+assert.match(app, /panel\.className=\`fire-control-card conditional-card manual-focus/, 'Le Contrôle de Tir doit être une action à saisir (orange), pas un rappel bleu')
+assert.match(app, /attackState\.range!=null&&fireControlCandidates\(\)\.length&&attackState\.fireControlUsed===null\)return 'Contrôle de Tir disponible/, 'Une fois la portée saisie, le Contrôle de Tir doit passer avant le choix des armes')
+assert.match(app, /if\(attackState\.range==null\)return center\.querySelector\('\.range-picker'\);if\(fire&&attackState\.fireControlUsed===null\)return fire/, 'Le Contrôle de Tir doit être grisé tant que la portée n’est pas saisie')
+assert.match(app, /attackState\.gateKey=\['range-picker','fire-control-card','weapon-picker'/, 'La section suivante doit être retrouvée par la classe du point bloquant (dégrisage + défilement)')
+assert.match(app, /rollConversionPanel=function\(p,converted,critical\)\{[\s\S]*<details class=[\s\S]*\?'open':''[\s\S]*quickMode&&!open/, 'L’encadré Conversion Adrénaline doit être replié en mode rapide, déplié sinon')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.fire-control-card\.answered \{ border-color: rgba\(92, 221, 163/, 'Le Contrôle de Tir répondu doit passer au vert')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -453,7 +460,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=106/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=109/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)

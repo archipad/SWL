@@ -102,6 +102,17 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Étape 1 réordonnée : portée en haut →
+  Contrôle de Tir (grisé tant que la portée manque) → choix des armes → dés à
+  lancer tout en bas, sous les armes. Le Contrôle de Tir n'est plus un rappel bleu
+  mais une action à saisir (orange, « À SAISIR ») : source, deux conditions à
+  cocher mentalement (portée 1 de l'attaquant, cible en ligne de vue), effet,
+  boutons OUI / NON ; cadre vert « ✓ SAISI » une fois répondu ; il passe avant les
+  armes dans l'ordre des blocages (stepIssue). Le dégrisage retrouve la section
+  suivante par la classe du point bloquant. L'encadré « Conversion Adrénaline »
+  devient dépliable : replié en mode rapide, déplié sinon (comme « Règles qui
+  interviennent »), état mémorisé pendant l'attaque.
+
 - [x] (19/09/2026, demande utilisateur) Fil du processus d'attaque : tant qu'un
   résultat ou une information obligatoire manque (stepIssue()), tout ce qui suit
   est grisé (opacité .34, désaturé, non interactif) ; dès qu'il est saisi, la
