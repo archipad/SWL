@@ -494,7 +494,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=120/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=121/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
@@ -609,3 +609,11 @@ for (const [card, record] of Object.entries(certifications)) {
 }
 
 console.log(`Assistant contracts: conditions, saisies, iPad et base OK (${certifiedWeapons} armes, ${certifiedDefense} défenses)`)
+
+// Incident Précis / Stormtroopers (19/09/2026) : le référentiel livré est la référence ;
+// le stockage local ne fait qu'ajouter ou retirer explicitement, et aucun patch silencieux ne retouche les données.
+const corrections = fs.readFileSync(new URL('../public/assistant/reference-corrections.js', import.meta.url), 'utf8')
+assert.match(corrections, /const corrections = \[\]/, 'Le registre de corrections doit rester vide tant qu’aucune correction sourcée n’est justifiée')
+assert.doesNotMatch(corrections, /localStorage/, 'reference-corrections.js ne doit jamais toucher au stockage local')
+assert.match(index, /reference-corrections\.js\?v=3/, 'Le registre de corrections doit être versionné dans index.html')
+assert.match(app, /seedTags=window\.SWL_REFERENCE\?\.tags\|\|\{\},localTags=read\('swl\.card-tags\.v1',\{\}\),removedTags=read\('swl\.card-tags-removed\.v1',\{\}\)/, 'app.js doit fusionner étiquettes livrées + locales + retraits explicites')

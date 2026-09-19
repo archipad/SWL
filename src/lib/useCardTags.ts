@@ -6,6 +6,11 @@ import type { CardKeywordTag, CardTagLibrary } from '../types';
 
 const STORAGE_KEY = 'swl.card-tags.v1';
 const APPLIED_SEED_KEY = 'swl.card-tags-seed-applied.v1';
+// Étiquettes retirées volontairement par l'utilisateur, par carte. L'Assistant
+// (public/assistant/app.js) fait foi sur le référentiel livré avec l'appli et
+// n'en écarte une étiquette que si elle figure ici : sans cette trace, une
+// suppression volontaire serait « ressuscitée » par le référentiel.
+const REMOVED_KEY = 'swl.card-tags-removed.v1';
 
 export function useCardTags() {
   const [library, setLibrary] = usePersistentState<CardTagLibrary>(STORAGE_KEY, {});
@@ -14,6 +19,7 @@ export function useCardTags() {
   // (y compris sur un appareil qui a déjà utilisé l'appli avant son ajout),
   // sans jamais revenir sur une suppression volontaire de l'utilisateur.
   const [appliedSeedKeys, setAppliedSeedKeys] = usePersistentState<string[]>(APPLIED_SEED_KEY, []);
+  const [removed, setRemoved] = usePersistentState<Record<string, string[]>>(REMOVED_KEY, {});
 
   useEffect(() => {
     const applied = new Set(appliedSeedKeys);
@@ -51,8 +57,13 @@ export function useCardTags() {
         if (existing.some((t) => t.keywordId === tag.keywordId)) return prev;
         return { ...prev, [key]: [...existing, tag] };
       });
+      // Ré-ajouter une étiquette annule son retrait volontaire.
+      setRemoved((prev) => {
+        if (!prev[key]?.includes(tag.keywordId)) return prev;
+        return { ...prev, [key]: prev[key].filter((id) => id !== tag.keywordId) };
+      });
     },
-    [setLibrary],
+    [setLibrary, setRemoved],
   );
 
   const removeTag = useCallback(
@@ -65,9 +76,10 @@ export function useCardTags() {
         if (filtered.length === 0) delete next[key];
         return next;
       });
+      setRemoved((prev) => ({ ...prev, [key]: [...new Set([...(prev[key] ?? []), keywordId])] }));
     },
-    [setLibrary],
+    [setLibrary, setRemoved],
   );
 
-  return { library, getTags, addTag, removeTag };
+  return { library, removed, getTags, addTag, removeTag };
 }

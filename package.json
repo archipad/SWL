@@ -17,10 +17,12 @@
     "test:pdf-catalog-manifest": "node scripts/test-pdf-catalog-manifest.mjs",
     "test:game-day": "node scripts/test-game-day-scenarios.mjs",
     "generate:assistant-data": "node scripts/generate-assistant-reference.mjs",
-    "build": "npm run test:assistant-engine && npm run test:assistant-scenarios && npm run generate:assistant-data && npm run test:assistant-contracts && npm run test:assistant-parcours && npm run test:import-pipeline && npm run test:sync-merge && npm run test:user-journeys && npm run test:pdf-catalog-manifest && npm run test:game-day && node scripts/audit-assistant-automation.mjs && tsc -b && vite build",
+    "build": "npm run test:assistant-engine && npm run test:assistant-scenarios && npm run generate:assistant-data && npm run test:assistant-contracts && npm run test:reference-consistency && npm run test:assistant-parcours && npm run test:import-pipeline && npm run test:sync-merge && npm run test:user-journeys && npm run test:pdf-catalog-manifest && npm run test:game-day && node scripts/audit-assistant-automation.mjs && tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test:assistant-parcours": "node scripts/test-assistant-parcours.mjs"
+    "test:assistant-parcours": "node scripts/test-assistant-parcours.mjs",
+    "test:reference-consistency": "node scripts/test-reference-consistency.mjs",
+    "audit:takras": "node scripts/audit-takras-reference.mjs"
   },
   "dependencies": {
     "qrcode": "^1.5.4",

@@ -4145,7 +4145,12 @@
       "speed": "2",
       "attackSurge": "hit",
       "defenseSurge": "none",
-      "keywords": [],
+      "keywords": [
+        {
+          "keywordId": "precis-x",
+          "value": 1
+        }
+      ],
       "checks": [
         "identity",
         "visual",

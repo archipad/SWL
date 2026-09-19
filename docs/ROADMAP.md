@@ -2,6 +2,22 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (19/09/2026, incident) Précis 1 des Stormtroopers ignoré par le moteur :
+  cause = correctif manuel faux (reference-corrections.js) + copie locale des
+  étiquettes qui masquait le référentiel livré + certification `keywords: []`
+  jamais confrontée aux étiquettes. Corrigé (registre de corrections vide et
+  sourcé obligatoire, référentiel livré prioritaire, retraits locaux explicites,
+  certification corrigée), test de parcours dédié, test de cohérence
+  certification ↔ étiquettes dans le build, recoupement avec Legion Helper
+  (`npm run audit:takras`, rapport dans docs/audit/) et processus écrit dans
+  docs/PROCESSUS-VERIFICATION.md.
+- [ ] Trancher sur les cartes physiques les écarts ouverts : `KNOWN_DISCREPANCIES`
+  (6 cartes) et le rapport docs/audit/recoupement-legion-helper-2026-09-19.md
+  (20 écarts de mots-clés, 13 de caractéristiques).
+- [ ] Certification des mots-clés : case « aucun mot-clé » obligatoire, affichage
+  côte à côte des étiquettes existantes, et porte à l'import qui refuse un lot
+  incohérent (aujourd'hui seuls 48 profils sur ~300 ont une certification complète).
+
 - [x] (17/09/2026, demande utilisateur) Audité les 85 mots-clés
   automatiques/assistés (plus Intrépide, Contrainte, Démoraliser X,
   Indomptable, Enragé X) un par un contre l'app : 56 ont déjà un rappel

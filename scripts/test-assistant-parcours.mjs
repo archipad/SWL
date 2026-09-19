@@ -345,6 +345,33 @@ scenario('Saisie des dés : un seul point bloquant à la fois, « Tout vierge »
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Précis : les Stormtroopers ont Précis 1 sur leur carte (2 avec la Lunette de Visée), même si le stockage local a été « nettoyé »', async () => {
+  // Reproduit l'ancien correctif fautif : la copie locale des étiquettes ne contient plus Précis pour les Stormtroopers.
+  const staleLocalTags = { stormtroopers: [] }
+  const precisOf = async (upgrades) => {
+    const app = await openAssistant({
+      'swl.card-tags.v1': staleLocalTags,
+      'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades }] },
+      'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+      'swl.assistant.unit-state.v1': { 'p1:0': { aim: 1 } },
+    })
+    await app.pickUnit('Stormtroopers')
+    await app.click('#next')
+    await app.pickUnit('Soldats Rebelles')
+    await app.click('[data-range="2"]')
+    await app.click('.weapon-toggle[data-key$=":1"]')
+    await app.nextAttack()
+    const info = app.text(app.$('.token-card.aim'))
+    assert.match(app.text(app.$('.rules-panel')), /Précis/, 'Précis est listé parmi les règles qui interviennent')
+    assert.equal(app.errors.length, 0, app.errors.join(' | '))
+    app.window.close()
+    return info
+  }
+  assert.match(await precisOf([]), /jusqu’à 3 dés \(1 × \(2 \+ Précis 1\)\)/, 'Précis 1 de la carte Unité : 3 relances par pion Viser')
+  assert.match(await precisOf([{ name: 'Targeting Scopes' }]), /jusqu’à 4 dés \(1 × \(2 \+ Précis 2\)\)/, 'Précis 1 + Lunette de Visée (Précis 1) = Précis 2')
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {
