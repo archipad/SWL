@@ -258,9 +258,9 @@ assert.match(app, /function squadAddedModels\(entry\)\{return \(entry\?\.unit\?\
 assert.match(app, /if\(cardKey\(row\.card\)===cardKey\(attacker\.unit\.name\)\)return unitWeaponModels\(attacker\)/, 'Les armes de la carte Unité doivent être proposées avec l’effectif de base + les figurines d’escouade')
 assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne doit plus être affiché en bas des écrans de résolution')
 assert.match(app, /pool\.before\(range\);if\(warning\)range\.before\(warning\)/, 'À l’étape 1, la sélection de portée doit être juste au-dessus des dés')
-assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
+assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.aim-info'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=12/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=13/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} \(carte \$\{cardName\}\)/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
@@ -283,6 +283,15 @@ assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', 
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /@keyframes todo-pulse[\s\S]*data-entry-state="pending"\] \.dice-tray > \.quick-field\.is-empty/, 'Les champs de dés encore vides doivent pulser en orange tant que la saisie est incomplète')
 assert.match(app, /if\(isDefense\)\{defender=e;if\(defeated\(e\)\)\{stage=4;overview\(defender,'defense'\)\}else initAttack\(\)\}/, 'Choisir l’unité attaquée doit ouvrir directement la résolution (sauf unité vaincue, dont la fiche reste accessible)')
 assert.match(app, /else\{attackState=null;attackStep=0;stage=3;stageWipe=true;pick\('defender'\)\}\};\$\('#nextAttack'\)\.onclick/, '« Revoir la cible » doit revenir à la liste des cibles')
+// Pions Viser (19/09/2026, demande utilisateur) : relances à la table, plus de saisie ; information seule.
+assert.doesNotMatch(app, /numberField\('availableAims'/, 'Les pions Viser en réserve ne doivent plus être saisissables (les champs « dépensés » et « relancés » sont retirés à l’exécution, voir dropNumberField)')
+assert.match(app, /PIONS VISER DISPONIBLES : \$\{aimsLeft\}/, 'Un bloc d’information doit indiquer s’il reste des pions Viser')
+assert.match(app, /html=dropNumberField\(dropNumberField\(html,'aims'\),'rerolled'\)/, 'Les champs Viser dépensés / dés relancés doivent être retirés de l’écran de jet')
+assert.match(app, /id=\\"aimSpentFlag\\"|id="aimSpentFlag"[\s\S]*Débordement, Duelliste ou Matamore/, 'Une seule case « Viser dépensé » doit rester pour Débordement / Duelliste / Matamore')
+assert.match(app, /aimFlag\.onchange=\(\)=>\{attackState\.aims=aimFlag\.checked\?1:0;attackState\.rerolled=aimFlag\.checked\?1:0/, 'La case « Viser dépensé » doit alimenter aims et rerolled (Matamore, Duelliste, Débordement)')
+assert.doesNotMatch(app, /ne possède que \$\{attackState\.availableAims/, 'Plus de blocage sur le nombre de pions Viser (non saisissable)')
+assert.match(app, /result-entry:has\(#rollHit\),\.resolve-center \.result-entry:has\(#defBlock\)/, 'Une saisie de dés incorrecte doit faire vibrer la zone de saisie des dés, pas celle des pions en réserve')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.aim-info \{[\s\S]*rgba\(111, 189, 219, \.55\)/, 'Le bloc « pions Viser disponibles » doit être mis en avant (teinte + halo bleu)')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -431,7 +440,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=101/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=102/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
@@ -467,7 +476,7 @@ assert.match(app, /mandatoryMoveDone/, 'Speeder doit imposer le suivi du déplac
 // actions Viser/Esquiver du Parcours guidé, retiré le 16/09/2026 — les
 // pions Viser/Esquive sont désormais déclarés manuellement à l'attaque.
 assert.match(app, /availableAims.*availableAttackSurges.*availableDodges.*availableDefenseSurges/, 'La résolution doit charger les stocks de pions des deux unités')
-assert.match(app, /Cette unité ne possède que.*pion\(s\) Viser/, 'La dépense de pions Viser doit être plafonnée')
+// La dépense de pions Viser n'est plus saisie ni plafonnée (19/09/2026) : les relances se font à la table (voir « Pions Viser » plus haut).
 assert.match(app, /Le défenseur ne possède que.*pion\(s\) Esquive/, 'La dépense de pions Esquive doit être plafonnée')
 assert.match(app, /attackerState\.aim.*attackerState\.surge/, 'Les pions offensifs dépensés doivent être retirés du suivi')
 assert.match(app, /defenderState\.dodge.*defenderState\.surge/, 'Les pions défensifs dépensés doivent être retirés du suivi')

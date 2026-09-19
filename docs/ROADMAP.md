@@ -102,6 +102,19 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Pions Viser : les relances se font à la
+  table. Retrait des champs « Pions Viser en réserve », « Pions Viser dépensés
+  pour relancer » et « Dés effectivement relancés » (et du blocage « ne possède
+  que N pion(s) Viser », ainsi que de l'encadré « Relances autorisées »). Un bloc
+  d'information « PIONS VISER DISPONIBLES : N » (suivi de l'activation, moins
+  le Viser de Longue Distance) indique s'il reste des Viser et le maximum de
+  relances possibles. ATTENTION, les pions Viser servent encore au moteur pour
+  Débordement (+1 suppression), Duelliste (+1 Perforant au corps-à-corps) et
+  Matamore : une seule case « Un pion Viser a été dépensé pendant cette attaque »
+  est affichée, uniquement pour ces mots-clés (elle alimente aims/rerolled).
+  Létal X garde son compteur. Saisie de dés incorrecte : c'est désormais la zone
+  de saisie des dés qui vibre (et non celle des pions en réserve).
+
 - [x] (19/09/2026, demande utilisateur) Gain de temps : le choix de l'unité
   attaquée ouvre directement la résolution d'attaque, sans afficher la fiche de
   l'unité attaquée (sauf unité vaincue, dont la fiche reste accessible pour
