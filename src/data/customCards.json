@@ -1886,5 +1886,44 @@
     "note": "Amélioration Super Commandos Mandaloriens uniquement.",
     "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
     "addedAt": "2026-09-15"
+  },
+  "chewbacca upgrade": {
+    "nameFr": "Chewbacca (amélioration)",
+    "image": "chewbacca-upgrade.png",
+    "weapons": [
+      {
+        "name": "Arbalète de Chewbacca",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 3,
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "impact-x",
+        "value": 1
+      }
+    ],
+    "note": "Amélioration lourde, Guerriers Wookies uniquement (40 pts) — ajoute 1 figurine Chewbacca (3 PV). Quand cette unité attaque, à l'étape Former la réserve d'attaque, choisissez 1 de ses réserves : elle peut améliorer 1 dé d'attaque de cette réserve pour chaque figurine qui y ajoute une arme. Quand elle défend, pour chaque figurine de l'unité, elle peut améliorer 1 de ses dés de défense. Chef.",
+    "verificationSource": "Visuel anglais « •Chewbacca » fourni par l'utilisateur (19/09/2026), lecture visuelle IA, à certifier dans l'écran de certification."
   }
 }

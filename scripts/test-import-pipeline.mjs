@@ -110,7 +110,13 @@ try {
   assert.notEqual(canonicalCardKey(chewbaccaUpgrade.name), 'chewbacca', 'L’amélioration Chewbacca ne doit pas pointer vers la carte Unité');
   assert.equal(DICE_PROFILES[canonicalCardKey(chewbaccaUpgrade.name)]?.unitStats, undefined, 'L’amélioration ne doit pas hériter des caractéristiques de l’unité');
   const chewbaccaAudit = auditImportedList(chewbaccaUpgradeImport);
-  assert.ok(chewbaccaAudit.catalogIssues.some((issue) => canonicalCardKey(issue.card) === canonicalCardKey(chewbaccaUpgrade.name)), 'La carte d’amélioration à raccorder doit être signalée par l’audit d’import');
+  assert.equal(canonicalCardKey(chewbaccaUpgrade.name), 'chewbacca upgrade')
+  assert.ok(!chewbaccaAudit.catalogIssues.some((issue) => canonicalCardKey(issue.card) === 'chewbacca upgrade'), 'La carte d’amélioration Chewbacca est raccordée (visuel + nom) : aucune anomalie de catalogue')
+  const chewbaccaCard = DICE_PROFILES['chewbacca upgrade']
+  assert.equal(chewbaccaCard.addedModels, 1)
+  assert.equal(chewbaccaCard.addedModelWounds, 3)
+  assert.equal(chewbaccaCard.weapons[0].range, '1-3')
+  assert.ok(cardImageFor(chewbaccaUpgrade.name)?.includes('chewbacca-upgrade.png'), 'le visuel de l’amélioration est celui de l’amélioration, pas de l’unité')
   // Toute amélioration qui résoudrait vers une carte Unité (collision non répertoriée) est signalée.
   const unlisted = auditImportedList({ units: [{ key: 'u', name: 'Rebel Troopers', kind: 'unit', section: 'Unités', upgrades: [{ key: 'x', name: 'Agent Kallus', kind: 'upgrade' }] }] });
   assert.ok(unlisted.catalogIssues.some((issue) => /même nom qu’une carte Unité/.test(issue.message)), 'Une collision unité/amélioration non répertoriée doit être signalée');

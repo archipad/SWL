@@ -483,9 +483,10 @@ scenario('Import : l’amélioration « Chewbacca » n’est jamais la carte Uni
   await app.pickUnit('Stormtroopers')
   await app.click('[data-range="2"]')
   const weapons = app.text(app.$('.weapon-picker'))
-  assert.ok(!/Prépotence|Arbalète de Chewbacca/.test(weapons), 'les armes de l’unité Chewbacca ne sont pas attribuées à l’amélioration')
+  assert.ok(!/Prépotence/.test(weapons), 'les armes de l’unité Chewbacca ne sont pas attribuées à l’amélioration')
+  assert.match(weapons, /Arbalète de Chewbacca/, 'l’arme propre à la carte d’amélioration est proposée')
   await app.click('#certification')
-  assert.match(app.text(app.$('.cert-page')), /Chewbacca Upgrade/, 'l’amélioration à raccorder est listée parmi les cartes inconnues')
+  assert.doesNotMatch(app.text(app.$('.cert-page')), /Chewbacca Upgrade/, 'l’amélioration est raccordée : plus de carte inconnue')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
 })
 
