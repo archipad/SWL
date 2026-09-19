@@ -1,0 +1,133 @@
+/* Écrans de résolution d'attaque — harmonisation (19/09/2026, demande
+   utilisateur après l'audit des écrans). Chargée en dernier, comme
+   unit-screen.css, pour remplacer les retouches empilées dans resolver.css /
+   engine.css / faction-themes.css par un seul jeu de règles :
+     - un code de couleur unique pour les encadrés : ORANGE = à saisir ou à
+       vérifier, BLEU = rappel de règle, ROUGE = alerte bloquante ;
+     - une seule barre de résumé (dés à lancer / à défendre / résultat) ;
+     - des compteurs qui ne débordent plus de leur cadre ;
+     - des colonnes latérales réduites pour élargir la zone centrale. */
+
+.resolve-center {
+  --r-input: var(--accent, #ff8c1a);
+  --r-rule: #6fbddb;
+  --r-alert: #ff665c;
+  --r-line: #27445a;
+  --r-radius: 8px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.resolve-center > * { min-width: 0; margin-block: 0 !important; }
+
+/* ---------- Code couleur des encadrés ---------- */
+/* Rappels de règle (bleu) — y compris les variantes « couvert » et « conversion ». */
+.resolve-center .automation-card {
+  padding: 10px 12px; color: #dbeaf1;
+  border: 1px solid rgba(111, 189, 219, .35) !important; border-left: 4px solid var(--r-rule) !important; border-radius: var(--r-radius);
+  background: rgba(111, 189, 219, .07) !important; box-shadow: none;
+}
+.resolve-center .automation-card strong { color: #9ad6ee; }
+.resolve-center .automation-card small { color: #c9dbe4; }
+/* Vérifications à cocher / à saisir (orange). */
+.resolve-center .situation-check {
+  margin: 0 !important; padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--r-input) 55%, transparent) !important; border-left: 4px solid var(--r-input) !important; border-radius: var(--r-radius);
+  background: color-mix(in srgb, var(--r-input) 8%, #0a151e) !important;
+}
+/* Alertes bloquantes (rouge). */
+.resolve-center .strict-warning,
+.resolve-center .combat-warning { padding: 10px 12px; border-radius: var(--r-radius); }
+/* Zones de saisie : même cadre orange partout, rayon commun. */
+.resolve-center .manual-focus { border-width: 1px !important; border-radius: var(--r-radius); }
+
+/* Pions en réserve : le cadre extérieur s'efface, seul le cadre de saisie orange reste. */
+.resolve-center .token-budget { display: grid; gap: 4px; padding: 0; border: 0; background: none; }
+.resolve-center .token-budget > strong { margin: 0; color: var(--r-rule); font: 700 .7rem/1.2 'Share Tech Mono', monospace; letter-spacing: .14em; }
+.resolve-center .token-budget > small { max-width: none; color: var(--muted); }
+
+/* ---------- Une seule barre de résumé ---------- */
+.resolve-center .dice-pool,
+.resolve-center .defense-dice-pool,
+.resolve-center .result-strip {
+  display: flex; align-items: center; justify-content: flex-end; gap: 16px; box-sizing: border-box;
+  min-height: 54px; padding: 8px 14px; border: 1px solid var(--r-line); border-left: 4px solid var(--r-input); border-radius: var(--r-radius);
+  background: rgba(255, 255, 255, .03);
+}
+.resolve-center .defense-dice-pool { border-left-color: #65c8ff; }
+.resolve-center .dice-pool > span:first-child,
+.resolve-center .defense-dice-pool > span:first-child,
+.resolve-center .result-strip > b:first-child:not(:has(img)) {
+  margin-right: auto; color: #b9d3df; font: 700 .72rem/1.2 'Share Tech Mono', monospace; letter-spacing: .14em; text-transform: uppercase;
+}
+.resolve-center .dice-pool .dice-row-big { gap: 10px; }
+
+/* Progression de saisie : ligne fine sous la barre de résumé. */
+.resolve-center .entry-progress { margin: 0; padding: 7px 12px; border-width: 1px; border-radius: var(--r-radius); }
+.resolve-center .entry-progress > span { width: 30px; height: 30px; font-size: 1rem; }
+.resolve-center .entry-progress strong { font-size: .95rem; }
+
+.resolve-center .pool-note { margin: 0; padding: 7px 12px; border-left: 4px solid var(--r-rule); border-radius: var(--r-radius); background: rgba(111, 189, 219, .07); color: #c9dbe4; font-size: .82rem; }
+.resolve-center .fire-control-question { display: block; margin-top: 6px; color: #fff; font-weight: 700; }
+
+/* ---------- Compteurs de saisie ---------- */
+.resolve-center .result-entry { container-type: inline-size; gap: 8px; }
+.resolve-center .quick-field {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px 12px; min-height: 64px; padding: 8px 12px;
+  border: 1px solid var(--r-line); border-radius: var(--r-radius); background: rgba(255, 255, 255, .03);
+}
+.resolve-center .quick-label { min-width: 0; flex: none; }
+.resolve-center .touch-counter { margin-left: 0; }
+/* Champs avec icône de dé (touches, critiques…) : icône | libellé | compteur. */
+.resolve-center .quick-field:has(> :not(.quick-label):not(.touch-counter)) { grid-template-columns: auto minmax(0, 1fr) auto; }
+@container (max-width: 660px) {
+  .quick-field { grid-template-columns: minmax(0, 1fr); }
+  .quick-field .touch-counter { width: 100%; grid-template-columns: 52px minmax(0, 1fr) 52px; }
+  .quick-field .touch-counter input { width: 100%; }
+  .quick-field:has(> :not(.quick-label):not(.touch-counter)) { grid-template-columns: auto minmax(0, 1fr); }
+  .quick-field:has(> :not(.quick-label):not(.touch-counter)) .touch-counter { grid-column: 1 / -1; }
+}
+
+/* ---------- Colonnes latérales réduites (iPad paysage et plus) ---------- */
+@media (min-width: 901px) {
+  main .attack-workspace { grid-template-columns: minmax(128px, 150px) minmax(0, 1fr) minmax(128px, 150px); }
+  main .attack-workspace:has(.combat-side.attack.collapsed) { grid-template-columns: 58px minmax(0, 1fr) minmax(128px, 150px); }
+  main .attack-workspace:has(.combat-side.defense.collapsed) { grid-template-columns: minmax(128px, 150px) minmax(0, 1fr) 58px; }
+  main .attack-workspace:has(.combat-side.attack.collapsed):has(.combat-side.defense.collapsed) { grid-template-columns: 58px minmax(0, 1fr) 58px; }
+  .combat-side { padding: 8px; }
+  .combat-side .mini-upgrades { gap: 5px; }
+}
+
+/* ---------- Étape sans effet : bandeau « Passer » ---------- */
+.resolve-center .idle-step {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px;
+  border: 1px solid var(--r-line); border-left: 4px solid var(--r-rule); border-radius: var(--r-radius); background: rgba(111, 189, 219, .07);
+}
+.resolve-center .idle-step strong { display: block; color: #9ad6ee; letter-spacing: .04em; }
+.resolve-center .idle-step small { color: var(--muted); }
+.resolve-center .idle-manual { display: grid; gap: 10px; }
+.resolve-center .idle-manual > summary { cursor: pointer; padding: 8px 12px; border: 1px dashed var(--r-line); border-radius: var(--r-radius); color: var(--muted); font-size: .8rem; }
+.resolve-center .idle-manual[open] > summary { color: var(--text); }
+
+/* ---------- Journal de résolution : replié ---------- */
+.resolve-center details.resolution-log { padding: 0; border: 1px solid var(--r-line); border-radius: var(--r-radius); background: rgba(255, 255, 255, .03); }
+.resolve-center details.resolution-log > summary { cursor: pointer; padding: 9px 12px; color: var(--muted); font: 700 .72rem/1.2 'Share Tech Mono', monospace; letter-spacing: .14em; }
+.resolve-center details.resolution-log[open] > summary { color: var(--text); border-bottom: 1px solid var(--r-line); }
+.resolve-center details.resolution-log > ol { margin: 0; padding: 10px 12px 10px 32px; }
+
+/* Valeurs de la barre de résumé : pastilles compactes au lieu de grandes cases. */
+.resolve-center .result-strip > b:not(:first-child),
+.resolve-center .result-strip > b:first-child:has(img) { flex: 0 0 auto; min-width: 72px; justify-content: center; padding: 4px 12px; border: 0; border-radius: 6px; background: rgba(255, 255, 255, .05); }
+
+/* Un champ seul dans une zone de saisie occupe toute la largeur ; le
+   message « aucun dé de couvert » suit le code couleur (rappel = bleu). */
+.resolve-center .result-entry > .quick-field:only-child,
+.resolve-center .result-entry > .no-cover-notice { grid-column: 1 / -1; }
+.resolve-center .no-cover-notice { padding: 9px 12px; border: 1px solid rgba(111, 189, 219, .35) !important; border-left: 4px solid var(--r-rule) !important; border-radius: var(--r-radius); background: rgba(111, 189, 219, .07) !important; color: #c9dbe4 !important; }
+.resolve-center .result-strip > b:first-child:not(:has(img)) { padding: 0; border: 0; background: none; }
+.resolve-center .result-strip > b { flex: 0 0 auto; }
+.resolve-center .result-strip > b:first-child:not(:has(img)) { justify-content: flex-start; }
+
+/* Suppression/moral : encadré de saisie (orange), non plus jaune ; « Règles qui
+   interviennent » : rappel de règle (bleu), le rouge étant réservé aux alertes. */
+.resolve-center .morale-panel { border: 1px solid var(--r-line) !important; border-left: 4px solid var(--r-input) !important; border-radius: var(--r-radius); }
+.resolve-center .rules-panel { border: 1px solid rgba(111, 189, 219, .35) !important; border-left: 4px solid var(--r-rule) !important; border-radius: var(--r-radius); }
+.resolve-center .rules-panel > summary { color: #9ad6ee; }

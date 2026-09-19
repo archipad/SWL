@@ -102,6 +102,22 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Harmonisation des écrans de résolution
+  (nouvelle feuille `resolver-polish.css`, chargée en dernier) : code couleur
+  unique des encadrés (orange = à saisir/vérifier, bleu = rappel de règle,
+  rouge = alerte) ; une seule barre de résumé (dés à lancer / à défendre /
+  résultat) ; compteurs qui ne débordent plus (le « + » des pions Adrénaline
+  sortait de son cadre) et qui s'empilent sous 660 px ; progression « n / N dés
+  saisis » déplacée sous la barre de résumé ; colonnes latérales réduites
+  (128-150 px) pour élargir la zone centrale ; étape Modifications sans effet
+  → bandeau « Passer à la défense » avec saisie manuelle repliée ; journal de
+  résolution replié par défaut. Contrôle de Tir : le message nomme désormais
+  l'unité alliée qui fournit l'effet (carte Contrôle de Tir) et la condition
+  à vérifier (portée 1 de l'attaquant + cible en ligne de vue du porteur) ;
+  quand « Oui » est choisi, la source est rappelée sous les dés (les dés
+  eux-mêmes étaient déjà améliorés automatiquement). Icône de rang de la
+  sélection d'unité : légère transparence, contour sombre et ombre portée.
+
 - [x] (19/09/2026, demande utilisateur) Résolution d'attaque : (1) effectif des
   armes de la carte Unité = effectif de base + figurines ajoutées par les
   améliorations certifiées sans arme propre (escouades « Stormtrooper Squad »,
