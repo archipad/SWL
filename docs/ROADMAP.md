@@ -102,6 +102,11 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Gain de temps : le choix de l'unité
+  attaquée ouvre directement la résolution d'attaque, sans afficher la fiche de
+  l'unité attaquée (sauf unité vaincue, dont la fiche reste accessible pour
+  corriger son état). « Revoir la cible » (étape 1) revient à la liste des cibles.
+
 - [x] (19/09/2026, demande utilisateur) Résolution d'attaque, suite : dés à lancer
   tout en haut avec la progression de saisie sur la même ligne ; barre collante
   (dés + saisie + résultat en cours en grand, teinte rouge + halo) ; plateau de

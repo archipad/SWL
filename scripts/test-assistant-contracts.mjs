@@ -281,6 +281,8 @@ assert.match(app, /className='info-fold'[\s\S]*rappel\$\{infoBlocks\.length>1\?'
 assert.match(app, /budget-summary[\s\S]*budgetOpen!==attackStep/, 'Les pions en réserve doivent se réduire à une ligne quand la saisie des dés est complète')
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.manual-focus::before \{ content: "À SAISIR"[\s\S]*content: "INFO"[\s\S]*content: "BLOQUANT"/, 'Les trois étiquettes À SAISIR / INFO / BLOQUANT doivent remplacer « ACTION REQUISE »')
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /@keyframes todo-pulse[\s\S]*data-entry-state="pending"\] \.dice-tray > \.quick-field\.is-empty/, 'Les champs de dés encore vides doivent pulser en orange tant que la saisie est incomplète')
+assert.match(app, /if\(isDefense\)\{defender=e;if\(defeated\(e\)\)\{stage=4;overview\(defender,'defense'\)\}else initAttack\(\)\}/, 'Choisir l’unité attaquée doit ouvrir directement la résolution (sauf unité vaincue, dont la fiche reste accessible)')
+assert.match(app, /else\{attackState=null;attackStep=0;stage=3;stageWipe=true;pick\('defender'\)\}\};\$\('#nextAttack'\)\.onclick/, '« Revoir la cible » doit revenir à la liste des cibles')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -429,7 +431,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=100/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=101/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
