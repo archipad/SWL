@@ -409,7 +409,7 @@ scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé,
   const chewie = gaps.find((button) => decodeURIComponent(button.dataset.certCard) === 'chewbacca')
   assert.ok(chewie, 'Chewbacca (certifié, écart Charge chez Legion Helper) est à relire')
   await click(chewie)
-  assert.match(text($('.cert-sources')), /COMPARAISON DES SOURCES/)
+  assert.match(text($('.cert-sources')), /À COMPARER AVEC LE VISUEL/)
   assert.match(text($('.cert-sources')), /Charge/, 'l’écart signalé est affiché')
   assert.ok($$('input[data-weapon-range]').length >= 1, 'la portée de chaque arme est modifiable')
   assert.ok($('#queueFullCard').disabled, 'certifier est impossible sans relire les écarts')
@@ -487,6 +487,22 @@ scenario('Import : l’amélioration « Chewbacca » n’est jamais la carte Uni
   assert.match(weapons, /Arbalète de Chewbacca/, 'l’arme propre à la carte d’amélioration est proposée')
   await app.click('#certification')
   assert.doesNotMatch(app.text(app.$('.cert-page')), /Chewbacca Upgrade/, 'l’amélioration est raccordée : plus de carte inconnue')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Certification : explication en langage courant du désaccord (Boba Fett) et récapitulatif à comparer au visuel', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click } = app
+  await click('#certification')
+  await click('[data-cert-filter="gaps"]')
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'boba fett infamous bounty hunter'))
+  const panel = text($('.cert-sources'))
+  assert.match(panel, /« Arsenal X » était dans nos données du moteur mais avait été oublié à la dernière validation : il est déjà ajouté/)
+  assert.match(panel, /« Impact X » est imprimé sur la carte ou sur une arme mais manquait dans nos données du moteur/)
+  assert.doesNotMatch(panel, /Base de l’appli|Dans la certification seulement/, 'plus de jargon « base / certification »')
+  assert.match(panel, /Roquettes Intégrées — 3 noir — portée 1-2 — Impact X 1, Polyvalent/, 'le récapitulatif liste chaque arme avec ses mots-clés')
+  assert.match(panel, /Tous les mots-clés de la carte.*Arsenal X 2/, 'la liste proposée contient Arsenal X 2')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
 })
 

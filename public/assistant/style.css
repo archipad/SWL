@@ -70,3 +70,6 @@
 .big-confirm{width:100%;min-height:58px;margin:10px 0 6px;font-size:1rem;background:#5cdda3;color:#062014;border-color:#5cdda3}
 .big-confirm:disabled{opacity:.45}
 button.primary.big-confirm{background:#5cdda3;border-color:#5cdda3;color:#062014}
+.cert-recap{display:grid;gap:6px;margin:6px 0;padding-left:18px;color:#e8f2f7;font-size:.86rem}
+.cert-recap ul{display:grid;gap:3px;margin:4px 0;padding-left:16px;color:#c9dbe4}
+.cert-recap b{color:#b9dcff}
