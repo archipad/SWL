@@ -260,7 +260,7 @@ assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne do
 assert.match(app, /pool\.before\(range\);if\(warning\)range\.before\(warning\)/, 'À l’étape 1, la sélection de portée doit être juste au-dessus des dés')
 assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=8/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=9/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} \(carte \$\{cardName\}\)/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
@@ -268,6 +268,9 @@ assert.match(app, /Journal de résolution : replié par défaut/, 'Le journal de
 assert.match(app, /idle-step[\s\S]*Passer à la défense/, 'Une étape Modifications sans effet doit proposer un bandeau « Passer »')
 assert.match(app, /poolBar=center\.querySelector\('\.dice-pool,\.defense-dice-pool'\)\;[^]*poolBar\.append\(entryProgress\)/, 'La progression de saisie doit être sur la même ligne que la barre « Dés à lancer »')
 assert.match(app, /if\(attackStep!==0\)\{const bar=center\.querySelector\(':scope > \.dice-pool,:scope > \.defense-dice-pool'\)[\s\S]*?checks\.forEach\(element=>\{anchor\.after\(element\)/, 'Les dés à lancer doivent être tout en haut (sous les étapes), avant les encadrés de vérification, sauf à l’étape 1 où la portée les précède')
+assert.match(app, /sticky\.className='sticky-summary';stepper\.after\(sticky\);if\(bar\)sticky\.append\(bar\);if\(live\)sticky\.append\(live\)/, 'La barre des dés et le résultat en cours doivent rester visibles (barre collante)')
+assert.match(app, /tray\.className='dice-tray';faces\[0\]\.before\(tray\);tray\.append\(\.\.\.faces\)/, 'Les faces de dés doivent former un plateau de tuiles')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.live-result-strip > b:not\(:first-child\)[\s\S]*font-size: 1\.9rem/, 'Le résultat en cours doit être affiché en grand')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -416,7 +419,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=97/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=98/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
