@@ -312,6 +312,10 @@ assert.match(app, /if\(attackState\.range==null\)return center\.querySelector\('
 assert.match(app, /attackState\.gateKey=\['range-picker','fire-control-card','weapon-picker'/, 'La section suivante doit être retrouvée par la classe du point bloquant (dégrisage + défilement)')
 assert.match(app, /rollConversionPanel=function\(p,converted,critical\)\{[\s\S]*<details class=[\s\S]*\?'open':''[\s\S]*quickMode&&!open/, 'L’encadré Conversion Adrénaline doit être replié en mode rapide, déplié sinon')
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.fire-control-card\.answered \{ border-color: rgba\(92, 221, 163/, 'Le Contrôle de Tir répondu doit passer au vert')
+// Stock de pions corrigé sous la dépense : plus de blocage, la dépense est ramenée au stock.
+assert.doesNotMatch(app, /Pas assez de pions Adrénaline/, 'Corriger le stock d’Adrénaline ne doit plus bloquer la résolution')
+assert.match(app, /function clampSpentTokens\(key\)[\s\S]*attackSurgesSpent=Math\.min[\s\S]*defenseSurgesSpent=Math\.min[\s\S]*dodgeCrits=Math\.min/, 'La dépense de pions doit être ramenée au stock quand celui-ci baisse')
+assert.match(app, /clampSpentTokens\(key\);syncTokenStock\(key\);updateLiveCounters\(\)/, 'Le plafonnement de la dépense doit s’appliquer à chaque correction du stock')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -460,7 +464,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=109/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=110/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
