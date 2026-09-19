@@ -185,3 +185,28 @@
 .resolve-center .dice-tray > .quick-field .touch-counter { width: 100%; grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 4px; }
 .resolve-center .dice-tray > .quick-field .touch-counter button { min-width: 44px; min-height: 48px; }
 .resolve-center .dice-tray > .quick-field .touch-counter input { width: 100%; min-width: 0; min-height: 48px; padding: .2rem; font-size: 1.5rem; }
+
+/* ---------- Progression de saisie : rouge tant que le compte n'est pas exact ----------
+   (bloquant : « Étape suivante » reste refusée), vert une fois complète. */
+.resolve-center .entry-progress.pending,
+.resolve-center .entry-progress.over { color: #ff665c; }
+.resolve-center .entry-progress.pending > span,
+.resolve-center .entry-progress.over > span { background: #ff665c; color: #1a0605; }
+.resolve-center .entry-progress.pending strong,
+.resolve-center .entry-progress.over strong { color: #ff665c; }
+.resolve-center .entry-progress.pending small,
+.resolve-center .entry-progress.over small { color: #ffb3ad; }
+.resolve-center .entry-progress.complete > span { background: #5cdda3; color: #062014; }
+.resolve-center .entry-progress.complete strong { color: #7ff0bd; }
+/* Hors barre collante (cadre propre) : le cadre suit l'état. */
+.resolve-center > .entry-progress.pending,
+.resolve-center > .entry-progress.over { border-color: #ff665c; background: #2a1112; }
+.resolve-center > .entry-progress.complete { border-color: #5cdda3; background: #0f2419; }
+
+/* ---------- Résultat en cours : reflet rouge (l'orange reste réservé aux actions à faire) ---------- */
+.resolve-center .live-result-strip,
+.resolve-center .live-defense-strip {
+  border-color: rgba(255, 102, 92, .55); border-left-color: #ff665c;
+  background: linear-gradient(135deg, rgba(255, 102, 92, .14), rgba(10, 21, 30, .96) 60%);
+  box-shadow: 0 0 18px rgba(255, 102, 92, .2), inset 0 1px 0 rgba(255, 160, 150, .12);
+}
