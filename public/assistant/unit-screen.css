@@ -309,3 +309,29 @@
 .overview .token-mini .touch-counter { grid-template-columns: 40px minmax(0, 1fr) 40px; }
 .overview .token-mini .touch-counter button, .overview .token-mini .token-value { min-height: 40px; min-width: 40px; }
 .overview .unit-state-editor { padding-block: 10px !important; }
+
+/* ---------- Code couleur de la fiche d'unité (même logique que la résolution d'attaque) ----------
+   Bleu = information : « Ce que cette unité peut faire maintenant » (lecture seule).
+   Orange = à saisir : « État actuel de l'unité » (pions et compteurs modifiables ici).
+   Fond en fondu (dégradé) comme les cartes Contrôle de Tir et Arsenal. */
+.overview .activation-briefing {
+  --u-accent: #5eb2ff;
+  border-color: rgba(94, 178, 255, .55) !important;
+  background: linear-gradient(135deg, rgba(94, 178, 255, .14), rgba(94, 178, 255, .04) 55%, rgba(8, 16, 22, .9)) !important;
+}
+.overview .activation-briefing > header { border-bottom-color: rgba(94, 178, 255, .28); background: rgba(94, 178, 255, .07); }
+.overview .activation-briefing > header small { color: #8fc9ff; }
+.overview .activation-briefing > header strong { color: #b9dcff; }
+.overview .unit-state-editor:not(.defeated) {
+  --u-accent: #ffb45e;
+  border-color: rgba(255, 180, 94, .7) !important;
+  background: linear-gradient(135deg, rgba(255, 180, 94, .16), rgba(255, 180, 94, .05) 55%, rgba(8, 16, 22, .9)) !important;
+  box-shadow: 0 0 16px rgba(255, 180, 94, .12), inset 0 1px 0 rgba(255, 255, 255, .03) !important;
+}
+.overview .unit-state-editor:not(.defeated) > header small { color: #ffb45e; }
+.overview .unit-state-editor:not(.defeated) > header strong { color: #ffd9a8; }
+
+/* Pastille d'étape (Briefing) et indication d'automatisme */
+.overview .activation-briefing .phase-tag { display: inline-block; margin-right: 7px; padding: 2px 7px; border: 1px solid rgba(94, 178, 255, .55); border-radius: 999px; background: rgba(94, 178, 255, .12); color: #b9dcff; font: 700 .62rem/1.3 'Share Tech Mono', monospace; letter-spacing: .06em; text-transform: uppercase; vertical-align: middle; }
+.overview .activation-briefing .auto-hint { display: block; margin-top: 3px; color: #ffb45e; font-size: .7rem; font-style: normal; }
+.overview .keyword-automation { --u-accent: #ffb45e; }

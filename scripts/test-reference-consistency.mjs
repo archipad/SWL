@@ -31,6 +31,21 @@ for (const [card, tags] of Object.entries(ref.tags)) {
   for (const tag of tags) if (!keywordIds.has(tag.keywordId)) fail(`${card} : mot-clé inconnu « ${tag.keywordId} » dans les étiquettes`)
 }
 
+/* Mot-clé À VALEUR (« X ») imprimé sans valeur sur une carte : le moteur compterait 0 et n'appliquerait jamais l'effet
+   (même famille d'erreur que Précis / Stormtroopers). Exceptions déclarées : Autonome (précision imprimée « Viser 1 ou Esquive 1 »,
+   pas de valeur numérique) et Sustentation (« terrestre » sans X) ; les valeurs portées par les armes (Impact 1 sur une arme,
+   Impact 3 sur une autre) sont lues dans keywordValues de l'arme. */
+const VALUE_OPTIONAL = new Set(['autonome', 'sustentation'])
+const keywordDefs = new Map(ref.keywords.map((keyword) => [keyword.id, keyword]))
+for (const [card, tags] of Object.entries(ref.tags)) {
+  for (const tag of tags) {
+    if (!keywordDefs.get(tag.keywordId)?.hasValue || VALUE_OPTIONAL.has(tag.keywordId)) continue
+    if (Number.isFinite(tag.value) && tag.value >= 0) continue
+    const weaponValue = (ref.weapons[card]?.weapons || []).some((weapon) => Number.isFinite(weapon.keywordValues?.[tag.keywordId]))
+    if (!weaponValue) fail(card + ' : « ' + tag.keywordId + ' » est un mot-clé à valeur X mais aucune valeur n’est renseignée (le moteur compterait 0)')
+  }
+}
+
 let certified = 0
 for (const [card, profile] of Object.entries(ref.weapons)) {
   const full = profile.fullCardCertification

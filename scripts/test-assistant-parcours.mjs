@@ -507,6 +507,42 @@ scenario('Certification : explication en langage courant du désaccord (Boba Fet
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Mots-clés sans valeur (Insensible, Agile, Profil bas, Blocage) : pris en compte par le moteur (ils valaient 0 et n’étaient jamais appliqués)', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Han Solo', upgrades: [] }, { name: 'Iden Versio', upgrades: [] }, { name: 'Boba Fett Infamous Bounty Hunter', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+  })
+  const value = (unit, id) => app.window.eval('keywordValue(entries.find(e=>e.unit.name===' + JSON.stringify(unit) + '),' + JSON.stringify(id) + ')')
+  assert.ok(value('Han Solo', 'profil-bas') > 0, 'Profil bas de Han Solo')
+  assert.ok(value('Iden Versio', 'agile') > 0, 'Agile d’Iden Versio')
+  assert.ok(value('Boba Fett Infamous Bounty Hunter', 'insensible') > 0, 'Insensible de Boba Fett')
+  assert.equal(value('Stormtroopers', 'insensible'), 0, 'un mot-clé absent reste à 0')
+  assert.equal(value('Han Solo', 'perforant-x'), 2, 'un mot-clé à valeur garde sa valeur')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Mots-clés d’unité : pastille d’étape dans le Briefing, boutons d’application (Preste à chaque déplacement, Fiable une fois par round)', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Imperial Special Forces', upgrades: [] }] },
+  })
+  const { $, $$, text, click } = app
+  const dodge = () => Number(text($('.token-mini:nth-child(2) .token-value, .token-mini:nth-child(2) input') || $$('.token-mini')[1]).replace(/\D+/g, '').slice(-1) || 0)
+  await app.pickUnit('Soldats Rebelles')
+  const briefing = text($('.activation-briefing'))
+  assert.match(briefing, /Déplacement/, 'Preste X est rangé à l’étape Déplacement')
+  assert.match($('.keyword-automation') ? text($('.keyword-automation')) : '', /PRESTE 1/, 'bouton Preste 1')
+  await click('[data-kw-apply="preste-x"]')
+  await click('[data-kw-apply="preste-x"]')
+  assert.match(text($$('.token-mini')[1]), /2/, 'Preste appliqué deux fois : 2 pions Esquive')
+  assert.ok(!$('[data-kw-apply="preste-x"]').disabled, 'Preste reste disponible à chaque déplacement')
+  await click('#next')
+  await app.pickUnit('Forces Spéciales')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

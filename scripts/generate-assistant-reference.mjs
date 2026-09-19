@@ -146,6 +146,7 @@ try {
     tags,
     keywordConflicts,
     crosscheck,
+    keywordTiming: JSON.parse(await readFile(resolve(projectRoot, 'scripts/data/keyword-timing.json'), 'utf8')),
     upgradeNameCollisions: JSON.parse(await readFile(resolve(projectRoot, 'src/data/upgradeNameCollisions.json'), 'utf8')),
     names: nameModule.CARD_NAMES_FR,
     images: assistantImages,
