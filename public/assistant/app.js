@@ -479,7 +479,51 @@ function decorateTacticalResolution(){
     if(idle){const banner=document.createElement('section');banner.className='idle-step';banner.innerHTML='<div><strong>AUCUNE MODIFICATION À APPLIQUER</strong><small>Ni Impact, ni Armure, ni bouclier à cette étape.</small></div><button type="button" class="primary" data-skip-step>Passer à la défense →</button>';const manual=document.createElement('details');manual.className='idle-manual';manual.innerHTML='<summary>Saisie manuelle (facultative)</summary>';cards.concat([center.querySelector(':scope > .result-entry')]).filter(Boolean).forEach(element=>manual.append(element));center.querySelector(':scope > .result-strip:not(.live-result-strip)')?.remove();(center.querySelector('.sticky-summary')||center.querySelector('.attack-stepper'))?.after(banner,manual);banner.querySelector('[data-skip-step]').onclick=()=>$('#nextAttack')?.click()}}
   // Journal de résolution : replié par défaut (demande utilisateur du 19/09/2026).
   const journal=center.querySelector('.resolution-log');if(journal&&journal.tagName!=='DETAILS'){const folded=document.createElement('details');folded.className=journal.className;const title=journal.querySelector('strong')?.textContent||'JOURNAL DE RÉSOLUTION';journal.querySelector('strong')?.remove();folded.innerHTML=`<summary>${title}</summary>${journal.innerHTML}`;journal.replaceWith(folded)}
+  // Informations seules (rappels de règle sans saisie, notes) : repliées en une ligne « ℹ n rappels de règle ». Les encadrés qui portent un résultat ou une action (couvert effectif, conversion, relances, Impact, fin d'attaque…) restent visibles.
+  const infoBlocks=[...center.children].filter(element=>(element.matches('.automation-card')&&!element.matches('[class*="cover-"],.roll-conversion-panel,.roll-reroll-panel')&&!element.querySelector('input,button,select,textarea')&&!/Impact disponible|EFFETS DE FIN|ATTAQUE GRATUITE|BLOCAGE ACTIF|SUPPRESSION ANNULÉE|IMMUNITÉ DU DÉFENSEUR|GARDIEN/i.test(element.textContent))||element.matches('.pool-note,.conversion-note'));
+  if(infoBlocks.length){const fold=document.createElement('details');fold.className='info-fold';fold.innerHTML=`<summary>ℹ ${infoBlocks.length} rappel${infoBlocks.length>1?'s':''} de règle</summary>`;infoBlocks[0].before(fold);fold.append(...infoBlocks)}
+  // Pions en réserve : une fois la saisie des dés complète, le bloc se réduit à une ligne récapitulative, rouvrable.
+  center.querySelectorAll('.token-budget').forEach(budget=>{if(budget.querySelector('.budget-summary'))return;const title=(budget.querySelector(':scope > strong')?.textContent||'Pions en réserve').toLowerCase(),summary=document.createElement('button');summary.type='button';summary.className='budget-summary';summary.innerHTML=`<b>✓ ${title.charAt(0).toUpperCase()+title.slice(1)}</b><span></span><i>modifier</i>`;summary.onclick=()=>{attackState.budgetOpen=attackStep;refreshResolveUi()};budget.append(summary)});
+  refreshResolveUi();
+  if(attackState&&attackState.uiStep!==attackStep){attackState.uiStep=attackStep;requestAnimationFrame(focusFirstTodo)}
 }
+/* Lisibilité « bloquant / à saisir / information » (19/09/2026, demande utilisateur).
+   stepIssue() est la seule source de vérité du blocage : la pastille d'état, le bouton verrouillé et les champs à saisir en dérivent tous. Fonctions idempotentes, rappelées après chaque rendu et après chaque saisie (voir l'écouteur en bas). */
+function refreshGate(){
+  const actions=root.querySelector('.actions'),next=$('#nextAttack');if(!actions||!next||!attackState)return;
+  let gate=actions.querySelector('.gate-status');
+  if(!gate){gate=document.createElement('div');gate.setAttribute('role','status');gate.setAttribute('aria-live','polite');actions.prepend(gate)}
+  const issue=stepIssue();
+  gate.className='gate-status '+(issue?'blocked':'ready');
+  gate.innerHTML=issue?`<b>⛔ BLOQUÉ</b><span>${issue}</span>`:'<b>✓ PRÊT</b><span>Vous pouvez passer à l’étape suivante.</span>';
+  next.classList.toggle('locked',!!issue);next.setAttribute('aria-disabled',issue?'true':'false');
+}
+function refreshFieldStates(){
+  const center=root.querySelector('.resolve-center');if(!center||!attackState)return;
+  const progress=center.querySelector('.entry-progress'),state=progress?(progress.classList.contains('complete')?'complete':progress.classList.contains('over')?'over':'pending'):'';
+  if(state)center.dataset.entryState=state;else delete center.dataset.entryState;
+  center.querySelectorAll('.dice-tray > .quick-field').forEach(field=>{const input=field.querySelector('input');field.classList.toggle('is-empty',!input||!(Number(input.value)>0))});
+  const issue=stepIssue()||'';
+  center.querySelector('.range-picker')?.classList.toggle('todo',/portée/i.test(issue));
+  center.querySelector('.weapon-picker')?.classList.toggle('todo',/arme/i.test(issue)&&!/portée/i.test(issue));
+  center.querySelectorAll('.token-budget').forEach(budget=>{
+    const summary=budget.querySelector('.budget-summary');if(!summary)return;
+    const parts=[...budget.querySelectorAll('.quick-field')].map(field=>`${(field.querySelector('.quick-label')?.textContent||'').replace(/ en réserve/i,'').replace(/^Pions /i,'')} ${field.querySelector('input')?.value||0}`);
+    summary.querySelector('span').textContent=parts.join(' · ');
+    budget.classList.toggle('is-done',state==='complete'&&attackState.budgetOpen!==attackStep);
+  });
+}
+function refreshResolveUi(){if(!attackState||!root.querySelector('.resolve-center'))return;refreshFieldStates();refreshGate()}
+// À l'arrivée sur une étape : défilement jusqu'au premier élément à faire, s'il n'est pas déjà bien visible (sans donner le focus : pas de clavier qui s'ouvre sur iPad).
+function focusFirstTodo(){
+  const center=root.querySelector('.resolve-center');if(!center)return;
+  const target=center.querySelector('.range-picker.todo,.weapon-picker.todo')||(center.dataset.entryState==='pending'?center.querySelector('.dice-tray > .quick-field.is-empty'):null);
+  if(!target)return;
+  const rect=target.getBoundingClientRect();
+  if(rect.top>140&&rect.bottom<window.innerHeight-110)return;
+  target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
+}
+['input','click'].forEach(type=>document.addEventListener(type,event=>{if(event.target.closest?.('.resolve-center, .actions'))requestAnimationFrame(refreshResolveUi)},true));
 const resolveTacticalBase=resolveScreen;
 resolveScreen=function(){if(attackStep===0)prefillWeaponCounts();resolveTacticalBase();decorateTacticalResolution()};
 const overviewActivationBase=overview;

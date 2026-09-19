@@ -102,6 +102,19 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Résolution d'attaque, suite : dés à lancer
+  tout en haut avec la progression de saisie sur la même ligne ; barre collante
+  (dés + saisie + résultat en cours en grand, teinte rouge + halo) ; plateau de
+  dés (faces en tuiles) ; dés à lancer et zones de saisie en teinte + halo orange ;
+  progression rouge tant que le compte n'est pas exact, verte ensuite. Lisibilité
+  bloquant / à saisir / information : pastille « ⛔ BLOQUÉ … / ✓ PRÊT » dans la
+  barre d'actions et bouton « Étape suivante » verrouillé (issus de stepIssue()) ;
+  étiquettes À SAISIR / À VÉRIFIER / INFO / BLOQUANT sur les cadres ; champs de
+  dés vides qui pulsent en orange (verts une fois la saisie complète) ; rappels
+  d'information repliés en « ℹ n rappels de règle » ; pions en réserve réduits à
+  une ligne récapitulative une fois les dés saisis (rouvrable) ; défilement
+  automatique jusqu'au premier élément à faire à l'arrivée sur une étape.
+
 - [x] (19/09/2026, demande utilisateur) Harmonisation des écrans de résolution
   (nouvelle feuille `resolver-polish.css`, chargée en dernier) : code couleur
   unique des encadrés (orange = à saisir/vérifier, bleu = rappel de règle,

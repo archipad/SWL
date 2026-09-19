@@ -260,7 +260,7 @@ assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne do
 assert.match(app, /pool\.before\(range\);if\(warning\)range\.before\(warning\)/, 'À l’étape 1, la sélection de portée doit être juste au-dessus des dés')
 assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=11/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=12/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} \(carte \$\{cardName\}\)/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
@@ -274,6 +274,13 @@ assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', 
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.entry-progress\.pending,\s*\.resolve-center \.entry-progress\.over \{ color: #ff665c; \}[\s\S]*\.entry-progress\.complete > span \{ background: #5cdda3/, 'La progression de saisie doit être rouge tant que le compte n’est pas exact, verte une fois complète')
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.live-defense-strip \{\s*border-color: rgba\(255, 102, 92, \.55\)/, 'Le résultat en cours doit avoir un reflet rouge (l’orange est réservé aux actions à faire)')
 assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.defense-dice-pool \{\s*border-color: rgba\(255, 140, 26, \.55\);[\s\S]*\.manual-focus \{\s*border-color: rgba\(255, 140, 26, \.55\)/, 'Les dés à lancer et les zones de saisie doivent avoir la teinte + halo orange (orange = à faire)')
+assert.match(app, /function refreshGate\(\)\{[\s\S]*const issue=stepIssue\(\);[\s\S]*gate\.className='gate-status '\+\(issue\?'blocked':'ready'\)[\s\S]*next\.classList\.toggle\('locked',!!issue\)/, 'La pastille BLOQUÉ/PRÊT et le bouton verrouillé doivent dériver de stepIssue()')
+assert.match(app, /\['input','click'\]\.forEach\(type=>document\.addEventListener\(type,event=>\{if\(event\.target\.closest\?\.\('\.resolve-center, \.actions'\)\)requestAnimationFrame\(refreshResolveUi\)\},true\)\)/, 'L’état bloqué/prêt doit se mettre à jour après chaque saisie')
+assert.match(app, /attackState\.uiStep!==attackStep\)\{attackState\.uiStep=attackStep;requestAnimationFrame\(focusFirstTodo\)[\s\S]*function focusFirstTodo\(\)[\s\S]*scrollIntoView/, 'À l’arrivée sur une étape, l’écran doit défiler jusqu’au premier élément à faire')
+assert.match(app, /className='info-fold'[\s\S]*rappel\$\{infoBlocks\.length>1\?'s':''\} de règle/, 'Les informations seules doivent être repliées en une ligne « n rappels de règle »')
+assert.match(app, /budget-summary[\s\S]*budgetOpen!==attackStep/, 'Les pions en réserve doivent se réduire à une ligne quand la saisie des dés est complète')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.manual-focus::before \{ content: "À SAISIR"[\s\S]*content: "INFO"[\s\S]*content: "BLOQUANT"/, 'Les trois étiquettes À SAISIR / INFO / BLOQUANT doivent remplacer « ACTION REQUISE »')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /@keyframes todo-pulse[\s\S]*data-entry-state="pending"\] \.dice-tray > \.quick-field\.is-empty/, 'Les champs de dés encore vides doivent pulser en orange tant que la saisie est incomplète')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -422,7 +429,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=98/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=100/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
