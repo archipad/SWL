@@ -252,6 +252,13 @@ assert.match(app, /function pickerGrid\(units\)\{const n=units\.length,cols=n<=3
 assert.match(fs.readFileSync(new URL('../public/assistant/unit-picker.css', import.meta.url), 'utf8'), /max-height: calc\(\(100dvh - 330px\) \/ var\(--rows, 1\) - 58px\)/, 'La hauteur des cartes de sélection doit être plafonnée pour que toutes les rangées tiennent à l’écran')
 assert.match(app, /data-faction="\$\{factionThemeForArmy\(e\.army\)\}" class="unit-tile[\s\S]*?<span class="tile-visual"><img [^>]*>\$\{rankMark\(e\)\}<\/span>/, 'L’icône de rang doit être dans la carte de la tuile, et la tuile doit porter l’armée de l’unité')
 assert.match(fs.readFileSync(new URL('../public/assistant/unit-picker.css', import.meta.url), 'utf8'), /\[data-faction="rebel"\][^{]*\{ background: #ff8c1a; \}[\s\S]*\[data-faction="imperial"\][^{]*\{ background: #ff4550; \}/, 'L’icône de rang doit être orange pour les Rebelles et rouge pour l’Empire')
+// Résolution d'attaque (19/09/2026, demande utilisateur) : effectif des escouades, ordre de lecture, plus de « Suivi des dés ».
+assert.match(app, /function squadAddedModels\(entry\)\{return \(entry\?\.unit\?\.upgrades\|\|\[\]\)\.reduce\(\(sum,card\)=>\{const profile=profileFor\(card\.name\),added=Number\(profile\?\.addedModels\)\|\|0;return added>0&&!\(profile\?\.weapons\|\|\[\]\)\.length\?sum\+added:sum\}/, 'Les améliorations d’escouade certifiées (addedModels, sans arme propre) doivent s’ajouter à l’effectif de la carte Unité')
+assert.match(app, /if\(cardKey\(row\.card\)===cardKey\(attacker\.unit\.name\)\)return unitWeaponModels\(attacker\)/, 'Les armes de la carte Unité doivent être proposées avec l’effectif de base + les figurines d’escouade')
+assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne doit plus être affiché en bas des écrans de résolution')
+assert.match(app, /pool\.before\(range\);if\(warning\)range\.before\(warning\)/, 'À l’étape 1, la sélection de portée doit être juste au-dessus des dés')
+assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
+assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
 assert.match(index, /unit-picker\.css\?v=2/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -379,7 +386,7 @@ assert.match(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}<\/div>/, 'Le ba
 // (.ov-left/.ov-right, posées par app.js) qui partent du même bord haut,
 // un seul habillage de panneau, un bandeau du haut sur une seule ligne.
 const unitScreen = fs.readFileSync(new URL('../public/assistant/unit-screen.css', import.meta.url), 'utf8')
-assert.match(index, /unit-screen\.css\?v=1/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
+assert.match(index, /unit-screen\.css\?v=2/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
 assert.ok(index.indexOf('unit-screen.css') > index.indexOf('ipad-compact.css'), 'unit-screen.css doit être chargée après ipad-compact.css pour gagner les égalités de spécificité')
 assert.match(app, /overviewColumnsBase=overview;\s*overview=function\(entry,role\)\{overviewColumnsBase\(entry,role\);.*ov-left.*ov-right/, 'app.js doit regrouper les blocs de l’écran d’unité en deux colonnes réelles')
 assert.match(app, /matches\('\.activation-automation,\.post-rally-panel,\.activation-briefing,\.unit-state-editor'\)\?right:left/, 'Automatismes, options de démoralisation, Briefing et état de l’unité doivent aller dans la colonne de droite')
@@ -400,7 +407,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=92/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=93/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)

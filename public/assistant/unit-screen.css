@@ -252,3 +252,6 @@
   .overview.defense .unit-state-editor .state-reset { grid-column: 1; grid-row: auto; justify-self: stretch; }
   .overview.defense > .ov-col > .card-strip { grid-template-columns: minmax(220px, 44%) minmax(0, 1fr); }
 }
+
+/* Détail de l'effectif sous les armes de la carte Unité (résolution d'attaque). */
+.weapon-copy .models-note { display: block; margin-top: 3px; color: var(--muted); font-size: .68rem; }

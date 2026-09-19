@@ -102,6 +102,19 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Résolution d'attaque : (1) effectif des
+  armes de la carte Unité = effectif de base + figurines ajoutées par les
+  améliorations certifiées sans arme propre (escouades « Stormtrooper Squad »,
+  « Fleet Trooper Squad »…, +5 ; spécialistes, +1), avec le détail « Effectif :
+  4 + 5 (…) » sous l'arme — jusqu'ici seul l'effectif de base était proposé ;
+  une amélioration avec arme propre (arme lourde) reste comptée sur sa ligne ;
+  les effectifs sont aussi appliqués dès l'ouverture de l'écran (le libellé
+  « PRÉREMPLI » s'affichait avec 1). (2) Sélection de portée juste au-dessus
+  des dés. (3) Encadrés de vérification (cases de situation, règles
+  applicables, pions en réserve, avertissements) remontés juste sous les
+  étapes, à chaque étape ; les encadrés-résultats calculés restent à côté de
+  leur saisie. (4) « Suivi des dés » supprimé en bas des écrans.
+
 - [x] (19/09/2026, demande utilisateur) Écrans de sélection d'unité (« Quelle
   unité jouez-vous ? » / « …est attaquée ? ») : retrait de la recherche, des
   filtres de rang, du titre de liste et des en-têtes de rang pour gagner de
