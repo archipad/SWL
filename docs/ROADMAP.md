@@ -102,6 +102,26 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur : « tout n'est pas aligné, uniforme ») Audit
+  design de l'écran d'unité et mise en page unifiée dans une feuille dédiée
+  `unit-screen.css` (chargée après `ipad-compact.css`, qui n'en porte plus la
+  mise en page). Défauts corrigés : colonne de droite qui démarrait 130 px plus
+  bas que celle de gauche (placement automatique de la grille) → `app.js`
+  regroupe désormais les blocs en deux vraies colonnes `.ov-left` (identité,
+  cartes) / `.ov-right` (automatismes, options de démoralisation, Briefing,
+  état de l'unité), fusionnées en une colonne ordonnée sous 1000 px ;
+  identité décalée de 14 px par rapport à la bande de cartes ; améliorations
+  qui débordaient de leur cellule (grille sans `min-width:0`) ; carte Unité
+  paysage écrasée dans une case portrait de 196 px (proportions natives
+  restituées) ; cases vides plus claires dans le Briefing (lignes séparées par
+  un filet au lieu d'un fond de grille) ; titre « État actuel de l'unité »
+  cassé sur 3 lignes ; bandeau du haut sur 3 lignes (133 px) → une ligne
+  (55 px). Un seul habillage de panneau (bordure, rayon 8 px, fond, repères
+  d'angle, en-tête « libellé au-dessus, titre dessous ») pour identité,
+  cartes, automatismes, Briefing, état de l'unité. Côté défenseur, la bande de
+  cartes prend la grande colonne de droite. Vérifié à 1180×820, 820×1180,
+  375×812.
+
 - [x] (17/09/2026, décision produit utilisateur) Refonte visuelle de l'écran
   d'unité de l'Assistant, étape 1 (mise en page) : la carte Unité et ses
   cartes Amélioration deviennent une bande de vignettes cliquables

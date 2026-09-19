@@ -369,10 +369,20 @@ assert.match(app, /EFFETS DE CARTE/, 'Le Briefing tactique doit exposer une sect
 // tactique dominant à droite (voir ipad-compact.css).
 assert.doesNotMatch(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}\$\{unitVisual/, 'Le bandeau d’identité ne doit plus dupliquer le grand visuel de la carte Unité')
 assert.match(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}<\/div>/, 'Le bandeau d’identité ne doit contenir que le panneau d’identité')
-const ipadCompact = fs.readFileSync(new URL('../public/assistant/ipad-compact.css', import.meta.url), 'utf8')
-assert.match(ipadCompact, /\.overview\.attack\s*\{\s*display:grid/, 'L’écran de l’attaquant doit passer en grille à deux colonnes sur grand écran')
-assert.match(ipadCompact, /\.overview\.attack\s*>\s*\.activation-briefing\s*\{\s*grid-column:2/, 'Le Briefing tactique doit dominer la colonne de droite')
-assert.doesNotMatch(ipadCompact, /\.overview\s*\{\s*display:grid/, 'La grille deux colonnes ne doit pas s’appliquer à l’écran du défenseur (pas de Briefing à y afficher)')
+// Système de mise en page unifié de l'écran d'unité (19/09/2026, demande
+// utilisateur : « tout n'est pas aligné, uniforme ») : deux vraies colonnes
+// (.ov-left/.ov-right, posées par app.js) qui partent du même bord haut,
+// un seul habillage de panneau, un bandeau du haut sur une seule ligne.
+const unitScreen = fs.readFileSync(new URL('../public/assistant/unit-screen.css', import.meta.url), 'utf8')
+assert.match(index, /unit-screen\.css\?v=1/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
+assert.ok(index.indexOf('unit-screen.css') > index.indexOf('ipad-compact.css'), 'unit-screen.css doit être chargée après ipad-compact.css pour gagner les égalités de spécificité')
+assert.match(app, /overviewColumnsBase=overview;\s*overview=function\(entry,role\)\{overviewColumnsBase\(entry,role\);.*ov-left.*ov-right/, 'app.js doit regrouper les blocs de l’écran d’unité en deux colonnes réelles')
+assert.match(app, /matches\('\.activation-automation,\.post-rally-panel,\.activation-briefing,\.unit-state-editor'\)\?right:left/, 'Automatismes, options de démoralisation, Briefing et état de l’unité doivent aller dans la colonne de droite')
+assert.match(unitScreen, /@media \(min-width: 1000px\) \{\s*\.overview \{ grid-template-columns: minmax\(320px, 36%\) minmax\(0, 1fr\); \}/, 'À partir de 1000px, l’écran d’unité doit passer en deux colonnes')
+assert.match(unitScreen, /\.overview > \.ov-col \{ display: contents; \}/, 'Sous 1000px, les colonnes doivent disparaître (display:contents) pour rétablir l’ordre d’origine')
+assert.match(unitScreen, /\.overview \.card-strip \.upgrade-row \{ display: contents; \}/, 'Les améliorations doivent être des cases d’une même grille (3 colonnes égales) dans la colonne étroite')
+assert.match(unitScreen, /\.topbar \{ grid-template-columns: auto minmax\(0, 1fr\) auto !important;/, 'Le bandeau du haut doit tenir sur une seule ligne alignée')
+assert.match(unitScreen, /\.overview\.defense > \.ov-col > \.card-strip \{ grid-column: 2;/, 'Côté défenseur, la bande de cartes doit occuper la grande colonne de droite')
 assert.match(fs.readFileSync(new URL('../public/assistant/style.css', import.meta.url), 'utf8'), /\.brief-empty\{grid-column:1\/-1!important;grid-template-columns:1fr!important/, 'Le texte d’une section de briefing sans mot-clé ne doit pas hériter de la grille 82px/1fr des lignes de mot-clé')
 assert.match(app, /place-proton.*detonate-proton/, 'Les charges à protons doivent être suivies de la pose à la détonation')
 assert.match(app, /place-sonic.*detonate-sonic/, 'Les charges soniques doivent être suivies de la pose à la détonation')
@@ -385,7 +395,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=89/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=90/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)

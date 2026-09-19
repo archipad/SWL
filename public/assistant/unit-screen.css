@@ -1,0 +1,254 @@
+/* Écran d'unité — système de mise en page unifié (19/09/2026, demande
+   utilisateur : « rien n'est aligné, uniforme »).
+
+   Chargé en dernier (après ipad-compact.css). Il remplace les retouches
+   successives empilées sur cet écran par un seul jeu de règles :
+     - un rythme d'espacement unique (--u-gap / --u-pad) ;
+     - un seul « habillage » de panneau (bordure, fond, rayon, repères d'angle)
+       pour identité, cartes, automatismes, Briefing et état de l'unité ;
+     - une hiérarchie typographique unique pour les titres de panneau ;
+     - deux vraies colonnes (.ov-left / .ov-right, voir app.js) qui partent
+       du même bord haut à partir de 1000px, une seule colonne en dessous. */
+
+.overview {
+  --u-gap: 12px;
+  --u-pad: 12px;
+  --u-r: 8px;
+  --u-line: #27445a;
+  --u-line-soft: #1d3444;
+  --u-accent: #66cff7;
+  --u-bg: linear-gradient(135deg, #0b1722 0%, #0d1c29 64%, #0a141e 100%);
+  --u-eyebrow: #6fbddb;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--u-gap);
+  align-items: start;
+  padding-block: var(--u-gap) 0;
+}
+
+/* ---------- Colonnes ---------- */
+.overview > .ov-col { display: contents; }
+.overview > .ov-col > .hero { order: 1; }
+.overview > .ov-col > .post-rally-panel { order: 2; }
+.overview > .ov-col > .activation-automation { order: 3; }
+.overview > .ov-col > .card-strip { order: 4; }
+.overview > .ov-col > .activation-briefing { order: 5; }
+.overview > .ov-col > .unit-state-editor { order: 6; }
+
+@media (min-width: 1000px) {
+  .overview { grid-template-columns: minmax(320px, 36%) minmax(0, 1fr); }
+  .overview > .ov-col { display: flex; flex-direction: column; gap: var(--u-gap); min-width: 0; }
+  .overview > .ov-col > * { order: 0; }
+}
+
+/* ---------- Panneau : un seul habillage ---------- */
+.overview .unit-identity-panel,
+.overview .card-strip,
+.overview .activation-automation,
+.overview .post-rally-panel,
+.overview .activation-briefing,
+.overview .unit-state-editor {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 !important;
+  border: 1px solid var(--u-line) !important;
+  border-radius: var(--u-r) !important;
+  background: var(--u-bg) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .03) !important;
+}
+.overview .activation-automation { --u-accent: var(--accent, #ff8c1a); }
+.overview .post-rally-panel { --u-accent: var(--acid); border-color: color-mix(in srgb, var(--acid) 55%, var(--u-line)) !important; }
+.overview .unit-state-editor.defeated { border-color: #ff4550 !important; }
+
+/* Repères d'angle communs (avant : identité et Briefing seulement, avec deux
+   dessins différents ; le cadre intérieur du Briefing est retiré). */
+.overview .unit-identity-panel::before,
+.overview .activation-automation::before,
+.overview .post-rally-panel::before,
+.overview .activation-briefing::before,
+.overview .unit-state-editor::before {
+  content: ""; position: absolute; inset: auto; left: -1px; top: -1px; width: 14px; height: 14px;
+  border: 0 solid var(--u-accent); border-width: 2px 0 0 2px; border-top-left-radius: 3px; background: none; pointer-events: none;
+}
+.overview .unit-identity-panel::after,
+.overview .activation-automation::after,
+.overview .post-rally-panel::after,
+.overview .activation-briefing::after,
+.overview .unit-state-editor::after {
+  content: ""; position: absolute; inset: auto; right: -1px; bottom: -1px; width: 14px; height: 14px;
+  border: 0 solid var(--u-accent); border-width: 0 2px 2px 0; border-bottom-right-radius: 3px; background: none; pointer-events: none;
+}
+.overview .brief-corner { display: none; }
+
+/* ---------- Titres de panneau : même hiérarchie partout ---------- */
+.overview .activation-briefing > header,
+.overview .activation-automation > header,
+.overview .unit-state-editor > header,
+.overview .card-strip::before {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--u-gap);
+  padding: 9px var(--u-pad); border-bottom: 1px solid var(--u-line-soft); background: rgba(255, 255, 255, .02);
+}
+.overview .activation-briefing > header small,
+.overview .activation-automation > header small,
+.overview .unit-state-editor > header small,
+.overview .card-strip::before {
+  display: block; color: var(--u-eyebrow); font: 700 .66rem/1.2 'Share Tech Mono', monospace; letter-spacing: .14em; text-transform: uppercase;
+}
+.overview .activation-briefing > header strong,
+.overview .activation-automation > header strong,
+.overview .unit-state-editor > header strong {
+  display: block; margin: 3px 0 0; color: #fff; font: 800 .95rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; text-transform: uppercase;
+}
+.overview .activation-automation > header strong { color: var(--accent, #ff8c1a); }
+
+/* ---------- Identité ---------- */
+.hero { display: block; padding: 0; }
+.hero .unit-identity-panel { max-width: none; padding: 10px var(--u-pad) !important; }
+.unit-identity-panel > header { padding-bottom: 6px !important; gap: 8px !important; }
+.unit-identity-panel > header .rank-icon { width: 18px !important; height: 18px !important; flex-basis: 18px !important; }
+.unit-identity-panel h1 { font-size: 1.05rem !important; line-height: 1.25; }
+.unit-identity-panel .unit-hud,
+.unit-identity-panel .tactical-hud { margin: 8px 0 0 !important; }
+.unit-identity-panel .unit-hud > span,
+.unit-identity-panel .tactical-hud .hud-vitals > span { min-height: 0 !important; padding: 6px 9px !important; }
+
+/* ---------- Bande de cartes ----------
+   Pile par défaut (colonne étroite de gauche, téléphone) : carte Unité
+   (paysage) sur toute la largeur, améliorations (portrait) sur 3 colonnes
+   de même taille. Écran moyen en une colonne : carte Unité à gauche,
+   améliorations à droite. */
+.overview .card-strip {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; gap: 10px;
+  padding: 0 var(--u-pad) var(--u-pad); overflow: hidden;
+}
+.overview .card-strip::before { content: "Cartes · unité & améliorations"; grid-column: 1 / -1; margin: 0 calc(var(--u-pad) * -1); }
+.overview .card-strip .unit-card-visual { grid-column: 1 / -1; width: 100%; }
+.overview .card-strip .upgrade-row { display: contents; }
+.overview .card-strip .unavailable,
+.overview .card-strip .empty-upgrades { grid-column: 1 / -1; margin: 0; }
+.overview .unit-card-visual,
+.overview .upgrade-card-visual {
+  box-sizing: border-box; min-width: 0; padding: 6px; border-color: var(--u-line); border-radius: 6px; background: #050806; transition: border-color .15s;
+}
+.overview .unit-card-visual:hover,
+.overview .upgrade-card-visual:hover,
+.overview .unit-card-visual:focus-visible,
+.overview .upgrade-card-visual:focus-visible { border-color: var(--u-accent); }
+.overview .unit-card-visual img { height: auto; aspect-ratio: 2078 / 1452; }
+.overview .upgrade-card-visual { width: auto; }
+.overview .upgrade-card-visual img { height: auto; aspect-ratio: 1452 / 2078; }
+.overview .unit-card-visual small,
+.overview .upgrade-card-visual small {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; white-space: normal; overflow: hidden;
+  min-height: 2.5em; color: var(--muted); font-size: .66rem; line-height: 1.25;
+}
+.overview .unit-card-visual small { min-height: 0; -webkit-line-clamp: 1; }
+
+@media (min-width: 600px) and (max-width: 999px) {
+  .overview .card-strip { grid-template-columns: minmax(200px, 36%) minmax(0, 1fr); align-items: start; }
+  .overview .card-strip .unit-card-visual { grid-column: 1; }
+  .overview .card-strip .upgrade-row { display: grid; grid-column: 2; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; min-width: 0; }
+}
+
+/* ---------- Briefing tactique ---------- */
+.overview .activation-briefing { padding: 0; }
+.overview .activation-briefing > header { grid-template-columns: none; }
+.overview .activation-briefing ul { gap: 0; padding: 0; background: transparent; }
+.overview .activation-briefing li {
+  display: block; padding: 10px var(--u-pad); background: transparent; border-bottom: 1px solid var(--u-line-soft);
+}
+.overview .activation-briefing li:nth-child(odd):not(:last-child) { border-right: 1px solid var(--u-line-soft); }
+.overview .activation-briefing li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.overview .activation-briefing li b { margin-bottom: 3px; color: #fff; font-size: .9rem; line-height: 1.2; overflow-wrap: anywhere; }
+.overview .activation-briefing li small { margin: 0; font-size: .78rem; line-height: 1.4; }
+.overview .activation-briefing .brief-empty { padding: 10px var(--u-pad); }
+.overview .brief-section { --sec: var(--blue, #6db6e8); border-left: 3px solid var(--sec); background: color-mix(in srgb, var(--sec) 5%, transparent); }
+.overview .brief-section:nth-of-type(1) { --sec: var(--blue, #6db6e8); }
+.overview .brief-section:nth-of-type(2) { --sec: var(--red, #e76b63); }
+.overview .brief-section:nth-of-type(3) { --sec: var(--gold, #e6b94f); }
+.overview .brief-section > small { padding: 10px var(--u-pad) 4px; color: var(--sec); font: 800 .82rem/1.2 Orbitron, sans-serif; letter-spacing: .08em; }
+.overview .brief-section:last-child { border-bottom: 0; }
+
+/* ---------- Automatismes / état de l'unité ---------- */
+.overview .activation-automation > div { padding: var(--u-pad); }
+.overview .activation-automation > footer { padding: 8px var(--u-pad); }
+.overview .unit-state-editor { padding: 0 var(--u-pad) var(--u-pad); }
+.overview .unit-state-editor > header { margin: 0 calc(var(--u-pad) * -1); }
+.overview .post-rally-panel { padding: var(--u-pad); }
+
+/* ---------- État de l'unité (compteurs manuels) ----------
+   Le bouton « Remettre à zéro » est hors de l'en-tête : pas de bandeau ici,
+   mais le même repère « petit libellé au-dessus, titre dessous ». */
+.overview .unit-state-editor { padding: var(--u-pad) !important; grid-template-columns: minmax(0, 1fr) auto; row-gap: 10px; }
+.overview .unit-state-editor > header { margin: 0; padding: 0; border: 0; background: none; flex-direction: column; align-items: flex-start; gap: 0; }
+.overview .unit-state-editor > header small { order: -1; }
+.overview .unit-state-editor > header strong { margin-top: 3px; font-size: .86rem; }
+.overview .unit-state-editor .state-toggle,
+.overview .unit-state-editor .state-counter {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; padding: 6px 10px;
+  border: 1px solid var(--u-line); border-radius: 6px; background: rgba(255, 255, 255, .03);
+}
+.overview .unit-state-editor .persistent-tokens { border-radius: 6px; }
+
+/* ---------- Bandeau du haut : une seule ligne alignée ----------
+   Avant : titre centré + 6 boutons repartant sur 3 lignes (133px de haut
+   collés en haut de l'écran). */
+.topbar { grid-template-columns: auto minmax(0, 1fr) auto !important; gap: 12px !important; }
+.topbar > div:not(.topbar-actions) { text-align: left; }
+.topbar > div:not(.topbar-actions) small { display: none; }
+.topbar strong { font-size: .95rem; }
+.topbar-actions { flex-wrap: nowrap !important; align-items: center; gap: 6px !important; }
+.topbar .topbar-actions button,
+.topbar-actions .tracker-shortcut { padding-inline: 10px; font-size: .76rem; }
+@media (max-width: 1100px) {
+  .topbar .topbar-actions button,
+  .topbar-actions .tracker-shortcut { padding-inline: 7px; font-size: .7rem; }
+}
+@media (max-width: 899px) {
+  .topbar { grid-template-columns: auto minmax(0, 1fr) !important; row-gap: 6px !important; }
+  .topbar .topbar-actions { grid-column: 1 / -1; flex-wrap: wrap !important; justify-content: flex-start; }
+}
+
+/* ---------- Finitions ---------- */
+/* Le HUD tactique de l'identité avait son propre cadre et ses propres repères
+   d'angle, en double de ceux du panneau qui le contient. */
+.overview .unit-identity-panel .tactical-hud { border: 0 !important; background: transparent !important; box-shadow: none !important; }
+.overview .unit-identity-panel .tactical-hud::before,
+.overview .unit-identity-panel .tactical-hud::after { display: none; }
+.overview .movement-readout { max-width: 250px; padding: 6px 10px; border-radius: 0 6px 6px 0; background: rgba(255, 255, 255, .03); }
+.overview .movement-readout small { font: 700 .62rem/1.2 'Share Tech Mono', monospace; }
+.overview .movement-readout b { margin-top: 2px; font-size: .8rem; line-height: 1.2; }
+.overview .movement-readout span { font-size: .68rem; line-height: 1.3; }
+
+/* Barre d'actions basse : quand elle passe en grille 2 colonnes (téléphone),
+   l'action principale occupe toute la largeur au lieu de rester seule à gauche. */
+@media (max-width: 700px) {
+  .actions .primary { grid-column: 1 / -1; }
+}
+
+/* Automatismes et options de démoralisation : le sous-titre est une phrase,
+   pas un libellé — il passe sous le titre, en casse normale. */
+.overview .activation-automation > header { flex-direction: column; align-items: flex-start; gap: 3px; }
+.overview .activation-automation > header strong { margin: 0; }
+.overview .activation-automation > header small { font-family: inherit; font-size: .74rem; font-weight: 500; line-height: 1.35; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.overview .post-rally-panel > strong { display: block; color: var(--acid); font: 800 .95rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+
+/* ---------- Écran du défenseur (grand écran) ----------
+   Pas de Briefing ni d'automatismes côté défenseur : la colonne de droite
+   n'aurait que le compteur d'état. On donne donc la grande place à la bande
+   de cartes (à droite, carte Unité + améliorations côte à côte), et
+   l'identité + l'état de l'unité restent à gauche. */
+@media (min-width: 1000px) {
+  .overview.defense > .ov-col { display: contents; }
+  .overview.defense > .ov-col > .hero { grid-column: 1; grid-row: 1; }
+  .overview.defense > .ov-col > .unit-state-editor { grid-column: 1; grid-row: 2; }
+  .overview.defense > .ov-col > .card-strip { grid-column: 2; grid-row: 1 / span 2; grid-template-columns: minmax(200px, 38%) minmax(0, 1fr); }
+  .overview.defense .card-strip .unit-card-visual { grid-column: 1; }
+  .overview.defense .card-strip .upgrade-row { display: grid; grid-column: 2; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; min-width: 0; }
+}
+@media (min-width: 1000px) {
+  .overview.defense .unit-state-editor { grid-template-columns: minmax(0, 1fr); }
+  .overview.defense .unit-state-editor > div { grid-template-columns: minmax(0, 1fr) !important; }
+  .overview.defense .unit-state-editor .state-reset { grid-column: 1; grid-row: auto; justify-self: stretch; }
+  .overview.defense > .ov-col > .card-strip { grid-template-columns: minmax(220px, 44%) minmax(0, 1fr); }
+}

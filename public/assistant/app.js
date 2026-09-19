@@ -510,6 +510,9 @@ function activationBriefing(entry){
 }
 const overviewBriefingBase=overview;
 overview=function(entry,role){overviewBriefingBase(entry,role);if(role!=='attack'||defeated(entry))return;const anchor=root.querySelector('.overview .card-strip');anchor?.insertAdjacentHTML('afterend',activationBriefing(entry))};
+// Écran d'unité (19/09/2026) : regroupe les blocs de .overview en deux colonnes réelles (.ov-left = identité + cartes ; .ov-right = automatismes, Briefing, état de l'unité) pour que les deux colonnes partent du même bord haut. En dessous de 1000px, les colonnes disparaissent (display:contents) et l'ordre d'origine est rétabli en CSS.
+const overviewColumnsBase=overview;
+overview=function(entry,role){overviewColumnsBase(entry,role);const ov=root.querySelector('.overview');if(!ov)return;const left=document.createElement('div'),right=document.createElement('div');left.className='ov-col ov-left';right.className='ov-col ov-right';[...ov.children].forEach(child=>(child.matches('.activation-automation,.post-rally-panel,.activation-briefing,.unit-state-editor')?right:left).append(child));ov.append(left,right)};
 
 function activationActionLimit(entry){const state=stateFor(entry),stats=certifiedUnitStats(entry),morale=stats&&!moraleImmune(entry)?engine.moraleState({currentSuppression:state.suppression,courage:stats.courage}):null;return morale?.suppressed?1:2}
 
