@@ -210,3 +210,30 @@
   background: linear-gradient(135deg, rgba(255, 102, 92, .14), rgba(10, 21, 30, .96) 60%);
   box-shadow: 0 0 18px rgba(255, 102, 92, .2), inset 0 1px 0 rgba(255, 160, 150, .12);
 }
+
+/* ---------- Le même traitement « teinte + halo », en orange, pour tout ce qui est à faire ----------
+   Rouge = résultat, orange = à lancer / à saisir / à vérifier, bleu = information.
+   Orange fixe (et non --accent, qui suit le thème de l'armée). */
+.resolve-center {
+  --r-action: #ff8c1a;
+}
+.resolve-center .dice-pool,
+.resolve-center .defense-dice-pool {
+  border-color: rgba(255, 140, 26, .55); border-left-color: var(--r-action); border-left-width: 6px;
+  background: linear-gradient(135deg, rgba(255, 140, 26, .14), rgba(10, 21, 30, .96) 60%);
+  box-shadow: 0 0 18px rgba(255, 140, 26, .2), inset 0 1px 0 rgba(255, 190, 120, .12);
+}
+.resolve-center .dice-pool > span:first-child,
+.resolve-center .defense-dice-pool > span:first-child { color: #ffd9a8; }
+/* Zones de saisie et cases à vérifier : même teinte, halo plus discret (elles sont grandes). */
+.resolve-center .manual-focus {
+  border-color: rgba(255, 140, 26, .55) !important;
+  background: linear-gradient(135deg, rgba(255, 140, 26, .09), rgba(8, 20, 29, .95) 55%) !important;
+  box-shadow: 0 0 16px rgba(255, 140, 26, .1);
+}
+.resolve-center .manual-focus::before { color: var(--r-action); }
+.resolve-center .situation-check {
+  border-color: rgba(255, 140, 26, .55) !important; border-left-color: var(--r-action) !important;
+  background: linear-gradient(135deg, rgba(255, 140, 26, .1), rgba(10, 21, 30, .96) 60%) !important;
+  box-shadow: 0 0 14px rgba(255, 140, 26, .12);
+}
