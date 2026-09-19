@@ -131,3 +131,15 @@
 .resolve-center .morale-panel { border: 1px solid var(--r-line) !important; border-left: 4px solid var(--r-input) !important; border-radius: var(--r-radius); }
 .resolve-center .rules-panel { border: 1px solid rgba(111, 189, 219, .35) !important; border-left: 4px solid var(--r-rule) !important; border-radius: var(--r-radius); }
 .resolve-center .rules-panel > summary { color: #9ad6ee; }
+
+/* Barre « dés à lancer » : la progression de saisie vit sur la même ligne
+   (libellé | dés | progression), au lieu d'un bandeau séparé dessous. */
+.resolve-center .dice-pool:has(.entry-progress) > span:first-child,
+.resolve-center .defense-dice-pool:has(.entry-progress) > span:first-child { margin-right: 0; }
+.resolve-center .dice-pool:has(.entry-progress) > :nth-child(2),
+.resolve-center .defense-dice-pool:has(.entry-progress) > :nth-child(2) { margin-right: auto; }
+.resolve-center .dice-pool .entry-progress,
+.resolve-center .defense-dice-pool .entry-progress {
+  margin: 0; padding: 0 0 0 14px; border: 0; border-left: 1px solid var(--r-line); border-radius: 0; background: transparent !important;
+  grid-template-columns: 30px auto; gap: 0 10px; text-align: left;
+}
