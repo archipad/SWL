@@ -102,6 +102,16 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Fil du processus d'attaque : tant qu'un
+  résultat ou une information obligatoire manque (stepIssue()), tout ce qui suit
+  est grisé (opacité .34, désaturé, non interactif) ; dès qu'il est saisi, la
+  suite se dégrise (halo vert), et l'écran défile jusqu'à elle si elle n'est pas
+  déjà bien visible — aussi quand le blocage avance dans l'étape (portée puis
+  armes). Le passage à l'étape suivante reste manuel. Plateau de dés avec du
+  relief : médaillons ronds (dégradé radial, halo, ombres intérieures) qui
+  passent au vert / rouge avec l'état de la saisie, tuiles surélevées, boutons
+  biseautés, champ en creux.
+
 - [x] (19/09/2026, demande utilisateur) Design de référence « carte de pions »
   (validé) : l'encadré « Pions Viser disponibles » (teinte + halo bleu, étiquette
   INFO) reçoit à droite le compteur − / + pour corriger le stock, et sert de

@@ -260,7 +260,7 @@ assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne do
 assert.match(app, /pool\.before\(range\);if\(warning\)range\.before\(warning\)/, 'À l’étape 1, la sélection de portée doit être juste au-dessus des dés')
 assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.token-card'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=14/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=15/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} \(carte \$\{cardName\}\)/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
@@ -298,6 +298,13 @@ assert.match(app, /tokenCard\('surge','availableAttackSurges'[\s\S]*tokenCard\('
 assert.match(app, /const tokenIcons=\{aim:[\s\S]*stat-icons\/aim\.svg[\s\S]*asurge\.png/, 'Les cartes de pions doivent afficher l’icône du pion')
 assert.doesNotMatch(app, /PIONS ADRÉNALINE EN RÉSERVE|l’appli ne les suit plus entre les attaques/, 'La phrase « Indiquez ce que l’unité a actuellement… » doit avoir disparu')
 assert.match(app, /function syncTokenStock\(key\)[\s\S]*persistUnitStates\(\)/, 'Le stock de pions corrigé doit être écrit dans le suivi de l’unité')
+// Fil du processus + relief des dés (19/09/2026, demande utilisateur).
+assert.match(app, /function applyProcessGate\(\)[\s\S]*gateBlocker\(center,stepIssue\(\)\|\|''\)[\s\S]*classList\.add\('is-dimmed'\)/, 'Tant qu’un élément obligatoire manque (stepIssue), ce qui suit doit être grisé')
+assert.match(app, /classList\.add\('just-unlocked'\)[\s\S]*scrollIntoView/, 'Une fois l’élément obligatoire saisi, la suite doit se dégriser et l’écran défiler jusqu’à elle')
+assert.match(app, /refreshFieldStates\(\);refreshGate\(\);applyProcessGate\(\)/, 'Le grisage doit être recalculé après chaque saisie')
+assert.match(app, /medal\.className='face-medal'/, 'Les faces de dés doivent être dans des médaillons (relief)')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.resolve-center > \.is-dimmed \{ opacity: \.34; filter: grayscale\(\.85\); pointer-events: none/, 'Les parties grisées doivent être translucides, désaturées et non interactives')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.face-medal \{[\s\S]*radial-gradient[\s\S]*inset 0 -3px 6px/, 'Les médaillons de dés doivent avoir du relief')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -446,7 +453,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=104/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=106/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)

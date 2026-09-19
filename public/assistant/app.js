@@ -468,7 +468,7 @@ function decorateTacticalResolution(){
     const bar=attackStep!==0?center.querySelector(':scope > .dice-pool,:scope > .defense-dice-pool'):null,live=center.querySelector(':scope > .live-result-strip,:scope > .live-defense-strip');
     if(bar||live){const sticky=document.createElement('div');sticky.className='sticky-summary';stepper.after(sticky);if(bar)sticky.append(bar);if(live)sticky.append(live)}}
   // Plateau de dés : les faces de dés (touches, critiques, adrénalines, vierges ; blocages…) forment une rangée de tuiles carrées au lieu d'une pile de lignes.
-  center.querySelectorAll('.result-entry').forEach(entry=>{const faces=[...entry.children].filter(field=>field.classList.contains('quick-field')&&field.firstElementChild&&!field.firstElementChild.matches('.quick-label')&&field.querySelector('.touch-counter'));if(faces.length<2)return;const tray=document.createElement('div');tray.className='dice-tray';faces[0].before(tray);tray.append(...faces)});
+  center.querySelectorAll('.result-entry').forEach(entry=>{const faces=[...entry.children].filter(field=>field.classList.contains('quick-field')&&field.firstElementChild&&!field.firstElementChild.matches('.quick-label')&&field.querySelector('.touch-counter'));if(faces.length<2)return;const tray=document.createElement('div');tray.className='dice-tray';faces[0].before(tray);tray.append(...faces);faces.forEach(field=>{const face=field.firstElementChild,medal=document.createElement('span');medal.className='face-medal';face.replaceWith(medal);medal.append(face)})});
   center.querySelectorAll('.range-picker,.weapon-picker,.result-entry,.cover-picker,.conditional-modifiers,.cumbersome-checks,.wound-allocator').forEach(element=>element.classList.add('manual-focus'));
   center.querySelectorAll('.weapon-choice').forEach(choice=>{const key=choice.querySelector('[data-key]')?.dataset.key,input=choice.querySelector('[data-count]');if(!key||!input)return;const modelsNote=key.startsWith(norm(attacker.unit.name)+':')?squadModelsNote(attacker):'';if(modelsNote)choice.querySelector('.weapon-copy')?.insertAdjacentHTML('beforeend',modelsNote);const note=document.createElement('small');note.className='autofill-note';note.textContent=attackState.manualCounts?.[key]?'AJUSTÉ MANUELLEMENT':'PRÉREMPLI · MODIFIABLE';choice.querySelector('.count-control')?.prepend(note)});
   if(attackStep===2){const ctx=coverContext(),hits=attackResults().hit,dice=Math.max(0,hits-(ctx.profileLow?1:0)),panel=document.createElement('section');panel.className=`cover-command ${ctx.effective}`;panel.innerHTML=ctx.effective==='none'?'<small>ACTION COUVERT</small><strong>AUCUN DÉ À LANCER</strong><p>Poursuivez directement vers les esquives.</p>':`<small>ACTION COUVERT · ${ctx.effective==='heavy'?'LOURD':'LÉGER'}</small><strong>${dice} DÉ${dice>1?'S':''} BLANC${dice>1?'S':''} À LANCER</strong><p>${ctx.effective==='heavy'?'Blocages et adrénalines annulent les touches.':'Seuls les blocages annulent les touches.'}${ctx.profileLow?' Profil Bas ajoute déjà 1 blocage.':''}</p>`;center.querySelector('.cover-picker')?.before(panel)}
@@ -513,7 +513,36 @@ function refreshFieldStates(){
     budget.classList.toggle('is-done',state==='complete'&&attackState.budgetOpen!==attackStep);
   });
 }
-function refreshResolveUi(){if(!attackState||!root.querySelector('.resolve-center'))return;refreshFieldStates();refreshGate()}
+// Fil du processus (19/09/2026, demande utilisateur) : tant qu'un résultat ou une information obligatoire manque (stepIssue()), tout ce qui suit est grisé ; dès qu'il est saisi, la suite se dégrise et l'écran défile jusqu'à elle.
+function gateBlocker(center,issue){
+  if(!issue)return null;
+  if(/Contrôle de Tir/i.test(issue))return center.querySelector(':scope > .conditional-card');
+  if(/portée/i.test(issue))return center.querySelector('.range-picker');
+  if(/^Le jet (saisi|de défense saisi) contient/.test(issue))return center.querySelector('.result-entry:has(#rollHit),.result-entry:has(#defBlock)');
+  if(/arme/i.test(issue))return center.querySelector('.weapon-picker');
+  const warning=center.querySelector(':scope > .input-warning:not([hidden])');
+  if(warning&&warning.nextElementSibling)return warning.nextElementSibling;
+  return center.querySelector(':scope > .conditional-card,:scope > .situation-check.mandatory-check');
+}
+function applyProcessGate(){
+  const center=root.querySelector('.resolve-center');if(!center||!attackState)return;
+  const kids=[...center.children],neutral='.sticky-summary,.attack-stepper,.strict-warning,.input-warning',blocker=gateBlocker(center,stepIssue()||'');
+  kids.forEach(element=>element.classList.remove('is-dimmed'));
+  if(blocker){
+    let top=blocker;while(top&&top.parentElement!==center)top=top.parentElement;
+    const from=kids.indexOf(top);if(from<0)return;
+    kids.forEach((element,index)=>{if(index>from&&!element.matches(neutral))element.classList.add('is-dimmed')});
+    // Le blocage avance (ex. portée saisie, il reste les armes) : l'écran suit jusqu'au nouvel élément à faire.
+    if(attackState.gateStep===attackStep&&Number.isInteger(attackState.gateIndex)&&from>attackState.gateIndex){const rect=top.getBoundingClientRect();if(rect.top<150||rect.bottom>window.innerHeight-110)top.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'})}
+    attackState.gateStep=attackStep;attackState.gateIndex=from;
+  }else if(attackState.gateStep===attackStep&&Number.isInteger(attackState.gateIndex)){
+    // Débloqué : la section suivante s'illumine un instant et l'écran défile jusqu'à elle si elle n'est pas déjà bien visible.
+    const next=kids.slice(attackState.gateIndex+1).find(element=>!element.matches(neutral)&&!element.hidden);
+    attackState.gateStep=null;attackState.gateIndex=null;
+    if(next){next.classList.add('just-unlocked');setTimeout(()=>next.classList.remove('just-unlocked'),1400);const rect=next.getBoundingClientRect();if(rect.top<150||rect.top>window.innerHeight*0.6)next.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}
+  }
+}
+function refreshResolveUi(){if(!attackState||!root.querySelector('.resolve-center'))return;refreshFieldStates();refreshGate();applyProcessGate()}
 // À l'arrivée sur une étape : défilement jusqu'au premier élément à faire, s'il n'est pas déjà bien visible (sans donner le focus : pas de clavier qui s'ouvre sur iPad).
 function focusFirstTodo(){
   const center=root.querySelector('.resolve-center');if(!center)return;
