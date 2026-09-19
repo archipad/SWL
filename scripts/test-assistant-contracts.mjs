@@ -260,7 +260,7 @@ assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne do
 assert.match(app, /\[warning,range,fire,weapons,pool,poolNote\]\.filter\(Boolean\)\.forEach\(element=>\{anchor\.after\(element\);anchor=element\}\)/, 'Étape 1 : la portée est en haut, puis le Contrôle de Tir, puis les armes, et les dés à lancer tout en bas, sous les armes')
 assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.token-card'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=18/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=19/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} · carte \$\{cardName\}/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
@@ -316,6 +316,15 @@ assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', 
 assert.doesNotMatch(app, /Pas assez de pions Adrénaline/, 'Corriger le stock d’Adrénaline ne doit plus bloquer la résolution')
 assert.match(app, /function clampSpentTokens\(key\)[\s\S]*attackSurgesSpent=Math\.min[\s\S]*defenseSurgesSpent=Math\.min[\s\S]*dodgeCrits=Math\.min/, 'La dépense de pions doit être ramenée au stock quand celui-ci baisse')
 assert.match(app, /clampSpentTokens\(key\);syncTokenStock\(key\);updateLiveCounters\(\)/, 'Le plafonnement de la dépense doit s’appliquer à chaque correction du stock')
+// Déroulé forcé des étapes Couvert et Modifications (19/09/2026, demande utilisateur).
+assert.match(app, /Choisissez le couvert observé \(Aucun, Léger ou Lourd\)/, 'Le couvert doit être choisi explicitement (attaque à distance)')
+assert.match(app, /Saisissez le jet de couvert \(\$\{dice\} dé\(s\)\) puis validez-le/, 'Le jet de couvert doit être saisi puis validé quand des dés sont à lancer')
+assert.match(app, /attackState\.modsIdle===false&&!attackState\.modsConfirmed\)return 'Validez les modifications/, 'Une étape Modifications non vide doit être validée explicitement')
+assert.match(app, /dodgeEntry\.className='result-entry dodge-entry'/, 'Les esquives doivent former leur propre section, sous leur carte de pions')
+assert.match(app, /\[coverOptions,coverCard,coverEntry,dodgeCard,dodgeEntry\]\.filter\(Boolean\)/, 'Ordre de l’étape Couvert : couvert → jet de couvert → esquives')
+assert.match(app, /document\.addEventListener\('click',event=>\{if\(attackState&&event\.target\.closest\?\.\('\[data-cover\]'\)\)\{attackState\.coverChosen=true;attackState\.coverRolled=false\}\},true\)/, 'Changer de couvert doit invalider le jet de couvert déjà validé')
+assert.match(app, /if\(mandatory&&\/Confirmez\|vérifi\/i\.test\(issue\)\)return mandatory/, 'Une vérification obligatoire (ex. Encombrant) doit être le point bloquant du grisage')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.phase-confirm \{[\s\S]*\.phase-confirm\.done \{[\s\S]*#5cdda3/, 'Le bouton de validation d’une section doit exister (orange à valider, vert validé)')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -464,7 +473,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=110/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=113/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)

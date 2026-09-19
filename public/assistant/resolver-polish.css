@@ -422,3 +422,24 @@
 .resolve-center details.roll-conversion-panel > summary > strong { display: inline; }
 .resolve-center details.roll-conversion-panel > summary em { color: var(--muted); font-size: .78rem; font-style: normal; font-weight: 400; }
 .resolve-center details.roll-conversion-panel[open] > summary { margin-bottom: 8px; }
+
+/* =====================================================================
+   Déroulé forcé des autres étapes : couvert observé, jet de couvert, modifications
+   ===================================================================== */
+/* Couvert pas encore choisi : aucune option n'apparaît « sélectionnée » (la valeur par défaut « Aucun » n'est pas un choix). */
+.resolve-center .cover-options.unset button.on { border-color: var(--r-line); background: rgba(255, 255, 255, .04); color: var(--text); box-shadow: none; }
+.resolve-center .cover-options.unset { animation: todo-pulse 1.8s ease-in-out infinite; }
+.resolve-center .cover-options.manual-focus { padding: 12px; }
+@media (prefers-reduced-motion: reduce) { .resolve-center .cover-options.unset { animation: none; border-color: #ff8c1a; } }
+/* Bouton de validation d'une section (jet de couvert, modifications). */
+.resolve-center .phase-confirm-row { display: grid; }
+.resolve-center .result-entry > .phase-confirm { grid-column: 1 / -1; }
+.resolve-center .phase-confirm {
+  width: 100%; min-height: 56px; border-radius: var(--r-radius); font: 800 .95rem/1.2 inherit; letter-spacing: .03em; cursor: pointer;
+  border: 2px solid #ff8c1a; background: linear-gradient(135deg, rgba(255, 140, 26, .22), rgba(10, 21, 30, .96)); color: #ffe2bf;
+  box-shadow: 0 0 16px rgba(255, 140, 26, .2), 0 4px 0 rgba(0, 0, 0, .45);
+}
+.resolve-center .phase-confirm.todo { animation: todo-pulse 1.8s ease-in-out infinite; }
+.resolve-center .phase-confirm:active { transform: translateY(2px); box-shadow: 0 0 12px rgba(255, 140, 26, .2), 0 2px 0 rgba(0, 0, 0, .45); }
+.resolve-center .phase-confirm.done { border-color: #5cdda3; background: linear-gradient(135deg, rgba(92, 221, 163, .18), rgba(10, 21, 30, .96)); color: #b5f2d6; box-shadow: 0 0 14px rgba(92, 221, 163, .18), 0 4px 0 rgba(0, 0, 0, .45); }
+@media (prefers-reduced-motion: reduce) { .resolve-center .phase-confirm.todo { animation: none; } }

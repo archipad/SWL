@@ -102,6 +102,20 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Même logique étape par étape sur les
+  autres écrans de résolution. Couvert & esquive (attaque à distance) : couvert
+  observé à choisir explicitement (« Aucun » n'apparaît plus sélectionné par
+  défaut) → jet de couvert à saisir puis à valider (bouton) quand des dés sont à
+  lancer → esquives (carte de pions + dépensées, désormais section à part). Le
+  changement de couvert invalide la validation. Modifications non vide (Impact,
+  Armure, boucliers, Gardien…) : bouton « Valider les modifications » obligatoire
+  (étape vide = bandeau « Passer », inchangé). Une vérification obligatoire
+  (Encombrant…) devient le point bloquant du grisage. Bouton de validation
+  commun `.phase-confirm` (orange à valider, vert validé, modifiable). Défense et
+  Jet/relances suivaient déjà la logique (saisie des dés = point bloquant).
+  Suppression & moral : ordre et design alignés, sans blocage supplémentaire (le
+  bouton final « Appliquer les blessures et terminer » sert de validation).
+
 - [x] (19/09/2026, demande utilisateur) Étape 1 réordonnée : portée en haut →
   Contrôle de Tir (grisé tant que la portée manque) → choix des armes → dés à
   lancer tout en bas, sous les armes. Le Contrôle de Tir n'est plus un rappel bleu

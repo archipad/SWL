@@ -466,6 +466,18 @@ function decorateTacticalResolution(){
   if(stepper){const header=document.querySelector('.app-header-sticky');center.style.setProperty('--hdr',(header?header.offsetHeight:0)+'px');center.style.setProperty('--stepper-h',stepper.offsetHeight+'px');
     const bar=attackStep!==0?center.querySelector(':scope > .dice-pool,:scope > .defense-dice-pool'):null,live=center.querySelector(':scope > .live-result-strip,:scope > .live-defense-strip');
     if(bar||live){const sticky=document.createElement('div');sticky.className='sticky-summary';stepper.after(sticky);if(bar)sticky.append(bar);if(live)sticky.append(live)}}
+  // Étape Couvert & esquive (19/09/2026) : déroulé forcé — couvert observé (choix explicite) → jet de couvert (validé) → esquives. Les esquives sortent du bloc du jet de couvert pour former leur propre section, sous leur carte de pions.
+  if(attackStep===2){
+    const coverOptions=center.querySelector(':scope > .cover-options'),coverCard=center.querySelector(':scope > .automation-card[class*="cover-"]'),coverEntry=center.querySelector(':scope > .result-entry'),dodgeCard=center.querySelector(':scope > .token-card.dodge');
+    if(coverOptions&&coverEntry){
+      const ranged=attackType()==='ranged',dodgeFields=[...coverEntry.querySelectorAll('.quick-field')].filter(field=>field.querySelector('#dodges,#dodgeCrits'));
+      let dodgeEntry=null;if(dodgeFields.length){dodgeEntry=document.createElement('div');dodgeEntry.className='result-entry dodge-entry';dodgeEntry.append(...dodgeFields)}
+      if(ranged){coverOptions.classList.add('manual-focus');coverOptions.classList.toggle('unset',!attackState.coverChosen)}
+      if(coverEntry.querySelector('#coverBlock')){const done=!!attackState.coverRolled,confirm=document.createElement('button');confirm.type='button';confirm.className='phase-confirm '+(done?'done':'todo');confirm.textContent=done?'✓ Jet de couvert validé · modifier':'Valider le jet de couvert';confirm.onclick=()=>{attackState.coverRolled=!attackState.coverRolled;resolveScreen()};coverEntry.append(confirm)}
+      let last=[...center.children].filter(element=>element.matches('.attack-stepper,.sticky-summary,.result-strip:not(.live-result-strip),.situation-check')).pop();
+      [coverOptions,coverCard,coverEntry,dodgeCard,dodgeEntry].filter(Boolean).forEach(element=>{last.after(element);last=element});
+    }
+  }
   // Plateau de dés : les faces de dés (touches, critiques, adrénalines, vierges ; blocages…) forment une rangée de tuiles carrées au lieu d'une pile de lignes.
   center.querySelectorAll('.result-entry').forEach(entry=>{const faces=[...entry.children].filter(field=>field.classList.contains('quick-field')&&field.firstElementChild&&!field.firstElementChild.matches('.quick-label')&&field.querySelector('.touch-counter'));if(faces.length<2)return;const tray=document.createElement('div');tray.className='dice-tray';faces[0].before(tray);tray.append(...faces);faces.forEach(field=>{const face=field.firstElementChild,medal=document.createElement('span');medal.className='face-medal';face.replaceWith(medal);medal.append(face)})});
   center.querySelectorAll('.range-picker,.weapon-picker,.result-entry,.cover-picker,.conditional-modifiers,.cumbersome-checks,.wound-allocator').forEach(element=>element.classList.add('manual-focus'));
@@ -475,6 +487,8 @@ function decorateTacticalResolution(){
   const entryProgress=center.querySelector('.entry-progress'),poolBar=center.querySelector('.dice-pool,.defense-dice-pool');if(entryProgress&&poolBar)poolBar.append(entryProgress);
   // Étape Modifications sans effet (ni Impact, ni Armure, ni bouclier, ni case à cocher) : bandeau « Passer », saisie manuelle repliée.
   if(attackStep===3){const cards=[...center.querySelectorAll(':scope > .automation-card')],idle=cards.length===1&&/Impact disponible : 0/.test(cards[0].textContent)&&/sans Armure/.test(cards[0].textContent)&&!center.querySelector(':scope > .situation-check,:scope > .cumbersome-checks,:scope > .token-budget');
+    attackState.modsIdle=idle;
+    if(!idle){const done=!!attackState.modsConfirmed,row=document.createElement('div');row.className='phase-confirm-row';row.innerHTML=`<button type="button" class="phase-confirm ${done?'done':'todo'}" data-phase-confirm="mods">${done?'✓ Modifications appliquées · modifier':'Valider les modifications'}</button>`;row.querySelector('button').onclick=()=>{attackState.modsConfirmed=!attackState.modsConfirmed;resolveScreen()};(center.querySelector(':scope > .rules-panel')||center.lastElementChild)?.before(row)}
     if(idle){const banner=document.createElement('section');banner.className='idle-step';banner.innerHTML='<div><strong>AUCUNE MODIFICATION À APPLIQUER</strong><small>Ni Impact, ni Armure, ni bouclier à cette étape.</small></div><button type="button" class="primary" data-skip-step>Passer à la défense →</button>';const manual=document.createElement('details');manual.className='idle-manual';manual.innerHTML='<summary>Saisie manuelle (facultative)</summary>';cards.concat([center.querySelector(':scope > .result-entry')]).filter(Boolean).forEach(element=>manual.append(element));center.querySelector(':scope > .result-strip:not(.live-result-strip)')?.remove();(center.querySelector('.sticky-summary')||center.querySelector('.attack-stepper'))?.after(banner,manual);banner.querySelector('[data-skip-step]').onclick=()=>$('#nextAttack')?.click()}}
   // Journal de résolution : replié par défaut (demande utilisateur du 19/09/2026).
   const journal=center.querySelector('.resolution-log');if(journal&&journal.tagName!=='DETAILS'){const folded=document.createElement('details');folded.className=journal.className;const title=journal.querySelector('strong')?.textContent||'JOURNAL DE RÉSOLUTION';journal.querySelector('strong')?.remove();folded.innerHTML=`<summary>${title}</summary>${journal.innerHTML}`;journal.replaceWith(folded)}
@@ -515,11 +529,15 @@ function refreshFieldStates(){
 // Fil du processus (19/09/2026, demande utilisateur) : tant qu'un résultat ou une information obligatoire manque (stepIssue()), tout ce qui suit est grisé ; dès qu'il est saisi, la suite se dégrise et l'écran défile jusqu'à elle.
 function gateBlocker(center,issue){
   if(!issue)return null;
+  if(attackStep===2&&attackType()==='ranged'){if(!attackState.coverChosen)return center.querySelector(':scope > .cover-options');if(/jet de couvert/i.test(issue))return center.querySelector(':scope > .result-entry:has(#coverBlock)')}
+  if(attackStep===3&&/^Validez les modifications/.test(issue))return center.querySelector(':scope > .phase-confirm-row');
   if(attackStep===0){const fire=center.querySelector(':scope > .fire-control-card');if(attackState.range==null)return center.querySelector('.range-picker');if(fire&&attackState.fireControlUsed===null)return fire}
   if(/Contrôle de Tir/i.test(issue))return center.querySelector(':scope > .fire-control-card');
   if(/portée/i.test(issue))return center.querySelector('.range-picker');
   if(/^Le jet (saisi|de défense saisi) contient/.test(issue))return center.querySelector('.result-entry:has(#rollHit),.result-entry:has(#defBlock)');
   if(/arme/i.test(issue))return center.querySelector('.weapon-picker');
+  const mandatory=center.querySelector(':scope > .cumbersome-checks,:scope > .situation-check.mandatory-check');
+  if(mandatory&&/Confirmez|vérifi/i.test(issue))return mandatory;
   const warning=center.querySelector(':scope > .input-warning:not([hidden])');
   if(warning&&warning.nextElementSibling)return warning.nextElementSibling;
   return center.querySelector(':scope > .fire-control-card.conditional-card,:scope > .situation-check.mandatory-check');
@@ -534,11 +552,11 @@ function applyProcessGate(){
     kids.forEach((element,index)=>{if(index>from&&!element.matches(neutral))element.classList.add('is-dimmed')});
     // Le blocage avance (ex. portée saisie, il reste les armes) : l'écran suit jusqu'au nouvel élément à faire.
     if(attackState.gateStep===attackStep&&Number.isInteger(attackState.gateIndex)&&from>attackState.gateIndex){const rect=top.getBoundingClientRect();if(rect.top<150||rect.bottom>window.innerHeight-110)top.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'})}
-    attackState.gateStep=attackStep;attackState.gateIndex=from;attackState.gateKey=['range-picker','fire-control-card','weapon-picker','result-entry','situation-check'].find(name=>top.classList.contains(name))||null;
+    attackState.gateStep=attackStep;attackState.gateIndex=from;attackState.gateKey=['range-picker','fire-control-card','weapon-picker','cover-options','phase-confirm-row','result-entry','situation-check'].find(name=>top.classList.contains(name))||null;
   }else if(attackState.gateStep===attackStep&&Number.isInteger(attackState.gateIndex)){
     // Débloqué : la section suivante s'illumine un instant et l'écran défile jusqu'à elle si elle n'est pas déjà bien visible.
     // Le point d'ancrage est retrouvé par sa classe (les index bougent quand l'avertissement disparaît).
-    const anchorEl=attackState.gateKey?(attackState.gateKey==='result-entry'?center.querySelector(':scope > .result-entry:has(#rollHit),:scope > .result-entry:has(#defBlock)'):center.querySelector(':scope > .'+attackState.gateKey)):null,following=anchorEl?kids.slice(kids.indexOf(anchorEl)+1):kids.slice(attackState.gateIndex+1),next=following.find(element=>!element.matches(neutral)&&!element.hidden);
+    const anchorEl=attackState.gateKey?(attackState.gateKey==='result-entry'?center.querySelector(':scope > .result-entry:has(#rollHit),:scope > .result-entry:has(#defBlock),:scope > .result-entry:has(#coverBlock)'):center.querySelector(':scope > .'+attackState.gateKey)):null,following=anchorEl?kids.slice(kids.indexOf(anchorEl)+1):kids.slice(attackState.gateIndex+1),next=following.find(element=>!element.matches(neutral)&&!element.hidden);
     attackState.gateStep=null;attackState.gateIndex=null;
     if(next){next.classList.add('just-unlocked');setTimeout(()=>next.classList.remove('just-unlocked'),1400);const rect=next.getBoundingClientRect();if(rect.top<150||rect.top>window.innerHeight*0.6)next.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}
   }
@@ -547,12 +565,28 @@ function refreshResolveUi(){if(!attackState||!root.querySelector('.resolve-cente
 // À l'arrivée sur une étape : défilement jusqu'au premier élément à faire, s'il n'est pas déjà bien visible (sans donner le focus : pas de clavier qui s'ouvre sur iPad).
 function focusFirstTodo(){
   const center=root.querySelector('.resolve-center');if(!center)return;
-  const target=center.querySelector('.range-picker.todo,.fire-control-card.todo,.weapon-picker.todo')||(center.dataset.entryState==='pending'?center.querySelector('.dice-tray > .quick-field.is-empty'):null);
+  const target=center.querySelector('.range-picker.todo,.fire-control-card.todo,.weapon-picker.todo,.cover-options.unset,.phase-confirm.todo')||(center.dataset.entryState==='pending'?center.querySelector('.dice-tray > .quick-field.is-empty'):null);
   if(!target)return;
   const rect=target.getBoundingClientRect();
   if(rect.top>140&&rect.bottom<window.innerHeight-110)return;
   target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
 }
+// Choisir un couvert est une décision explicite (même « Aucun ») ; la changer invalide le jet de couvert déjà validé.
+document.addEventListener('click',event=>{if(attackState&&event.target.closest?.('[data-cover]')){attackState.coverChosen=true;attackState.coverRolled=false}},true);
+// Ces blocages sont signalés par la pastille du bas et par le grisage : pas d'avertissement rouge déplacé en fin d'écran.
+const placeBlockingWarningProcessBase=placeBlockingWarning;
+placeBlockingWarning=function(){const issue=stepIssue();if(issue&&/^(Choisissez le couvert|Saisissez le jet de couvert|Validez les modifications)/.test(issue)){root.querySelectorAll('.resolve-center > .strict-warning').forEach(warning=>warning.remove());return}placeBlockingWarningProcessBase()};
+const stepIssueProcessBase=stepIssue;
+stepIssue=function(){
+  const base=stepIssueProcessBase();if(base)return base;
+  if(attackStep===2&&attackType()==='ranged'){
+    if(!attackState.coverChosen)return 'Choisissez le couvert observé (Aucun, Léger ou Lourd).';
+    const ctx=coverContext(),dice=Math.max(0,attackResults().hit-(ctx.profileLow?1:0));
+    if(ctx.effective!=='none'&&dice>0&&!attackState.coverRolled)return `Saisissez le jet de couvert (${dice} dé(s)) puis validez-le.`;
+  }
+  if(attackStep===3&&attackState.modsIdle===false&&!attackState.modsConfirmed)return 'Validez les modifications (Impact, Armure, boucliers…) avant de poursuivre.';
+  return null;
+};
 ['input','click'].forEach(type=>document.addEventListener(type,event=>{if(event.target.closest?.('.resolve-center, .actions'))requestAnimationFrame(refreshResolveUi)},true));
 // Encadré « Conversion Adrénaline » : replié en mode rapide, déplié sinon (comme « Règles qui interviennent »). L'état ouvert/fermé choisi par l'utilisateur est mémorisé pour la durée de l'attaque, car l'encadré est régénéré à chaque saisie.
 const rollConversionFoldBase=rollConversionPanel;
