@@ -102,6 +102,20 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Refonte des écrans 3 à 6. Contrôle de Tir :
+  reformulé d'après la carte (« améliorez 2 dés d'attaque quand une autre unité
+  alliée à portée 1 attaque une cible en ligne de vue DU PORTEUR ») — le porteur
+  a également la cible en ligne de vue. Couvert & esquive : barre « dés de couvert
+  à lancer » + état du jet (même design que Jet/Défense), plateau de dés pour le
+  jet de couvert, Esquive sur une ligne (stock en lecture seule issu du suivi de
+  l'activation, dépense à droite). Modifications : « avant / après » en haut ;
+  la saisie Impact/Armure n'existe que si l'attaquant a Impact ET le défenseur
+  Armure, sinon information « ne s'applique pas ici » (Armure seule = automatique).
+  Défense : déjà alignée (barre orange, plateau, rouge réservé aux blessures).
+  Suppression = résumé de l'attaque : blessures et suppression à appliquer
+  (cartes rouges, gros chiffres, icônes), ionique si applicable, pions dépensés
+  (esquives, Viser, Adrénaline attaque/défense) en cartes d'information bleues.
+
 - [x] (19/09/2026, demande utilisateur) Même logique étape par étape sur les
   autres écrans de résolution. Couvert & esquive (attaque à distance) : couvert
   observé à choisir explicitement (« Aucun » n'apparaît plus sélectionné par
