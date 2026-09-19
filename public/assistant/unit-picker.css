@@ -1,0 +1,69 @@
+/* Écrans « Quelle unité jouez-vous ? » / « Quelle unité est attaquée ? »
+   (19/09/2026, demande utilisateur : retirer recherche et filtres, agrandir
+   les troupes, et s'appuyer sur la carte pour choisir la troupe).
+
+   La carte Unité (paysage) est le bouton : elle occupe toute la largeur de
+   la tuile, le nom et les améliorations sont dessous. Le nombre de colonnes
+   (--cols) et de rangées (--rows) est calculé par app.js (pickerGrid) selon
+   le nombre d'unités ; la hauteur de chaque carte est plafonnée pour que
+   toutes les rangées tiennent dans l'écran (iPad Air paysage 1180×820)
+   sans défilement. Les 330px retranchés correspondent au bandeau du haut
+   (55) + à l'introduction avec le choix du camp (~220) + marges. */
+
+.unit-picker-grid {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 0;
+}
+.unit-picker-grid .unit-tile {
+  --gap: 12px;
+  flex: 0 0 calc((100% - (var(--cols, 3) - 1) * var(--gap)) / var(--cols, 3));
+  min-width: 0; min-height: 0; box-sizing: border-box;
+  display: flex; flex-direction: column; align-items: stretch; gap: 8px; padding: 8px;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: linear-gradient(160deg, #0d1a24 0%, #0a131b 100%);
+  cursor: pointer; transition: transform .15s, border-color .15s, box-shadow .15s;
+}
+.unit-picker-grid .unit-tile:hover,
+.unit-picker-grid .unit-tile:focus-visible {
+  transform: translateY(-3px); border-color: var(--acid);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .45), 0 0 22px color-mix(in srgb, var(--acid) 28%, transparent);
+}
+.unit-picker-grid .unit-tile:active { transform: scale(.985); }
+
+/* La carte : toute la largeur, proportions natives, jamais rognée. */
+.unit-picker-grid .tile-visual {
+  display: grid !important; place-items: center; min-height: 72px; overflow: hidden;
+  border-radius: 8px; background: #050806;
+}
+.unit-picker-grid .unit-tile img {
+  display: block; width: 100%; height: auto; border-radius: 0; background: none; object-fit: contain;
+  max-height: calc((100dvh - 330px) / var(--rows, 1) - 58px);
+}
+
+/* Nom, rang et améliorations sous la carte. */
+.unit-picker-grid .unit-tile > span:nth-of-type(2) { gap: 2px; padding: 0 4px 2px; }
+.unit-picker-grid .unit-tile strong { overflow: hidden; font-size: 1rem; line-height: 1.2; text-overflow: ellipsis; white-space: nowrap; }
+.unit-picker-grid .unit-tile small { font-size: .7rem; }
+
+/* Rang : pastille sur le coin de la carte. Les pions d'état restent sous la
+   carte (en haut ils masqueraient le nom imprimé) ; les tuiles d'une même
+   rangée ont la même hauteur (flex, étirement par défaut). */
+.unit-picker-grid .unit-tile > .rank-icon {
+  position: absolute; z-index: 2; top: 14px; right: 14px; width: 30px; height: 27px; padding: 0;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .9));
+}
+.unit-picker-grid .unit-status { margin-top: 4px; }
+
+@media (max-width: 999px) {
+  .unit-picker-grid .unit-tile { flex-basis: calc((100% - 2 * var(--gap)) / 3); }
+  .unit-picker-grid .unit-tile img { max-height: none; }
+}
+@media (max-width: 620px) {
+  .unit-picker-grid .unit-tile { flex-basis: calc((100% - var(--gap)) / 2); }
+}
+
+/* Gain de place au-dessus de la grille : choix du camp plus bas, et pions
+   d'état sur une seule ligne (sinon 2 puces = 2 lignes de plus par rangée). */
+.intro .army-switch { margin-block: 8px 4px; }
+.intro .army-switch button { min-height: 64px; padding-block: 8px; }
+.unit-picker-grid .unit-status { flex-wrap: nowrap; overflow: hidden; gap: 4px; }
+.unit-picker-grid .unit-status b { flex: 0 1 auto; min-width: 0; overflow: hidden; padding: 2px 5px; font-size: .62rem; text-overflow: ellipsis; white-space: nowrap; }

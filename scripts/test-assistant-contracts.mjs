@@ -247,7 +247,10 @@ assert.match(app, /dialog\.className=`rule-popup dialog-wipe/, 'Le pop-up de rap
 assert.match(app, /dialog\.className='card-dialog dialog-wipe'/, 'Le zoom de carte doit utiliser le balayage commun')
 assert.match(app, /dialog\.className='warning-dialog dialog-wipe'/, 'L’avertissement de réserve mixte doit utiliser le balayage commun')
 assert.match(app, /stageWipe=true;pick\('attacker'\)/, 'Changer de joueur doit déclencher le balayage')
-assert.ok(app.includes("$('#unitSearch').oninput=e=>{unitQuery=e.target.value;pick(role);requestAnimationFrame(()=>{$('#unitSearch')?.focus();$('#unitSearch')?.setSelectionRange(unitQuery.length,unitQuery.length)})};"), 'Taper dans la recherche ne doit pas déclencher le balayage (gestionnaire de recherche modifié de façon inattendue)')
+assert.doesNotMatch(app, /unitSearch|data-rank|rank-filters|class="unit-tools"/, 'La recherche et les filtres de rang doivent avoir disparu de l’écran de sélection (demande utilisateur du 19/09/2026)')
+assert.match(app, /function pickerGrid\(units\)\{const n=units\.length,cols=n<=3\?3:n<=8\?4:n<=10\?5:n<=12\?6:7;/, 'La grille de sélection doit adapter le nombre de colonnes au nombre d’unités pour tenir sans défilement')
+assert.match(fs.readFileSync(new URL('../public/assistant/unit-picker.css', import.meta.url), 'utf8'), /max-height: calc\(\(100dvh - 330px\) \/ var\(--rows, 1\) - 58px\)/, 'La hauteur des cartes de sélection doit être plafonnée pour que toutes les rangées tiennent à l’écran')
+assert.match(index, /unit-picker\.css\?v=1/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
 assert.match(app, /weight:\(Number\(group\.querySelector\('header small'\)\?\.textContent\)\|\|0\)\+1/, 'Les colonnes de catégories doivent se répartir par nombre de figurines, pas par une règle figée')
@@ -264,7 +267,7 @@ assert.match(app, /sort\(\(a,b\)=>\(order\[a\.label\]\?\?9\)-\(order\[b\.label\]
 assert.match(app, /'forces speciales':3,soutien:4,lourd:5,'rang a verifier':6/, 'Les clés de la table d’ordre doivent être sans accent (norm() retire toujours les accents, sinon Forces spéciales/Rang à vérifier ne correspondent jamais)')
 assert.doesNotMatch(app, /'forces spéciales':\d/, 'La table d’ordre ne doit plus utiliser de clé accentée (jamais reconnue par norm())')
 assert.match(app, /root\.innerHTML=`<section class="intro">/, 'Le wrapper balayé de pick() doit exclure .intro (le sélecteur Joueur 1\/2)')
-assert.match(app, /<\/section><div class="\$\{wipe\?`page-wipe`:``\}"><section class="unit-tools">/, 'Le balayage doit envelopper uniquement la zone des unités, pas le sélecteur de joueur')
+assert.match(app, /<\/section><div class="\$\{wipe\?`page-wipe`:``\}">\$\{available\.length\?/, 'Le balayage doit envelopper uniquement la zone des unités, pas le sélecteur de joueur')
 assert.match(app, /function overview\(entry,role\)\{const wipe=stageWipe;stageWipe=false;/, 'Changer d’unité/de cible doit rejouer le balayage à l’entrée de l’aperçu d’unité')
 assert.match(app, /function resolveScreen\(\)\{stage=4\+attackStep;const wipeStage=stageWipe;stageWipe=false;const wipeCenter=centerWipe;centerWipe=false;/, 'La résolution d’attaque doit distinguer le balayage plein écran (première entrée) du balayage de la seule colonne centrale (changement d’étape)')
 assert.match(app, /<section class="resolve-center \$\{wipeCenter\?`step-wipe`:``\}">/, 'Seule .resolve-center (colonne centrale) doit être balayée entre deux étapes, pas les colonnes attaquant\/défenseur')
@@ -395,7 +398,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=90/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=91/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)

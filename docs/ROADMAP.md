@@ -102,6 +102,16 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Écrans de sélection d'unité (« Quelle
+  unité jouez-vous ? » / « …est attaquée ? ») : retrait de la recherche, des
+  filtres de rang, du titre de liste et des en-têtes de rang pour gagner de
+  la place ; la carte Unité en grand (proportions natives, jamais rognée)
+  devient le bouton de sélection, avec nom et améliorations dessous, rang en
+  pastille sur la carte. Grille unique dont le nombre de colonnes suit le
+  nombre d'unités (3 à 7) et dont la hauteur de carte est plafonnée pour que
+  toutes les rangées tiennent sur iPad Air paysage sans défilement (vérifié
+  jusqu'à 10 unités à 1180×820). Nouvelle feuille `unit-picker.css`.
+
 - [x] (19/09/2026, demande utilisateur : « tout n'est pas aligné, uniforme ») Audit
   design de l'écran d'unité et mise en page unifiée dans une feuille dédiée
   `unit-screen.css` (chargée après `ipad-compact.css`, qui n'en porte plus la
