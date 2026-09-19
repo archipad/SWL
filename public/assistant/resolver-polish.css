@@ -317,18 +317,30 @@
 .resolve-center .token-budget .budget-summary span { flex: 1; min-width: 0; color: #c9dbe4; font-size: .8rem; }
 .resolve-center .token-budget .budget-summary i { color: var(--muted); font-size: .72rem; font-style: normal; text-decoration: underline; }
 
-/* ---------- Pions Viser disponibles : information mise en avant (les relances se font à la table) ---------- */
-.resolve-center .aim-info {
-  position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; padding: 12px 14px; box-sizing: border-box;
+/* ---------- Cartes de pions (Viser, Adrénaline, Esquive) ----------
+   Le design de référence de l'appli (validé par l'utilisateur) : information
+   mise en avant — teinte bleue + halo, étiquette INFO, icône du pion — avec le
+   stock corrigeable (− / +) dans le même encadré, à droite. */
+.resolve-center .token-card {
+  position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 12px 14px; box-sizing: border-box;
   border: 1px solid rgba(111, 189, 219, .55); border-left: 6px solid var(--r-rule); border-radius: var(--r-radius);
   background: linear-gradient(135deg, rgba(111, 189, 219, .16), rgba(10, 21, 30, .96) 60%);
   box-shadow: 0 0 18px rgba(111, 189, 219, .2), inset 0 1px 0 rgba(170, 220, 240, .1);
 }
-.resolve-center .aim-info::before {
+.resolve-center .token-card::before {
   content: "INFO"; position: absolute; top: -10px; left: 12px; padding: 2px 7px; background: #0a151e; color: var(--r-rule);
   font: 900 .62rem/1.2 Orbitron, sans-serif; letter-spacing: .12em;
 }
-.resolve-center .aim-info b { color: #fff; font: 800 .95rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; }
-.resolve-center .aim-info span { flex: 1 1 260px; color: #c9dbe4; font-size: .82rem; line-height: 1.35; }
-.resolve-center .aim-info.none { border-left-color: #5f7480; background: rgba(255, 255, 255, .03); box-shadow: none; }
-.resolve-center .aim-info.none b { color: #b9c7d0; }
+.resolve-center .token-icon {
+  display: grid; flex: 0 0 auto; width: 46px; height: 46px; place-items: center; border: 2px solid rgba(111, 189, 219, .6); border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(111, 189, 219, .3), rgba(8, 20, 29, .9));
+  box-shadow: 0 0 12px rgba(111, 189, 219, .3);
+}
+.resolve-center .token-icon img { width: 26px; height: 26px; object-fit: contain; }
+.resolve-center .token-text { display: grid; flex: 1 1 220px; min-width: 0; gap: 2px; }
+.resolve-center .token-text b { color: #fff; font: 800 .95rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; }
+.resolve-center .token-text span { color: #c9dbe4; font-size: .82rem; line-height: 1.35; }
+.resolve-center .token-card .touch-counter { flex: 0 0 auto; margin-left: auto; }
+.resolve-center .token-card.none { border-left-color: #5f7480; background: rgba(255, 255, 255, .03); box-shadow: none; }
+.resolve-center .token-card.none .token-text b { color: #b9c7d0; }
+.resolve-center .token-card.none .token-icon { opacity: .7; box-shadow: none; }

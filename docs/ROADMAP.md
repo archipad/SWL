@@ -102,6 +102,17 @@
   `.rally-counter` / `.rally-dice` / `.rally-options` / `.rally-command` /
   `.rally-result` supprimées (plus émises par l'appli).
 
+- [x] (19/09/2026, demande utilisateur) Design de référence « carte de pions »
+  (validé) : l'encadré « Pions Viser disponibles » (teinte + halo bleu, étiquette
+  INFO) reçoit à droite le compteur − / + pour corriger le stock, et sert de
+  modèle unique (`tokenCard` dans app.js, `.token-card` dans resolver-polish.css)
+  pour Viser, Adrénaline d'attaque, Esquive du défenseur et Adrénaline de défense,
+  avec l'icône du pion (Adrénaline : symbole existant asurge/dsurge ; Viser et
+  Esquive : `stat-icons/aim.svg` et `dodge.svg`, dessinés ici — à remplacer par
+  les visuels officiels si fournis). La phrase « Indiquez ce que l'unité a
+  actuellement… » est supprimée. Le stock corrigé est aussi écrit dans le suivi
+  de l'unité (syncTokenStock).
+
 - [x] (19/09/2026, demande utilisateur) Pions Viser : les relances se font à la
   table. Retrait des champs « Pions Viser en réserve », « Pions Viser dépensés
   pour relancer » et « Dés effectivement relancés » (et du blocage « ne possède

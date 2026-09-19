@@ -258,9 +258,9 @@ assert.match(app, /function squadAddedModels\(entry\)\{return \(entry\?\.unit\?\
 assert.match(app, /if\(cardKey\(row\.card\)===cardKey\(attacker\.unit\.name\)\)return unitWeaponModels\(attacker\)/, 'Les armes de la carte Unité doivent être proposées avec l’effectif de base + les figurines d’escouade')
 assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne doit plus être affiché en bas des écrans de résolution')
 assert.match(app, /pool\.before\(range\);if\(warning\)range\.before\(warning\)/, 'À l’étape 1, la sélection de portée doit être juste au-dessus des dés')
-assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.aim-info'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
+assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.token-card'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=13/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=14/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} \(carte \$\{cardName\}\)/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')
@@ -285,13 +285,19 @@ assert.match(app, /if\(isDefense\)\{defender=e;if\(defeated\(e\)\)\{stage=4;over
 assert.match(app, /else\{attackState=null;attackStep=0;stage=3;stageWipe=true;pick\('defender'\)\}\};\$\('#nextAttack'\)\.onclick/, '« Revoir la cible » doit revenir à la liste des cibles')
 // Pions Viser (19/09/2026, demande utilisateur) : relances à la table, plus de saisie ; information seule.
 assert.doesNotMatch(app, /numberField\('availableAims'/, 'Les pions Viser en réserve ne doivent plus être saisissables (les champs « dépensés » et « relancés » sont retirés à l’exécution, voir dropNumberField)')
-assert.match(app, /PIONS VISER DISPONIBLES : \$\{aimsLeft\}/, 'Un bloc d’information doit indiquer s’il reste des pions Viser')
+assert.match(app, /tokenCard\('aim','availableAims',available,'PIONS VISER DISPONIBLES'/, 'Un bloc d’information doit indiquer s’il reste des pions Viser')
 assert.match(app, /html=dropNumberField\(dropNumberField\(html,'aims'\),'rerolled'\)/, 'Les champs Viser dépensés / dés relancés doivent être retirés de l’écran de jet')
 assert.match(app, /id=\\"aimSpentFlag\\"|id="aimSpentFlag"[\s\S]*Débordement, Duelliste ou Matamore/, 'Une seule case « Viser dépensé » doit rester pour Débordement / Duelliste / Matamore')
 assert.match(app, /aimFlag\.onchange=\(\)=>\{attackState\.aims=aimFlag\.checked\?1:0;attackState\.rerolled=aimFlag\.checked\?1:0/, 'La case « Viser dépensé » doit alimenter aims et rerolled (Matamore, Duelliste, Débordement)')
 assert.doesNotMatch(app, /ne possède que \$\{attackState\.availableAims/, 'Plus de blocage sur le nombre de pions Viser (non saisissable)')
 assert.match(app, /result-entry:has\(#rollHit\),\.resolve-center \.result-entry:has\(#defBlock\)/, 'Une saisie de dés incorrecte doit faire vibrer la zone de saisie des dés, pas celle des pions en réserve')
-assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.aim-info \{[\s\S]*rgba\(111, 189, 219, \.55\)/, 'Le bloc « pions Viser disponibles » doit être mis en avant (teinte + halo bleu)')
+assert.match(fs.readFileSync(new URL('../public/assistant/resolver-polish.css', import.meta.url), 'utf8'), /\.token-card \{[\s\S]*rgba\(111, 189, 219, \.55\)/, 'Le bloc « pions Viser disponibles » doit être mis en avant (teinte + halo bleu)')
+// Cartes de pions : design de référence de l'appli (information + − / + dans le même encadré).
+assert.match(app, /function tokenCard\(kind,id,value,title,text,icon,max=20\)[\s\S]*class=\\?"token-card[\s\S]*data-adjust/, 'Un composant tokenCard unique doit porter les encadrés de pions (information + compteur − / +)')
+assert.match(app, /tokenCard\('surge','availableAttackSurges'[\s\S]*tokenCard\('dodge','availableDodges'[\s\S]*tokenCard\('surge','availableDefenseSurges'/, 'Adrénaline d’attaque, Esquive et Adrénaline de défense doivent reprendre le même encadré')
+assert.match(app, /const tokenIcons=\{aim:[\s\S]*stat-icons\/aim\.svg[\s\S]*asurge\.png/, 'Les cartes de pions doivent afficher l’icône du pion')
+assert.doesNotMatch(app, /PIONS ADRÉNALINE EN RÉSERVE|l’appli ne les suit plus entre les attaques/, 'La phrase « Indiquez ce que l’unité a actuellement… » doit avoir disparu')
+assert.match(app, /function syncTokenStock\(key\)[\s\S]*persistUnitStates\(\)/, 'Le stock de pions corrigé doit être écrit dans le suivi de l’unité')
 assert.match(index, /unit-picker\.css\?v=3/, 'La feuille de la grille de sélection doit être chargée')
 assert.match(app, /if\(b\.dataset\.army===selectedArmy\)return;/, 'Recliquer le joueur déjà sélectionné ne doit rien re-balayer')
 assert.doesNotMatch(app, /layout=\{commandant:0,agent:0,lourd:0,soutien:0,troupiers:1/, 'La répartition figée catégorie->colonne (jamais équilibrée) doit avoir disparu')
@@ -440,7 +446,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=102/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=104/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
