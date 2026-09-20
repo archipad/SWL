@@ -1000,6 +1000,24 @@ bindKeywordAutomation=function(entry,role){
       kwUndoSave();overview(entry,role)
     }
   });
+  // Application déjà faite avant l'ajout de ANNULER (ou après rechargement) : « Réactiver » rend le bouton cliquable sans toucher aux pions (à corriger dans l'état actuel).
+  const resettable=[];
+  root.querySelectorAll('.keyword-automation [data-card-action][disabled]').forEach(button=>{if(/déjà appliqué|fait/.test(button.textContent)&&!/plus d’action|nécessite/.test(button.textContent))resettable.push({id:button.dataset.cardAction,host:button.closest('.kw-action')||button.parentElement,anchor:'card'})});
+  root.querySelectorAll('.keyword-automation [data-kw-apply][disabled]').forEach(button=>resettable.push({id:button.dataset.kwApply,host:button,anchor:'token'}));
+  for(const item of resettable){
+    const reset=document.createElement('button');reset.type='button';reset.className='secondary kw-reset';reset.dataset.kwReset=item.id;
+    reset.innerHTML='<b>↩ Réactiver</b><small>Rend le bouton de nouveau cliquable. Les pions déjà gagnés ne sont pas retirés : corrigez-les dans « État actuel » si besoin.</small>';
+    item.host.insertAdjacentElement('afterend',reset)
+  }
+  root.querySelectorAll('[data-kw-reset]').forEach(button=>button.onclick=()=>{
+    const id=button.dataset.kwReset,def=CARD_KEYWORD_ACTIONS[id],state=stateFor(entry),patch={};
+    patch.exhaustedCards=(state.exhaustedCards||[]).filter(card=>card!=='kw-'+id);
+    patch.setupDone=(state.setupDone||[]).filter(done=>done!==id);
+    if(def&&def.kind==='action'){const record=def.recordAs||'card:'+id,list=[...(state.activationActions||[])],at=list.indexOf(record);if(at>=0){list.splice(at,1);patch.activationActions=list}}
+    updateUnitState(entry,patch);
+    for(let i=kwUndoLog.length-1;i>=0;i--)if(kwUndoLog[i].entryId===entry.id&&kwUndoLog[i].round===currentRound()&&JSON.stringify(kwUndoLog[i].diffs).includes('kw-'+id))kwUndoLog.splice(i,1);
+    kwUndoSave();overview(entry,role)
+  });
   root.querySelectorAll('[data-kw-undo]').forEach(button=>button.onclick=()=>{kwUndoLast(entry.id);overview(entry,role)})
 };
 const overviewKeywordAutomationBase=overview;
