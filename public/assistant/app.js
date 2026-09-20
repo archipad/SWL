@@ -939,6 +939,69 @@ function bindKeywordAutomation(entry,role){
   root.querySelectorAll('[data-kw-cancel-action]').forEach(button=>button.onclick=()=>{kwActionPick=null;overview(entry,role)});
   root.querySelectorAll('[data-kw-apply]').forEach(button=>button.onclick=()=>{const id=button.dataset.kwApply,fx=KEYWORD_TOKEN_EFFECTS[id],x=keywordValue(entry,id),state=stateFor(entry);if(!fx||!x)return;const patch=fx.patch(state,x);if(fx.once)exhaustCard(entry,'kw-'+id,patch);else updateUnitState(entry,patch);overview(entry,role)})
 }
+// Annuler une application faite par erreur (ex. Autonome : le bouton passe en « déjà appliqué » et n'est plus cliquable).
+// Chaque bouton d'automatisme mémorise ce qu'il a modifié (pions, cartes utilisées, actions) ; « ANNULER » le défait et rend le bouton de nouveau disponible.
+const kwUndoKey='swl.kw-undo.v1';
+const kwUndoLog=(()=>{try{const list=JSON.parse(localStorage.getItem(kwUndoKey)||'[]');return Array.isArray(list)?list:[]}catch{return[]}})();
+const kwUndoSave=()=>{try{localStorage.setItem(kwUndoKey,JSON.stringify(kwUndoLog))}catch{}};
+const kwSame=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+function kwDiff(before,after){
+  const diffs=[];
+  for(const id of new Set([...Object.keys(before),...Object.keys(after)])){
+    const b=before[id]||{},a=after[id]||{},fields={};
+    for(const key of new Set([...Object.keys(b),...Object.keys(a)])){
+      if(key==='roundSeen')continue;
+      const x=b[key],y=a[key];
+      if(kwSame(x,y))continue;
+      if(typeof y==='number'&&(typeof x==='number'||x===undefined))fields[key]={delta:y-(x||0),was:x||0};
+      else if(Array.isArray(y)&&(Array.isArray(x)||x===undefined)){const rest=[...(x||[])],added=[];for(const item of y){const at=rest.findIndex(other=>kwSame(other,item));if(at>=0)rest.splice(at,1);else added.push(item)}fields[key]={added,removed:rest}}
+      else fields[key]={from:x===undefined?null:x,to:y}
+    }
+    if(Object.keys(fields).length)diffs.push({id,fields})
+  }
+  return diffs
+}
+function kwUndoLast(entryId){
+  const round=currentRound(),at=kwUndoLog.map(item=>item.entryId===entryId&&item.round===round).lastIndexOf(true);
+  if(at<0)return;
+  const [item]=kwUndoLog.splice(at,1);
+  for(const {id,fields} of item.diffs){
+    const state=unitStates[id]||{},patch={};
+    for(const [key,change] of Object.entries(fields)){
+      const current=state[key];
+      if('delta' in change){const value=(current||0)-change.delta;patch[key]=change.was>=0?Math.max(0,value):value}
+      else if('added' in change){const list=[...(Array.isArray(current)?current:[])];for(const value of change.added){const index=list.findIndex(other=>kwSame(other,value));if(index>=0)list.splice(index,1)}patch[key]=[...list,...change.removed]}
+      else if(kwSame(current,change.to))patch[key]=change.from
+    }
+    unitStates[id]={...state,...patch}
+  }
+  persistUnitStates();kwUndoSave()
+}
+const keywordAutomationPanelUndoBase=keywordAutomationPanel;
+keywordAutomationPanel=function(entry){
+  const html=keywordAutomationPanelUndoBase(entry);if(!html)return html;
+  const last=[...kwUndoLog].reverse().find(item=>item.entryId===entry.id&&item.round===currentRound());
+  if(!last)return html;
+  const at=html.lastIndexOf('</section>');
+  return html.slice(0,at)+`<div class="kw-undo"><button type="button" data-kw-undo><b>↩ ANNULER</b><small>${last.label} · rétablit les pions et rend le bouton de nouveau disponible</small></button></div>`+html.slice(at)
+};
+const bindKeywordAutomationUndoBase=bindKeywordAutomation;
+bindKeywordAutomation=function(entry,role){
+  bindKeywordAutomationUndoBase(entry,role);
+  root.querySelectorAll('.keyword-automation button').forEach(button=>{
+    const original=button.onclick;if(!original||button.hasAttribute('data-kw-undo'))return;
+    button.onclick=event=>{
+      const before=JSON.parse(JSON.stringify(unitStates));
+      original.call(button,event);
+      const diffs=kwDiff(before,unitStates);if(!diffs.length)return;
+      const title=(button.closest('.kw-action')?.querySelector('[data-card-action] b')||button.querySelector('b'))?.textContent||button.textContent.trim();
+      kwUndoLog.push({entryId:entry.id,round:currentRound(),label:title+(button.hasAttribute('data-kw-choice')?' — '+button.textContent.trim():''),diffs});
+      if(kwUndoLog.length>30)kwUndoLog.shift();
+      kwUndoSave();overview(entry,role)
+    }
+  });
+  root.querySelectorAll('[data-kw-undo]').forEach(button=>button.onclick=()=>{kwUndoLast(entry.id);overview(entry,role)})
+};
 const overviewKeywordAutomationBase=overview;
 overview=function(entry,role){overviewKeywordAutomationBase(entry,role);if(role!=='attack'||defeated(entry))return;const anchor=root.querySelector('.overview .card-strip');const html=keywordAutomationPanel(entry),offers=offersPanelHtml(entry);if(!html&&!offers)return;anchor?.insertAdjacentHTML('beforebegin',offers+html);bindKeywordAutomation(entry,role)};
 // Distraire subi : rappel dans l'étape des armes de l'attaque

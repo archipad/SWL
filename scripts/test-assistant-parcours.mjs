@@ -796,6 +796,33 @@ scenario('Défense : Boba Fett contre TL-TT (Armure 2) — le nombre de dés exi
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Mots-clés : une application faite par erreur (Autonome de Boba Fett) peut être annulée', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Boba Fett Infamous Bounty Hunter', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'AT-RT', upgrades: [] }] },
+  })
+  const { $, $$, text, click, pickUnit } = app
+  await pickUnit('Boba')
+  const autonome = () => $('[data-card-action="autonome"]')
+  const tokens = () => text($('.keyword-automation footer'))
+  assert.ok(autonome() && !autonome().disabled, 'Autonome est proposé et cliquable')
+  await click('[data-card-action="autonome"]')
+  await click($$('[data-kw-choice]').find((button) => /Viser/.test(text(button))))
+  assert.ok(autonome().disabled, 'après application, Autonome est grisé (une fois par round)')
+  assert.match(tokens(), /Viser\s*1/, 'le pion Viser est ajouté')
+  assert.ok($('[data-kw-undo]'), 'un bouton ANNULER est proposé')
+  await click('[data-kw-undo]')
+  assert.ok(!autonome().disabled, 'après annulation, Autonome est de nouveau disponible')
+  assert.match(tokens(), /Viser\s*0/, 'le pion Viser est retiré')
+  assert.ok(!$('[data-kw-undo]'), 'plus rien à annuler')
+  await click('[data-card-action="autonome"]')
+  await click($$('[data-kw-choice]').find((button) => /Esquive/.test(text(button))))
+  assert.match(tokens(), /Esquive\s*1/, 'on peut réappliquer avec l’autre choix')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {
