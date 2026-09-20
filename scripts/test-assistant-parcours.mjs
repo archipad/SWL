@@ -828,6 +828,35 @@ scenario('Mots-clés : une application faite par erreur (Autonome de Boba Fett) 
 })
 
 /* ------------------------------------------------------------------ */
+scenario('À Bout Portant : attaque à portée 2, l’Esquive gagnée est annoncée dans le pop-up (avec la Suppression) et dans le résumé', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Point Blank' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click, setValue, pickUnit, gate, nextAttack } = app
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Rebel')
+  await click('[data-range="2"]')
+  await click('.weapon-toggle[data-key$=":1"]')
+  await nextAttack()
+  await setValue('rollHit', 2)
+  await nextAttack()
+  await click('[data-cover="none"]')
+  await nextAttack()
+  await click('[data-skip-step]')
+  const defense = Number($('.defense-dice-pool') ? (text($('.defense-dice-pool')).match(/LANCER\s*(\d+)/) || [0, 0])[1] : 0)
+  await setValue('defBlank', defense)
+  await click('#nextAttack') // sans nextAttack() : il ferme les pop-up
+  await app.settle(150)
+  const popupEl = app.document.querySelector('.rule-popup'); assert.ok(popupEl, 'un pop-up de fin d’attaque s’ouvre'); const popup = text(popupEl)
+  assert.match(popup, /À Bout Portant/, 'le pop-up de fin d’attaque annonce l’Esquive : ' + popup)
+  assert.match(popup, /Suppression/, 'avec la Suppression dans le même pop-up : ' + popup)
+  assert.match(text($('.attack-recap')), /À BOUT PORTANT/, 'le résumé de l’attaque annonce l’Esquive')
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {
