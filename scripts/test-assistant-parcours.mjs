@@ -1073,6 +1073,20 @@ scenario('Vitesse : affichée sur la fiche d’unité (puce + mobilité) et obli
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Certification : les armes ajoutées à la base apparaissent même si le brouillon local de la carte a été créé avant (Soldat avec Mortier DF-90)', async () => {
+  // Brouillon local ancien : créé quand la carte n'avait encore aucune arme.
+  const app = await openAssistant({ 'swl-dice-certification-batch-v1': { 'df 90 mortar trooper': { card: 'df 90 mortar trooper', weapons: [], defenseColor: 'rouge', defenseVerified: true, defenseQueued: false, unitStats: { woundsPerModel: 3, courage: 2, baseModels: 1, suppressionImmune: false }, unitStatsVerified: true, unitStatsQueued: false, addedModels: 0, addedModelWounds: 1, addedModelsVerified: false, addedModelsQueued: false } } })
+  const { $, $$, text, click } = app
+  await click('#certification')
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'df 90 mortar trooper'))
+  const weapons = $$('.cert-weapon').map((article) => text(article))
+  assert.equal(weapons.length, 2, 'les deux armes de la carte sont proposées : ' + weapons.join(' | ').slice(0, 300))
+  assert.match(weapons.join(' '), /Mortier DF-90/, 'le Mortier DF-90 est listé')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

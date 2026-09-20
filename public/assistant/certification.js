@@ -112,9 +112,13 @@
     if(!Number.isInteger(d.addedModelWounds))d.addedModelWounds=Number.isInteger(p.addedModelWounds)?p.addedModelWounds:1;
     if(typeof d.addedModelsVerified!=='boolean')d.addedModelsVerified=!!p.addedModelsVerifiedAgainstCard;
     if(typeof d.addedModelsQueued!=='boolean')d.addedModelsQueued=false;
+    // Armes ajoutées à la base APRÈS la création du brouillon (ex. Soldat avec Mortier DF-90, dont le brouillon local était vide) :
+    // elles doivent apparaître dans l'écran, sinon la carte se certifie sans ses armes. La carte doit alors être revalidée.
+    if(Array.isArray(d.weapons)){let added=false;(p.weapons||[]).forEach((w,index)=>{if(!d.weapons.some(item=>item.index===index)){d.weapons.push({index,name:w.name,dice:w.dice==='variable'?'variable':w.dice.map(die=>({...die})),range:w.range,verified:!!w.verifiedAgainstCard,queued:false});added=true}});if(added){d.weapons.sort((a,b)=>a.index-b.index);d.fullCardQueued=false}}
     if(!d.fullCard){const existing=p.fullCardCertification,tagsForCard=tags[card]||[];d.fullCard={cardType:isUnitCard(card)?'unit':'upgrade',rank:isUnitCard(card)?unitRank({name:card}):'',unitType:existing?.unitType||'',speed:existing?.speed||'',attackSurge:existing?.attackSurge||p.attackSurge||'none',defenseSurge:existing?.defenseSurge||p.defenseSurge||'none',keywords:mergeKeywords(tagsForCard,existing?.keywords),noKeywords:!!existing?.noKeywordsConfirmed,...(isUnitCard(card)?{}:{cardUse:existing?.cardUse||(window.SWL_REFERENCE?.cardUse||{})[card]||'passive'}),ack:false,checks:Object.fromEntries(['identity','visual','stats','weapons','conversions','keywords'].map(check=>[check,!!existing&&!(check==='keywords'&&secondOpinionOpen(card,p))])),rulesVersion:existing?.rulesVersion||'AMG 2026-06-17'};d.fullCardQueued=false}
     if(d.fullCard){if(d.fullCard.noKeywords===undefined)d.fullCard.noKeywords=false;if(d.fullCard.ack===undefined)d.fullCard.ack=false}
-    for(const w of d.weapons||[]){if(!Array.isArray(w.keywords)||(d.weaponKwVersion!==2&&!w.kwEdited)){const published=p.weapons?.[w.index];w.keywords=(published?.keywordIds||[]).map(id=>{const value=published.keywordValues?.[id]??(tags[card]||[]).find(tag=>tag.keywordId===id)?.value;return{keywordId:id,...(value?{value}:{})}})}}
+    // Mots-clés d'une arme non modifiée à la main et pas encore dans le lot : toujours relus depuis la base (valeurs corrigées depuis la création du brouillon).
+    for(const w of d.weapons||[]){if(!Array.isArray(w.keywords)||(!w.kwEdited&&!w.queued)){const published=p.weapons?.[w.index];w.keywords=(published?.keywordIds||[]).map(id=>{const value=published.keywordValues?.[id]??(tags[card]||[]).find(tag=>tag.keywordId===id)?.value;return{keywordId:id,...(value?{value}:{})}})}}
     d.weaponKwVersion=2
     save();return d;
   }
