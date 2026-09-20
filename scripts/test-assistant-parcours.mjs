@@ -702,6 +702,44 @@ scenario('Lots 4-5 : Ordre direct (offre d’ordre), Marche forcée (vitesse + S
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Lot 6 : Autonome (pion choisi), Impitoyable (blessure + action offerte), Réparation X (soigne un allié et charge la carte)', async () => {
+  const stateOf = (app, name) => JSON.parse(app.window.eval('JSON.stringify(stateFor(entries.find(e=>e.unit.name===' + JSON.stringify(name) + ')))'))
+  const enemy = { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] }
+
+  let app = await openAssistant({ 'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Jyn Erso', upgrades: [] }] }, 'swl.list.p2.v1': enemy })
+  await app.pickUnit('Jyn Erso')
+  await app.click('[data-card-action="autonome"]')
+  await app.click(app.$$('[data-kw-choice]').find((button) => /Viser/.test(app.text(button))))
+  assert.equal(stateOf(app, 'Jyn Erso').aim, 1, 'Autonome : +1 Viser')
+  assert.ok(app.$('[data-card-action="autonome"]').disabled, 'une fois par round')
+  app.window.close()
+
+  app = await openAssistant({ 'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Moff Gideon', upgrades: [] }, { name: 'Stormtroopers', upgrades: [] }] }, 'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] } })
+  await app.pickUnit('Moff Gideon')
+  await app.click('[data-card-action="impitoyable"]')
+  await app.click(app.$$('[data-kw-target]').find((button) => /Stormtroopers/.test(app.text(button))))
+  await app.click('[data-kw-apply-action]')
+  const trooper = stateOf(app, 'Stormtroopers')
+  assert.equal(trooper.wound, 1, 'la cible subit 1 Blessure')
+  assert.match(trooper.freeActionOffers[0].label, /action gratuite/, 'et reçoit une action gratuite')
+  app.window.close()
+
+  app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'R2-D2', upgrades: [] }, { name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.list.p2.v1': enemy,
+    'swl.assistant.unit-state.v1': { 'p1:1': { wound: 2 } },
+  })
+  await app.pickUnit('R2-D2')
+  await app.click('[data-card-action="reparation-x"]')
+  await app.click(app.$$('[data-kw-target]').find((button) => /Soldats Rebelles/.test(app.text(button))))
+  await app.click(app.$$('[data-kw-choice]').find((button) => /Blessures/.test(app.text(button))))
+  assert.ok(stateOf(app, 'Rebel Troopers').wound < 2, 'des Blessures sont retirées à l’allié')
+  assert.equal(stateOf(app, 'R2-D2').cardWound, 1, 'un pion Blessure est placé sur la carte Réparation')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

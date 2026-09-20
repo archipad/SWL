@@ -3,27 +3,28 @@
 Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 199 mots-clés du glossaire.
 
 - Combat (attaque / défense), gérés par le moteur : **86** (52 automatiques, 34 assistés).
-- Hors combat, **application par bouton** : 62.
-- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 37.
+- Hors combat, **application par bouton** : 78.
+- Hors combat, **règle de mouvement affichée dans le Briefing** : 12.
+- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 9.
 - Composition d’armée (rappel replié) : 14.
 
 | Mot-clé | Étape | Traitement | Cartes |
 |---|---|---|---:|
-| Armer X : Type de Charge | Actions de carte | rappel | 0 |
+| Armer X : Type de Charge | Actions de carte | auto | 0 |
 | Assistance X | Actions de carte | auto | 0 |
 | Calcul de Probabilités | Actions de carte | auto | 2 |
 | Conseils : Type d'Unité | Actions de carte | auto | 2 |
 | Distraire | Actions de carte | auto | 1 |
-| Je Fais Partie de l'Équipe Aussi | Actions de carte | rappel | 1 |
+| Je Fais Partie de l'Équipe Aussi | Actions de carte | auto | 1 |
 | Maître Conteur | Actions de carte | auto | 0 |
 | Mettre à Couvert X | Actions de carte | auto | 2 |
 | Observateur X | Actions de carte | auto | 3 |
 | Opérationnel X | Actions de carte | auto | 1 |
-| Pions Bane (Cad Bane) | Actions de carte | rappel | 0 |
-| Réparation X : Capacité Y | Actions de carte | rappel | 4 |
+| Pions Bane (Cad Bane) | Actions de carte | auto | 0 |
+| Réparation X : Capacité Y | Actions de carte | auto | 4 |
 | Stratège X | Actions de carte | auto | 0 |
 | Tirer les Ficelles | Actions de carte | auto | 0 |
-| Traiter X : Capacité Y | Actions de carte | rappel | 2 |
+| Traiter X : Capacité Y | Actions de carte | auto | 2 |
 | Vivacité d'Esprit | Actions de carte | auto | 1 |
 | Accomplir la Mission | Attaque | moteur (automatique) | 0 |
 | Anti-matériel X | Attaque | moteur (automatique) | 0 |
@@ -125,26 +126,26 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Petit | Défense | moteur (assisté) | 2 |
 | Point Faible X : Avant/Arrière/Flancs | Défense | moteur (automatique) | 5 |
 | Profil Bas | Défense | moteur (automatique) | 7 |
-| Aguerri | Déplacement | rappel | 5 |
-| Ascension | Déplacement | rappel | 7 |
-| Cloué au Sol | Déplacement | rappel | 0 |
+| Aguerri | Déplacement | auto | 5 |
+| Ascension | Déplacement | regle | 7 |
+| Cloué au Sol | Déplacement | regle | 0 |
 | Déplacement Obligatoire | Déplacement | auto | 0 |
-| Grimpeur Expérimenté | Déplacement | rappel | 3 |
+| Grimpeur Expérimenté | Déplacement | regle | 3 |
 | Marche Forcée | Déplacement | auto | 2 |
 | Mobile | Déplacement | auto | 0 |
-| Mobilité Difficile | Déplacement | rappel | 1 |
-| Pivot Complet | Déplacement | rappel | 3 |
+| Mobilité Difficile | Déplacement | regle | 1 |
+| Pivot Complet | Déplacement | regle | 3 |
 | Preste X | Déplacement | auto | 3 |
-| Redéploiement | Déplacement | rappel | 7 |
-| Retrait | Déplacement | rappel | 2 |
-| Sans Entrave | Déplacement | rappel | 4 |
+| Redéploiement | Déplacement | regle | 7 |
+| Retrait | Déplacement | regle | 2 |
+| Sans Entrave | Déplacement | regle | 4 |
 | Saut X | Déplacement | auto | 14 |
 | Speeder X | Déplacement | auto | 4 |
-| Stationnaire | Déplacement | rappel | 1 |
-| Sustentation : Terrestre/Aérienne X | Déplacement | rappel | 2 |
+| Stationnaire | Déplacement | regle | 1 |
+| Sustentation : Terrestre/Aérienne X | Déplacement | regle | 2 |
 | Tacticien X | Déplacement | auto | 8 |
-| Véhicule Grimpant | Déplacement | rappel | 2 |
-| Alourdi | Effets permanents | rappel | 0 |
+| Véhicule Grimpant | Déplacement | regle | 2 |
+| Alourdi | Effets permanents | regle | 0 |
 | Chef | Effets permanents | rappel | 10 |
 | Enragé X | Effets permanents | auto | 3 |
 | Immunité : Effets Ennemis | Effets permanents | rappel | 0 |
@@ -152,7 +153,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Nous Ne Sommes Pas des Regs | Effets permanents | rappel | 1 |
 | Restaurer | Effets permanents | rappel | 0 |
 | Tenir le Cap : Mot-clé | Effets permanents | rappel | 0 |
-| Cycle | Fin d'activation | rappel | 5 |
+| Cycle | Fin d'activation | auto | 5 |
 | Inspiration X | Fin d'activation | auto | 7 |
 | Maître de la Force X | Fin d'activation | auto | 3 |
 | Pouvoir Latent | Fin d'activation | auto | 1 |
@@ -170,13 +171,13 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Transport Léger X : Ouvert/Fermé | Mise en place | auto | 0 |
 | Traqué | Mise en place | auto | 1 |
 | Attaque Impétueuse | Ordre reçu · début d'activation | auto | 0 |
-| Autonome : Pion X/Action | Ordre reçu · début d'activation | rappel | 13 |
+| Autonome : Pion X/Action | Ordre reçu · début d'activation | auto | 13 |
 | Cible X | Ordre reçu · début d'activation | auto | 1 |
 | Défense X | Ordre reçu · début d'activation | auto | 2 |
 | Discipliné X | Ordre reçu · début d'activation | auto | 2 |
 | Escorte : Nom/Type d'Unité | Ordre reçu · début d'activation | auto | 4 |
 | Fiable X | Ordre reçu · début d'activation | auto | 3 |
-| IA : Action | Ordre reçu · début d'activation | rappel | 4 |
+| IA : Action | Ordre reçu · début d'activation | auto | 4 |
 | Infanterie Mécanisée | Ordre reçu · début d'activation | auto | 0 |
 | Maîtrise du Juyo | Ordre reçu · début d'activation | auto | 1 |
 | Mode Roue | Ordre reçu · début d'activation | auto | 0 |
@@ -194,17 +195,17 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Ordre Direct : Nom/Type d'Unité | Phase de Commandement | auto | 2 |
 | Générateur X | Phase Finale | auto | 0 |
 | Permanent | Phase Finale | rappel | 0 |
-| Renforts | Phase Finale | rappel | 1 |
+| Renforts | Phase Finale | auto | 1 |
 | Contrainte : Rang/Type d'Unité | Rallier · récupérer | auto | 4 |
 | Démoraliser X | Rallier · récupérer | auto | 4 |
 | Indomptable | Rallier · récupérer | auto | 10 |
 | Instinct de Survie | Rallier · récupérer | rappel | 2 |
 | Intrépide | Rallier · récupérer | auto | 4 |
-| Pilotage de Véhicule X | Rallier · récupérer | rappel | 0 |
+| Pilotage de Véhicule X | Rallier · récupérer | auto | 0 |
 | Pions Graffiti | Rallier · récupérer | rappel | 0 |
 | Recharger X | Rallier · récupérer | auto | 3 |
-| Reconfiguration | Rallier · récupérer | rappel | 2 |
-| Aide : Affiliation/Type d'Unité | Réactions | rappel | 1 |
-| Impitoyable | Réactions | rappel | 1 |
-| Sentinelle | Réactions | rappel | 6 |
-| Travail d'Équipe : Nom d'Unité | Réactions | rappel | 2 |
+| Reconfiguration | Rallier · récupérer | auto | 2 |
+| Aide : Affiliation/Type d'Unité | Réactions | auto | 1 |
+| Impitoyable | Réactions | auto | 1 |
+| Sentinelle | Réactions | auto | 6 |
+| Travail d'Équipe : Nom d'Unité | Réactions | auto | 2 |

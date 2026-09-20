@@ -39,7 +39,8 @@ for (const keyword of keywords) {
   if (!entry) { failures.push(`${keyword.id} : mot-clé hors combat sans étape ni traitement dans scripts/data/keyword-timing.json`); continue }
   const [phase, treatment] = entry
   if (!timing.phases[phase]) failures.push(`${keyword.id} : étape inconnue « ${phase} »`)
-  if (!['auto', 'rappel', 'composition'].includes(treatment)) failures.push(`${keyword.id} : traitement inconnu « ${treatment} »`)
+  if (!['auto', 'rappel', 'composition', 'regle'].includes(treatment)) failures.push(`${keyword.id} : traitement inconnu « ${treatment} »`)
+  if (treatment === 'regle' && !app.includes(`'${keyword.id}':'`)) failures.push(`${keyword.id} : déclaré « regle » mais absent de MOVE_RULES dans app.js`)
   if (treatment === 'auto' && !app.includes(`'${keyword.id}'`) && !engine.includes(`'${keyword.id}'`)) failures.push(`${keyword.id} : déclaré « auto » mais absent du code de l'Assistant`)
   rows.push({ keyword, phase: timing.phases[phase] || phase, treatment, cards })
 }
@@ -60,6 +61,7 @@ const lines = ['# Mots-clés : étape où ils agissent et traitement dans l’As
   `Généré par \`node scripts/audit-keyword-timing.mjs\` (dans \`npm run build\`). ${rows.length} mots-clés du glossaire.`, '',
   `- Combat (attaque / défense), gérés par le moteur : **${rows.filter((row) => row.treatment.startsWith('moteur')).length}** (${rows.filter((row) => row.treatment === 'moteur (automatique)').length} automatiques, ${rows.filter((row) => row.treatment === 'moteur (assisté)').length} assistés).`,
   `- Hors combat, **application par bouton** : ${byTreatment('auto')}.`,
+  `- Hors combat, **règle de mouvement affichée dans le Briefing** : ${byTreatment('regle')}.`,
   `- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : ${byTreatment('rappel')}.`,
   `- Composition d’armée (rappel replié) : ${byTreatment('composition')}.`, '',
   '| Mot-clé | Étape | Traitement | Cartes |', '|---|---|---|---:|']

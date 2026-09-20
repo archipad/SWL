@@ -181,7 +181,9 @@ function fireControlSources(){return fireControlCandidates().map(entry=>({entry,
 function fireControlCandidates(){if(attackState?.range==='melee')return[];return entries.filter(entry=>entry.army===attacker?.army&&entry.id!==attacker?.id&&!defeated(entry)&&upgradeProfiles(entry).some(profile=>profile.fireControl))}
 function upgradePoolDice(pool,count){const result={...pool},white=Math.min(result.blanc,Math.max(0,count)),remaining=Math.max(0,count-white),black=Math.min(result.noir,remaining);result.blanc-=white;result.noir+=white-black;result.rouge+=black;return result}
 function hasCard(entry,key){return [entry?.unit?.name,...(entry?.unit?.upgrades||[]).map(upgrade=>upgrade.name)].some(card=>cardKey(card)===key)}
-function initAttack(){attackStep=0;const vehicle=isVehicle(defender),saved=stateFor(defender),stats=certifiedUnitStats(defender);attackState={range:null,selected:{},counts:{},moved:false,engaged:null,ramEligible:null,tenacityUsed:null,makashiUsed:null,weakPointExposed:null,fireControlUsed:null,visibleTargetModels:1,attackerWounds:0,fixedArcConfirmed:false,smallOnlyVisible:false,priorityMissionAttack:null,priorityMissionDefense:null,targetForceUpgrade:null,longShotAim:false,ionEligible:false,deathFromAbove:false,targetVehicle:vehicle,targetNonDroidTrooper:false,targetSmallTrooper:false,activeShields:saved.shield,shieldHit:0,shieldCrit:0,guardianId:'',guardianEligible:false,guardianHits:0,guardianDefense:{block:0,surge:0,blank:0},aims:0,lethalAims:0,rerolled:0,roll:{hit:0,crit:0,surge:0,blank:0},cover:'none',coverBlock:0,coverSurge:0,dodges:0,dodgeCrits:0,impact:null,armor:null,defenseRerolled:0,defense:{block:0,surge:0,blank:0},currentSuppression:saved.suppression,defenderCourage:stats?.courage??(Number(defender.unit.courage)||1),commanderCourage:0,nullCourage:moraleImmune(defender),mixedWarningDismissed:false};resolveScreen()}
+// Pilotage de Véhicule X : une unité alliée à portée 3 compte comme Commandement de valeur X pour le test de panique (à confirmer : portée 3 et même affiliation).
+function pilotCommanderCourage(entry){return entries.filter(candidate=>candidate.army===entry.army&&candidate.id!==entry.id&&!defeated(candidate)).reduce((best,candidate)=>Math.max(best,keywordValue(candidate,'pilotage-de-vehicule-x')),0)}
+function initAttack(){attackStep=0;const vehicle=isVehicle(defender),saved=stateFor(defender),stats=certifiedUnitStats(defender);attackState={range:null,selected:{},counts:{},moved:false,engaged:null,ramEligible:null,tenacityUsed:null,makashiUsed:null,weakPointExposed:null,fireControlUsed:null,visibleTargetModels:1,attackerWounds:0,fixedArcConfirmed:false,smallOnlyVisible:false,priorityMissionAttack:null,priorityMissionDefense:null,targetForceUpgrade:null,longShotAim:false,ionEligible:false,deathFromAbove:false,targetVehicle:vehicle,targetNonDroidTrooper:false,targetSmallTrooper:false,activeShields:saved.shield,shieldHit:0,shieldCrit:0,guardianId:'',guardianEligible:false,guardianHits:0,guardianDefense:{block:0,surge:0,blank:0},aims:0,lethalAims:0,rerolled:0,roll:{hit:0,crit:0,surge:0,blank:0},cover:'none',coverBlock:0,coverSurge:0,dodges:0,dodgeCrits:0,impact:null,armor:null,defenseRerolled:0,defense:{block:0,surge:0,blank:0},currentSuppression:saved.suppression,defenderCourage:stats?.courage??(Number(defender.unit.courage)||1),commanderCourage:pilotCommanderCourage(defender),nullCourage:moraleImmune(defender),mixedWarningDismissed:false};resolveScreen()}
 function selectedWeaponRows(){const cards=[attacker.unit.name,...(attacker.unit.upgrades||[]).map(u=>u.name)];return cards.flatMap(card=>(profileFor(card)?.weapons||[]).map((weapon,index)=>({card,weapon,index,key:`${norm(card)}:${index}`}))).filter(x=>attackState.selected[x.key])}
 function weaponHasKeyword(row,id){const profile=profileFor(row.card),ids=definitionsFor(row.card).filter(x=>x.def.category==='arme').map(x=>x.def.id);return engine.weaponKeywordActive(profile,row.weapon,ids,id)}
 function weaponKeywordValue(row,id){if(!weaponHasKeyword(row,id))return 0;const own=row.weapon.keywordValues?.[id],card=definitionsFor(row.card).find(item=>item.def.id===id)?.tag.value;return Math.max(0,Number(own??card)||0)}
@@ -229,7 +231,9 @@ function rollRerollPanel(capacity,precise,lethalX,lethal,converted){if(!lethalX)
 function rollScreen(){const r=attackState.roll,p=effectiveAttackProfile(),precise=attackKeywordValue('precis-x'),capacity=engine.rerollCapacity(attackState.aims,precise),lethalX=attackKeywordValue('letal-x'),lethal=engine.applyLethal(attackKeywordValue('perforant-x'),lethalX,attackState.lethalAims),critical=attackKeywordValue('critique-x'),converted=engine.convertAttack(r,p?.attackSurge,critical),profileWarning=p?.verified?'':`<div class="strict-warning" role="alert">⚠ Profil d’adrénaline non vérifié pour cette carte : aucune conversion imprimée n’est appliquée.</div>`;return `${poolView()}${attackState.longShotAim?`<div class="automation-card rule-highlight"><strong>LONGUE DISTANCE : 1 PION VISER DÉJÀ DÉPENSÉ</strong><small>Ce pion a étendu la portée et ne donne aucune relance. Ne l’incluez pas dans le compteur ci-dessous.</small></div>`:''}${profileWarning}${inputWarning()}<div class="result-entry">${numberField('aims','Pions Viser dépensés pour relancer',attackState.aims,20)}${lethalX?numberField('lethalAims','Pions Viser dépensés pour Létal',attackState.lethalAims,lethalX):''}${numberField('rerolled','Dés effectivement relancés',attackState.rerolled,capacity)}${numberField('rollHit',`${diceIcon('hit')} Touches`,r.hit)}${numberField('rollCrit',`${diceIcon('crit')} Critiques`,r.crit)}${numberField('rollSurge',`${diceIcon('attackSurge')} Adrénalines`,r.surge)}${numberField('rollBlank','Vierges',r.blank)}</div>${liveResultStrip('APRÈS CONVERSION',converted)}${rollConversionPanel(p,converted,critical)}${rollRerollPanel(capacity,precise,lethalX,lethal,converted)}${rulesPanel()}`}
 function attackResults(){const p=effectiveAttackProfile(),rules=allResolved(attacker),holdFast=attackState.engaged&&rules.some(x=>x.def.id==='tenir-bon'),jediHunter=attackState.targetForceUpgrade&&rules.some(x=>x.def.id==='chasseur-de-jedi'),missionCritical=attackState.priorityMissionAttack&&rules.some(x=>x.def.id==='accomplir-la-mission')?2:0,converted=engine.convertAttack(attackState.roll,holdFast||jediHunter?'hit':p?.attackSurge,Math.max(attackKeywordValue('critique-x'),missionCritical));return engine.applyRam(converted,attackKeywordValue('belier-x'),attackState.ramEligible)}
 // Un mot-clé SANS valeur (Insensible, Profil bas, Blocage, Agile…) compte pour 1 : sans cela, keywordValue(...)>0 restait faux et l'effet n'était jamais appliqué.
-function keywordValue(entry,id){return allResolved(entry).filter(x=>x.def.id===id).reduce((n,x)=>n+(Number(x.tag.value)||(x.def.hasValue?0:1)),0)}
+// Mots-clés dont la valeur X est facultative sur la carte (Autonome : « Viser 1 ou Esquive 1 », Sustentation : « terrestre ») : la présence compte pour 1.
+const VALUE_OPTIONAL_KEYWORDS=new Set(['autonome','sustentation']);
+function keywordValue(entry,id){return allResolved(entry).filter(x=>x.def.id===id).reduce((n,x)=>n+(Number(x.tag.value)||(x.def.hasValue&&!VALUE_OPTIONAL_KEYWORDS.has(x.def.id)?0:1)),0)}
 function attackKeywordValue(id){return activeAttackTags().filter(x=>x.def.id===id).reduce((n,x)=>n+(Number(x.tag.value)||(x.def.hasValue?0:1)),0)}
 function armorContext(){const tag=allResolved(defender).find(x=>x.def.id==='armure-x');return {tag,hasArmor:!!tag,unlimited:!!tag&&tag.tag.value==null,value:Number(tag?.tag.value)||0}}
 function shieldResults(){const a=afterCover();return engine.applyShields(a,{activeShields:attackState.activeShields,ionEligible:attackState.ionEligible,ionX:attackKeywordValue('ion-x'),ranged:attackType()==='ranged',shieldHit:attackState.shieldHit,shieldCrit:attackState.shieldCrit})}
@@ -714,18 +718,19 @@ function cardActionButtons(entry,state){
   const actions=state.activationActions||[],actionFull=actions.length>=activationActionLimit(entry);
   return Object.entries(CARD_KEYWORD_ACTIONS).map(([id,def])=>{
     const x=keywordValue(entry,id);if(!x)return'';
+    if(id==='armer-x'&&(hasCard(entry,'proton charge saboteur')||hasCard(entry,'sonic charge saboteur')))return'';
     if(def.kind==='setup'&&currentRound()>1)return'';
-    const used=(def.kind==='setup'||def.once==='game')?(state.setupDone||[]).includes(id):(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:actions.includes('card:'+id)||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=(def.kind==='action'&&actionFull&&!used)||(!!def.needs&&!(state[def.needs]>0)&&!used),label=typeof def.text==='function'?def.text(x):def.text;
+    const used=(def.kind==='setup'||def.once==='game')?(state.setupDone||[]).includes(id):(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:(!def.repeatable&&actions.includes('card:'+id))||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=(def.kind==='action'&&actionFull&&!used)||(!!def.needs&&!(state[def.needs]>0)&&!used),label=typeof def.text==='function'?def.text(x):def.text;
     const open=kwActionPick&&kwActionPick.entryId===entry.id&&kwActionPick.id===id;
     let inner='';
     if(open){
-      const candidates=kwPickCandidates(entry,def),max=def.pick?def.pick.max(x):0,selected=kwActionPick.selected;
+      const candidates=def.pick?kwPickCandidates(entry,def):[],max=def.pick?def.pick.max(x):0,selected=kwActionPick.selected;
       if(def.pick)inner+=`<div class="kw-targets"><small>Choisissez jusqu’à ${max} unité(s) alliée(s) :</small>${candidates.length?candidates.map(candidate=>`<button type="button" class="${selected.includes(candidate.id)?'on':''}" data-kw-target="${candidate.id}">${entryName(candidate)}</button>`).join(''):'<em>Aucune unité éligible.</em>'}</div>`;
       if(def.choices)inner+=`<div class="kw-choices">${def.choices.map((choice,index)=>`<button type="button" class="primary" data-kw-choice="${index}" ${def.pick&&!selected.length?'disabled':''}>${choice.label}</button>`).join('')}</div>`;
       else inner+=`<div class="kw-choices"><button type="button" class="primary" data-kw-apply-action="${id}" ${def.pick&&!selected.length?'disabled':''}>Appliquer</button></div>`;
       inner+='<button type="button" class="secondary" data-kw-cancel-action>Annuler</button>';
     }
-    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue?' '+x:''}</b><small>${label}${used?(def.kind==='setup'?' · fait':' · déjà appliqué'):blocked?(def.needs&&!(state[def.needs]>0)?' · nécessite au moins 1 pion '+def.needsLabel:' · plus d’action disponible'):def.kind==='setup'?' · touchez quand c’est fait (mise en place, round 1)':''}</small></button>${inner}</div>`;
+    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue&&!VALUE_OPTIONAL_KEYWORDS.has(id)?' '+x:''}</b><small>${label}${used?(def.kind==='setup'?' · fait':' · déjà appliqué'):blocked?(def.needs&&!(state[def.needs]>0)?' · nécessite au moins 1 pion '+def.needsLabel:' · plus d’action disponible'):def.kind==='setup'?' · touchez quand c’est fait (mise en place, round 1)':''}</small></button>${inner}</div>`;
   }).filter(Boolean);
 }
 function applyCardKeywordAction(entry,id,choiceIndex){
@@ -736,9 +741,9 @@ function applyCardKeywordAction(entry,id,choiceIndex){
   const targets=pick.map(targetId=>entries.find(candidate=>candidate.id===targetId)).filter(Boolean).slice(0,def.pick?def.pick.max(x):0);
   for(const target of targets)if(effect)bumpTokens(target,effect);
   if(id==='infanterie-mecanisee'&&choice)bumpTokens(entry,choice.effect);
-  if(id==='escorte'&&choice)bumpTokens(entry,choice.effect);
+  if((id==='escorte'||!def.pick)&&choice&&choice.effect)bumpTokens(entry,choice.effect);
   const state=stateFor(entry);
-  if(def.kind==='action')updateUnitState(entry,{activationActions:[...(state.activationActions||[]),'card:'+id]});
+  if(def.kind==='action')updateUnitState(entry,{activationActions:[...(state.activationActions||[]),def.recordAs||'card:'+id]});
   else exhaustCard(entry,'kw-'+id);
   kwActionPick=null;
 }
@@ -788,6 +793,7 @@ function kw2Counters(entry,state){
 function bindKeywordLot2(entry,role){
   const refresh=()=>overview(entry,role);
   root.querySelectorAll('[data-kw-counter]').forEach(button=>button.onclick=()=>{const [field,delta]=button.dataset.kwCounter.split(':'),state=stateFor(entry);updateUnitState(entry,{[field]:Math.max(0,(state[field]||0)+Number(delta))});refresh()});
+  root.querySelectorAll('[data-kw2-cycle]').forEach(button=>button.onclick=()=>{const state=stateFor(entry),cycleSlugs=(entry.unit.upgrades||[]).filter(up=>cardTags(up.name).some(tag=>tag.keywordId==='cycle')).map(up=>slugOf(up.name));updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>!cycleSlugs.includes(card))});refresh()});
   root.querySelectorAll('[data-kw2-open]').forEach(button=>button.onclick=()=>{kw2Open={entryId:entry.id,id:button.dataset.kw2Open,stage:0,value:0};refresh()});
   root.querySelectorAll('[data-kw2-input]').forEach(input=>input.oninput=()=>{if(kw2Open)kw2Open.value=Number(input.value)||0});
   root.querySelectorAll('[data-kw2-cancel]').forEach(button=>button.onclick=()=>{kw2Open=null;refresh()});
@@ -854,7 +860,7 @@ Object.assign(CARD_KEYWORD_ACTIONS,{
   'marche-forcee':{title:'MARCHE FORCÉE',kind:'roundfree',text:'En se déplaçant : 1 Suppression pour +1 vitesse maximale (max 3). Les bonus s’appliquent avant les malus (Immobilisation).',self:{suppression:1},speedDelta:1},
   'mode-roue':{title:'MODE ROUE',kind:'roundfree',text:'Début d’activation : vitesse 3 jusqu’à la fin de l’activation ; jusqu’à la fin du round perd Indifférent, gagne IA : Déplacement et Couvert 2, ne retourne plus ses Boucliers actifs.',speedSet:3},
   'maitrise-du-juyo':{title:'MAÎTRISE DU JUYO',kind:'roundfree',text:'Avec au moins 1 pion Blessure : 1 action supplémentaire par activation (jamais plus de deux déplacements, gratuits inclus).',extraAction:true,needs:'wound',needsLabel:'Blessure'},
-  'saut-x':{title:'SAUT',kind:'action',text:x=>`Action de carte (chaque fois qu’un déplacement est possible) : déplacement normal ignorant le terrain difficile et les figurines de hauteur ≤ ${x}.`},
+  'saut-x':{title:'SAUT',kind:'action',recordAs:'move',repeatable:true,text:x=>`Action de carte (chaque fois qu’un déplacement est possible) : déplacement normal ignorant le terrain difficile et les figurines de hauteur ≤ ${x}.`},
   'mobile':{title:'MOBILE',kind:'roundfree',text:'Déplacement obligatoire gratuit (début ou fin de l’étape Effectuer des actions) : déplacement normal complet, jamais en arrière.',flag:'mandatoryMoveDone'},
   'speeder-x':{title:'SPEEDER',kind:'roundfree',text:x=>`Déplacement obligatoire gratuit (début ou fin de l’étape Effectuer des actions) ; terrain de hauteur ≤ ${x} franchissable.`,flag:'mandatoryMoveDone'},
   'deplacement-obligatoire':{title:'DÉPLACEMENT OBLIGATOIRE',kind:'roundfree',text:'Action Se déplacer gratuite imposée : déplacement normal complet à vitesse maximale (ou le plus loin possible).',flag:'mandatoryMoveDone'},
@@ -885,9 +891,42 @@ function movementRulesHtml(entry){
   const mandatory=['mobile','speeder-x','deplacement-obligatoire'].some(id=>keywordValue(entry,id))&&!state.mandatoryMoveDone?'<span class="move-chip warn"><b>Déplacement obligatoire</b> à effectuer ce round (début ou fin de l’étape Effectuer des actions)</span>':'';
   return chips.length||speed||mandatory?`<div class="move-rules">${speed}${mandatory}${chips.join('')}</div>`:'';
 }
+// ---- Lot 6 : réactions, actions de carte de soin, Cycle, Autonome, Renforts ----
+Object.assign(CARD_KEYWORD_ACTIONS,{
+  'autonome':{title:'AUTONOME',kind:'round',text:'Début de la Phase d’Activation, sans pion Ordre : gagne les pions indiqués sur la carte (ex. Viser 1 ou Esquive 1) ou effectue l’action indiquée en action gratuite.',choices:[{label:'+1 Viser',effect:{aim:1}},{label:'+1 Esquive',effect:{dodge:1}},{label:'Action gratuite indiquée (rien à appliquer)',effect:{}}]},
+  'renforts':{title:'RENFORTS',kind:'setup',text:'Début de la Phase Finale du round 1 : déplacement gratuit à vitesse 1.'},
+  'sentinelle':{title:'SENTINELLE',kind:'free',text:'Réaction : dépense 1 pion En attente après une attaque, un déplacement ou une action ennemie à portée 3 (au lieu de 2).',self:{standby:-1},needs:'standby',needsLabel:'En attente'},
+  'traiter-x':{title:'TRAITER',kind:'action',text:x=>`Action de carte : 1 soldat non-droïde allié à portée 1 et en LdV perd jusqu’à ${x} Blessure(s) et/ou Poison ; placez 1 pion Blessure sur la carte (Capacité Y).`,cardWound:true,pick:{max:()=>1,self:true,effect:null},choices:[{label:'Retirer des Blessures',effectFn:x=>({wound:-x})},{label:'Retirer du Poison',effectFn:x=>({poison:-x})}]},
+  'reparation-x':{title:'RÉPARATION',kind:'action',text:x=>`Action de carte : 1 droïde ou véhicule allié à portée 1 et en LdV perd jusqu’à ${x} Blessure(s) / Ionique ; placez 1 pion Blessure sur la carte (Capacité Y).`,cardWound:true,pick:{max:()=>1,self:true,effect:null},choices:[{label:'Retirer des Blessures',effectFn:x=>({wound:-x})},{label:'Retirer de l’Ionique',effectFn:x=>({ion:-x})}]},
+  'armer-x':{title:'ARMER',kind:'action',text:x=>`Action : placez ${x} pion(s) Charge à portée 1 et en LdV de votre Chef (compteur Charges placées).`,selfX:'charge'},
+  'aide':{title:'AIDE',kind:'free',text:'Quand cette unité devrait gagner Viser/Esquive/Adrénaline, une autre unité alliée à portée 1 et en LdV peut le gagner à la place ; cette unité gagne 1 Suppression.',self:{suppression:1},pick:{max:()=>1,self:false,effect:null},choices:[{label:'Viser à l’allié',effect:{aim:1}},{label:'Esquive à l’allié',effect:{dodge:1}},{label:'Adrénaline à l’allié',effect:{surge:1}}]},
+  'impitoyable':{title:'IMPITOYABLE',kind:'free',text:'Une autre unité de soldats alliée à portée 2 et en LdV, avec un pion Ordre face visible, s’active : elle subit 1 Blessure pour effectuer 1 action gratuite.',pick:{max:()=>1,self:false,soldiersOnly:true,effect:{wound:1},offer:'1 action gratuite (Impitoyable)'}},
+  'travail-dequipe':{title:'TRAVAIL D’ÉQUIPE',kind:'free',text:'À portée 2 de l’unité indiquée : si l’une gagne Viser ou Esquive, l’autre gagne le même pion.',pick:{max:()=>1,self:false,effect:null},choices:[{label:'Viser au partenaire',effect:{aim:1}},{label:'Esquive au partenaire',effect:{dodge:1}}]},
+});
+Object.assign(CARD_KEYWORD_ACTIONS,{
+  'ia':{title:'IA',kind:'round',text:glossaryText('ia')},
+  'je-fais-aussi-partie-de-lequipe':{title:'JE FAIS AUSSI PARTIE DE L’ÉQUIPE',kind:'action',text:glossaryText('je-fais-aussi-partie-de-lequipe')},
+  'reconfiguration':{title:'RECONFIGURATION',kind:'roundfree',text:'En récupérant : retournez la carte sur son autre face (en plus de l’effet de Récupérer).',self:{reconfig:1}},
+  'pions-bane':{title:'PIONS BANE',kind:'action',text:'Cad Bane pose jusqu’à 3 pions Bane (compteur des pions posés).',selfX:'bane'},
+});
+const applyCardActionLot45=applyCardKeywordAction;
+applyCardKeywordAction=function(entry,id,choiceIndex){
+  const def=CARD_KEYWORD_ACTIONS[id],x=keywordValue(entry,id);
+  if(def&&def.choices&&def.choices[choiceIndex]?.effectFn){const choice=def.choices[choiceIndex];def.choices[choiceIndex]={...choice,effect:choice.effectFn(x)}}
+  if(def&&def.selfX&&def.kind==='action'){bumpTokens(entry,{[def.selfX]:x})}
+  if(def&&def.cardWound){bumpTokens(entry,{cardWound:1})}
+  const result=applyCardActionLot45(entry,id,choiceIndex);
+  return result;
+};
+// Cycle : fin d'activation, redresse les cartes Amélioration à mot-clé Cycle inclinées
+function cycleButton(entry,state){
+  const cycleCards=(entry.unit.upgrades||[]).filter(up=>cardTags(up.name).some(tag=>tag.keywordId==='cycle')&&(state.exhaustedCards||[]).includes(slugOf(up.name)));
+  if(!(entry.unit.upgrades||[]).some(up=>cardTags(up.name).some(tag=>tag.keywordId==='cycle')))return'';
+  return `<div class="kw-action"><button type="button" data-kw2-cycle ${cycleCards.length?'':'disabled'}><b>CYCLE</b><small>Fin d’activation : redressez les cartes Cycle inclinées non utilisées pendant cette activation${cycleCards.length?' · '+cycleCards.map(up=>displayName(up.name)).join(', '):' · aucune carte inclinée'}</small></button></div>`;
+}
 function keywordAutomationPanel(entry){
   const state=stateFor(entry),buttons=Object.entries(KEYWORD_TOKEN_EFFECTS).map(([id,fx])=>{const x=keywordValue(entry,id);if(!x)return'';const used=fx.once&&exhausted(state,'kw-'+id);return `<button data-kw-apply="${id}" ${used?'disabled':''}><b>${fx.title} ${x}</b><small>${fx.when} · ${fx.effect(x,state)}${used?' · déjà appliqué ce round':fx.once?' · une fois par round':''}</small></button>`}).filter(Boolean);
-  const cardActions=[...cardActionButtons(entry,state),...kw2Buttons(entry,state)];
+  const cardActions=[...cardActionButtons(entry,state),...kw2Buttons(entry,state),cycleButton(entry,state)].filter(Boolean);
   return buttons.length||cardActions.length?`<section class="activation-automation keyword-automation"><header><strong>AUTOMATISMES DES MOTS-CLÉS</strong><small>Appliquez l’effet au bon moment : le suivi des pions est mis à jour.</small></header><div>${buttons.join('')}${cardActions.join('')}</div>${kw2Counters(entry,state)}<footer><span>Viser <b>${state.aim||0}</b></span><span>Esquive <b>${state.dodge||0}</b></span><span>Adrénaline <b>${state.surge||0}</b></span><span>Suppression <b>${state.suppression||0}</b></span></footer></section>`:''
 }
 function bindKeywordAutomation(entry,role){
