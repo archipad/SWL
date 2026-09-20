@@ -1110,6 +1110,35 @@ scenario('Nouvelle partie : la synchro ne ressuscite ni suppressions, ni états,
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Certification : liste groupée (mes listes, écarts, reste) et défilé rapide, un clic par carte conforme', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click } = app
+  await click('#certification')
+  const groups = $$('.cert-group').map((heading) => text(heading))
+  assert.ok(groups.length >= 2 && /Dans vos listes/.test(groups[0]), 'la liste est groupée, vos listes d’abord : ' + groups.join(' | '))
+  const start = $('#startReview')
+  assert.ok(start && !start.disabled, 'le défilé rapide est proposé')
+  await click(start)
+  assert.ok($('.cert-review'), 'le défilé s’ouvre')
+  assert.equal($$('[data-full-check]').length, 0, 'aucune case à cocher')
+  const first = text($('.cert-review h2'))
+  // On saute les cartes qui exigent une correction (vitesse à choisir, mots-clés à compléter) et on valide la première carte conforme.
+  let validated = null
+  for (let i = 0; i < 40 && !validated; i++) {
+    const speed = $('[data-review-speed]')
+    if (speed && !speed.value) { speed.value = '2'; speed.dispatchEvent(new app.window.Event('change', { bubbles: true })); await app.settle() }
+    if ($('#reviewOk') && !$('#reviewOk').disabled) { validated = text($('.cert-review h2')); await click('#reviewOk') } else await click('#reviewSkip')
+  }
+  assert.ok(validated, 'au moins une carte se valide en un clic')
+  assert.match(text($('.cert-review .kicker')), /DÉFILÉ RAPIDE/, 'on passe directement à la carte suivante')
+  assert.notEqual(text($('.cert-review h2')), validated, 'la carte validée n’est plus proposée')
+  await click('#reviewExit')
+  assert.match(text($('.cert-batch-bar')), /[1-9]\d* correction/, 'la carte validée est dans le lot : ' + text($('.cert-batch-bar')))
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

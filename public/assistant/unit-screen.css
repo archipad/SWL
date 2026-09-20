@@ -394,3 +394,13 @@
 .speed-chip { display: inline-flex; gap: 4px; align-items: baseline; margin-left: 6px; padding: 2px 8px; border: 1px solid rgba(255, 180, 94, .6); border-radius: 999px; font-size: .8rem; }
 .speed-chip.missing { border-color: #ff8a5c; color: #ff8a5c; }
 label.cert-missing select { border-color: #ff8a5c; }
+.cert-review-launch { margin: 8px 0; }
+.cert-group { margin: 14px 0 6px; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: #ffb45e; }
+.cert-review { display: grid; gap: 12px; }
+.cert-review > header { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+.cert-review-body { display: grid; grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.3fr); gap: 16px; align-items: start; }
+.cert-review-body .cert-card-visual img { width: 100%; height: auto; }
+.cert-review-side { display: grid; gap: 10px; }
+.cert-review-actions { position: sticky; bottom: 0; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; padding: 8px 0; background: var(--bg, #0b100d); }
+.cert-review-actions .big-confirm { min-height: 56px; font-size: 1.05rem; }
+@media (max-width: 800px) { .cert-review-body { grid-template-columns: 1fr; } .cert-review-actions { grid-template-columns: 1fr; } }
