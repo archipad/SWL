@@ -3,8 +3,8 @@
 Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 199 mots-clés du glossaire.
 
 - Combat (attaque / défense), gérés par le moteur : **86** (52 automatiques, 34 assistés).
-- Hors combat, **application par bouton** : 32.
-- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 67.
+- Hors combat, **application par bouton** : 44.
+- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 55.
 - Composition d’armée (rappel replié) : 14.
 
 | Mot-clé | Étape | Traitement | Cartes |
@@ -157,18 +157,18 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Maître de la Force X | Fin d'activation | auto | 3 |
 | Pouvoir Latent | Fin d'activation | auto | 1 |
 | Régénérer X | Fin d'activation | auto | 1 |
-| Alter Ego : Nom d'Unité | Mise en place | rappel | 4 |
-| Blessure X | Mise en place | rappel | 1 |
-| Cache | Mise en place | rappel | 5 |
-| Éclaireur X | Mise en place | rappel | 8 |
-| Équipe d'Éclaireurs X | Mise en place | rappel | 0 |
-| Infiltration | Mise en place | rappel | 8 |
-| Opérations Secrètes | Mise en place | rappel | 0 |
-| Position Préparée | Mise en place | rappel | 6 |
-| Prime | Mise en place | rappel | 6 |
-| Transport | Mise en place | rappel | 3 |
-| Transport Léger X : Ouvert/Fermé | Mise en place | rappel | 0 |
-| Traqué | Mise en place | rappel | 1 |
+| Alter Ego : Nom d'Unité | Mise en place | auto | 4 |
+| Blessure X | Mise en place | auto | 1 |
+| Cache | Mise en place | auto | 5 |
+| Éclaireur X | Mise en place | auto | 8 |
+| Équipe d'Éclaireurs X | Mise en place | auto | 0 |
+| Infiltration | Mise en place | auto | 8 |
+| Opérations Secrètes | Mise en place | auto | 0 |
+| Position Préparée | Mise en place | auto | 6 |
+| Prime | Mise en place | auto | 6 |
+| Transport | Mise en place | auto | 3 |
+| Transport Léger X : Ouvert/Fermé | Mise en place | auto | 0 |
+| Traqué | Mise en place | auto | 1 |
 | Attaque Impétueuse | Ordre reçu · début d'activation | rappel | 0 |
 | Autonome : Pion X/Action | Ordre reçu · début d'activation | rappel | 13 |
 | Cible X | Ordre reçu · début d'activation | auto | 1 |

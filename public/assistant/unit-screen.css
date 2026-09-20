@@ -353,3 +353,5 @@
 .overview .kw-input input { max-width: 120px; padding: 8px; border: 1px solid #ffb45e; border-radius: 6px; background: #04080a; color: #fff; }
 .overview .distract-note { display: grid; gap: 4px; padding: 10px; border: 1px solid #ff4550; border-radius: 8px; background: rgba(255, 69, 80, .1); }
 .overview .distract-note b { color: #ff8a92; }
+.overview .distract-note.loot, .overview .distract-note.scout { border-color: rgba(94, 178, 255, .6); background: rgba(94, 178, 255, .08); }
+.overview .distract-note.loot b, .overview .distract-note.scout b { color: #8fc9ff; }

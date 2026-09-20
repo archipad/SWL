@@ -714,7 +714,8 @@ function cardActionButtons(entry,state){
   const actions=state.activationActions||[],actionFull=actions.length>=activationActionLimit(entry);
   return Object.entries(CARD_KEYWORD_ACTIONS).map(([id,def])=>{
     const x=keywordValue(entry,id);if(!x)return'';
-    const used=(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:actions.includes('card:'+id)||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=def.kind==='action'&&actionFull&&!used,label=typeof def.text==='function'?def.text(x):def.text;
+    if(def.kind==='setup'&&currentRound()>1)return'';
+    const used=def.kind==='setup'?(state.setupDone||[]).includes(id):(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:actions.includes('card:'+id)||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=def.kind==='action'&&actionFull&&!used,label=typeof def.text==='function'?def.text(x):def.text;
     const open=kwActionPick&&kwActionPick.entryId===entry.id&&kwActionPick.id===id;
     let inner='';
     if(open){
@@ -724,7 +725,7 @@ function cardActionButtons(entry,state){
       else inner+=`<div class="kw-choices"><button type="button" class="primary" data-kw-apply-action="${id}" ${def.pick&&!selected.length?'disabled':''}>Appliquer</button></div>`;
       inner+='<button type="button" class="secondary" data-kw-cancel-action>Annuler</button>';
     }
-    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue?' '+x:''}</b><small>${label}${used?' · déjà appliqué':blocked?' · plus d’action disponible':''}</small></button>${inner}</div>`;
+    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue?' '+x:''}</b><small>${label}${used?(def.kind==='setup'?' · fait':' · déjà appliqué'):blocked?' · plus d’action disponible':def.kind==='setup'?' · touchez quand c’est fait (mise en place, round 1)':''}</small></button>${inner}</div>`;
   }).filter(Boolean);
 }
 function applyCardKeywordAction(entry,id,choiceIndex){
@@ -780,7 +781,7 @@ function kw2Buttons(entry,state){
   return out;
 }
 function kw2Counters(entry,state){
-  if(!['regenerer-x','recharger-x','generateur-x'].some(id=>keywordValue(entry,id)))return'';
+  if(!['regenerer-x','recharger-x','generateur-x','blessure-x'].some(id=>keywordValue(entry,id)))return'';
   const counter=(field,label)=>`<span class="kw-counter">${label}<button type="button" data-kw-counter="${field}:-1" aria-label="Retirer">−</button><b>${state[field]||0}</b><button type="button" data-kw-counter="${field}:1" aria-label="Ajouter">+</button></span>`;
   return `<div class="kw-counters">${counter('wound','Blessures')}<span class="kw-counter">Boucliers actifs<b>${state.shield||0}</b></span>${counter('shieldOff','Boucliers inactifs')}</div>`;
 }
@@ -802,9 +803,38 @@ function bindKeywordLot2(entry,role){
 // Actions gratuites offertes par d'autres unités, et Distraire subi : rappel + bouton « effectuée »
 function offersPanelHtml(entry){
   const state=stateFor(entry),offers=state.freeActionOffers||[],source=state.distractedBy?entries.find(candidate=>candidate.id===state.distractedBy):null;
-  if(!offers.length&&!source)return'';
-  return `<section class="activation-automation keyword-offers"><header><strong>ACTIONS OFFERTES · CONTRAINTES</strong><small>Effets d’autres unités qui concernent celle-ci ce round.</small></header><div>${offers.map((offer,index)=>{const from=entries.find(candidate=>candidate.id===offer.from);return `<button type="button" data-offer-done="${index}"><b>ACTION GRATUITE OFFERTE</b><small>${from?entryName(from):'Une unité alliée'} vous permet d’effectuer ${offer.label}. Touchez quand c’est fait.</small></button>`}).join('')}${source?`<div class="distract-note"><b>DISTRAITE</b><small>Jusqu’à la fin du round, cette unité doit attaquer ${entryName(source)} si possible.</small><button type="button" class="secondary" data-distract-clear>Fin de l’effet</button></div>`:''}</div></section>`;
+  const loot=state.lootFrom&&entries.find(candidate=>candidate.id===state.lootFrom),scout=state.scoutFrom&&entries.find(candidate=>candidate.id===state.scoutFrom);
+  if(!offers.length&&!source&&!loot&&!scout)return'';
+  return `<section class="activation-automation keyword-offers"><header><strong>ACTIONS OFFERTES · CONTRAINTES</strong><small>Effets d’autres unités qui concernent celle-ci ce round.</small></header><div>${offers.map((offer,index)=>{const from=entries.find(candidate=>candidate.id===offer.from);return `<button type="button" data-offer-done="${index}"><b>ACTION GRATUITE OFFERTE</b><small>${from?entryName(from):'Une unité alliée'} vous permet d’effectuer ${offer.label}. Touchez quand c’est fait.</small></button>`}).join('')}${loot?`<div class="distract-note loot"><b>PION BUTIN</b><small>Prime de ${entryName(loot)} : vaincre une unité qui porte un pion Prime rapporte 1 PV.</small></div>`:''}${scout?`<div class="distract-note scout"><b>ÉCLAIREUR ACCORDÉ</b><small>Par ${entryName(scout)} (Équipe d’éclaireurs) : peut se déployer avec un déplacement gratuit au début de l’étape Effectuer des actions.</small></div>`:''}${source?`<div class="distract-note"><b>DISTRAITE</b><small>Jusqu’à la fin du round, cette unité doit attaquer ${entryName(source)} si possible.</small><button type="button" class="secondary" data-distract-clear>Fin de l’effet</button></div>`:''}</div></section>`;
 }
+// ---- Lot 3 : mise en place (round 1) : effets appliqués une seule fois, avec suivi « fait » ----
+const setupText=id=>()=>keywords.find(item=>item.id===id)?.shortDefinition||'';
+Object.assign(CARD_KEYWORD_ACTIONS,{
+  'blessure-x':{title:'BLESSURE',kind:'setup',text:x=>`Première entrée en jeu : cette unité subit ${x} Blessure(s) (compteur Blessures).`,selfX:'wound'},
+  'position-preparee':{title:'POSITION PRÉPARÉE',kind:'setup',text:'Mise en place : Chef puis unité en cohésion en territoire allié ; gagne ensuite 1 pion Esquive.',self:{dodge:1}},
+  'prime':{title:'PRIME',kind:'setup',text:'Mise en place : une unité Commandement/Opérative ennemie gagne un pion Butin (vaincre une unité Prime rapporte 1 PV).',pick:{max:()=>1,enemy:true,effect:null,mark:'lootFrom'}},
+  'equipe-declaireurs-x':{title:'ÉQUIPE D’ÉCLAIREURS',kind:'setup',text:x=>`Mise en place : jusqu’à ${x} unité(s) de soldats alliée(s) sans Éclaireur gagnent Éclaireur ${x} pour la partie.`,pick:{max:x=>x,self:false,soldiersOnly:true,effect:null,mark:'scoutFrom'}},
+  'eclaireur-x':{title:'ÉCLAIREUR',kind:'setup',text:x=>`Non déployée : au début de l’étape Effectuer des actions, se déploie avec un déplacement gratuit à vitesse ${x} (ignore le terrain difficile).`},
+  'alter-ego':{title:'ALTER EGO',kind:'setup',text:setupText('alter-ego')},
+  'cache':{title:'CACHE',kind:'setup',text:setupText('cache')},
+  'infiltration':{title:'INFILTRATION',kind:'setup',text:setupText('infiltration')},
+  'operations-secretes':{title:'OPÉRATIONS SECRÈTES',kind:'setup',text:setupText('operations-secretes')},
+  'transport':{title:'TRANSPORT',kind:'setup',text:setupText('transport')},
+  'transport-leger-x':{title:'TRANSPORT LÉGER',kind:'setup',text:x=>`Transporte jusqu’à ${x} unité(s) alliée(s) d’une seule figurine sur petit socle.`},
+  'traque':{title:'TRAQUE',kind:'setup',text:setupText('traque')},
+});
+const applyCardActionLot2=applyCardKeywordAction;
+applyCardKeywordAction=function(entry,id,choiceIndex){
+  const def=CARD_KEYWORD_ACTIONS[id];
+  if(!def||def.kind!=='setup')return applyCardActionLot2(entry,id,choiceIndex);
+  const x=keywordValue(entry,id),picked=(kwActionPick&&kwActionPick.id===id?kwActionPick.selected:[]).map(targetId=>entries.find(candidate=>candidate.id===targetId)).filter(Boolean);
+  if(def.self)bumpTokens(entry,def.self);
+  if(def.selfX)bumpTokens(entry,{[def.selfX]:x});
+  if(def.pick?.mark)for(const target of picked)updateUnitState(target,{[def.pick.mark]:entry.id});
+  const state=stateFor(entry);
+  updateUnitState(entry,{setupDone:[...(state.setupDone||[]),id]});
+  kwActionPick=null;
+};
 function keywordAutomationPanel(entry){
   const state=stateFor(entry),buttons=Object.entries(KEYWORD_TOKEN_EFFECTS).map(([id,fx])=>{const x=keywordValue(entry,id);if(!x)return'';const used=fx.once&&exhausted(state,'kw-'+id);return `<button data-kw-apply="${id}" ${used?'disabled':''}><b>${fx.title} ${x}</b><small>${fx.when} · ${fx.effect(x,state)}${used?' · déjà appliqué ce round':fx.once?' · une fois par round':''}</small></button>`}).filter(Boolean);
   const cardActions=[...cardActionButtons(entry,state),...kw2Buttons(entry,state)];

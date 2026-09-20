@@ -622,6 +622,42 @@ scenario('Lot 2 : Régénérer X (blessures), Conseils (action gratuite offerte)
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Lot 3 : mise en place (Position préparée, Prime, Infiltration, Blessure X) appliquée une seule fois au round 1', async () => {
+  const lists = {
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Shoretroopers', upgrades: [] }, { name: 'Bossk Terror of Trandosha', upgrades: [] }, { name: 'Iden Versio', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Luke Skywalker Hero of the Rebellion', upgrades: [] }, { name: 'Rebel Troopers', upgrades: [] }] },
+  }
+  const stateOf = (app, name) => JSON.parse(app.window.eval('JSON.stringify(stateFor(entries.find(e=>e.unit.name===' + JSON.stringify(name) + ')))'))
+
+  // Position préparée : +1 Esquive une seule fois, puis « fait ».
+  let app = await openAssistant(lists)
+  await app.pickUnit('Shoretroopers')
+  assert.match(app.text(app.$('[data-card-action="position-preparee"]')), /touchez quand c’est fait/)
+  await app.click('[data-card-action="position-preparee"]')
+  assert.equal(stateOf(app, 'Shoretroopers').dodge, 1, '+1 pion Esquive')
+  assert.ok(app.$('[data-card-action="position-preparee"]').disabled, 'appliqué une seule fois')
+  assert.match(app.text(app.$('[data-card-action="position-preparee"]')), /fait/)
+  app.window.close()
+
+  // Prime : une unité ennemie reçoit le pion Butin.
+  app = await openAssistant(lists)
+  await app.pickUnit('Bossk')
+  await app.click('[data-card-action="prime"]')
+  await app.click(app.$$('[data-kw-target]').find((button) => /Luke/.test(app.text(button))))
+  await app.click('[data-kw-apply-action]')
+  assert.ok(stateOf(app, 'Luke Skywalker Hero of the Rebellion').lootFrom, 'la cible porte le pion Butin')
+  assert.ok(app.$('[data-card-action="prime"]').disabled)
+  app.window.close()
+
+  // Après le round 1, la mise en place n'est plus proposée.
+  app = await openAssistant({ ...lists, 'swl.game-tracker.v1': { round: 2 } })
+  await app.pickUnit('Iden Versio')
+  assert.ok(!app.$('[data-card-action="infiltration"]'), 'plus de mise en place au round 2')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {
