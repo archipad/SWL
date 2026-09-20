@@ -389,3 +389,5 @@
 .range-presets { display: flex; flex-wrap: wrap; gap: 6px; }
 .range-presets button { padding: 4px 8px; font-size: .75rem; }
 .cert-use { display: grid; gap: 4px; margin: 8px 0; }
+.cert-removals { display: grid; gap: 6px; margin: 8px 0; padding: 10px; border: 1px solid #ff8a5c; border-radius: 8px; background: rgba(255, 138, 92, .1); }
+.cert-removal { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }

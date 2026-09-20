@@ -134,9 +134,13 @@ try {
     if (!certifiedOnly.length && !tagsOnly.length && !valueDiffs.length) continue;
     const suspiciousEmpty = full.keywords.length === 0 && seed.length > 0 && !full.noKeywordsConfirmed;
     keywordConflicts[card] = { certifiedOnly, tagsOnly, valueDiffs, suspiciousEmpty };
-    if (full.keywordsReviewed === true) tags[card] = full.keywords.map((tag) => ({ ...tag }));
+    // Certification relue : elle fait autorité, SAUF pour un mot-clé de la base qu'elle omet sans l'avoir confirmé comme retiré
+    // (confirmedRemovals) : il est conservé (incident Boba Fett / Arsenal du 20/09/2026 : oubli lors de la saisie). Il reste alors
+    // listé comme désaccord à relire.
+    const confirmedRemovals = new Set(full.confirmedRemovals || []);
+    if (full.keywordsReviewed === true) tags[card] = [...full.keywords.map((tag) => ({ ...tag })), ...seed.filter((tag) => !certById.has(tag.keywordId) && !confirmedRemovals.has(tag.keywordId)).map((tag) => ({ ...tag }))];
     else for (const tag of full.keywords) if (!seedById.has(tag.keywordId)) tags[card] = [...(tags[card] || []), { ...tag }];
-    keywordConflicts[card].reviewed = full.keywordsReviewed === true;
+    keywordConflicts[card].reviewed = full.keywordsReviewed === true && tagsOnly.every((id) => confirmedRemovals.has(id));
   }
   // Un mot-clé d'ARME certifié sur une arme doit exister dans les étiquettes de sa carte : l'Assistant construit
   // les règles d'une attaque à partir des étiquettes puis filtre par arme. Sans cette étape, 48 mots-clés d'armes

@@ -64,6 +64,7 @@ for(const card of cards){
   if(card.fullCardCertification){
     const full=card.fullCardCertification,required=['identity','visual','stats','weapons','conversions','keywords'];
     if(full.schemaVersion!==2||!['unit','upgrade'].includes(full.cardType))throw new Error('Certification complète invalide')
+    if(full.confirmedRemovals!==undefined&&(!Array.isArray(full.confirmedRemovals)||full.confirmedRemovals.some(id=>!knownKeywordIds.has(id))))throw new Error(`Retraits de mots-clés invalides pour ${card.card}`)
     if(full.cardUse!==undefined&&(full.cardType!=='upgrade'||!['passive','exhaust','discard','both'].includes(full.cardUse)))throw new Error(`Utilisation de carte invalide pour ${card.card}`)
     if(!Array.isArray(full.checks)||required.some(check=>!full.checks.includes(check)))throw new Error(`Certification complète inachevée pour ${card.card}`)
     if(typeof full.visualPath!=='string'||!full.visualPath||typeof full.rulesVersion!=='string'||!full.rulesVersion)throw new Error(`Preuve de certification manquante pour ${card.card}`)
