@@ -1010,6 +1010,49 @@ scenario('Certification : portée « melee-2 » (corps-à-corps ET distance 1-2)
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Strangulation de la Force : réactivable (Maître de la Force) et rappelée dans le résumé de l’attaque avec tous les effets appliqués', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Darth Vader Dark Lord of the Sith', upgrades: [{ name: 'Force Choke' }, { name: 'Force Reflexes' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click, setValue, pickUnit, nextAttack } = app
+  await pickUnit('Vador')
+  await click('[data-force-choke]')
+  const used = $('[data-unit-effect="force-choke-used"]')
+  assert.ok(used && used.disabled, 'après usage, la carte reste visible et grisée (elle disparaissait)')
+  assert.ok($('[data-kw-reset="force-choke"]'), 'un bouton « Réactiver » est proposé (Maître de la Force)')
+  await click('[data-kw-reset="force-choke"]')
+  assert.ok($('[data-force-choke]'), 'la carte redressée peut de nouveau être utilisée')
+  await click('[data-force-choke]')
+  await click('[data-unit-effect="force-reflexes"]')
+  // Attaque complète jusqu'au résumé.
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+  await click('[data-range="melee"]')
+  await click($$('.weapon-toggle').find((button) => !button.disabled))
+  await nextAttack()
+  const total = Number((text($('.gate-status')).match(/réserve en contient (\d+)/) || [0, 1])[1]) || 1
+  await setValue('rollHit', total)
+  await nextAttack()
+  await click('[data-cover="none"]')
+  await nextAttack()
+  if ($('[data-skip-step]')) await click('[data-skip-step]')
+  else await click('.phase-confirm')
+  const strip = text($$('.result-strip').find((element) => /À DÉFENDRE/.test(text(element))))
+  const numbers = strip.match(/\d+/g).map(Number)
+  await setValue('defBlank', numbers[numbers.length - 2] + numbers[numbers.length - 1])
+  await click('#nextAttack')
+  await app.settle(150)
+  app.$$('dialog').forEach((dialog) => dialog.remove())
+  const effects = text($('.recap-effects'))
+  assert.match(effects, /STRANGULATION DE LA FORCE/, 'la Strangulation est rappelée dans le résumé : ' + effects)
+  assert.match(effects, /subit 1 blessure/, 'avec la blessure à appliquer à la table : ' + effects)
+  assert.match(effects, /RÉFLEXES DE LA FORCE|Réflexes/i, 'et les autres effets appliqués (Réflexes de la Force) : ' + effects)
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

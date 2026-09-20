@@ -589,3 +589,6 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 .resolve-center .distract-card.alert-card > strong { color: #ff8a92; }
 .resolve-center .distract-card p { margin: 0; color: #dbe9f3; font-size: .86rem; }
 .cross-triggers p { margin: 6px 0 0; }
+.attack-recap .recap-effects { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid rgba(255, 180, 94, .7); border-radius: 8px; background: rgba(255, 180, 94, .08); }
+.attack-recap .recap-effects ul { margin: 0; padding-left: 18px; }
+.attack-recap .recap-effects li { margin: 3px 0; }
