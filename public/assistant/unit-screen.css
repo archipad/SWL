@@ -335,3 +335,11 @@
 .overview .activation-briefing .phase-tag { display: inline-block; margin-right: 7px; padding: 2px 7px; border: 1px solid rgba(94, 178, 255, .55); border-radius: 999px; background: rgba(94, 178, 255, .12); color: #b9dcff; font: 700 .62rem/1.3 'Share Tech Mono', monospace; letter-spacing: .06em; text-transform: uppercase; vertical-align: middle; }
 .overview .activation-briefing .auto-hint { display: block; margin-top: 3px; color: #ffb45e; font-size: .7rem; font-style: normal; }
 .overview .keyword-automation { --u-accent: #ffb45e; }
+
+/* Actions de carte des mots-clés : choix des cibles alliées */
+.overview .kw-action { display: grid; gap: 6px; }
+.overview .kw-action.open { padding: 8px; border: 1px solid rgba(255, 180, 94, .6); border-radius: 8px; background: rgba(255, 180, 94, .06); }
+.overview .kw-targets, .overview .kw-choices { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.overview .kw-targets small { flex-basis: 100%; color: #ffd9a8; }
+.overview .kw-targets button { min-height: 40px; padding: 6px 10px; border: 1px solid var(--u-line); border-radius: 6px; background: rgba(255, 255, 255, .04); color: #e8f2f7; }
+.overview .kw-targets button.on { border-color: #5cdda3; background: #5cdda3; color: #062014; font-weight: 800; }

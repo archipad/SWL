@@ -692,11 +692,66 @@ const KEYWORD_TOKEN_EFFECTS={
   'tacticien-x':{title:'TACTICIEN',when:'À chaque déplacement normal (action ou action gratuite)',effect:x=>`+${x} pion(s) Viser`,patch:(s,x)=>({aim:(s.aim||0)+x}),once:false},
   'operationnel-x':{title:'OPÉRATIONNEL',when:'Après une action Attendre',effect:x=>`+${x} pion(s) Viser`,patch:(s,x)=>({aim:(s.aim||0)+x}),once:false},
 };
+// ---- Lot 1 : actions de carte et effets qui donnent / retirent des pions à des unités alliées ----
+// kind 'action' : consomme une action de l'activation ; 'end' : fin d'activation ; 'round' : une fois par round.
+// pick : choix de cibles alliées (max, includeSelf, filtre) ; effect : pions gagnés (+) ou retirés (−) par cible ; self : effet sur l'unité qui agit.
+const CARD_KEYWORD_ACTIONS={
+  'vivacite-desprit':{title:'VIVACITÉ D’ESPRIT',kind:'action',text:'Action de carte : cette unité gagne 1 Viser et 1 Esquive.',self:{aim:1,dodge:1}},
+  'observateur-x':{title:'OBSERVATEUR',kind:'action',text:x=>`Action de carte : jusqu’à ${x} unité(s) alliée(s) à portée 1 gagnent 1 Viser.`,pick:{max:x=>x,self:true,effect:{aim:1}}},
+  'mettre-a-couvert-x':{title:'METTRE À COUVERT',kind:'action',text:x=>`Action de carte : jusqu’à ${x} unité(s) alliée(s) à portée 1 gagnent 1 Esquive.`,pick:{max:x=>x,self:true,effect:{dodge:1}}},
+  'assistance-x':{title:'ASSISTANCE',kind:'action',text:x=>`Action de carte : jusqu’à ${x} unité(s) alliée(s) à portée 1 gagnent 1 Adrénaline.`,pick:{max:x=>x,self:true,effect:{surge:1}}},
+  'stratege-x':{title:'STRATÈGE',kind:'action',text:x=>`Action de carte : cette unité gagne 1 Suppression, puis ${x} unité(s) alliée(s) à portée 1 gagnent 1 Viser et 1 Esquive.`,self:{suppression:1},pick:{max:x=>x,self:true,effect:{aim:1,dodge:1}}},
+  'calcul-de-probabilites':{title:'CALCUL DE PROBABILITÉS',kind:'action',text:'Action de carte : 1 unité de soldats alliée à portée 1 et en LdV gagne 1 Viser, 1 Esquive et 1 Suppression.',pick:{max:()=>1,self:false,soldiersOnly:true,effect:{aim:1,dodge:1,suppression:1}}},
+  'maitre-conteur':{title:'MAÎTRE CONTEUR',kind:'action',text:()=>`Action de carte : jusqu’à ${currentRound()} unité(s) alliée(s) à portée 1 (numéro du round) gagnent 2 Adrénaline.`,pick:{max:()=>currentRound(),self:true,effect:{surge:2}}},
+  'inspiration-x':{title:'INSPIRATION',kind:'end',text:x=>`Fin d’activation : retirez au total jusqu’à ${x} Suppression à d’autres unités alliées à portée 2.`,pick:{max:x=>x,self:false,onlyWith:'suppression',effect:{suppression:-1}}},
+  'escorte':{title:'ESCORTE',kind:'round',text:'Début de la Phase d’Activation, si l’unité/type indiqué par Escorte est à portée 2 : gagne 1 Viser OU 1 Esquive.',choices:[{label:'+1 Viser',effect:{aim:1}},{label:'+1 Esquive',effect:{dodge:1}}]},
+  'infanterie-mecanisee':{title:'INFANTERIE MÉCANISÉE',kind:'round',text:'Début de la Phase d’Activation : avec un véhicule allié à portée 2, les deux unités gagnent 1 Viser OU 1 Esquive.',pick:{max:()=>1,self:false,vehiclesOnly:true,effect:null},choices:[{label:'Viser pour les deux',effect:{aim:1}},{label:'Esquive pour les deux',effect:{dodge:1}}]},
+};
+let kwActionPick=null;
+const bumpTokens=(target,effect)=>{const state=stateFor(target),patch={};for(const [field,delta] of Object.entries(effect))patch[field]=Math.max(0,(state[field]||0)+delta);updateUnitState(target,patch)};
+const kwPickCandidates=(entry,def)=>entries.filter(candidate=>!defeated(candidate)&&candidate.army===entry.army&&(def.pick.self||candidate.id!==entry.id)&&(!def.pick.soldiersOnly||!isVehicle(candidate))&&(!def.pick.vehiclesOnly||isVehicle(candidate))&&(!def.pick.onlyWith||(stateFor(candidate)[def.pick.onlyWith]||0)>0));
+function cardActionButtons(entry,state){
+  const actions=state.activationActions||[],actionFull=actions.length>=activationActionLimit(entry);
+  return Object.entries(CARD_KEYWORD_ACTIONS).map(([id,def])=>{
+    const x=keywordValue(entry,id);if(!x)return'';
+    const used=def.kind==='round'?exhausted(state,'kw-'+id):actions.includes('card:'+id)||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=def.kind==='action'&&actionFull&&!used,label=typeof def.text==='function'?def.text(x):def.text;
+    const open=kwActionPick&&kwActionPick.entryId===entry.id&&kwActionPick.id===id;
+    let inner='';
+    if(open){
+      const candidates=kwPickCandidates(entry,def),max=def.pick?def.pick.max(x):0,selected=kwActionPick.selected;
+      if(def.pick)inner+=`<div class="kw-targets"><small>Choisissez jusqu’à ${max} unité(s) alliée(s) :</small>${candidates.length?candidates.map(candidate=>`<button type="button" class="${selected.includes(candidate.id)?'on':''}" data-kw-target="${candidate.id}">${entryName(candidate)}</button>`).join(''):'<em>Aucune unité éligible.</em>'}</div>`;
+      if(def.choices)inner+=`<div class="kw-choices">${def.choices.map((choice,index)=>`<button type="button" class="primary" data-kw-choice="${index}" ${def.pick&&!selected.length?'disabled':''}>${choice.label}</button>`).join('')}</div>`;
+      else inner+=`<div class="kw-choices"><button type="button" class="primary" data-kw-apply-action="${id}" ${def.pick&&!selected.length?'disabled':''}>Appliquer</button></div>`;
+      inner+='<button type="button" class="secondary" data-kw-cancel-action>Annuler</button>';
+    }
+    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${def.kind!=='action'||x>1?' '+x:''}</b><small>${label}${used?' · déjà appliqué':blocked?' · plus d’action disponible':''}</small></button>${inner}</div>`;
+  }).filter(Boolean);
+}
+function applyCardKeywordAction(entry,id,choiceIndex){
+  const def=CARD_KEYWORD_ACTIONS[id],x=keywordValue(entry,id),pick=kwActionPick&&kwActionPick.id===id?kwActionPick.selected:[];
+  if(!def||!x)return;
+  const choice=def.choices?def.choices[choiceIndex]:null,effect=choice?choice.effect:def.pick?.effect;
+  if(def.self)bumpTokens(entry,def.self);
+  const targets=pick.map(targetId=>entries.find(candidate=>candidate.id===targetId)).filter(Boolean).slice(0,def.pick?def.pick.max(x):0);
+  for(const target of targets)if(effect)bumpTokens(target,effect);
+  if(id==='infanterie-mecanisee'&&choice)bumpTokens(entry,choice.effect);
+  if(id==='escorte'&&choice)bumpTokens(entry,choice.effect);
+  const state=stateFor(entry);
+  if(def.kind==='action')updateUnitState(entry,{activationActions:[...(state.activationActions||[]),'card:'+id]});
+  else exhaustCard(entry,'kw-'+id);
+  kwActionPick=null;
+}
 function keywordAutomationPanel(entry){
   const state=stateFor(entry),buttons=Object.entries(KEYWORD_TOKEN_EFFECTS).map(([id,fx])=>{const x=keywordValue(entry,id);if(!x)return'';const used=fx.once&&exhausted(state,'kw-'+id);return `<button data-kw-apply="${id}" ${used?'disabled':''}><b>${fx.title} ${x}</b><small>${fx.when} · ${fx.effect(x,state)}${used?' · déjà appliqué ce round':fx.once?' · une fois par round':''}</small></button>`}).filter(Boolean);
-  return buttons.length?`<section class="activation-automation keyword-automation"><header><strong>AUTOMATISMES DES MOTS-CLÉS</strong><small>Appliquez l’effet au bon moment : le suivi des pions est mis à jour.</small></header><div>${buttons.join('')}</div><footer><span>Viser <b>${state.aim||0}</b></span><span>Esquive <b>${state.dodge||0}</b></span><span>Adrénaline <b>${state.surge||0}</b></span><span>Suppression <b>${state.suppression||0}</b></span></footer></section>`:''
+  const cardActions=cardActionButtons(entry,state);
+  return buttons.length||cardActions.length?`<section class="activation-automation keyword-automation"><header><strong>AUTOMATISMES DES MOTS-CLÉS</strong><small>Appliquez l’effet au bon moment : le suivi des pions est mis à jour.</small></header><div>${buttons.join('')}${cardActions.join('')}</div><footer><span>Viser <b>${state.aim||0}</b></span><span>Esquive <b>${state.dodge||0}</b></span><span>Adrénaline <b>${state.surge||0}</b></span><span>Suppression <b>${state.suppression||0}</b></span></footer></section>`:''
 }
 function bindKeywordAutomation(entry,role){
+  root.querySelectorAll('[data-card-action]').forEach(button=>button.onclick=()=>{const id=button.dataset.cardAction,def=CARD_KEYWORD_ACTIONS[id];if(!def)return;if(!def.pick&&!def.choices){applyCardKeywordAction(entry,id,0);overview(entry,role);return}kwActionPick={entryId:entry.id,id,selected:[]};overview(entry,role)});
+  root.querySelectorAll('[data-kw-target]').forEach(button=>button.onclick=()=>{if(!kwActionPick)return;const def=CARD_KEYWORD_ACTIONS[kwActionPick.id],max=def.pick.max(keywordValue(entry,kwActionPick.id)),list=kwActionPick.selected,targetId=button.dataset.kwTarget;kwActionPick.selected=list.includes(targetId)?list.filter(item=>item!==targetId):list.length<max?[...list,targetId]:list;overview(entry,role)});
+  root.querySelectorAll('[data-kw-apply-action]').forEach(button=>button.onclick=()=>{applyCardKeywordAction(entry,button.dataset.kwApplyAction,0);overview(entry,role)});
+  root.querySelectorAll('[data-kw-choice]').forEach(button=>button.onclick=()=>{if(!kwActionPick)return;applyCardKeywordAction(entry,kwActionPick.id,Number(button.dataset.kwChoice));overview(entry,role)});
+  root.querySelectorAll('[data-kw-cancel-action]').forEach(button=>button.onclick=()=>{kwActionPick=null;overview(entry,role)});
   root.querySelectorAll('[data-kw-apply]').forEach(button=>button.onclick=()=>{const id=button.dataset.kwApply,fx=KEYWORD_TOKEN_EFFECTS[id],x=keywordValue(entry,id),state=stateFor(entry);if(!fx||!x)return;const patch=fx.patch(state,x);if(fx.once)exhaustCard(entry,'kw-'+id,patch);else updateUnitState(entry,patch);overview(entry,role)})
 }
 const overviewKeywordAutomationBase=overview;

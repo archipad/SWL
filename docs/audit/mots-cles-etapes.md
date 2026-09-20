@@ -3,28 +3,28 @@
 Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 199 mots-clés du glossaire.
 
 - Combat (attaque / défense), gérés par le moteur : **86** (52 automatiques, 34 assistés).
-- Hors combat, **application par bouton** : 12.
-- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 87.
+- Hors combat, **application par bouton** : 22.
+- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 77.
 - Composition d’armée (rappel replié) : 14.
 
 | Mot-clé | Étape | Traitement | Cartes |
 |---|---|---|---:|
 | Armer X : Type de Charge | Actions de carte | rappel | 0 |
-| Assistance X | Actions de carte | rappel | 0 |
-| Calcul de Probabilités | Actions de carte | rappel | 2 |
+| Assistance X | Actions de carte | auto | 0 |
+| Calcul de Probabilités | Actions de carte | auto | 2 |
 | Conseils : Type d'Unité | Actions de carte | rappel | 2 |
 | Distraire | Actions de carte | rappel | 1 |
 | Je Fais Partie de l'Équipe Aussi | Actions de carte | rappel | 1 |
-| Maître Conteur | Actions de carte | rappel | 0 |
-| Mettre à Couvert X | Actions de carte | rappel | 2 |
-| Observateur X | Actions de carte | rappel | 3 |
+| Maître Conteur | Actions de carte | auto | 0 |
+| Mettre à Couvert X | Actions de carte | auto | 2 |
+| Observateur X | Actions de carte | auto | 3 |
 | Opérationnel X | Actions de carte | auto | 1 |
 | Pions Bane (Cad Bane) | Actions de carte | rappel | 0 |
 | Réparation X : Capacité Y | Actions de carte | rappel | 4 |
-| Stratège X | Actions de carte | rappel | 0 |
+| Stratège X | Actions de carte | auto | 0 |
 | Tirer les Ficelles | Actions de carte | rappel | 0 |
 | Traiter X : Capacité Y | Actions de carte | rappel | 2 |
-| Vivacité d'Esprit | Actions de carte | rappel | 1 |
+| Vivacité d'Esprit | Actions de carte | auto | 1 |
 | Accomplir la Mission | Attaque | moteur (automatique) | 0 |
 | Anti-matériel X | Attaque | moteur (automatique) | 0 |
 | Anti-personnel X | Attaque | moteur (automatique) | 0 |
@@ -153,7 +153,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Restaurer | Effets permanents | rappel | 0 |
 | Tenir le Cap : Mot-clé | Effets permanents | rappel | 0 |
 | Cycle | Fin d'activation | rappel | 5 |
-| Inspiration X | Fin d'activation | rappel | 7 |
+| Inspiration X | Fin d'activation | auto | 7 |
 | Maître de la Force X | Fin d'activation | rappel | 3 |
 | Pouvoir Latent | Fin d'activation | rappel | 1 |
 | Régénérer X | Fin d'activation | rappel | 1 |
@@ -174,10 +174,10 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Cible X | Ordre reçu · début d'activation | auto | 1 |
 | Défense X | Ordre reçu · début d'activation | auto | 2 |
 | Discipliné X | Ordre reçu · début d'activation | auto | 2 |
-| Escorte : Nom/Type d'Unité | Ordre reçu · début d'activation | rappel | 4 |
+| Escorte : Nom/Type d'Unité | Ordre reçu · début d'activation | auto | 4 |
 | Fiable X | Ordre reçu · début d'activation | auto | 3 |
 | IA : Action | Ordre reçu · début d'activation | rappel | 4 |
-| Infanterie Mécanisée | Ordre reçu · début d'activation | rappel | 0 |
+| Infanterie Mécanisée | Ordre reçu · début d'activation | auto | 0 |
 | Maîtrise du Juyo | Ordre reçu · début d'activation | rappel | 1 |
 | Mode Roue | Ordre reçu · début d'activation | rappel | 0 |
 | Surcharge X | Ordre reçu · début d'activation | rappel | 0 |

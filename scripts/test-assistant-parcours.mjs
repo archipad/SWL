@@ -543,6 +543,38 @@ scenario('Mots-clés d’unité : pastille d’étape dans le Briefing, boutons 
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Lot 1 : actions de carte des mots-clés (Vivacité d’esprit, Observateur X, Escorte…) appliquent les pions et consomment l’action', async () => {
+  const lists = {
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Iden Versio', upgrades: [] }, { name: 'General Veers', upgrades: [] }, { name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  }
+  const tokens = (app, name) => JSON.parse(app.window.eval('JSON.stringify((()=>{const s=stateFor(entries.find(e=>e.unit.name===' + JSON.stringify(name) + '));return {aim:s.aim,dodge:s.dodge,surge:s.surge,suppression:s.suppression,actions:s.activationActions}})())'))
+
+  // Vivacité d'esprit : effet sur soi, une action consommée, bouton ensuite désactivé.
+  let app = await openAssistant(lists)
+  await app.pickUnit('Iden Versio')
+  assert.match(app.text(app.$('.keyword-automation')), /VIVACITÉ D’ESPRIT/)
+  await app.click('[data-card-action="vivacite-desprit"]')
+  assert.deepEqual([tokens(app, 'Iden Versio').aim, tokens(app, 'Iden Versio').dodge], [1, 1], '+1 Viser et +1 Esquive')
+  assert.deepEqual(tokens(app, 'Iden Versio').actions, ['card:vivacite-desprit'], 'une action consommée')
+  assert.ok(app.$('[data-card-action="vivacite-desprit"]').disabled, 'une fois par activation')
+  app.window.close()
+
+  // Observateur X : choix d'une cible alliée, +1 Viser à la cible.
+  app = await openAssistant(lists)
+  await app.pickUnit('Veers')
+  await app.click('[data-card-action="observateur-x"]')
+  assert.ok(app.$('[data-kw-apply-action]').disabled, 'aucune cible choisie : appliquer est verrouillé')
+  await app.click(app.$$('[data-kw-target]').find((button) => /Stormtroopers/.test(app.text(button))))
+  await app.click('[data-kw-apply-action]')
+  assert.equal(tokens(app, 'Stormtroopers').aim, 1, 'la cible gagne 1 Viser')
+  assert.equal(tokens(app, 'General Veers').aim, 0, 'l’unité qui agit n’a rien gagné')
+  assert.deepEqual(tokens(app, 'General Veers').actions, ['card:observateur-x'])
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {
