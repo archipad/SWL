@@ -399,7 +399,7 @@ scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé,
   await click('#certification')
   const total = Number(text($('#certificationCount')))
   assert.ok(total > 100, 'toutes les cartes sans certification complète comptent : ' + total)
-  assert.ok($$('[data-cert-filter]').length === 4, 'filtres : toutes, mes listes, écarts, jamais certifiées')
+  assert.ok($$('[data-cert-filter]').length === 5, 'filtres : toutes, mes listes, écarts, jamais certifiées, à confirmer (relecture IA)')
   await click('[data-cert-filter="gaps"]')
   const gaps = $$('.cert-list button[data-cert-card]')
   assert.ok(gaps.length >= 20, 'les cartes avec écart Legion Helper ou base ≠ certification sont listées : ' + gaps.length)
@@ -1268,6 +1268,104 @@ scenario('Bonus permanents des cartes : courage (Gideon Hask) et vitesse (Pilote
   const readout = (index) => evaluate('mobilityReadout(entries[' + index + '],stateFor(entries[' + index + ']),0)')
   const speed = (index) => Number((readout(index).match(/VITESSE (\d+)/) || [])[1])
   assert.equal(speed(0), speed(1) + 1, 'Pilote de TIE Impérial augmente la vitesse maximale de 1 : ' + readout(0))
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Pions Viser : la dépense se saisit à l’étape des relances (comme les Adrénalines) et met le suivi à jour', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, text, click, setValue, pickUnit, nextAttack } = app
+  app.window.eval("updateUnitState(entries[0],{aim:2})")
+  const aimOf = () => app.window.eval('stateFor(entries[0]).aim')
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+  await click('[data-range="2"]')
+  await click('.weapon-toggle[data-key$=":1"]')
+  await nextAttack()
+  assert.ok($('#aims'), 'le compteur de Viser dépensés est proposé : ' + text($('.resolve-center')).slice(0, 300))
+  assert.match(text($('.token-card.aim')), /PIONS VISER DISPONIBLES : 2/, 'le stock est affiché')
+  await setValue('aims', 1)
+  assert.equal(Number($('#aims').value), 1, 'un Viser dépensé')
+  await setValue('aims', 5)
+  assert.ok(Number($('#aims').value) <= 2, 'la dépense est limitée au stock : ' + $('#aims').value)
+  await setValue('aims', 1)
+  await setValue('rollHit', 2)
+  await nextAttack()
+  await click('[data-cover="none"]')
+  await nextAttack()
+  await click('[data-skip-step]')
+  const defense = Number($('.defense-dice-pool') ? (text($('.defense-dice-pool')).match(/LANCER\s*(\d+)/) || [0, 0])[1] : 0)
+  await setValue('defBlank', defense)
+  await click('#nextAttack')
+  await app.settle(150)
+  app.document.querySelectorAll('dialog, .rule-popup').forEach((element) => element.remove())
+  assert.match(text($('.attack-recap')), /Viser/, 'le résumé mentionne les pions Viser dépensés')
+  await click('#nextAttack')
+  assert.equal(aimOf(), 1, 'un Viser est retiré du suivi de l’attaquant (2 → 1)')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Certification : relecture IA — badge par carte, filtre « à confirmer », défilé limité aux cartes corrigées ou illisibles', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click } = app
+  await click('#certification')
+  const review = app.window.SWL_REFERENCE.aiReview
+  assert.ok(review && Object.keys(review).length > 200, 'la relecture IA est chargée : ' + Object.keys(review || {}).length)
+  assert.ok(Object.values(review).some((item) => item.status === 'corrigee') && Object.values(review).some((item) => item.status === 'relue'), 'statuts corrigée et relue présents')
+  assert.match(text($('.cert-list')), /IA : (corrigée, à confirmer|relue, aucun écart|illisible)/, 'chaque carte porte sa pastille de relecture IA')
+  const filter = $('[data-cert-filter="ai"]')
+  assert.ok(filter, 'filtre « À confirmer, relecture IA »')
+  await click(filter)
+  const flagged = $$('.cert-status-section.todo [data-cert-card]').map((button) => decodeURIComponent(button.dataset.certCard))
+  assert.ok(flagged.length > 0 && flagged.every((card) => review[card] && review[card].status !== 'relue'), 'le filtre ne garde que les cartes corrigées / illisibles : ' + flagged.slice(0, 5).join(', '))
+  await click('#startReviewFlagged')
+  assert.ok($('.cert-review'), 'le défilé des cartes à confirmer s’ouvre')
+  assert.match(text($('.cert-review .cert-ai')), /⚠/, 'la première carte du défilé est signalée par l’IA : ' + text($('.cert-review')).slice(0, 200))
+  const first = text($('.cert-review h2'))
+  assert.ok(first, 'carte affichée : ' + first)
+  assert.match(text($('.cert-review .kicker')), /DÉFILÉ RAPIDE · 1 \/ (\d+)/, 'compteur du défilé')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Phases du round : Commandement (Agent de Confiance, Brouilleur Comms de l’adversaire), début d’activation, fin, Phase Finale', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [
+      { name: 'Stormtroopers', upgrades: [{ name: 'Trusted Agent' }, { name: 'Improvised Orders' }, { name: 'Endurance' }, { name: 'Vigilance' }] },
+      { name: 'Snowtroopers', upgrades: [] },
+    ] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [{ name: 'Comms Jammer' }, { name: 'Strict Orders' }] }] },
+  })
+  const { $, $$, text, click } = app
+  app.window.localStorage.setItem('swl.assistant.player-side.v1', 'p1')
+  const states = () => Object.values(JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}'))
+  await click('#roundPhases')
+  assert.ok($('.round-phases'), 'l’écran des phases s’ouvre')
+  assert.match(text($('.rp-title')), /PHASE DE COMMANDEMENT/, 'première phase : Commandement')
+  assert.match(text($('.rp-cross')), /BROUILLEUR COMMS/, 'le Brouilleur Comms de l’adversaire est signalé en tête de phase : ' + text($('.round-phases')).slice(0, 300))
+  assert.ok($('[data-card-action="trusted-agent"]'), 'Agent de Confiance : bouton à la Phase de Commandement')
+  await click('[data-card-action="trusted-agent"]')
+  await click('.rp-unit [data-kw-target]')
+  await click('.rp-unit [data-kw-apply-action]')
+  assert.ok(states().some((state) => (state.discardedCards || []).includes('trusted-agent')), 'la carte ✖ est supprimée de la partie')
+  assert.ok($('[data-card-action="trusted-agent"]').disabled, 'le bouton est verrouillé après usage')
+  await click('[data-rp-tab="activation"]')
+  assert.ok($('[data-card-action="improvised-orders"]'), 'Ordres Improvisés au début de la Phase d’Activation')
+  assert.match(text($('.round-phases')), /ORDRES STRICTS/, 'Ordres Stricts (autre unité) signalé')
+  await click('[data-rp-tab="fin"]')
+  assert.ok($('[data-card-action="endurance"]'), 'Endurance en fin de Phase d’Activation')
+  await click('[data-rp-tab="finale"]')
+  assert.ok($('[data-card-action="vigilance"]'), 'Vigilance à la Phase Finale')
+  await click('#closeRoundPhases')
+  assert.ok(!$('.round-phases'), 'retour à l’assistant')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })

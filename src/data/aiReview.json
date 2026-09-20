@@ -1,0 +1,1216 @@
+{
+  "_meta": {
+    "genere": "2026-09-20",
+    "description": "Relecture des visuels par l’IA (20/09/2026). Deuxième avis : ne remplace pas la certification. « corrigee » = donnée modifiée d’après le visuel, à confirmer ; « illisible » = à lire sur la carte ; « relue » = aucun écart trouvé."
+  },
+  "cards": {
+    "2 1b medical droid": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "74 z speeder bikes": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "88i twin light blaster": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "a280 cfe pistol sniper config": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "ag 2g quad laser": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "at rt": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "at st": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "at st mortar launcher": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "agent kallus": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes, rang (icône)."
+    },
+    "ahsoka tano": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "battle shield wookiee": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "beskad duelist": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "bowcaster wookiee": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "burst of speed": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "c 3po": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "cm o 93 trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "cassian andor": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : rang (icône)."
+    },
+    "cassian andor operative": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "chewbacca": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "df 90 mortar trooper": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : rang (icône)."
+    },
+    "dh 447 sniper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dlt 19 stormtrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dlt 19d trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dlt 19x sniper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dlt 20a range trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dlt 20a trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dw 3 concussion grenade launcher": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dark trooper squad": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : rang (icône)."
+    },
+    "darth vader dark lord of the sith": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dewback rider": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "director orson krennic": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "e web heavy blaster team": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "fx 9 medical droid": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "flametrooper": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "fleet trooper squad": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "fleet troopers": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "force choke": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "general veers": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "hh 12 stormtrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "heavy laser retrofit": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "hotshot pilot": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "han solo": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "a a5 speeder truck": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel sleeper cell": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "1 4 fd laser cannon team": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "mandalorian resistance clan wren": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "iden versio": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "imperial death troopers": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "imperial march": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "imperial officer": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "imperial special forces": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "imperial special forces inferno squad": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "jetpack rockets": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "jyn erso": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : rang (icône)."
+    },
+    "k 2so": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "kx series security droids": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "laat le patrol transport": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "lando calrissian": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "leia organa": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "linked targeting array": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "long gun wookiee": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "luke skywalker hero of the rebellion": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "luke skywalker jedi knight": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "m 45 ion blaster": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "mpl 57 barrage trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "mpl 57 ion trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "major marquand": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "mandalorian combat shields": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "mandalorian resistance": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "mark ii medium blaster trooper": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : rang (icône)."
+    },
+    "mo dk power harpoon": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "moff gideon": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "offensive push": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "outer rim speeder jockey": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "proton charge saboteur": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "r2 d2": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "r5 astromech droid": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "sleeper cell astromech": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rps 6 rocket gunner": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "range troopers": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : rang (icône)."
+    },
+    "rebel commandos": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel commandos strike team": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel officer": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel trooper captain": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "ryder azadi": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "sabine s grapple line": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "jyn s se 14 blaster": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel trooper specialist": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel comms technician": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel trooper squad": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel troopers": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel veteran": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel veteran squad": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel veterans": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "sx 21 trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "saber throw": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "sabine wren": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "scatter gun trooper": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "scout troopers": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "scout troopers strike team": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "shoretroopers": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "shriv suurgav": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "snowtrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "snowtroopers": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "sonic charge saboteur": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "stormtrooper heavy gunner squad": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : rang (icône)."
+    },
+    "stormtrooper riot squad": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "stormtrooper squad": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "stormtroopers": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "t 21 stormtrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "t 21a range trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "t 21b shoretrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "t 47 airspeeder": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "t 7 ion snowtrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tl tt": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tl tt flame projector": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "at rt flamethrower": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "ax 108 ground buzzer": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "z 6 trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tl tt laser cannon": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tl tt rotary blaster": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "x 34 gunner": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "x 34 mark ii blaster": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tr tt": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tx 225 occupier tank": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "targeting scopes": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "kraken": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "captain rex": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "mounted gunners": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "kallus the operative": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : figurines ajoutées."
+    },
+    "darth vader the emperor s apprentice": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "iden s id10 seeker droid": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tauntaun riders": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "the darksaber": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "the fifth brother": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "the seventh sister": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tristan wren": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "ursa wren": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "wedge antilles": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "wookiee warriors freedom fighters": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "wookiee warriors kashyyyk resistance": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "x 34 landspeeder": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rt 97c stormtrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dt f16": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "del meeko": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "gideon hask": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "t 21 special forces trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "sm 9 dark trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "xs iv dark trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "cleaver dark trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "e 11d focused strike config": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "e 11d grenade launcher config": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "fragmentation grenades": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "impact grenades": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "concussion grenades": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "emp grenades": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "sonic imploders": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "armor piercing shells": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "high energy shells": {
+      "status": "illisible",
+      "note": "Couleur du premier dé de l’Obus à Haute Énergie illisible sur le visuel."
+    },
+    "anti bunker shells": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "cr 24 flame rifle": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "rt 97c dewback rider": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "t 21 dewback rider": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "dlt 19 pintle mount": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rt 97c pintle mount": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "programmed loyalty": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "inquisitorius training": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "r4 astromech droid": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "imperial comms technician": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "stormtrooper captain": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "stormtrooper specialist": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "stormtrooper sharpshooter": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "stormtrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "shoretrooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "range trooper": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "stormtrooper squad expansion": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "snowtrooper squad expansion": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "shoretrooper squad expansion": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "governor pryce": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "first sergeant arbmab": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "general weiss": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "baron rudor": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "imperial hammers elite armor pilot": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : adrénaline d’attaque."
+    },
+    "imperial tie pilot": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "pyke syndicate foot soldiers": {
+      "status": "illisible",
+      "note": "Visuel tronqué : adrénalines non relues."
+    },
+    "swoop bike riders": {
+      "status": "illisible",
+      "note": "Visuel tronqué : adrénalines non relues."
+    },
+    "pyke syndicate capo": {
+      "status": "illisible",
+      "note": "Visuel tronqué : adrénalines non relues."
+    },
+    "black sun vigo": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : PV, courage ou figurines, couleur de défense. Visuel tronqué : adrénalines non relues."
+    },
+    "black sun enforcers": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : PV, courage ou figurines, couleur de défense. Visuel tronqué : adrénalines non relues."
+    },
+    "gar saxon militant commando": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : PV, courage ou figurines. Perforant du pistolet : valeur illisible (visuel coupé), à lire sur la carte."
+    },
+    "maul a rival": {
+      "status": "illisible",
+      "note": "Visuel tronqué : adrénalines et dés de défense non relus."
+    },
+    "bossk terror of trandosha": {
+      "status": "illisible",
+      "note": "Visuel tronqué : adrénalines non relues."
+    },
+    "boba fett infamous bounty hunter": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "boba fett daimyo of mos espa": {
+      "status": "illisible",
+      "note": "Visuel mal cadré : la carte n’a pas pu être relue en entier."
+    },
+    "cad bane": {
+      "status": "illisible",
+      "note": "Visuel tronqué : adrénalines et dés de défense non relus."
+    },
+    "ig 88": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : PV, courage ou figurines. Visuel tronqué : adrénalines non relues."
+    },
+    "ig 11": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : PV, courage ou figurines. Visuel tronqué : adrénalines non relues."
+    },
+    "din djarin": {
+      "status": "illisible",
+      "note": "Visuel tronqué : adrénalines et dés de défense non relus."
+    },
+    "mandalorian super commandos": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes. Visuel tronqué : adrénalines non relues."
+    },
+    "grogu": {
+      "status": "illisible",
+      "note": "Visuel vide ou tronqué : la carte n’a pas pu être relue."
+    },
+    "the bad batch": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : PV, courage ou figurines. Visuel tronqué : adrénalines non relues (PV, courage et défense corrigés)."
+    },
+    "rebel agent defender of democracy": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "reluctant hero": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "fire control": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "combat armor rebel": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "repeating blaster": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "omega": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes. Visuel tronqué : adrénalines et dés de défense non relus."
+    },
+    "pyke foot soldier concealment": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "pyke soldier p13m disruptor": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "black sun enforcer magnetic detonator": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "black sun enforcer scatter gun": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "black sun enforcer concealment": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "super commando pistoleer": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "super commando marksman": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "super commando concealment": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "super commando combat shields": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rook kast": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes, figurines ajoutées."
+    },
+    "din djarin beskar spear": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "din djarin flamethrower": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "din djarin amban rifle": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "din djarin jetpack": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "gar saxon combat shield": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "gar saxon galar90 rifle": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "gar saxon zx flamethrower": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "boba fett flamethrower": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes. Visuel mal cadré : le Projecteur de Flammes de Boba n’a pas pu être lu en entier."
+    },
+    "ig11 prime programming": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "ig11 nanny programming": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "crosshair": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "hunter": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tech": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "echo clone force 99": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "wrecker": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "pyke soldier electro whip": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : armes."
+    },
+    "gar saxon back mounted rockets": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "cad bane electro gauntlets": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "super commando back mounted rockets": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "chewbacca upgrade": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "fleet trooper": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : figurines ajoutées."
+    },
+    "offensive posture": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "inspiring presence": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "recon intel": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "tenacity": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "sabine s combat shield": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "rebel ambusher": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "unstable astromech": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "remote doc": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "unorthodox tactician": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "additional supplies": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "force reflexes": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "improvised orders": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "prepared materiel": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "situational awareness": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "hq uplink": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "duck and cover": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "vigilance": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "lead by example": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "strict orders": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "ascension cables": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "electrobinoculars": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "underworld contacts": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "environmental gear": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "handheld scanner": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "grapnel hooks": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "emergency stims": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "endurance": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "on the hunt": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "protector": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "spotting": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "seize the opportunity": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "defensive posture": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "command system": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "comms jammer": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "comms hacking unit": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "attack protocols": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "onboard comms channel": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "smoke grenades": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "defense protocols": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "engagement protocols": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "barrage generator": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "generator overcharge": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "anger": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "fear": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "hope": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "old jedi trick": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "force barrier": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "force guidance": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "force push": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "clairvoyance": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "climbing cables": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "combat group leader": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : utilisation ↱ / ✖, visuel décalé, ré-extrait du PDF."
+    },
+    "dread": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "entrenched": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "hit and run": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "mission objective": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : utilisation ↱ / ✖, visuel décalé, ré-extrait du PDF."
+    },
+    "serenity": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "spotter link": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "trusted agent": {
+      "status": "corrigee",
+      "note": "Corrigé le 20/09/2026 d’après le visuel : utilisation ↱ / ✖, visuel décalé, ré-extrait du PDF."
+    },
+    "in the fray": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "point blank": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "emergency transponder": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    },
+    "darth vader the emperors apprentice": {
+      "status": "relue",
+      "note": "Relue sur le visuel le 20/09/2026 (armes, mots-clés, effets, PV, courage, défense, adrénalines) : aucun écart trouvé."
+    }
+  }
+}

@@ -167,8 +167,13 @@ try {
     if (certified) cardUse[card] = certified
   }
 
+  // Relecture des visuels par l'IA (deuxième avis affiché dans l'écran de certification) : src/data/aiReview.json.
+  const aiReviewPath = resolve(projectRoot, 'src/data/aiReview.json')
+  const aiReview = existsSync(aiReviewPath) ? JSON.parse(await readFile(aiReviewPath, 'utf8')).cards : {}
+
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,
+    aiReview,
     tags,
     keywordConflicts,
     cardUse,

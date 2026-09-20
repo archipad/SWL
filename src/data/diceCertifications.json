@@ -361,7 +361,7 @@
     "fullCardCertification": {
       "schemaVersion": 2,
       "cardType": "unit",
-      "rank": "commandant",
+      "rank": "operative",
       "unitType": "",
       "speed": "2",
       "attackSurge": "none",

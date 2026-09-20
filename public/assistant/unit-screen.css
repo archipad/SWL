@@ -406,3 +406,27 @@ label.cert-missing select { border-color: #ff8a5c; }
 @media (max-width: 800px) { .cert-review-body { grid-template-columns: 1fr; } .cert-review-actions { grid-template-columns: 1fr; } }
 .cert-weapon-gap { display: grid; gap: 6px; margin: 8px 0; padding: 10px 12px; border: 1px solid rgba(255, 180, 94, .6); border-radius: 8px; background: rgba(255, 180, 94, .08); }
 .cert-weapon-gap[role="alert"] { border-color: #ff8a5c; background: rgba(255, 138, 92, .1); }
+/* Relecture IA dans la certification (20/09/2026) */
+.cert-ai { display: grid; gap: 4px; padding: 10px 12px; border-radius: 8px; border: 1px solid rgba(120, 220, 160, .5); background: rgba(120, 220, 160, .07); }
+.cert-ai.ai-flag { border-color: rgba(255, 180, 94, .8); background: rgba(255, 180, 94, .10); }
+.cert-ai small { opacity: .85; }
+.cert-review-launch { display: flex; flex-wrap: wrap; gap: 8px; }
+/* Écran « Phases du round » (21/09/2026) */
+.round-phases { display: grid; gap: 12px; padding: 12px; }
+.round-phases > header { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.round-phases h1 { margin: 2px 0; font-size: 1.4rem; letter-spacing: .06em; }
+.round-phases header p { margin: 0; opacity: .8; }
+.rp-tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.rp-tabs button { min-height: 44px; padding: 0 14px; }
+.rp-tabs button.on { background: #ffb45e; color: #201408; border-color: #ffb45e; font-weight: 700; }
+.rp-title { margin: 6px 0 0; font-size: 1rem; letter-spacing: .08em; color: #ffb45e; }
+.rp-cross { display: grid; gap: 4px; padding: 10px 12px; border: 1px solid rgba(255, 180, 94, .8); border-radius: 8px; background: rgba(255, 180, 94, .10); }
+.rp-cross ul, .rp-unit ul { margin: 0; padding-left: 18px; }
+.rp-cross li, .rp-unit li { margin: 4px 0; }
+.rp-cross small, .rp-unit li small { display: block; opacity: .85; }
+.rp-army { border: 1px solid rgba(150, 200, 255, .25); border-radius: 8px; padding: 8px 10px; }
+.rp-army > summary { cursor: pointer; font-weight: 700; min-height: 40px; display: flex; align-items: center; }
+.rp-unit { display: grid; gap: 6px; padding: 10px 0; border-top: 1px solid rgba(150, 200, 255, .2); }
+.rp-unit h3 { margin: 0; font-size: 1rem; }
+.rp-actions { display: grid; gap: 8px; }
+.rp-empty { opacity: .7; margin: 6px 0; }
