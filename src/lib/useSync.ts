@@ -76,6 +76,24 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
       if (remote.updatedAt > knownUpdatedAt.current) {
         setListP1(remote.listP1);
         setListP2(remote.listP2);
+        const localEpoch = gistSync.readGameEpoch();
+        const remoteEpoch = remote.gameEpoch ?? 0;
+        if (remoteEpoch < localEpoch) {
+          // Notre « Nouvelle partie » est plus récente que ce que le gist contient : on ne reprend RIEN de l'ancienne partie.
+          knownUpdatedAt.current = remote.updatedAt;
+          setNotice({ kind: 'success', message: 'Nouvelle partie conservée sur cet appareil.' });
+        } else if (remoteEpoch > localEpoch) {
+          // Une nouvelle partie a été démarrée ailleurs : on la reprend telle quelle (aucune fusion avec l'ancienne).
+          gistSync.writeGameEpoch(remoteEpoch);
+          if (remote.gameTracker) setGameTracker(remote.gameTracker);
+          localStorage.setItem('swl.assistant.unit-state.v1', JSON.stringify(remote.assistantUnitStates ?? {}));
+          localStorage.setItem('swl.assistant.unit-state-clock.v1', JSON.stringify(remote.assistantUnitStateUpdatedAt ?? {}));
+          localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(remote.assistantAttackHistory ?? []));
+          localStorage.setItem('swl.game-action-history.v1', JSON.stringify(remote.gameActionHistory ?? []));
+          localStorage.removeItem('swl.kw-undo.v1');
+          knownUpdatedAt.current = remote.updatedAt;
+          setNotice({ kind: 'success', message: 'Nouvelle partie reprise depuis l’autre appareil.' });
+        } else {
         if (remote.gameTracker) setGameTracker(remote.gameTracker);
         const mergedUnits = gistSync.mergeAssistantUnitStates(remote.assistantUnitStates, readAssistantStates(), remote.assistantUnitStateUpdatedAt, readAssistantStateClock());
         localStorage.setItem('swl.assistant.unit-state.v1', JSON.stringify(mergedUnits.states));
@@ -84,10 +102,11 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
         localStorage.setItem('swl.game-action-history.v1', JSON.stringify(gistSync.mergeGameActionHistory(remote.gameActionHistory, readGameActionHistory())));
         knownUpdatedAt.current = remote.updatedAt;
         setNotice(mergedUnits.conflicts ? { kind: 'conflict', message: `${mergedUnits.conflicts} modification(s) concurrente(s) réconciliée(s) sans perte.` } : { kind: 'success', message: 'Données à jour sur cet appareil.' });
+        }
       } else if (remote.updatedAt === 0 && (listP1 || listP2)) {
         // Gist tout juste créé (vide) mais on a déjà des listes localement :
         // on les y envoie pour amorcer la synchro sur les autres appareils.
-        const saved = await gistSync.pushSync(token, { listP1, listP2, gameTracker, gameTrackerUpdatedAt: Date.now(), assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory(), gameActionHistory: readGameActionHistory() });
+        const saved = await gistSync.pushSync(token, { listP1, listP2, gameTracker, gameTrackerUpdatedAt: Date.now(), assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory(), gameActionHistory: readGameActionHistory(), gameEpoch: gistSync.readGameEpoch() });
         knownUpdatedAt.current = saved.updatedAt;
       }
       setStatus('idle');
@@ -107,7 +126,13 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
       if (!token) return;
       setStatus('syncing');
       try {
-        const saved = await gistSync.pushSync(token, { listP1: nextP1, listP2: nextP2, gameTracker: nextGameTracker, gameTrackerUpdatedAt: Date.now(), assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory(), gameActionHistory: readGameActionHistory() });
+        const saved = await gistSync.pushSync(token, { listP1: nextP1, listP2: nextP2, gameTracker: nextGameTracker, gameTrackerUpdatedAt: Date.now(), assistantUnitStates: readAssistantStates(), assistantUnitStateUpdatedAt: readAssistantStateClock(), assistantAttackHistory: readAttackHistory(), gameActionHistory: readGameActionHistory(), gameEpoch: gistSync.readGameEpoch() });
+        // Une nouvelle partie plus récente existait sur le gist : on la reprend aussi côté suivi (round, points).
+        if (saved.gameEpoch && saved.gameEpoch > gistSync.readGameEpoch()) {
+          gistSync.writeGameEpoch(saved.gameEpoch);
+          if (saved.gameTracker) setGameTracker(saved.gameTracker);
+          localStorage.removeItem('swl.kw-undo.v1');
+        }
         if (saved.assistantUnitStates) localStorage.setItem('swl.assistant.unit-state.v1', JSON.stringify(saved.assistantUnitStates));
         if (saved.assistantUnitStateUpdatedAt) localStorage.setItem('swl.assistant.unit-state-clock.v1', JSON.stringify(saved.assistantUnitStateUpdatedAt));
         if (saved.assistantAttackHistory) localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(saved.assistantAttackHistory));
@@ -122,7 +147,7 @@ export function useSync({ listP1, listP2, setListP1, setListP2, gameTracker, set
         setError(e instanceof Error ? e.message : String(e));
       }
     },
-    [token, gameTracker],
+    [token, gameTracker, setGameTracker],
   );
 
   useEffect(() => {

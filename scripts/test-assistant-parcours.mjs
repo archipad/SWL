@@ -1087,6 +1087,34 @@ scenario('Certification : les armes ajoutées à la base apparaissent même si l
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Nouvelle partie : la synchro ne ressuscite ni suppressions, ni états, ni round de l’ancienne partie (numéro de partie)', async () => {
+  const remoteOld = { gameEpoch: 1000, gameTracker: { round: 5 }, assistantUnitStates: { u1: { suppression: 3 } }, assistantUnitStateUpdatedAt: { u1: 900 }, assistantAttackHistory: [] }
+  const gistResponse = (remote) => ({ ok: true, json: async () => ({ files: { 'legion-compagnon-lists.json': { content: JSON.stringify(remote) } } }) })
+  // A. Nouvelle partie démarrée ICI (numéro 2000 > 1000) : on ne reprend rien de l'ancienne partie du gist.
+  let app = await openAssistant({ 'swl.sync.token.v1': 'tok', 'swl.sync.gistId.v1': 'gist', 'swl.game-epoch.v1': 2000, 'swl.assistant.unit-state.v1': {}, 'swl.game-tracker.v1': { round: 1, activatedUnitIds: [] } })
+  app.window.fetch = async () => gistResponse(remoteOld)
+  assert.equal(await app.window.syncUnitStates('pull'), false, 'la relève est ignorée')
+  assert.deepEqual(JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1')), {}, 'aucune suppression ressuscitée')
+  assert.equal(JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1')).round, 1, 'le round reste à 1 (il repassait à 5)')
+  // B. L'envoi écrase l'ancienne partie du gist.
+  let sent = null
+  app.window.fetch = async (url, options = {}) => { if (options.method === 'PATCH') { sent = JSON.parse(JSON.parse(options.body).files['legion-compagnon-lists.json'].content); return { ok: true } } return gistResponse(remoteOld) }
+  assert.equal(await app.window.syncUnitStates('push'), true)
+  assert.deepEqual(sent.assistantUnitStates, {}, 'le gist reçoit la nouvelle partie, sans les anciennes suppressions')
+  assert.equal(sent.gameEpoch, 2000)
+  assert.equal(sent.gameTracker.round, 1)
+  app.window.close()
+  // C. Nouvelle partie démarrée AILLEURS (numéro 3000 > 1000) : on l'adopte et on abandonne l'état local.
+  app = await openAssistant({ 'swl.sync.token.v1': 'tok', 'swl.sync.gistId.v1': 'gist', 'swl.game-epoch.v1': 1000, 'swl.assistant.unit-state.v1': { u1: { suppression: 2 } }, 'swl.game-tracker.v1': { round: 5, activatedUnitIds: [] } })
+  app.window.fetch = async () => gistResponse({ gameEpoch: 3000, gameTracker: { round: 1, activatedUnitIds: [] }, assistantUnitStates: {}, assistantUnitStateUpdatedAt: {}, assistantAttackHistory: [] })
+  assert.equal(await app.window.syncUnitStates('pull'), true)
+  assert.deepEqual(JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1')), {}, 'l’état local de l’ancienne partie est abandonné')
+  assert.equal(JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1')).round, 1)
+  assert.equal(app.window.localStorage.getItem('swl.game-epoch.v1'), '3000')
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

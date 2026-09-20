@@ -91,7 +91,43 @@ const unitStateKey='swl.assistant.unit-state.v1';let unitStates=read(unitStateKe
 const syncTokenKey='swl.sync.token.v1',syncGistKey='swl.sync.gistId.v1',syncFilename='legion-compagnon-lists.json',unitStateClockKey='swl.assistant.unit-state-clock.v1';let unitStateClock=read(unitStateClockKey,{}),lastPersistedUnitStates=structuredClone(unitStates);
 function mergeSyncedUnitStates(remoteStates={},remoteClock={}){const merged={...remoteStates},clock={...remoteClock};for(const [id,state] of Object.entries(unitStates)){const localAt=Number(unitStateClock[id])||0,remoteAt=Number(remoteClock[id])||0;if(!(id in merged)||localAt>remoteAt){merged[id]=state;clock[id]=localAt}}return{states:merged,clock}}
 function mergeSyncedHistory(remote=[]){const byId=new Map;for(const entry of [...remote,...attackHistory])if(entry&&typeof entry==='object')byId.set(entry.id||JSON.stringify(entry),entry);return[...byId.values()].sort((a,b)=>String(b.at||'').localeCompare(String(a.at||''))).slice(0,50)}
-async function syncUnitStates(mode='push'){const token=localStorage.getItem(syncTokenKey),gistId=localStorage.getItem(syncGistKey);if(!token||!gistId)return false;try{const headers={Authorization:`Bearer ${token}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},response=await fetch(`https://api.github.com/gists/${gistId}`,{headers});if(!response.ok)throw new Error(String(response.status));const gist=await response.json(),remote=JSON.parse(gist.files?.[syncFilename]?.content||'{}'),merged=mergeSyncedUnitStates(remote.assistantUnitStates,remote.assistantUnitStateUpdatedAt),mergedHistory=mergeSyncedHistory(remote.assistantAttackHistory);if(mode==='pull'){unitStates=merged.states;unitStateClock=merged.clock;attackHistory=mergedHistory;lastPersistedUnitStates=structuredClone(unitStates);localStorage.setItem(unitStateKey,JSON.stringify(unitStates));localStorage.setItem(unitStateClockKey,JSON.stringify(unitStateClock));localStorage.setItem(historyKey,JSON.stringify(attackHistory));if(remote.gameTracker)localStorage.setItem('swl.game-tracker.v1',JSON.stringify(remote.gameTracker));return true}const payload={...remote,schemaVersion:3,assistantUnitStates:merged.states,assistantUnitStateUpdatedAt:merged.clock,assistantAttackHistory:mergedHistory,updatedAt:Date.now()},saved=await fetch(`https://api.github.com/gists/${gistId}`,{method:'PATCH',headers,body:JSON.stringify({files:{[syncFilename]:{content:JSON.stringify(payload)}}})});if(!saved.ok)throw new Error(String(saved.status));return true}catch(error){console.warn('Synchronisation de l’état des unités indisponible',error);return false}}
+// Numéro de partie (même clé que l'appli principale, voir src/lib/gistSync.ts) : « Nouvelle partie » ne doit jamais être défaite par la synchro.
+const gameEpochKey='swl.game-epoch.v1';
+const readGameEpoch=()=>{const value=Number(localStorage.getItem(gameEpochKey));return Number.isFinite(value)&&value>0?value:0};
+function adoptRemoteGame(remote){
+  // Une nouvelle partie a été démarrée ailleurs (autre appareil ou appli principale) : on la reprend telle quelle, sans rien de l'ancienne.
+  unitStates=remote.assistantUnitStates||{};unitStateClock=remote.assistantUnitStateUpdatedAt||{};attackHistory=remote.assistantAttackHistory||[];lastPersistedUnitStates=structuredClone(unitStates);
+  localStorage.setItem(unitStateKey,JSON.stringify(unitStates));localStorage.setItem(unitStateClockKey,JSON.stringify(unitStateClock));localStorage.setItem(historyKey,JSON.stringify(attackHistory));
+  if(remote.gameTracker)localStorage.setItem('swl.game-tracker.v1',JSON.stringify(remote.gameTracker));
+  localStorage.setItem(gameEpochKey,String(remote.gameEpoch));
+  try{localStorage.removeItem('swl.kw-undo.v1');if(typeof kwUndoLog!=='undefined')kwUndoLog.length=0}catch{}
+}
+async function syncUnitStates(mode='push'){
+  const token=localStorage.getItem(syncTokenKey),gistId=localStorage.getItem(syncGistKey);
+  if(!token||!gistId)return false;
+  try{
+    const headers={Authorization:`Bearer ${token}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},response=await fetch(`https://api.github.com/gists/${gistId}`,{headers});
+    if(!response.ok)throw new Error(String(response.status));
+    const gist=await response.json(),remote=JSON.parse(gist.files?.[syncFilename]?.content||'{}'),localEpoch=readGameEpoch(),remoteEpoch=Number(remote.gameEpoch)||0;
+    if(remoteEpoch>localEpoch){adoptRemoteGame(remote);return true}
+    if(mode==='pull'){
+      if(remoteEpoch<localEpoch)return false; // notre nouvelle partie est plus récente que le gist : rien à reprendre de l'ancienne
+      const merged=mergeSyncedUnitStates(remote.assistantUnitStates,remote.assistantUnitStateUpdatedAt),mergedHistory=mergeSyncedHistory(remote.assistantAttackHistory);
+      unitStates=merged.states;unitStateClock=merged.clock;attackHistory=mergedHistory;lastPersistedUnitStates=structuredClone(unitStates);
+      localStorage.setItem(unitStateKey,JSON.stringify(unitStates));localStorage.setItem(unitStateClockKey,JSON.stringify(unitStateClock));localStorage.setItem(historyKey,JSON.stringify(attackHistory));
+      if(remote.gameTracker)localStorage.setItem('swl.game-tracker.v1',JSON.stringify(remote.gameTracker));
+      return true
+    }
+    // envoi : si notre numéro de partie est plus récent, l'état distant est l'ancienne partie → on ne fusionne pas avec lui
+    const newer=localEpoch>remoteEpoch,merged=newer?{states:unitStates,clock:unitStateClock}:mergeSyncedUnitStates(remote.assistantUnitStates,remote.assistantUnitStateUpdatedAt),mergedHistory=newer?attackHistory.slice(0,50):mergeSyncedHistory(remote.assistantAttackHistory);
+    const payload={...remote,schemaVersion:3,assistantUnitStates:merged.states,assistantUnitStateUpdatedAt:merged.clock,assistantAttackHistory:mergedHistory,updatedAt:Date.now()};
+    // Le suivi de partie n'est envoyé que pour propager une NOUVELLE partie (numéro de partie plus récent) ; sinon l'Assistant n'y touche pas.
+    if(newer){payload.gameEpoch=localEpoch;payload.gameTracker=read('swl.game-tracker.v1',remote.gameTracker)}
+    const saved=await fetch(`https://api.github.com/gists/${gistId}`,{method:'PATCH',headers,body:JSON.stringify({files:{[syncFilename]:{content:JSON.stringify(payload)}}})});
+    if(!saved.ok)throw new Error(String(saved.status));
+    return true
+  }catch(error){console.warn('Synchronisation de l’état des unités indisponible',error);return false}
+}
 function persistUnitStates(){const now=Date.now();for(const [id,state] of Object.entries(unitStates))if(JSON.stringify(state)!==JSON.stringify(lastPersistedUnitStates[id]))unitStateClock[id]=now;lastPersistedUnitStates=structuredClone(unitStates);localStorage.setItem(unitStateKey,JSON.stringify(unitStates));localStorage.setItem(unitStateClockKey,JSON.stringify(unitStateClock));clearTimeout(unitStateSyncTimer);unitStateSyncTimer=setTimeout(()=>syncUnitStates('push'),450)}
 // L'appli ne suit plus les PV ni l'effectif d'une unité (choix produit) :
 // seuls courage/suppressionImmune (utiles au moral) restent exposés ici.

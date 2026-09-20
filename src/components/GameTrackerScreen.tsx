@@ -6,6 +6,7 @@ import { DEFAULT_STATE, type useGameTracker } from '../lib/useGameTracker';
 import { useGameArchive, type ArchivedGame } from '../lib/useGameArchive';
 import type { SyncStatus } from '../lib/useSync';
 import type { ParsedList } from '../types';
+import { writeGameEpoch } from '../lib/gistSync';
 import { clearGameActions, deviceLabel, readGameActions, recordGameAction, removeGameAction, type GameActionEntry } from '../lib/gameActionHistory';
 
 interface Props {
@@ -96,16 +97,24 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   });
   const applySnapshot = (snapshot: ArchivedGame['snapshot']) => {
     localStorage.setItem(UNIT_STATE_KEY, JSON.stringify(snapshot.unitStates));
+    localStorage.setItem('swl.assistant.unit-state-clock.v1', '{}');
+    localStorage.removeItem('swl.kw-undo.v1');
+    writeGameEpoch(Date.now());
     localStorage.setItem('swl.assistant.attack-history.v1', JSON.stringify(snapshot.attackHistory));
     setUnitStates(snapshot.unitStates as UnitStates);
     setAttackHistory(snapshot.attackHistory as AttackHistoryEntry[]);
     update(snapshot.gameTracker);
+    onSync(snapshot.gameTracker);
   };
   const startNewGame = () => {
     if (!window.confirm('Démarrer une nouvelle partie ? Ça efface les blessures, suppressions et pions de toutes les unités, remet le round à 1 et réinitialise le suivi (points de victoire, objectifs, avantage, historique). Les listes importées restent en place — la partie en cours est archivée avant, pour pouvoir la restaurer en cas d’erreur.')) return;
     if (hasProgress) archiveCurrentGame();
     localStorage.setItem(UNIT_STATE_KEY, '{}');
+    localStorage.setItem('swl.assistant.unit-state-clock.v1', '{}');
+    localStorage.removeItem('swl.kw-undo.v1');
     localStorage.setItem('swl.assistant.attack-history.v1', '[]');
+    // Nouveau numéro de partie : les autres appareils et l'Assistant abandonnent l'ancienne partie au lieu de la re-synchroniser.
+    writeGameEpoch(Date.now());
     setUnitStates({});
     setAttackHistory([]);
     clearGameActions();

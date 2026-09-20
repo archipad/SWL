@@ -32,6 +32,21 @@ export interface SyncPayload {
   assistantUnitStateUpdatedAt?: Record<string, number>;
   assistantAttackHistory?: unknown[];
   gameActionHistory?: unknown[];
+  /** Numéro de partie : horodatage du dernier « Nouvelle partie » / restauration. Le plus récent gagne, l'ancien ne ressuscite jamais. */
+  gameEpoch?: number;
+}
+
+export const GAME_EPOCH_KEY = 'swl.game-epoch.v1';
+export function readGameEpoch(): number {
+  try {
+    const value = Number(localStorage.getItem(GAME_EPOCH_KEY));
+    return Number.isFinite(value) && value > 0 ? value : 0;
+  } catch {
+    return 0;
+  }
+}
+export function writeGameEpoch(epoch: number) {
+  try { localStorage.setItem(GAME_EPOCH_KEY, String(epoch)); } catch { /* stockage indisponible */ }
 }
 
 const EMPTY_PAYLOAD: SyncPayload = { updatedAt: 0, listP1: null, listP2: null };
@@ -221,21 +236,44 @@ export function mergeGameTracker(
   return { state: remoteWins ? remote : incoming ?? remote, updatedAt: remoteWins ? remoteUpdatedAt : incomingUpdatedAt, conflict, remoteWins };
 }
 
-export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; gameTrackerUpdatedAt?: number; assistantUnitStates?: Record<string, Record<string, unknown>>; assistantUnitStateUpdatedAt?: Record<string, number>; assistantAttackHistory?: unknown[]; gameActionHistory?: unknown[] }): Promise<SyncPayload> {
+type GameSnapshotInput = { gameEpoch?: number; gameTracker?: GameTrackerState; gameTrackerUpdatedAt?: number; assistantUnitStates?: Record<string, Record<string, unknown>>; assistantUnitStateUpdatedAt?: Record<string, number>; assistantAttackHistory?: unknown[]; gameActionHistory?: unknown[] };
+
+/**
+ * Fusion de l'ÉTAT DE PARTIE (pions, suppressions, historique, round) selon le numéro de partie :
+ * - numéro distant plus récent : une nouvelle partie a été démarrée ailleurs → on reprend l'état distant tel quel (rien de l'ancien) ;
+ * - numéro local plus récent : « Nouvelle partie » démarrée ici → l'état distant est l'ancienne partie, on l'écarte (sans cela les
+ *   suppressions et le round 5 revenaient à la synchro, car une fusion ne supprime jamais rien) ;
+ * - numéros égaux (ou absents, anciennes données) : fusion habituelle, unité par unité.
+ */
+export function mergeGameSnapshot(remote: SyncPayload, payload: GameSnapshotInput) {
+  const localEpoch = payload.gameEpoch ?? 0;
+  const remoteEpoch = remote.gameEpoch ?? 0;
+  if (remoteEpoch > localEpoch) {
+    return { gameEpoch: remoteEpoch, adoptedRemote: true, state: remote.gameTracker, updatedAt: remote.gameTrackerUpdatedAt ?? 0, states: remote.assistantUnitStates ?? {}, clock: remote.assistantUnitStateUpdatedAt ?? {}, attackHistory: remote.assistantAttackHistory ?? [], gameActionHistory: remote.gameActionHistory ?? [] };
+  }
+  if (localEpoch > remoteEpoch) {
+    return { gameEpoch: localEpoch, adoptedRemote: false, state: payload.gameTracker, updatedAt: payload.gameTrackerUpdatedAt ?? Date.now(), states: payload.assistantUnitStates ?? {}, clock: payload.assistantUnitStateUpdatedAt ?? {}, attackHistory: payload.assistantAttackHistory ?? [], gameActionHistory: payload.gameActionHistory ?? [] };
+  }
+  const units = mergeAssistantUnitStates(remote.assistantUnitStates, payload.assistantUnitStates, remote.assistantUnitStateUpdatedAt, payload.assistantUnitStateUpdatedAt);
+  const tracker = mergeGameTracker(remote.gameTracker, payload.gameTracker, remote.gameTrackerUpdatedAt, payload.gameTrackerUpdatedAt);
+  return { gameEpoch: localEpoch, adoptedRemote: false, state: tracker.state, updatedAt: tracker.updatedAt, states: units.states, clock: units.clock, attackHistory: mergeAttackHistory(remote.assistantAttackHistory, payload.assistantAttackHistory), gameActionHistory: mergeGameActionHistory(remote.gameActionHistory, payload.gameActionHistory) };
+}
+
+export async function pushSync(token: string, payload: { listP1: ParsedList | null; listP2: ParsedList | null; gameTracker?: GameTrackerState; gameTrackerUpdatedAt?: number; assistantUnitStates?: Record<string, Record<string, unknown>>; assistantUnitStateUpdatedAt?: Record<string, number>; assistantAttackHistory?: unknown[]; gameActionHistory?: unknown[]; gameEpoch?: number }): Promise<SyncPayload> {
   const gistId = await findOrCreateGistId(token);
   const remote = await pullSync(token);
-  const mergedUnits = mergeAssistantUnitStates(remote.assistantUnitStates, payload.assistantUnitStates, remote.assistantUnitStateUpdatedAt, payload.assistantUnitStateUpdatedAt);
-  const mergedTracker = mergeGameTracker(remote.gameTracker, payload.gameTracker, remote.gameTrackerUpdatedAt, payload.gameTrackerUpdatedAt);
+  const game = mergeGameSnapshot(remote, payload);
   const full: SyncPayload = {
     ...remote,
     schemaVersion: 4,
     ...payload,
-    gameTracker: mergedTracker.state,
-    gameTrackerUpdatedAt: mergedTracker.updatedAt,
-    assistantUnitStates: mergedUnits.states,
-    assistantUnitStateUpdatedAt: mergedUnits.clock,
-    assistantAttackHistory: mergeAttackHistory(remote.assistantAttackHistory, payload.assistantAttackHistory),
-    gameActionHistory: mergeGameActionHistory(remote.gameActionHistory, payload.gameActionHistory),
+    gameTracker: game.state,
+    gameTrackerUpdatedAt: game.updatedAt,
+    assistantUnitStates: game.states,
+    assistantUnitStateUpdatedAt: game.clock,
+    assistantAttackHistory: game.attackHistory,
+    gameActionHistory: game.gameActionHistory,
+    gameEpoch: game.gameEpoch,
     updatedAt: Date.now(),
   };
   const res = await githubFetch(token, `/gists/${gistId}`, {
