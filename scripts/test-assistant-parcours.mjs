@@ -740,6 +740,62 @@ scenario('Lot 6 : Autonome (pion choisi), Impitoyable (blessure + action offerte
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Défense : avec Impact et Armure, le nombre de dés à lancer affiché est celui qui débloque la résolution', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click, setValue, pickUnit, gate, nextAttack, document } = app
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Airspeeder')
+  await click('[data-range="3"]')
+  await click('.weapon-toggle[data-key="hh 12 stormtrooper:0"]')
+  await click('#cumbersomeConfirmed')
+  await nextAttack()
+  await setValue('rollHit', 2)
+  await setValue('rollCrit', 1)
+  await nextAttack()
+  await click('[data-cover="none"]')
+  await nextAttack()
+  await click('.phase-confirm')
+  await nextAttack()
+  // Étape Défense : on saisit exactement le nombre de dés annoncé « À DÉFENDRE ».
+  const strip = text($$('.result-strip').find((element) => /À DÉFENDRE/.test(text(element))))
+  const numbers = strip.match(/\d+/g).map(Number)
+  const toRoll = numbers[numbers.length - 2] + numbers[numbers.length - 1]
+  await setValue('defBlank', toRoll)
+  assert.doesNotMatch(gate(), /doivent être lancés/, 'la validation exige le même nombre que celui affiché (' + toRoll + ') : ' + gate())
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Défense : Boba Fett contre TL-TT (Armure 2) — le nombre de dés exigé est celui affiché après Impact et Armure', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Boba Fett Infamous Bounty Hunter', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'AT-RT', upgrades: [] }] },
+  })
+  const { $, $$, text, click, setValue, pickUnit, gate, nextAttack } = app
+  await pickUnit('Boba')
+  await click('#next')
+  await pickUnit('TL-TT')
+  await click('[data-range="2"]')
+  await click(app.$$('.weapon-toggle').find((button) => /Roquettes/.test(text(button))))
+  await nextAttack()
+  await setValue('rollHit', 3)
+  await nextAttack()
+  await click('[data-cover="none"]')
+  await nextAttack()
+  await click('.phase-confirm')
+  await nextAttack()
+  const strip = text($$('.result-strip').find((element) => /À DÉFENDRE/.test(text(element))))
+  const numbers = strip.match(/\d+/g).map(Number)
+  const toRoll = numbers[numbers.length - 2] + numbers[numbers.length - 1]
+  await setValue('defBlank', toRoll)
+  assert.doesNotMatch(gate(), /doivent être lancés/, 'À DÉFENDRE affiche ' + toRoll + ' dé(s) : la validation doit exiger le même nombre — ' + gate())
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {
