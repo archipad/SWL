@@ -347,14 +347,71 @@
             "count": 3
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": []
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "surveillance-x",
+          "value": 2
+        },
+        {
+          "keywordId": "prime"
+        },
+        {
+          "keywordId": "charge"
+        },
+        {
+          "keywordId": "ordre-direct"
+        },
+        {
+          "keywordId": "immunite-perforant-corps-a-corps"
+        },
+        {
+          "keywordId": "interrogatoire"
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        },
+        {
+          "keywordId": "longue-distance"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "74a1f199f0",
+      "visualPath": "/SWL/cards/agent-kallus.jpg",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "visualHash": "dd684b60097adfde6bdcf1e126751c8ff0249f756e5eb2b0a1d3612217ee4f9b"
     }
   },
   "ahsoka tano": {
@@ -376,14 +433,76 @@
             "count": 2
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": [
+          "impact-x",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2,
+          "perforant-x": 2
+        }
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": 3,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat",
+      "speed": "2",
+      "attackSurge": "crit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "charge"
+        },
+        {
+          "keywordId": "defense-x",
+          "value": 1
+        },
+        {
+          "keywordId": "deflexion"
+        },
+        {
+          "keywordId": "immunite-perforant"
+        },
+        {
+          "keywordId": "maitrise-du-jarkai"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "3fddd96a75",
+      "visualPath": "/SWL/cards/ahsoka-tano.jpg",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "visualHash": "a3815536da2843947c04e73ccb6791c3131f1fad54f71aa4ef3c09c39ea20f68"
     }
   },
   "battle shield wookiee": {
@@ -1565,6 +1684,10 @@
         {
           "keywordId": "impact-x",
           "value": 3
+        },
+        {
+          "keywordId": "fixe",
+          "detail": "Avant"
         }
       ],
       "checks": [
@@ -1576,8 +1699,10 @@
         "keywords"
       ],
       "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
       "visualPath": "/SWL/cards/tl-tt-laser-cannon.jpg",
-      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
       "visualHash": "9ce08bd9c462232a926ca6ce17f54a6ae21180e51e2d51ec17f4d2e659c6c6d6"
     }
   },
@@ -2807,7 +2932,8 @@
             "count": 2
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -2818,7 +2944,8 @@
             "count": 4
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": []
       },
       {
         "index": 2,
@@ -2829,14 +2956,67 @@
             "count": 5
           }
         ],
-        "range": "1-5"
+        "range": "1-5",
+        "keywordIds": [
+          "fixe",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2
+        }
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "support",
+      "unitType": "Soldat en position",
+      "speed": "1",
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "pivot-complet"
+        },
+        {
+          "keywordId": "position-preparee"
+        },
+        {
+          "keywordId": "sentinelle"
+        },
+        {
+          "keywordId": "stationnaire"
+        },
+        {
+          "keywordId": "fixe",
+          "detail": "Avant"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "848407bbb3",
+      "visualPath": "/SWL/cards/1-4-fd-laser-cannon-team.jpg",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "visualHash": "a6712a5535cfa9b93096aff09cf20def0f97010db41befc1f9a6d21bf5355f6f"
     }
   },
   "iden versio": {
@@ -2850,7 +3030,8 @@
             "count": 3
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -2861,7 +3042,14 @@
             "count": 2
           }
         ],
-        "range": "1-#"
+        "range": "1-#",
+        "keywordIds": [
+          "haute-velocite",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
       },
       {
         "index": 2,
@@ -2880,14 +3068,79 @@
             "count": 1
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "critique-x",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "critique-x": 1,
+          "impact-x": 1
+        }
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": 3,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "Soldat",
+      "speed": "2",
+      "attackSurge": "hit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "vivacite-desprit"
+        },
+        {
+          "keywordId": "infiltration"
+        },
+        {
+          "keywordId": "tireur-embusque"
+        },
+        {
+          "keywordId": "agile"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "haute-velocite"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "5345ca5dc2",
+      "visualPath": "/SWL/cards/iden-versio.jpg",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "visualHash": "829645f4aa59a7329c4f398619f3af177a98d03c64002338451f367594209c25"
     }
   },
   "imperial special forces inferno squad": {
@@ -3813,12 +4066,103 @@
     }
   },
   "df 90 mortar trooper": {
-    "weapons": [],
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster E-22",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee-3",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Mortier DF-90",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "3-4",
+        "keywordIds": [
+          "critique-x",
+          "encombrant",
+          "suppressif",
+          "fixe"
+        ],
+        "keywordValues": {
+          "critique-x": 1
+        }
+      }
+    ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 3,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "corps",
+      "unitType": "Soldat en Position",
+      "speed": "1",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "detachement"
+        },
+        {
+          "keywordId": "tirs-de-soutien"
+        },
+        {
+          "keywordId": "pivot-complet"
+        },
+        {
+          "keywordId": "position-preparee"
+        },
+        {
+          "keywordId": "redeploiement"
+        },
+        {
+          "keywordId": "sentinelle"
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "encombrant"
+        },
+        {
+          "keywordId": "suppressif"
+        },
+        {
+          "keywordId": "fixe",
+          "detail": "Avant"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "318a45a528",
+      "visualPath": "/SWL/cards/df-90-mortar-trooper.jpg",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "visualHash": "423af66b11f2a5b25debd39bcdae9b5d77e8ee483afa9801fb9072ddb29e311e"
     }
   },
   "dlt 19 stormtrooper": {
@@ -3870,12 +4214,84 @@
     "addedModels": 1
   },
   "dewback rider": {
-    "weapons": [],
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Électrochoc & Griffes",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "critique-x",
+          "suppressif"
+        ],
+        "keywordValues": {
+          "critique-x": 2
+        }
+      }
+    ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "support",
+      "unitType": "Soldat Créature",
+      "speed": "1",
+      "attackSurge": "hit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "armure-x",
+          "value": 1
+        },
+        {
+          "keywordId": "implacable"
+        },
+        {
+          "keywordId": "redeploiement"
+        },
+        {
+          "keywordId": "marche-forcee"
+        },
+        {
+          "keywordId": "sans-entrave"
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 2
+        },
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "3ad2b955f2",
+      "visualPath": "/SWL/cards/dewback-rider.jpg",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "visualHash": "c97e4312a856815950e4e1195726547bda978be69f06c3e0080d536d40a044ac"
     }
   },
   "imperial hammers elite armor pilot": {
@@ -3891,12 +4307,109 @@
     "addedModels": 0
   },
   "e web heavy blaster team": {
-    "weapons": [],
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      },
+      {
+        "index": 2,
+        "name": "Blaster Lourd E-Web",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": [
+          "fixe",
+          "encombrant",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1
+        }
+      }
+    ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 4,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "support",
+      "unitType": "",
+      "speed": "1",
+      "attackSurge": "crit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "position-preparee"
+        },
+        {
+          "keywordId": "redeploiement"
+        },
+        {
+          "keywordId": "sentinelle"
+        },
+        {
+          "keywordId": "encombrant"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "fixe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "45c032166a",
+      "visualPath": "/SWL/cards/e-web-heavy-blaster-team.jpg",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "visualHash": "5f9526497d46d2f8923669beb3b1d6e232393b33406e3baf8b381310e3d80adb"
     }
   },
   "fx 9 medical droid": {
@@ -4538,6 +5051,10 @@
         {
           "keywordId": "impact-x",
           "value": 1
+        },
+        {
+          "keywordId": "arsenal-x",
+          "value": 2
         }
       ],
       "checks": [
@@ -4549,9 +5066,10 @@
         "keywords"
       ],
       "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [],
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/boba-fett-infamous-bounty-hunter.jpg",
-      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
       "visualHash": "67091ae517cc8b615bbfd7de576d8a874f80c4c220987fee02d62b4258f1bc2f"
     }
   },
