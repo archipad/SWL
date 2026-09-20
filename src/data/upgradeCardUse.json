@@ -1,0 +1,983 @@
+{
+  "_meta": {
+    "description": "Utilisation de chaque carte d'AMÉLIORATION : passive (aucun symbole), exhaust (symbole ↱ : la carte s'incline, redressée à la Phase Finale), discard (symbole ✖ : la carte est supprimée de la partie, usage unique), both (les deux effets possibles).",
+    "source": "Détection automatique des symboles sur les visuels (scripts/tools/detect-upgrade-icons.py, correspondance de gabarits à plusieurs échelles) puis relecture visuelle des cas ambigus le 21/09/2026. Modifiable dans l'écran de certification (champ « Utilisation de la carte »), qui l'emporte sur ce fichier.",
+    "counts": {
+      "passive": 186,
+      "exhaust": 28,
+      "discard": 8,
+      "both": 1
+    }
+  },
+  "cards": {
+    "2 1b medical droid": {
+      "use": "passive",
+      "icons": []
+    },
+    "88i twin light blaster": {
+      "use": "passive",
+      "icons": []
+    },
+    "a280 cfe pistol sniper config": {
+      "use": "passive",
+      "icons": []
+    },
+    "additional supplies": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "ag 2g quad laser": {
+      "use": "passive",
+      "icons": []
+    },
+    "anger": {
+      "use": "passive",
+      "icons": []
+    },
+    "anti bunker shells": {
+      "use": "passive",
+      "icons": []
+    },
+    "armor piercing shells": {
+      "use": "passive",
+      "icons": []
+    },
+    "ascension cables": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "at rt flamethrower": {
+      "use": "passive",
+      "icons": []
+    },
+    "at st mortar launcher": {
+      "use": "passive",
+      "icons": []
+    },
+    "attack protocols": {
+      "use": "passive",
+      "icons": []
+    },
+    "ax 108 ground buzzer": {
+      "use": "passive",
+      "icons": []
+    },
+    "baron rudor": {
+      "use": "passive",
+      "icons": []
+    },
+    "barrage generator": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "battle shield wookiee": {
+      "use": "passive",
+      "icons": []
+    },
+    "beskad duelist": {
+      "use": "passive",
+      "icons": []
+    },
+    "black sun enforcer concealment": {
+      "use": "passive",
+      "icons": []
+    },
+    "black sun enforcer magnetic detonator": {
+      "use": "passive",
+      "icons": []
+    },
+    "black sun enforcer scatter gun": {
+      "use": "passive",
+      "icons": []
+    },
+    "boba fett flamethrower": {
+      "use": "passive",
+      "icons": []
+    },
+    "bowcaster wookiee": {
+      "use": "passive",
+      "icons": []
+    },
+    "burst of speed": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "c 3po": {
+      "use": "passive",
+      "icons": []
+    },
+    "cad bane electro gauntlets": {
+      "use": "passive",
+      "icons": []
+    },
+    "captain rex": {
+      "use": "passive",
+      "icons": []
+    },
+    "cassian andor operative": {
+      "use": "passive",
+      "icons": []
+    },
+    "chewbacca upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "clairvoyance": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "cleaver dark trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "climbing cables": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "cm o 93 trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "combat armor rebel": {
+      "use": "passive",
+      "icons": []
+    },
+    "combat group leader": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "command system": {
+      "use": "passive",
+      "icons": []
+    },
+    "comms hacking unit": {
+      "use": "passive",
+      "icons": []
+    },
+    "comms jammer": {
+      "use": "passive",
+      "icons": []
+    },
+    "concussion grenades": {
+      "use": "passive",
+      "icons": []
+    },
+    "cr 24 flame rifle": {
+      "use": "passive",
+      "icons": []
+    },
+    "crosshair": {
+      "use": "passive",
+      "icons": []
+    },
+    "darth vader the emperor s apprentice": {
+      "use": "passive",
+      "icons": []
+    },
+    "defense protocols": {
+      "use": "passive",
+      "icons": []
+    },
+    "defensive posture": {
+      "use": "passive",
+      "icons": []
+    },
+    "del meeko": {
+      "use": "passive",
+      "icons": []
+    },
+    "dh 447 sniper": {
+      "use": "passive",
+      "icons": []
+    },
+    "din djarin amban rifle": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ],
+      "note": "Icône d’action coupée sur le bord du visuel, lue à la relecture (21/09/2026)."
+    },
+    "din djarin beskar spear": {
+      "use": "passive",
+      "icons": []
+    },
+    "din djarin flamethrower": {
+      "use": "passive",
+      "icons": []
+    },
+    "din djarin jetpack": {
+      "use": "passive",
+      "icons": []
+    },
+    "dlt 19 pintle mount": {
+      "use": "passive",
+      "icons": []
+    },
+    "dlt 19 stormtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "dlt 19d trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "dlt 19x sniper": {
+      "use": "passive",
+      "icons": []
+    },
+    "dlt 20a range trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "dlt 20a trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "dread": {
+      "use": "passive",
+      "icons": []
+    },
+    "dt f16": {
+      "use": "passive",
+      "icons": []
+    },
+    "duck and cover": {
+      "use": "passive",
+      "icons": []
+    },
+    "dw 3 concussion grenade launcher": {
+      "use": "passive",
+      "icons": []
+    },
+    "e 11d focused strike config": {
+      "use": "passive",
+      "icons": []
+    },
+    "e 11d grenade launcher config": {
+      "use": "passive",
+      "icons": []
+    },
+    "echo clone force 99": {
+      "use": "passive",
+      "icons": []
+    },
+    "electrobinoculars": {
+      "use": "passive",
+      "icons": []
+    },
+    "emergency stims": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "emergency transponder": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "emp grenades": {
+      "use": "passive",
+      "icons": []
+    },
+    "endurance": {
+      "use": "passive",
+      "icons": []
+    },
+    "engagement protocols": {
+      "use": "passive",
+      "icons": []
+    },
+    "entrenched": {
+      "use": "passive",
+      "icons": []
+    },
+    "environmental gear": {
+      "use": "passive",
+      "icons": []
+    },
+    "fear": {
+      "use": "passive",
+      "icons": []
+    },
+    "fire control": {
+      "use": "passive",
+      "icons": []
+    },
+    "first sergeant arbmab": {
+      "use": "passive",
+      "icons": []
+    },
+    "flametrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "fleet trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "fleet trooper squad": {
+      "use": "passive",
+      "icons": []
+    },
+    "force barrier": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "force choke": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "force guidance": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "force push": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "force reflexes": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "fragmentation grenades": {
+      "use": "passive",
+      "icons": []
+    },
+    "fx 9 medical droid": {
+      "use": "passive",
+      "icons": []
+    },
+    "gar saxon back mounted rockets": {
+      "use": "passive",
+      "icons": []
+    },
+    "gar saxon combat shield": {
+      "use": "passive",
+      "icons": []
+    },
+    "gar saxon galar90 rifle": {
+      "use": "passive",
+      "icons": []
+    },
+    "gar saxon zx flamethrower": {
+      "use": "passive",
+      "icons": []
+    },
+    "general weiss": {
+      "use": "passive",
+      "icons": []
+    },
+    "generator overcharge": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "gideon hask": {
+      "use": "passive",
+      "icons": []
+    },
+    "governor pryce": {
+      "use": "passive",
+      "icons": []
+    },
+    "grapnel hooks": {
+      "use": "passive",
+      "icons": []
+    },
+    "handheld scanner": {
+      "use": "passive",
+      "icons": []
+    },
+    "heavy laser retrofit": {
+      "use": "passive",
+      "icons": []
+    },
+    "hh 12 stormtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "high energy shells": {
+      "use": "passive",
+      "icons": []
+    },
+    "hit and run": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "hope": {
+      "use": "passive",
+      "icons": []
+    },
+    "hotshot pilot": {
+      "use": "passive",
+      "icons": []
+    },
+    "hq uplink": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "hunter": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ],
+      "note": "Icône d’action gratuite coupée sur le bord du visuel, lue à la relecture (21/09/2026)."
+    },
+    "iden s id10 seeker droid": {
+      "use": "passive",
+      "icons": []
+    },
+    "ig11 nanny programming": {
+      "use": "passive",
+      "icons": []
+    },
+    "ig11 prime programming": {
+      "use": "passive",
+      "icons": []
+    },
+    "impact grenades": {
+      "use": "passive",
+      "icons": []
+    },
+    "imperial comms technician": {
+      "use": "passive",
+      "icons": []
+    },
+    "imperial hammers elite armor pilot": {
+      "use": "passive",
+      "icons": []
+    },
+    "imperial march": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "imperial officer": {
+      "use": "passive",
+      "icons": []
+    },
+    "imperial tie pilot": {
+      "use": "passive",
+      "icons": []
+    },
+    "improvised orders": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "in the fray": {
+      "use": "passive",
+      "icons": []
+    },
+    "inquisitorius training": {
+      "use": "passive",
+      "icons": []
+    },
+    "inspiring presence": {
+      "use": "passive",
+      "icons": []
+    },
+    "jetpack rockets": {
+      "use": "passive",
+      "icons": []
+    },
+    "jyn s se 14 blaster": {
+      "use": "passive",
+      "icons": []
+    },
+    "kallus the operative": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "kraken": {
+      "use": "passive",
+      "icons": []
+    },
+    "kx series security droids": {
+      "use": "passive",
+      "icons": []
+    },
+    "lead by example": {
+      "use": "passive",
+      "icons": []
+    },
+    "linked targeting array": {
+      "use": "passive",
+      "icons": []
+    },
+    "long gun wookiee": {
+      "use": "passive",
+      "icons": []
+    },
+    "m 45 ion blaster": {
+      "use": "passive",
+      "icons": []
+    },
+    "mandalorian combat shields": {
+      "use": "passive",
+      "icons": []
+    },
+    "mission objective": {
+      "use": "passive",
+      "icons": []
+    },
+    "mo dk power harpoon": {
+      "use": "passive",
+      "icons": []
+    },
+    "mounted gunners": {
+      "use": "passive",
+      "icons": []
+    },
+    "mpl 57 barrage trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "mpl 57 ion trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "offensive posture": {
+      "use": "passive",
+      "icons": []
+    },
+    "offensive push": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "old jedi trick": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "on the hunt": {
+      "use": "passive",
+      "icons": []
+    },
+    "onboard comms channel": {
+      "use": "passive",
+      "icons": []
+    },
+    "outer rim speeder jockey": {
+      "use": "passive",
+      "icons": []
+    },
+    "point blank": {
+      "use": "passive",
+      "icons": []
+    },
+    "prepared materiel": {
+      "use": "passive",
+      "icons": []
+    },
+    "programmed loyalty": {
+      "use": "passive",
+      "icons": []
+    },
+    "protector": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "proton charge saboteur": {
+      "use": "passive",
+      "icons": []
+    },
+    "pyke foot soldier concealment": {
+      "use": "passive",
+      "icons": []
+    },
+    "pyke soldier electro whip": {
+      "use": "passive",
+      "icons": []
+    },
+    "pyke soldier p13m disruptor": {
+      "use": "passive",
+      "icons": []
+    },
+    "r4 astromech droid": {
+      "use": "passive",
+      "icons": []
+    },
+    "r5 astromech droid": {
+      "use": "passive",
+      "icons": []
+    },
+    "range trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "rebel ambusher": {
+      "use": "passive",
+      "icons": []
+    },
+    "rebel comms technician": {
+      "use": "passive",
+      "icons": []
+    },
+    "rebel officer": {
+      "use": "passive",
+      "icons": []
+    },
+    "rebel trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "rebel trooper captain": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "rebel trooper specialist": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "rebel trooper squad": {
+      "use": "passive",
+      "icons": []
+    },
+    "rebel veteran": {
+      "use": "passive",
+      "icons": []
+    },
+    "rebel veteran squad": {
+      "use": "passive",
+      "icons": []
+    },
+    "recon intel": {
+      "use": "passive",
+      "icons": []
+    },
+    "reluctant hero": {
+      "use": "passive",
+      "icons": []
+    },
+    "remote doc": {
+      "use": "passive",
+      "icons": []
+    },
+    "repeating blaster": {
+      "use": "passive",
+      "icons": []
+    },
+    "rook kast": {
+      "use": "passive",
+      "icons": []
+    },
+    "rps 6 rocket gunner": {
+      "use": "passive",
+      "icons": []
+    },
+    "rt 97c dewback rider": {
+      "use": "passive",
+      "icons": []
+    },
+    "rt 97c pintle mount": {
+      "use": "passive",
+      "icons": []
+    },
+    "rt 97c stormtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "ryder azadi": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "saber throw": {
+      "use": "passive",
+      "icons": []
+    },
+    "sabine s combat shield": {
+      "use": "passive",
+      "icons": []
+    },
+    "sabine s grapple line": {
+      "use": "exhaust",
+      "icons": [
+        "action"
+      ]
+    },
+    "scatter gun trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "seize the opportunity": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "serenity": {
+      "use": "both",
+      "icons": [
+        "discard",
+        "exhaust"
+      ]
+    },
+    "shoretrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "shoretrooper squad expansion": {
+      "use": "passive",
+      "icons": []
+    },
+    "shriv suurgav": {
+      "use": "passive",
+      "icons": []
+    },
+    "situational awareness": {
+      "use": "passive",
+      "icons": []
+    },
+    "sleeper cell astromech": {
+      "use": "passive",
+      "icons": []
+    },
+    "sm 9 dark trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "smoke grenades": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "snowtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "snowtrooper squad expansion": {
+      "use": "passive",
+      "icons": []
+    },
+    "sonic charge saboteur": {
+      "use": "passive",
+      "icons": []
+    },
+    "sonic imploders": {
+      "use": "passive",
+      "icons": []
+    },
+    "spotter link": {
+      "use": "passive",
+      "icons": []
+    },
+    "spotting": {
+      "use": "passive",
+      "icons": []
+    },
+    "stormtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "stormtrooper captain": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "stormtrooper sharpshooter": {
+      "use": "passive",
+      "icons": []
+    },
+    "stormtrooper specialist": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "stormtrooper squad": {
+      "use": "passive",
+      "icons": []
+    },
+    "stormtrooper squad expansion": {
+      "use": "passive",
+      "icons": []
+    },
+    "strict orders": {
+      "use": "passive",
+      "icons": []
+    },
+    "super commando back mounted rockets": {
+      "use": "passive",
+      "icons": []
+    },
+    "super commando combat shields": {
+      "use": "passive",
+      "icons": []
+    },
+    "super commando concealment": {
+      "use": "passive",
+      "icons": []
+    },
+    "super commando marksman": {
+      "use": "passive",
+      "icons": []
+    },
+    "super commando pistoleer": {
+      "use": "passive",
+      "icons": []
+    },
+    "sx 21 trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "t 21 dewback rider": {
+      "use": "passive",
+      "icons": []
+    },
+    "t 21 special forces trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "t 21 stormtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "t 21a range trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "t 21b shoretrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "t 7 ion snowtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "targeting scopes": {
+      "use": "passive",
+      "icons": []
+    },
+    "tech": {
+      "use": "passive",
+      "icons": []
+    },
+    "tenacity": {
+      "use": "passive",
+      "icons": []
+    },
+    "the darksaber": {
+      "use": "passive",
+      "icons": []
+    },
+    "tl tt flame projector": {
+      "use": "passive",
+      "icons": []
+    },
+    "tl tt laser cannon": {
+      "use": "passive",
+      "icons": []
+    },
+    "tl tt rotary blaster": {
+      "use": "passive",
+      "icons": []
+    },
+    "tristan wren": {
+      "use": "passive",
+      "icons": []
+    },
+    "trusted agent": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "underworld contacts": {
+      "use": "passive",
+      "icons": []
+    },
+    "unorthodox tactician": {
+      "use": "passive",
+      "icons": []
+    },
+    "unstable astromech": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "ursa wren": {
+      "use": "passive",
+      "icons": []
+    },
+    "vigilance": {
+      "use": "passive",
+      "icons": []
+    },
+    "wedge antilles": {
+      "use": "exhaust",
+      "icons": [
+        "free-action"
+      ]
+    },
+    "wrecker": {
+      "use": "passive",
+      "icons": []
+    },
+    "x 34 gunner": {
+      "use": "passive",
+      "icons": []
+    },
+    "x 34 mark ii blaster": {
+      "use": "passive",
+      "icons": []
+    },
+    "xs iv dark trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "z 6 trooper": {
+      "use": "passive",
+      "icons": []
+    }
+  }
+}

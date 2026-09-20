@@ -60,3 +60,8 @@ Tabletop Admiral peut nommer une amélioration exactement comme une carte Unité
 - Un « vide » n'est jamais une réponse valide : « aucun mot-clé » se déclare.
 - Un désaccord (base ↔ certification, ou Legion Helper) se résout dans l'écran de certification ; il ne s'accumule pas.
 - Le deuxième avis (takras) ne remplace jamais la carte.
+
+## Certification : portée, mots-clés d'arme et utilisation de la carte (21/09/2026)
+- **Portée d'une arme** : `melee` = icône de corps-à-corps seule ; `melee-2` = arme à DEUX icônes (corps-à-corps ET tir de 1 à 2, ex. pistolet DH-17 des Fleet Troopers) ; `1-3` = distance seule ; `1-#` = distance illimitée. L'écran de certification affiche « Lu par le moteur : … » et propose des raccourcis ; une portée illisible est refusée à l'application du lot.
+- **Mots-clés** : ceux d'une ARME se cochent sur l'arme (champ « Mots-clés imprimés sur cette arme »), ceux de la CARTE (unité ou amélioration) dans « Mots-clés de la carte ». Ensuite un seul clic : « ✓ TOUT EST CONFORME À LA CARTE · certifier et passer à la suivante » (ou « Certifier toute la carte en une fois »), qui ajoute la carte ET ses armes au lot ; puis « Envoyer » une seule fois à la fin.
+- **Utilisation de la carte** (améliorations) : permanente, ↱ s'incline (redressée à la Phase Finale), ✖ supprimée de la partie, ou les deux. Détectée automatiquement sur les 223 visuels (`scripts/tools/detect-upgrade-icons.py`), à confirmer dans la certification.

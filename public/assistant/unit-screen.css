@@ -383,3 +383,9 @@
 .help-fab[hidden] { display: none; }
 .help-popup p { margin: 8px 0; }
 .help-popup .help-why { padding: 8px; border: 1px solid rgba(255, 180, 94, .6); border-radius: 8px; }
+.card-life.passive { grid-template-columns: 1fr; opacity: .8; }
+.range-helper { display: grid; gap: 6px; margin: 4px 0 8px; }
+.range-read { display: block; color: #ffb45e; font-size: .8rem; }
+.range-presets { display: flex; flex-wrap: wrap; gap: 6px; }
+.range-presets button { padding: 4px 8px; font-size: .75rem; }
+.cert-use { display: grid; gap: 4px; margin: 8px 0; }

@@ -154,10 +154,20 @@ try {
   const crosscheckPath = resolve(projectRoot, 'src/data/crosscheckTakras.json');
   const crosscheck = existsSync(crosscheckPath) ? JSON.parse(await readFile(crosscheckPath, 'utf8')) : {};
 
+  // Utilisation des cartes d'amélioration : symbole ↱ (s'incline) / ✖ (supprimée de la partie) / aucun. La certification (champ
+  // « Utilisation de la carte ») l'emporte sur la détection de symboles (src/data/upgradeCardUse.json).
+  const useFile = JSON.parse(await readFile(resolve(projectRoot, 'src/data/upgradeCardUse.json'), 'utf8'))
+  const cardUse = Object.fromEntries(Object.entries(useFile.cards).map(([card, value]) => [card, value.use]))
+  for (const [card, profile] of Object.entries(weapons)) {
+    const certified = profile.fullCardCertification?.cardUse
+    if (certified) cardUse[card] = certified
+  }
+
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,
     tags,
     keywordConflicts,
+    cardUse,
     crosscheck,
     keywordTiming: JSON.parse(await readFile(resolve(projectRoot, 'scripts/data/keyword-timing.json'), 'utf8')),
     upgradeNameCollisions: JSON.parse(await readFile(resolve(projectRoot, 'src/data/upgradeNameCollisions.json'), 'utf8')),

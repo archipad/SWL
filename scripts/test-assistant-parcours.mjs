@@ -970,6 +970,46 @@ scenario('Électro-grappin de Sabine et Câbles ascensionnels : actions de carte
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Chewbacca (amélioration) : dés d’attaque améliorés dans la réserve, rappel des dés de défense améliorés', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Wookiee Warriors Kashyyyk Resistance', upgrades: [{ name: 'Chewbacca' }] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click, setValue, pickUnit } = app
+  await pickUnit('Guerriers Wookies')
+  await click('#next')
+  await pickUnit('Stormtroopers')
+  await click('[data-range="2"]')
+  await click($$('.weapon-toggle').find((button) => /Chewbacca/.test(text(button.closest('.weapon-choice') || button))))
+  assert.ok($('#chewbaccaUpgrades'), 'le nombre de dés améliorés est proposé : ' + text($('.resolve-center')).slice(0, 200))
+  const upgraded = $('.dice-pool').innerHTML
+  await setValue('chewbaccaUpgrades', 0)
+  const plain = $('.dice-pool').innerHTML
+  assert.notEqual(upgraded, plain, 'améliorer des dés change la composition de la réserve')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Certification : portée « melee-2 » (corps-à-corps ET distance 1-2) expliquée, raccourcis de portée, utilisation de la carte (↱ / ✖)', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click } = app
+  await click('#certification')
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'fleet troopers'))
+  const page = text($('.cert-detail'))
+  assert.match(page, /Lu par le moteur : corps-à-corps ET tir à distance de 1 à 2/, 'la portée melee-2 est expliquée : ' + page.slice(0, 300))
+  assert.ok($$('[data-range-preset]').length >= 8, 'des raccourcis de portée sont proposés')
+  await click($('[data-range-preset$=":1-3"]'))
+  assert.match(text($('.cert-detail')), /Lu par le moteur : à distance, de 1 à 3/, 'le raccourci 1-3 est appliqué')
+  await click('#backCertification')
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'burst of speed'))
+  const use = $('select[data-full-field="cardUse"]')
+  assert.ok(use, 'le champ « Utilisation de la carte » est proposé pour une amélioration')
+  assert.equal(use.value, 'discard', 'Pointe de Vitesse est préremplie « supprimée » (✖)')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

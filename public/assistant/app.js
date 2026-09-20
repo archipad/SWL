@@ -1289,14 +1289,15 @@ showLiveGameReport=function(){showLiveGameReportStrictBase();const report=buildL
 // Certaines cartes proposent les deux effets : incliner pour l'un, supprimer pour l'autre.
 function discarded(state,card){return Array.isArray(state.discardedCards)&&state.discardedCards.includes(card)}
 function discardCard(entry,card,patch={}){const state=stateFor(entry);updateUnitState(entry,{...patch,discardedCards:[...new Set([...(state.discardedCards||[]),card])],roundSeen:currentRound()})}
-const LIFECYCLE_HINT={'burst of speed':'icône ✖ : usage unique, la carte est supprimée de la partie','emergency transponder':'icône ✖ : usage unique, la carte est supprimée de la partie'};
+const cardUseFor=name=>window.SWL_REFERENCE?.cardUse?.[cardKey(name)]||'unknown';
+const USE_HINT={passive:'carte permanente : aucun symbole ↱ ni ✖',exhaust:'symbole ↱ : la carte s’incline pour agir, redressée à la Phase Finale',discard:'symbole ✖ : usage unique, la carte est supprimée de la partie',both:'symboles ↱ et ✖ : s’incline pour un effet, ou se supprime pour l’autre',unknown:'utilisation non classée : cochez à la main'};
 const unitStatePanelLifecycleBase=unitStatePanel;
 unitStatePanel=function(entry){
   const html=unitStatePanelLifecycleBase(entry),ups=entry.unit.upgrades||[];
   if(!ups.length)return html;
   const state=stateFor(entry),rows=ups.map(up=>{
-    const slug=slugOf(up.name),tilted=exhausted(state,slug),gone=discarded(state,slug),hint=LIFECYCLE_HINT[cardKey(up.name)]||'';
-    return `<div class="card-life ${gone?'gone':tilted?'tilted':''}"><span>${displayName(up.name)}${hint?`<small>${hint}</small>`:''}</span><button type="button" data-card-life="tilt:${slug}" aria-pressed="${tilted}" ${gone?'disabled':''}>${tilted?'Inclinée · redresser':'Prête · incliner'}</button><button type="button" data-card-life="gone:${slug}" aria-pressed="${gone}">${gone?'Supprimée · restaurer':'Supprimer de la partie'}</button></div>`
+    const slug=slugOf(up.name),tilted=exhausted(state,slug),gone=discarded(state,slug),use=cardUseFor(up.name),canTilt=use==='exhaust'||use==='both'||use==='unknown',canDiscard=use==='discard'||use==='both'||use==='unknown';
+    return `<div class="card-life ${use} ${gone?'gone':tilted?'tilted':''}"><span>${displayName(up.name)}<small>${USE_HINT[use]}</small></span>${canTilt?`<button type="button" data-card-life="tilt:${slug}" aria-pressed="${tilted}" ${gone?'disabled':''}>${tilted?'Inclinée · redresser':'Prête · incliner'}</button>`:''}${canDiscard?`<button type="button" data-card-life="gone:${slug}" aria-pressed="${gone}">${gone?'Supprimée · restaurer':'Supprimer de la partie'}</button>`:''}</div>`
   }).join('');
   const block=`<details class="card-lifecycle" open><summary>Cartes d’amélioration : prête · inclinée · supprimée</summary><small>Une carte inclinée se redresse à la Phase Finale. Une carte à icône ✖ est supprimée de la partie une fois utilisée : elle ne revient pas.</small>${rows}</details>`;
   const at=html.lastIndexOf('<button type="button" class="secondary state-reset"');
@@ -1414,6 +1415,25 @@ const resolveScreenHelpBase=resolveScreen;
 resolveScreen=function(){resolveScreenHelpBase();syncHelpButton()};
 const pickHelpBase=pick;
 pick=function(role){pickHelpBase(role);syncHelpButton()};
+// ---- Chewbacca (amélioration) : dés améliorés, carte sans mot-clé (21/09/2026) ----
+// Attaque : à l'étape « Constituer la réserve d'attaque », choisissez 1 réserve : améliorez 1 dé d'attaque par figurine qui y ajoute une arme.
+// Défense : pour chaque figurine de l'unité, vous pouvez améliorer 1 dé de défense (blanc → rouge).
+const hasChewbaccaUpgrade=entry=>!!entry&&hasCard(entry,'chewbacca upgrade');
+function chewbaccaAutoUpgrades(){return selectedWeaponRows().reduce((total,row)=>total+Math.max(1,Number(attackState.counts?.[row.key])||1),0)}
+function chewbaccaUpgrades(){if(!attacker||!attackState||!hasChewbaccaUpgrade(attacker))return 0;const chosen=attackState.chewbaccaUpgrades;return Math.max(0,chosen==null?chewbaccaAutoUpgrades():Number(chosen)||0)}
+function unitModelTotal(entry){const base=certifiedUnitStats(entry)?.baseModels;if(!Number.isInteger(base))return 0;return base+(entry.unit.upgrades||[]).reduce((sum,card)=>sum+(Number(profileFor(card.name)?.addedModels)||0),0)}
+const poolChewbaccaBase=pool;
+pool=function(){const result=poolChewbaccaBase(),upgrades=chewbaccaUpgrades();return upgrades>0?upgradePoolDice(result,upgrades):result};
+function chewbaccaPanel(){
+  if(!attacker||!defender||!attackState)return'';
+  if(attackStep===0&&hasChewbaccaUpgrade(attacker)&&selectedWeaponRows().length)return `<div class="automation-card rule-highlight"><strong>CHEWBACCA (amélioration) : dés d’attaque améliorés</strong><small>Choisissez 1 de vos réserves d’attaque : améliorez 1 dé d’attaque par figurine qui y ajoute une arme (blanc → noir, noir → rouge). Corrigez le nombre si une figurine ajoute plusieurs armes. La réserve affichée en tient compte.</small>${numberField('chewbaccaUpgrades','Dés améliorés',chewbaccaUpgrades(),20)}</div>`;
+  if(attackStep===4&&hasChewbaccaUpgrade(defender)){const models=unitModelTotal(defender);return `<div class="automation-card rule-highlight"><strong>CHEWBACCA (amélioration) : dés de défense améliorés</strong><small>Avant de lancer : pour chaque figurine de l’unité${models?` (${models} au départ)`:''}, vous pouvez améliorer 1 dé de défense (blanc → rouge).</small></div>`}
+  return'';
+}
+const rulesPanelChewbaccaBase=rulesPanel;
+rulesPanel=function(){return `${chewbaccaPanel()}${rulesPanelChewbaccaBase()}`};
+const bindChewbaccaBase=bindAttackInputs;
+bindAttackInputs=function(){bindChewbaccaBase();const input=$('#chewbaccaUpgrades');if(input){input.oninput=()=>{attackState.chewbaccaUpgrades=Math.max(0,+input.value||0)};input.onchange=resolveScreen}};
 applyFactionTheme('rebel');
 $('#gameReadiness').onclick=showLiveGameReport;
 $('#restart').onclick=()=>{attacker=null;defender=null;stage=1;applyFactionTheme(factionClass(armies.find(army=>army.id===selectedArmy)));pick('attacker')};reconcileRoundEffects();applyFactionTheme(factionClass(armies.find(army=>army.id===selectedArmy)));pick('attacker');

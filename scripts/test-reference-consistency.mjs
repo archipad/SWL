@@ -60,6 +60,18 @@ for (const [card, profile] of Object.entries(ref.weapons)) {
   }
 }
 
+/* Chaque carte d'AMÉLIORATION doit avoir son utilisation (passive / s'incline ↱ / supprimée ✖ / les deux) : c'est ce qui décide si
+   le joueur peut la redresser ou si elle disparaît de la partie (Pointe de Vitesse). Une carte non classée fait échouer le build. */
+const USES = new Set(['passive', 'exhaust', 'discard', 'both'])
+const appSource = fs.readFileSync(path.join(root, 'public/assistant/app.js'), 'utf8')
+const rankCatalog = vm.runInNewContext('(' + appSource.match(/const rankCatalog=(\{[\s\S]*?\});/)[1] + ')')
+const unitCards = new Set(Object.values(rankCatalog).flat())
+for (const [card, profile] of Object.entries(ref.weapons)) {
+  if (unitCards.has(card) || profile.unitStats || profile.defenseColor || profile.fullCardCertification?.cardType === 'unit') continue
+  if (!USES.has(ref.cardUse?.[card])) fail(`${card} : carte d’amélioration sans utilisation (passive / s’incline / supprimée) dans src/data/upgradeCardUse.json`)
+}
+for (const [card, use] of Object.entries(ref.cardUse || {})) if (!USES.has(use)) fail(`${card} : utilisation de carte inconnue « ${use} »`)
+
 let certified = 0
 for (const [card, profile] of Object.entries(ref.weapons)) {
   const full = profile.fullCardCertification

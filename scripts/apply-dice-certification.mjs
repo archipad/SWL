@@ -53,6 +53,8 @@ for(const card of cards){
   if(card.addedModels!==undefined&&(!Number.isInteger(card.addedModels)||card.addedModels<0||card.addedModels>30))throw new Error('Figurines ajoutées invalides')
   if(card.addedModelWounds!==undefined&&(!Number.isInteger(card.addedModelWounds)||card.addedModelWounds<1||card.addedModelWounds>20))throw new Error('PV des figurines ajoutées invalides')
   for(const weapon of card.weapons||[]){
+    // Portée : melee, melee-N (corps-à-corps ET distance 1 à N), N, N-M, N-# ou grenade. Une portée illisible rendrait l'arme éligible à toutes les portées.
+    if(weapon.range!==undefined&&!/^(melee|melee-\d+|grenade|\d+|\d+-\d+|\d+-#)$/.test(String(weapon.range)))throw new Error(`Portée invalide pour ${card.card}/${weapon.name} : « ${weapon.range} » (formats : melee, melee-2, 1, 1-3, 1-#)`)
     if(weapon.keywordIds!==undefined){
       if(!Array.isArray(weapon.keywordIds))throw new Error(`Mots-clés d'arme invalides pour ${card.card}/${weapon.name}`)
       for(const id of weapon.keywordIds)if(!knownKeywordIds.has(id))throw new Error(`Mot-clé d'arme inconnu pour ${card.card}/${weapon.name} : ${id}`)
@@ -62,6 +64,7 @@ for(const card of cards){
   if(card.fullCardCertification){
     const full=card.fullCardCertification,required=['identity','visual','stats','weapons','conversions','keywords'];
     if(full.schemaVersion!==2||!['unit','upgrade'].includes(full.cardType))throw new Error('Certification complète invalide')
+    if(full.cardUse!==undefined&&(full.cardType!=='upgrade'||!['passive','exhaust','discard','both'].includes(full.cardUse)))throw new Error(`Utilisation de carte invalide pour ${card.card}`)
     if(!Array.isArray(full.checks)||required.some(check=>!full.checks.includes(check)))throw new Error(`Certification complète inachevée pour ${card.card}`)
     if(typeof full.visualPath!=='string'||!full.visualPath||typeof full.rulesVersion!=='string'||!full.rulesVersion)throw new Error(`Preuve de certification manquante pour ${card.card}`)
     for(const tag of full.keywords||[]){if(!knownKeywordIds.has(tag.keywordId))throw new Error(`Mot-clé inconnu pour ${card.card} : ${tag.keywordId}`);if(tag.value!==undefined&&(!Number.isInteger(tag.value)||tag.value<1||tag.value>20))throw new Error(`Valeur de mot-clé invalide pour ${card.card}/${tag.keywordId}`)}
