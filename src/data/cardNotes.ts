@@ -95,6 +95,11 @@ const RAW: Record<string, string> = {
   'Rebel Trooper Specialist': "Soldats Rebelles uniquement. Ajoute 1 figurine de Spécialiste Soldat Rebelle. Cette unité gagne 1 icône d'amélioration Comms. Action de carte (non permanente) : cette unité gagne 1 pion Esquive ou 1 pion Adrénaline.",
   'Rebel Comms Technician': "Soldat Rebelle ▲ uniquement. Ajoute 1 figurine de Technicien Comms Rebelle. Cette unité gagne 1 icône d'amélioration Comms et doit s'équiper d'au moins 1 amélioration Comms.",
   'Rebel Ambusher': "Cellule Dormante Rebelle uniquement. Action de carte (non permanente) : si cette unité n'est pas engagée, choisissez une unité de soldats ennemie non engagée en LdV et lancez 1 dé d'attaque rouge. Sur un résultat Touche ou Critique, l'unité choisie subit 1 blessure et gagne 1 pion Suppression.",
+
+  // === Audit du 21/09/2026 — cartes sans mot-clé lues sur les visuels
+  'Ascension Cables': "Action de carte gratuite (la carte s'incline) : cette unité gagne Ascension jusqu'à la fin de son activation.",
+  'IG11 Nanny Programming': "IG-11 uniquement. Lorsque vous créez votre armée, un Grogu allié gagne Alter Ego : IG-11. Cette unité gagne IA : Esquive, Déplacement.",
+  'IG11 Prime Programming': "IG-11 uniquement. Cette unité gagne Prime et IA : Viser, Attaque. Si elle choisit comme cible de Prime une unité d'un certain rang, ses armes gagnent Perforant 1 ; pour un autre rang, Suppressif (rangs exacts : voir la carte).",
 };
 
 export const CARD_NOTES: Record<string, string> = Object.fromEntries(

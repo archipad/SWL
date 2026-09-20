@@ -899,6 +899,77 @@ scenario('Surveillance X : les pions se posent sur un ennemi puis sont proposés
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Cartes d’amélioration : ✖ (Pointe de Vitesse) supprimée pour toute la partie, ↱ (Réflexes de la Force) redressée au round suivant, aide contextuelle', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Darth Vader Dark Lord of the Sith', upgrades: [{ name: 'Burst of Speed' }, { name: 'Force Reflexes' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click, pickUnit } = app
+  await pickUnit('Vador')
+  const burst = () => $('[data-unit-effect="burst-of-speed"]'), reflexes = () => $('[data-unit-effect="force-reflexes"]')
+  assert.ok(burst() && !burst().disabled && reflexes() && !reflexes().disabled, 'les deux cartes sont proposées')
+  assert.match(text(burst()), /supprime la carte/, 'Pointe de Vitesse annonce l’usage unique : ' + text(burst()))
+  await click(burst()); await click($('[data-unit-effect="force-reflexes"]'))
+  assert.ok(burst().disabled && reflexes().disabled, 'les deux sont appliquées')
+  assert.match(text($('.card-lifecycle')), /Supprimée/, 'le panneau des cartes indique Pointe de Vitesse supprimée')
+  assert.ok($$('.card-gone').length >= 1, 'le visuel de la carte supprimée est grisé')
+  // Round suivant : la carte ↱ se redresse, la carte ✖ ne revient pas.
+  app.window.localStorage.setItem('swl.game-tracker.v1', JSON.stringify({ round: 2, activatedUnitIds: [] }))
+  await click('#restart')
+  await pickUnit('Vador')
+  assert.ok(burst().disabled, 'Pointe de Vitesse reste supprimée au round 2')
+  assert.ok(!reflexes().disabled, 'Réflexes de la Force est redressée au round 2')
+  // Correction d’une erreur : Restaurer.
+  await click($$('[data-card-life^="gone:"]').find((button) => /restaurer/i.test(text(button))))
+  assert.ok(!burst().disabled, 'Restaurer rend la carte de nouveau utilisable')
+  // Aide contextuelle.
+  assert.ok($('#helpFab') && !$('#helpFab').hidden, 'le bouton d’aide est visible')
+  await click('#helpFab')
+  assert.match(text($('.help-popup')), /AIDE · Fiche d’unité/, 'l’aide de la fiche s’ouvre')
+  $$('dialog').forEach((dialog) => dialog.remove())
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Aide contextuelle à l’écran de résolution : étape en cours et raison du blocage', async () => {
+  const app = await openAssistant()
+  const { $, text, click, pickUnit } = app
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+  await click('#helpFab')
+  const help = text($('.help-popup'))
+  assert.match(help, /AIDE · 1 · Armes & portée/, 'l’aide décrit l’étape 1 : ' + help)
+  assert.match(help, /Pourquoi c’est bloqué/, 'et explique le blocage : ' + help)
+  assert.match(help, /portée/i)
+  app.$$('dialog').forEach((dialog) => dialog.remove())
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Électro-grappin de Sabine et Câbles ascensionnels : actions de carte appliquées (2 Immobilisation + 2 Suppression sur l’ennemi)', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Sabine Wren', upgrades: [{ name: "Sabine's Grapple Line" }, { name: 'Ascension Cables' }] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click } = app
+  app.window.localStorage.setItem('swl.assistant.player-side.v1', 'p1')
+  await app.pickUnit('Sabine')
+  assert.ok($('[data-card-action="carte-cables-ascensionnels"]'), 'Câbles ascensionnels est proposé')
+  await click('[data-card-action="carte-grappin-de-sabine"]')
+  await click('[data-kw-target]')
+  await click('[data-kw-apply-action]')
+  assert.ok($('[data-card-action="carte-grappin-de-sabine"]').disabled, 'le grappin est appliqué')
+  const states = JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}')
+  assert.ok(Object.values(states).some((state) => state.immobilize === 2 && state.suppression === 2), 'la cible ennemie a 2 Immobilisation et 2 Suppression : ' + JSON.stringify(states))
+  await click('[data-kw-undo]')
+  assert.ok(!$('[data-card-action="carte-grappin-de-sabine"]').disabled, 'ANNULER rend le grappin utilisable')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

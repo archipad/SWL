@@ -134,7 +134,9 @@ const cardsWithKeyword = (id) => {
 const asEntry = (card) => isUnit(card) ? { units: [{ name: card, upgrades: [] }] } : { units: [{ name: STANDARD_UNIT, upgrades: [{ name: card }] }] }
 
 const rows = []
-const only = process.argv.slice(2)
+const CHECK_SAMPLE = ['perforant-x', 'armure-x', 'souffle', 'immobiliser-x', 'deflagration', 'letal-x', 'ion-x', 'suppressif', 'longue-distance', 'exemplaire', 'surveillance-x', 'autonome', 'arsenal-x', 'discret']
+const checkMode = process.argv.includes('--check')
+const only = checkMode ? CHECK_SAMPLE : process.argv.slice(2).filter((arg) => !arg.startsWith('--'))
 for (const keyword of ref.keywords) {
   if (only.length && !only.includes(keyword.id)) continue
   const combat = [keyword.impact, ...(keyword.displaySections || [])].some((section) => section === 'attaque' || section === 'défense')
@@ -178,5 +180,13 @@ for (const row of rows) {
   const flow = row.flow ? Object.entries(row.flow).filter(([, ok]) => ok).map(([label]) => label).join(', ') || '**aucun**' : '—'
   lines.push(`| ${row.keyword.name} | ${row.combat ? (row.defenseSide ? 'défense' : 'attaque') : ''} | ${row.card || '(aucune carte)'} | ${row.sheet === null ? '—' : row.sheet ? 'oui' : '**non**'} | ${flow} | ${row.stuck} |`)
 }
-fs.mkdirSync(path.join(root, 'docs/audit'), { recursive: true })
-fs.writeFileSync(path.join(root, 'docs/audit/mots-cles-affichage.md'), lines.join('\n') + '\n')
+if (checkMode) {
+  // Garde-fou du build : un échantillon représentatif ; chaque mot-clé doit apparaître là où il agit.
+  const bad = rows.filter((row) => row.holders && (row.combat ? !(row.flow && Object.values(row.flow).some(Boolean)) : row.sheet === false))
+  if (bad.length) { console.error('Mots-clés qui ne remontent plus dans l’Assistant : ' + bad.map((row) => row.keyword.id).join(', ')); process.exit(1) }
+  console.log(`Remontée des mots-clés OK : ${rows.length} mots-clés de l’échantillon apparaissent à l’écran.`)
+} else if (!only.length) {
+  // Le tableau complet n'est écrit que pour un passage sur tous les mots-clés (jamais pour un échantillon).
+  fs.mkdirSync(path.join(root, 'docs/audit'), { recursive: true })
+  fs.writeFileSync(path.join(root, 'docs/audit/mots-cles-affichage.md'), lines.join('\n') + '\n')
+}

@@ -672,10 +672,10 @@ function reconcileRoundEffects(){let changed=false;const round=currentRound();fo
 function activationAutomationPanel(entry){
   const state=stateFor(entry),buttons=[];
   if(hasCard(entry,'force reflexes'))buttons.push(`<button data-effect-kind="free" data-unit-effect="force-reflexes" ${exhausted(state,'force-reflexes')?'disabled':''}><b>RÉFLEXES DE LA FORCE</b><small>Action gratuite · +1 pion Esquive</small></button>`);
-  if(hasCard(entry,'burst of speed'))buttons.push(`<button data-effect-kind="free" data-unit-effect="burst-of-speed" ${exhausted(state,'burst-of-speed')?'disabled':''}><b>POINTE DE VITESSE</b><small>Action gratuite · Vitesse maximale 3 ce round · Immobilisation en phase finale</small></button>`);
+  if(hasCard(entry,'burst of speed'))buttons.push(`<button data-effect-kind="free" data-unit-effect="burst-of-speed" ${exhausted(state,'burst-of-speed')||discarded(state,'burst-of-speed')?'disabled':''}><b>POINTE DE VITESSE</b><small>Début d’activation · ${discarded(state,'burst-of-speed')?'CARTE SUPPRIMÉE de la partie (usage unique)':'✖ supprime la carte (une seule fois par partie)'} · Vitesse maximale 3 ce round · Immobilisation en phase finale</small></button>`);
   if(hasCard(entry,'offensive push')&&(state.activationActions||[]).includes('move'))buttons.push(`<button data-effect-kind="trigger" data-unit-effect="offensive-push" ${exhausted(state,'offensive-push')?'disabled':''}><b>POUSSÉE OFFENSIVE</b><small>Après le déplacement · inclinez pour gagner 1 pion Viser.</small></button>`);
   if(hasCard(entry,'linked targeting array'))buttons.push(`<button data-unit-effect="linked-targeting-array" ${exhausted(state,'linked-targeting-array')?'disabled':''}><b>SYSTÈME DE VISÉE JUMELÉ</b><small>Une fois par activation en ordre face visible : +1 pion Viser.</small></button>`);
-  if(hasCard(entry,'emergency transponder')&&state.activationSource==='pool'&&!exhausted(state,'emergency-transponder'))buttons.push(`<div class="effect-choice"><b>TRANSPONDEUR D’URGENCE</b><small>Activation depuis la réserve d’ordres :</small><button data-unit-effect="transponder-aim">+1 Viser</button><button data-unit-effect="transponder-dodge">+1 Esquive</button><button data-unit-effect="transponder-suppression" ${state.suppression?'':'disabled'}>−1 Suppression</button></div>`);
+  if(hasCard(entry,'emergency transponder')&&state.activationSource==='pool'&&!discarded(state,'emergency-transponder'))buttons.push(`<div class="effect-choice"><b>TRANSPONDEUR D’URGENCE</b><small>Début d’activation depuis la réserve d’ordres · ✖ supprime la carte (une seule fois par partie) :</small><button data-unit-effect="transponder-aim">+1 Viser</button><button data-unit-effect="transponder-dodge">+1 Esquive</button><button data-unit-effect="transponder-suppression" ${state.suppression?'':'disabled'}>−1 Suppression</button></div>`);
   if(hasCard(entry,'in the fray'))buttons.push(`<button data-effect-kind="reaction" data-unit-effect="in-the-fray"><b>DANS LA MÊLÉE</b><small>Réaction · Une unité ennemie commence son activation à portée 1 : +1 Adrénaline</small></button>`);
   if(hasCard(entry,'force choke')&&!exhausted(state,'force-choke'))buttons.push(`<div class="effect-choice force-choke" data-effect-kind="free"><b>STRANGULATION DE LA FORCE</b><small>Action gratuite · choisissez une unité ennemie de soldats non Massive/Énorme à portée 1.</small>${entries.filter(target=>target.army!==entry.army&&!isVehicle(target)&&!defeated(target)).map(target=>`<button data-force-choke="${target.id}">1 blessure · ${entryName(target)}</button>`).join('')}</div>`);
   const actions=state.activationActions||[],actionFull=actions.length>=activationActionLimit(entry);
@@ -684,7 +684,7 @@ function activationAutomationPanel(entry){
   return buttons.length?`<section class="activation-automation"><header><strong>AUTOMATISMES D’ACTIVATION</strong><small>Les effets appliqués mettent immédiatement à jour le suivi partagé.</small></header><div>${buttons.join('')}</div><footer><span>Viser <b>${state.aim||0}</b></span><span>Esquive <b>${state.dodge||0}</b></span><span>Adrénaline <b>${state.surge||0}</b></span>${state.maxSpeedOverride?`<span>Vitesse max. <b>${state.maxSpeedOverride}</b></span>`:''}</footer></section>`:''
 }
 function bindActivationAutomation(entry,role){
-  root.querySelectorAll('[data-unit-effect]').forEach(button=>button.onclick=()=>{const state=stateFor(entry),actions=state.activationActions||[];switch(button.dataset.unitEffect){case'force-reflexes':exhaustCard(entry,'force-reflexes',{dodge:(state.dodge||0)+1});break;case'burst-of-speed':exhaustCard(entry,'burst-of-speed',{maxSpeedOverride:3,burstOfSpeedRound:currentRound()});break;case'offensive-push':exhaustCard(entry,'offensive-push',{aim:(state.aim||0)+1});break;case'linked-targeting-array':exhaustCard(entry,'linked-targeting-array',{aim:(state.aim||0)+1});break;case'transponder-aim':exhaustCard(entry,'emergency-transponder',{aim:(state.aim||0)+1});break;case'transponder-dodge':exhaustCard(entry,'emergency-transponder',{dodge:(state.dodge||0)+1});break;case'transponder-suppression':exhaustCard(entry,'emergency-transponder',{suppression:Math.max(0,state.suppression-1)});break;case'in-the-fray':updateUnitState(entry,{surge:(state.surge||0)+1,roundSeen:currentRound()});break;case'place-proton':if(actions.length>=activationActionLimit(entry)||actions.includes('arm-proton'))return;updateUnitState(entry,{protonCharges:(state.protonCharges||0)+1,activationActions:[...actions,'arm-proton'],roundSeen:currentRound()});break;case'detonate-proton':updateUnitState(entry,{protonCharges:Math.max(0,(state.protonCharges||0)-1)});break;case'place-sonic':if(actions.length>=activationActionLimit(entry)||actions.includes('arm-sonic'))return;updateUnitState(entry,{sonicCharges:(state.sonicCharges||0)+1,activationActions:[...actions,'arm-sonic'],roundSeen:currentRound()});break;case'detonate-sonic':updateUnitState(entry,{sonicCharges:Math.max(0,(state.sonicCharges||0)-1)});break}overview(entry,role)});
+  root.querySelectorAll('[data-unit-effect]').forEach(button=>button.onclick=()=>{const state=stateFor(entry),actions=state.activationActions||[];switch(button.dataset.unitEffect){case'force-reflexes':exhaustCard(entry,'force-reflexes',{dodge:(state.dodge||0)+1});break;case'burst-of-speed':discardCard(entry,'burst-of-speed',{maxSpeedOverride:3,burstOfSpeedRound:currentRound()});break;case'offensive-push':exhaustCard(entry,'offensive-push',{aim:(state.aim||0)+1});break;case'linked-targeting-array':exhaustCard(entry,'linked-targeting-array',{aim:(state.aim||0)+1});break;case'transponder-aim':discardCard(entry,'emergency-transponder',{aim:(state.aim||0)+1});break;case'transponder-dodge':discardCard(entry,'emergency-transponder',{dodge:(state.dodge||0)+1});break;case'transponder-suppression':discardCard(entry,'emergency-transponder',{suppression:Math.max(0,state.suppression-1)});break;case'in-the-fray':updateUnitState(entry,{surge:(state.surge||0)+1,roundSeen:currentRound()});break;case'place-proton':if(actions.length>=activationActionLimit(entry)||actions.includes('arm-proton'))return;updateUnitState(entry,{protonCharges:(state.protonCharges||0)+1,activationActions:[...actions,'arm-proton'],roundSeen:currentRound()});break;case'detonate-proton':updateUnitState(entry,{protonCharges:Math.max(0,(state.protonCharges||0)-1)});break;case'place-sonic':if(actions.length>=activationActionLimit(entry)||actions.includes('arm-sonic'))return;updateUnitState(entry,{sonicCharges:(state.sonicCharges||0)+1,activationActions:[...actions,'arm-sonic'],roundSeen:currentRound()});break;case'detonate-sonic':updateUnitState(entry,{sonicCharges:Math.max(0,(state.sonicCharges||0)-1)});break}overview(entry,role)});
   root.querySelectorAll('[data-force-choke]').forEach(button=>button.onclick=()=>{const target=entries.find(candidate=>candidate.id===button.dataset.forceChoke);if(!target)return;exhaustCard(entry,'force-choke');persistUnitStates();overview(entry,role)})
 }
 // Mots-clés d'unité qui donnent ou retirent des pions : boutons d'application (une fois par round, ou à chaque déclenchement).
@@ -977,49 +977,6 @@ function kwUndoLast(entryId){
   }
   persistUnitStates();kwUndoSave()
 }
-const keywordAutomationPanelUndoBase=keywordAutomationPanel;
-keywordAutomationPanel=function(entry){
-  const html=keywordAutomationPanelUndoBase(entry);if(!html)return html;
-  const last=[...kwUndoLog].reverse().find(item=>item.entryId===entry.id&&item.round===currentRound());
-  if(!last)return html;
-  const at=html.lastIndexOf('</section>');
-  return html.slice(0,at)+`<div class="kw-undo"><button type="button" data-kw-undo><b>↩ ANNULER</b><small>${last.label} · rétablit les pions et rend le bouton de nouveau disponible</small></button></div>`+html.slice(at)
-};
-const bindKeywordAutomationUndoBase=bindKeywordAutomation;
-bindKeywordAutomation=function(entry,role){
-  bindKeywordAutomationUndoBase(entry,role);
-  root.querySelectorAll('.keyword-automation button').forEach(button=>{
-    const original=button.onclick;if(!original||button.hasAttribute('data-kw-undo'))return;
-    button.onclick=event=>{
-      const before=JSON.parse(JSON.stringify(unitStates));
-      original.call(button,event);
-      const diffs=kwDiff(before,unitStates);if(!diffs.length)return;
-      const title=(button.closest('.kw-action')?.querySelector('[data-card-action] b')||button.querySelector('b'))?.textContent||button.textContent.trim();
-      kwUndoLog.push({entryId:entry.id,round:currentRound(),label:title+(button.hasAttribute('data-kw-choice')?' — '+button.textContent.trim():''),diffs});
-      if(kwUndoLog.length>30)kwUndoLog.shift();
-      kwUndoSave();overview(entry,role)
-    }
-  });
-  // Application déjà faite avant l'ajout de ANNULER (ou après rechargement) : « Réactiver » rend le bouton cliquable sans toucher aux pions (à corriger dans l'état actuel).
-  const resettable=[];
-  root.querySelectorAll('.keyword-automation [data-card-action][disabled]').forEach(button=>{if(/déjà appliqué|fait/.test(button.textContent)&&!/plus d’action|nécessite/.test(button.textContent))resettable.push({id:button.dataset.cardAction,host:button.closest('.kw-action')||button.parentElement,anchor:'card'})});
-  root.querySelectorAll('.keyword-automation [data-kw-apply][disabled]').forEach(button=>resettable.push({id:button.dataset.kwApply,host:button,anchor:'token'}));
-  for(const item of resettable){
-    const reset=document.createElement('button');reset.type='button';reset.className='secondary kw-reset';reset.dataset.kwReset=item.id;
-    reset.innerHTML='<b>↩ Réactiver</b><small>Rend le bouton de nouveau cliquable. Les pions déjà gagnés ne sont pas retirés : corrigez-les dans « État actuel » si besoin.</small>';
-    item.host.insertAdjacentElement('afterend',reset)
-  }
-  root.querySelectorAll('[data-kw-reset]').forEach(button=>button.onclick=()=>{
-    const id=button.dataset.kwReset,def=CARD_KEYWORD_ACTIONS[id],state=stateFor(entry),patch={};
-    patch.exhaustedCards=(state.exhaustedCards||[]).filter(card=>card!=='kw-'+id);
-    patch.setupDone=(state.setupDone||[]).filter(done=>done!==id);
-    if(def&&def.kind==='action'){const record=def.recordAs||'card:'+id,list=[...(state.activationActions||[])],at=list.indexOf(record);if(at>=0){list.splice(at,1);patch.activationActions=list}}
-    updateUnitState(entry,patch);
-    for(let i=kwUndoLog.length-1;i>=0;i--)if(kwUndoLog[i].entryId===entry.id&&kwUndoLog[i].round===currentRound()&&JSON.stringify(kwUndoLog[i].diffs).includes('kw-'+id))kwUndoLog.splice(i,1);
-    kwUndoSave();overview(entry,role)
-  });
-  root.querySelectorAll('[data-kw-undo]').forEach(button=>button.onclick=()=>{kwUndoLast(entry.id);overview(entry,role)})
-};
 // ---- Déclencheurs qui dépendent d'AUTRES unités (audit « où remonte chaque mot-clé », 20/09/2026) ----
 // Un mot-clé porté par une unité alliée ou ennemie qui n'attaque pas et ne défend pas ne s'affichait nulle part
 // (Exemplaire, Tir de Soutien, La Victoire ou la Mort, Nous nous Battons pour notre Famille…). Ils sont maintenant rappelés
@@ -1326,6 +1283,137 @@ buildLiveGameReport=function(){const report=buildLiveGameReportClassificationBas
 const showLiveGameReportStrictBase=showLiveGameReport;
 showLiveGameReport=function(){showLiveGameReportStrictBase();const report=buildLiveGameReport(),counter=root.querySelector('.report-counters');counter?.insertAdjacentHTML('beforeend',`<span class="${report.strictReady?'':'warning'}"><b>${report.summary.strictPending}</b> certification(s) V2</span>`);if(!report.strictReady){const title=root.querySelector('.live-game-report h1');if(title)title.textContent='⚠ DONNÉES JOUABLES · CERTIFICATION V2 INCOMPLÈTE';const firstSection=root.querySelector('.live-game-report>section');firstSection?.insertAdjacentHTML('beforebegin',`<section><h2>CERTIFICATION EXHAUSTIVE À TERMINER</h2><p>${report.summary.strictPending} carte(s) utilisées par ces listes doivent encore être validées intégralement dans l’écran Certification des cartes.</p></section>`)}};
 
+// ---- Cycle de vie des cartes d'amélioration : prête / inclinée / supprimée de la partie (21/09/2026) ----
+// Icône flèche « ↱ » : action de carte, la carte s'incline et se redresse à la Phase Finale (réutilisable chaque round).
+// Icône ✖ sur fond noir : la carte est SUPPRIMÉE de la partie pour appliquer l'effet (usage unique, ne revient jamais).
+// Certaines cartes proposent les deux effets : incliner pour l'un, supprimer pour l'autre.
+function discarded(state,card){return Array.isArray(state.discardedCards)&&state.discardedCards.includes(card)}
+function discardCard(entry,card,patch={}){const state=stateFor(entry);updateUnitState(entry,{...patch,discardedCards:[...new Set([...(state.discardedCards||[]),card])],roundSeen:currentRound()})}
+const LIFECYCLE_HINT={'burst of speed':'icône ✖ : usage unique, la carte est supprimée de la partie','emergency transponder':'icône ✖ : usage unique, la carte est supprimée de la partie'};
+const unitStatePanelLifecycleBase=unitStatePanel;
+unitStatePanel=function(entry){
+  const html=unitStatePanelLifecycleBase(entry),ups=entry.unit.upgrades||[];
+  if(!ups.length)return html;
+  const state=stateFor(entry),rows=ups.map(up=>{
+    const slug=slugOf(up.name),tilted=exhausted(state,slug),gone=discarded(state,slug),hint=LIFECYCLE_HINT[cardKey(up.name)]||'';
+    return `<div class="card-life ${gone?'gone':tilted?'tilted':''}"><span>${displayName(up.name)}${hint?`<small>${hint}</small>`:''}</span><button type="button" data-card-life="tilt:${slug}" aria-pressed="${tilted}" ${gone?'disabled':''}>${tilted?'Inclinée · redresser':'Prête · incliner'}</button><button type="button" data-card-life="gone:${slug}" aria-pressed="${gone}">${gone?'Supprimée · restaurer':'Supprimer de la partie'}</button></div>`
+  }).join('');
+  const block=`<details class="card-lifecycle" open><summary>Cartes d’amélioration : prête · inclinée · supprimée</summary><small>Une carte inclinée se redresse à la Phase Finale. Une carte à icône ✖ est supprimée de la partie une fois utilisée : elle ne revient pas.</small>${rows}</details>`;
+  const at=html.lastIndexOf('<button type="button" class="secondary state-reset"');
+  return at<0?html:html.slice(0,at)+block+html.slice(at)
+};
+const bindUnitStateLifecycleBase=bindUnitState;
+bindUnitState=function(entry,role){
+  bindUnitStateLifecycleBase(entry,role);
+  root.querySelectorAll('[data-card-life]').forEach(button=>button.onclick=()=>{
+    const [kind,slug]=button.dataset.cardLife.split(':'),state=stateFor(entry);
+    if(kind==='tilt'){const list=state.exhaustedCards||[];updateUnitState(entry,{exhaustedCards:list.includes(slug)?list.filter(card=>card!==slug):[...list,slug],roundSeen:currentRound()})}
+    else{const list=state.discardedCards||[];updateUnitState(entry,{discardedCards:list.includes(slug)?list.filter(card=>card!==slug):[...list,slug]})}
+    overview(entry,role)
+  })
+};
+// Actions de carte propres à une CARTE d'amélioration (et non à un mot-clé) : gabarit CARD_KEYWORD_ACTIONS avec le champ « card ».
+Object.assign(CARD_KEYWORD_ACTIONS,{
+  'carte-grappin-de-sabine':{card:'sabine s grapple line',title:'GRAPPIN DE SABINE',kind:'action',text:'Action de carte (↱→, la carte s’incline) : une unité de soldats ennemie à portée 1 et en LdV gagne 2 pions Immobilisation et 2 pions Suppression.',pick:{max:()=>1,enemy:true,soldiersOnly:true,effect:{immobilize:2,suppression:2}}},
+  'carte-cables-ascensionnels':{card:'ascension cables',title:'CÂBLES ASCENSIONNELS',kind:'roundfree',text:'Action de carte gratuite (↱», la carte s’incline) : cette unité gagne Ascension jusqu’à la fin de son activation.',self:{}},
+});
+const keywordValueCardBase=keywordValue;
+keywordValue=function(entry,id){const def=CARD_KEYWORD_ACTIONS[id];if(def&&def.card)return hasCard(entry,def.card)?1:0;return keywordValueCardBase(entry,id)};
+// ---- ANNULER / Réactiver sur tous les automatismes (mots-clés et cartes) ----
+const UNIT_EFFECT_CARD={'force-reflexes':'force-reflexes','burst-of-speed':'burst-of-speed','offensive-push':'offensive-push','linked-targeting-array':'linked-targeting-array'};
+function wireUndo(entry,role){
+  const sections=[...root.querySelectorAll('.activation-automation')];
+  if(!sections.length)return;
+  sections.flatMap(section=>[...section.querySelectorAll('button')]).forEach(button=>{
+    const original=button.onclick;if(!original)return;
+    button.onclick=event=>{
+      const before=JSON.parse(JSON.stringify(unitStates));
+      original.call(button,event);
+      const diffs=kwDiff(before,unitStates);if(!diffs.length)return;
+      const title=(button.closest('.kw-action')?.querySelector('[data-card-action] b')||button.querySelector('b'))?.textContent||button.textContent.trim();
+      kwUndoLog.push({entryId:entry.id,round:currentRound(),label:title+(button.hasAttribute('data-kw-choice')?' — '+button.textContent.trim():''),diffs});
+      if(kwUndoLog.length>30)kwUndoLog.shift();
+      kwUndoSave();overview(entry,role)
+    }
+  });
+  // Application déjà faite sans historique (avant ANNULER, ou après rechargement) : « Réactiver » rend le bouton cliquable sans toucher aux pions.
+  const resettable=[];
+  root.querySelectorAll('.activation-automation [data-card-action][disabled]').forEach(button=>{if(/déjà appliqué|fait/.test(button.textContent)&&!/plus d’action|nécessite/.test(button.textContent))resettable.push({id:button.dataset.cardAction,host:button.closest('.kw-action')||button.parentElement})});
+  root.querySelectorAll('.activation-automation [data-kw-apply][disabled]').forEach(button=>resettable.push({id:button.dataset.kwApply,host:button}));
+  root.querySelectorAll('.activation-automation [data-unit-effect][disabled]').forEach(button=>{const card=UNIT_EFFECT_CARD[button.dataset.unitEffect];if(card)resettable.push({id:card,host:button,unit:true})});
+  for(const item of resettable){
+    const reset=document.createElement('button');reset.type='button';reset.className='secondary kw-reset';reset.dataset.kwReset=item.id;
+    reset.innerHTML='<b>↩ Réactiver</b><small>Rend le bouton de nouveau cliquable. Les pions déjà gagnés ne sont pas retirés : corrigez-les dans « État actuel » si besoin.</small>';
+    item.host.insertAdjacentElement('afterend',reset)
+  }
+  root.querySelectorAll('[data-kw-reset]').forEach(button=>button.onclick=()=>{
+    const id=button.dataset.kwReset,def=CARD_KEYWORD_ACTIONS[id],state=stateFor(entry),patch={};
+    patch.exhaustedCards=(state.exhaustedCards||[]).filter(card=>card!=='kw-'+id&&card!==id);
+    patch.discardedCards=(state.discardedCards||[]).filter(card=>card!==id);
+    patch.setupDone=(state.setupDone||[]).filter(done=>done!==id);
+    if(def&&def.kind==='action'){const record=def.recordAs||'card:'+id,list=[...(state.activationActions||[])],at=list.indexOf(record);if(at>=0){list.splice(at,1);patch.activationActions=list}}
+    updateUnitState(entry,patch);
+    for(let i=kwUndoLog.length-1;i>=0;i--)if(kwUndoLog[i].entryId===entry.id&&kwUndoLog[i].round===currentRound()&&JSON.stringify(kwUndoLog[i].diffs).includes(id))kwUndoLog.splice(i,1);
+    kwUndoSave();overview(entry,role)
+  });
+  const last=[...kwUndoLog].reverse().find(item=>item.entryId===entry.id&&item.round===currentRound());
+  if(last){
+    const recent=[...kwUndoLog].reverse().filter(item=>item.entryId===entry.id&&item.round===currentRound()).slice(0,5);
+    sections[sections.length-1].insertAdjacentHTML('beforeend',`<div class="kw-undo"><button type="button" data-kw-undo><b>↩ ANNULER</b><small>${last.label} · rétablit les pions et rend le bouton de nouveau disponible</small></button>${recent.length>1?`<details><summary>Historique de ce round (${recent.length})</summary><ol>${recent.map(item=>`<li>${item.label}</li>`).join('')}</ol></details>`:''}</div>`)
+  }
+  root.querySelectorAll('[data-kw-undo]').forEach(button=>button.onclick=()=>{kwUndoLast(entry.id);overview(entry,role)})
+}
+const overviewLifecycleBase=overview;
+overview=function(entry,role){
+  overviewLifecycleBase(entry,role);
+  if(!entry)return;
+  const state=stateFor(entry);
+  root.querySelectorAll('.upgrade-visual,.upgrade-card-visual').forEach(button=>{
+    const up=(entry.unit.upgrades||[]).find(item=>displayName(item.name)===button.dataset.cardName);if(!up)return;
+    const slug=slugOf(up.name);
+    if(discarded(state,slug)){button.classList.add('card-gone');button.insertAdjacentHTML('beforeend','<b class="card-flag">SUPPRIMÉE</b>')}
+    else if(exhausted(state,slug)){button.classList.add('card-tilted');button.insertAdjacentHTML('beforeend','<b class="card-flag">INCLINÉE</b>')}
+  });
+  if(role==='attack'&&!defeated(entry))wireUndo(entry,role);
+  syncHelpButton()
+};
+// ---- Aide contextuelle (bouton « ? ») : ce qu'il faut faire à l'écran affiché, pourquoi c'est bloqué, quelles règles interviennent ----
+const STEP_HELP=[
+  {title:'1 · Armes & portée',todo:'Touchez la portée mesurée, puis les armes utilisées. Une réserve d’attaque ne mélange pas corps-à-corps et distance. Une unité engagée n’utilise que ses armes de corps-à-corps, sauf armes Polyvalent. Arsenal X : X armes par figurine.',auto:'Les armes non éligibles à cette portée sont grisées. Fixe, Encombrant, Longue Distance et les autres mots-clés d’armes demandent une confirmation quand ils s’appliquent.'},
+  {title:'2 · Jet & relances',todo:'Lancez la réserve affichée et saisissez les faces obtenues (touches, critiques, adrénalines). Les vierges se calculent seules. Un pion Viser permet de relancer jusqu’à 2 dés (Précis X en ajoute X par pion).',auto:'Le total saisi doit égaler le nombre de dés de la réserve. Les pions Adrénaline convertissent les faces Adrénaline selon la carte de l’unité.'},
+  {title:'3 · Couvert & esquive',todo:'Choisissez le couvert de la cible (aucun, léger, lourd), puis saisissez les dés de couvert et les esquives dépensées par le défenseur.',auto:'Déflagration, La Mort venue du ciel, Tireur d’élite X, Indifférent… modifient le couvert : l’Assistant applique et annonce l’effet sur cet écran.'},
+  {title:'4 · Modifications',todo:'Saisissez Impact X (touches changées en critiques contre une cible blindée) et Armure X, ainsi que les effets de cartes qui modifient les dés avant la défense.',auto:'Bouclier X, Gardien X, Point Faible X et Bélier X sont proposés quand ils s’appliquent. Le journal de résolution garde chaque modification.'},
+  {title:'5 · Défense',todo:'Lancez le nombre de dés annoncé « À DÉFENDRE » (après Impact et Armure) et saisissez blocages, adrénalines et vierges.',auto:'Perforant X annule des blocages ; Insensible, Immunité : perforant, Agile, Profil Bas, Blocage, Déflexion sont appliqués automatiquement.'},
+  {title:'6 · Résumé',todo:'Appliquez à la table les blessures et la Suppression annoncées, puis les effets listés dans le pop-up (Ionique, Immobilisation, Poison, À Bout Portant…).',auto:'Terminer enregistre l’attaque dans l’historique, met à jour les pions des deux unités et marque l’unité comme activée.'},
+];
+const GATE_HELP=[
+  [/portée/i,'La portée mesurée détermine quelles armes sont éligibles. Touchez la valeur lue sur la règle.'],
+  [/arme éligible|au moins une arme/i,'Sélectionnez au moins une arme éligible pour constituer la réserve d’attaque.'],
+  [/arc de tir/i,'Fixe : confirmez que le défenseur est au moins en partie dans l’arc indiqué sur la carte.'],
+  [/jet saisi contient/i,'Le nombre de dés saisis doit être égal au nombre de dés de la réserve affichée en haut.'],
+  [/couvert/i,'Choisissez le couvert de la cible avant de continuer (Aucun si elle n’en a pas).'],
+  [/doivent être lancés|dés? de défense/i,'Le nombre de dés de défense à lancer est celui de « À DÉFENDRE » : touches et critiques restants après Impact et Armure.'],
+  [/Répondez Oui ou Non/i,'Une règle conditionnelle doit être tranchée (Oui/Non) : ce choix change le calcul.'],
+  [/Esquive/i,'Le défenseur ne peut pas dépenser plus de pions Esquive qu’il n’en possède : corrigez sur sa fiche si le suivi est faux.'],
+];
+function helpContent(){
+  const center=root.querySelector('.resolve-center');
+  if(center&&typeof attackStep==='number'){
+    const help=STEP_HELP[Math.min(attackStep,5)],gate=(root.querySelector('.gate-status')?.textContent||'').replace(/\s+/g,' ').trim(),blocked=/BLOQUÉ/.test(gate),why=blocked?(GATE_HELP.find(([re])=>re.test(gate))||[null,'Complétez la saisie demandée au-dessus : le bouton se débloque tout seul.'])[1]:'',rules=(typeof relevantKeywords==='function'&&attacker&&defender?relevantKeywords():[]);
+    return `<strong>AIDE · ${help.title}</strong><p><b>À faire :</b> ${help.todo}</p><p><b>L’Assistant s’en charge :</b> ${help.auto}</p>${blocked?`<p class="help-why"><b>Pourquoi c’est bloqué :</b> ${gate.replace(/^⛔\s*BLOQUÉ/,'').trim()}<br><small>${why}</small></p>`:'<p><b>Bouton :</b> prêt, vous pouvez passer à l’étape suivante.</p>'}${rules.length?`<details open><summary>Règles qui interviennent ici (${rules.length})</summary>${rules.map(row=>`<p><b>${row.def.name}${row.tag.value!=null?' '+row.tag.value:''}</b> — ${definitionText(row)}</p>`).join('')}</details>`:''}<button type="button" class="primary" data-close-popup>Compris</button>`
+  }
+  if(root.querySelector('.overview'))return `<strong>AIDE · Fiche d’unité</strong><p><b>Bloc bleu « Ce que peut faire l’unité » :</b> rappels d’activation, d’attaque et de mots-clés, classés par étape du round.</p><p><b>Bloc orange « État actuel » :</b> pions Viser, Esquive, Adrénaline, Suppression et cartes d’amélioration (prête, inclinée, supprimée). Saisissez ici ce qui change à la table.</p><p><b>Automatismes des mots-clés :</b> chaque bouton applique l’effet et met à jour les pions. Une erreur ? « ↩ ANNULER » défait la dernière application, « ↩ Réactiver » rend un bouton grisé de nouveau cliquable.</p><p><b>Cartes :</b> une carte à flèche s’incline (elle se redresse à la Phase Finale) ; une carte à icône ✖ est supprimée de la partie (usage unique).</p><button type="button" class="primary" data-close-popup>Compris</button>`;
+  return `<strong>AIDE · Choix de l’unité</strong><p>Touchez la troupe qui joue, puis l’unité attaquée. Les avertissements orange sur une tuile rappellent une restriction de ciblage (Incognito, Discret, Petit…).</p><button type="button" class="primary" data-close-popup>Compris</button>`
+}
+function syncHelpButton(){
+  let button=document.getElementById('helpFab');
+  if(!button){button=document.createElement('button');button.id='helpFab';button.type='button';button.className='help-fab';button.setAttribute('aria-label','Aide de l’écran');button.textContent='?';button.onclick=()=>showRulePopup(helpContent(),'help-popup');document.body.append(button)}
+  button.hidden=!!document.body.classList.contains('certification-open')||!!root.querySelector('.live-game-report')
+}
+const resolveScreenHelpBase=resolveScreen;
+resolveScreen=function(){resolveScreenHelpBase();syncHelpButton()};
+const pickHelpBase=pick;
+pick=function(role){pickHelpBase(role);syncHelpButton()};
 applyFactionTheme('rebel');
 $('#gameReadiness').onclick=showLiveGameReport;
 $('#restart').onclick=()=>{attacker=null;defender=null;stage=1;applyFactionTheme(factionClass(armies.find(army=>army.id===selectedArmy)));pick('attacker')};reconcileRoundEffects();applyFactionTheme(factionClass(armies.find(army=>army.id===selectedArmy)));pick('attacker');
