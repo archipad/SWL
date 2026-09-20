@@ -184,7 +184,7 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc",
+    "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 4,
       "courage": 2,
@@ -201,7 +201,7 @@
         "keywordId": "autonome"
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant."
+    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : dé de défense ROUGE (corrigé, était blanc)"
   },
   "black sun enforcers": {
     "nameFr": "Hommes de Main du Soleil Noir",
@@ -232,7 +232,7 @@
         "range": "1-2"
       }
     ],
-    "defenseColor": "blanc",
+    "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 1,
@@ -256,7 +256,7 @@
         "keywordId": "instinct-de-survie"
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant."
+    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : dé de défense ROUGE (corrigé, était blanc)"
   },
   "gar saxon militant commando": {
     "nameFr": "Gar Saxon",
@@ -294,7 +294,7 @@
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
-      "courage": 1,
+      "courage": 2,
       "baseModels": 1
     },
     "keywords": [
@@ -319,7 +319,7 @@
         "value": 1
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant."
+    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : courage 2 (corrigé, était 1)"
   },
   "maul a rival": {
     "nameFr": "Maul",
@@ -756,7 +756,7 @@
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
-      "courage": 1,
+      "courage": 2,
       "baseModels": 1
     },
     "keywords": [
@@ -782,7 +782,7 @@
         "value": 1
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf -- lecture visuelle IA sur visuel corrige (defense rouge, 5 PV confirmes par thefifthtrooper.com/ig-88-unit-guide). A spot-checker en jouant."
+    "verificationSource": "Mercenary Units FR.pdf -- lecture visuelle IA sur visuel corrige (defense rouge, 5 PV confirmes par thefifthtrooper.com/ig-88-unit-guide). A spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : courage 2 (corrigé, était 1)"
   },
   "ig 11": {
     "nameFr": "IG-11",
@@ -838,7 +838,7 @@
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
-      "courage": 1,
+      "courage": 2,
       "baseModels": 1
     },
     "keywords": [
@@ -860,7 +860,7 @@
         "value": 1
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant."
+    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : courage 2 (corrigé, était 1)"
   },
   "din djarin": {
     "nameFr": "Din Djarin",
@@ -947,7 +947,7 @@
             "count": 2
           }
         ],
-        "range": "1-3"
+        "range": "melee-2"
       },
       {
         "name": "Carabines Blaster",
@@ -1050,8 +1050,8 @@
     ],
     "defenseColor": "rouge",
     "unitStats": {
-      "woundsPerModel": 1,
-      "courage": 2,
+      "woundsPerModel": 2,
+      "courage": 3,
       "baseModels": 1
     },
     "keywords": [
@@ -1078,7 +1078,7 @@
         "keywordId": "on-est-pas-des-regs"
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf -- unite de base (Hunter) ; s'etoffe via les cartes Amelioration Equipe (Crosshair, Echo, Tech, Wrecker). Lecture visuelle IA sur visuel corrige."
+    "verificationSource": "Mercenary Units FR.pdf -- unite de base (Hunter) ; s'etoffe via les cartes Amelioration Equipe (Crosshair, Echo, Tech, Wrecker). Lecture visuelle IA sur visuel corrige. — relecture du 20/09/2026 sur le visuel : PV 2 et courage 3 (corrigés, étaient 1 et 2)"
   },
   "rebel agent defender of democracy": {
     "nameFr": "Agent Rebelle, Défenseur de la Démocratie",
@@ -1235,7 +1235,7 @@
             "count": 2
           }
         ],
-        "range": "melee"
+        "range": "melee-2"
       }
     ],
     "unitStats": {
@@ -1314,7 +1314,7 @@
             "count": 3
           }
         ],
-        "range": "1",
+        "range": "melee-1",
         "keywordIds": [
           "deflagration",
           "impact-x"
@@ -1327,7 +1327,7 @@
     "addedModels": 1,
     "addedModelWounds": 1,
     "note": "Amélioration Hommes de Main du Soleil Noir uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1",
     "addedAt": "2026-09-15"
   },
   "black sun enforcer scatter gun": {
@@ -1342,7 +1342,7 @@
             "count": 2
           }
         ],
-        "range": "2",
+        "range": "melee-2",
         "keywordIds": [
           "perforant-x"
         ],
@@ -1354,7 +1354,7 @@
     "addedModels": 1,
     "addedModelWounds": 1,
     "note": "Amélioration Hommes de Main du Soleil Noir uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1-2",
     "addedAt": "2026-09-15"
   },
   "black sun enforcer concealment": {
@@ -1388,7 +1388,7 @@
             "count": 2
           }
         ],
-        "range": "2",
+        "range": "melee-2",
         "keywordIds": [
           "letal-x"
         ],
@@ -1400,7 +1400,7 @@
     "addedModels": 1,
     "addedModelWounds": 1,
     "note": "Amélioration Super Commandos Mandaloriens uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1-2",
     "addedAt": "2026-09-15"
   },
   "super commando marksman": {
@@ -1412,6 +1412,10 @@
         "dice": [
           {
             "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
             "count": 1
           },
           {
@@ -1431,7 +1435,7 @@
       }
     ],
     "note": "Amélioration Super Commandos Mandaloriens uniquement — cette unité gagne Précis 1.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : dés 1 rouge + 1 blanc + 1 noir",
     "addedAt": "2026-09-15"
   },
   "super commando concealment": {
@@ -1481,7 +1485,7 @@
             "count": 2
           }
         ],
-        "range": "2"
+        "range": "melee-2"
       }
     ],
     "keywords": [
@@ -1493,8 +1497,10 @@
       }
     ],
     "note": "Amélioration Super Commandos Mandaloriens uniquement — Chef, gagne Escorte : Maul. Personnage nommé ajouté à l'unité (Ajoutez 1 figurine de Rook Kast) ; points de vie non imprimés sur cette carte d'amélioration, donc addedModelWounds volontairement omis (non certifié) plutôt que deviné à partir des PV d'un Super Commando de base.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
-    "addedAt": "2026-09-15"
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1-2 ; ajoute 1 figurine",
+    "addedAt": "2026-09-15",
+    "addedModels": 1,
+    "addedModelWounds": 1
   },
   "din djarin beskar spear": {
     "nameFr": "Lance en Beskar",
@@ -1536,7 +1542,7 @@
             "count": 1
           }
         ],
-        "range": "1",
+        "range": "melee-1",
         "keywordIds": [
           "deflagration",
           "souffle",
@@ -1545,7 +1551,7 @@
       }
     ],
     "note": "Amélioration Din Djarin uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1",
     "addedAt": "2026-09-15"
   },
   "din djarin amban rifle": {
@@ -1618,6 +1624,10 @@
             "count": 1
           },
           {
+            "color": "blanc",
+            "count": 1
+          },
+          {
             "color": "noir",
             "count": 1
           }
@@ -1634,7 +1644,7 @@
       }
     ],
     "note": "Amélioration Gar Saxon uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : dés 1 rouge + 1 blanc + 1 noir",
     "addedAt": "2026-09-15"
   },
   "gar saxon zx flamethrower": {
@@ -1645,7 +1655,7 @@
         "name": "Projecteur de Flammes ZX",
         "dice": [
           {
-            "color": "rouge",
+            "color": "blanc",
             "count": 1
           },
           {
@@ -1653,7 +1663,7 @@
             "count": 1
           }
         ],
-        "range": "1",
+        "range": "melee-1",
         "keywordIds": [
           "deflagration",
           "souffle",
@@ -1662,7 +1672,7 @@
       }
     ],
     "note": "Amélioration Gar Saxon uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1 ; dés 1 blanc + 1 noir",
     "addedAt": "2026-09-15"
   },
   "boba fett flamethrower": {
@@ -1677,7 +1687,7 @@
             "count": 1
           }
         ],
-        "range": "1",
+        "range": "melee-1",
         "keywordIds": [
           "deflagration",
           "souffle",
@@ -1686,7 +1696,7 @@
       }
     ],
     "note": "Amélioration Boba Fett uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1",
     "addedAt": "2026-09-15"
   },
   "ig11 prime programming": {
@@ -1809,13 +1819,13 @@
             "count": 1
           }
         ],
-        "range": "2"
+        "range": "melee-2"
       }
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
     "note": "Amélioration Le Bad Batch uniquement — tant que cette figurine est sur le champ de bataille, l'Alter Ego Omega de l'unité ne peut pas se voir assigner de blessures (effet spécial non automatisé).",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1-2",
     "addedAt": "2026-09-15"
   },
   "pyke soldier electro whip": {
@@ -1830,7 +1840,7 @@
             "count": 2
           }
         ],
-        "range": "1",
+        "range": "melee-1",
         "keywordIds": [
           "immobiliser-x",
           "suppressif"
@@ -1843,7 +1853,7 @@
     "addedModels": 1,
     "addedModelWounds": 1,
     "note": "Amélioration Fantassins du Syndicat Pyke uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1",
     "addedAt": "2026-09-15"
   },
   "gar saxon back mounted rockets": {
@@ -1966,5 +1976,14 @@
     ],
     "note": "Amélioration lourde, Guerriers Wookies uniquement (40 pts) — ajoute 1 figurine Chewbacca (3 PV). Quand cette unité attaque, à l'étape Former la réserve d'attaque, choisissez 1 de ses réserves : elle peut améliorer 1 dé d'attaque de cette réserve pour chaque figurine qui y ajoute une arme. Quand elle défend, pour chaque figurine de l'unité, elle peut améliorer 1 de ses dés de défense. Chef.",
     "verificationSource": "Visuel anglais « •Chewbacca » fourni par l'utilisateur (19/09/2026), lecture visuelle IA, à certifier dans l'écran de certification."
+  },
+  "fleet trooper": {
+    "nameFr": "Soldat de la Flotte",
+    "image": "fleet-trooper.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Soldats de la Flotte uniquement — ajoute 1 figurine de Soldat de la Flotte (aucune arme, aucun mot-clé).",
+    "addedAt": "2026-09-20"
   }
 }

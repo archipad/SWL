@@ -117,7 +117,7 @@ const RAW: Record<string, string> = {
   "Imperial Officer": "Soldat ▲ uniquement. Ajoute 1 figurine d'Officier Impérial. Chef. Cette unité augmente de 1 son courage et gagne Inspiration 1.",
   "Rebel Officer": "Soldat ▲ uniquement. Ajoute 1 figurine d'Officier Rebelle. Chef. Cette unité augmente de 1 son courage et gagne Inspiration 1.",
   "Inquisitorius Training": "La Septième Sœur uniquement. Cette unité gagne Démoraliser 1. Quand une unité ennemie à ① incline une amélioration (icône indiquée sur la carte), vous pouvez lancer un dé de défense rouge : sur un résultat Bloc ou Adrénaline, annulez l'effet de cette amélioration ; elle reste inclinée.",
-  "Imperial Hammers Elite Armor Pilot": "Véhicule terrestre Empire uniquement. Cette unité gagne l'adrénaline d'attaque « Adrénaline : Critique ».",
+  "Imperial Hammers Elite Armor Pilot": "Véhicule terrestre Empire uniquement. Cette unité gagne l’adrénaline d’attaque « Adrénaline : Touche ».",
   "Programmed Loyalty": "Dark Troopers Impériaux uniquement. Cette unité ne peut recevoir d'ordres que d'une unité du type indiqué sur la carte, et gagne Escorte : ce même type d'unité.",
   "Sleeper Cell Astromech": "Cellule Dormante Rebelle uniquement. Ajoute 1 figurine d'Astromech. Non-combattant. Quand cette unité termine un déplacement à ① d'au moins 1 pion Objectif, elle gagne 1 pion Esquive.",
   "Spotter Link": "Quand une autre unité alliée déclare une attaque à distance contre une unité ennemie à ① et en LdV de cette unité, si cette unité ennemie n'est pas engagée au corps-à-corps, l'unité attaquante gagne Tireur d'Élite 1.",

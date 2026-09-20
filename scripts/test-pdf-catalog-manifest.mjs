@@ -89,7 +89,9 @@ try {
     ['pyke soldier electro whip', 'Électro-fouet', [{ color: 'rouge', count: 2 }]],
     ['pyke soldier p13m disruptor', 'Disrupteur P13-M', [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }]],
     ['super commando pistoleer', 'Paire de Pistolets Blaster', [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }]],
-    ['super commando marksman', 'Carabine Blaster', [{ color: 'rouge', count: 1 }, { color: 'noir', count: 1 }]],
+    ['super commando marksman', 'Carabine Blaster', [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }]], // relu le 20/09/2026 : 3 dés
+    ['gar saxon galar90 rifle', 'Fusil Sniper Galar-90', [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }]], // relu le 20/09/2026
+    ['gar saxon zx flamethrower', 'Projecteur de Flammes ZX', [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }]], // relu le 20/09/2026
     ['rook kast', 'Pistolets Blaster de Rook', [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }]],
     ['din djarin beskar spear', 'Lance en Beskar', [{ color: 'rouge', count: 2 }, { color: 'noir', count: 1 }]],
     ['cad bane electro gauntlets', 'Électro-Gantelets', [{ color: 'rouge', count: 4 }]],
