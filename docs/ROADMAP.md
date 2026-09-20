@@ -410,3 +410,5 @@
 - [x] Documenter l'architecture et les règles de contribution.
 - [ ] Restaurer l'authentification Git en écriture par SSH.
 - [ ] Publier cette documentation après réconciliation sûre de la branche locale.
+
+- [x] (20/09/2026) Audit « où remonte chaque mot-clé » (`scripts/audit-keyword-surfacing.mjs`, matrice dans `docs/audit/mots-cles-affichage.md`) : 48 mots-clés d'armes (Mercenaires) rattachés aux étiquettes de leur carte (ils étaient ignorés en attaque), 10 valeurs X relues sur les visuels, Harpon Mo/DK corrigé (Câble de Remorquage, Fixe), À Bout Portant annoncé (pop-up + résumé), mots-clés d'autres unités rappelés (Exemplaire, Tir de Soutien, La Victoire ou la Mort, Nous nous Battons…), ciblage restreint signalé sur les tuiles (Incognito, Petit, Discret, Immunité corps-à-corps), Surveillance X (pions + dépense à l'étape des relances). Reste à faire par le joueur : relire le Perforant du pistolet de Gar Saxon Militant (visuel coupé). Limite : 60 mots-clés du glossaire n'ont aucune carte dans le catalogue actuel (non testables par carte).

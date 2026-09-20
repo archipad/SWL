@@ -36,13 +36,27 @@ for (const [card, tags] of Object.entries(ref.tags)) {
    pas de valeur numérique) et Sustentation (« terrestre » sans X) ; les valeurs portées par les armes (Impact 1 sur une arme,
    Impact 3 sur une autre) sont lues dans keywordValues de l'arme. */
 const VALUE_OPTIONAL = new Set(['autonome', 'sustentation'])
+/* Valeurs impossibles à lire sur le visuel actuel (image recadrée : le bas de la carte manque). À relire sur la carte physique
+   ou avec un visuel complet, puis certifier dans l'écran « Certification des cartes ». Liste fermée : toute autre absence échoue. */
+const VALUE_UNREADABLE = new Set(['gar saxon militant commando:perforant-x'])
 const keywordDefs = new Map(ref.keywords.map((keyword) => [keyword.id, keyword]))
 for (const [card, tags] of Object.entries(ref.tags)) {
   for (const tag of tags) {
     if (!keywordDefs.get(tag.keywordId)?.hasValue || VALUE_OPTIONAL.has(tag.keywordId)) continue
     if (Number.isFinite(tag.value) && tag.value >= 0) continue
     const weaponValue = (ref.weapons[card]?.weapons || []).some((weapon) => Number.isFinite(weapon.keywordValues?.[tag.keywordId]))
+    if (!weaponValue && VALUE_UNREADABLE.has(card + ':' + tag.keywordId)) { console.warn('À VÉRIFIER (valeur illisible sur le visuel) : ' + card + ' — ' + tag.keywordId); continue }
     if (!weaponValue) fail(card + ' : « ' + tag.keywordId + ' » est un mot-clé à valeur X mais aucune valeur n’est renseignée (le moteur compterait 0)')
+  }
+}
+
+/* Tout mot-clé porté par une ARME doit exister dans les étiquettes de sa carte : l'Assistant construit les règles d'une attaque
+   à partir des étiquettes (audit du 20/09/2026 : 48 mots-clés d'armes Mercenaires étaient ignorés en attaque). */
+for (const [card, profile] of Object.entries(ref.weapons)) {
+  for (const weapon of profile.weapons || []) {
+    for (const id of weapon.keywordIds || []) {
+      if (!(ref.tags[card] || []).some((tag) => tag.keywordId === id)) fail(`${card} / ${weapon.name} : mot-clé d’arme « ${id} » absent des étiquettes de la carte (ignoré en attaque)`)
+    }
   }
 }
 

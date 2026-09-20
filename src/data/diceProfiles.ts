@@ -167,7 +167,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'Mandalorian Combat Shields': { weapons: [], note: 'confère Bouclier 2, pas d\'arme propre' },
   'Mandalorian Resistance': { weapons: [{ name: 'Blasters WESTAR-35', dice: [{ color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'rouge' },
   'Mark II Medium Blaster Trooper': { weapons: [{ name: 'Non armé', dice: [{ color: 'blanc', count: 1 }], range: 'melee', keywordIds: [] }, { name: 'Blaster Moyen Mark II', dice: [{ color: 'noir', count: 4 }], range: '1-3', keywordIds: ['critique-x', 'encombrant', 'fixe'] }], defenseColor: 'blanc' },
-  'Mo/DK Power Harpoon': { weapons: [{ name: 'Harpon Magnétique Mo/DK', dice: [{ color: 'rouge', count: 1 }], range: '1-2', keywordIds: ['impact-x'], keywordValues: { 'impact-x': 1 }, verifiedAgainstCard: true, verificationSource: 'Carte française Harpon Magnétique Mo/Dk' }] },
+  'Mo/DK Power Harpoon': { weapons: [{ name: 'Harpon Magnétique Mo/DK', dice: [{ color: 'rouge', count: 1 }], range: '1-2', keywordIds: ['fixe', 'impact-x', 'cable-de-remorquage'], keywordValues: { 'impact-x': 1 }, verifiedAgainstCard: true, verificationSource: 'Carte française Harpon Magnétique Mo/Dk' }] },
   'Moff Gideon': { weapons: [{ name: 'Entraînement au Combat', dice: [{ color: 'rouge', count: 2 }], range: 'melee', keywordIds: [] }, { name: 'Blaster de Gideon', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }], range: '1-2', keywordIds: ['perforant-x'] }], defenseColor: 'rouge' },
   'Offensive Push': { weapons: [], note: 'carte de commandement, pas d\'arme' },
   'Outer Rim Speeder Jockey': { weapons: [], note: 'confère Couvert 1, pas d\'arme propre' },

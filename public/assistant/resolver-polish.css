@@ -588,3 +588,4 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 .resolve-center .distract-card > strong { font: 800 1rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; }
 .resolve-center .distract-card.alert-card > strong { color: #ff8a92; }
 .resolve-center .distract-card p { margin: 0; color: #dbe9f3; font-size: .86rem; }
+.cross-triggers p { margin: 6px 0 0; }

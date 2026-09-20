@@ -37,31 +37,31 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Autodestruction X (unité) | Attaque | moteur (assisté) | 0 |
 | Barrage | Attaque | moteur (assisté) | 0 |
 | Bélier X | Attaque | moteur (automatique) | 2 |
-| Bordée X | Attaque | moteur (assisté) | 0 |
+| Bordée X | Attaque | moteur (assisté) | 1 |
 | Câble de Remorquage | Attaque | moteur (automatique) | 1 |
 | Charge | Attaque | moteur (assisté) | 9 |
 | Chasseur de Jedi | Attaque | moteur (automatique) | 1 |
 | Ciblage Avancé : Type d'Unité X | Attaque | moteur (assisté) | 1 |
-| Critique X | Attaque | moteur (automatique) | 20 |
+| Critique X | Attaque | moteur (automatique) | 21 |
 | Débordement | Attaque | moteur (automatique) | 0 |
-| Déflagration | Attaque | moteur (automatique) | 14 |
+| Déflagration | Attaque | moteur (automatique) | 20 |
 | Dispersion | Attaque | moteur (automatique) | 2 |
 | Duelliste | Attaque | moteur (automatique) | 3 |
 | Encombrant | Attaque | moteur (automatique) | 5 |
 | Équipe Sniper | Attaque | moteur (assisté) | 0 |
 | Exemplaire | Attaque | moteur (assisté) | 3 |
 | Explosion X : Type de Charge | Attaque | moteur (assisté) | 0 |
-| Fixe : Avant/Arrière/Flancs | Attaque | moteur (assisté) | 20 |
-| Haute Vélocité | Attaque | moteur (automatique) | 6 |
-| Immobiliser X | Attaque | moteur (automatique) | 0 |
+| Fixe : Avant/Arrière/Flancs | Attaque | moteur (assisté) | 21 |
+| Haute Vélocité | Attaque | moteur (automatique) | 8 |
+| Immobiliser X | Attaque | moteur (automatique) | 3 |
 | Immunité : Déflexion | Attaque | moteur (automatique) | 0 |
-| Impact X | Attaque | moteur (automatique) | 47 |
+| Impact X | Attaque | moteur (automatique) | 52 |
 | Implacable | Attaque | moteur (assisté) | 5 |
 | Ion X | Attaque | moteur (automatique) | 4 |
 | La Mort Venue du Ciel | Attaque | moteur (automatique) | 0 |
 | Les Mandaloriens sont Plus Forts Ensemble | Attaque | moteur (assisté) | 0 |
-| Létal X | Attaque | moteur (automatique) | 4 |
-| Longue Distance | Attaque | moteur (automatique) | 8 |
+| Létal X | Attaque | moteur (automatique) | 7 |
+| Longue Distance | Attaque | moteur (automatique) | 11 |
 | Maîtrise de l'Ataru | Attaque | moteur (automatique) | 0 |
 | Maîtrise du Jar'Kai | Attaque | moteur (automatique) | 1 |
 | Maîtrise du Makashi | Attaque | moteur (automatique) | 0 |
@@ -69,15 +69,15 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Matamore | Attaque | moteur (automatique) | 0 |
 | Non-combattant | Attaque | moteur (assisté) | 5 |
 | Nous nous Battons pour notre Famille | Attaque | moteur (assisté) | 0 |
-| Perforant X | Attaque | moteur (automatique) | 21 |
+| Perforant X | Attaque | moteur (automatique) | 30 |
 | Pistolero | Attaque | moteur (assisté) | 2 |
 | Poison X | Attaque | moteur (automatique) | 0 |
-| Polyvalent | Attaque | moteur (assisté) | 1 |
+| Polyvalent | Attaque | moteur (assisté) | 3 |
 | Précis X | Attaque | moteur (automatique) | 9 |
 | Primitif | Attaque | moteur (automatique) | 0 |
 | Rayons X | Attaque | moteur (assisté) | 0 |
-| Souffle | Attaque | moteur (automatique) | 4 |
-| Suppressif | Attaque | moteur (automatique) | 16 |
+| Souffle | Attaque | moteur (automatique) | 7 |
+| Suppressif | Attaque | moteur (automatique) | 23 |
 | Surveillance X | Attaque | moteur (assisté) | 3 |
 | Tenir Bon | Attaque | moteur (automatique) | 1 |
 | Tir de Soutien | Attaque | moteur (assisté) | 2 |

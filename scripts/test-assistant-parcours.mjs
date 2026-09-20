@@ -857,6 +857,48 @@ scenario('À Bout Portant : attaque à portée 2, l’Esquive gagnée est annonc
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Mots-clés d’autres unités : Exemplaire rappelé à l’étape Armes, Incognito signalé sur la tuile de la cible', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }, { name: 'General Veers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'K-2SO', upgrades: [] }] },
+  })
+  const { $, $$, text, click, pickUnit } = app
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  const tile = $$('.unit-tile').find((candidate) => /K-2SO/.test(text(candidate)))
+  assert.ok(tile, 'K-2SO est proposé comme cible')
+  assert.match(text(tile), /Incognito/, 'la tuile signale Incognito : ' + text(tile))
+  await pickUnit('K-2SO')
+  assert.match(text($('.cross-triggers')), /Exemplaire.*General Veers|Exemplaire.*Veers/i, 'Exemplaire (Veers) est rappelé à l’étape Armes : ' + text($('.cross-triggers')))
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Surveillance X : les pions se posent sur un ennemi puis sont proposés à l’étape des relances', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Moff Gideon', upgrades: [] }, { name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click, pickUnit, nextAttack } = app
+  await pickUnit('Gideon')
+  await click('[data-card-action="surveillance-x"]')
+  await click('[data-kw-target]')
+  await click('[data-kw-choice="0"]')
+  await click('#restart')
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Rebel')
+  await click('[data-range="2"]')
+  await click('.weapon-toggle[data-key$=":1"]')
+  await nextAttack()
+  assert.match(text($('.resolve-center')), /SURVEILLANCE : 1 pion/, 'le pion Surveillance placé est proposé à l’étape des relances')
+  await click('[data-surveillance-spend]')
+  assert.doesNotMatch(text($('.resolve-center')), /SURVEILLANCE : \d pion/, 'le pion dépensé est retiré')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

@@ -138,6 +138,19 @@ try {
     else for (const tag of full.keywords) if (!seedById.has(tag.keywordId)) tags[card] = [...(tags[card] || []), { ...tag }];
     keywordConflicts[card].reviewed = full.keywordsReviewed === true;
   }
+  // Un mot-clé d'ARME certifié sur une arme doit exister dans les étiquettes de sa carte : l'Assistant construit
+  // les règles d'une attaque à partir des étiquettes puis filtre par arme. Sans cette étape, 48 mots-clés d'armes
+  // (Souffle, Immobiliser, Perforant, Létal… des cartes Mercenaires) étaient ignorés en attaque (audit du 20/09/2026).
+  for (const [card, profile] of Object.entries(weapons)) {
+    for (const weapon of profile.weapons || []) {
+      for (const id of weapon.keywordIds || []) {
+        if ((tags[card] || []).some((tag) => tag.keywordId === id)) continue;
+        const keyword = keywordModule.SEED_KEYWORDS.find((item) => item.id === id);
+        const value = weapon.keywordValues?.[id] ?? (keyword?.hasValue ? null : undefined);
+        tags[card] = [...(tags[card] || []), value === undefined ? { keywordId: id } : { keywordId: id, value }];
+      }
+    }
+  }
   const crosscheckPath = resolve(projectRoot, 'src/data/crosscheckTakras.json');
   const crosscheck = existsSync(crosscheckPath) ? JSON.parse(await readFile(crosscheckPath, 'utf8')) : {};
 
