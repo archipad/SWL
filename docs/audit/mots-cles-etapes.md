@@ -3,8 +3,8 @@
 Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 199 mots-clés du glossaire.
 
 - Combat (attaque / défense), gérés par le moteur : **86** (52 automatiques, 34 assistés).
-- Hors combat, **application par bouton** : 22.
-- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 77.
+- Hors combat, **application par bouton** : 32.
+- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 67.
 - Composition d’armée (rappel replié) : 14.
 
 | Mot-clé | Étape | Traitement | Cartes |
@@ -12,8 +12,8 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Armer X : Type de Charge | Actions de carte | rappel | 0 |
 | Assistance X | Actions de carte | auto | 0 |
 | Calcul de Probabilités | Actions de carte | auto | 2 |
-| Conseils : Type d'Unité | Actions de carte | rappel | 2 |
-| Distraire | Actions de carte | rappel | 1 |
+| Conseils : Type d'Unité | Actions de carte | auto | 2 |
+| Distraire | Actions de carte | auto | 1 |
 | Je Fais Partie de l'Équipe Aussi | Actions de carte | rappel | 1 |
 | Maître Conteur | Actions de carte | auto | 0 |
 | Mettre à Couvert X | Actions de carte | auto | 2 |
@@ -22,7 +22,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Pions Bane (Cad Bane) | Actions de carte | rappel | 0 |
 | Réparation X : Capacité Y | Actions de carte | rappel | 4 |
 | Stratège X | Actions de carte | auto | 0 |
-| Tirer les Ficelles | Actions de carte | rappel | 0 |
+| Tirer les Ficelles | Actions de carte | auto | 0 |
 | Traiter X : Capacité Y | Actions de carte | rappel | 2 |
 | Vivacité d'Esprit | Actions de carte | auto | 1 |
 | Accomplir la Mission | Attaque | moteur (automatique) | 0 |
@@ -154,9 +154,9 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Tenir le Cap : Mot-clé | Effets permanents | rappel | 0 |
 | Cycle | Fin d'activation | rappel | 5 |
 | Inspiration X | Fin d'activation | auto | 7 |
-| Maître de la Force X | Fin d'activation | rappel | 3 |
-| Pouvoir Latent | Fin d'activation | rappel | 1 |
-| Régénérer X | Fin d'activation | rappel | 1 |
+| Maître de la Force X | Fin d'activation | auto | 3 |
+| Pouvoir Latent | Fin d'activation | auto | 1 |
+| Régénérer X | Fin d'activation | auto | 1 |
 | Alter Ego : Nom d'Unité | Mise en place | rappel | 4 |
 | Blessure X | Mise en place | rappel | 1 |
 | Cache | Mise en place | rappel | 5 |
@@ -180,8 +180,8 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Infanterie Mécanisée | Ordre reçu · début d'activation | auto | 0 |
 | Maîtrise du Juyo | Ordre reçu · début d'activation | rappel | 1 |
 | Mode Roue | Ordre reçu · début d'activation | rappel | 0 |
-| Surcharge X | Ordre reçu · début d'activation | rappel | 0 |
-| Telle est la Voie | Ordre reçu · début d'activation | rappel | 0 |
+| Surcharge X | Ordre reçu · début d'activation | auto | 0 |
+| Telle est la Voie | Ordre reçu · début d'activation | auto | 0 |
 | Autoritaire | Phase de Commandement | rappel | 0 |
 | Coordination : Nom/Type d'Unité | Phase de Commandement | rappel | 4 |
 | Divulgation | Phase de Commandement | rappel | 0 |
@@ -192,7 +192,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Malin | Phase de Commandement | rappel | 1 |
 | Mission Secrète | Phase de Commandement | rappel | 2 |
 | Ordre Direct : Nom/Type d'Unité | Phase de Commandement | rappel | 2 |
-| Générateur X | Phase Finale | rappel | 0 |
+| Générateur X | Phase Finale | auto | 0 |
 | Permanent | Phase Finale | rappel | 0 |
 | Renforts | Phase Finale | rappel | 1 |
 | Contrainte : Rang/Type d'Unité | Rallier · récupérer | auto | 4 |
@@ -202,7 +202,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Intrépide | Rallier · récupérer | auto | 4 |
 | Pilotage de Véhicule X | Rallier · récupérer | rappel | 0 |
 | Pions Graffiti | Rallier · récupérer | rappel | 0 |
-| Recharger X | Rallier · récupérer | rappel | 3 |
+| Recharger X | Rallier · récupérer | auto | 3 |
 | Reconfiguration | Rallier · récupérer | rappel | 2 |
 | Aide : Affiliation/Type d'Unité | Réactions | rappel | 1 |
 | Impitoyable | Réactions | rappel | 1 |

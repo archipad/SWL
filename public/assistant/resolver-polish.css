@@ -580,3 +580,11 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 .resolve-center .arsenal-card .ar-rules { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
 .resolve-center .arsenal-card .ar-rules li { padding: 8px 10px; border: 1px solid rgba(94, 178, 255, .3); border-radius: 8px; background: rgba(94, 178, 255, .06); color: #dbe9f3; font-size: .86rem; }
 .resolve-center .arsenal-card .ar-rules b { color: #8fc9ff; }
+
+/* Distraire : contrainte imposée (rouge = alerte, bleu quand la cible est conforme) */
+.resolve-center .distract-card { display: grid; gap: 6px; padding: 14px 16px !important; border-radius: 12px; }
+.resolve-center .distract-card.alert-card { border: 1px solid #ff4550; background: linear-gradient(135deg, rgba(255, 69, 80, .16), rgba(255, 69, 80, .04)); }
+.resolve-center .distract-card.info-card { border: 1px solid rgba(94, 178, 255, .55); background: linear-gradient(135deg, rgba(94, 178, 255, .12), rgba(94, 178, 255, .04)); }
+.resolve-center .distract-card > strong { font: 800 1rem/1.2 Orbitron, sans-serif; letter-spacing: .04em; }
+.resolve-center .distract-card.alert-card > strong { color: #ff8a92; }
+.resolve-center .distract-card p { margin: 0; color: #dbe9f3; font-size: .86rem; }

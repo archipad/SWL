@@ -575,6 +575,53 @@ scenario('Lot 1 : actions de carte des mots-clés (Vivacité d’esprit, Observa
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Lot 2 : Régénérer X (blessures), Conseils (action gratuite offerte), Distraire (cible imposée à l’attaque)', async () => {
+  const lists = {
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Bossk Terror of Trandosha', upgrades: [] }, { name: 'General Veers', upgrades: [] }, { name: 'Stormtroopers', upgrades: [] }, { name: 'C-3PO', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  }
+  const stateOf = (app, name) => JSON.parse(app.window.eval('JSON.stringify(stateFor(entries.find(e=>e.unit.name===' + JSON.stringify(name) + ')))'))
+
+  // Régénérer 3 : 3 Blessures, 3 dés blancs, 2 résultats BLOC/ADR-DEF -> il reste 1 Blessure.
+  let app = await openAssistant(lists)
+  await app.pickUnit('Bossk')
+  assert.match(app.text(app.$('.keyword-automation')), /RÉGÉNÉRER 3/)
+  for (let i = 0; i < 3; i++) await app.click('[data-kw-counter="wound:1"]')
+  assert.equal(stateOf(app, 'Bossk Terror of Trandosha').wound, 3)
+  await app.click('[data-kw2-open="regen"]')
+  assert.match(app.text(app.$('.kw-input')), /0 à 3/, '3 dés blancs à lancer')
+  const input = app.$('[data-kw2-input]')
+  input.value = '2'
+  input.dispatchEvent(new app.window.Event('input', { bubbles: true }))
+  await app.click('[data-kw2-apply="regen"]')
+  assert.equal(stateOf(app, 'Bossk Terror of Trandosha').wound, 1, '2 Blessures retirées')
+  assert.ok(app.$('[data-kw2-open="regen"]').disabled, 'une fois par activation')
+  app.window.close()
+
+  // Conseils : action de carte, une unité alliée reçoit une action gratuite à effectuer.
+  app = await openAssistant(lists)
+  await app.pickUnit('Veers')
+  await app.click('[data-card-action="conseils"]')
+  await app.click(app.$$('[data-kw-target]').find((button) => /Stormtroopers/.test(app.text(button))))
+  await app.click('[data-kw-apply-action]')
+  const offers = stateOf(app, 'Stormtroopers').freeActionOffers
+  assert.equal(offers.length, 1, 'une action gratuite est offerte à la cible')
+  assert.match(offers[0].label, /action gratuite/)
+  app.window.close()
+
+  // Distraire : l'unité ennemie doit attaquer C-3PO ; l'alerte apparaît à son étape des armes.
+  app = await openAssistant(lists)
+  await app.pickUnit('C-3PO')
+  await app.click('[data-card-action="distraire"]')
+  await app.click(app.$$('[data-kw-target]').find((button) => /Soldats Rebelles/.test(app.text(button))))
+  await app.click('[data-kw-apply-action]')
+  assert.ok(stateOf(app, 'Rebel Troopers').distractedBy, 'la cible est marquée Distraite')
+  assert.ok(app.$('[data-card-action="distraire"]').disabled, 'Distraire : une fois par round')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

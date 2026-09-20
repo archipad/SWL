@@ -295,7 +295,7 @@ function decorateArsenal(){
   root.querySelector('.weapon-picker')?.before(panel);
 }
 const decorateResolveOfficerCardsBase=decorateResolveScreen;
-decorateResolveScreen=function(){decorateResolveOfficerCardsBase();decorateFireControl();decorateArsenal()};
+decorateResolveScreen=function(){decorateResolveOfficerCardsBase();decorateFireControl();decorateArsenal();decorateDistracted()};
 const bindShieldInputsBase=bindAttackInputs;
 bindAttackInputs=function(){bindShieldInputsBase();['activeShields','shieldHit','shieldCrit'].forEach(id=>{const input=$('#'+id);if(input){input.oninput=()=>{attackState[id]=+input.value||0;attackState.impact=null;attackState.armor=null};input.onchange=resolveScreen}})}
 const bindLuckyInputsBase=bindAttackInputs;
@@ -479,7 +479,7 @@ function decorateTacticalResolution(){
     // Les dés à lancer (ou à défendre) sont toujours tout en haut, sous les étapes, puis le résumé des touches/critiques en cours ; les vérifications viennent ensuite. Étape 1 : la portée reste juste au-dessus des dés (voir plus bas).
     if(attackStep!==0){const bar=center.querySelector(':scope > .dice-pool,:scope > .defense-dice-pool'),summary=center.querySelector(':scope > .result-strip:not(.live-result-strip):not(.live-defense-strip)');[bar,summary].filter(Boolean).forEach(element=>{anchor.after(element);anchor=element})}
     checks.forEach(element=>{anchor.after(element);anchor=element});
-    if(attackStep===0){const warning=center.querySelector(':scope > .strict-warning'),range=center.querySelector(':scope > .range-picker'),fire=center.querySelector(':scope > .fire-control-card'),arsenal=center.querySelector(':scope > .arsenal-card'),weapons=center.querySelector(':scope > .weapon-picker'),pool=center.querySelector(':scope > .dice-pool'),poolNote=center.querySelector(':scope > .pool-note');[warning,range,fire,arsenal,weapons,pool,poolNote].filter(Boolean).forEach(element=>{anchor.after(element);anchor=element})}
+    if(attackStep===0){const warning=center.querySelector(':scope > .strict-warning'),range=center.querySelector(':scope > .range-picker'),fire=center.querySelector(':scope > .fire-control-card'),arsenal=center.querySelector(':scope > .arsenal-card'),distract=center.querySelector(':scope > .distract-card'),weapons=center.querySelector(':scope > .weapon-picker'),pool=center.querySelector(':scope > .dice-pool'),poolNote=center.querySelector(':scope > .pool-note');[warning,range,fire,arsenal,distract,weapons,pool,poolNote].filter(Boolean).forEach(element=>{anchor.after(element);anchor=element})}
   }
   // Écran Couvert : barre « dés de couvert à lancer » (même design que Jet et Défense) avec l'état de validation du jet, et libellés des résultats avant/après.
   if(attackStep===2&&stepper){
@@ -663,7 +663,7 @@ const currentRound=()=>Math.max(1,Number(read('swl.game-tracker.v1',{round:1}).r
 const exhausted=(state,card)=>Array.isArray(state.exhaustedCards)&&state.exhaustedCards.includes(card);
 function updateUnitState(entry,patch){const state=stateFor(entry);unitStates[entry.id]={...state,...patch};persistUnitStates()}
 function exhaustCard(entry,card,patch={}){const state=stateFor(entry);updateUnitState(entry,{...patch,exhaustedCards:[...new Set([...(state.exhaustedCards||[]),card])],roundSeen:currentRound()})}
-function reconcileRoundEffects(){let changed=false;const round=currentRound();for(const entry of entries){const state=stateFor(entry);if((state.roundSeen||round)>=round)continue;const immobilize=Math.max(0,Number(state.immobilize)||0)+(state.burstOfSpeedRound&&state.burstOfSpeedRound<round?1:0);unitStates[entry.id]={...state,immobilize,aim:0,dodge:0,surge:0,standby:0,exhaustedCards:[],activationActions:[],activationSource:null,mandatoryMoveDone:false,burstOfSpeedRound:null,maxSpeedOverride:null,roundSeen:round};changed=true}if(changed)persistUnitStates()}
+function reconcileRoundEffects(){let changed=false;const round=currentRound();for(const entry of entries){const state=stateFor(entry);if((state.roundSeen||round)>=round)continue;const immobilize=Math.max(0,Number(state.immobilize)||0)+(state.burstOfSpeedRound&&state.burstOfSpeedRound<round?1:0);unitStates[entry.id]={...state,immobilize,aim:0,dodge:0,surge:0,standby:0,exhaustedCards:[],activationActions:[],activationSource:null,mandatoryMoveDone:false,burstOfSpeedRound:null,maxSpeedOverride:null,freeActionOffers:[],distractedBy:null,forceReadied:0,roundSeen:round};changed=true}if(changed)persistUnitStates()}
 function activationAutomationPanel(entry){
   const state=stateFor(entry),buttons=[];
   if(hasCard(entry,'force reflexes'))buttons.push(`<button data-effect-kind="free" data-unit-effect="force-reflexes" ${exhausted(state,'force-reflexes')?'disabled':''}><b>RÉFLEXES DE LA FORCE</b><small>Action gratuite · +1 pion Esquive</small></button>`);
@@ -709,12 +709,12 @@ const CARD_KEYWORD_ACTIONS={
 };
 let kwActionPick=null;
 const bumpTokens=(target,effect)=>{const state=stateFor(target),patch={};for(const [field,delta] of Object.entries(effect))patch[field]=Math.max(0,(state[field]||0)+delta);updateUnitState(target,patch)};
-const kwPickCandidates=(entry,def)=>entries.filter(candidate=>!defeated(candidate)&&candidate.army===entry.army&&(def.pick.self||candidate.id!==entry.id)&&(!def.pick.soldiersOnly||!isVehicle(candidate))&&(!def.pick.vehiclesOnly||isVehicle(candidate))&&(!def.pick.onlyWith||(stateFor(candidate)[def.pick.onlyWith]||0)>0));
+let kwPickCandidates=(entry,def)=>entries.filter(candidate=>!defeated(candidate)&&candidate.army===entry.army&&(def.pick.self||candidate.id!==entry.id)&&(!def.pick.soldiersOnly||!isVehicle(candidate))&&(!def.pick.vehiclesOnly||isVehicle(candidate))&&(!def.pick.onlyWith||(stateFor(candidate)[def.pick.onlyWith]||0)>0));
 function cardActionButtons(entry,state){
   const actions=state.activationActions||[],actionFull=actions.length>=activationActionLimit(entry);
   return Object.entries(CARD_KEYWORD_ACTIONS).map(([id,def])=>{
     const x=keywordValue(entry,id);if(!x)return'';
-    const used=def.kind==='round'?exhausted(state,'kw-'+id):actions.includes('card:'+id)||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=def.kind==='action'&&actionFull&&!used,label=typeof def.text==='function'?def.text(x):def.text;
+    const used=(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:actions.includes('card:'+id)||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=def.kind==='action'&&actionFull&&!used,label=typeof def.text==='function'?def.text(x):def.text;
     const open=kwActionPick&&kwActionPick.entryId===entry.id&&kwActionPick.id===id;
     let inner='';
     if(open){
@@ -724,7 +724,7 @@ function cardActionButtons(entry,state){
       else inner+=`<div class="kw-choices"><button type="button" class="primary" data-kw-apply-action="${id}" ${def.pick&&!selected.length?'disabled':''}>Appliquer</button></div>`;
       inner+='<button type="button" class="secondary" data-kw-cancel-action>Annuler</button>';
     }
-    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${def.kind!=='action'||x>1?' '+x:''}</b><small>${label}${used?' · déjà appliqué':blocked?' · plus d’action disponible':''}</small></button>${inner}</div>`;
+    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue?' '+x:''}</b><small>${label}${used?' · déjà appliqué':blocked?' · plus d’action disponible':''}</small></button>${inner}</div>`;
   }).filter(Boolean);
 }
 function applyCardKeywordAction(entry,id,choiceIndex){
@@ -741,12 +741,77 @@ function applyCardKeywordAction(entry,id,choiceIndex){
   else exhaustCard(entry,'kw-'+id);
   kwActionPick=null;
 }
+// ---- Lot 2 : fin d'activation, boucliers, blessures, actions gratuites offertes, Distraire ----
+Object.assign(CARD_KEYWORD_ACTIONS,{
+  'surcharge':{title:'SURCHARGE',kind:'free',text:x=>`Début d’activation d’une unité alliée à portée ${x} : cette unité gagne 1 Suppression, l’unité alliée peut ignorer IA pendant son activation.`,self:{suppression:1},pick:{max:()=>1,self:false,effect:null,note:'ignore IA'}},
+  'telle-est-la-voie':{title:'TELLE EST LA VOIE',kind:'free',text:x=>`Cette unité reçoit un ordre : jusqu’à ${x} autre(s) unité(s) alliée(s) à portée 2 effectuent gratuitement l’action indiquée par le mot-clé.`,pick:{max:x=>x,self:false,effect:null,offer:'l’action indiquée par Telle est la Voie'}},
+  'conseils':{title:'CONSEILS',kind:'action',text:'Action de carte : 1 autre unité alliée du type indiqué, à portée 2, effectue une action gratuite autre qu’Attaquer.',pick:{max:()=>1,self:false,effect:null,offer:'une action gratuite (sauf Attaquer)'}},
+  'tirer-les-ficelles':{title:'TIRER LES FICELLES',kind:'action',text:'Action de carte : 1 autre unité de soldats alliée à portée 2 effectue une action de carte gratuite ou un déplacement gratuit.',pick:{max:()=>1,self:false,soldiersOnly:true,effect:null,offer:'une action de carte gratuite ou un déplacement gratuit'}},
+  'distraire':{title:'DISTRAIRE',kind:'roundfree',text:'Action de carte gratuite : 1 unité de soldats ennemie à portée 2 et en LdV doit, jusqu’à la fin du round, attaquer cette unité si possible.',pick:{max:()=>1,enemy:true,soldiersOnly:true,effect:null,distract:true}},
+});
+// candidats : alliés par défaut, ennemis pour Distraire
+kwPickCandidates=function(entry,def){return entries.filter(candidate=>!defeated(candidate)&&(def.pick.enemy?candidate.army!==entry.army:candidate.army===entry.army)&&(def.pick.self||def.pick.enemy||candidate.id!==entry.id)&&(!def.pick.soldiersOnly||!isVehicle(candidate))&&(!def.pick.vehiclesOnly||isVehicle(candidate))&&(!def.pick.onlyWith||(stateFor(candidate)[def.pick.onlyWith]||0)>0))};
+const applyCardActionBase=applyCardKeywordAction;
+applyCardKeywordAction=function(entry,id,choiceIndex){
+  const def=CARD_KEYWORD_ACTIONS[id];
+  if(def?.pick&&(def.pick.offer||def.pick.distract)){
+    const picked=(kwActionPick&&kwActionPick.id===id?kwActionPick.selected:[]).map(targetId=>entries.find(candidate=>candidate.id===targetId)).filter(Boolean);
+    for(const target of picked){
+      if(def.pick.offer){const state=stateFor(target);updateUnitState(target,{freeActionOffers:[...(state.freeActionOffers||[]),{id,label:def.pick.offer,from:entry.id}]})}
+      if(def.pick.distract)updateUnitState(target,{distractedBy:entry.id})
+    }
+  }
+  applyCardActionBase(entry,id,choiceIndex);
+  // Actions gratuites : ne consomment pas l'action (surcharge, telle est la voie) ; Distraire : une fois par round.
+  if(def&&(def.kind==='free')){const state=stateFor(entry);updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>card!=='kw-'+id)})}
+};
+// « roundfree » : une fois par round, sans consommer d'action
+
+// Compteurs Blessure / Boucliers inactifs, formulaires de résolution de fin d'activation
+let kw2Open=null;
+const slugOf=name=>norm(name).replace(/ /g,'-');
+function kw2Buttons(entry,state){
+  const out=[],regen=keywordValue(entry,'regenerer-x'),recharge=keywordValue(entry,'recharger-x'),generator=keywordValue(entry,'generateur-x'),latent=keywordValue(entry,'pouvoir-latent'),forceX=keywordValue(entry,'maitre-de-la-force-x');
+  const open=id=>kw2Open&&kw2Open.entryId===entry.id&&kw2Open.id===id?kw2Open:null;
+  if(regen){const wounds=state.wound||0,dice=Math.min(wounds,regen),o=open('regen'),used=exhausted(state,'kw-regenerer-x');out.push(`<div class="kw-action ${o?'open':''}"><button type="button" data-kw2-open="regen" ${used?'disabled':''}><b>RÉGÉNÉRER ${regen}</b><small>Fin d’activation : lancez ${dice} dé(s) de défense blanc(s) (1 par pion Blessure, max ${regen}) ; chaque [BLOC] ou [ADR-DEF] retire 1 Blessure${used?' · déjà résolu ce round':''}</small></button>${o?(dice?`<label class="kw-input">Résultats BLOC ou ADR-DEF obtenus (0 à ${dice})<input type="number" min="0" max="${dice}" value="${o.value||0}" data-kw2-input></label><button type="button" class="primary" data-kw2-apply="regen">Retirer les Blessures</button>`:'<em>Aucun pion Blessure : rien à régénérer (renseignez les Blessures ci-dessous).</em>')+'<button type="button" class="secondary" data-kw2-cancel>Annuler</button>':''}</div>`)}
+  for(const [id,x,when] of [['recharger-x',recharge,'Quand cette unité récupère'],['generateur-x',generator,'Phase Finale']]){if(!x)continue;const inactive=state.shieldOff||0,used=exhausted(state,'kw-'+id);out.push(`<div class="kw-action"><button type="button" data-kw2-flip="${id}" ${used||!inactive?'disabled':''}><b>${id==='recharger-x'?'RECHARGER':'GÉNÉRATEUR'} ${x}</b><small>${when} : retournez jusqu’à ${x} Bouclier(s) inactif(s) côté actif (${inactive} inactif(s), ${state.shield||0} actif(s))${used?' · déjà résolu ce round':''}</small></button></div>`)}
+  if(latent){const o=open('latent'),used=exhausted(state,'kw-pouvoir-latent'),stage=o?.stage||0;out.push(`<div class="kw-action ${o?'open':''}"><button type="button" data-kw2-open="latent" ${used?'disabled':''}><b>POUVOIR LATENT</b><small>Fin d’activation : gagnez 1 Suppression pour lancer 1 dé de défense rouge${used?' · déjà utilisé ce round':''}</small></button>${o?(stage===0?'<button type="button" class="primary" data-kw2-latent="start">Gagner 1 Suppression et lancer le dé</button>':stage===1?'<div class="kw-choices"><small>Résultat du dé rouge :</small><button type="button" class="primary" data-kw2-latent="surge">[ADR-DEF] : ennemi à portée 1</button><button type="button" class="primary" data-kw2-latent="blank">Vierge : soigner un allié</button><button type="button" class="secondary" data-kw2-latent="other">Autre résultat</button></div>':stage==='surge'?'<div class="kw-targets"><small>Unité ennemie à portée 1 : +2 Suppression et +2 Immobilisation</small>'+entries.filter(candidate=>candidate.army!==entry.army&&!defeated(candidate)).map(candidate=>`<button type="button" data-kw2-latent-target="${candidate.id}">${entryName(candidate)}</button>`).join('')+'</div>':'<div class="kw-targets"><small>Soldat non-droïde allié à portée 1 : retire 1 Blessure ou 1 Poison</small>'+entries.filter(candidate=>candidate.army===entry.army&&!defeated(candidate)&&!isVehicle(candidate)).map(candidate=>`<button type="button" data-kw2-latent-heal="${candidate.id}:wound">${entryName(candidate)} · −1 Blessure</button><button type="button" data-kw2-latent-heal="${candidate.id}:poison">${entryName(candidate)} · −1 Poison</button>`).join('')+'</div>')+'<button type="button" class="secondary" data-kw2-cancel>Annuler</button>':''}</div>`)}
+  if(forceX){const readied=state.forceReadied||0,cards=(state.exhaustedCards||[]).filter(card=>!card.startsWith('kw-')&&(entry.unit.upgrades||[]).some(up=>slugOf(up.name)===card));out.push(`<div class="kw-action ${cards.length?'open':''}"><button type="button" disabled><b>MAÎTRE DE LA FORCE ${forceX}</b><small>Fin d’activation : redressez jusqu’à ${forceX} carte(s) Force inclinée(s) (${readied}/${forceX} déjà redressée(s))</small></button>${cards.length?`<div class="kw-choices">${cards.map(card=>{const up=(entry.unit.upgrades||[]).find(item=>slugOf(item.name)===card);return `<button type="button" class="primary" data-kw2-ready="${card}" ${readied>=forceX?'disabled':''}>Redresser ${displayName(up.name)}</button>`}).join('')}</div>`:'<em>Aucune carte Force inclinée.</em>'}</div>`)}
+  return out;
+}
+function kw2Counters(entry,state){
+  if(!['regenerer-x','recharger-x','generateur-x'].some(id=>keywordValue(entry,id)))return'';
+  const counter=(field,label)=>`<span class="kw-counter">${label}<button type="button" data-kw-counter="${field}:-1" aria-label="Retirer">−</button><b>${state[field]||0}</b><button type="button" data-kw-counter="${field}:1" aria-label="Ajouter">+</button></span>`;
+  return `<div class="kw-counters">${counter('wound','Blessures')}<span class="kw-counter">Boucliers actifs<b>${state.shield||0}</b></span>${counter('shieldOff','Boucliers inactifs')}</div>`;
+}
+function bindKeywordLot2(entry,role){
+  const refresh=()=>overview(entry,role);
+  root.querySelectorAll('[data-kw-counter]').forEach(button=>button.onclick=()=>{const [field,delta]=button.dataset.kwCounter.split(':'),state=stateFor(entry);updateUnitState(entry,{[field]:Math.max(0,(state[field]||0)+Number(delta))});refresh()});
+  root.querySelectorAll('[data-kw2-open]').forEach(button=>button.onclick=()=>{kw2Open={entryId:entry.id,id:button.dataset.kw2Open,stage:0,value:0};refresh()});
+  root.querySelectorAll('[data-kw2-input]').forEach(input=>input.oninput=()=>{if(kw2Open)kw2Open.value=Number(input.value)||0});
+  root.querySelectorAll('[data-kw2-cancel]').forEach(button=>button.onclick=()=>{kw2Open=null;refresh()});
+  root.querySelectorAll('[data-kw2-apply="regen"]').forEach(button=>button.onclick=()=>{const state=stateFor(entry),dice=Math.min(state.wound||0,keywordValue(entry,'regenerer-x')),removed=Math.max(0,Math.min(dice,Number(kw2Open?.value)||0));exhaustCard(entry,'kw-regenerer-x',{wound:Math.max(0,(state.wound||0)-removed)});kw2Open=null;refresh()});
+  root.querySelectorAll('[data-kw2-flip]').forEach(button=>button.onclick=()=>{const id=button.dataset.kw2Flip,state=stateFor(entry),n=Math.min(keywordValue(entry,id),state.shieldOff||0);exhaustCard(entry,'kw-'+id,{shield:(state.shield||0)+n,shieldOff:(state.shieldOff||0)-n});refresh()});
+  root.querySelectorAll('[data-kw2-latent]').forEach(button=>button.onclick=()=>{const step=button.dataset.kw2Latent;if(step==='start'){bumpTokens(entry,{suppression:1});kw2Open.stage=1}else if(step==='other'){exhaustCard(entry,'kw-pouvoir-latent');kw2Open=null}else kw2Open.stage=step;refresh()});
+  root.querySelectorAll('[data-kw2-latent-target]').forEach(button=>button.onclick=()=>{const target=entries.find(candidate=>candidate.id===button.dataset.kw2LatentTarget);if(target)bumpTokens(target,{suppression:2,immobilize:2});exhaustCard(entry,'kw-pouvoir-latent');kw2Open=null;refresh()});
+  root.querySelectorAll('[data-kw2-latent-heal]').forEach(button=>button.onclick=()=>{const [targetId,field]=button.dataset.kw2LatentHeal.split(':'),target=entries.find(candidate=>candidate.id===targetId);if(target)bumpTokens(target,{[field]:-1});exhaustCard(entry,'kw-pouvoir-latent');kw2Open=null;refresh()});
+  root.querySelectorAll('[data-kw2-ready]').forEach(button=>button.onclick=()=>{const state=stateFor(entry);updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>card!==button.dataset.kw2Ready),forceReadied:(state.forceReadied||0)+1});refresh()});
+  root.querySelectorAll('[data-offer-done]').forEach(button=>button.onclick=()=>{const state=stateFor(entry),offers=[...(state.freeActionOffers||[])];offers.splice(Number(button.dataset.offerDone),1);updateUnitState(entry,{freeActionOffers:offers});refresh()});
+  root.querySelectorAll('[data-distract-clear]').forEach(button=>button.onclick=()=>{updateUnitState(entry,{distractedBy:null});refresh()});
+}
+// Actions gratuites offertes par d'autres unités, et Distraire subi : rappel + bouton « effectuée »
+function offersPanelHtml(entry){
+  const state=stateFor(entry),offers=state.freeActionOffers||[],source=state.distractedBy?entries.find(candidate=>candidate.id===state.distractedBy):null;
+  if(!offers.length&&!source)return'';
+  return `<section class="activation-automation keyword-offers"><header><strong>ACTIONS OFFERTES · CONTRAINTES</strong><small>Effets d’autres unités qui concernent celle-ci ce round.</small></header><div>${offers.map((offer,index)=>{const from=entries.find(candidate=>candidate.id===offer.from);return `<button type="button" data-offer-done="${index}"><b>ACTION GRATUITE OFFERTE</b><small>${from?entryName(from):'Une unité alliée'} vous permet d’effectuer ${offer.label}. Touchez quand c’est fait.</small></button>`}).join('')}${source?`<div class="distract-note"><b>DISTRAITE</b><small>Jusqu’à la fin du round, cette unité doit attaquer ${entryName(source)} si possible.</small><button type="button" class="secondary" data-distract-clear>Fin de l’effet</button></div>`:''}</div></section>`;
+}
 function keywordAutomationPanel(entry){
   const state=stateFor(entry),buttons=Object.entries(KEYWORD_TOKEN_EFFECTS).map(([id,fx])=>{const x=keywordValue(entry,id);if(!x)return'';const used=fx.once&&exhausted(state,'kw-'+id);return `<button data-kw-apply="${id}" ${used?'disabled':''}><b>${fx.title} ${x}</b><small>${fx.when} · ${fx.effect(x,state)}${used?' · déjà appliqué ce round':fx.once?' · une fois par round':''}</small></button>`}).filter(Boolean);
-  const cardActions=cardActionButtons(entry,state);
-  return buttons.length||cardActions.length?`<section class="activation-automation keyword-automation"><header><strong>AUTOMATISMES DES MOTS-CLÉS</strong><small>Appliquez l’effet au bon moment : le suivi des pions est mis à jour.</small></header><div>${buttons.join('')}${cardActions.join('')}</div><footer><span>Viser <b>${state.aim||0}</b></span><span>Esquive <b>${state.dodge||0}</b></span><span>Adrénaline <b>${state.surge||0}</b></span><span>Suppression <b>${state.suppression||0}</b></span></footer></section>`:''
+  const cardActions=[...cardActionButtons(entry,state),...kw2Buttons(entry,state)];
+  return buttons.length||cardActions.length?`<section class="activation-automation keyword-automation"><header><strong>AUTOMATISMES DES MOTS-CLÉS</strong><small>Appliquez l’effet au bon moment : le suivi des pions est mis à jour.</small></header><div>${buttons.join('')}${cardActions.join('')}</div>${kw2Counters(entry,state)}<footer><span>Viser <b>${state.aim||0}</b></span><span>Esquive <b>${state.dodge||0}</b></span><span>Adrénaline <b>${state.surge||0}</b></span><span>Suppression <b>${state.suppression||0}</b></span></footer></section>`:''
 }
 function bindKeywordAutomation(entry,role){
+  bindKeywordLot2(entry,role);
   root.querySelectorAll('[data-card-action]').forEach(button=>button.onclick=()=>{const id=button.dataset.cardAction,def=CARD_KEYWORD_ACTIONS[id];if(!def)return;if(!def.pick&&!def.choices){applyCardKeywordAction(entry,id,0);overview(entry,role);return}kwActionPick={entryId:entry.id,id,selected:[]};overview(entry,role)});
   root.querySelectorAll('[data-kw-target]').forEach(button=>button.onclick=()=>{if(!kwActionPick)return;const def=CARD_KEYWORD_ACTIONS[kwActionPick.id],max=def.pick.max(keywordValue(entry,kwActionPick.id)),list=kwActionPick.selected,targetId=button.dataset.kwTarget;kwActionPick.selected=list.includes(targetId)?list.filter(item=>item!==targetId):list.length<max?[...list,targetId]:list;overview(entry,role)});
   root.querySelectorAll('[data-kw-apply-action]').forEach(button=>button.onclick=()=>{applyCardKeywordAction(entry,button.dataset.kwApplyAction,0);overview(entry,role)});
@@ -755,7 +820,18 @@ function bindKeywordAutomation(entry,role){
   root.querySelectorAll('[data-kw-apply]').forEach(button=>button.onclick=()=>{const id=button.dataset.kwApply,fx=KEYWORD_TOKEN_EFFECTS[id],x=keywordValue(entry,id),state=stateFor(entry);if(!fx||!x)return;const patch=fx.patch(state,x);if(fx.once)exhaustCard(entry,'kw-'+id,patch);else updateUnitState(entry,patch);overview(entry,role)})
 }
 const overviewKeywordAutomationBase=overview;
-overview=function(entry,role){overviewKeywordAutomationBase(entry,role);if(role!=='attack'||defeated(entry))return;const html=keywordAutomationPanel(entry);if(!html)return;const anchor=root.querySelector('.overview .card-strip');anchor?.insertAdjacentHTML('beforebegin',html);bindKeywordAutomation(entry,role)};
+overview=function(entry,role){overviewKeywordAutomationBase(entry,role);if(role!=='attack'||defeated(entry))return;const anchor=root.querySelector('.overview .card-strip');const html=keywordAutomationPanel(entry),offers=offersPanelHtml(entry);if(!html&&!offers)return;anchor?.insertAdjacentHTML('beforebegin',offers+html);bindKeywordAutomation(entry,role)};
+// Distraire subi : rappel dans l'étape des armes de l'attaque
+function decorateDistracted(){
+  if(attackStep!==0||!attacker)return;
+  const sourceId=stateFor(attacker).distractedBy,source=sourceId&&entries.find(candidate=>candidate.id===sourceId);
+  if(!source)return;
+  const respected=defender&&defender.id===source.id,panel=document.createElement('section');
+  panel.className='distract-card '+(respected?'info-card':'alert-card');
+  panel.innerHTML='<strong>DISTRAIRE · CIBLE IMPOSÉE</strong><p>'+(respected?'Cible conforme : '+entryName(source)+' est bien attaquée.':'Jusqu’à la fin du round, <b>'+entryName(attacker)+'</b> doit attaquer <b>'+entryName(source)+'</b> si possible.')+'</p><p class="ar-source">Chaque figurine doit choisir une arme éligible pour cette réserve d’attaque.</p>';
+  root.querySelector('.weapon-picker')?.before(panel);
+}
+
 const overviewCardAutomationBase=overview;
 overview=function(entry,role){reconcileRoundEffects();overviewCardAutomationBase(entry,role);if(role!=='attack'||defeated(entry))return;const html=activationAutomationPanel(entry);if(!html)return;const anchor=root.querySelector('.overview .card-strip');anchor?.insertAdjacentHTML('beforebegin',html);bindActivationAutomation(entry,role)};
 
