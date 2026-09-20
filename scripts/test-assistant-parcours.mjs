@@ -1166,6 +1166,113 @@ scenario('Certification : un mot-clé d’arme saisi seulement au niveau de la c
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Cartes d’amélioration : actions de fiche (Capitaine, Ravitaillement, Fusil Amban, Guidé par la Force, Tranquillité) avec ↱ / ✖ et coût en actions', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [
+      { name: 'Stormtroopers', upgrades: [{ name: 'Stormtrooper Captain' }, { name: 'Additional Supplies' }, { name: 'Din Djarin Amban Rifle' }, { name: 'Force Guidance' }, { name: 'Serenity' }] },
+      { name: 'Snowtroopers', upgrades: [] },
+    ] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Sabine Wren', upgrades: [] }] },
+  })
+  const { $, $$, text, click } = app
+  app.window.localStorage.setItem('swl.assistant.player-side.v1', 'p1')
+  await app.pickUnit('Stormtroopers')
+  const states = () => Object.values(JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}'))
+  const button = (id) => $('[data-card-action="' + id + '"]')
+  for (const id of ['stormtrooper-captain', 'additional-supplies', 'din-djarin-amban-rifle', 'force-guidance', 'serenity']) assert.ok(button(id), 'action de carte proposée : ' + id)
+  assert.ok(button('additional-supplies').disabled, 'Ravitaillement : rien à redresser tant qu’aucune amélioration n’est inclinée')
+  // ↱ Capitaine : la carte s'incline, le bouton se verrouille, l'effet est journalisé.
+  await click(button('stormtrooper-captain'))
+  assert.ok(button('stormtrooper-captain').disabled, 'le Capitaine est utilisé')
+  assert.ok(states().some((state) => (state.exhaustedCards || []).includes('stormtrooper-captain')), 'la carte Capitaine est inclinée')
+  assert.ok(states().some((state) => JSON.stringify(state.effectLog || []).includes('CAPITAINE STORMTROOPER')), 'l’effet est journalisé pour le résumé')
+  // ✖ Ravitaillement : redresse la carte inclinée puis se supprime de la partie.
+  assert.ok(!button('additional-supplies').disabled, 'Ravitaillement devient disponible')
+  await click(button('additional-supplies'))
+  await click($('[data-kw-choice]'))
+  assert.ok(!states().some((state) => (state.exhaustedCards || []).includes('stormtrooper-captain')), 'le Capitaine est redressé')
+  assert.ok(states().some((state) => (state.discardedCards || []).includes('additional-supplies')), 'Ravitaillement est supprimée de la partie')
+  // →→ Fusil Amban : 2 actions consommées.
+  await click(button('din-djarin-amban-rifle'))
+  await click('[data-kw-target]')
+  await click('[data-kw-apply-action]')
+  assert.equal(states().flatMap((state) => state.activationActions || []).filter((item) => item === 'card:din-djarin-amban-rifle').length, 2, 'le Fusil Amban consomme 2 actions')
+  // ↱» Guidé par la Force : 1 Adrénaline à l'allié choisi.
+  await click(button('force-guidance'))
+  await click('[data-kw-target]')
+  await click('[data-kw-apply-action]')
+  assert.ok(states().some((state) => state.surge === 1), 'l’allié gagne 1 Adrénaline')
+  // ↱ ou ✖ Tranquillité : choix ✖ (dés rouges) -> carte supprimée.
+  await click(button('serenity'))
+  await click('[data-kw-target]')
+  await click($$('[data-kw-choice]').find((choice) => /Supprimer/.test(text(choice))))
+  assert.ok(states().some((state) => (state.discardedCards || []).includes('serenity')), 'Tranquillité est supprimée de la partie')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Cartes en combat : Générateur de Barrage ajoute 2 dés blancs (annulable), Évitement et Couvert, Barrière de Force, Stimulants d’Urgence', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'AT-ST', upgrades: [{ name: 'Barrage Generator' }, { name: 'AT-ST Mortar Launcher' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [{ name: 'Duck and Cover' }, { name: 'Emergency Stims' }] }, { name: 'Sabine Wren', upgrades: [{ name: 'Force Barrier' }] }] },
+  })
+  const { $, $$, text, click, setValue, pickUnit, nextAttack } = app
+  const states = () => Object.values(JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}'))
+  await pickUnit('TR-TT')
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+  await click('[data-range="4"]')
+  await click($$('.weapon-toggle').find((toggle) => /mortier|mortar/i.test(text(toggle.closest('.weapon-choice') || toggle))))
+  assert.match(text($('.card-fx-panel')), /GÉNÉRATEUR DE BARRAGE/, 'la carte est proposée avec une arme à distance Fixe : ' + text($('.resolve-center')).slice(0, 200))
+  const plain = $('.dice-pool').innerHTML
+  await click('[data-card-fx^="barrage-generator|"]')
+  assert.notEqual($('.dice-pool').innerHTML, plain, 'la réserve gagne 2 dés blancs')
+  assert.ok(states().some((state) => (state.exhaustedCards || []).includes('barrage-generator')), 'la carte est inclinée')
+  assert.match(text($('.card-fx-panel')), /2 dés blancs et Suppressif/, 'l’effet est annoncé')
+  await click('[data-card-fx-undo^="barrage-generator|"]')
+  assert.equal($('.dice-pool').innerHTML, plain, 'Annuler rétablit la réserve')
+  assert.ok(!states().some((state) => (state.exhaustedCards || []).includes('barrage-generator')), 'Annuler redresse la carte')
+  await click('[data-card-fx^="barrage-generator|"]')
+  await click('#fixedArcConfirmed')
+  await nextAttack()
+  await setValue('rollHit', 2)
+  await nextAttack()
+  // Étape Couvert : Évitement et Couvert (défenseur).
+  assert.match(text($('.card-fx-panel')), /ÉVITEMENT ET COUVERT/, 'Évitement et Couvert est proposé au couvert')
+  await click('[data-card-fx^="duck-and-cover|"]')
+  await click('[data-cover="none"]')
+  await nextAttack()
+  // Étape Modifications : Barrière de Force d'une unité alliée du défenseur.
+  assert.match(text($('.card-fx-panel')), /BARRIÈRE DE FORCE/, 'Barrière de Force est proposée : ' + text($('.resolve-center')).slice(0, 200))
+  await click('[data-card-fx^="force-barrier|"]')
+  assert.ok(states().some((state) => (state.exhaustedCards || []).includes('force-barrier')), 'la Barrière de Force est inclinée')
+  await click('[data-phase-confirm="mods"]')
+  await nextAttack()
+  assert.match(text($('.card-fx-panel')), /STIMULANTS D’URGENCE/, 'Stimulants d’Urgence est proposé à la défense : ' + app.gate() + ' | ' + text($('.resolve-center')).slice(0, 500))
+  await click('[data-card-fx^="emergency-stims|"]')
+  assert.ok(states().some((state) => state.cardWound >= 1), 'les blessures prévenues sont posées sur la carte')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Bonus permanents des cartes : courage (Gideon Hask) et vitesse (Pilote de TIE, Jetpack) dans les statistiques de l’unité', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Agent Kallus', upgrades: [{ name: 'Gideon Hask' }, { name: 'Imperial TIE Pilot' }] }, { name: 'Agent Kallus', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Sabine Wren', upgrades: [] }] },
+  })
+  const evaluate = (code) => app.window.eval(code)
+  const [boosted, plain] = [evaluate('certifiedUnitStats(entries[0]).courage'), evaluate('certifiedUnitStats(entries[1]).courage')]
+  assert.equal(boosted, plain + 1, 'Gideon Hask augmente le courage de 1 (' + plain + ' → ' + boosted + ')')
+  const readout = (index) => evaluate('mobilityReadout(entries[' + index + '],stateFor(entries[' + index + ']),0)')
+  const speed = (index) => Number((readout(index).match(/VITESSE (\d+)/) || [])[1])
+  assert.equal(speed(0), speed(1) + 1, 'Pilote de TIE Impérial augmente la vitesse maximale de 1 : ' + readout(0))
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

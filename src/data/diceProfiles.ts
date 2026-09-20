@@ -39,6 +39,8 @@ export interface CardDiceProfile {
   defenseVerifiedAgainstCard?: boolean;
   defenseVerificationSource?: string;
   defenseSurgeOverride?: 'block' | null;
+  /** Adrénaline d'attaque accordée par une amélioration (ex. Imperial Hammers : Adrénaline → Critique). */
+  attackSurgeOverride?: 'hit' | 'crit';
   criticalPerSuppression?: boolean;
   fireControl?: boolean;
   autonomousTokens?: { token: 'aim' | 'dodge' | 'surge'; count: number }[];
@@ -114,7 +116,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'C-3PO': { weapons: [{ name: 'Coup de Pied Maladroit', dice: [{ color: 'blanc', count: 1 }], range: 'melee' }], note: 'Compagnon (Alter Ego : R2-D2) — pas de défense propre, utilise celle de l\'unité hôte' },
   'CM-O/93 Trooper': { weapons: [{ name: 'CM-O/93', dice: [{ color: 'blanc', count: 4 }], range: '1-4' }] },
   'Cassian Andor': { weapons: [{ name: 'Arts Martiaux', dice: [{ color: 'noir', count: 3 }], range: 'melee' }, { name: 'Blaster Modulaire de Cassian', dice: [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }], range: '1-2' }], defenseColor: 'blanc' },
-  'Cassian Andor Operative': { weapons: [{ name: 'A280 Configuration Sniper', dice: [{ color: 'noir', count: 1 }], range: '1-3', keywordIds: ['longue-distance'] }], addedModels: 1, addedModelWounds: 1, addedModelsVerifiedAgainstCard: true },
+  'Cassian Andor Operative': { weapons: [{ name: 'A280 Configuration Sniper', dice: [{ color: 'noir', count: 1 }], range: '1-3', keywordIds: ['longue-distance'] }, { name: 'Opérations Secrètes', dice: [{ color: 'rouge', count: 2 }], range: 'melee-2' }], addedModels: 1, addedModelWounds: 1, addedModelsVerifiedAgainstCard: true },
   'Chewbacca': { weapons: [{ name: 'Prépotence', dice: [{ color: 'rouge', count: 4 }], range: 'melee', keywordIds: ['letal-x'] }, { name: 'Arbalète de Chewbacca', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }], range: '1-3', keywordIds: ['impact-x', 'perforant-x'] }], defenseColor: 'blanc' },
   'DF-90 Mortar Trooper': { weapons: [{ name: 'Fusil Blaster E-22', dice: [{ color: 'noir', count: 1 }], range: 'melee-3', keywordIds: [], verifiedAgainstCard: true, verificationSource: 'Relu sur le visuel français (21/09/2026, audit des armes manquantes), à confirmer dans l\'écran de certification' }, { name: 'Mortier DF-90', dice: [{ color: 'blanc', count: 3 }], range: '3-4', keywordIds: ['fixe', 'critique-x', 'encombrant', 'suppressif'], keywordValues: { 'critique-x': 1 }, verifiedAgainstCard: true, verificationSource: 'Relu sur le visuel français (21/09/2026, audit des armes manquantes), à confirmer dans l\'écran de certification' }] },
   'DH-447 Sniper': { weapons: [{ name: 'Fusil de Sniper DH-447', dice: [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }], range: '1-5' }] },
@@ -284,7 +286,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'First Sergeant Arbmab': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
   'General Weiss': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
   'Baron Rudor': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
-  'Imperial Hammers Elite Armor Pilot': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
+  'Imperial Hammers Elite Armor Pilot': { weapons: [], attackSurgeOverride: 'crit', note: 'équipage de véhicule, pas d\'arme propre ; l\'unité gagne l\'adrénaline d\'attaque « Adrénaline : Critique » (visuel relu le 20/09/2026)' },
   'Imperial TIE Pilot': { weapons: [], note: 'équipage de véhicule, pas d\'arme propre' },
 };
 

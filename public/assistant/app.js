@@ -161,7 +161,7 @@ function bindUnitState(entry,role){root.querySelectorAll('[data-unit-state]').fo
 // Vitesse imprimée sur la carte Unité (certification : obligatoire pour toute unité).
 function printedSpeed(entry){const value=Number(profileFor(entry?.unit?.name)?.fullCardCertification?.speed);return Number.isInteger(value)&&value>0?value:null}
 function mobilityReadout(entry,state,immobilize){
-  const base=printedSpeed(entry),delta=Number(state.speedDelta)||0,override=state.maxSpeedOverride?Number(state.maxSpeedOverride):null,raw=override??(base+delta),current=Math.max(0,raw-immobilize),parts=['imprimée '+base];
+  const base=printedSpeed(entry),delta=(Number(state.speedDelta)||0)+cardBonus(entry,CARD_SPEED_BONUS)+flipSpeedBonus(entry,state),override=state.maxSpeedOverride?Number(state.maxSpeedOverride):null,raw=override??(base+delta),current=Math.max(0,raw-immobilize),parts=['imprimée '+base];
   if(override)parts.push('vitesse maximale '+override+' ce round');else if(delta)parts.push((delta>0?'+':'')+delta+' (effets)');
   if(immobilize)parts.push('−'+immobilize+' Immobilisation');
   return '<div class="movement-readout '+(current!==base?'active':'')+'"><small>MOBILITÉ</small><b>VITESSE '+current+'</b><span>'+parts.join(' · ')+'</span></div>'
@@ -255,7 +255,7 @@ function updateInputWarning(){const warning=root.querySelector('.input-warning')
    redémarrage. cls par défaut 'wound-pulse' pour ne rien changer aux appels
    existants ; réutilisé aussi pour les éclats « refusé » ci-dessous. */
 function pulseEl(el,cls='wound-pulse'){if(!el)return;el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls)}
-function effectiveAttackProfile(){const certified=profileFor(attacker.unit.name),printed=combatProfiles[cardKey(attacker.unit.name)]||certified,weaponConversions=selectedWeaponRows().map(row=>row.weapon.attackSurge).filter(Boolean),attackSurge=weaponConversions.includes('crit')?'crit':weaponConversions.includes('hit')?'hit':printed?.attackSurge,source=weaponConversions.length?'Conversion accordée par une arme de la réserve':printed?.source||printed?.verificationSource;return {...printed,attackSurge,source,verified:printed?.verified!==false}}
+function effectiveAttackProfile(){const certified=profileFor(attacker.unit.name),printed=combatProfiles[cardKey(attacker.unit.name)]||certified,weaponConversions=selectedWeaponRows().map(row=>row.weapon.attackSurge).filter(Boolean),upgradeSurge=upgradeProfiles(attacker).map(profile=>profile.attackSurgeOverride).find(Boolean),attackSurge=weaponConversions.includes('crit')?'crit':weaponConversions.includes('hit')?'hit':(upgradeSurge&&(!printed?.attackSurge||upgradeSurge==='crit'))?upgradeSurge:printed?.attackSurge,source=weaponConversions.length?'Conversion accordée par une arme de la réserve':printed?.source||printed?.verificationSource;return {...printed,attackSurge,source,verified:printed?.verified!==false}}
 function updateLiveCounters(){const progress=root.querySelector('[data-entry-progress]');if(progress){const kind=progress.dataset.entryProgress,wasComplete=progress.classList.contains('complete'),holder=document.createElement('div');holder.innerHTML=entryProgress(kind);const fresh=holder.firstElementChild;if(fresh.classList.contains('complete')&&!wasComplete)fresh.classList.add('progress-complete-pop');progress.replaceWith(fresh)}const strip=root.querySelector('.live-result-strip');if(strip){const results=attackStep===1?attackResults():attackStep===2?afterCover():attackStep===3?modifiedResults():null;if(results){strip.querySelector('[data-live-hit]').textContent=results.hit;strip.querySelector('[data-live-crit]').textContent=results.crit}}const defenseStrip=root.querySelector('.live-defense-strip');if(defenseStrip){const {result}=defenseResult();defenseStrip.querySelector('[data-live-blocks]').textContent=result.blocks;defenseStrip.querySelector('[data-live-wounds]').textContent=result.wounds;if(result.wounds>0)pulseEl(defenseStrip.querySelector('.final-wounds'));const total=root.querySelector('[data-live-total-wounds]');if(total){total.textContent=result.wounds;if(result.wounds>0)pulseEl(total.closest('.total,.recap-card'))}}const journey=root.querySelector('.dice-journey');if(journey){const holder=document.createElement('div');holder.innerHTML=diceJourney();journey.replaceWith(holder.firstElementChild)}if(attackStep===1){const p=effectiveAttackProfile(),precise=attackKeywordValue('precis-x'),capacity=engine.rerollCapacity(attackState.aims,precise),lethalX=attackKeywordValue('letal-x'),lethal=engine.applyLethal(attackKeywordValue('perforant-x'),lethalX,attackState.lethalAims),critical=attackKeywordValue('critique-x'),converted=engine.convertAttack(attackState.roll,p?.attackSurge,critical),conversion=root.querySelector('.roll-conversion-panel'),rerolls=root.querySelector('.roll-reroll-panel');if(conversion)conversion.outerHTML=rollConversionPanel(p,converted,critical);if(rerolls)rerolls.outerHTML=rollRerollPanel(capacity,precise,lethalX,lethal,converted)}updateInputWarning()}
 function bindLiveCounters(){root.querySelectorAll('#aims,#lethalAims,#rerolled,#rollHit,#rollCrit,#rollSurge,#rollBlank,#activeShields,#shieldHit,#shieldCrit,#guardianHits,#guardianBlock,#guardianSurge,#guardianBlank,#impact,#armor,#coverBlock,#coverSurge,#dodges,#defBlock,#defSurge,#defBlank').forEach(input=>input.addEventListener('input',()=>{pulseEl(input.closest('.quick-field'),'field-touched');updateLiveCounters()}))}
 function activeAttackTags(){const resolved=allResolved(attacker),unitRules=resolved.filter(x=>displayImpacts(x).includes('attaque')&&x.def.category!=='arme'),weaponRules=selectedWeaponRows().flatMap(row=>definitionsFor(row.card).filter(x=>displayImpacts(x).includes('attaque')&&x.def.category==='arme'&&weaponHasKeyword(row,x.def.id)).map(x=>({...x,source:x.source||row.weapon.name,tag:{...x.tag,value:row.weapon.keywordValues?.[x.def.id]??x.tag.value}}))),reluctant=(attacker?.unit?.upgrades||[]).find(upgrade=>profileFor(upgrade.name)?.criticalPerSuppression),criticalDef=keywords.find(def=>def.id==='critique-x'),conditional=reluctant&&criticalDef?[{source:reluctant.name,def:criticalDef,tag:{keywordId:'critique-x',value:stateFor(attacker).suppression}}]:[];return [...unitRules,...weaponRules,...conditional]}
@@ -717,7 +717,7 @@ const currentRound=()=>Math.max(1,Number(read('swl.game-tracker.v1',{round:1}).r
 const exhausted=(state,card)=>Array.isArray(state.exhaustedCards)&&state.exhaustedCards.includes(card);
 function updateUnitState(entry,patch){const state=stateFor(entry);unitStates[entry.id]={...state,...patch};persistUnitStates()}
 function exhaustCard(entry,card,patch={}){const state=stateFor(entry);updateUnitState(entry,{...patch,exhaustedCards:[...new Set([...(state.exhaustedCards||[]),card])],roundSeen:currentRound()})}
-function reconcileRoundEffects(){let changed=false;const round=currentRound();for(const entry of entries){const state=stateFor(entry);if((state.roundSeen||round)>=round)continue;const immobilize=Math.max(0,Number(state.immobilize)||0)+(state.burstOfSpeedRound&&state.burstOfSpeedRound<round?1:0);unitStates[entry.id]={...state,immobilize,aim:0,dodge:0,surge:0,standby:0,exhaustedCards:[],activationActions:[],activationSource:null,mandatoryMoveDone:false,burstOfSpeedRound:null,maxSpeedOverride:null,freeActionOffers:[],distractedBy:null,surveillance:0,effectLog:[],forceReadied:0,speedDelta:0,extraAction:false,roundSeen:round};changed=true}if(changed)persistUnitStates()}
+function reconcileRoundEffects(){let changed=false;const round=currentRound();for(const entry of entries){const state=stateFor(entry);if((state.roundSeen||round)>=round)continue;const immobilize=Math.max(0,Number(state.immobilize)||0)+(state.burstOfSpeedRound&&state.burstOfSpeedRound<round?1:0);unitStates[entry.id]={...state,immobilize,aim:0,dodge:0,surge:0,standby:0,exhaustedCards:[],activationActions:[],activationSource:null,mandatoryMoveDone:false,burstOfSpeedRound:null,maxSpeedOverride:null,freeActionOffers:[],distractedBy:null,surveillance:0,effectLog:[],forceReadied:0,speedDelta:0,extraAction:false,roundSeen:round};unitStates[entry.id].dodge=Math.min(Number(state.dodge)||0,Number(state.keepDodge)||0);unitStates[entry.id].keepDodge=0;changed=true}if(changed)persistUnitStates()}
 function activationAutomationPanel(entry){
   const state=stateFor(entry),buttons=[];
   if(hasCard(entry,'force reflexes'))buttons.push(`<button data-effect-kind="free" data-unit-effect="force-reflexes" ${exhausted(state,'force-reflexes')?'disabled':''}><b>RÉFLEXES DE LA FORCE</b><small>Action gratuite · +1 pion Esquive</small></button>`);
@@ -766,12 +766,13 @@ let kwActionPick=null;
 const bumpTokens=(target,effect)=>{const state=stateFor(target),patch={};for(const [field,delta] of Object.entries(effect))patch[field]=Math.max(0,(state[field]||0)+delta);updateUnitState(target,patch)};
 let kwPickCandidates=(entry,def)=>entries.filter(candidate=>!defeated(candidate)&&candidate.army===entry.army&&(def.pick.self||candidate.id!==entry.id)&&(!def.pick.soldiersOnly||!isVehicle(candidate))&&(!def.pick.vehiclesOnly||isVehicle(candidate))&&(!def.pick.onlyWith||(stateFor(candidate)[def.pick.onlyWith]||0)>0));
 function cardActionButtons(entry,state){
+  choiceEntry=entry;
   const actions=state.activationActions||[],actionFull=actions.length>=activationActionLimit(entry);
   return Object.entries(CARD_KEYWORD_ACTIONS).map(([id,def])=>{
     const x=keywordValue(entry,id);if(!x)return'';
     if(id==='armer-x'&&(hasCard(entry,'proton charge saboteur')||hasCard(entry,'sonic charge saboteur')))return'';
     if(def.kind==='setup'&&currentRound()>1)return'';
-    const used=(def.kind==='setup'||def.once==='game')?(state.setupDone||[]).includes(id):(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:(!def.repeatable&&actions.includes('card:'+id))||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=(def.kind==='action'&&actionFull&&!used)||(!!def.needs&&!(state[def.needs]>0)&&!used),label=typeof def.text==='function'?def.text(x):def.text;
+    const used=(!!def.card&&cardSpent(entry,def,state))||((def.kind==='setup'||def.once==='game')?(state.setupDone||[]).includes(id):(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:(!def.repeatable&&actions.includes('card:'+id))||(def.kind==='end'&&exhausted(state,'kw-'+id))),blocked=(def.kind==='action'&&(actions.length+(def.cost||1)>activationActionLimit(entry))&&!used)||(!!def.needsTilted&&!tiltedChoices(entry).length&&!used)||(!!def.needs&&!(state[def.needs]>0)&&!used),label=typeof def.text==='function'?def.text(x):def.text;
     const open=kwActionPick&&kwActionPick.entryId===entry.id&&kwActionPick.id===id;
     let inner='';
     if(open){
@@ -781,7 +782,7 @@ function cardActionButtons(entry,state){
       else inner+=`<div class="kw-choices"><button type="button" class="primary" data-kw-apply-action="${id}" ${def.pick&&!selected.length?'disabled':''}>Appliquer</button></div>`;
       inner+='<button type="button" class="secondary" data-kw-cancel-action>Annuler</button>';
     }
-    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue&&!VALUE_OPTIONAL_KEYWORDS.has(id)?' '+x:''}</b><small>${label}${used?(def.kind==='setup'?' · fait':' · déjà appliqué'):blocked?(def.needs&&!(state[def.needs]>0)?' · nécessite au moins 1 pion '+def.needsLabel:' · plus d’action disponible'):def.kind==='setup'?' · touchez quand c’est fait (mise en place, round 1)':''}</small></button>${inner}</div>`;
+    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue&&!VALUE_OPTIONAL_KEYWORDS.has(id)?' '+x:''}</b><small>${label}${used?(def.kind==='setup'?' · fait':' · déjà appliqué'):blocked?(def.needsTilted?' · aucune amélioration inclinée à redresser':def.needs&&!(state[def.needs]>0)?' · nécessite au moins 1 pion '+def.needsLabel:' · plus d’action disponible'):def.kind==='setup'?' · touchez quand c’est fait (mise en place, round 1)':''}</small></button>${inner}</div>`;
   }).filter(Boolean);
 }
 function applyCardKeywordAction(entry,id,choiceIndex){
@@ -1129,7 +1130,7 @@ function activationBriefing(entry){
   const allActivationRules=rules.filter(item=>displayImpacts(item).includes('autre')),armyRules=allActivationRules.filter(item=>phaseOf(item)==='armee'),activationRules=allActivationRules.filter(item=>phaseOf(item)!=='armee');
   const attackRules=rules.filter(item=>displayImpacts(item).includes('attaque'));
   const noteSources=[{label:'Carte unité',name:entry.unit.name},...(entry.unit.upgrades||[]).map(up=>({label:displayName(up.name),name:up.name}))];
-  const cardNotes=noteSources.map(src=>{const note=noteFor(src.name);return note?{label:src.label,note}:null}).filter(Boolean);
+  const cardNotes=noteSources.map(src=>{const note=noteFor(src.name);return note?{label:src.label,note}:null}).filter(Boolean).concat(crossCardNotes(entry));
   const noteRows=cardNotes.map(n=>`<li><b>${n.label}</b><small>${renderDiceText(n.note)}</small></li>`).join('');
   const mobility=printedSpeed(entry)!=null?mobilityReadout(entry,state,immobilize):state.maxSpeedOverride?`<div class="movement-readout active"><small>MOBILITÉ ACTUELLE</small><b>VITESSE MAXIMALE ${state.maxSpeedOverride}</b><span>${immobilize?`Réduite de ${immobilize} par Immobilisation`:'Bonus actif pour ce round'}</span></div>`:immobilize?`<div class="movement-readout warning"><small>MOBILITÉ RÉDUITE</small><b>−${immobilize} EN VITESSE</b><span>Appliquez ce malus à la vitesse imprimée sur la carte.</span></div>`:`<div class="movement-readout"><small>MOBILITÉ</small><b>AUCUN MODIFICATEUR ACTIF</b><span>Utilisez la vitesse imprimée sur la carte Unité.</span></div>`;
   return `<section class="activation-briefing"><i class="brief-corner top" aria-hidden="true"></i><i class="brief-corner bottom" aria-hidden="true"></i><header><div><small>INFO · BRIEFING TACTIQUE · ROUND ${currentRound()}</small><strong>CE QUE CETTE UNITÉ PEUT FAIRE MAINTENANT</strong></div>${mobility}</header>${movementRulesHtml(entry)}${arsenal?`<div class="brief-alert"><b>ARSENAL ${arsenal}</b><span>Chaque figurine peut employer jusqu’à ${arsenal} armes pendant l’action Attaquer ; chaque arme ne rejoint qu’une seule réserve.</span></div>`:''}<div class="brief-section"><small>ACTIVATION &amp; DÉPLACEMENT</small><ul>${activationRules.length?phaseRows(activationRules):'<li class="brief-empty">Aucun effet spécial d’activation identifié : utilisez les deux actions normales de l’unité.</li>'}</ul></div><div class="brief-section"><small>ATTAQUE</small><ul>${attackRules.length?rows(attackRules):'<li class="brief-empty">Aucun mot-clé d’attaque propre à cette unité ou ses améliorations.</li>'}</ul></div>${noteRows?`<div class="brief-section"><small>EFFETS DE CARTE</small><ul>${noteRows}</ul></div>`:''}${armyRules.length?`<div class="brief-section"><small>COMPOSITION D’ARMÉE (rappel)</small><ul>${rows(armyRules)}</ul></div>`:''}</section>`
@@ -1348,7 +1349,7 @@ unitStatePanel=function(entry){
   if(!ups.length)return html;
   const state=stateFor(entry),rows=ups.map(up=>{
     const slug=slugOf(up.name),tilted=exhausted(state,slug),gone=discarded(state,slug),use=cardUseFor(up.name),canTilt=use==='exhaust'||use==='both'||use==='unknown',canDiscard=use==='discard'||use==='both'||use==='unknown';
-    return `<div class="card-life ${use} ${gone?'gone':tilted?'tilted':''}"><span>${displayName(up.name)}<small>${USE_HINT[use]}</small></span>${canTilt?`<button type="button" data-card-life="tilt:${slug}" aria-pressed="${tilted}" ${gone?'disabled':''}>${tilted?'Inclinée · redresser':'Prête · incliner'}</button>`:''}${canDiscard?`<button type="button" data-card-life="gone:${slug}" aria-pressed="${gone}">${gone?'Supprimée · restaurer':'Supprimer de la partie'}</button>`:''}</div>`
+    return `<div class="card-life ${use} ${gone?'gone':tilted?'tilted':''}"><span>${displayName(up.name)}<small>${USE_HINT[use]}</small></span>${canTilt?`<button type="button" data-card-life="tilt:${slug}" aria-pressed="${tilted}" ${gone?'disabled':''}>${tilted?'Inclinée · redresser':'Prête · incliner'}</button>`:''}${canDiscard?`<button type="button" data-card-life="gone:${slug}" aria-pressed="${gone}">${gone?'Supprimée · restaurer':'Supprimer de la partie'}</button>`:''}${FLIP_CARDS.has(cardKey(up.name))?`<button type="button" class="card-flip ${isFlipped(state,slug)?'flipped':''}" data-card-life="flip:${slug}" aria-pressed="${isFlipped(state,slug)}">${isFlipped(state,slug)?'Carte retournée · remettre':'Retourner la carte'}</button>`:''}</div>`
   }).join('');
   const block=`<details class="card-lifecycle" open><summary>Cartes d’amélioration : prête · inclinée · supprimée</summary><small>Une carte inclinée se redresse à la Phase Finale. Une carte à icône ✖ est supprimée de la partie une fois utilisée : elle ne revient pas.</small>${rows}</details>`;
   const at=html.lastIndexOf('<button type="button" class="secondary state-reset"');
@@ -1360,6 +1361,7 @@ bindUnitState=function(entry,role){
   root.querySelectorAll('[data-card-life]').forEach(button=>button.onclick=()=>{
     const [kind,slug]=button.dataset.cardLife.split(':'),state=stateFor(entry);
     if(kind==='tilt'){const list=state.exhaustedCards||[];updateUnitState(entry,{exhaustedCards:list.includes(slug)?list.filter(card=>card!==slug):[...list,slug],roundSeen:currentRound()})}
+    else if(kind==='flip'){const list=state.flippedCards||[];updateUnitState(entry,{flippedCards:list.includes(slug)?list.filter(card=>card!==slug):[...list,slug]})}
     else{const list=state.discardedCards||[];updateUnitState(entry,{discardedCards:list.includes(slug)?list.filter(card=>card!==slug):[...list,slug]})}
     overview(entry,role)
   })
@@ -1371,6 +1373,206 @@ Object.assign(CARD_KEYWORD_ACTIONS,{
 });
 const keywordValueCardBase=keywordValue;
 keywordValue=function(entry,id){const def=CARD_KEYWORD_ACTIONS[id];if(def&&def.card)return hasCard(entry,def.card)?1:0;return keywordValueCardBase(entry,id)};
+// ---- Effets propres aux cartes d'amélioration (audit visuel du 20/09/2026) ----
+// Chaque action / réaction imprimée sur une amélioration a un bouton au moment où elle agit :
+//  - fiche d'unité : actions de carte (→ action, » action gratuite, ↱ la carte s'incline, ✖ la carte est supprimée) ;
+//  - étapes d'attaque : réactions (Protecteur, Stimulants, Barrière de Force…) et cartes qui ajoutent des dés ou des mots-clés ;
+//  - bonus permanents : vitesse et courage des cartes qui les modifient.
+let choiceEntry=null,cardJournalNote='';
+function cardSlugs(entry,def){const keys=[].concat(def.card),slugs=new Set();for(const up of entry?.unit?.upgrades||[])if(keys.includes(cardKey(up.name))){slugs.add(slugOf(up.name));slugs.add(slugOf(cardKey(up.name)))}return[...slugs]}
+function cardSpent(entry,def,state){const slugs=cardSlugs(entry,def),tilted=slugs.some(slug=>exhausted(state,slug)),gone=slugs.some(slug=>discarded(state,slug));return def.use==='tilt'?tilted||gone:def.use==='discard'?gone:def.use==='both'?tilted||gone:false}
+function spendCard(entry,def,mode){const slugs=cardSlugs(entry,def);if(!slugs.length)return;const state=stateFor(entry),use=mode||def.use;if(use==='tilt')updateUnitState(entry,{exhaustedCards:[...new Set([...(state.exhaustedCards||[]),...slugs])],roundSeen:currentRound()});else if(use==='discard')updateUnitState(entry,{discardedCards:[...new Set([...(state.discardedCards||[]),...slugs])],roundSeen:currentRound()})}
+function unspendCard(entry,def){const slugs=cardSlugs(entry,def),state=stateFor(entry);updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>!slugs.includes(card)),discardedCards:(state.discardedCards||[]).filter(card=>!slugs.includes(card))})}
+const tiltedChoices=entry=>{const state=entry?stateFor(entry):{};return(entry?.unit?.upgrades||[]).filter(up=>exhausted(state,slugOf(up.name))&&cardUseFor(up.name)!=='passive').map(up=>({label:'Redresser '+displayName(up.name),redress:slugOf(up.name)}))};
+const names=list=>list.map(entryName).join(', ')||'l’unité choisie';
+const CARD_ACTION_DEFS={
+  // Actions de la Force
+  'force-guidance':{card:'force guidance',title:'GUIDÉ PAR LA FORCE',kind:'roundfree',use:'tilt',text:'Action de carte gratuite (↱») : jusqu’à 2 unités alliées à portée 2 gagnent 1 pion Adrénaline.',pick:{max:()=>2,self:false,effect:{surge:1}}},
+  'force-push':{card:'force push',title:'POUSSÉ PAR LA FORCE',kind:'roundfree',use:'tilt',text:'Action de carte gratuite (↱») : une unité de soldats ennemie à portée 1 effectue un déplacement à vitesse 1, même engagée. Vous résolvez ce déplacement.',pick:{max:()=>1,enemy:true,soldiersOnly:true,effect:null},journal:picked=>names(picked)+' effectue un déplacement à vitesse 1 (même engagée) que vous résolvez'},
+  'old-jedi-trick':{card:'old jedi trick',title:'VIEILLE RUSE JEDI',kind:'roundfree',use:'tilt',text:'Côté Lumineux · action de carte gratuite (↱») : une unité de soldats ennemie non-Massive, non-Énorme à portée 2 gagne 2 pions Suppression.',pick:{max:()=>1,enemy:true,soldiersOnly:true,effect:{suppression:2}}},
+  // Actions de commandement et de soutien (»  = action gratuite)
+  'governor-pryce':{card:'governor pryce',title:'GOUVERNEUR PRYCE',kind:'roundfree',text:'Action de carte gratuite (») : une unité de soldats alliée à portée 2 gagne 1 pion Viser et 1 pion Suppression.',pick:{max:()=>1,self:false,soldiersOnly:true,effect:{aim:1,suppression:1}}},
+  'shriv-suurgav':{card:'shriv suurgav',title:'SHRIV SUURGAV',kind:'roundfree',text:'Action de carte gratuite (») : une unité de soldats alliée à portée 2 gagne 1 pion Esquive et peut gagner 1 pion Suppression.',pick:{max:()=>1,self:false,soldiersOnly:true,effect:null},choices:[{label:'+1 Esquive',effect:{dodge:1}},{label:'+1 Esquive et +1 Suppression',effect:{dodge:1,suppression:1}}]},
+  'mounted-gunners':{card:'mounted gunners',title:'ARTILLEURS EMBARQUÉS',kind:'roundfree',text:'Après une action Attaquer où cette arme n’a pas été ajoutée à une réserve : action Attaquer gratuite en n’utilisant que cette arme (même si l’unité a déjà attaqué ce tour).',self:{},journal:()=>'action Attaquer gratuite avec l’arme Blaster Monté uniquement'},
+  'hunter':{card:'hunter',title:'HUNTER',kind:'roundfree',text:'Action de carte gratuite (») : une unité de soldats ennemie non-Massive, non-Énorme à portée 1 et en LdV. Lancez 1 dé d’attaque noir : Touche ou Critique = 1 blessure.',pick:{max:()=>1,enemy:true,soldiersOnly:true,effect:null},journal:picked=>names(picked)+' : lancer 1 dé d’attaque noir — Touche ou Critique : 1 blessure (à appliquer à la table)'},
+  'kallus-the-operative':{card:'kallus the operative',title:'AGENT KALLUS',kind:'roundfree',use:'tilt',text:'Action de carte gratuite (↱») : une unité ennemie engagée avec cette unité gagne 2 pions Immobilisation.',pick:{max:()=>1,enemy:true,effect:{immobilize:2}}},
+  'wedge-antilles':{card:'wedge antilles',title:'WEDGE ANTILLES',kind:'roundfree',use:'tilt',text:'Action de carte gratuite (↱») : cette unité effectue un pivot.',self:{},journal:()=>'pivot gratuit à effectuer sur la table'},
+  'stormtrooper-captain':{card:'stormtrooper captain',title:'CAPITAINE STORMTROOPER',kind:'roundfree',use:'tilt',text:'Début d’activation (↱) : cette unité ne peut ni retirer de pions Suppression ni être démoralisée pendant cette activation.',self:{},journal:()=>'ne peut ni retirer de Suppression ni être démoralisée pendant cette activation'},
+  'rebel-trooper-captain':{card:'rebel trooper captain',title:'CAPITAINE SOLDAT REBELLE',kind:'roundfree',use:'tilt',text:'Début d’activation (↱) : cette unité ne peut ni retirer de pions Suppression ni être démoralisée pendant cette activation.',self:{},journal:()=>'ne peut ni retirer de Suppression ni être démoralisée pendant cette activation'},
+  'din-djarin-amban-rifle':{card:'din djarin amban rifle',title:'FUSIL AMBAN',kind:'action',cost:2,text:'Action de carte (→→, consomme 2 actions) : si non engagée, déplacement à vitesse 1 ; puis une unité ennemie en LdV subit 1 blessure et gagne 1 Suppression sur Touche/Critique d’un dé rouge.',pick:{max:()=>1,enemy:true,effect:null},journal:picked=>'déplacement à vitesse 1 (si non engagée) puis '+names(picked)+' : 1 dé d’attaque rouge — Touche ou Critique : 1 blessure et 1 Suppression (à appliquer à la table)'},
+  'stormtrooper-sharpshooter':{card:'stormtrooper sharpshooter',title:'TIREUR EMBUSQUÉ STORMTROOPER',kind:'action',text:'Action de carte (→) : si non engagée, une unité de soldats ennemie non engagée en LdV. 1 dé d’attaque rouge : Touche/Critique = 1 blessure et 1 Suppression.',pick:{max:()=>1,enemy:true,soldiersOnly:true,effect:null},journal:picked=>names(picked)+' : 1 dé d’attaque rouge — Touche ou Critique : 1 blessure et 1 Suppression (à appliquer à la table)'},
+  'rebel-ambusher':{card:'rebel ambusher',title:'TIREUR EMBUSQUÉ REBELLE',kind:'action',text:'Action de carte (→) : si non engagée, une unité de soldats ennemie non engagée en LdV. 1 dé d’attaque rouge : Touche/Critique = 1 blessure et 1 Suppression.',pick:{max:()=>1,enemy:true,soldiersOnly:true,effect:null},journal:picked=>names(picked)+' : 1 dé d’attaque rouge — Touche ou Critique : 1 blessure et 1 Suppression (à appliquer à la table)'},
+  'remote-doc':{card:'remote doc',title:'MÉDECIN D’UN MONDE RECULÉ',kind:'action',text:'Action de carte (→) : une unité alliée de soldats non-droïdes à portée 1 retire 1 Blessure/Poison ou restaure 1 figurine, puis 2 dés de défense blancs : 1 Suppression par Bloc/Adrénaline.',pick:{max:()=>1,self:false,soldiersOnly:true,effect:null},journal:picked=>names(picked)+' : retirer 1 pion Blessure/Poison ou restaurer 1 figurine ; puis 2 dés de défense blancs, +1 Suppression par Bloc ou Adrénaline'},
+  'rebel-trooper-specialist':{card:'rebel trooper specialist',title:'SPÉCIALISTE SOLDAT REBELLE',kind:'roundfree',use:'tilt',text:'Action de carte gratuite (↱») : cette unité gagne 1 pion Esquive ou 1 pion Adrénaline.',choices:[{label:'+1 Esquive',effect:{dodge:1}},{label:'+1 Adrénaline',effect:{surge:1}}]},
+  'stormtrooper-specialist':{card:'stormtrooper specialist',title:'SPÉCIALISTE STORMTROOPER',kind:'roundfree',use:'tilt',text:'Action de carte : cette unité gagne 1 pion Viser ou 1 pion Adrénaline.',choices:[{label:'+1 Viser',effect:{aim:1}},{label:'+1 Adrénaline',effect:{surge:1}}]},
+  'unorthodox-tactician':{card:'unorthodox tactician',title:'TACTICIEN PEU ORTHODOXE',kind:'roundfree',text:'Début d’activation : lancez 3 dés de défense rouges ; pour chaque Bloc/Adrénaline, une unité alliée différente à portée 3 gagne 1 pion Viser (choisissez-les ici).',pick:{max:()=>3,self:false,effect:{aim:1}}},
+  'vigilance':{card:'vigilance',title:'VIGILANCE',kind:'roundfree',text:'Début de « Retirer les pions » : 1 unité de soldats alliée à portée 2 (ou jusqu’à 2 unités ▲) ne retire pas jusqu’à 1 pion Esquive.',pick:{max:()=>2,self:true,soldiersOnly:true,effect:{keepDodge:1}}},
+  'combat-group-leader':{card:'combat group leader',title:'CHEF DE GROUPE DE COMBAT',kind:'round',text:'Début de la Phase d’Activation : l’unité choisie à la mise en place (à portée 2) gagne 1 pion Viser ou 1 pion Esquive.',pick:{max:()=>1,self:false,effect:null},choices:[{label:'Viser pour l’unité choisie',effect:{aim:1}},{label:'Esquive pour l’unité choisie',effect:{dodge:1}}]},
+  'endurance':{card:'endurance',title:'ENDURANCE',kind:'round',text:'Fin de la Phase d’Activation : cette unité peut retirer 1 pion Suppression.',self:{suppression:-1}},
+  'baron-rudor':{card:'baron rudor',title:'BARON RUDOR',kind:'roundfree',text:'Après une action Récupérer : cette unité gagne 1 pion Viser.',self:{aim:1}},
+  'sleeper-cell-astromech':{card:'sleeper cell astromech',title:'ASTROMECH · CELLULE DORMANTE',kind:'roundfree',text:'Quand cette unité termine un déplacement à portée 1 d’au moins 1 pion Objectif : +1 pion Esquive.',self:{dodge:1}},
+  // Ordres (Phase de Commandement / Phase d'Activation)
+  'trusted-agent':{card:'trusted agent',title:'AGENT DE CONFIANCE',kind:'roundfree',use:'discard',text:'Donner des ordres (✖ supprime la carte) : une unité ▲ alliée donne un ordre à l’unité choisie, quelle que soit son affiliation.',pick:{max:()=>1,self:false,effect:null},journal:picked=>names(picked)+' reçoit un ordre de cette unité, quelle que soit son affiliation'},
+  'hq-uplink':{card:'hq uplink',title:'LIAISON HQ',kind:'roundfree',use:'tilt',text:'Donner des ordres (↱) : cette unité peut se donner un ordre à elle-même.',self:{},journal:()=>'peut se donner un ordre à elle-même'},
+  'seize-the-opportunity':{card:'seize the opportunity',title:'SAISIR L’OPPORTUNITÉ',kind:'roundfree',use:'discard',text:'Donner des ordres (✖ supprime la carte) : cette unité se donne un ordre à elle-même.',self:{},journal:()=>'se donne un ordre à elle-même'},
+  'comms-hacking-unit':{card:'comms hacking unit',title:'UNITÉ DE PIRATAGE COMMS',kind:'round',text:'Donner des ordres : après qu’une unité ennemie à portée 1 a reçu un ordre, cette unité peut se donner un ordre à elle-même.',self:{},journal:()=>'se donne un ordre à elle-même (après un ordre ennemi à portée 1)'},
+  'improvised-orders':{card:'improvised orders',title:'ORDRES IMPROVISÉS',kind:'roundfree',use:'tilt',text:'Après avoir pioché un pion Ordre (↱) : piochez un second pion, choisissez-en un et remélangez l’autre. Redressée à la Phase Finale.',self:{},journal:()=>'second pion Ordre pioché, un des deux utilisé, l’autre remélangé'},
+  // Cartes de fin d'activation et à usage unique
+  'additional-supplies':{card:'additional supplies',title:'RAVITAILLEMENT SUPPLÉMENTAIRE',kind:'end',use:'discard',needsTilted:true,text:'Fin d’activation (✖ supprime la carte) : redressez 1 des améliorations inclinées de cette unité.',get choices(){return tiltedChoices(choiceEntry)}},
+  'unstable-astromech':{card:'unstable astromech',title:'ASTROMECH INSTABLE',kind:'end',use:'discard',text:'Fin d’activation (✖) : cette unité peut effectuer une attaque ou se déplacer, puis lancez 3 dés d’attaque noirs : 1 blessure par Touche/Critique.',self:{},journal:()=>'attaque ou déplacement, puis 3 dés d’attaque noirs : 1 blessure subie par Touche ou Critique (à appliquer à la table)'},
+  'smoke-grenades':{card:'smoke grenades',title:'GRENADES FUMIGÈNES',kind:'roundfree',use:'discard',text:'Pendant l’activation (✖) : cette unité effectue une action gratuite Fumée 1.',self:{},journal:()=>'action gratuite Fumée 1 à effectuer (pion Fumée à poser)'},
+  'imperial-march':{card:'imperial march',title:'MARCHE IMPÉRIALE',kind:'roundfree',use:'discard',text:'Pendant un déplacement (✖) : cette unité gagne Charge jusqu’à la fin de son activation. (Seconde action Se déplacer : vitesse +1 sans supprimer la carte.)',self:{},journal:()=>'gagne Charge jusqu’à la fin de son activation'},
+  'hit-and-run':{card:'hit and run',title:'FRAPPE ET REPLI',kind:'roundfree',use:'tilt',text:'Après une action Attaquer (↱) : cette unité effectue une action Se déplacer.',self:{},journal:()=>'action Se déplacer gratuite après l’attaque'},
+  'ryder-azadi':{card:'ryder azadi',title:'RYDER AZADI',kind:'roundfree',use:'tilt',text:'Pendant un déplacement (↱) : augmentez ou réduisez de 1 la vitesse maximale de cette unité.',choices:[{label:'Vitesse maximale +1',selfPatch:state=>({speedDelta:(Number(state.speedDelta)||0)+1})},{label:'Vitesse maximale −1',selfPatch:state=>({speedDelta:(Number(state.speedDelta)||0)-1})}]},
+  'serenity':{card:'serenity',title:'TRANQUILLITÉ',kind:'roundfree',use:'both',text:'Après le ralliement d’une unité alliée à portée 2 (↱ ou ✖) : lancez un nombre de dés de défense égal au courage ; 1 Suppression retirée par Bloc/Adrénaline pour les deux unités. ✖ : dés rouges à la place des blancs.',pick:{max:()=>1,self:false,effect:null},choices:[{label:'Incliner (↱) : dés blancs',spend:'tilt'},{label:'Supprimer (✖) : dés rouges',spend:'discard'}],journal:(picked,choice)=>names(picked)+' : '+(choice?.spend==='discard'?'dés de défense ROUGES':'dés de défense blancs')+' en nombre égal au courage ; 1 Suppression retirée par Bloc ou Adrénaline (pour les deux unités)'},
+  'inquisitorius-training':{card:'inquisitorius training',title:'ENTRAÎNEMENT DE L’INQUISITORIUS',kind:'free',text:'Quand une unité ennemie à portée 1 incline une amélioration : 1 dé de défense rouge ; Bloc/Adrénaline = l’effet est annulé (l’amélioration reste inclinée).',self:{},journal:()=>'dé de défense rouge lancé contre l’amélioration inclinée par l’ennemi : Bloc ou Adrénaline annule l’effet'},
+};
+// Cartes existantes : l'incliner / la supprimer est désormais suivi (mêmes règles que les nouvelles).
+CARD_KEYWORD_ACTIONS['carte-grappin-de-sabine'].use='tilt';
+CARD_KEYWORD_ACTIONS['carte-cables-ascensionnels'].use='tilt';
+CARD_KEYWORD_ACTIONS['carte-cables-ascensionnels'].card=['ascension cables','climbing cables'];
+for(const [id,def] of Object.entries(CARD_ACTION_DEFS))CARD_KEYWORD_ACTIONS[id]=def;
+keywordValue=function(entry,id){const def=CARD_KEYWORD_ACTIONS[id];if(def&&def.card)return[].concat(def.card).some(key=>hasCard(entry,key))?1:0;return keywordValueCardBase(entry,id)};
+const applyCardActionCards=applyCardKeywordAction;
+applyCardKeywordAction=function(entry,id,choiceIndex){
+  const def=CARD_KEYWORD_ACTIONS[id];
+  if(!def||!def.card)return applyCardActionCards(entry,id,choiceIndex);
+  choiceEntry=entry;
+  const picked=(kwActionPick&&kwActionPick.id===id?kwActionPick.selected:[]).map(targetId=>entries.find(candidate=>candidate.id===targetId)).filter(Boolean),choice=def.choices?def.choices[choiceIndex]:null;
+  applyCardActionCards(entry,id,choiceIndex);
+  if(def.kind==='action'&&(def.cost||1)>1){const state=stateFor(entry);updateUnitState(entry,{activationActions:[...(state.activationActions||[]),...Array((def.cost||1)-1).fill('card:'+id)]})}
+  if(choice&&choice.selfPatch)updateUnitState(entry,choice.selfPatch(stateFor(entry)));
+  if(choice&&choice.redress){const state=stateFor(entry);updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>card!==choice.redress)})}
+  spendCard(entry,def,choice&&choice.spend);
+  const note=typeof def.journal==='function'?def.journal(picked,choice):def.journal;
+  cardJournalNote=[note,choice&&choice.redress?'redresse '+choice.label.replace(/^Redresser /,''):''].filter(Boolean).join(' · ')
+};
+// Bonus permanents portés par des cartes : vitesse (Pilote de TIE, Jetpack de Din, Blaster à Répétition) et courage (Officiers, Gideon, Kallus, Rex, Cassian).
+const CARD_SPEED_BONUS={'imperial tie pilot':1,'din djarin jetpack':1,'repeating blaster':-1};
+const CARD_COURAGE_BONUS={'gideon hask':1,'imperial officer':1,'rebel officer':1,'kallus the operative':1,'captain rex':1,'cassian andor operative':1};
+const cardBonus=(entry,table)=>(entry?.unit?.upgrades||[]).reduce((sum,up)=>sum+(table[cardKey(up.name)]||0),0);
+// Cartes à deux faces / retournables : la face visible décide des mots-clés actifs (Bouclier de Combat, Cassian Andor, Postures).
+const FLIP_CARDS=new Set(['battle shield wookiee','cassian andor operative','defensive posture','offensive posture']);
+const FLIP_GATED={'battle shield wookiee':{flipped:['armure-x']},'cassian andor operative':{front:['profil-bas','mission-secrete'],flipped:['coup-de-chance-x']}};
+const FLIP_SPEED={'battle shield wookiee':-1};
+const isFlipped=(state,slug)=>Array.isArray(state.flippedCards)&&state.flippedCards.includes(slug);
+const flipSpeedBonus=(entry,state)=>(entry?.unit?.upgrades||[]).reduce((sum,up)=>sum+(isFlipped(state,slugOf(up.name))?(FLIP_SPEED[cardKey(up.name)]||0):0),0);
+const allResolvedFlipBase=allResolved;
+allResolved=function(entry){
+  const list=allResolvedFlipBase(entry);
+  if(!entry)return list;
+  const state=stateFor(entry);
+  return list.filter(item=>{const gate=FLIP_GATED[cardKey(item.source)];if(!gate)return true;const on=isFlipped(state,slugOf(item.source));if(gate.flipped?.includes(item.def.id))return on;if(gate.front?.includes(item.def.id))return !on;return true})
+};
+const certifiedUnitStatsCardsBase=certifiedUnitStats;
+certifiedUnitStats=function(entry){
+  const stats=certifiedUnitStatsCardsBase(entry);
+  if(!stats||!Number.isFinite(Number(stats.courage)))return stats;
+  const state=stateFor(entry);let courage=Number(stats.courage);
+  for(const up of entry.unit.upgrades||[]){const key=cardKey(up.name);if(key==='cassian andor operative'&&isFlipped(state,slugOf(up.name)))return{...stats,courage:null};courage+=CARD_COURAGE_BONUS[key]||0}
+  return{...stats,courage}
+};
+// ---- Cartes qui interviennent pendant une attaque ----
+// side : attacker | defender | attackerAllies | defenderAllies ; steps : 0 armes, 1 jet, 2 couvert, 3 modifications, 4 défense, 5 résumé.
+// Cartes portées par UNE AUTRE unité mais qui agissent sur celle qui est affichée (alliée ou ennemie, selon la carte).
+const SHEET_CROSS_CARDS=[
+  {card:'strict orders',side:'allies',title:'ORDRES STRICTS',text:'Quand cette unité alliée qui a un pion Ordre face visible commence son étape « Se rallier », elle peut retirer 1 pion Suppression au lieu de lancer les dés.'},
+  {card:'comms jammer',side:'enemies',title:'BROUILLEUR COMMS',text:'Si cette unité ennemie est à portée 1 de l’unité porteuse, elle ne peut pas recevoir d’ordres (sauf si elle se donne un ordre à elle-même).'},
+  {card:'inspiring presence',side:'allies',title:'PRÉSENCE INSPIRANTE',text:'À portée 4 de l’unité porteuse, cette unité peut utiliser le courage de la porteuse pour vérifier si elle est paniquée.'},
+  {card:'comms hacking unit',side:'enemies',title:'UNITÉ DE PIRATAGE COMMS',text:'Quand cette unité ennemie à portée 1 de l’unité porteuse reçoit un ordre, la porteuse peut se donner un ordre à elle-même.'},
+  {card:'vigilance',side:'allies',title:'VIGILANCE',text:'Au début de « Retirer les pions », cette unité alliée à portée 2 peut ne pas retirer jusqu’à 1 pion Esquive (bouton dans la fiche de l’unité porteuse).'},
+];
+function crossCardNotes(entry){
+  if(!entry)return[];
+  return SHEET_CROSS_CARDS.flatMap(item=>entries.filter(other=>other.id!==entry.id&&!defeated(other)&&(item.side==='allies'?other.army===entry.army:other.army!==entry.army)&&hasCard(other,item.card)).map(other=>({label:item.title+' — '+entryName(other),note:item.text})))
+}
+const ATTACK_CARD_FX=[
+  {id:'barrage-generator',card:'barrage generator',side:'attacker',steps:[0],ranged:true,needsFixed:true,use:'tilt',title:'GÉNÉRATEUR DE BARRAGE',text:'Arme à distance Fixe : incliner la carte ajoute 2 dés blancs et Suppressif à la réserve d’attaque.',done:'+2 dés blancs et Suppressif ajoutés à la réserve d’attaque'},
+  {id:'generator-overcharge',card:'generator overcharge',side:'attacker',steps:[0],ranged:true,needsFixed:true,use:'tilt',title:'SURCHARGE DU GÉNÉRATEUR',text:'Arme à distance Fixe : incliner la carte ajoute 1 dé noir et Impact 1 à la réserve d’attaque.',done:'+1 dé noir et Impact 1 ajoutés à la réserve d’attaque'},
+  {id:'spotter-link',card:'spotter link',side:'attackerAllies',steps:[0],ranged:true,title:'LIAISON AVEC UN OBSERVATEUR',text:'Si la cible est à portée 1 de cette unité, en LdV, et n’est pas au corps-à-corps : l’attaquant gagne Tireur d’Élite 1.'},
+  {id:'mission-objective',card:'mission objective',side:'attacker',steps:[1],use:'tilt',title:'OBJECTIF DE MISSION',text:'Si la cible détient ou conteste un pion Objectif : incliner la carte pour relancer 1 dé d’attaque (étape « Relancer les dés »).',done:'relance de 1 dé d’attaque (à effectuer à la table)'},
+  {id:'clairvoyance-attack',card:'clairvoyance',side:'attacker',steps:[1],use:'discard',title:'CLAIRVOYANCE · ATTAQUE',text:'✖ supprime la carte : relancez TOUS vos dés d’attaque, puis convertissez normalement l’Adrénaline ; ce jet ne peut plus être modifié.',done:'tous les dés d’attaque relancés (jet non modifiable ensuite)'},
+  {id:'on-the-hunt',card:'on the hunt',side:'attacker',steps:[1],title:'EN CHASSE',text:'La cible est une unité de soldats avec au moins 1 pion Blessure : +1 pion Viser pendant « Lancer les dés d’attaque ».',apply:()=>{bumpTokens(attacker,{aim:1});attackState.availableAims=(Number(attackState.availableAims)||0)+1},undo:()=>{bumpTokens(attacker,{aim:-1});attackState.availableAims=Math.max(0,(Number(attackState.availableAims)||0)-1)},done:'+1 pion Viser gagné'},
+  {id:'duck-and-cover',card:'duck and cover',side:'defender',steps:[2],ranged:true,title:'ÉVITEMENT ET COUVERT',text:'Au début de « Appliquer les esquives et couverts » : la défense peut gagner 1 pion Suppression.',apply:()=>{attackState.currentSuppression=(Number(attackState.currentSuppression)||0)+1},undo:()=>{attackState.currentSuppression=Math.max(0,(Number(attackState.currentSuppression)||0)-1)},done:'+1 pion Suppression pour la défense (compté dans le moral)'},
+  {id:'entrenched',card:'entrenched',side:'defender',steps:[2],ranged:true,info:true,title:'RETRANCHEMENT',text:'Intégralement en territoire allié et sans pion Ordre face cachée : lancez des dés de défense ROUGES à la place des blancs pour la réserve de couvert.'},
+  {id:'force-barrier',card:'force barrier',side:'defenderAllies',steps:[3],ranged:true,use:'tilt',title:'BARRIÈRE DE FORCE',text:'Une unité de soldats alliée à portée 1 défend : incliner la carte annule 1 résultat Critique OU jusqu’à 2 résultats Touche.',done:'annule 1 Critique ou jusqu’à 2 Touches (à retirer de la réserve)'},
+  {id:'protector',card:'protector',side:'defenderAllies',steps:[3],ranged:true,use:'tilt',needsGuardian:true,title:'PROTECTEUR',text:'Quand cette unité utilise Gardien X : incliner la carte annule les Touches obtenues grâce à Gardien X comme des Blocs.',done:'les résultats annulés par Gardien X comptent comme des Blocs'},
+  {id:'clairvoyance-defense',card:'clairvoyance',side:'defender',steps:[4],use:'discard',title:'CLAIRVOYANCE · DÉFENSE',text:'✖ supprime la carte, à l’étape « Relancer les dés » : relancez TOUS vos dés de défense, puis convertissez normalement l’Adrénaline ; ce jet ne peut plus être modifié.',done:'tous les dés de défense relancés'},
+  {id:'emergency-stims',card:'emergency stims',side:'defender',steps:[4,5],use:'tilt',title:'STIMULANTS D’URGENCE',text:'Quand cette unité devrait subir des blessures : incliner la carte en prévient jusqu’à 2 et les place en pions Blessure sur la carte (subis au début de sa prochaine activation).',apply:()=>{const n=Math.min(2,Math.max(1,defenseResult().result.wounds||0));attackState.stimsN=n;bumpTokens(defender,{cardWound:n})},undo:()=>bumpTokens(defender,{cardWound:-(attackState.stimsN||1)}),done:'jusqu’à 2 blessures prévenues et placées sur la carte (à déduire des blessures subies)'},
+  {id:'anger',card:'anger',side:'defender',steps:[5],needsWounds:true,title:'COLÈRE',text:'Cette unité a subi au moins 1 blessure : après résolution, elle gagne 1 pion Viser.',apply:()=>bumpTokens(defender,{aim:1}),undo:()=>bumpTokens(defender,{aim:-1}),done:'+1 pion Viser gagné'},
+  {id:'dread',card:'dread',side:'defenderAllies',steps:[5],ranged:true,title:'TERREUR',text:'Si cette unité n’est pas engagée et que l’attaquant est à portée 2 et en LdV d’elle : l’attaquant gagne 1 pion Suppression après l’attaque.',apply:()=>bumpTokens(attacker,{suppression:1}),undo:()=>bumpTokens(attacker,{suppression:-1}),done:'l’attaquant gagne 1 pion Suppression'},
+  {id:'crosshair',card:'crosshair',side:'attacker',steps:[0],info:true,title:'CROSSHAIR',text:'Tant que le Fusil Firepuncher est la seule arme de la réserve d’attaque : Critique 1 (appliqué automatiquement).'},
+  {id:'kraken',card:'kraken',side:'attacker',steps:[0,1],info:true,title:'KRAKEN',text:'Quand cette unité attaque, elle peut améliorer 1 dé d’attaque pour chaque figurine de cette unité précédemment vaincue.'},
+  {id:'captain-rex',card:'captain rex',side:'attacker',steps:[5],needsWounds:true,info:true,title:'CAPITAINE CLONE REX',text:'Si cette attaque vainc l’unité ennemie : après résolution de l’effet, cette unité peut effectuer 1 action gratuite.'},
+  {id:'inspiring-presence',card:'inspiring presence',side:'defenderAllies',steps:[5],info:true,title:'PRÉSENCE INSPIRANTE',text:'Une unité alliée à portée 4 de cette unité peut utiliser son courage pour vérifier si elle est paniquée.'},
+];
+const fxUsed=id=>!!attackState&&Object.keys(attackState.cardFx||{}).some(key=>key.startsWith(id+'|'));
+const fxHolders=fx=>{
+  if(!attacker||!defender)return[];
+  const has=entry=>!defeated(entry)&&hasCard(entry,fx.card);
+  if(fx.side==='attacker')return has(attacker)?[attacker]:[];
+  if(fx.side==='defender')return has(defender)?[defender]:[];
+  const army=fx.side==='attackerAllies'?attacker.army:defender.army,skip=fx.side==='attackerAllies'?attacker.id:defender.id;
+  return entries.filter(entry=>entry.army===army&&entry.id!==skip&&has(entry));
+};
+function fxAvailable(fx){
+  if(!fx.steps.includes(attackStep))return false;
+  if(fx.ranged&&attackType()!=='ranged')return false;
+  if(fx.needsFixed&&!selectedWeaponRows().some(row=>weaponHasKeyword(row,'fixe')))return false;
+  if(fx.needsGuardian&&!allResolved(defender).concat(entries.filter(entry=>entry.army===defender.army).flatMap(entry=>allResolved(entry))).some(item=>item.def.id==='gardien-x'))return false;
+  if(fx.needsWounds&&!(defenseResult().result.wounds>0))return false;
+  return true;
+}
+function cardFxRows(){
+  if(!attacker||!defender||!attackState)return[];
+  return ATTACK_CARD_FX.filter(fxAvailable).flatMap(fx=>fxHolders(fx).map(holder=>({fx,holder})));
+}
+function cardFxPanel(rows){
+  const cards=rows.map(({fx,holder})=>{
+    const key=fx.id+'|'+holder.id,used=!!attackState.cardFx?.[key],def={card:fx.card,use:fx.use||null},spent=fx.use&&cardSpent(holder,def,stateFor(holder))&&!used;
+    const button=fx.info?'':used?`<button type="button" class="secondary" data-card-fx-undo="${key}">↩ Annuler</button>`:spent?'<button type="button" disabled>Carte déjà inclinée/supprimée</button>':`<button type="button" class="primary" data-card-fx="${key}">${fx.use==='tilt'?'Utiliser (incline la carte)':fx.use==='discard'?'Utiliser (supprime la carte ✖)':'Appliquer'}</button>`;
+    return `<div class="card-fx ${used?'used':''}"><b>${fx.title}</b><span> — ${entryName(holder)}</span><small>${used&&fx.done?'✔ '+fx.done:fx.text}</small>${button}</div>`;
+  }).join('');
+  return `<section class="automation-card rule-highlight card-fx-panel"><strong>CARTES D’AMÉLIORATION QUI PEUVENT INTERVENIR MAINTENANT</strong>${cards}</section>`;
+}
+function decorateCardFx(){
+  const rows=cardFxRows();
+  if(!rows.length)return;
+  const host=root.querySelector('.resolve-center')||root;
+  host.insertAdjacentHTML('afterbegin',cardFxPanel(rows));
+  const find=key=>{const [id,holderId]=key.split('|');return{fx:ATTACK_CARD_FX.find(item=>item.id===id),holder:entries.find(entry=>entry.id===holderId)}};
+  root.querySelectorAll('[data-card-fx]').forEach(button=>button.onclick=()=>{
+    const {fx,holder}=find(button.dataset.cardFx);if(!fx||!holder)return;
+    attackState.cardFx={...(attackState.cardFx||{}),[button.dataset.cardFx]:true};
+    if(fx.use)spendCard(holder,{card:fx.card,use:fx.use});
+    if(fx.apply)fx.apply();
+    logActivationEffect(attacker,fx.title+(holder.id!==attacker.id?' · '+entryName(holder):''),fx.done||fx.text);
+    resolveScreen()
+  });
+  root.querySelectorAll('[data-card-fx-undo]').forEach(button=>button.onclick=()=>{
+    const {fx,holder}=find(button.dataset.cardFxUndo);if(!fx||!holder)return;
+    const next={...(attackState.cardFx||{})};delete next[button.dataset.cardFxUndo];attackState.cardFx=next;
+    if(fx.use)unspendCard(holder,{card:fx.card});
+    if(fx.undo)fx.undo();
+    const label=fx.title+(holder.id!==attacker.id?' · '+entryName(holder):''),state=stateFor(attacker);
+    updateUnitState(attacker,{effectLog:(state.effectLog||[]).filter(item=>item.label!==label)});
+    resolveScreen()
+  });
+}
+const decorateResolveScreenCardsBase=decorateResolveScreen;
+decorateResolveScreen=function(){decorateResolveScreenCardsBase();decorateCardFx()};
+// Dés et mots-clés ajoutés par les cartes utilisées pendant l'attaque.
+const poolCardsBase=pool;
+pool=function(){const result=poolCardsBase();return attackState?{...result,blanc:result.blanc+(fxUsed('barrage-generator')?2:0),noir:result.noir+(fxUsed('generator-overcharge')?1:0)}:result};
+const activeAttackTagsCardsBase=activeAttackTags;
+activeAttackTags=function(){
+  const result=activeAttackTagsCardsBase(),extra=[],add=(id,source,value)=>{const def=keywords.find(item=>item.id===id);if(def)extra.push({source,def,tag:{keywordId:id,...(value?{value}:{})}})};
+  if(fxUsed('barrage-generator'))add('suppressif','Générateur de Barrage');
+  if(fxUsed('generator-overcharge'))add('impact-x','Surcharge du Générateur',1);
+  const rows=attacker?selectedWeaponRows():[];
+  if(attacker&&hasCard(attacker,'crosshair')&&rows.length===1&&cardKey(rows[0].card)==='crosshair')add('critique-x','Crosshair',1);
+  return extra.length?[...result,...extra]:result
+};
 // ---- ANNULER / Réactiver sur tous les automatismes (mots-clés et cartes) ----
 const UNIT_EFFECT_CARD={'force-choke-used':'force-choke','force-reflexes':'force-reflexes','burst-of-speed':'burst-of-speed','offensive-push':'offensive-push','linked-targeting-array':'linked-targeting-array'};
 // ---- Journal des effets appliqués pendant l'activation, rappelé dans le résumé de l'attaque (21/09/2026) ----
@@ -1385,6 +1587,7 @@ function describeEffectDiffs(diffs){
       else if(key==='maxSpeedOverride'&&change.to)parts.push('vitesse maximale '+change.to+' jusqu’à la fin du round');
       else if(key==='speedDelta'&&'delta' in change)parts.push('vitesse '+(change.delta>0?'+':'')+change.delta);
       else if(key==='extraAction'&&change.to)parts.push('action supplémentaire');
+      else if(key==='exhaustedCards'&&change.added?.length)parts.push('carte inclinée ('+change.added.join(', ')+')');
       else if(key==='discardedCards'&&change.added?.length)parts.push('carte supprimée de la partie ('+change.added.join(', ')+')');
       else if(key==='freeActionOffers'&&change.added?.length)parts.push(change.added.map(offer=>'action gratuite offerte : '+offer.label).join(' ; '));
       else if(key==='distractedBy'&&change.to)parts.push('doit attaquer l’unité qui l’a distraite');
@@ -1415,7 +1618,7 @@ function wireUndo(entry,role){
       const changes=kwDiff(before,unitStates);if(!changes.length)return;
       const title=(button.closest('.kw-action')?.querySelector('[data-card-action] b')||button.closest('.effect-choice')?.querySelector('b')||button.querySelector('b'))?.textContent||button.textContent.trim();
       const described=describeEffectDiffs(changes),tableNote=button.hasAttribute('data-force-choke')?button.textContent.replace(/^1 blessure · /,'')+' subit 1 blessure (à appliquer à la table)':'';
-      const summary=[tableNote,described].filter(Boolean).join(' · ');
+      const summary=[tableNote,cardJournalNote,described].filter(Boolean).join(' · ');cardJournalNote='';
       if(summary)logActivationEffect(entry,title,summary);
       const diffs=kwDiff(before,unitStates);
       kwUndoLog.push({entryId:entry.id,round:currentRound(),label:title+(button.hasAttribute('data-kw-choice')?' — '+button.textContent.trim():''),diffs});
@@ -1435,8 +1638,9 @@ function wireUndo(entry,role){
   }
   root.querySelectorAll('[data-kw-reset]').forEach(button=>button.onclick=()=>{
     const id=button.dataset.kwReset,def=CARD_KEYWORD_ACTIONS[id],state=stateFor(entry),patch={};
-    patch.exhaustedCards=(state.exhaustedCards||[]).filter(card=>card!=='kw-'+id&&card!==id);
-    patch.discardedCards=(state.discardedCards||[]).filter(card=>card!==id);
+    const ownSlugs=def&&def.card?cardSlugs(entry,def):[];
+    patch.exhaustedCards=(state.exhaustedCards||[]).filter(card=>card!=='kw-'+id&&card!==id&&!ownSlugs.includes(card));
+    patch.discardedCards=(state.discardedCards||[]).filter(card=>card!==id&&!ownSlugs.includes(card));
     patch.setupDone=(state.setupDone||[]).filter(done=>done!==id);
     if(def&&def.kind==='action'){const record=def.recordAs||'card:'+id,list=[...(state.activationActions||[])],at=list.indexOf(record);if(at>=0){list.splice(at,1);patch.activationActions=list}}
     updateUnitState(entry,patch);

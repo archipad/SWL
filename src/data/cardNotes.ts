@@ -54,17 +54,10 @@ const RAW: Record<string, string> = {
 
   // === Genrela_upgrade_fr_30mo.pdf — Force/Côté Obscur/Côté Lumineux
   'Anger': "Côté Obscur uniquement. Quand cette unité subit au moins 1 blessure, après que l'effet a été résolu, elle gagne 1 pion Viser.",
-  'Old Jedi Trick': "Côté Lumineux uniquement. Choisissez une unité de soldats ennemie non-Massive, non-Énorme à ② de cette unité. L'unité choisie gagne 2 pions Suppression.",
   'Force Barrier': "Quand une autre unité de soldats alliée à ① de cette unité défend contre une attaque à distance, pendant l'étape « Modifier les dés d'attaque », vous pouvez incliner cette carte pour annuler soit 1 résultat Critique soit jusqu'à 2 résultats Touche.",
-  'Force Guidance': "Choisissez jusqu'à 2 unités alliées à ② de cette unité. Chaque unité choisie gagne 1 pion Adrénaline.",
-  'Force Push': "Choisissez une unité de soldats ennemie à ① de cette unité. L'unité choisie effectue un déplacement à vitesse 1, même si elle est engagée. Vous résolvez ce déplacement.",
-  'Force Reflexes': "Cette unité gagne 1 pion Esquive.",
 
   // === Nouvelles_cartes_amelio_FR_MAJ23.02.2026.pdf
   'Hit and Run': "Unité ayant Speeder X uniquement (peut s'équiper même sans icône d'amélioration). Après que cette unité a effectué une action Attaquer, vous pouvez incliner cette carte pour effectuer une action Se déplacer.",
-  'Combat Group Leader': "Unique. Quand une autre unité alliée à ② de cette unité utilise l'action de carte Conseils, elle peut choisir cette unité même si elle n'est pas du type spécifié par le mot-clé Conseils.",
-  'Mission Objective': "Au début de chaque Phase de Commandement, si cette unité se trouve intégralement en territoire ennemi, elle gagne un pion Mission spéciale (une seule fois par partie). Au moment de marquer les PV, si un joueur contrôle cette unité et qu'elle se trouve intégralement en territoire ennemi, il peut retirer ce pion pour marquer 1 PV.",
-  'Trusted Agent': "Unique. Pendant l'étape « Donner des ordres » de la Phase de Commandement, vous pouvez incliner cette carte. Dans ce cas, choisissez une unité alliée. Cette unité donne un ordre à l'unité choisie, quelle que soit son affiliation.",
   'Dread': "Côté Obscur uniquement. Tant que cette unité n'est pas engagée, lorsqu'une unité ennemie à ② et en LdV de cette unité effectue une attaque à distance ciblant une autre unité alliée, l'unité attaquante gagne 1 pion Suppression après avoir résolu l'attaque.",
   'Entrenched': "Soldat en Position ou unité de soldats ayant Position Préparée uniquement (peut s'équiper même sans icône d'amélioration). Tant que cette unité est intégralement en territoire allié et qu'elle n'a pas de pion Ordre face cachée, elle lance des dés de défense rouges à la place des dés blancs quand elle lance sa réserve de couvert.",
   'Serenity': "Côté Lumineux uniquement. Après qu'une autre unité alliée à ② de cette unité s'est ralliée, mais avant son étape « Effectuer des actions », vous pouvez incliner cette carte. Dans ce cas, lancez un nombre de dés de défense blancs égal au courage de cette unité. Pour chaque résultat Bloc ou Adrénaline obtenu, cette unité et l'unité alliée retirent 1 pion Suppression. Lorsque vous devriez incliner cette carte, vous pouvez la supprimer de la partie (✖) à la place : lancez alors des dés de défense rouges au lieu des blancs.",
@@ -76,7 +69,6 @@ const RAW: Record<string, string> = {
 
   // === Empire Galactique — améliorations à texte propre (audit précédent)
   'Stormtrooper Specialist': "Cette unité gagne 1 icône d'amélioration ; l'action associée (gagner 1 pion Viser ou 1 pion Adrénaline) est propre à la carte.",
-  'Stormtrooper Sharpshooter': "Escouade Stormtrooper Antiémeute uniquement. Action de carte propre (non permanente) : ajoute 1 dé d'attaque rouge contre une unité ennemie non engagée.",
 
   // === Signalées explicitement par l'utilisateur le 06/09/2026 comme sans
   // définition visible (Ténacité/Présence Inspirante/Pointe de Vitesse — cette
@@ -88,19 +80,62 @@ const RAW: Record<string, string> = {
   'Imperial TIE Pilot': "Véhicule à répulseurs uniquement. Augmentez de 1 la vitesse maximale de cette unité.",
   'Ryder Azadi': "Véhicule à répulseurs uniquement. Quand cette unité effectue un déplacement, vous pouvez incliner cette carte afin d'augmenter ou de réduire de 1 sa vitesse maximale.",
   'Unstable Astromech': "Landspeeder X-34 uniquement. À la fin de l'activation de cette unité, vous pouvez supprimer cette carte de la partie (icône ✖). Dans ce cas, cette unité peut effectuer une attaque ou se déplacer. Ensuite, après que l'effet a été résolu, lancez 3 dés d'attaque noirs. Cette unité subit 1 blessure pour chaque résultat Touche ou Critique obtenu.",
-  'Remote Doc': "Camion Speeder A-A5 uniquement. Choisissez une unité alliée de soldats non-droïdes à ① et en LdV de cette unité. Retirez 1 pion Blessure ou Poison, ou restaurez 1 figurine, de l'unité choisie. Ensuite, lancez 2 dés de défense blancs. L'unité choisie gagne 1 pion Suppression pour chaque résultat Bloc ou Adrénaline obtenu.",
   'Unorthodox Tactician': "Camion Speeder A-A5 uniquement. Au début de l'activation de cette unité, lancez 3 dés de défense rouges. Pour chaque résultat Bloc ou Adrénaline obtenu, choisissez une unité alliée différente à ③. Chaque unité choisie gagne 1 pion Viser.",
-  "Sabine's Grapple Line": "Sabine Wren uniquement. Action de carte (non permanente) : choisissez une unité de soldats ennemie à ① et en LdV de cette unité. L'unité choisie gagne 2 pions Immobilisation et 2 pions Suppression.",
-  'Rebel Trooper Specialist': "Soldats Rebelles uniquement. Ajoute 1 figurine de Spécialiste Soldat Rebelle. Cette unité gagne 1 icône d'amélioration Comms. Action de carte (non permanente) : cette unité gagne 1 pion Esquive ou 1 pion Adrénaline.",
   'Rebel Comms Technician': "Soldat Rebelle ▲ uniquement. Ajoute 1 figurine de Technicien Comms Rebelle. Cette unité gagne 1 icône d'amélioration Comms et doit s'équiper d'au moins 1 amélioration Comms.",
-  'Rebel Ambusher': "Cellule Dormante Rebelle uniquement. Action de carte (non permanente) : si cette unité n'est pas engagée, choisissez une unité de soldats ennemie non engagée en LdV et lancez 1 dé d'attaque rouge. Sur un résultat Touche ou Critique, l'unité choisie subit 1 blessure et gagne 1 pion Suppression.",
 
   // === Audit du 21/09/2026 — cartes sans mot-clé lues sur les visuels
-  'Ascension Cables': "Action de carte gratuite (la carte s'incline) : cette unité gagne Ascension jusqu'à la fin de son activation.",
   'IG11 Nanny Programming': "IG-11 uniquement. Lorsque vous créez votre armée, un Grogu allié gagne Alter Ego : IG-11. Cette unité gagne IA : Esquive, Déplacement.",
   'IG11 Prime Programming': "IG-11 uniquement. Cette unité gagne Prime et IA : Viser, Attaque. Si elle choisit comme cible de Prime une unité d'un certain rang, ses armes gagnent Perforant 1 ; pour un autre rang, Suppressif (rangs exacts : voir la carte).",
   'Smoke Grenades': "Pendant l'activation de cette unité, vous pouvez supprimer cette carte de la partie (icône ✖). Dans ce cas, cette unité effectue une action gratuite Fumée 1.",
   'Imperial March': "Quand cette unité effectue une deuxième action Se déplacer au cours de son activation, augmentez sa vitesse de 1 pendant cette action. De plus, quand cette unité effectue une action Se déplacer au cours de son activation, vous pouvez supprimer cette carte de la partie (icône ✖) : cette unité gagne Charge jusqu'à la fin de son activation.",
+
+  // === Audit visuel du 20/09/2026 : effets propres relus sur chaque visuel (cartes à mots-clés incluses)
+  "Barrage Generator": "Quand cette unité effectue une attaque avec une arme à distance qui a Fixe, pendant l'étape « Constituer la réserve d'attaque », vous pouvez incliner cette carte (↱). Dans ce cas, ajoutez 2 dés d'attaque blancs à la réserve d'attaque et elle gagne Suppressif.",
+  "Generator Overcharge": "Quand cette unité effectue une attaque avec une arme à distance qui a Fixe, pendant l'étape « Constituer la réserve d'attaque », vous pouvez incliner cette carte (↱). Dans ce cas, ajoutez 1 dé d'attaque noir à la réserve d'attaque et elle gagne Impact 1.",
+  "Stormtrooper Captain": "Stormtroopers uniquement. Ajoute 1 figurine de Capitaine Stormtrooper. Chef. Cette unité gagne 1 icône d'amélioration Entraînement. Au début de l'activation de cette unité, vous pouvez incliner cette carte (↱) : cette unité ne peut ni retirer de pions Suppression ni être démoralisée pendant cette activation.",
+  "Rebel Trooper Captain": "Soldats Rebelles uniquement. Ajoute 1 figurine de Capitaine Soldat Rebelle. Chef. Cette unité gagne 1 icône d'amélioration Entraînement. Au début de l'activation de cette unité, vous pouvez incliner cette carte (↱) : cette unité ne peut ni retirer de pions Suppression ni être démoralisée pendant cette activation.",
+  "Wedge Antilles": "Véhicule à répulseurs Rebelle uniquement. Cette unité gagne Commandant des Opérations. Action de carte gratuite (↱») : cette unité effectue un pivot.",
+  "Hunter": "Le Bad Batch uniquement. Ajoute 1 figurine de Hunter. Chef. Action de carte gratuite (») : choisissez une unité de soldats ennemie non-Massive, non-Énorme à ① et en LdV. Lancez 1 dé d'attaque noir : sur un résultat Touche ou Critique, l'unité choisie subit 1 blessure.",
+  "Kallus the Operative": "Unité Empire ▲ ou ▼▲ uniquement. Ajoute 1 figurine de l'Agent Kallus. Chef. Cette unité augmente de 1 son courage, gagne Démoraliser 1 et 1 icône d'amélioration Personnel. Action de carte gratuite (↱») : choisissez une unité ennemie engagée avec cette unité ; elle gagne 2 pions Immobilisation. Arme de Poing : à distance.",
+  "Din Djarin Amban Rifle": "Din Djarin uniquement. Action de carte (→→, consomme 2 actions) : si cette unité n'est pas engagée, elle peut effectuer un déplacement à vitesse 1. Ensuite, choisissez une unité ennemie en LdV et lancez 1 dé d'attaque rouge : sur un résultat Touche ou Critique, l'unité choisie subit 1 blessure et gagne 1 pion Suppression.",
+  "Climbing Cables": "Action de carte gratuite (↱») : cette unité gagne Ascension jusqu'à la fin de son activation.",
+  "Fire Control": "Quand une autre unité alliée à ① effectue une attaque à distance contre une unité ennemie en LdV de cette unité, améliorez 2 des dés d'attaque de l'unité attaquante.",
+  "Combat Armor Rebel": "Agent Rebelle ou Officier Rebelle uniquement. La défense de cette unité devient rouge au lieu de blanche, et cette unité n'a plus son adrénaline de défense (Adrénaline : Bloc).",
+  "Imperial Comms Technician": "Soldat Empire ▲ uniquement. Ajoute 1 figurine de Technicien Comms Impérial. Cette unité gagne 1 icône d'amélioration Comms et doit s'équiper d'au moins 1 amélioration Comms (contrainte de construction de liste).",
+  "Baron Rudor": "Véhicule à répulseurs Empire uniquement. Cette unité gagne Tireur Embusqué. Après que cette unité a effectué une action Récupérer, elle gagne 1 pion Viser.",
+  "Battle Shield Wookiee": "Au début de l'activation de cette unité, vous pouvez retourner cette carte (bouton « Retourner la carte » de la fiche) : la vitesse maximale de cette unité est réduite de 1 et elle gagne Armure 1 (Armure 1 n'est active que carte retournée).",
+  "Black Sun Enforcer Concealment": "Cette unité conserve Cache : Esquive 1 même si la figurine ajoutée par cette carte est vaincue.",
+  "Pyke Foot Soldier Concealment": "Cette unité conserve Cache : Viser 1 même si la figurine ajoutée par cette carte est vaincue.",
+  "Super Commando Concealment": "Cette unité conserve Cache : Adrénaline 2 même si la figurine ajoutée par cette carte est vaincue.",
+  "Cad Bane Electro Gauntlets": "Cad Bane uniquement. Tant que cette unité est engagée, elle peut effectuer des déplacements normalement si une unité avec laquelle elle est engagée a 1 ou plusieurs pions Immobilisation.",
+  "Cassian Andor Operative": "Carte à deux faces (face A au départ). Unité Rebelle ▲ uniquement. Ajoute 1 figurine de Cassian Andor. Chef. Cette unité augmente de 1 son courage et gagne 1 icône d'amélioration Personnel. FACE A : Profil Bas et Mission Secrète ; arme A280 Configuration Sniper. Quand au moins 1 figurine de cette unité est vaincue, vous pouvez retourner la carte (bouton « Retourner la carte » de la fiche). FACE B : le courage de cette unité devient « - » ; Coup de Chance 1 ; une fois par tour, quand cette unité constitue une réserve d'attaque, ajoutez 1 dé d'attaque blanc par figurine de cette unité précédemment vaincue ; arme Opérations Secrètes.",
+  "Crosshair": "Ajoute 1 figurine de Crosshair. Cette unité gagne Précis 1. Tant qu'une réserve d'attaque ne contient que l'arme Fusil Firepuncher, la réserve d'attaque gagne Critique 1.",
+  "Din Djarin Jetpack": "Din Djarin uniquement. Augmentez de 1 la vitesse de cette unité. Cette unité gagne Saut 2 (action).",
+  "Governor Pryce": "Cette unité gagne Commandant des Opérations. Action de carte gratuite (») : choisissez une unité de soldats alliée à ② de cette unité ; elle gagne 1 pion Viser et 1 pion Suppression.",
+  "Shriv Suurgav": "Cette unité gagne Commandant des Opérations. Action de carte gratuite (») : choisissez une unité de soldats alliée à ② de cette unité ; elle gagne 1 pion Esquive et peut gagner 1 pion Suppression.",
+  "Gideon Hask": "Chef. Cette unité augmente de 1 son courage et gagne Coordination : Soldat ▲.",
+  "Imperial Officer": "Soldat ▲ uniquement. Ajoute 1 figurine d'Officier Impérial. Chef. Cette unité augmente de 1 son courage et gagne Inspiration 1.",
+  "Rebel Officer": "Soldat ▲ uniquement. Ajoute 1 figurine d'Officier Rebelle. Chef. Cette unité augmente de 1 son courage et gagne Inspiration 1.",
+  "Inquisitorius Training": "La Septième Sœur uniquement. Cette unité gagne Démoraliser 1. Quand une unité ennemie à ① incline une amélioration (icône indiquée sur la carte), vous pouvez lancer un dé de défense rouge : sur un résultat Bloc ou Adrénaline, annulez l'effet de cette amélioration ; elle reste inclinée.",
+  "Imperial Hammers Elite Armor Pilot": "Véhicule terrestre Empire uniquement. Cette unité gagne l'adrénaline d'attaque « Adrénaline : Critique ».",
+  "Programmed Loyalty": "Dark Troopers Impériaux uniquement. Cette unité ne peut recevoir d'ordres que d'une unité du type indiqué sur la carte, et gagne Escorte : ce même type d'unité.",
+  "Sleeper Cell Astromech": "Cellule Dormante Rebelle uniquement. Ajoute 1 figurine d'Astromech. Non-combattant. Quand cette unité termine un déplacement à ① d'au moins 1 pion Objectif, elle gagne 1 pion Esquive.",
+  "Spotter Link": "Quand une autre unité alliée déclare une attaque à distance contre une unité ennemie à ① et en LdV de cette unité, si cette unité ennemie n'est pas engagée au corps-à-corps, l'unité attaquante gagne Tireur d'Élite 1.",
+  "Repeating Blaster": "Officier Rebelle uniquement. Réduisez de 1 la vitesse maximale de cette unité. Cette unité gagne Précis 2.",
+  "Wrecker": "Ajoute 1 figurine de Wrecker. Tant que cette figurine est sur le champ de bataille, l'Alter Ego Omega de cette unité ne peut pas se voir assigner de blessures.",
+  "Combat Group Leader": "Unité ▲ uniquement. Lors de la mise en place, cette unité peut choisir une unité de troupes alliée qui a la même affiliation ou faction qu'elle. Au début de chaque Phase d'Activation, l'unité choisie gagne 1 pion Viser ou 1 pion Esquive si elle est à ② de cette unité. De plus, l'unité choisie peut prêter main-forte à cette unité.",
+  "Mission Objective": "Soldat uniquement. Quand cette unité attaque une unité ennemie qui détient ou conteste au moins 1 pion Objectif, pendant l'étape « Relancer les dés d'attaque », vous pouvez incliner cette carte (↱) : cette unité relance 1 dé d'attaque. Au début de l'activation de cette unité, redressez cette carte.",
+  "Trusted Agent": "Unique. Pendant l'étape « Donner des ordres » de la Phase de Commandement, vous pouvez supprimer cette carte de la partie (✖). Dans ce cas, choisissez une unité ▲ alliée : cette unité donne un ordre à l'unité choisie, quelle que soit son affiliation.",
+  "Force Guidance": "Action de carte gratuite (↱») : choisissez jusqu'à 2 unités alliées à ② de cette unité. Chaque unité choisie gagne 1 pion Adrénaline.",
+  "Force Push": "Action de carte gratuite (↱») : choisissez une unité de soldats ennemie à ① de cette unité. L'unité choisie effectue un déplacement à vitesse 1, même si elle est engagée. Vous résolvez ce déplacement.",
+  "Old Jedi Trick": "Côté Lumineux uniquement. Action de carte gratuite (↱») : choisissez une unité de soldats ennemie non-Massive, non-Énorme à ② de cette unité. L'unité choisie gagne 2 pions Suppression.",
+  "Force Reflexes": "Action de carte gratuite (↱») : cette unité gagne 1 pion Esquive.",
+  "Ascension Cables": "Action de carte gratuite (↱») : cette unité gagne Ascension jusqu'à la fin de son activation.",
+  "Sabine's Grapple Line": "Sabine Wren uniquement. Action de carte (↱→, la carte s'incline) : choisissez une unité de soldats ennemie à ① et en LdV de cette unité. L'unité choisie gagne 2 pions Immobilisation et 2 pions Suppression.",
+  "Rebel Trooper Specialist": "Soldats Rebelles uniquement. Ajoute 1 figurine de Spécialiste Soldat Rebelle. Cette unité gagne 1 icône d'amélioration Comms. Action de carte gratuite (↱») : cette unité gagne 1 pion Esquive ou 1 pion Adrénaline.",
+  "Stormtrooper Sharpshooter": "Antiémeute uniquement. Ajoute 1 figurine de Tireur Embusqué Stormtrooper. Action de carte (→) : si cette unité n'est pas engagée, choisissez une unité de soldats ennemie non engagée en LdV et lancez 1 dé d'attaque rouge : sur un résultat Touche ou Critique, l'unité choisie subit 1 blessure et gagne 1 pion Suppression.",
+  "Rebel Ambusher": "Cellule Dormante Rebelle uniquement. Action de carte (→) : si cette unité n'est pas engagée, choisissez une unité de soldats ennemie non engagée en LdV et lancez 1 dé d'attaque rouge : sur un résultat Touche ou Critique, l'unité choisie subit 1 blessure et gagne 1 pion Suppression.",
+  "Remote Doc": "Camion Speeder A-A5 uniquement. Action de carte (→) : choisissez une unité alliée de soldats non-droïdes à ① et en LdV de cette unité. Retirez 1 pion Blessure ou Poison, ou restaurez 1 figurine, de l'unité choisie. Ensuite, lancez 2 dés de défense blancs : l'unité choisie gagne 1 pion Suppression pour chaque résultat Bloc ou Adrénaline obtenu.",
 };
 
 export const CARD_NOTES: Record<string, string> = Object.fromEntries(

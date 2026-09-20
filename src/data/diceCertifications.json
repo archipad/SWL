@@ -601,6 +601,18 @@
           }
         ],
         "range": "1-3"
+      },
+      {
+        "index": 1,
+        "name": "Opérations Secrètes",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": []
       }
     ],
     "addedModels": 1,

@@ -592,3 +592,11 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 .attack-recap .recap-effects { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid rgba(255, 180, 94, .7); border-radius: 8px; background: rgba(255, 180, 94, .08); }
 .attack-recap .recap-effects ul { margin: 0; padding-left: 18px; }
 .attack-recap .recap-effects li { margin: 3px 0; }
+/* Cartes d'amélioration qui interviennent pendant l'attaque (20/09/2026) */
+.card-fx-panel .card-fx { display: grid; gap: 4px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(150, 200, 255, .25); }
+.card-fx-panel .card-fx b { letter-spacing: .04em; }
+.card-fx-panel .card-fx span { color: #9fc4de; font-size: .82rem; }
+.card-fx-panel .card-fx small { color: #dbe9f3; font-size: .84rem; line-height: 1.35; }
+.card-fx-panel .card-fx.used small { color: #9ff0b5; }
+.card-fx-panel .card-fx button { justify-self: start; min-height: 40px; }
+.card-flip.flipped { border-color: rgba(120, 220, 160, .7); }

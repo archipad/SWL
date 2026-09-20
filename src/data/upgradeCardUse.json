@@ -155,10 +155,8 @@
       "icons": []
     },
     "combat group leader": {
-      "use": "exhaust",
-      "icons": [
-        "exhaust"
-      ]
+      "use": "passive",
+      "icons": []
     },
     "command system": {
       "use": "passive",
@@ -553,8 +551,10 @@
       "icons": []
     },
     "mission objective": {
-      "use": "passive",
-      "icons": []
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
     },
     "mo dk power harpoon": {
       "use": "passive",
@@ -926,9 +926,9 @@
       "icons": []
     },
     "trusted agent": {
-      "use": "exhaust",
+      "use": "discard",
       "icons": [
-        "exhaust"
+        "discard"
       ]
     },
     "underworld contacts": {
