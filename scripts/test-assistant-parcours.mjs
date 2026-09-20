@@ -1139,6 +1139,33 @@ scenario('Certification : liste groupée (mes listes, écarts, reste) et défil�
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Certification : un mot-clé d’arme saisi seulement au niveau de la carte est rattaché à l’arme (une arme) ou à attribuer (plusieurs armes)', async () => {
+  const fullCard = (keywords) => ({ cardType: 'upgrade', rank: '', unitType: '', speed: '', attackSurge: 'none', defenseSurge: 'none', keywords, noKeywords: false, ack: false, checks: { identity: false, visual: false, stats: false, weapons: false, conversions: false, keywords: false }, rulesVersion: 'AMG 2026-06-17', cardUse: 'passive' })
+  const draft = (card, weapons, keywords) => ({ card, weapons, defenseColor: null, defenseVerified: false, defenseQueued: false, unitStats: { woundsPerModel: 1, courage: 1, baseModels: 1, suppressionImmune: false }, unitStatsVerified: false, unitStatsQueued: false, addedModels: 0, addedModelWounds: 1, addedModelsVerified: false, addedModelsQueued: false, fullCard: fullCard(keywords), fullCardQueued: false, weaponKwVersion: 2 })
+  const app = await openAssistant({ 'swl-dice-certification-batch-v1': {
+    'tl tt laser cannon': draft('tl tt laser cannon', [{ index: 0, name: 'Canon Laser de TL-TT', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }], range: '2-4', verified: false, queued: false, keywords: [], kwEdited: true }], [{ keywordId: 'impact-x', value: 3 }, { keywordId: 'fixe' }]),
+    'at rt': draft('at rt', [{ index: 0, name: 'Griffes Agrippantes', dice: [{ color: 'rouge', count: 3 }], range: 'melee', verified: false, queued: false, keywords: [], kwEdited: true }, { index: 1, name: 'Fusil Blaster A300', dice: [{ color: 'blanc', count: 2 }], range: '1-3', verified: false, queued: false, keywords: [], kwEdited: true }], [{ keywordId: 'impact-x', value: 1 }]),
+  } })
+  const { $, $$, text, click } = app
+  await click('#certification')
+  // Une seule arme : rattachement automatique à la certification.
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'tl tt laser cannon'))
+  assert.match(text($('.cert-weapon-gap')), /rattachés automatiquement à « Canon Laser de TL-TT »/, 'annonce du rattachement automatique : ' + text($('.cert-weapon-gap')))
+  await click('#certifyAndNext')
+  const saved = JSON.parse(app.window.localStorage.getItem('swl-dice-certification-batch-v1'))
+  assert.ok(saved['tl tt laser cannon'].weapons[0].keywords.some((tag) => tag.keywordId === 'impact-x'), 'Impact X est rattaché à l’arme dans ce qui sera envoyé')
+  await click('#backCertification')
+  // Plusieurs armes : blocage tant que le mot-clé n'est pas attribué.
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'at rt'))
+  assert.ok($('.cert-weapon-gap[role="alert"]'), 'alerte : mot-clé d’arme à attribuer')
+  assert.ok($('#certifyAndNext').disabled, 'certifier est impossible tant que le mot-clé n’est pas attribué')
+  await click($('[data-kw-assign="impact-x|0"]'))
+  assert.ok(!$('.cert-weapon-gap'), 'l’alerte disparaît une fois attribué')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

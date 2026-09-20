@@ -404,3 +404,5 @@ label.cert-missing select { border-color: #ff8a5c; }
 .cert-review-actions { position: sticky; bottom: 0; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; padding: 8px 0; background: var(--bg, #0b100d); }
 .cert-review-actions .big-confirm { min-height: 56px; font-size: 1.05rem; }
 @media (max-width: 800px) { .cert-review-body { grid-template-columns: 1fr; } .cert-review-actions { grid-template-columns: 1fr; } }
+.cert-weapon-gap { display: grid; gap: 6px; margin: 8px 0; padding: 10px 12px; border: 1px solid rgba(255, 180, 94, .6); border-radius: 8px; background: rgba(255, 180, 94, .08); }
+.cert-weapon-gap[role="alert"] { border-color: #ff8a5c; background: rgba(255, 138, 92, .1); }

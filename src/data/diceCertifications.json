@@ -1759,7 +1759,11 @@
           }
         ],
         "range": "melee-1",
-        "keywordIds": []
+        "keywordIds": [
+          "deflagration",
+          "souffle",
+          "fixe"
+        ]
       }
     ],
     "addedModels": 0,
