@@ -355,3 +355,9 @@
 .overview .distract-note b { color: #ff8a92; }
 .overview .distract-note.loot, .overview .distract-note.scout { border-color: rgba(94, 178, 255, .6); background: rgba(94, 178, 255, .08); }
 .overview .distract-note.loot b, .overview .distract-note.scout b { color: #8fc9ff; }
+.overview .move-rules { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px var(--u-pad); border-bottom: 1px solid var(--u-line-soft); }
+.overview .move-chip { padding: 4px 9px; border: 1px solid rgba(94, 178, 255, .45); border-radius: 999px; background: rgba(94, 178, 255, .08); color: #dbe9f3; font-size: .74rem; }
+.overview .move-chip b { color: #8fc9ff; margin-right: 4px; }
+.overview .move-chip.active { border-color: #ffb45e; background: rgba(255, 180, 94, .12); }
+.overview .move-chip.warn { border-color: #ff4550; background: rgba(255, 69, 80, .12); }
+.overview .move-chip.warn b { color: #ff8a92; }

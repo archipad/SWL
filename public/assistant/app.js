@@ -663,7 +663,7 @@ const currentRound=()=>Math.max(1,Number(read('swl.game-tracker.v1',{round:1}).r
 const exhausted=(state,card)=>Array.isArray(state.exhaustedCards)&&state.exhaustedCards.includes(card);
 function updateUnitState(entry,patch){const state=stateFor(entry);unitStates[entry.id]={...state,...patch};persistUnitStates()}
 function exhaustCard(entry,card,patch={}){const state=stateFor(entry);updateUnitState(entry,{...patch,exhaustedCards:[...new Set([...(state.exhaustedCards||[]),card])],roundSeen:currentRound()})}
-function reconcileRoundEffects(){let changed=false;const round=currentRound();for(const entry of entries){const state=stateFor(entry);if((state.roundSeen||round)>=round)continue;const immobilize=Math.max(0,Number(state.immobilize)||0)+(state.burstOfSpeedRound&&state.burstOfSpeedRound<round?1:0);unitStates[entry.id]={...state,immobilize,aim:0,dodge:0,surge:0,standby:0,exhaustedCards:[],activationActions:[],activationSource:null,mandatoryMoveDone:false,burstOfSpeedRound:null,maxSpeedOverride:null,freeActionOffers:[],distractedBy:null,forceReadied:0,roundSeen:round};changed=true}if(changed)persistUnitStates()}
+function reconcileRoundEffects(){let changed=false;const round=currentRound();for(const entry of entries){const state=stateFor(entry);if((state.roundSeen||round)>=round)continue;const immobilize=Math.max(0,Number(state.immobilize)||0)+(state.burstOfSpeedRound&&state.burstOfSpeedRound<round?1:0);unitStates[entry.id]={...state,immobilize,aim:0,dodge:0,surge:0,standby:0,exhaustedCards:[],activationActions:[],activationSource:null,mandatoryMoveDone:false,burstOfSpeedRound:null,maxSpeedOverride:null,freeActionOffers:[],distractedBy:null,forceReadied:0,speedDelta:0,extraAction:false,roundSeen:round};changed=true}if(changed)persistUnitStates()}
 function activationAutomationPanel(entry){
   const state=stateFor(entry),buttons=[];
   if(hasCard(entry,'force reflexes'))buttons.push(`<button data-effect-kind="free" data-unit-effect="force-reflexes" ${exhausted(state,'force-reflexes')?'disabled':''}><b>RÉFLEXES DE LA FORCE</b><small>Action gratuite · +1 pion Esquive</small></button>`);
@@ -715,7 +715,7 @@ function cardActionButtons(entry,state){
   return Object.entries(CARD_KEYWORD_ACTIONS).map(([id,def])=>{
     const x=keywordValue(entry,id);if(!x)return'';
     if(def.kind==='setup'&&currentRound()>1)return'';
-    const used=def.kind==='setup'?(state.setupDone||[]).includes(id):(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:actions.includes('card:'+id)||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=def.kind==='action'&&actionFull&&!used,label=typeof def.text==='function'?def.text(x):def.text;
+    const used=(def.kind==='setup'||def.once==='game')?(state.setupDone||[]).includes(id):(def.kind==='round'||def.kind==='roundfree')?exhausted(state,'kw-'+id):def.kind==='free'?false:actions.includes('card:'+id)||(def.kind==='end'&&exhausted(state,'kw-'+id)),blocked=(def.kind==='action'&&actionFull&&!used)||(!!def.needs&&!(state[def.needs]>0)&&!used),label=typeof def.text==='function'?def.text(x):def.text;
     const open=kwActionPick&&kwActionPick.entryId===entry.id&&kwActionPick.id===id;
     let inner='';
     if(open){
@@ -725,7 +725,7 @@ function cardActionButtons(entry,state){
       else inner+=`<div class="kw-choices"><button type="button" class="primary" data-kw-apply-action="${id}" ${def.pick&&!selected.length?'disabled':''}>Appliquer</button></div>`;
       inner+='<button type="button" class="secondary" data-kw-cancel-action>Annuler</button>';
     }
-    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue?' '+x:''}</b><small>${label}${used?(def.kind==='setup'?' · fait':' · déjà appliqué'):blocked?' · plus d’action disponible':def.kind==='setup'?' · touchez quand c’est fait (mise en place, round 1)':''}</small></button>${inner}</div>`;
+    return `<div class="kw-action ${open?'open':''}"><button type="button" data-card-action="${id}" ${used||blocked?'disabled':''}><b>${def.title}${keywords.find(item=>item.id===id)?.hasValue?' '+x:''}</b><small>${label}${used?(def.kind==='setup'?' · fait':' · déjà appliqué'):blocked?(def.needs&&!(state[def.needs]>0)?' · nécessite au moins 1 pion '+def.needsLabel:' · plus d’action disponible'):def.kind==='setup'?' · touchez quand c’est fait (mise en place, round 1)':''}</small></button>${inner}</div>`;
   }).filter(Boolean);
 }
 function applyCardKeywordAction(entry,id,choiceIndex){
@@ -835,6 +835,56 @@ applyCardKeywordAction=function(entry,id,choiceIndex){
   updateUnitState(entry,{setupDone:[...(state.setupDone||[]),id]});
   kwActionPick=null;
 };
+// ---- Lots 4 et 5 : Phase de Commandement, vitesse et déplacements obligatoires ----
+const glossaryText=id=>()=>keywords.find(item=>item.id===id)?.shortDefinition||'';
+Object.assign(CARD_KEYWORD_ACTIONS,{
+  // Lot 4 : Phase de Commandement (une fois par round, suivi « résolu »)
+  'autoritaire':{title:'AUTORITAIRE',kind:'round',text:'Phase de Commandement : au lieu de recevoir un ordre, cette unité le donne à une autre unité alliée à portée 1-2.',pick:{max:()=>1,self:false,effect:null,offer:'un ordre reçu par Autoritaire'}},
+  'coordination':{title:'COORDINATION',kind:'round',text:'Après avoir reçu un ordre : donne un ordre à une unité alliée à portée 1 du nom/type indiqué (un seul ordre).',pick:{max:()=>1,self:false,effect:null,offer:'un ordre reçu par Coordination'}},
+  'ordre-direct':{title:'ORDRE DIRECT',kind:'round',text:'Phase de Commandement : donne un ordre à une unité alliée à portée 2 du nom/type indiqué.',pick:{max:()=>1,self:false,effect:null,offer:'un ordre reçu par Ordre direct'}},
+  'entourage':{title:'ENTOURAGE',kind:'round',text:'Phase de Commandement : donne un ordre à l’unité indiquée à portée 2 (elle ignore le prérequis de rang Commandement pour lui prêter main-forte).',pick:{max:()=>1,self:false,effect:null,offer:'un ordre reçu par Entourage'}},
+  'inarretable':{title:'INARRÊTABLE',kind:'round',text:glossaryText('inarretable')},
+  'interrogatoire':{title:'INTERROGATOIRE',kind:'round',text:glossaryText('interrogatoire')},
+  'malin':{title:'MALIN',kind:'round',text:glossaryText('malin')},
+  'longueur-davance':{title:'LONGUEUR D’AVANCE',kind:'round',text:glossaryText('longueur-davance')},
+  'divulgation':{title:'DIVULGATION',kind:'round',text:glossaryText('divulgation')},
+  'mission-secrete':{title:'MISSION SECRÈTE',kind:'round',text:'Début de la Phase de Commandement, entièrement en territoire ennemi : gagne 1 pion Mission secrète (une seule fois par partie).',selfX:'secretMission',once:'game'},
+  // Lot 5 : vitesse, action supplémentaire, déplacement obligatoire
+  'attaque-impetueuse':{title:'ATTAQUE IMPÉTUEUSE',kind:'roundfree',text:'Début d’activation : vitesse maximale +1 ou −1 jusqu’à la fin de l’activation.',choices:[{label:'Vitesse +1',speedDelta:1},{label:'Vitesse −1',speedDelta:-1}]},
+  'marche-forcee':{title:'MARCHE FORCÉE',kind:'roundfree',text:'En se déplaçant : 1 Suppression pour +1 vitesse maximale (max 3). Les bonus s’appliquent avant les malus (Immobilisation).',self:{suppression:1},speedDelta:1},
+  'mode-roue':{title:'MODE ROUE',kind:'roundfree',text:'Début d’activation : vitesse 3 jusqu’à la fin de l’activation ; jusqu’à la fin du round perd Indifférent, gagne IA : Déplacement et Couvert 2, ne retourne plus ses Boucliers actifs.',speedSet:3},
+  'maitrise-du-juyo':{title:'MAÎTRISE DU JUYO',kind:'roundfree',text:'Avec au moins 1 pion Blessure : 1 action supplémentaire par activation (jamais plus de deux déplacements, gratuits inclus).',extraAction:true,needs:'wound',needsLabel:'Blessure'},
+  'saut-x':{title:'SAUT',kind:'action',text:x=>`Action de carte (chaque fois qu’un déplacement est possible) : déplacement normal ignorant le terrain difficile et les figurines de hauteur ≤ ${x}.`},
+  'mobile':{title:'MOBILE',kind:'roundfree',text:'Déplacement obligatoire gratuit (début ou fin de l’étape Effectuer des actions) : déplacement normal complet, jamais en arrière.',flag:'mandatoryMoveDone'},
+  'speeder-x':{title:'SPEEDER',kind:'roundfree',text:x=>`Déplacement obligatoire gratuit (début ou fin de l’étape Effectuer des actions) ; terrain de hauteur ≤ ${x} franchissable.`,flag:'mandatoryMoveDone'},
+  'deplacement-obligatoire':{title:'DÉPLACEMENT OBLIGATOIRE',kind:'roundfree',text:'Action Se déplacer gratuite imposée : déplacement normal complet à vitesse maximale (ou le plus loin possible).',flag:'mandatoryMoveDone'},
+});
+const applyCardActionLot3=applyCardKeywordAction;
+applyCardKeywordAction=function(entry,id,choiceIndex){
+  const def=CARD_KEYWORD_ACTIONS[id];
+  if(def&&(def.speedDelta||def.speedSet||def.choices?.[choiceIndex]?.speedDelta||def.extraAction||def.flag)){
+    const state=stateFor(entry),delta=def.speedDelta||def.choices?.[choiceIndex]?.speedDelta||0,patch={};
+    if(delta)patch.speedDelta=(state.speedDelta||0)+delta;
+    if(def.speedSet)patch.maxSpeedOverride=def.speedSet;
+    if(def.extraAction)patch.extraAction=true;
+    if(def.flag)patch[def.flag]=true;
+    updateUnitState(entry,patch);
+  }
+  if(def&&def.once==='game'){
+    const state=stateFor(entry),x=keywordValue(entry,id);
+    if(def.selfX)bumpTokens(entry,{[def.selfX]:x});
+    updateUnitState(entry,{setupDone:[...(state.setupDone||[]),id]});
+    return;
+  }
+  return applyCardActionLot3(entry,id,choiceIndex);
+};
+const MOVE_RULES={'mobilite-difficile':'Une seule action Se déplacer par activation','stationnaire':'Ne peut pas se déplacer (pivot seulement)','cloue-au-sol':'Ne peut pas escalader','alourdissement':'Saut interdit avec un pion Objectif','ascension':'Escalade : hauteur verticale 2','grimpeur-experimente':'Franchit une hauteur de 2 en grimpant','vehicule-grimpant':'Compté comme soldat pour grimper','pivot-complet':'Pivote jusqu’à 360°','redeploiement':'Pivote avant ou après le déplacement','sans-entrave':'Ignore la réduction de vitesse du terrain difficile','sustentation':'Peut Attendre et reculer','retrait':'Engagée avec un seul ennemi : peut se déplacer'};
+function movementRulesHtml(entry){
+  const state=stateFor(entry),chips=Object.entries(MOVE_RULES).filter(([id])=>keywordValue(entry,id)).map(([id,text])=>`<span class="move-chip"><b>${keywords.find(item=>item.id===id)?.name.replace(/ :.*$/,'')||id}</b> ${text}</span>`);
+  const speed=state.speedDelta?`<span class="move-chip active"><b>Vitesse maximale</b> ${state.speedDelta>0?'+':''}${state.speedDelta} jusqu’à la fin de l’activation</span>`:'';
+  const mandatory=['mobile','speeder-x','deplacement-obligatoire'].some(id=>keywordValue(entry,id))&&!state.mandatoryMoveDone?'<span class="move-chip warn"><b>Déplacement obligatoire</b> à effectuer ce round (début ou fin de l’étape Effectuer des actions)</span>':'';
+  return chips.length||speed||mandatory?`<div class="move-rules">${speed}${mandatory}${chips.join('')}</div>`:'';
+}
 function keywordAutomationPanel(entry){
   const state=stateFor(entry),buttons=Object.entries(KEYWORD_TOKEN_EFFECTS).map(([id,fx])=>{const x=keywordValue(entry,id);if(!x)return'';const used=fx.once&&exhausted(state,'kw-'+id);return `<button data-kw-apply="${id}" ${used?'disabled':''}><b>${fx.title} ${x}</b><small>${fx.when} · ${fx.effect(x,state)}${used?' · déjà appliqué ce round':fx.once?' · une fois par round':''}</small></button>`}).filter(Boolean);
   const cardActions=[...cardActionButtons(entry,state),...kw2Buttons(entry,state)];
@@ -890,7 +940,7 @@ function activationBriefing(entry){
   const cardNotes=noteSources.map(src=>{const note=noteFor(src.name);return note?{label:src.label,note}:null}).filter(Boolean);
   const noteRows=cardNotes.map(n=>`<li><b>${n.label}</b><small>${renderDiceText(n.note)}</small></li>`).join('');
   const mobility=state.maxSpeedOverride?`<div class="movement-readout active"><small>MOBILITÉ ACTUELLE</small><b>VITESSE MAXIMALE ${state.maxSpeedOverride}</b><span>${immobilize?`Réduite de ${immobilize} par Immobilisation`:'Bonus actif pour ce round'}</span></div>`:immobilize?`<div class="movement-readout warning"><small>MOBILITÉ RÉDUITE</small><b>−${immobilize} EN VITESSE</b><span>Appliquez ce malus à la vitesse imprimée sur la carte.</span></div>`:`<div class="movement-readout"><small>MOBILITÉ</small><b>AUCUN MODIFICATEUR ACTIF</b><span>Utilisez la vitesse imprimée sur la carte Unité.</span></div>`;
-  return `<section class="activation-briefing"><i class="brief-corner top" aria-hidden="true"></i><i class="brief-corner bottom" aria-hidden="true"></i><header><div><small>INFO · BRIEFING TACTIQUE · ROUND ${currentRound()}</small><strong>CE QUE CETTE UNITÉ PEUT FAIRE MAINTENANT</strong></div>${mobility}</header>${arsenal?`<div class="brief-alert"><b>ARSENAL ${arsenal}</b><span>Chaque figurine peut employer jusqu’à ${arsenal} armes pendant l’action Attaquer ; chaque arme ne rejoint qu’une seule réserve.</span></div>`:''}<div class="brief-section"><small>ACTIVATION &amp; DÉPLACEMENT</small><ul>${activationRules.length?phaseRows(activationRules):'<li class="brief-empty">Aucun effet spécial d’activation identifié : utilisez les deux actions normales de l’unité.</li>'}</ul></div><div class="brief-section"><small>ATTAQUE</small><ul>${attackRules.length?rows(attackRules):'<li class="brief-empty">Aucun mot-clé d’attaque propre à cette unité ou ses améliorations.</li>'}</ul></div>${noteRows?`<div class="brief-section"><small>EFFETS DE CARTE</small><ul>${noteRows}</ul></div>`:''}${armyRules.length?`<div class="brief-section"><small>COMPOSITION D’ARMÉE (rappel)</small><ul>${rows(armyRules)}</ul></div>`:''}</section>`
+  return `<section class="activation-briefing"><i class="brief-corner top" aria-hidden="true"></i><i class="brief-corner bottom" aria-hidden="true"></i><header><div><small>INFO · BRIEFING TACTIQUE · ROUND ${currentRound()}</small><strong>CE QUE CETTE UNITÉ PEUT FAIRE MAINTENANT</strong></div>${mobility}</header>${movementRulesHtml(entry)}${arsenal?`<div class="brief-alert"><b>ARSENAL ${arsenal}</b><span>Chaque figurine peut employer jusqu’à ${arsenal} armes pendant l’action Attaquer ; chaque arme ne rejoint qu’une seule réserve.</span></div>`:''}<div class="brief-section"><small>ACTIVATION &amp; DÉPLACEMENT</small><ul>${activationRules.length?phaseRows(activationRules):'<li class="brief-empty">Aucun effet spécial d’activation identifié : utilisez les deux actions normales de l’unité.</li>'}</ul></div><div class="brief-section"><small>ATTAQUE</small><ul>${attackRules.length?rows(attackRules):'<li class="brief-empty">Aucun mot-clé d’attaque propre à cette unité ou ses améliorations.</li>'}</ul></div>${noteRows?`<div class="brief-section"><small>EFFETS DE CARTE</small><ul>${noteRows}</ul></div>`:''}${armyRules.length?`<div class="brief-section"><small>COMPOSITION D’ARMÉE (rappel)</small><ul>${rows(armyRules)}</ul></div>`:''}</section>`
 }
 const overviewBriefingBase=overview;
 overview=function(entry,role){overviewBriefingBase(entry,role);if(role!=='attack'||defeated(entry))return;const anchor=root.querySelector('.overview .card-strip');anchor?.insertAdjacentHTML('afterend',activationBriefing(entry))};
@@ -900,7 +950,7 @@ overview=function(entry,role){overviewBriefingFoldBase(entry,role);root.querySel
 const overviewColumnsBase=overview;
 overview=function(entry,role){overviewColumnsBase(entry,role);const ov=root.querySelector('.overview');if(!ov)return;const left=document.createElement('div'),right=document.createElement('div');left.className='ov-col ov-left';right.className='ov-col ov-right';[...ov.children].forEach(child=>(child.matches('.activation-automation,.post-rally-panel,.activation-briefing,.unit-state-editor')?right:left).append(child));ov.append(left,right)};
 
-function activationActionLimit(entry){const state=stateFor(entry),stats=certifiedUnitStats(entry),morale=stats&&!moraleImmune(entry)?engine.moraleState({currentSuppression:state.suppression,courage:stats.courage}):null;return morale?.suppressed?1:2}
+function activationActionLimit(entry){const state=stateFor(entry),stats=certifiedUnitStats(entry),morale=stats&&!moraleImmune(entry)?engine.moraleState({currentSuppression:state.suppression,courage:stats.courage}):null;return Math.min(3,(morale?.suppressed?1:2)+(state.extraAction&&(state.wound||0)>0?1:0))}
 
 const weaponScreenSaberBase=weaponScreen;
 function saberMeleeRows(){return[attacker.unit.name,...(attacker.unit.upgrades||[]).map(upgrade=>upgrade.name)].flatMap(card=>(profileFor(card)?.weapons||[]).filter(weapon=>engine.rangeBounds(weapon.range)?.melee&&weapon.dice!=='variable').map((weapon,index)=>({card,weapon,key:`${norm(card)}:${index}`})))}

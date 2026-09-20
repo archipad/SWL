@@ -658,6 +658,50 @@ scenario('Lot 3 : mise en place (Position préparée, Prime, Infiltration, Bless
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Lots 4-5 : Ordre direct (offre d’ordre), Marche forcée (vitesse + Suppression), Speeder (déplacement obligatoire), Mission secrète (une fois par partie)', async () => {
+  const lists = {
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Agent Kallus', upgrades: [] }, { name: 'Range Troopers', upgrades: [] }, { name: '74-Z Speeder Bikes', upgrades: [] }, { name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'R2-D2', upgrades: [] }, { name: 'Rebel Troopers', upgrades: [] }] },
+  }
+  const stateOf = (app, name) => JSON.parse(app.window.eval('JSON.stringify(stateFor(entries.find(e=>e.unit.name===' + JSON.stringify(name) + ')))'))
+
+  let app = await openAssistant(lists)
+  await app.pickUnit('Agent Kallus')
+  await app.click('[data-card-action="ordre-direct"]')
+  await app.click(app.$$('[data-kw-target]').find((button) => /Stormtroopers/.test(app.text(button))))
+  await app.click('[data-kw-apply-action]')
+  assert.match(stateOf(app, 'Stormtroopers').freeActionOffers[0].label, /ordre reçu par Ordre direct/, 'la cible reçoit un ordre')
+  assert.ok(app.$('[data-card-action="ordre-direct"]').disabled, 'une fois par round')
+  app.window.close()
+
+  app = await openAssistant(lists)
+  await app.pickUnit('Range Troopers')
+  await app.click('[data-card-action="marche-forcee"]')
+  const forced = stateOf(app, 'Range Troopers')
+  assert.equal(forced.suppression, 1, '+1 Suppression')
+  assert.equal(forced.speedDelta, 1, 'vitesse maximale +1')
+  assert.match(app.text(app.$('.move-rules')), /Vitesse maximale \+1/, 'la vitesse modifiée est affichée dans le Briefing')
+  app.window.close()
+
+  app = await openAssistant(lists)
+  await app.pickUnit('Speeder')
+  assert.match(app.text(app.$('.move-rules')), /Déplacement obligatoire/, 'alerte tant que le déplacement obligatoire n’est pas fait')
+  await app.click('[data-card-action="speeder-x"]')
+  assert.equal(stateOf(app, '74-Z Speeder Bikes').mandatoryMoveDone, true)
+  assert.doesNotMatch(app.$('.move-rules') ? app.text(app.$('.move-rules')) : '', /Déplacement obligatoire/)
+  app.window.close()
+
+  // Mission secrète : le camp choisi est celui de la première liste ; on inverse pour jouer R2-D2.
+  app = await openAssistant({ 'swl.list.p1.v1': lists['swl.list.p2.v1'], 'swl.list.p2.v1': lists['swl.list.p1.v1'] })
+  await app.pickUnit('R2-D2')
+  await app.click('[data-card-action="mission-secrete"]')
+  assert.equal(stateOf(app, 'R2-D2').secretMission, 1, '+1 pion Mission secrète')
+  assert.ok(app.$('[data-card-action="mission-secrete"]').disabled, 'une seule fois par partie')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {

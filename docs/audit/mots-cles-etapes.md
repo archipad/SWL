@@ -3,8 +3,8 @@
 Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 199 mots-clés du glossaire.
 
 - Combat (attaque / défense), gérés par le moteur : **86** (52 automatiques, 34 assistés).
-- Hors combat, **application par bouton** : 44.
-- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 55.
+- Hors combat, **application par bouton** : 62.
+- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 37.
 - Composition d’armée (rappel replié) : 14.
 
 | Mot-clé | Étape | Traitement | Cartes |
@@ -128,18 +128,18 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Aguerri | Déplacement | rappel | 5 |
 | Ascension | Déplacement | rappel | 7 |
 | Cloué au Sol | Déplacement | rappel | 0 |
-| Déplacement Obligatoire | Déplacement | rappel | 0 |
+| Déplacement Obligatoire | Déplacement | auto | 0 |
 | Grimpeur Expérimenté | Déplacement | rappel | 3 |
-| Marche Forcée | Déplacement | rappel | 2 |
-| Mobile | Déplacement | rappel | 0 |
+| Marche Forcée | Déplacement | auto | 2 |
+| Mobile | Déplacement | auto | 0 |
 | Mobilité Difficile | Déplacement | rappel | 1 |
 | Pivot Complet | Déplacement | rappel | 3 |
 | Preste X | Déplacement | auto | 3 |
 | Redéploiement | Déplacement | rappel | 7 |
 | Retrait | Déplacement | rappel | 2 |
 | Sans Entrave | Déplacement | rappel | 4 |
-| Saut X | Déplacement | rappel | 14 |
-| Speeder X | Déplacement | rappel | 4 |
+| Saut X | Déplacement | auto | 14 |
+| Speeder X | Déplacement | auto | 4 |
 | Stationnaire | Déplacement | rappel | 1 |
 | Sustentation : Terrestre/Aérienne X | Déplacement | rappel | 2 |
 | Tacticien X | Déplacement | auto | 8 |
@@ -169,7 +169,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Transport | Mise en place | auto | 3 |
 | Transport Léger X : Ouvert/Fermé | Mise en place | auto | 0 |
 | Traqué | Mise en place | auto | 1 |
-| Attaque Impétueuse | Ordre reçu · début d'activation | rappel | 0 |
+| Attaque Impétueuse | Ordre reçu · début d'activation | auto | 0 |
 | Autonome : Pion X/Action | Ordre reçu · début d'activation | rappel | 13 |
 | Cible X | Ordre reçu · début d'activation | auto | 1 |
 | Défense X | Ordre reçu · début d'activation | auto | 2 |
@@ -178,20 +178,20 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Fiable X | Ordre reçu · début d'activation | auto | 3 |
 | IA : Action | Ordre reçu · début d'activation | rappel | 4 |
 | Infanterie Mécanisée | Ordre reçu · début d'activation | auto | 0 |
-| Maîtrise du Juyo | Ordre reçu · début d'activation | rappel | 1 |
-| Mode Roue | Ordre reçu · début d'activation | rappel | 0 |
+| Maîtrise du Juyo | Ordre reçu · début d'activation | auto | 1 |
+| Mode Roue | Ordre reçu · début d'activation | auto | 0 |
 | Surcharge X | Ordre reçu · début d'activation | auto | 0 |
 | Telle est la Voie | Ordre reçu · début d'activation | auto | 0 |
-| Autoritaire | Phase de Commandement | rappel | 0 |
-| Coordination : Nom/Type d'Unité | Phase de Commandement | rappel | 4 |
-| Divulgation | Phase de Commandement | rappel | 0 |
-| Entourage : Nom d'Unité | Phase de Commandement | rappel | 2 |
-| Inarrêtable | Phase de Commandement | rappel | 1 |
-| Interrogatoire | Phase de Commandement | rappel | 2 |
-| Longueur d'Avance | Phase de Commandement | rappel | 1 |
-| Malin | Phase de Commandement | rappel | 1 |
-| Mission Secrète | Phase de Commandement | rappel | 2 |
-| Ordre Direct : Nom/Type d'Unité | Phase de Commandement | rappel | 2 |
+| Autoritaire | Phase de Commandement | auto | 0 |
+| Coordination : Nom/Type d'Unité | Phase de Commandement | auto | 4 |
+| Divulgation | Phase de Commandement | auto | 0 |
+| Entourage : Nom d'Unité | Phase de Commandement | auto | 2 |
+| Inarrêtable | Phase de Commandement | auto | 1 |
+| Interrogatoire | Phase de Commandement | auto | 2 |
+| Longueur d'Avance | Phase de Commandement | auto | 1 |
+| Malin | Phase de Commandement | auto | 1 |
+| Mission Secrète | Phase de Commandement | auto | 2 |
+| Ordre Direct : Nom/Type d'Unité | Phase de Commandement | auto | 2 |
 | Générateur X | Phase Finale | auto | 0 |
 | Permanent | Phase Finale | rappel | 0 |
 | Renforts | Phase Finale | rappel | 1 |
