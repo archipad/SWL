@@ -51,9 +51,11 @@ export default defineConfig({
         runtimeCaching: [
           {
             urlPattern: /\/SWL\/cards\/.*\.(?:png|jpe?g|webp)$/i,
-            handler: 'CacheFirst',
+            // StaleWhileRevalidate (et non CacheFirst) : un visuel corrigé sur le site (ex. Boba Fett, cadrage/orientation) doit remplacer
+            // l'ancienne copie mise en cache, au lieu de rester 90 jours sur l'appareil. Cache v2 : abandonne les copies périmées de la v1.
+            handler: 'StaleWhileRevalidate',
             options: {
-              cacheName: 'swl-card-images-v1',
+              cacheName: 'swl-card-images-v2',
               expiration: { maxEntries: 600, maxAgeSeconds: 60 * 60 * 24 * 90 },
             },
           },

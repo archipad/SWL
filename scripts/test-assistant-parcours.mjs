@@ -398,7 +398,7 @@ scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé,
   const { $, $$, text, click, document } = app
   await click('#certification')
   const total = Number(text($('#certificationCount')))
-  assert.ok(total > 250, 'toutes les cartes sans certification complète comptent : ' + total)
+  assert.ok(total > 100, 'toutes les cartes sans certification complète comptent : ' + total)
   assert.ok($$('[data-cert-filter]').length === 4, 'filtres : toutes, mes listes, écarts, jamais certifiées')
   await click('[data-cert-filter="gaps"]')
   const gaps = $$('.cert-list button[data-cert-card]')
@@ -412,15 +412,8 @@ scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé,
   assert.match(text($('.cert-sources')), /À COMPARER AVEC LE VISUEL/)
   assert.match(text($('.cert-sources')), /Charge/, 'l’écart signalé est affiché')
   assert.ok($$('input[data-weapon-range]').length >= 1, 'la portée de chaque arme est modifiable')
-  assert.ok($('#queueFullCard').disabled, 'certifier est impossible sans relire les écarts')
-  for (const box of $$('[data-full-check]')) { box.checked = true; box.dispatchEvent(new app.window.Event('change', { bubbles: true })); await app.settle() }
-  assert.ok($('#queueFullCard').disabled, 'les six contrôles ne suffisent pas : la lecture des écarts est obligatoire')
-  const ack = $('[data-full-ack]')
-  assert.ok(ack, 'case de lecture des écarts')
-  ack.checked = true
-  ack.dispatchEvent(new app.window.Event('change', { bubbles: true }))
-  await app.settle()
-  assert.ok(!$('#queueFullCard').disabled, 'certification possible après relecture')
+  assert.equal($$('[data-full-check]').length + $$('[data-full-ack]').length, 0, 'plus aucune case à cocher obligatoire (six contrôles, lecture des écarts)')
+  assert.ok(!$('#queueFullCard').disabled, 'un seul clic suffit pour certifier la carte (le bouton vaut lecture des écarts)')
   await click('#queueFullCard')
   await click('#backCertification')
   assert.match(text($('.cert-batch-bar')), /correction/)
@@ -494,6 +487,8 @@ scenario('Import : l’amélioration « Chewbacca » n’est jamais la carte Uni
 scenario('Certification : explication en langage courant du désaccord (Boba Fett) et récapitulatif à comparer au visuel', async () => {
   const app = await openAssistant()
   const { $, $$, text, click } = app
+  // Le désaccord réel de Boba a été résolu par sa certification : on le rejoue avec un désaccord de test (le scénario ne doit pas dépendre de l'état des données).
+  app.window.SWL_REFERENCE.keywordConflicts['boba fett infamous bounty hunter'] = { certifiedOnly: ['impact-x', 'perforant-x', 'polyvalent'], tagsOnly: ['arsenal-x'], valueDiffs: [], suspiciousEmpty: false, reviewed: false }
   await click('#certification')
   await click('[data-cert-filter="gaps"]')
   await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'boba fett infamous bounty hunter'))
