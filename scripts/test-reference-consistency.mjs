@@ -72,6 +72,15 @@ for (const [card, profile] of Object.entries(ref.weapons)) {
 }
 for (const [card, use] of Object.entries(ref.cardUse || {})) if (!USES.has(use)) fail(`${card} : utilisation de carte inconnue « ${use} »`)
 
+/* Armes imprimées sur des cartes qui n'en avaient aucune dans la base (audit du 21/09/2026 : comptage des icônes de portée sur les
+   visuels). Ces cartes doivent garder leurs armes. */
+for (const card of ['df 90 mortar trooper', 'dewback rider', 'e web heavy blaster team', 'stormtrooper heavy gunner squad', 'kraken', 'captain rex', 'mounted gunners', 'kallus the operative', 'darth vader the emperor s apprentice', 'iden s id10 seeker droid']) {
+  if (!(ref.weapons[card]?.weapons || []).length) fail(card + ' : la carte imprime des armes, la base n’en a aucune')
+}
+/* Vitesse : obligatoire pour toute unité certifiée (rappel des unités encore sans vitesse, non bloquant pour l'existant). */
+const noSpeed = Object.entries(ref.weapons).filter(([, profile]) => profile.fullCardCertification?.cardType === 'unit' && !['1', '2', '3'].includes(String(profile.fullCardCertification.speed))).map(([card]) => card)
+if (noSpeed.length) console.warn('À CERTIFIER (vitesse manquante) : ' + noSpeed.join(', '))
+
 let certified = 0
 for (const [card, profile] of Object.entries(ref.weapons)) {
   const full = profile.fullCardCertification

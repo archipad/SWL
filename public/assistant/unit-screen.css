@@ -391,3 +391,6 @@
 .cert-use { display: grid; gap: 4px; margin: 8px 0; }
 .cert-removals { display: grid; gap: 6px; margin: 8px 0; padding: 10px; border: 1px solid #ff8a5c; border-radius: 8px; background: rgba(255, 138, 92, .1); }
 .cert-removal { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.speed-chip { display: inline-flex; gap: 4px; align-items: baseline; margin-left: 6px; padding: 2px 8px; border: 1px solid rgba(255, 180, 94, .6); border-radius: 999px; font-size: .8rem; }
+.speed-chip.missing { border-color: #ff8a5c; color: #ff8a5c; }
+label.cert-missing select { border-color: #ff8a5c; }

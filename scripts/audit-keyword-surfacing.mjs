@@ -20,7 +20,7 @@ const ref = sandbox.window.SWL_REFERENCE
 const appSource = fs.readFileSync(path.join(assistantDir, 'app.js'), 'utf8')
 const rankCatalog = vm.runInNewContext('(' + appSource.match(/const rankCatalog=(\{[\s\S]*?\});/)[1] + ')')
 const unitKeys = new Set(Object.values(rankCatalog).flat())
-const isUnit = (key) => unitKeys.has(key)
+const isUnit = (key) => unitKeys.has(key) || !!(ref.weapons[key]?.unitStats || ref.weapons[key]?.defenseColor || ref.weapons[key]?.fullCardCertification?.cardType === 'unit')
 
 class LocalScriptsOnly extends ResourceLoader {
   fetch(url) {
@@ -90,7 +90,9 @@ async function attackFlow(app, weaponHint) {
     if (/arc de tir/.test(gate) && app.$('#fixedArcConfirmed')) { const box = app.$('#fixedArcConfirmed'); if (!box.checked) { await app.click(box); continue } }
     if (/Sélectionnez au moins une arme/i.test(gate)) {
       const toggles = app.$$('.weapon-toggle').filter((button) => !button.disabled)
-      const preferred = toggles.find((button) => weaponHint?.name && norm(app.text(button.closest('.weapon-choice') || button)).includes(norm(weaponHint.name))) || toggles[0]
+      // Texte de la ligne de CETTE arme : on remonte jusqu'au plus petit conteneur qui ne porte qu'un seul bouton d'arme.
+      const rowText = (button) => { let node = button; while (node.parentElement && node.parentElement.querySelectorAll('.weapon-toggle').length <= 1) node = node.parentElement; return app.text(node) }
+      const preferred = toggles.find((button) => weaponHint?.key && button.dataset.key === weaponHint.key) || toggles.find((button) => weaponHint?.name && norm(rowText(button)).includes(norm(weaponHint.name))) || toggles[0]
       if (!preferred) { stuck = 'aucune arme sélectionnable'; break }
       await app.click(preferred); continue
     }
@@ -127,7 +129,7 @@ const cardsWithKeyword = (id) => {
   for (const [card, list] of Object.entries(ref.tags)) if (list.some((tag) => tag.keywordId === id)) holders.push({ card, where: 'carte' })
   for (const [card, profile] of Object.entries(ref.weapons)) {
     const weapon = (profile.weapons || []).find((item) => (item.keywordIds || []).includes(id))
-    if (weapon) holders.push({ card, where: 'arme', weapon: weapon.name, range: String(weapon.range || '') })
+    if (weapon) holders.push({ card, where: 'arme', weapon: weapon.name, key: card + ':' + profile.weapons.indexOf(weapon), range: String(weapon.range || '') })
   }
   return holders
 }
@@ -160,7 +162,7 @@ for (const keyword of ref.keywords) {
       if (combat) {
         // 2. Attaque complète (le porteur attaque ou défend selon le mot-clé)
         await app.pickTile(); await app.click('#next'); await app.pickTile()
-        const flow = await attackFlow(app, holder.where === 'arme' ? { name: holder.weapon, range: holder.range } : null)
+        const flow = await attackFlow(app, holder.where === 'arme' ? { name: holder.weapon, range: holder.range, key: holder.key } : null)
         row.flow = Object.fromEntries(Object.entries(flow.seen).map(([label, value]) => [label, norm(value).includes(name)]))
         row.stuck = flow.stuck
         if (process.env.DUMP) for (const label of process.env.DUMP.split(',')) console.log('---', keyword.id, label, ':', (flow.seen[label] || '').slice(0, 1500))
@@ -169,7 +171,7 @@ for (const keyword of ref.keywords) {
     } catch (error) { row.stuck = 'erreur : ' + error.message }
   }
   rows.push(row)
-  process.stdout.write(`${keyword.id}: fiche=${row.sheet} flux=${row.flow ? Object.entries(row.flow).filter(([, ok]) => ok).map(([label]) => label).join(',') || '—' : 'n/a'}${row.stuck ? ' ⚠ ' + row.stuck : ''}\n`)
+  process.stdout.write(`${keyword.id} [${row.card}]: fiche=${row.sheet} flux=${row.flow ? Object.entries(row.flow).filter(([, ok]) => ok).map(([label]) => label).join(',') || '—' : 'n/a'}${row.stuck ? ' ⚠ ' + row.stuck : ''}\n`)
 }
 
 const lines = ['# Où chaque mot-clé s’affiche dans l’Assistant', '',

@@ -51,7 +51,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Équipe Sniper | Attaque | moteur (assisté) | 0 |
 | Exemplaire | Attaque | moteur (assisté) | 3 |
 | Explosion X : Type de Charge | Attaque | moteur (assisté) | 0 |
-| Fixe : Avant/Arrière/Flancs | Attaque | moteur (assisté) | 21 |
+| Fixe : Avant/Arrière/Flancs | Attaque | moteur (assisté) | 24 |
 | Haute Vélocité | Attaque | moteur (automatique) | 8 |
 | Immobiliser X | Attaque | moteur (automatique) | 3 |
 | Immunité : Déflexion | Attaque | moteur (automatique) | 0 |
@@ -61,7 +61,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | La Mort Venue du Ciel | Attaque | moteur (automatique) | 0 |
 | Les Mandaloriens sont Plus Forts Ensemble | Attaque | moteur (assisté) | 0 |
 | Létal X | Attaque | moteur (automatique) | 7 |
-| Longue Distance | Attaque | moteur (automatique) | 11 |
+| Longue Distance | Attaque | moteur (automatique) | 12 |
 | Maîtrise de l'Ataru | Attaque | moteur (automatique) | 0 |
 | Maîtrise du Jar'Kai | Attaque | moteur (automatique) | 1 |
 | Maîtrise du Makashi | Attaque | moteur (automatique) | 0 |

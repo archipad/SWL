@@ -1053,6 +1053,26 @@ scenario('Strangulation de la Force : réactivable (Maître de la Force) et rapp
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Vitesse : affichée sur la fiche d’unité (puce + mobilité) et obligatoire dans la certification des unités', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click, pickUnit } = app
+  await pickUnit('Stormtroopers')
+  assert.match(text($('.speed-chip')), /Vitesse\s*2/, 'la puce de vitesse est affichée : ' + text($('.speed-chip')))
+  assert.match(text($('.movement-readout')), /VITESSE 2/, 'la mobilité annonce la vitesse : ' + text($('.movement-readout')))
+  await click('#restart')
+  // Unité non encore certifiée : la vitesse manquante est signalée.
+  const tile = $$('.unit-tile').find((candidate) => !/Stormtroopers/.test(text(candidate)))
+  if (tile) { await click(tile); const chip = $('.speed-chip'); if (chip) assert.ok(/Vitesse/.test(text(chip)), 'puce de vitesse présente') }
+  await click('#certification')
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'stormtroopers'))
+  const select = $('select[data-full-field="speed"]')
+  assert.ok(select, 'la vitesse est un champ à choix (1, 2, 3) dans la certification de l’unité')
+  assert.equal(select.value, '2', 'la vitesse déjà certifiée est reprise')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
     try {
