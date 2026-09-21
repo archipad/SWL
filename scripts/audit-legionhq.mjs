@@ -59,6 +59,40 @@ const cStart = appSource.indexOf('const combatProfiles={'), cEnd = appSource.ind
 const combat = vm.runInNewContext('(function(){const profile=(attackSurge,defenseSurge)=>({attackSurge,defenseSurge});return (' + appSource.slice(cStart + 'const combatProfiles='.length, cEnd + 2) + ')})()')
 const norm = (s) => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 const aliasTable = JSON.parse(fs.readFileSync(path.join(here, 'data/legionhq-aliases.json'), 'utf8')).aliases
+const hqKeywordMap = JSON.parse(fs.readFileSync(path.join(here, 'data/legionhq-keyword-map.json'), 'utf8')).map
+const kwName = Object.fromEntries(ref.keywords.map((k) => [k.id, k.name]))
+const mappableIds = new Set(Object.values(hqKeywordMap))
+
+/* Mots-clés : union carte + armes, par id de l'appli avec les valeurs numériques rencontrées. */
+function hqKeywords(card) {
+  const out = {}
+  const add = (k) => {
+    const name = typeof k === 'string' ? k : k?.name, id = hqKeywordMap[name]
+    if (!id) return
+    out[id] ||= []
+    const value = typeof k === 'object' && k.value !== undefined && /^\d+$/.test(String(k.value)) ? Number(k.value) : null
+    if (value !== null && !out[id].includes(value)) out[id].push(value)
+  }
+  for (const k of card.keywords || []) add(k)
+  for (const w of card.weapons || []) for (const k of w.keywords || []) add(k)
+  return out
+}
+function appKeywords(key, profile) {
+  const out = {}
+  const add = (id, value) => { out[id] ||= []; const n = Number(value); if (Number.isFinite(n) && value !== undefined && value !== null && value !== '' && !out[id].includes(n)) out[id].push(n) }
+  for (const tag of ref.tags[key] || []) add(tag.keywordId, tag.value)
+  for (const w of profile.weapons || []) for (const id of w.keywordIds || []) add(id, w.keywordValues?.[id])
+  return out
+}
+function compareKeywords(list, key, profile, card) {
+  const hq = hqKeywords(card), app = appKeywords(key, profile)
+  const missing = Object.keys(hq).filter((id) => !(id in app)), extra = Object.keys(app).filter((id) => mappableIds.has(id) && !(id in hq))
+  const values = Object.keys(hq).filter((id) => id in app && hq[id].length && app[id].length && hq[id].some((v) => !app[id].includes(v)))
+  if (missing.length) list.push('mots-clés : Legion HQ indique ' + missing.map((id) => kwName[id] || id).join(', ') + ', absent(s) de l’appli')
+  if (extra.length) list.push('mots-clés : présents dans l’appli mais pas sur Legion HQ : ' + extra.map((id) => kwName[id] || id).join(', '))
+  for (const id of values) list.push('mots-clés : valeur de « ' + (kwName[id] || id) + ' » : Legion HQ ' + hq[id].join('/') + ' / appli ' + app[id].join('/'))
+  return hq
+}
 
 /* ---------- Conversions ---------- */
 const RANK = { commander: 'commandant', operative: 'operative', corps: 'corps', specialforces: 'special', support: 'support', heavy: 'heavy' }
@@ -146,12 +180,14 @@ for (const key of Object.keys(ref.weapons)) {
       if (hqDefense !== appDefense) list.push(`adrénaline de défense : site ${hqDefense} / appli ${appDefense}`)
     }
     compareWeapons(list, profile.weapons, c.weapons)
+    reference[key].kw = compareKeywords(list, key, profile, c)
     if (list.length) problems.push({ kind: 'unité', key, name: c.cardName + (c.title ? ', ' + c.title : ''), list })
   } else {
     const c = best(pool, (card) => weaponScore(profile.weapons, card.weapons))
     comparedUpgrades++
-    if ((c.weapons || []).some((w) => w.dice)) reference[key] = { name: c.cardName, kind: 'upgrade', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
+    reference[key] = { name: c.cardName, kind: 'upgrade', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
     if ((c.weapons || []).length || (profile.weapons || []).length) compareWeapons(list, profile.weapons, c.weapons)
+    reference[key].kw = compareKeywords(list, key, profile, c)
     if (list.length) problems.push({ kind: 'amélioration', key, name: c.cardName, list })
   }
 }
@@ -176,7 +212,7 @@ lines.push('', '## Cartes non appariées', '', 'Unités : ' + (unmatched.unit.jo
 fs.writeFileSync(path.join(root, 'docs/audit/recoupement-legionhq.md'), lines.join('\n'))
 if (writeReference) {
   const sorted = Object.fromEntries(Object.entries(reference).sort(([a], [b]) => a.localeCompare(b)))
-  fs.writeFileSync(path.join(root, 'src/data/legionhqReference.json'), JSON.stringify({ _meta: { source: 'https://legionhq2.com', genere: new Date().toISOString().slice(0, 10), description: 'Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write.' }, cards: sorted }, null, 1) + '\n')
+  fs.writeFileSync(path.join(root, 'src/data/legionhqReference.json'), JSON.stringify({ _meta: { keywordIds: [...mappableIds].sort(), source: 'https://legionhq2.com', genere: new Date().toISOString().slice(0, 10), description: 'Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write.' }, cards: sorted }, null, 1) + '\n')
   console.log('référence écrite : ' + Object.keys(sorted).length + ' cartes -> src/data/legionhqReference.json')
 }
 console.log(`Legion HQ : ${comparedUnits} unités, ${comparedUpgrades} améliorations, ${comparedWeapons} armes comparées ; ${problems.length} carte(s) avec écart ; ${speedSuggestions.length} vitesse(s) à renseigner ; non appariées : ${unmatched.unit.length} unités, ${unmatched.upgrade.length} améliorations.`)

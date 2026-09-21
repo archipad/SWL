@@ -173,7 +173,9 @@ try {
 
   // Référence Legion HQ (src/data/legionhqReference.json) : préremplissage de la vitesse et détection d'écarts dans la certification.
   const hqPath = resolve(projectRoot, 'src/data/legionhqReference.json')
-  const legionhq = existsSync(hqPath) ? JSON.parse(await readFile(hqPath, 'utf8')).cards : {}
+  const hqFile = existsSync(hqPath) ? JSON.parse(await readFile(hqPath, 'utf8')) : { cards: {}, _meta: {} }
+  const legionhq = hqFile.cards
+  const legionhqKeywordIds = hqFile._meta?.keywordIds || []
   const hqTriagePath = resolve(projectRoot, 'src/data/legionhqTriage.json')
   const legionhqIgnore = existsSync(hqTriagePath) ? JSON.parse(await readFile(hqTriagePath, 'utf8')).cards : {}
 
@@ -181,6 +183,7 @@ try {
     keywords: keywordModule.SEED_KEYWORDS,
     aiReview,
     legionhq,
+    legionhqKeywordIds,
     legionhqIgnore,
     tags,
     keywordConflicts,

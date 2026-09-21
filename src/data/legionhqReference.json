@@ -1,5 +1,177 @@
 {
  "_meta": {
+  "keywordIds": [
+   "accomplir-la-mission",
+   "agile",
+   "aguerri",
+   "aide",
+   "allies-de-circonstance",
+   "alourdissement",
+   "alter-ego",
+   "anti-materiel-x",
+   "anti-personnel-x",
+   "arme-de-poing",
+   "armure-x",
+   "arsenal-x",
+   "ascension",
+   "assaut-x",
+   "associe",
+   "attaque-impetueuse",
+   "autodestruction-x-unite",
+   "autonome",
+   "barrage",
+   "belier-x",
+   "blessure-x",
+   "blocage",
+   "bouclier-x",
+   "cable-de-remorquage",
+   "cache",
+   "calcul-de-probabilites",
+   "charge",
+   "chasseur-de-jedi",
+   "chef",
+   "ciblage-avance",
+   "cible-x",
+   "commandant-des-operations",
+   "contrainte",
+   "coordination",
+   "coup-de-chance-x",
+   "couvert-x",
+   "critique-x",
+   "cycle",
+   "debordement",
+   "defense-x",
+   "deflagration",
+   "deflexion",
+   "demoraliser-x",
+   "detachement",
+   "discipline-x",
+   "discret",
+   "dispersion",
+   "distraire",
+   "duelliste",
+   "eclaireur-x",
+   "encombrant",
+   "enrage-x",
+   "entourage",
+   "equipe",
+   "equipe-avec-arme-lourde",
+   "equipe-declaireurs-x",
+   "equipe-sniper",
+   "escorte",
+   "exemplaire",
+   "fiable-x",
+   "fixe",
+   "fumee-x",
+   "gardien-x",
+   "generateur-x",
+   "grimpeur-experimente",
+   "haute-velocite",
+   "ia",
+   "immobiliser-x",
+   "immunite-armes-portee-1",
+   "immunite-corps-a-corps",
+   "immunite-deflagration",
+   "immunite-deflexion",
+   "immunite-perforant",
+   "immunite-perforant-corps-a-corps",
+   "impact-x",
+   "impitoyable",
+   "implacable",
+   "inarretable",
+   "incognito",
+   "indifferent",
+   "indomptable",
+   "infanterie-mecanisee",
+   "infiltration",
+   "influence-divine",
+   "insensible",
+   "inspiration-x",
+   "instinct-de-survie",
+   "interrogatoire",
+   "intrepide",
+   "intuition-du-danger-x",
+   "ion-x",
+   "je-sens-le-profit",
+   "la-mort-venue-du-ciel",
+   "la-victoire-ou-la-mort",
+   "les-mandaloriens-sont-plus-forts-ensemble",
+   "letal-x",
+   "longue-distance",
+   "longueur-davance",
+   "maitre-conteur",
+   "maitre-de-la-force-x",
+   "maitrise-de-lataru",
+   "maitrise-du-djem-so",
+   "maitrise-du-jarkai",
+   "maitrise-du-juyo",
+   "maitrise-du-makashi",
+   "maitrise-du-shien",
+   "maitrise-du-soresu",
+   "maitrise-du-vaapad",
+   "malin",
+   "manoeuvre-improbable",
+   "marche-forcee",
+   "matamore",
+   "mercenaire",
+   "mettre-a-couvert-x",
+   "mission-secrete",
+   "mobile",
+   "mobilite-difficile",
+   "mode-roue",
+   "non-combattant",
+   "nous-nous-battons-pour-notre-famille",
+   "observateur-x",
+   "on-est-pas-des-regs",
+   "operationnel-x",
+   "ordre-direct",
+   "perforant-x",
+   "pistolero",
+   "pivot-complet",
+   "point-faible-x",
+   "poison-x",
+   "polyvalent",
+   "position-preparee",
+   "precis-x",
+   "preste-x",
+   "prime",
+   "primitif",
+   "profil-bas",
+   "programme",
+   "rayons-x",
+   "recharger-x",
+   "reconfiguration",
+   "redeploiement",
+   "regenerer-x",
+   "renforts",
+   "reparation-x",
+   "retrait",
+   "riposte-graduee-x",
+   "sans-entrave",
+   "saut-x",
+   "sentinelle",
+   "souffle",
+   "speeder-x",
+   "stationnaire",
+   "stratege-x",
+   "suppressif",
+   "surcharge",
+   "surveillance-x",
+   "sustentation",
+   "tacticien-x",
+   "telle-est-la-voie",
+   "tenir-le-cap",
+   "tentation",
+   "tirer-les-ficelles",
+   "tireur-delite-x",
+   "tireur-embusque",
+   "tirs-de-soutien",
+   "traiter-x",
+   "transport",
+   "travail-dequipe",
+   "vehicule-grimpant",
+   "vivacite-desprit"
+  ],
   "source": "https://legionhq2.com",
   "genere": "2026-09-21",
   "description": "Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write."
@@ -32,7 +204,26 @@
      "dice": "",
      "range": "1-5"
     }
-   ]
+   ],
+   "kw": {
+    "pivot-complet": [],
+    "position-preparee": [],
+    "sentinelle": [],
+    "stationnaire": [],
+    "fixe": [],
+    "impact-x": [
+     2
+    ]
+   }
+  },
+  "2 1b medical droid": {
+   "name": "2-1B Medical Droid",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "traiter-x": [],
+    "non-combattant": []
+   }
   },
   "74 z speeder bikes": {
    "name": "74-Z Speeder Bikes",
@@ -56,7 +247,18 @@
      "dice": "1b+1n+1r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "couvert-x": [
+     1
+    ],
+    "speeder-x": [
+     1
+    ],
+    "impact-x": [
+     1
+    ]
+   }
   },
   "88i twin light blaster": {
    "name": "88i Twin Light Blaster",
@@ -67,7 +269,13 @@
      "dice": "1b+1n+1r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     1
+    ],
+    "fixe": []
+   }
   },
   "a a5 speeder truck": {
    "name": "A-A5 Speeder Truck",
@@ -80,7 +288,16 @@
    "defense": "blanc",
    "attackSurge": "none",
    "defenseSurge": "block",
-   "weapons": []
+   "weapons": [],
+   "kw": {
+    "armure-x": [
+     5
+    ],
+    "sustentation": [],
+    "redeploiement": [],
+    "transport": [],
+    "point-faible-x": []
+   }
   },
   "a280 cfe pistol sniper config": {
    "name": "A280",
@@ -96,7 +313,22 @@
      "dice": "1n+1r",
      "range": "1-14"
     }
-   ]
+   ],
+   "kw": {
+    "encombrant": [],
+    "haute-velocite": [],
+    "perforant-x": [
+     1
+    ],
+    "reconfiguration": [],
+    "longue-distance": []
+   }
+  },
+  "additional supplies": {
+   "name": "Extra Supplies",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "ag 2g quad laser": {
    "name": "AG-2G Quad Laser",
@@ -107,7 +339,13 @@
      "dice": "6n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     1,
+     2
+    ]
+   }
   },
   "agent kallus": {
    "name": "Agent Kallus / Hunter of Spectres",
@@ -126,7 +364,24 @@
      "dice": "1r+3n",
      "range": "?"
     }
-   ]
+   ],
+   "kw": {
+    "surveillance-x": [
+     2
+    ],
+    "prime": [],
+    "charge": [],
+    "ordre-direct": [],
+    "immunite-perforant-corps-a-corps": [],
+    "interrogatoire": [],
+    "critique-x": [
+     1
+    ],
+    "letal-x": [
+     1
+    ],
+    "longue-distance": []
+   }
   },
   "ahsoka tano": {
    "name": "Ahsoka Tano / Fulcrum",
@@ -145,7 +400,31 @@
      "dice": "2b+2n+2r",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "saut-x": [
+     2
+    ],
+    "charge": [],
+    "defense-x": [
+     1
+    ],
+    "deflexion": [],
+    "immunite-perforant": [],
+    "maitrise-du-jarkai": [],
+    "impact-x": [
+     2
+    ],
+    "perforant-x": [
+     2
+    ]
+   }
+  },
+  "anger": {
+   "name": "Anger",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "anti bunker shells": {
    "name": "\"Bunker Buster\" Shells",
@@ -156,7 +435,13 @@
      "dice": "1n+3b",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "cycle": [],
+    "fixe": [],
+    "dispersion": []
+   }
   },
   "armor piercing shells": {
    "name": "Armor-Piercing Shells",
@@ -167,7 +452,22 @@
      "dice": "1r+2n",
      "range": "2-3"
     }
-   ]
+   ],
+   "kw": {
+    "cycle": [],
+    "fixe": [],
+    "impact-x": [
+     3
+    ]
+   }
+  },
+  "ascension cables": {
+   "name": "Ascension Cables",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "ascension": []
+   }
   },
   "at rt": {
    "name": "AT-RT",
@@ -191,7 +491,23 @@
      "dice": "1n+2b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     2
+    ],
+    "vehicule-grimpant": [],
+    "grimpeur-experimente": [],
+    "eclaireur-x": [
+     1
+    ],
+    "impact-x": [
+     1
+    ],
+    "critique-x": [
+     1
+    ]
+   }
   },
   "at rt flamethrower": {
    "name": "AT-RT Flamethrower",
@@ -202,7 +518,12 @@
      "dice": "2n",
      "range": "melee-1"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "fixe": [],
+    "souffle": []
+   }
   },
   "at st": {
    "name": "AT-ST",
@@ -226,7 +547,20 @@
      "dice": "2b+2n+2r",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     5
+    ],
+    "arsenal-x": [
+     2
+    ],
+    "point-faible-x": [],
+    "fixe": [],
+    "impact-x": [
+     3
+    ]
+   }
   },
   "at st mortar launcher": {
    "name": "AT-ST Mortar Launcher",
@@ -237,7 +571,20 @@
      "dice": "3b",
      "range": "4-12"
     }
-   ]
+   ],
+   "kw": {
+    "fixe": [],
+    "suppressif": []
+   }
+  },
+  "attack protocols": {
+   "name": "Attack Protocols",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "ia": [],
+    "precis-x": []
+   }
   },
   "ax 108 ground buzzer": {
    "name": "Ax-108 \"Ground Buzzer\"",
@@ -248,7 +595,18 @@
      "dice": "4n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "fixe": []
+   }
+  },
+  "baron rudor": {
+   "name": "Baron Rudor",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "tireur-embusque": []
+   }
   },
   "barrage generator": {
    "name": "Barrage Generator",
@@ -259,7 +617,11 @@
      "dice": "2b",
      "range": "?"
     }
-   ]
+   ],
+   "kw": {
+    "fixe": [],
+    "suppressif": []
+   }
   },
   "battle shield wookiee": {
    "name": "Battle Shield Wookiee",
@@ -275,7 +637,11 @@
      "dice": "2n",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [],
+    "reconfiguration": []
+   }
   },
   "beskad duelist": {
    "name": "Beskad Duelist",
@@ -286,7 +652,45 @@
      "dice": "2r",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "perforant-x": [
+     1
+    ]
+   }
+  },
+  "black sun enforcer magnetic detonator": {
+   "name": "Mag-Det Enforcer",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Mag-Detpack",
+     "dice": "3n",
+     "range": "melee-1"
+    }
+   ],
+   "kw": {
+    "deflagration": [],
+    "impact-x": [
+     3
+    ]
+   }
+  },
+  "black sun enforcer scatter gun": {
+   "name": "Scatter Gun Enforcer",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Scatter Gun",
+     "dice": "2r",
+     "range": "melee-2"
+    }
+   ],
+   "kw": {
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "black sun enforcers": {
    "name": "Black Sun Enforcers",
@@ -310,7 +714,16 @@
      "dice": "1b+1n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "intrepide": [],
+    "precis-x": [
+     1
+    ],
+    "instinct-de-survie": [],
+    "autonome": []
+   }
   },
   "black sun vigo": {
    "name": "Black Sun Vigo",
@@ -334,7 +747,13 @@
      "dice": "2b+2n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "aide": [],
+    "intrepide": [],
+    "autonome": []
+   }
   },
   "boba fett daimyo of mos espa": {
    "name": "Boba Fett / Daimyo of Mos Espa",
@@ -358,7 +777,44 @@
      "dice": "3n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "saut-x": [
+     1
+    ],
+    "arsenal-x": [
+     2
+    ],
+    "insensible": [],
+    "autonome": [],
+    "sentinelle": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "tacticien-x": [
+     1
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
+  },
+  "boba fett flamethrower": {
+   "name": "Flame Projector",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Flame Projector",
+     "dice": "1r",
+     "range": "melee-1"
+    }
+   ],
+   "kw": {
+    "deflagration": [],
+    "souffle": [],
+    "suppressif": []
+   }
   },
   "boba fett infamous bounty hunter": {
    "name": "Boba Fett / Infamous Bounty Hunter",
@@ -387,7 +843,29 @@
      "dice": "",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "saut-x": [
+     2
+    ],
+    "arsenal-x": [
+     2
+    ],
+    "prime": [],
+    "insensible": [],
+    "autonome": [],
+    "tireur-delite-x": [
+     2
+    ],
+    "impact-x": [
+     1
+    ],
+    "polyvalent": [],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "bossk terror of trandosha": {
    "name": "Bossk / Trandoshan Terror",
@@ -411,7 +889,23 @@
      "dice": "1r+4b",
      "range": "2-4"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "prime": [],
+    "enrage-x": [
+     3
+    ],
+    "autonome": [],
+    "regenerer-x": [
+     3
+    ],
+    "ascension": [],
+    "perforant-x": [
+     1
+    ],
+    "suppressif": []
+   }
   },
   "bowcaster wookiee": {
    "name": "Bowcaster Wookiee",
@@ -422,7 +916,21 @@
      "dice": "1b+1r",
      "range": "melee-3"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     1
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
+  },
+  "burst of speed": {
+   "name": "Burst of Speed",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "cad bane": {
    "name": "Cad Bane / Needs No Introduction",
@@ -446,7 +954,42 @@
      "dice": "4n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "saut-x": [
+     1
+    ],
+    "prime": [],
+    "intuition-du-danger-x": [
+     3
+    ],
+    "autonome": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "aguerri": [],
+    "perforant-x": [
+     1
+    ]
+   }
+  },
+  "cad bane electro gauntlets": {
+   "name": "Electro Gauntlets",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Electro Gauntlets",
+     "dice": "4r",
+     "range": "melee"
+    }
+   ],
+   "kw": {
+    "immobiliser-x": [
+     3
+    ],
+    "suppressif": []
+   }
   },
   "captain rex": {
    "name": "Clone Captain Rex",
@@ -457,7 +1000,10 @@
      "dice": "2r",
      "range": "melee-2"
     }
-   ]
+   ],
+   "kw": {
+    "chef": []
+   }
   },
   "cassian andor": {
    "name": "Cassian Andor / Capable Intelligence Agent",
@@ -481,7 +1027,22 @@
      "dice": "2b+2n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "intuition-du-danger-x": [
+     3
+    ],
+    "equipe": [],
+    "commandant-des-operations": [],
+    "infiltration": [],
+    "tireur-embusque": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "tacticien-x": [
+     1
+    ]
+   }
   },
   "cassian andor operative": {
    "name": "Cassian Andor",
@@ -497,7 +1058,16 @@
      "dice": "2n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "chef": [],
+    "profil-bas": [],
+    "mission-secrete": [],
+    "coup-de-chance-x": [
+     1
+    ],
+    "longue-distance": []
+   }
   },
   "chewbacca": {
    "name": "Chewbacca / Walking Carpet",
@@ -521,7 +1091,26 @@
      "dice": "2b+2r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "enrage-x": [
+     4
+    ],
+    "gardien-x": [
+     3
+    ],
+    "travail-dequipe": [],
+    "ascension": [],
+    "letal-x": [
+     1
+    ],
+    "impact-x": [
+     1
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "chewbacca upgrade": {
    "name": "Chewbacca",
@@ -532,7 +1121,27 @@
      "dice": "1r+2b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "chef": [],
+    "impact-x": [
+     1
+    ]
+   }
+  },
+  "clairvoyance": {
+   "name": "Clairvoyance",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "climbing cables": {
+   "name": "Ascension Cables",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "ascension": []
+   }
   },
   "cm o 93 trooper": {
    "name": "CM-0/93 Trooper",
@@ -543,7 +1152,24 @@
      "dice": "4b",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     2
+    ]
+   }
+  },
+  "comms hacking unit": {
+   "name": "Hacked Comms Unit",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "comms jammer": {
+   "name": "Comms Jammer",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "concussion grenades": {
    "name": "Concussion Grenades",
@@ -554,7 +1180,10 @@
      "dice": "1n",
      "range": "1"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": []
+   }
   },
   "cr 24 flame rifle": {
    "name": "CR-24 Flame Rifle",
@@ -565,7 +1194,11 @@
      "dice": "1b+1n",
      "range": "melee-1"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "souffle": []
+   }
   },
   "crosshair": {
    "name": "Crosshair",
@@ -576,7 +1209,17 @@
      "dice": "1r",
      "range": "1-5"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ],
+    "haute-velocite": [],
+    "perforant-x": [
+     1
+    ],
+    "precis-x": []
+   }
   },
   "dark trooper squad": {
    "name": "Imperial Dark Troopers",
@@ -600,7 +1243,15 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     3
+    ],
+    "mobilite-difficile": [],
+    "indifferent": [],
+    "inarretable": []
+   }
   },
   "darth vader dark lord of the sith": {
    "name": "Darth Vader / Dark Lord of the Sith",
@@ -619,7 +1270,32 @@
      "dice": "6r",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "deflexion": [],
+    "immunite-perforant": [],
+    "maitre-de-la-force-x": [
+     1
+    ],
+    "implacable": [],
+    "contrainte": [],
+    "impact-x": [
+     3
+    ],
+    "perforant-x": [
+     3
+    ]
+   }
+  },
+  "defense protocols": {
+   "name": "Defense Protocols",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "ia": [],
+    "agile": [],
+    "manoeuvre-improbable": []
+   }
   },
   "del meeko": {
    "name": "Del Meeko",
@@ -630,7 +1306,15 @@
      "dice": "2n",
      "range": "1-5"
     }
-   ]
+   ],
+   "kw": {
+    "reparation-x": [],
+    "haute-velocite": [],
+    "letal-x": [
+     1
+    ],
+    "perforant-x": []
+   }
   },
   "dewback rider": {
    "name": "Dewback Rider",
@@ -649,7 +1333,20 @@
      "dice": "3b+3r",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     1
+    ],
+    "implacable": [],
+    "redeploiement": [],
+    "marche-forcee": [],
+    "sans-entrave": [],
+    "critique-x": [
+     2
+    ],
+    "suppressif": []
+   }
   },
   "df 90 mortar trooper": {
    "name": "DF-90 Mortar Trooper",
@@ -673,7 +1370,21 @@
      "dice": "2n",
      "range": "3-4"
     }
-   ]
+   ],
+   "kw": {
+    "detachement": [],
+    "tirs-de-soutien": [],
+    "pivot-complet": [],
+    "position-preparee": [],
+    "redeploiement": [],
+    "sentinelle": [],
+    "critique-x": [
+     1
+    ],
+    "encombrant": [],
+    "suppressif": [],
+    "fixe": []
+   }
   },
   "dh 447 sniper": {
    "name": "DH-447 Sniper",
@@ -684,7 +1395,12 @@
      "dice": "1n+2b",
      "range": "2-5"
     }
-   ]
+   ],
+   "kw": {
+    "haute-velocite": [],
+    "debordement": [],
+    "equipe-sniper": []
+   }
   },
   "din djarin": {
    "name": "Din Djarin / The Mandalorian",
@@ -708,7 +1424,80 @@
      "dice": "1n+2r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "arsenal-x": [
+     2
+    ],
+    "prime": [],
+    "insensible": [],
+    "autonome": [],
+    "tacticien-x": [
+     1
+    ],
+    "letal-x": [
+     1
+    ],
+    "longue-distance": [],
+    "polyvalent": []
+   }
+  },
+  "din djarin amban rifle": {
+   "name": "Din's Amban Rifle",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Din's Amban Rifle",
+     "dice": "3n",
+     "range": "melee"
+    }
+   ],
+   "kw": {
+    "immobiliser-x": [
+     2
+    ],
+    "suppressif": []
+   }
+  },
+  "din djarin beskar spear": {
+   "name": "Beskar Spear",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Beskar Spear",
+     "dice": "1n+2r",
+     "range": "melee"
+    }
+   ],
+   "kw": {
+    "duelliste": [],
+    "perforant-x": []
+   }
+  },
+  "din djarin flamethrower": {
+   "name": "Flame Projector",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Flame Projector",
+     "dice": "1r",
+     "range": "melee-1"
+    }
+   ],
+   "kw": {
+    "deflagration": [],
+    "souffle": [],
+    "suppressif": []
+   }
+  },
+  "din djarin jetpack": {
+   "name": "Din's Jetpack",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "saut-x": []
+   }
   },
   "director orson krennic": {
    "name": "Director Orson Krennic / Architect of Terror",
@@ -732,7 +1521,16 @@
      "dice": "3r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "observateur-x": [
+     1
+    ],
+    "contrainte": [],
+    "malin": [],
+    "entourage": [],
+    "exemplaire": []
+   }
   },
   "dlt 19 pintle mount": {
    "name": "Pintle-Mounted DLT-19",
@@ -743,7 +1541,12 @@
      "dice": "2r",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     1
+    ]
+   }
   },
   "dlt 19 stormtrooper": {
    "name": "DLT-19 Stormtrooper",
@@ -754,7 +1557,12 @@
      "dice": "2r",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     1
+    ]
+   }
   },
   "dlt 19d trooper": {
    "name": "DLT-19D Trooper",
@@ -765,7 +1573,12 @@
      "dice": "1b+2r",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     1
+    ]
+   }
   },
   "dlt 19x sniper": {
    "name": "DLT-19x Sniper",
@@ -776,7 +1589,12 @@
      "dice": "1n+2b",
      "range": "2-5"
     }
-   ]
+   ],
+   "kw": {
+    "haute-velocite": [],
+    "debordement": [],
+    "equipe-sniper": []
+   }
   },
   "dlt 20a range trooper": {
    "name": "DLT-20A Range Trooper",
@@ -787,7 +1605,12 @@
      "dice": "2r",
      "range": "1-5"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     2
+    ]
+   }
   },
   "dlt 20a trooper": {
    "name": "DLT-20A Trooper",
@@ -798,7 +1621,12 @@
      "dice": "1b+2n",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ]
+   }
   },
   "dt f16": {
    "name": "DT-F16",
@@ -809,7 +1637,17 @@
      "dice": "1b+1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "contrainte": [],
+    "chef": []
+   }
+  },
+  "duck and cover": {
+   "name": "Duck and Cover",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "dw 3 concussion grenade launcher": {
    "name": "DW-3 Grenade Launcher",
@@ -820,7 +1658,11 @@
      "dice": "2n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "fixe": [],
+    "deflagration": []
+   }
   },
   "e 11d focused strike config": {
    "name": "E-11D Focused Fire Configuration",
@@ -836,7 +1678,12 @@
      "dice": "1r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "suppressif": [],
+    "reconfiguration": []
+   }
   },
   "e web heavy blaster team": {
    "name": "E-Web Heavy Blaster Team",
@@ -865,7 +1712,105 @@
      "dice": "1r",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "position-preparee": [],
+    "redeploiement": [],
+    "sentinelle": [],
+    "encombrant": [],
+    "fixe": [],
+    "impact-x": [
+     1
+    ]
+   }
+  },
+  "echo clone force 99": {
+   "name": "Echo",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "fiable-x": []
+   }
+  },
+  "electrobinoculars": {
+   "name": "Electrobinoculars",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "observateur-x": []
+   }
+  },
+  "emergency stims": {
+   "name": "Emergency Stims",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "emergency transponder": {
+   "name": "Emergency Transponder",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "emp grenades": {
+   "name": "EMP \"Droid Poppers\"",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "EMP Droid Poppers",
+     "dice": "1n",
+     "range": "1"
+    }
+   ],
+   "kw": {
+    "ion-x": [
+     1
+    ]
+   }
+  },
+  "endurance": {
+   "name": "Endurance",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "engagement protocols": {
+   "name": "Engagement Protocols",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "ia": []
+   }
+  },
+  "environmental gear": {
+   "name": "Environmental Gear",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "sans-entrave": []
+   }
+  },
+  "fear": {
+   "name": "Fear",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "demoraliser-x": []
+   }
+  },
+  "fire control": {
+   "name": "Fire Control",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "first sergeant arbmab": {
+   "name": "First Sergeant Arbmab",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "tacticien-x": []
+   }
   },
   "flametrooper": {
    "name": "Flametrooper",
@@ -876,7 +1821,26 @@
      "dice": "1n",
      "range": "melee-1"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "souffle": []
+   }
+  },
+  "fleet trooper": {
+   "name": "Fleet Trooper",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "fleet trooper squad": {
+   "name": "Fleet Trooper Squad",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "indomptable": [],
+    "transport": []
+   }
   },
   "fleet troopers": {
    "name": "Fleet Troopers",
@@ -895,7 +1859,40 @@
      "dice": "2b",
      "range": "melee-2"
     }
-   ]
+   ],
+   "kw": {
+    "charge": []
+   }
+  },
+  "force barrier": {
+   "name": "Force Barrier",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "force choke": {
+   "name": "Force Choke",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "force guidance": {
+   "name": "Force Guidance",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "force push": {
+   "name": "Force Push",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "force reflexes": {
+   "name": "Force Reflexes",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "fragmentation grenades": {
    "name": "Fragmentation Grenades",
@@ -906,7 +1903,35 @@
      "dice": "1r",
      "range": "1"
     }
-   ]
+   ],
+   "kw": {}
+  },
+  "fx 9 medical droid": {
+   "name": "FX-9 Medical Droid",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "traiter-x": [],
+    "non-combattant": []
+   }
+  },
+  "gar saxon galar90 rifle": {
+   "name": "Saxon's Galar-90 Rifle",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Galar-90 Sniper Rifle",
+     "dice": "1b+1n+1r",
+     "range": "1-4"
+    }
+   ],
+   "kw": {
+    "haute-velocite": [],
+    "letal-x": [
+     1
+    ],
+    "longue-distance": []
+   }
   },
   "gar saxon militant commando": {
    "name": "Gar Saxon / Militant Commando",
@@ -930,7 +1955,21 @@
      "dice": "1b+1r+2n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "saut-x": [
+     2
+    ],
+    "allies-de-circonstance": [],
+    "contrainte": [],
+    "insensible": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "general veers": {
    "name": "General Veers / Master Tactician",
@@ -954,7 +1993,45 @@
      "dice": "3r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "observateur-x": [
+     2
+    ],
+    "exemplaire": [],
+    "inspiration-x": [
+     1
+    ],
+    "tireur-delite-x": [
+     1
+    ]
+   }
+  },
+  "general weiss": {
+   "name": "General Weiss",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "arsenal-x": [],
+    "commandant-des-operations": []
+   }
+  },
+  "generator overcharge": {
+   "name": "Overcharged Generator",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Overcharged Generator",
+     "dice": "1n",
+     "range": "?"
+    }
+   ],
+   "kw": {
+    "fixe": [],
+    "impact-x": [
+     1
+    ]
+   }
   },
   "gideon hask": {
    "name": "Gideon Hask",
@@ -965,7 +2042,27 @@
      "dice": "2r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "coordination": [],
+    "chef": []
+   }
+  },
+  "governor pryce": {
+   "name": "Governor Pryce",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "commandant-des-operations": []
+   }
+  },
+  "grapnel hooks": {
+   "name": "Grappling Hooks",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "grimpeur-experimente": []
+   }
   },
   "han solo": {
    "name": "Han Solo / Unorthodox General",
@@ -989,7 +2086,29 @@
      "dice": "2r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "aguerri": [],
+    "profil-bas": [],
+    "pistolero": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "coup-de-chance-x": [
+     3
+    ],
+    "perforant-x": [
+     2
+    ]
+   }
+  },
+  "handheld scanner": {
+   "name": "Portable Scanner",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "mettre-a-couvert-x": []
+   }
   },
   "heavy laser retrofit": {
    "name": "Heavy Laser Retrofit",
@@ -1000,7 +2119,12 @@
      "dice": "1b+1n+1r",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ]
+   }
   },
   "hh 12 stormtrooper": {
    "name": "HH-12 Stormtrooper",
@@ -1011,7 +2135,13 @@
      "dice": "3n",
      "range": "2-4"
     }
-   ]
+   ],
+   "kw": {
+    "encombrant": [],
+    "impact-x": [
+     3
+    ]
+   }
   },
   "high energy shells": {
    "name": "High-Energy Shells",
@@ -1022,7 +2152,61 @@
      "dice": "1b+2r",
      "range": "2-4"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ],
+    "cycle": [],
+    "haute-velocite": [],
+    "fixe": []
+   }
+  },
+  "hope": {
+   "name": "Hope",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "inspiration-x": []
+   }
+  },
+  "hotshot pilot": {
+   "name": "Hotshot Pilot",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "tireur-delite-x": []
+   }
+  },
+  "hq uplink": {
+   "name": "HQ Uplink",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "hunter": {
+   "name": "Hunter",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "chef": []
+   }
+  },
+  "iden s id10 seeker droid": {
+   "name": "Seeker Droid",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "recharger-x": [
+     1
+    ],
+    "bouclier-x": [
+     1
+    ],
+    "surveillance-x": [
+     1
+    ]
+   }
   },
   "iden versio": {
    "name": "Iden Versio / Inferno Squad Leader",
@@ -1051,7 +2235,23 @@
      "dice": "1n+2b+2r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "vivacite-desprit": [],
+    "infiltration": [],
+    "tireur-embusque": [],
+    "agile": [],
+    "haute-velocite": [],
+    "perforant-x": [
+     1
+    ],
+    "critique-x": [
+     1
+    ],
+    "impact-x": [
+     1
+    ]
+   }
   },
   "ig 11": {
    "name": "IG-11 / Nurse and Protect",
@@ -1080,7 +2280,22 @@
      "dice": "",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "armure-x": [
+     1
+    ],
+    "pistolero": [],
+    "insensible": [],
+    "programme": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "ig 88": {
    "name": "IG-88 / Notorious Assassin Droid",
@@ -1109,7 +2324,31 @@
      "dice": "",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "armure-x": [
+     1
+    ],
+    "prime": [],
+    "insensible": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "perforant-x": [
+     1
+    ],
+    "polyvalent": []
+   }
+  },
+  "ig11 nanny programming": {
+   "name": "\"Nanny\" Programming",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "alter-ego": [],
+    "ia": []
+   }
   },
   "impact grenades": {
    "name": "Impact Grenades",
@@ -1120,7 +2359,18 @@
      "dice": "1n",
      "range": "melee-1"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     4
+    ]
+   }
+  },
+  "imperial comms technician": {
+   "name": "Imperial Comms Technician",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "imperial death troopers": {
    "name": "Imperial Death Troopers",
@@ -1149,7 +2399,41 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "discipline-x": [
+     2
+    ],
+    "precis-x": [
+     2
+    ],
+    "operationnel-x": [
+     1
+    ]
+   }
+  },
+  "imperial hammers elite armor pilot": {
+   "name": "Imperial Hammers Elite Armor Pilot",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "imperial march": {
+   "name": "Imperial March",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "charge": []
+   }
+  },
+  "imperial officer": {
+   "name": "Imperial Officer",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "inspiration-x": [],
+    "chef": []
+   }
   },
   "imperial special forces": {
    "name": "Imperial Special Forces",
@@ -1173,7 +2457,14 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "infiltration": [],
+    "tireur-embusque": [],
+    "fiable-x": [
+     1
+    ]
+   }
   },
   "imperial special forces inferno squad": {
    "name": "Imperial Special Forces / Inferno Squad",
@@ -1197,7 +2488,46 @@
      "dice": "2n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "equipe": [],
+    "infiltration": [],
+    "tireur-embusque": [],
+    "fiable-x": [
+     1
+    ],
+    "escorte": []
+   }
+  },
+  "imperial tie pilot": {
+   "name": "Imperial TIE Pilot",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "improvised orders": {
+   "name": "Improvised Orders",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "in the fray": {
+   "name": "Into the Fray",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "inquisitorius training": {
+   "name": "Inquisitorius Training",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "inspiring presence": {
+   "name": "Inspiring Presence",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "jetpack rockets": {
    "name": "Jetpack Rockets",
@@ -1208,7 +2538,15 @@
      "dice": "4n",
      "range": "3-4"
     }
-   ]
+   ],
+   "kw": {
+    "anti-materiel-x": [
+     4
+    ],
+    "impact-x": [
+     4
+    ]
+   }
   },
   "jyn erso": {
    "name": "Jyn Erso / Stardust",
@@ -1232,7 +2570,24 @@
      "dice": "1b+2r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "preste-x": [
+     1
+    ],
+    "retrait": [],
+    "autonome": [],
+    "infiltration": [],
+    "agile": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "suppressif": [],
+    "longue-distance": [],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "jyn s se 14 blaster": {
    "name": "Jyn's SE-14 Blaster",
@@ -1243,7 +2598,13 @@
      "dice": "5b",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "suppressif": [],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "k 2so": {
    "name": "K-2SO / Sardonic Security Droid",
@@ -1262,7 +2623,39 @@
      "dice": "4r",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "calcul-de-probabilites": [],
+    "armure-x": [
+     1
+    ],
+    "detachement": [],
+    "incognito": [],
+    "infiltration": [],
+    "travail-dequipe": [],
+    "letal-x": [
+     1
+    ]
+   }
+  },
+  "kallus the operative": {
+   "name": "Agent Kallus",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "J-19 Bo-Rifle",
+     "dice": "1b+2n",
+     "range": "melee-2"
+    }
+   ],
+   "kw": {
+    "chef": [],
+    "demoraliser-x": [
+     1
+    ],
+    "arme-de-poing": [],
+    "longue-distance": []
+   }
   },
   "kraken": {
    "name": "Kraken",
@@ -1273,7 +2666,11 @@
      "dice": "1b+1n",
      "range": "melee-3"
     }
-   ]
+   ],
+   "kw": {
+    "chef": [],
+    "ia": []
+   }
   },
   "kx series security droids": {
    "name": "KX-Series Security Droids",
@@ -1284,7 +2681,12 @@
      "dice": "1r",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     1
+    ]
+   }
   },
   "laat le patrol transport": {
    "name": "LAAT/le Patrol Transport",
@@ -1303,7 +2705,27 @@
      "dice": "2n+2r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     5
+    ],
+    "arsenal-x": [
+     2
+    ],
+    "couvert-x": [
+     1
+    ],
+    "sustentation": [],
+    "immunite-deflagration": [],
+    "immunite-corps-a-corps": [],
+    "immunite-armes-portee-1": [],
+    "transport": [],
+    "fixe": [],
+    "impact-x": [
+     1
+    ]
+   }
   },
   "lando calrissian": {
    "name": "Lando Calrissian / Canny General",
@@ -1327,7 +2749,26 @@
      "dice": "1r+3n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "allies-de-circonstance": [],
+    "aguerri": [],
+    "coup-de-chance-x": [
+     2
+    ],
+    "longueur-davance": [],
+    "longue-distance": []
+   }
+  },
+  "lead by example": {
+   "name": "Lead By Example",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "inspiration-x": [
+     2
+    ]
+   }
   },
   "leia organa": {
    "name": "Leia Organa / Fearless and Inventive",
@@ -1351,7 +2792,28 @@
      "dice": "3r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "mettre-a-couvert-x": [
+     2
+    ],
+    "exemplaire": [],
+    "inspiration-x": [
+     2
+    ],
+    "agile": [],
+    "tireur-delite-x": [
+     2
+    ]
+   }
+  },
+  "linked targeting array": {
+   "name": "Linked Targeting Array",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "cible-x": []
+   }
   },
   "long gun wookiee": {
    "name": "Long Gun Wookiee",
@@ -1362,7 +2824,10 @@
      "dice": "2n",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "suppressif": []
+   }
   },
   "luke skywalker hero of the rebellion": {
    "name": "Luke Skywalker / Hero of the Rebellion",
@@ -1386,7 +2851,28 @@
      "dice": "1r+3n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "saut-x": [
+     1
+    ],
+    "blocage": [],
+    "charge": [],
+    "immunite-perforant": [],
+    "inspiration-x": [
+     2
+    ],
+    "tireur-delite-x": [
+     1
+    ],
+    "impact-x": [
+     2
+    ],
+    "perforant-x": [
+     1
+    ],
+    "longue-distance": []
+   }
   },
   "luke skywalker jedi knight": {
    "name": "Luke Skywalker / Jedi Knight",
@@ -1405,7 +2891,25 @@
      "dice": "7n",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "saut-x": [
+     1
+    ],
+    "charge": [],
+    "deflexion": [],
+    "retrait": [],
+    "immunite-perforant": [],
+    "maitre-de-la-force-x": [
+     1
+    ],
+    "impact-x": [
+     2
+    ],
+    "perforant-x": [
+     2
+    ]
+   }
   },
   "m 45 ion blaster": {
    "name": "M-45 Ion Blaster",
@@ -1416,7 +2920,19 @@
      "dice": "2b+2n",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ],
+    "fixe": [],
+    "impact-x": [
+     1
+    ],
+    "ion-x": [
+     1
+    ]
+   }
   },
   "major marquand": {
    "name": "Major Marquand / Tempest Scout 2",
@@ -1445,7 +2961,30 @@
      "dice": "2r",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     5
+    ],
+    "arsenal-x": [
+     2
+    ],
+    "ordre-direct": [],
+    "commandant-des-operations": [],
+    "point-faible-x": [],
+    "fixe": [],
+    "impact-x": [
+     1
+    ]
+   }
+  },
+  "mandalorian combat shields": {
+   "name": "Combat Shields",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "bouclier-x": []
+   }
   },
   "mandalorian resistance clan wren": {
    "name": "Clan Wren Veterans",
@@ -1469,7 +3008,17 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "saut-x": [
+     2
+    ],
+    "intrepide": [],
+    "insensible": [],
+    "agile": [],
+    "nous-nous-battons-pour-notre-famille": []
+   }
   },
   "mandalorian super commandos": {
    "name": "Mandalorian Super Commandos",
@@ -1493,7 +3042,17 @@
      "dice": "1b+1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "saut-x": [
+     2
+    ],
+    "defense-x": [
+     1
+    ],
+    "insensible": [],
+    "autonome": []
+   }
   },
   "mark ii medium blaster trooper": {
    "name": "Mark II Medium Blaster Trooper",
@@ -1522,7 +3081,20 @@
      "dice": "",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "detachement": [],
+    "tirs-de-soutien": [],
+    "pivot-complet": [],
+    "redeploiement": [],
+    "sentinelle": [],
+    "position-preparee": [],
+    "critique-x": [
+     2
+    ],
+    "encombrant": [],
+    "fixe": []
+   }
   },
   "maul a rival": {
    "name": "Maul / A Rival",
@@ -1541,7 +3113,31 @@
      "dice": "4b+4r",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "saut-x": [
+     1
+    ],
+    "allies-de-circonstance": [],
+    "deflexion": [],
+    "immunite-perforant": [],
+    "maitrise-du-juyo": [],
+    "blessure-x": [
+     1
+    ],
+    "impact-x": [
+     2
+    ],
+    "perforant-x": [
+     2
+    ]
+   }
+  },
+  "mission objective": {
+   "name": "Mission Objective",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "mo dk power harpoon": {
    "name": "MO/DK Power Harpoon",
@@ -1552,7 +3148,14 @@
      "dice": "1r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "fixe": [],
+    "cable-de-remorquage": [],
+    "impact-x": [
+     1
+    ]
+   }
   },
   "moff gideon": {
    "name": "Moff Gideon / Long Live the Empire",
@@ -1576,7 +3179,23 @@
      "dice": "1r+2n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "surveillance-x": [
+     1
+    ],
+    "entourage": [],
+    "impitoyable": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "tacticien-x": [
+     1
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "mpl 57 barrage trooper": {
    "name": "MPL-57 Barrage Trooper",
@@ -1587,7 +3206,14 @@
      "dice": "1n+2b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "impact-x": [
+     2
+    ],
+    "cycle": []
+   }
   },
   "mpl 57 ion trooper": {
    "name": "MPL-57 Ion Trooper",
@@ -1598,7 +3224,84 @@
      "dice": "1b+2n",
      "range": "melee-3"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ],
+    "impact-x": [
+     1
+    ],
+    "ion-x": [
+     1
+    ]
+   }
+  },
+  "offensive posture": {
+   "name": "Offensive Stance",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "reconfiguration": []
+   }
+  },
+  "offensive push": {
+   "name": "Offensive Push",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "tacticien-x": []
+   }
+  },
+  "old jedi trick": {
+   "name": "Jedi Mind Trick",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "on the hunt": {
+   "name": "On The Hunt",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "onboard comms channel": {
+   "name": "Onboard Comms Channel",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "coordination": []
+   }
+  },
+  "outer rim speeder jockey": {
+   "name": "Outer Rim Speeder Jockey",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "couvert-x": []
+   }
+  },
+  "prepared materiel": {
+   "name": "Prepared Supplies",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "cache": []
+   }
+  },
+  "programmed loyalty": {
+   "name": "Programmed Loyalty",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "escorte": []
+   }
+  },
+  "protector": {
+   "name": "Protector",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "proton charge saboteur": {
    "name": "Proton Charge Saboteur",
@@ -1609,7 +3312,49 @@
      "dice": "1b+1n+1r",
      "range": "melee-1"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "assaut-x": [
+     1
+    ],
+    "impact-x": [
+     6
+    ]
+   }
+  },
+  "pyke soldier electro whip": {
+   "name": "Electro-Whip Soldier",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Electro-Whip Soldier",
+     "dice": "2r",
+     "range": "melee-1"
+    }
+   ],
+   "kw": {
+    "immobiliser-x": [
+     1
+    ],
+    "suppressif": []
+   }
+  },
+  "pyke soldier p13m disruptor": {
+   "name": "P13-M Disruptor Soldier",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "P13-M Disruptor",
+     "dice": "1r+2n",
+     "range": "1-4"
+    }
+   ],
+   "kw": {
+    "impact-x": [
+     1
+    ]
+   }
   },
   "pyke syndicate capo": {
    "name": "Pyke Syndicate Capo",
@@ -1633,7 +3378,15 @@
      "dice": "3n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "aide": [],
+    "autonome": [],
+    "intuition-du-danger-x": [
+     2
+    ]
+   }
   },
   "pyke syndicate foot soldiers": {
    "name": "Pyke Syndicate Foot Soldiers",
@@ -1657,7 +3410,16 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "instinct-de-survie": [],
+    "intuition-du-danger-x": [
+     2
+    ],
+    "manoeuvre-improbable": [],
+    "autonome": []
+   }
   },
   "r2 d2": {
    "name": "R2-D2 / Hero of a Thousand Devices",
@@ -1676,7 +3438,38 @@
      "dice": "3b",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "reparation-x": [],
+    "discret": [],
+    "infiltration": [],
+    "mission-secrete": [],
+    "suppressif": []
+   }
+  },
+  "r4 astromech droid": {
+   "name": "R4 Astromech",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "reparation-x": [],
+    "non-combattant": []
+   }
+  },
+  "r5 astromech droid": {
+   "name": "R5 Astromech Droid",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "reparation-x": [],
+    "non-combattant": []
+   }
+  },
+  "range trooper": {
+   "name": "Range Trooper",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "range troopers": {
    "name": "Range Troopers",
@@ -1700,7 +3493,16 @@
      "dice": "1n",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "ciblage-avance": [],
+    "armure-x": [
+     1
+    ],
+    "indomptable": [],
+    "ascension": [],
+    "marche-forcee": []
+   }
   },
   "rebel agent defender of democracy": {
    "name": "Rebel Agent / Defender of Democracy",
@@ -1724,7 +3526,12 @@
      "dice": "1n+2b",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "agile": [],
+    "autonome": [],
+    "equipe": []
+   }
   },
   "rebel commandos": {
    "name": "Rebel Commandos",
@@ -1748,7 +3555,16 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "profil-bas": [],
+    "eclaireur-x": [
+     2
+    ],
+    "tireur-delite-x": [
+     1
+    ]
+   }
   },
   "rebel commandos strike team": {
    "name": "Rebel Commandos / Strike Team",
@@ -1772,7 +3588,29 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "detachement": [],
+    "equipe-avec-arme-lourde": [],
+    "profil-bas": [],
+    "incognito": [],
+    "position-preparee": []
+   }
+  },
+  "rebel comms technician": {
+   "name": "Rebel Comms Technician",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "rebel officer": {
+   "name": "Rebel Officer",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "inspiration-x": [],
+    "chef": []
+   }
   },
   "rebel sleeper cell": {
    "name": "Rebel Sleeper Cell / Ready to Strike",
@@ -1801,7 +3639,49 @@
      "dice": "2n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "agile": [],
+    "eclaireur-x": [
+     2
+    ],
+    "tacticien-x": [
+     1
+    ],
+    "impact-x": [
+     1
+    ],
+    "suppressif": []
+   }
+  },
+  "rebel trooper": {
+   "name": "Rebel Trooper",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "rebel trooper captain": {
+   "name": "Rebel Trooper Captain",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "chef": []
+   }
+  },
+  "rebel trooper specialist": {
+   "name": "Rebel Trooper Specialist",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "rebel trooper squad": {
+   "name": "Rebel Trooper Squad",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "indomptable": [],
+    "transport": []
+   }
   },
   "rebel troopers": {
    "name": "Rebel Troopers",
@@ -1825,7 +3705,28 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "preste-x": [
+     1
+    ],
+    "agile": []
+   }
+  },
+  "rebel veteran": {
+   "name": "Rebel Veteran",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "rebel veteran squad": {
+   "name": "Rebel Veteran Squad",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "indomptable": [],
+    "transport": []
+   }
   },
   "rebel veterans": {
    "name": "Rebel Veterans",
@@ -1849,7 +3750,32 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "coordination": [],
+    "profil-bas": [],
+    "position-preparee": []
+   }
+  },
+  "recon intel": {
+   "name": "Recon Intel",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "eclaireur-x": []
+   }
+  },
+  "reluctant hero": {
+   "name": "Reluctant Hero",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "critique-x": [
+     1
+    ],
+    "infiltration": [],
+    "implacable": []
+   }
   },
   "repeating blaster": {
    "name": "Repeating Blaster",
@@ -1860,7 +3786,19 @@
      "dice": "1r+2n+3b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "precis-x": [
+     2
+    ],
+    "critique-x": [
+     1
+    ],
+    "impact-x": [
+     1
+    ],
+    "longue-distance": []
+   }
   },
   "rook kast": {
    "name": "Rook Kast",
@@ -1871,7 +3809,31 @@
      "dice": "2b+2r",
      "range": "melee-2"
     }
-   ]
+   ],
+   "kw": {
+    "escorte": [],
+    "chef": []
+   }
+  },
+  "rps 6 rocket gunner": {
+   "name": "RPS-6 Rocket Gunner",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "impact-x": []
+   }
+  },
+  "rt 97c dewback rider": {
+   "name": "RT-97C Blaster Rifle",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "RT-97C Blaster Rifle",
+     "dice": "1r+3b",
+     "range": "1-4"
+    }
+   ],
+   "kw": {}
   },
   "rt 97c pintle mount": {
    "name": "Pintle-Mounted RT-97C",
@@ -1882,7 +3844,8 @@
      "dice": "1r+3b",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {}
   },
   "rt 97c stormtrooper": {
    "name": "RT-97C Stormtrooper",
@@ -1893,7 +3856,20 @@
      "dice": "1r+3b",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {}
+  },
+  "ryder azadi": {
+   "name": "Ryder Azadi",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "saber throw": {
+   "name": "Saber Throw",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "sabine wren": {
    "name": "Sabine Wren / Explosive Artist",
@@ -1912,7 +3888,18 @@
      "dice": "1b+1n+1r",
      "range": "melee-2"
     }
-   ]
+   ],
+   "kw": {
+    "saut-x": [
+     2
+    ],
+    "pistolero": [],
+    "insensible": [],
+    "agile": [],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "scatter gun trooper": {
    "name": "Scatter Gun Trooper",
@@ -1923,7 +3910,12 @@
      "dice": "2r",
      "range": "melee-2"
     }
-   ]
+   ],
+   "kw": {
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "scout troopers": {
    "name": "Scout Troopers",
@@ -1947,7 +3939,16 @@
      "dice": "2n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "profil-bas": [],
+    "eclaireur-x": [
+     3
+    ],
+    "tireur-delite-x": [
+     1
+    ]
+   }
   },
   "scout troopers strike team": {
    "name": "Scout Troopers / Strike Team",
@@ -1971,7 +3972,35 @@
      "dice": "2n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "detachement": [],
+    "equipe-avec-arme-lourde": [],
+    "profil-bas": [],
+    "incognito": [],
+    "position-preparee": []
+   }
+  },
+  "seize the opportunity": {
+   "name": "Seize the Initiative",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "shoretrooper": {
+   "name": "Shoretrooper",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "shoretrooper squad expansion": {
+   "name": "Shoretrooper Squad",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "indomptable": [],
+    "transport": []
+   }
   },
   "shoretroopers": {
    "name": "Shoretroopers",
@@ -1995,7 +4024,34 @@
      "dice": "1n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "coordination": [],
+    "position-preparee": [],
+    "longue-distance": []
+   }
+  },
+  "shriv suurgav": {
+   "name": "Shriv Suurgav",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "commandant-des-operations": []
+   }
+  },
+  "situational awareness": {
+   "name": "Situational Awareness",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "sleeper cell astromech": {
+   "name": "Astromech",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "non-combattant": []
+   }
   },
   "sm 9 dark trooper": {
    "name": "SM-9 Frag Launcher",
@@ -2006,7 +4062,37 @@
      "dice": "1n+2r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "impact-x": [
+     2
+    ],
+    "cycle": []
+   }
+  },
+  "smoke grenades": {
+   "name": "Smoke Grenades",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "fumee-x": []
+   }
+  },
+  "snowtrooper": {
+   "name": "Snowtrooper",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "snowtrooper squad expansion": {
+   "name": "Snowtrooper Squad",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "indomptable": [],
+    "transport": []
+   }
   },
   "snowtroopers": {
    "name": "Snowtroopers",
@@ -2030,7 +4116,10 @@
      "dice": "1b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "aguerri": []
+   }
   },
   "sonic charge saboteur": {
    "name": "Sonic Charge Saboteur",
@@ -2041,7 +4130,15 @@
      "dice": "1b+1r+2n",
      "range": "melee-1"
     }
-   ]
+   ],
+   "kw": {
+    "deflagration": [],
+    "impact-x": [
+     4
+    ],
+    "suppressif": [],
+    "assaut-x": []
+   }
   },
   "sonic imploders": {
    "name": "Sonic Imploders",
@@ -2052,7 +4149,32 @@
      "dice": "1n",
      "range": "1"
     }
-   ]
+   ],
+   "kw": {
+    "suppressif": []
+   }
+  },
+  "spotter link": {
+   "name": "Spotter Uplink",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "tireur-delite-x": []
+   }
+  },
+  "stormtrooper": {
+   "name": "Stormtrooper",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "stormtrooper captain": {
+   "name": "Stormtrooper Captain",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "chef": []
+   }
   },
   "stormtrooper heavy gunner squad": {
    "name": "Stormtroopers / Heavy Response Unit",
@@ -2076,7 +4198,16 @@
      "dice": "1b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "riposte-graduee-x": [
+     2
+    ],
+    "precis-x": [
+     1
+    ],
+    "sans-entrave": []
+   }
   },
   "stormtrooper riot squad": {
    "name": "Stormtrooper Riot Squad",
@@ -2100,7 +4231,36 @@
      "dice": "1b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "charge": [],
+    "tenir-le-cap": [],
+    "suppressif": []
+   }
+  },
+  "stormtrooper specialist": {
+   "name": "Stormtrooper Specialist",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "stormtrooper squad": {
+   "name": "Stormtrooper Squad",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "indomptable": [],
+    "transport": []
+   }
+  },
+  "stormtrooper squad expansion": {
+   "name": "Stormtrooper Squad",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "indomptable": [],
+    "transport": []
+   }
   },
   "stormtroopers": {
    "name": "Stormtroopers",
@@ -2124,7 +4284,18 @@
      "dice": "1b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "precis-x": [
+     1
+    ]
+   }
+  },
+  "strict orders": {
+   "name": "Strict Orders",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "super commando marksman": {
    "name": "Super Commando Marksman",
@@ -2135,7 +4306,26 @@
      "dice": "1n+1r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "letal-x": [
+     1
+    ]
+   }
+  },
+  "super commando pistoleer": {
+   "name": "Super Commando Gunslinger",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Dual Blaster Pistols",
+     "dice": "2b+2r",
+     "range": "melee-2"
+    }
+   ],
+   "kw": {
+    "debordement": []
+   }
   },
   "swoop bike riders": {
    "name": "Swoop Bike Riders",
@@ -2159,7 +4349,21 @@
      "dice": "1n+1r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "mercenaire": [],
+    "couvert-x": [
+     1
+    ],
+    "autonome": [],
+    "renforts": [],
+    "speeder-x": [
+     1
+    ],
+    "surcharge": [
+     2
+    ]
+   }
   },
   "sx 21 trooper": {
    "name": "SX-21 Trooper",
@@ -2170,7 +4374,28 @@
      "dice": "2b+2r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     1
+    ]
+   }
+  },
+  "t 21 dewback rider": {
+   "name": "T-21 Blaster Rifle",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "T-21 Blaster Rifle",
+     "dice": "4b",
+     "range": "1-3"
+    }
+   ],
+   "kw": {
+    "critique-x": [
+     2
+    ]
+   }
   },
   "t 21 special forces trooper": {
    "name": "T-21 Special Forces Trooper",
@@ -2181,7 +4406,12 @@
      "dice": "4b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     2
+    ]
+   }
   },
   "t 21 stormtrooper": {
    "name": "T-21 Stormtrooper",
@@ -2192,7 +4422,12 @@
      "dice": "4b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     2
+    ]
+   }
   },
   "t 21a range trooper": {
    "name": "T-21A Range Trooper",
@@ -2203,7 +4438,10 @@
      "dice": "2b+2n",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "suppressif": []
+   }
   },
   "t 21b shoretrooper": {
    "name": "T-21B Shoretrooper",
@@ -2214,7 +4452,12 @@
      "dice": "2b+2n",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ]
+   }
   },
   "t 47 airspeeder": {
    "name": "T-47 Airspeeder",
@@ -2233,7 +4476,28 @@
      "dice": "3n+3r",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     3
+    ],
+    "arsenal-x": [
+     2
+    ],
+    "couvert-x": [
+     1
+    ],
+    "immunite-deflagration": [],
+    "immunite-corps-a-corps": [],
+    "immunite-armes-portee-1": [],
+    "speeder-x": [
+     2
+    ],
+    "fixe": [],
+    "impact-x": [
+     3
+    ]
+   }
   },
   "t 7 ion snowtrooper": {
    "name": "T-7 Ion Snowtrooper",
@@ -2244,7 +4508,26 @@
      "dice": "1b+2n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ],
+    "impact-x": [
+     1
+    ],
+    "ion-x": [
+     1
+    ]
+   }
+  },
+  "targeting scopes": {
+   "name": "Targeting Scopes",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "precis-x": []
+   }
   },
   "tauntaun riders": {
    "name": "Tauntaun Riders",
@@ -2268,7 +4551,36 @@
      "dice": "2r",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "preste-x": [
+     1
+    ],
+    "implacable": [],
+    "redeploiement": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "sans-entrave": [],
+    "belier-x": [
+     1
+    ]
+   }
+  },
+  "tech": {
+   "name": "Tech",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "cache": [],
+    "tacticien-x": []
+   }
+  },
+  "tenacity": {
+   "name": "Tenacity",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "the bad batch": {
    "name": "The Bad Batch / Clone Force 99",
@@ -2292,7 +4604,17 @@
      "dice": "1b+1n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "equipe": [],
+    "insensible": [],
+    "ascension": [],
+    "aguerri": [],
+    "tireur-delite-x": [
+     1
+    ],
+    "on-est-pas-des-regs": []
+   }
   },
   "the darksaber": {
    "name": "The Darksaber",
@@ -2303,7 +4625,17 @@
      "dice": "5n",
      "range": "melee"
     }
-   ]
+   ],
+   "kw": {
+    "intrepide": [],
+    "immunite-perforant": [],
+    "impact-x": [
+     1
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "the fifth brother": {
    "name": "Fifth Brother / The Kill is Mine",
@@ -2327,7 +4659,24 @@
      "dice": "3n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "intrepide": [],
+    "blocage": [],
+    "enrage-x": [
+     2
+    ],
+    "immunite-perforant": [],
+    "belier-x": [
+     2
+    ],
+    "impact-x": [
+     2
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
   },
   "the seventh sister": {
    "name": "Seventh Sister / Compelled to Inflict Pain",
@@ -2351,7 +4700,42 @@
      "dice": "3n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "saut-x": [
+     1
+    ],
+    "associe": [],
+    "blocage": [],
+    "charge": [],
+    "discipline-x": [
+     1
+    ],
+    "immunite-perforant": [],
+    "interrogatoire": [],
+    "impact-x": [
+     2
+    ],
+    "perforant-x": [
+     1
+    ]
+   }
+  },
+  "tl tt flame projector": {
+   "name": "AT-RT Flamethrower",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Flamethrower",
+     "dice": "2n",
+     "range": "melee-1"
+    }
+   ],
+   "kw": {
+    "deflagration": [],
+    "fixe": [],
+    "souffle": []
+   }
   },
   "tl tt laser cannon": {
    "name": "AT-RT Laser Cannon",
@@ -2362,7 +4746,13 @@
      "dice": "1r+2n",
      "range": "2-4"
     }
-   ]
+   ],
+   "kw": {
+    "impact-x": [
+     3
+    ],
+    "fixe": []
+   }
   },
   "tl tt rotary blaster": {
    "name": "AT-RT Rotary Blaster",
@@ -2373,7 +4763,27 @@
      "dice": "5n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "fixe": []
+   }
+  },
+  "tristan wren": {
+   "name": "Tristan Wren",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "chef": [],
+    "precis-x": [
+     2
+    ]
+   }
+  },
+  "trusted agent": {
+   "name": "Trusted Agent",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "tx 225 occupier tank": {
    "name": "TX-225 GAVw Occupier Tank",
@@ -2397,7 +4807,69 @@
      "dice": "2n+2r",
      "range": "1-4"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     5
+    ],
+    "arsenal-x": [
+     2
+    ],
+    "redeploiement": [],
+    "transport": [],
+    "point-faible-x": [],
+    "suppressif": [],
+    "fixe": [],
+    "impact-x": [
+     2
+    ]
+   }
+  },
+  "underworld contacts": {
+   "name": "Underworld Connections",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "allies-de-circonstance": []
+   }
+  },
+  "unorthodox tactician": {
+   "name": "Unorthodox Tactician",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "unstable astromech": {
+   "name": "Unstable Astromech",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "ursa wren": {
+   "name": "Ursa Wren",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "chef": [],
+    "defense-x": [
+     2
+    ]
+   }
+  },
+  "vigilance": {
+   "name": "Vigilance",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
+  },
+  "wedge antilles": {
+   "name": "Wedge Antilles",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "pivot-complet": [],
+    "commandant-des-operations": []
+   }
   },
   "wookiee warriors freedom fighters": {
    "name": "Wookiee Warriors / Freedom Fighters",
@@ -2421,7 +4893,13 @@
      "dice": "1b+1n",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "charge": [],
+    "duelliste": [],
+    "indomptable": [],
+    "ascension": []
+   }
   },
   "wookiee warriors kashyyyk resistance": {
    "name": "Wookiee Warriors / Kashyyyk Resistance",
@@ -2445,7 +4923,14 @@
      "dice": "2b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "indomptable": [],
+    "ascension": [],
+    "tireur-delite-x": [
+     1
+    ]
+   }
   },
   "wrecker": {
    "name": "Wrecker",
@@ -2456,7 +4941,8 @@
      "dice": "1b+1n+1r",
      "range": "melee-2"
     }
-   ]
+   ],
+   "kw": {}
   },
   "x 34 landspeeder": {
    "name": "X-34 Landspeeder",
@@ -2475,7 +4961,21 @@
      "dice": "2b",
      "range": "1-2"
     }
-   ]
+   ],
+   "kw": {
+    "armure-x": [
+     2
+    ],
+    "arsenal-x": [
+     3
+    ],
+    "couvert-x": [
+     1
+    ],
+    "speeder-x": [
+     1
+    ]
+   }
   },
   "x 34 mark ii blaster": {
    "name": "Mark II Medium Blaster",
@@ -2486,7 +4986,10 @@
      "dice": "4n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "fixe": []
+   }
   },
   "xs iv dark trooper": {
    "name": "XS-IV Assault Cannon",
@@ -2497,7 +5000,12 @@
      "dice": "4n",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {
+    "critique-x": [
+     1
+    ]
+   }
   },
   "z 6 trooper": {
    "name": "Z-6 Trooper",
@@ -2508,7 +5016,8 @@
      "dice": "6b",
      "range": "1-3"
     }
-   ]
+   ],
+   "kw": {}
   }
  }
 }

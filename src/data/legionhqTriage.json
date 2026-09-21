@@ -1,21 +1,77 @@
 {
   "_meta": {
-    "description": "Écarts Legion HQ tranchés sur le visuel de la carte (21/09/2026) : le visuel imprimé fait foi, l'écart n'est plus signalé dans la certification. Clé = carte ; valeur = début des lignes d'écart ignorées.",
+    "description": "Écarts Legion HQ tranchés sur le visuel de la carte (21/09/2026) : le visuel imprimé fait foi, l'écart n'est plus signalé dans la certification. Clé = carte ; valeur = début des lignes d'écart ignorées. Les escouades (« Transport ») : Legion HQ signale Transport parce que la carte l'interdit ; DH-447, DLT-19x, Del Meeko : mots-clés relus sur le visuel.",
     "verifie": "2026-09-21"
   },
   "cards": {
-    "major marquand": ["arme"],
-    "r2 d2": ["arme"],
-    "director orson krennic": ["dé de défense"],
-    "imperial death troopers": ["adrénaline d’attaque"],
-    "rebel commandos strike team": ["rang", "adrénaline d’attaque"],
-    "scout troopers strike team": ["rang", "figurines", "adrénaline d’attaque"],
-    "rebel veterans": ["courage"],
-    "tauntaun riders": ["PV par figurine", "courage"],
-    "dh 447 sniper": ["arme"],
-    "dlt 19x sniper": ["arme"],
-    "jetpack rockets": ["arme"],
-    "at st mortar launcher": ["arme"],
-    "bowcaster wookiee": ["arme"]
+    "major marquand": [
+      "arme"
+    ],
+    "r2 d2": [
+      "arme"
+    ],
+    "director orson krennic": [
+      "dé de défense"
+    ],
+    "imperial death troopers": [
+      "adrénaline d’attaque"
+    ],
+    "rebel commandos strike team": [
+      "rang",
+      "adrénaline d’attaque"
+    ],
+    "scout troopers strike team": [
+      "rang",
+      "figurines",
+      "adrénaline d’attaque"
+    ],
+    "rebel veterans": [
+      "courage"
+    ],
+    "tauntaun riders": [
+      "PV par figurine",
+      "courage"
+    ],
+    "dh 447 sniper": [
+      "arme",
+      "mots-clés"
+    ],
+    "dlt 19x sniper": [
+      "arme",
+      "mots-clés"
+    ],
+    "jetpack rockets": [
+      "arme"
+    ],
+    "at st mortar launcher": [
+      "arme"
+    ],
+    "bowcaster wookiee": [
+      "arme"
+    ],
+    "fleet trooper squad": [
+      "mots-clés"
+    ],
+    "rebel trooper squad": [
+      "mots-clés"
+    ],
+    "rebel veteran squad": [
+      "mots-clés"
+    ],
+    "stormtrooper squad": [
+      "mots-clés"
+    ],
+    "stormtrooper squad expansion": [
+      "mots-clés"
+    ],
+    "snowtrooper squad expansion": [
+      "mots-clés"
+    ],
+    "shoretrooper squad expansion": [
+      "mots-clés"
+    ],
+    "del meeko": [
+      "mots-clés"
+    ]
   }
 }

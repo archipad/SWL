@@ -1101,11 +1101,13 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // Config Fusil (Encombrant/Haute Vélocité) et Config Pistolet (Longue
   // Distance) fusionnées : carte unique recto/verso avec Reconfiguration,
   // Perforant 1 commun aux deux faces.
+  // Reconfiguration : imprimé sur le visuel (« Cassian Andor uniquement. Reconfiguration. »), confirmé par Legion HQ (21/09/2026).
   'A280-CFE Pistol/Sniper Config': [
     { keywordId: 'perforant-x', value: 1 },
     { keywordId: 'encombrant' },
     { keywordId: 'haute-velocite' },
     { keywordId: 'longue-distance' },
+    { keywordId: 'reconfiguration' },
   ],
   "Jyn's SE-14 Blaster": [
     { keywordId: 'perforant-x', value: 1 },
@@ -1298,7 +1300,9 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   // de Spectres de Galactic_Empire_Units_FR.pdf) : ce nom EN est un
   // placeholder pour cette carte « ajouter 1 figurine » à part, nom EN à
   // vérifier. Arme : Fusil-Bo J-19, 1 blanc + 1 noir.
+  // Chef : imprimé sur le visuel (« Ajoutez 1 figurine de l'Agent Kallus. Chef. »), confirmé par Legion HQ (21/09/2026).
   'Kallus the Operative': [
+    { keywordId: 'chef' },
     { keywordId: 'demoraliser-x', value: 1 },
     { keywordId: 'arme-de-poing' },
   ],

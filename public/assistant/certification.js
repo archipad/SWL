@@ -61,6 +61,17 @@
         if(hq.defenseSurge!==defense)list.push('adrénaline de défense : Legion HQ '+hq.defenseSurge+' / appli '+defense);
       }
     }
+    // Mots-clés : union carte + armes, par identifiant (valeurs numériques comparées quand les deux côtés en ont).
+    if(hq.kw){
+      const mappable=new Set(window.SWL_REFERENCE?.legionhqKeywordIds||[]),appKw={};
+      const addKw=(id,value)=>{appKw[id]=appKw[id]||[];const n=Number(value);if(value!==undefined&&value!==null&&value!==''&&Number.isFinite(n)&&!appKw[id].includes(n))appKw[id].push(n)};
+      for(const tag of tags[card]||[])addKw(tag.keywordId,tag.value);
+      for(const w of p.weapons||[])for(const id of w.keywordIds||[])addKw(id,w.keywordValues?.[id]);
+      const missing=Object.keys(hq.kw).filter(id=>!(id in appKw)),extra=Object.keys(appKw).filter(id=>mappable.has(id)&&id!=='mercenaire'&&!(id in hq.kw)),values=Object.keys(hq.kw).filter(id=>id in appKw&&hq.kw[id].length&&appKw[id].length&&hq.kw[id].some(v=>!appKw[id].includes(v)));
+      if(missing.length)list.push('mots-clés : Legion HQ indique '+missing.map(keywordName).join(', ')+', absent(s) de l’appli');
+      if(extra.length)list.push('mots-clés : dans l’appli, pas sur Legion HQ : '+extra.map(keywordName).join(', '));
+      for(const id of values)list.push('mots-clés : valeur de « '+keywordName(id)+' » : Legion HQ '+hq.kw[id].join('/')+' / appli '+appKw[id].join('/'))
+    }
     const site=hq.weapons||[],app=(p.weapons||[]).map(w=>({name:w.name,dice:hqDice(w.dice),range:w.range||''}));
     if(site.length!==app.length){list.push('nombre d’armes : Legion HQ '+site.length+' / appli '+app.length);return list}
     const remaining=[...site];
