@@ -1424,10 +1424,12 @@ scenario('Erratum FR 17/06/2026 : cartes retirées signalées et non certifiable
   assert.match(text($('.removed-card-banner')), /Électro-grappin/, 'bandeau « carte retirée du jeu » sur la fiche : ' + text($('.overview')).slice(0, 200))
   // mises à jour de l'erratum
   const weapon = (card, name) => reference.weapons[card].weapons.find((item) => item.name === name)
-  assert.equal(JSON.stringify(weapon('dh 447 sniper', 'Fusil de Sniper DH-447').dice), JSON.stringify([{ color: 'blanc', count: 2 }, { color: 'noir', count: 1 }]), 'DH-447 : 2 blancs + 1 noir')
+  // L'ordre des dés dépend de la saisie de la certification : on compare la composition, pas l'ordre.
+  const diceOf = (card, name) => weapon(card, name).dice.map((die) => die.count + ' ' + die.color).sort().join(' + ')
+  assert.equal(diceOf('dh 447 sniper', 'Fusil de Sniper DH-447'), '1 noir + 2 blanc', 'DH-447 : 2 blancs + 1 noir')
   assert.equal(weapon('dh 447 sniper', 'Fusil de Sniper DH-447').range, '2-5', 'DH-447 : portée 2-5')
   assert.equal(weapon('proton charge saboteur', 'Charge à Protons').keywordValues['impact-x'], 6, 'Charge à Protons : Impact 6')
-  assert.equal(JSON.stringify(weapon('df 90 mortar trooper', 'Mortier DF-90').dice), JSON.stringify([{ color: 'noir', count: 2 }]), 'DF-90 : 2 dés noirs')
+  assert.equal(diceOf('df 90 mortar trooper', 'Mortier DF-90'), '2 noir', 'DF-90 : 2 dés noirs')
   assert.equal(reference.weapons['rebel ambusher'].addedModels, 1, 'Tireur Embusqué Rebelle : +1 figurine')
   assert.equal(reference.weapons['rebel commandos strike team'].defenseColor, 'blanc', 'Commandos (Groupe de Combat) : défense blanche')
   // la certification ne propose plus les cartes retirées

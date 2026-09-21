@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+// L'ordre des dés dépend de la saisie de la certification : on compare la composition, pas l'ordre.
+const sortDice = (dice) => [...dice].sort((a, b) => a.color.localeCompare(b.color));
 import { createServer } from 'vite';
 
 // Test bloquant pour le manifeste d'audit des 13 PDF de cartes
@@ -104,7 +106,7 @@ try {
     assert.ok(profile, `${key}: profil de dés absent du catalogue (régression sur le lot Mercenary Upgrades)`);
     const weapon = profile.weapons.find((w) => w.name === weaponName);
     assert.ok(weapon, `${key}: arme « ${weaponName} » absente (régression)`);
-    assert.deepEqual(weapon.dice, dice, `${key}/${weaponName}: dés attendus ${JSON.stringify(dice)}, trouvé ${JSON.stringify(weapon.dice)} (régression)`);
+    assert.deepEqual(sortDice(weapon.dice), sortDice(dice), `${key}/${weaponName}: dés attendus ${JSON.stringify(dice)}, trouvé ${JSON.stringify(weapon.dice)} (régression)`);
     const img = cardImageFor(key);
     assert.ok(img, `${key}: visuel français absent du catalogue (régression)`);
   }
@@ -124,7 +126,7 @@ try {
     assert.ok(profile, `${key}: profil de dés absent du catalogue (régression sur le lot Generic Upgrades)`);
     const weapon = profile.weapons.find((w) => w.name === weaponName);
     assert.ok(weapon, `${key}: arme « ${weaponName} » absente (régression)`);
-    assert.deepEqual(weapon.dice, dice, `${key}/${weaponName}: dés attendus ${JSON.stringify(dice)}, trouvé ${JSON.stringify(weapon.dice)} (régression)`);
+    assert.deepEqual(sortDice(weapon.dice), sortDice(dice), `${key}/${weaponName}: dés attendus ${JSON.stringify(dice)}, trouvé ${JSON.stringify(weapon.dice)} (régression)`);
     const img = cardImageFor(key);
     assert.ok(img, `${key}: visuel absent du catalogue (régression)`);
   }
