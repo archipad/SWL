@@ -600,3 +600,6 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 .card-fx-panel .card-fx.used small { color: #9ff0b5; }
 .card-fx-panel .card-fx button { justify-self: start; min-height: 40px; }
 .card-flip.flipped { border-color: rgba(120, 220, 160, .7); }
+
+.card-fx-panel .card-fx-input { display: grid; gap: 4px; }
+.card-fx-panel .card-fx-input input { width: 90px; min-height: 40px; font-size: 1rem; }

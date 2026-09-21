@@ -1200,7 +1200,7 @@ scenario('Cartes d’amélioration : actions de fiche (Capitaine, Ravitaillement
   // →→ Fusil Amban : 2 actions consommées.
   await click(button('din-djarin-amban-rifle'))
   await click('[data-kw-target]')
-  await click('[data-kw-apply-action]')
+  await click($$('[data-kw-choice]').find((choice) => /Touche ou Critique/.test(text(choice))))
   assert.equal(states().flatMap((state) => state.activationActions || []).filter((item) => item === 'card:din-djarin-amban-rifle').length, 2, 'le Fusil Amban consomme 2 actions')
   // ↱» Guidé par la Force : 1 Adrénaline à l'allié choisi.
   await click(button('force-guidance'))
@@ -1259,6 +1259,146 @@ scenario('Cartes en combat : Générateur de Barrage ajoute 2 dés blancs (annul
   assert.ok(states().some((state) => state.cardWound >= 1), 'les blessures prévenues sont posées sur la carte')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Améliorations hors mots-clés : Postures (2 pions), cartes à jet de dés (Suppression appliquée), Tranquillité (Suppression retirée)', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [
+      { name: 'Stormtroopers', upgrades: [{ name: 'Offensive Posture' }, { name: 'Stormtrooper Sharpshooter' }, { name: 'Remote Doc' }, { name: 'Serenity' }] },
+      { name: 'Snowtroopers', upgrades: [] },
+    ] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [{ name: 'Defensive Posture' }] }] },
+  })
+  const { $, $$, text, click } = app
+  app.window.localStorage.setItem('swl.assistant.player-side.v1', 'p1')
+  const ev = (code) => app.window.eval(code)
+  await app.pickUnit('Stormtroopers')
+  assert.equal(ev('postureMode(entries[0])'), 'offensive', 'Posture Offensive face visible')
+  assert.equal(ev('postureMode(entries[2])'), 'defensive', 'Posture Défensive face visible')
+  // Action Viser : +2 pions au lieu de 1, une action consommée.
+  await click('[data-unit-effect="posture-aim"]')
+  assert.equal(ev('stateFor(entries[0]).aim'), 2, 'la Posture Offensive donne 2 pions Viser')
+  assert.ok(ev('stateFor(entries[0]).activationActions').includes('aim'), 'l’action Viser est comptée')
+  // Carte retournée : Posture Défensive.
+  ev("updateUnitState(entries[0],{flippedCards:['offensive-posture']})")
+  assert.equal(ev('postureMode(entries[0])'), 'defensive', 'retournée : Posture Défensive')
+  ev('updateUnitState(entries[0],{flippedCards:[],activationActions:[]})')
+  // Cartes à jet de dés : la Suppression est appliquée automatiquement, la blessure est rappelée.
+  ev("overview(entries[0],'attack')")
+  await click($('[data-card-action="stormtrooper-sharpshooter"]'))
+  await click('[data-kw-target]')
+  assert.equal($$('[data-kw-choice]').length, 2, 'deux résultats de dé possibles')
+  await click($$('[data-kw-choice]').find((choice) => /Touche ou Critique/.test(text(choice))))
+  assert.equal(ev('stateFor(entries[2]).suppression'), 1, 'Touche/Critique : 1 Suppression appliquée à la cible')
+  await click($('[data-card-action="remote-doc"]'))
+  await click('[data-kw-target]')
+  await click($$('[data-kw-choice]').find((choice) => /2 Bloc/.test(text(choice))))
+  assert.equal(ev('stateFor(entries[1]).suppression'), 2, 'Médecin : 1 Suppression par Bloc/Adrénaline sur l’unité choisie')
+  // Tranquillité : la Suppression est retirée aux deux unités.
+  ev('updateUnitState(entries[0],{suppression:1})')
+  ev("overview(entries[0],'attack')")
+  await click($('[data-card-action="serenity"]'))
+  await click('[data-kw-target]')
+  await click($$('[data-kw-choice]').find((choice) => /Incliner.*— 1 Bloc/.test(text(choice))))
+  assert.equal(ev('stateFor(entries[1]).suppression'), 1, 'Tranquillité retire 1 Suppression à l’unité choisie')
+  assert.equal(ev('stateFor(entries[0]).suppression'), 0, 'et à l’unité porteuse')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Améliorations en combat : Postures (pion interdit), Kraken (dés améliorés), Capitaine Clone Rex, Présence Inspirante', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [
+      { name: 'Stormtroopers', upgrades: [{ name: 'Defensive Posture' }, { name: 'Kraken' }, { name: 'Captain Rex' }] },
+    ] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [{ name: 'Inspiring Presence' }, { name: 'Offensive Posture' }] }] },
+  })
+  const { $, text, click, pickUnit } = app
+  const ev = (code) => app.window.eval(code)
+  ev('updateUnitState(entries[0],{aim:2});updateUnitState(entries[1],{dodge:2})')
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+  await click('[data-range="2"]')
+  await click('.weapon-toggle[data-key$=":1"]')
+  assert.equal(ev('attackState.availableAims'), 0, 'Viser indisponible avec la Posture Défensive')
+  assert.equal(ev('attackState.availableDodges'), 0, 'Esquive indisponible avec la Posture Offensive')
+  assert.equal(ev('stateFor(entries[0]).aim'), 2, 'les pions restent sur l’unité')
+  assert.match(text($('.card-fx-panel')), /POSTURE DÉFENSIVE/, 'la restriction est rappelée')
+  // Kraken : 1 dé amélioré par figurine vaincue.
+  assert.match(text($('.card-fx-panel')), /KRAKEN/, 'Kraken est proposé à la réserve')
+  const before = $('.dice-pool').innerHTML
+  await click('[data-card-fx^="kraken|"]')
+  const input = $('[data-card-fx-input]')
+  input.value = '1'
+  input.dispatchEvent(new app.window.Event('input'))
+  input.dispatchEvent(new app.window.Event('change'))
+  assert.equal(ev('attackState.fxInputs.krakenDefeated'), 1, 'nombre de figurines vaincues saisi')
+  assert.notEqual($('.dice-pool').innerHTML, before, 'un dé d’attaque est amélioré dans la réserve')
+  // Effets d'étape 5 : appliqués directement (le détail des étapes est couvert par les autres parcours).
+  ev("ATTACK_CARD_FX.find((fx) => fx.id === 'captain-rex').apply(attacker)")
+  assert.match(ev('JSON.stringify(stateFor(entries[0]).freeActionOffers)'), /captain-rex/, 'Rex offre 1 action gratuite')
+  ev("ATTACK_CARD_FX.find((fx) => fx.id === 'captain-rex').undo(attacker)")
+  assert.doesNotMatch(ev('JSON.stringify(stateFor(entries[0]).freeActionOffers || [])'), /captain-rex/, 'annuler retire l’action offerte')
+  ev("ATTACK_CARD_FX.find((fx) => fx.id === 'inspiring-presence').apply(entries[1])")
+  const courage = ev('certifiedUnitStats(entries[1]).courage')
+  assert.equal(ev('attackState.commanderCourage'), courage, 'Présence Inspirante : le courage du porteur est repris pour la panique')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Retranchement : dés de couvert rouges ; Programmation Prime d’IG-11 et Charge à Protons : mots-clés gagnés dans la réserve', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [
+      { name: 'Rebel Commandos', upgrades: [{ name: 'Proton Charge Saboteur' }] },
+      { name: 'IG-11', upgrades: [{ name: 'IG11 Prime Programming' }] },
+    ] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Entrenched' }] }, { name: 'Sabine Wren', upgrades: [] }] },
+  })
+  const { $, text, click, setValue, pickUnit, nextAttack } = app
+  app.window.localStorage.setItem('swl.assistant.player-side.v1', 'p1')
+  const ev = (code) => app.window.eval(code)
+  await pickUnit('Commandos Rebelles')
+  await click('#next')
+  await pickUnit('Stormtroopers')
+  await click('[data-range="2"]')
+  ev("selectedWeaponRows()") // la sélection d'armes est vide tant qu'aucune n'est cochée
+  ev("for (const card of [attacker.unit.name, ...(attacker.unit.upgrades || []).map((up) => up.name)]) (profileFor(card)?.weapons || []).forEach((weapon, index) => { attackState.selected[norm(card) + ':' + index] = true })")
+  const ids = ev("activeAttackTags().map((item) => item.def.id + ':' + item.source).join(' | ')")
+  assert.match(ids, /assaut-x/, 'la Charge à Protons donne Assaut 1 aux autres armes à distance : ' + ids)
+  // Retranchement au couvert : dés rouges.
+  ev("attackState.selected = {}")
+  await click('.weapon-toggle[data-key$=":1"]')
+  await nextAttack()
+  await setValue('rollHit', 2)
+  await nextAttack()
+  assert.match(text($('.card-fx-panel')), /RETRANCHEMENT/, 'Retranchement est proposé au couvert')
+  await click('[data-card-fx^="entrenched|"]')
+  await click('[data-cover="heavy"]')
+  assert.ok($(".cover-pool .dice-badge-rouge"), "les dés de couvert sont rouges : " + text($(".cover-pool")))
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+  // Programmation Prime : la cible Prime décide du mot-clé gagné.
+  const second = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test mercenaires', faction: 'Rebelles', units: [{ name: 'IG-11', upgrades: [{ name: 'IG11 Prime Programming' }] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'General Veers', upgrades: [] }, { name: 'Stormtroopers', upgrades: [] }] },
+  })
+  second.window.localStorage.setItem('swl.assistant.player-side.v1', 'p1')
+  const ev2 = (code) => second.window.eval(code)
+  await second.pickUnit('IG-11')
+  await second.click('#next')
+  await second.pickUnit('Général Veers')
+  await second.click('[data-range="2"]')
+  ev2('updateUnitState(entries[1],{lootFrom:entries[0].id})')
+  assert.match(ev2("activeAttackTags().map((item) => item.def.id + ':' + item.tag.value).join('|')"), /perforant-x:1/, 'cible Prime Commandant : Perforant 1')
+  ev2('updateUnitState(entries[1],{lootFrom:null})')
+  ev2("updateUnitState(entries[0],{lootFrom:null})")
+  assert.doesNotMatch(ev2("activeAttackTags().map((item) => item.def.id).join('|')"), /perforant-x.*Programmation|suppressif/, 'sans cible Prime : aucun mot-clé gagné')
+  assert.equal(second.errors.length, 0, second.errors.join(' | '))
+  second.window.close()
 })
 
 /* ------------------------------------------------------------------ */

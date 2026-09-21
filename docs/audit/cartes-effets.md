@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.
 
-99 cartes à effet propre · 59 sondes rejouées dans l’Assistant.
+99 cartes à effet propre · 56 sondes rejouées dans l’Assistant.
 
 | Carte | ↱ / ✖ | Traitement | Où | Remarque |
 |---|---|---|---|---|
@@ -17,7 +17,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Boba Fett, Infâme Chasseur de Primes | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Pointe de Vitesse | ✖ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Électro-Gantelets | — | Rappel (briefing) | briefing tactique | règle de déplacement engagé rappelée dans le briefing |
-| Capitaine Rex | — | Panneau d’attaque | étape(s) 6 (rappel) |  |
+| Capitaine Rex | — | Panneau d’attaque | étape(s) 6 (bouton) |  |
 | Cassian Andor | — | Carte retournable | bouton « Retourner la carte » (mots-clés, vitesse et courage selon la face) |  |
 | Clairvoyance | ✖ | Panneau d’attaque | étape(s) 5 (bouton) |  |
 | Câbles d'Escalade | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
@@ -27,7 +27,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Unité de Piratage Comms | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Brouilleur Comms | — | Rappel (briefing) | briefing tactique | agit sur les unités ennemies proches : rappelé dans le briefing des unités ennemies |
 | Crosshair | — | Panneau d’attaque | étape(s) 1 (rappel) |  |
-| Posture Défensive | — | Carte retournable | bouton « Retourner la carte » (mots-clés, vitesse et courage selon la face) |  |
+| Posture Défensive | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Fusil Amban de Din | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Jetpack de Din | — | Statistique | vitesse / courage de la fiche |  |
 | Effroi | — | Panneau d’attaque | étape(s) 6 (bouton) |  |
@@ -35,7 +35,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Stimulants d'Urgence | ↱ | Panneau d’attaque | étape(s) 5, 6 (bouton) |  |
 | Transpondeur d'Urgence | ✖ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Endurance | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
-| Retranché | — | Panneau d’attaque | étape(s) 3 (rappel) |  |
+| Retranché | — | Panneau d’attaque | étape(s) 3 (bouton) |  |
 | Contrôle de Tir | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Barrière de la Force | ↱ | Panneau d’attaque | étape(s) 4 (bouton) |  |
 | Strangulation de la Force | ↱ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
@@ -51,7 +51,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Liaison HQ | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Hunter | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Programmation « Nounou » | — | Rappel (briefing) | briefing tactique | mots-clés gagnés (IA) ; règle de création d’armée rappelée dans le briefing |
-| Programmation « Prime » | — | Rappel (briefing) | briefing tactique | mots-clés gagnés (Prime, IA) ; effet lié au rang choisi rappelé dans le briefing |
+| Programmation « Prime » | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Technicien Comms Impérial | — | Construction de liste | — | contrainte de construction (amélioration Comms obligatoire) |
 | Pilote de l'Unité d'Élite Blindée Imperial Hammers | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Marche Impériale | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
@@ -60,13 +60,13 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Ordres Improvisés | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Dans la Mêlée | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Entraînement de l'Inquisitorius | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
-| Présence Inspirante | — | Panneau d’attaque | étape(s) 6 (rappel) |  |
+| Présence Inspirante | — | Panneau d’attaque | étape(s) 6 (bouton) |  |
 | Agent Kallus | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
-| Kraken | — | Panneau d’attaque | étape(s) 1, 2 (rappel) |  |
+| Kraken | — | Panneau d’attaque | étape(s) 1, 2 (bouton) |  |
 | Super Commandos Mandaloriens | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Objectif de Mission | ↱ | Panneau d’attaque | étape(s) 2 (bouton) |  |
 | Artilleurs Montés | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
-| Posture Offensive | — | Carte retournable | bouton « Retourner la carte » (mots-clés, vitesse et courage selon la face) |  |
+| Posture Offensive | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Poussée Offensive | ↱ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Vieille Ruse Jedi | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | En Chasse | — | Panneau d’attaque | étape(s) 2 (bouton) |  |

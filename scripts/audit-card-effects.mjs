@@ -34,16 +34,14 @@ const AUTOMATIC = {
   'proton charge saboteur': 'app:proton charge saboteur', 'sonic charge saboteur': 'app:sonic charge saboteur', tenacity: 'app:tenacity', 'point blank': 'app:point blank',
   'saber throw': 'app:saber throw', 'fire control': 'data:fireControl', 'combat armor rebel': 'data:defenseColorOverride', 'reluctant hero': 'data:criticalPerSuppression',
   'chewbacca upgrade': 'app:chewbaccaUpgrades', 'imperial hammers elite armor pilot': 'data:attackSurgeOverride', crosshair: "app:'crosshair'",
+  'defensive posture': 'app:posture-dodge', 'offensive posture': 'app:posture-aim', 'ig11 prime programming': 'app:Programmation Prime',
   'fragmentation grenades': 'weapon:attackSurge', 'sabine s grapple line': 'app:grappin', 'ascension cables': 'app:cables',
 }
 const RAPPEL = {
   'command system': 'règle permanente de la porteuse (portée de Coordination 2), rappelée dans le briefing',
   'comms jammer': 'agit sur les unités ennemies proches : rappelé dans le briefing des unités ennemies',
   'strict orders': 'agit sur les unités alliées : rappelé dans leur briefing',
-  'defensive posture': 'carte retournable ; règle de l’action Esquiver rappelée dans le briefing',
-  'offensive posture': 'carte retournable ; règle de l’action Viser rappelée dans le briefing',
   'ig11 nanny programming': 'mots-clés gagnés (IA) ; règle de création d’armée rappelée dans le briefing',
-  'ig11 prime programming': 'mots-clés gagnés (Prime, IA) ; effet lié au rang choisi rappelé dans le briefing',
   'cad bane electro gauntlets': 'règle de déplacement engagé rappelée dans le briefing',
   'programmed loyalty': 'restriction d’ordres rappelée dans le briefing',
   wrecker: 'protection de l’Alter Ego Omega rappelée dans le briefing',
@@ -109,7 +107,7 @@ engine.dom.window.close()
 const use = (key) => ref.cardUse?.[key] || 'passive'
 const keys = [...new Set([...Object.keys(notes), ...Object.keys(ref.cardUse).filter((key) => REQUIRES_BUTTON.has(use(key)))])].sort()
 const defByCard = new Map(defs.flatMap((def) => def.cards.map((card) => [card, def])))
-const fxByCard = new Map(attackFx.map((fx) => [fx.card, fx]))
+const fxByCard = new Map(attackFx.filter((fx) => !fx.id.startsWith('posture')).flatMap((fx) => [].concat(fx.card).map((card) => [card, fx])))
 const problems = [], rows = []
 const proofOf = (marker, key) => {
   const [kind, needle] = marker.split(':')
