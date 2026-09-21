@@ -160,7 +160,7 @@ for (const key of Object.keys(ref.weapons)) {
     const score = (c) => weaponScore(profile.weapons, c.weapons) + (c.stats.minicount === profile.unitStats?.baseModels ? 0 : 2) + (c.stats.hp === profile.unitStats?.woundsPerModel ? 0 : 1) + (RANK[c.rank] === rankOf[key] ? 0 : 1)
     const c = best(pool, score), st = c.stats, ustats = profile.unitStats, cert = profile.fullCardCertification, comb = combat[key] || {}
     comparedUnits++
-    reference[key] = { name: c.cardName + (c.title ? ' / ' + c.title : ''), kind: 'unit', rank: RANK[c.rank] || null, speed: st.speed || null, minis: st.minicount ?? null, hp: st.hp ?? null, courage: Number.isFinite(st.courage) && st.courage > 0 ? st.courage : null, defense: { r: 'rouge', w: 'blanc' }[st.defense] || null, attackSurge: { h: 'hit', c: 'crit' }[st.hitsurge] || 'none', defenseSurge: st.defsurge === 'b' ? 'block' : 'none', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
+    reference[key] = { history: (c.history || []).slice(-3).map((h) => ({ date: h.date, text: h.description })), name: c.cardName + (c.title ? ' / ' + c.title : ''), kind: 'unit', rank: RANK[c.rank] || null, speed: st.speed || null, minis: st.minicount ?? null, hp: st.hp ?? null, courage: Number.isFinite(st.courage) && st.courage > 0 ? st.courage : null, defense: { r: 'rouge', w: 'blanc' }[st.defense] || null, attackSurge: { h: 'hit', c: 'crit' }[st.hitsurge] || 'none', defenseSurge: st.defsurge === 'b' ? 'block' : 'none', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
     if (RANK[c.rank] && rankOf[key] && RANK[c.rank] !== rankOf[key]) list.push(`rang : site ${RANK[c.rank]} / appli ${rankOf[key]}`)
     const appSpeed = printedSpeedOf(key)
     if (appSpeed !== null && st.speed && st.speed !== appSpeed) list.push(`vitesse : site ${st.speed} / appli ${appSpeed}`)
@@ -185,7 +185,7 @@ for (const key of Object.keys(ref.weapons)) {
   } else {
     const c = best(pool, (card) => weaponScore(profile.weapons, card.weapons))
     comparedUpgrades++
-    reference[key] = { name: c.cardName, kind: 'upgrade', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
+    reference[key] = { history: (c.history || []).slice(-3).map((h) => ({ date: h.date, text: h.description })), name: c.cardName, kind: 'upgrade', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
     if ((c.weapons || []).length || (profile.weapons || []).length) compareWeapons(list, profile.weapons, c.weapons)
     reference[key].kw = compareKeywords(list, key, profile, c)
     if (list.length) problems.push({ kind: 'amélioration', key, name: c.cardName, list })

@@ -178,6 +178,16 @@
  },
  "cards": {
   "1 4 fd laser cannon team": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 70 to 65 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Gained Prepared Position keyword."
+    }
+   ],
    "name": "1.4 FD Laser Cannon Team",
    "kind": "unit",
    "rank": "support",
@@ -217,6 +227,16 @@
    }
   },
   "2 1b medical droid": {
+   "history": [
+    {
+     "date": "6 November 2024",
+     "text": "Cost increased from 18 to 20 points."
+    },
+    {
+     "date": "6 December 2024",
+     "text": "Change the restriction to Rebel Core Trooper only."
+    }
+   ],
    "name": "2-1B Medical Droid",
    "kind": "upgrade",
    "weapons": [],
@@ -226,6 +246,20 @@
    }
   },
   "74 z speeder bikes": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 75 to 70 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 70 to 80 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 80 to 70 points."
+    }
+   ],
    "name": "74-Z Speeder Bikes",
    "kind": "unit",
    "rank": "support",
@@ -261,6 +295,12 @@
    }
   },
   "88i twin light blaster": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 20 to 10 points."
+    }
+   ],
    "name": "88i Twin Light Blaster",
    "kind": "upgrade",
    "weapons": [
@@ -278,6 +318,16 @@
    }
   },
   "a a5 speeder truck": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 75 to 65 points. Armor reduced to 5."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost increased from 65 to 75 points."
+    }
+   ],
    "name": "A-A5 Speeder Truck",
    "kind": "unit",
    "rank": "heavy",
@@ -300,6 +350,12 @@
    }
   },
   "a280 cfe pistol sniper config": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 10 to 0 points."
+    }
+   ],
    "name": "A280",
    "kind": "upgrade",
    "weapons": [
@@ -325,12 +381,27 @@
    }
   },
   "additional supplies": {
+   "history": [],
    "name": "Extra Supplies",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "ag 2g quad laser": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 28 to 25 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 25 to 20 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 20 to 10 points."
+    }
+   ],
    "name": "AG-2G Quad Laser",
    "kind": "upgrade",
    "weapons": [
@@ -348,6 +419,16 @@
    }
   },
   "agent kallus": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 90 to 85 points."
+    },
+    {
+     "date": "15 April 2025",
+     "text": "Points dropped from 85 to 70. Changed from Commander to Operative. Lost Contingencies, Cunning Flawed, Sharpshooter, and Tactical keywords and gained Observe, Bounty, Charge, Direct, Immune, and Interrogate. Lost Surge to Crit and 1 health. Weapons changed to the Bo Rifle which is 1 red and 3 black."
+    }
+   ],
    "name": "Agent Kallus / Hunter of Spectres",
    "kind": "unit",
    "rank": "operative",
@@ -384,6 +465,12 @@
    }
   },
   "ahsoka tano": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 145 to 115 points."
+    }
+   ],
    "name": "Ahsoka Tano / Fulcrum",
    "kind": "unit",
    "rank": "operative",
@@ -421,12 +508,19 @@
    }
   },
   "anger": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 5 to 3 points."
+    }
+   ],
    "name": "Anger",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "anti bunker shells": {
+   "history": [],
    "name": "\"Bunker Buster\" Shells",
    "kind": "upgrade",
    "weapons": [
@@ -444,6 +538,7 @@
    }
   },
   "armor piercing shells": {
+   "history": [],
    "name": "Armor-Piercing Shells",
    "kind": "upgrade",
    "weapons": [
@@ -462,6 +557,7 @@
    }
   },
   "ascension cables": {
+   "history": [],
    "name": "Ascension Cables",
    "kind": "upgrade",
    "weapons": [],
@@ -470,6 +566,16 @@
    }
   },
   "at rt": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 65 to 60 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Armor reduced to 2. Defense changed from white to red. Lost surge to block."
+    }
+   ],
    "name": "AT-RT",
    "kind": "unit",
    "rank": "support",
@@ -510,6 +616,20 @@
    }
   },
   "at rt flamethrower": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 35 to 20 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 20 to 15 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Now can be used in melee."
+    }
+   ],
    "name": "AT-RT Flamethrower",
    "kind": "upgrade",
    "weapons": [
@@ -526,6 +646,20 @@
    }
   },
   "at st": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 170 to 160 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 160 to 155 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 155 to 145 points. Armor reduced to 5."
+    }
+   ],
    "name": "AT-ST",
    "kind": "unit",
    "rank": "heavy",
@@ -563,6 +697,12 @@
    }
   },
   "at st mortar launcher": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 10 to 5 points."
+    }
+   ],
    "name": "AT-ST Mortar Launcher",
    "kind": "upgrade",
    "weapons": [
@@ -578,6 +718,16 @@
    }
   },
   "attack protocols": {
+   "history": [
+    {
+     "date": "6 November 2024",
+     "text": "Cost increased from 5 to 8 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 8 to 3 points."
+    }
+   ],
    "name": "Attack Protocols",
    "kind": "upgrade",
    "weapons": [],
@@ -587,6 +737,12 @@
    }
   },
   "ax 108 ground buzzer": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 20 to 10 points."
+    }
+   ],
    "name": "Ax-108 \"Ground Buzzer\"",
    "kind": "upgrade",
    "weapons": [
@@ -601,6 +757,12 @@
    }
   },
   "baron rudor": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 12 to 8 points."
+    }
+   ],
    "name": "Baron Rudor",
    "kind": "upgrade",
    "weapons": [],
@@ -609,6 +771,16 @@
    }
   },
   "barrage generator": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 10 to 7 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 7 to 3 points."
+    }
+   ],
    "name": "Barrage Generator",
    "kind": "upgrade",
    "weapons": [
@@ -624,6 +796,7 @@
    }
   },
   "battle shield wookiee": {
+   "history": [],
    "name": "Battle Shield Wookiee",
    "kind": "upgrade",
    "weapons": [
@@ -644,6 +817,16 @@
    }
   },
   "beskad duelist": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 28 to 24 points."
+    },
+    {
+     "date": "19 June 2026",
+     "text": "Cost increased from 24 to 30 points. Lost Duelist and gained Pierce 1. Gained charge on tap."
+    }
+   ],
    "name": "Beskad Duelist",
    "kind": "upgrade",
    "weapons": [
@@ -660,6 +843,16 @@
    }
   },
   "black sun enforcer magnetic detonator": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost increased from 14 to 16 points."
+    },
+    {
+     "date": "15 April 2025",
+     "text": "Can now be used in melee."
+    }
+   ],
    "name": "Mag-Det Enforcer",
    "kind": "upgrade",
    "weapons": [
@@ -677,6 +870,12 @@
    }
   },
   "black sun enforcer scatter gun": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Can now be used in melee."
+    }
+   ],
    "name": "Scatter Gun Enforcer",
    "kind": "upgrade",
    "weapons": [
@@ -693,6 +892,12 @@
    }
   },
   "black sun enforcers": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost increased from 48 to 50 points."
+    }
+   ],
    "name": "Black Sun Enforcers",
    "kind": "unit",
    "rank": "corps",
@@ -726,6 +931,7 @@
    }
   },
   "black sun vigo": {
+   "history": [],
    "name": "Black Sun Vigo",
    "kind": "unit",
    "rank": "commandant",
@@ -756,6 +962,12 @@
    }
   },
   "boba fett daimyo of mos espa": {
+   "history": [
+    {
+     "date": "29 May 2026",
+     "text": "Changed to mandalorian trooper."
+    }
+   ],
    "name": "Boba Fett / Daimyo of Mos Espa",
    "kind": "unit",
    "rank": "operative",
@@ -801,6 +1013,7 @@
    }
   },
   "boba fett flamethrower": {
+   "history": [],
    "name": "Flame Projector",
    "kind": "upgrade",
    "weapons": [
@@ -817,6 +1030,20 @@
    }
   },
   "boba fett infamous bounty hunter": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 125 to 120 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost increased from 120 to 130 points."
+    },
+    {
+     "date": "29 May 2026",
+     "text": "Changed to mandalorian trooper."
+    }
+   ],
    "name": "Boba Fett / Infamous Bounty Hunter",
    "kind": "unit",
    "rank": "operative",
@@ -868,6 +1095,12 @@
    }
   },
   "bossk terror of trandosha": {
+   "history": [
+    {
+     "date": "31 May 2022",
+     "text": "Cost reduced from 115 to 105 points."
+    }
+   ],
    "name": "Bossk / Trandoshan Terror",
    "kind": "unit",
    "rank": "operative",
@@ -908,6 +1141,12 @@
    }
   },
   "bowcaster wookiee": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 35 to 31 points."
+    }
+   ],
    "name": "Bowcaster Wookiee",
    "kind": "upgrade",
    "weapons": [
@@ -927,12 +1166,28 @@
    }
   },
   "burst of speed": {
+   "history": [
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 3 to 10 points."
+    }
+   ],
    "name": "Burst of Speed",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "cad bane": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 125 to 120 points."
+    },
+    {
+     "date": "31 May 2022",
+     "text": "Cost reduced from 120 to 105 points."
+    }
+   ],
    "name": "Cad Bane / Needs No Introduction",
    "kind": "unit",
    "rank": "operative",
@@ -975,6 +1230,12 @@
    }
   },
   "cad bane electro gauntlets": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 10 to 3 points."
+    }
+   ],
    "name": "Electro Gauntlets",
    "kind": "upgrade",
    "weapons": [
@@ -992,6 +1253,7 @@
    }
   },
   "captain rex": {
+   "history": [],
    "name": "Clone Captain Rex",
    "kind": "upgrade",
    "weapons": [
@@ -1006,6 +1268,12 @@
    }
   },
   "cassian andor": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Changed from Commander to Operative. Lost Covert Ops and Loadout, and gained Equip: A280, Field Commander, Infiltrate, and Sharpshooter 1 keywords. Gained Command slot. Melee changed from 2 red to 3 black, ranged lost pierce and changed from 1 red and 2 white to 2 black and 2 white. Health decreased from 6 to 5."
+    }
+   ],
    "name": "Cassian Andor / Capable Intelligence Agent",
    "kind": "unit",
    "rank": "operative",
@@ -1045,6 +1313,7 @@
    }
   },
   "cassian andor operative": {
+   "history": [],
    "name": "Cassian Andor",
    "kind": "upgrade",
    "weapons": [
@@ -1070,6 +1339,16 @@
    }
   },
   "chewbacca": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 110 to 95 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 95 to 90 points. Gained Wookiee Warrior tag and Scale keyword. Weapon gained Lethal keyword. Lost Expert Climber and Unhindered keywords."
+    }
+   ],
    "name": "Chewbacca / Walking Carpet",
    "kind": "unit",
    "rank": "operative",
@@ -1113,6 +1392,7 @@
    }
   },
   "chewbacca upgrade": {
+   "history": [],
    "name": "Chewbacca",
    "kind": "upgrade",
    "weapons": [
@@ -1130,12 +1410,14 @@
    }
   },
   "clairvoyance": {
+   "history": [],
    "name": "Clairvoyance",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "climbing cables": {
+   "history": [],
    "name": "Ascension Cables",
    "kind": "upgrade",
    "weapons": [],
@@ -1144,6 +1426,20 @@
    }
   },
   "cm o 93 trooper": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 31 to 26 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Range band incresed from 1-3 to 1-4."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 26 to 22 points."
+    }
+   ],
    "name": "CM-0/93 Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -1160,18 +1456,31 @@
    }
   },
   "comms hacking unit": {
+   "history": [],
    "name": "Hacked Comms Unit",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "comms jammer": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 15 to 5 points."
+    }
+   ],
    "name": "Comms Jammer",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "concussion grenades": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 5 to 3 points."
+    }
+   ],
    "name": "Concussion Grenades",
    "kind": "upgrade",
    "weapons": [
@@ -1186,6 +1495,20 @@
    }
   },
   "cr 24 flame rifle": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 20 to 15 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 15 to 10 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost increased from 10 to 14 points."
+    }
+   ],
    "name": "CR-24 Flame Rifle",
    "kind": "upgrade",
    "weapons": [
@@ -1201,6 +1524,7 @@
    }
   },
   "crosshair": {
+   "history": [],
    "name": "Crosshair",
    "kind": "upgrade",
    "weapons": [
@@ -1222,6 +1546,12 @@
    }
   },
   "dark trooper squad": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Armor reduced to 3."
+    }
+   ],
    "name": "Imperial Dark Troopers",
    "kind": "unit",
    "rank": "heavy",
@@ -1254,6 +1584,20 @@
    }
   },
   "darth vader dark lord of the sith": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 190 to 175 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost increased from 175 to 190 points. Added Command upgrade slot and Compel: Corps Trooper."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 190 to 170 points."
+    }
+   ],
    "name": "Darth Vader / Dark Lord of the Sith",
    "kind": "unit",
    "rank": "commandant",
@@ -1288,6 +1632,16 @@
    }
   },
   "defense protocols": {
+   "history": [
+    {
+     "date": "6 November 2024",
+     "text": "Cost increased from 5 to 8 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 8 to 3 points."
+    }
+   ],
    "name": "Defense Protocols",
    "kind": "upgrade",
    "weapons": [],
@@ -1298,6 +1652,16 @@
    }
   },
   "del meeko": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 38 to 25 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 25 to 35 points."
+    }
+   ],
    "name": "Del Meeko",
    "kind": "upgrade",
    "weapons": [
@@ -1317,6 +1681,16 @@
    }
   },
   "dewback rider": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 90 to 75 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 75 to 70 points."
+    }
+   ],
    "name": "Dewback Rider",
    "kind": "unit",
    "rank": "support",
@@ -1349,6 +1723,20 @@
    }
   },
   "df 90 mortar trooper": {
+   "history": [
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 38 to 40 points."
+    },
+    {
+     "date": "15 April 2025",
+     "text": "Gained Prepared Position keyword. Blaster now works in melee"
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Ranged attack changed from 3 white to 2 black."
+    }
+   ],
    "name": "DF-90 Mortar Trooper",
    "kind": "unit",
    "rank": "corps",
@@ -1387,6 +1775,20 @@
    }
   },
   "dh 447 sniper": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 28 to 38 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 38 to 35 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 35 to 20 points. Dice changed from 1 black 1 white to 1 black 2 white. Range changed from 1,5 to 2,5. Removed Pierce 1 and given Overwhelm and Sniper Team keywords."
+    }
+   ],
    "name": "DH-447 Sniper",
    "kind": "upgrade",
    "weapons": [
@@ -1403,6 +1805,16 @@
    }
   },
   "din djarin": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 105 to 95 points."
+    },
+    {
+     "date": "29 May 2026",
+     "text": "Changed to mandalorian trooper, affiliation changed to Children of the Watch."
+    }
+   ],
    "name": "Din Djarin / The Mandalorian",
    "kind": "unit",
    "rank": "operative",
@@ -1444,6 +1856,7 @@
    }
   },
   "din djarin amban rifle": {
+   "history": [],
    "name": "Din's Amban Rifle",
    "kind": "upgrade",
    "weapons": [
@@ -1461,6 +1874,7 @@
    }
   },
   "din djarin beskar spear": {
+   "history": [],
    "name": "Beskar Spear",
    "kind": "upgrade",
    "weapons": [
@@ -1476,6 +1890,7 @@
    }
   },
   "din djarin flamethrower": {
+   "history": [],
    "name": "Flame Projector",
    "kind": "upgrade",
    "weapons": [
@@ -1492,6 +1907,7 @@
    }
   },
   "din djarin jetpack": {
+   "history": [],
    "name": "Din's Jetpack",
    "kind": "upgrade",
    "weapons": [],
@@ -1500,6 +1916,16 @@
    }
   },
   "director orson krennic": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 90 to 75 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 75 to 65 points. Lost Sharpshooter and Pierce, and gained Spotter and Exemplar keywords. Blaster changed from rainbow to 3 red."
+    }
+   ],
    "name": "Director Orson Krennic / Architect of Terror",
    "kind": "unit",
    "rank": "commandant",
@@ -1533,6 +1959,12 @@
    }
   },
   "dlt 19 pintle mount": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 18 to 14 points."
+    }
+   ],
    "name": "Pintle-Mounted DLT-19",
    "kind": "upgrade",
    "weapons": [
@@ -1549,6 +1981,16 @@
    }
   },
   "dlt 19 stormtrooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 24 to 22 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 22 to 20 points."
+    }
+   ],
    "name": "DLT-19 Stormtrooper",
    "kind": "upgrade",
    "weapons": [
@@ -1565,6 +2007,20 @@
    }
   },
   "dlt 19d trooper": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 22 to 15 points."
+    },
+    {
+     "date": "12 December 2022",
+     "text": "Cost reduced from 34 to 30 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 30 to 28 points."
+    }
+   ],
    "name": "DLT-19D Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -1581,6 +2037,20 @@
    }
   },
   "dlt 19x sniper": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 28 to 38 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 38 to 35 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 35 to 20 points. Dice changed from 2 blcok to 1 black 2 white. Range changed from 1,5 to 2,5. Removed Pierce 1 and given Overwhelm and Sniper Team keywords."
+    }
+   ],
    "name": "DLT-19x Sniper",
    "kind": "upgrade",
    "weapons": [
@@ -1597,6 +2067,7 @@
    }
   },
   "dlt 20a range trooper": {
+   "history": [],
    "name": "DLT-20A Range Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -1613,6 +2084,7 @@
    }
   },
   "dlt 20a trooper": {
+   "history": [],
    "name": "DLT-20A Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -1629,6 +2101,16 @@
    }
   },
   "dt f16": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Wound threshold increased from 1 to 2."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 22 to 15 points."
+    }
+   ],
    "name": "DT-F16",
    "kind": "upgrade",
    "weapons": [
@@ -1644,12 +2126,28 @@
    }
   },
   "duck and cover": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 8 to 4 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 4 to 2 points."
+    }
+   ],
    "name": "Duck and Cover",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "dw 3 concussion grenade launcher": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 15 to 8 points."
+    }
+   ],
    "name": "DW-3 Grenade Launcher",
    "kind": "upgrade",
    "weapons": [
@@ -1665,6 +2163,12 @@
    }
   },
   "e 11d focused strike config": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 8 to 0 points."
+    }
+   ],
    "name": "E-11D Focused Fire Configuration",
    "kind": "upgrade",
    "weapons": [
@@ -1686,6 +2190,16 @@
    }
   },
   "e web heavy blaster team": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 55 to 50 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 50 to 60 points. Gained Prepared Position and lost Full Pivot keywords. Blaster gained impact 1 and range increased from range 3 to 4."
+    }
+   ],
    "name": "E-Web Heavy Blaster Team",
    "kind": "unit",
    "rank": "support",
@@ -1725,6 +2239,7 @@
    }
   },
   "echo clone force 99": {
+   "history": [],
    "name": "Echo",
    "kind": "upgrade",
    "weapons": [],
@@ -1733,6 +2248,7 @@
    }
   },
   "electrobinoculars": {
+   "history": [],
    "name": "Electrobinoculars",
    "kind": "upgrade",
    "weapons": [],
@@ -1741,18 +2257,34 @@
    }
   },
   "emergency stims": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost increased from 8 to 12 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 12 to 10 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 10 to 8 points."
+    }
+   ],
    "name": "Emergency Stims",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "emergency transponder": {
+   "history": [],
    "name": "Emergency Transponder",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "emp grenades": {
+   "history": [],
    "name": "EMP \"Droid Poppers\"",
    "kind": "upgrade",
    "weapons": [
@@ -1769,12 +2301,19 @@
    }
   },
   "endurance": {
+   "history": [],
    "name": "Endurance",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "engagement protocols": {
+   "history": [
+    {
+     "date": "6 November 2024",
+     "text": "Cost reduced from 5 to 3 points."
+    }
+   ],
    "name": "Engagement Protocols",
    "kind": "upgrade",
    "weapons": [],
@@ -1783,6 +2322,12 @@
    }
   },
   "environmental gear": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 3 to 2 points."
+    }
+   ],
    "name": "Environmental Gear",
    "kind": "upgrade",
    "weapons": [],
@@ -1791,6 +2336,7 @@
    }
   },
   "fear": {
+   "history": [],
    "name": "Fear",
    "kind": "upgrade",
    "weapons": [],
@@ -1799,12 +2345,14 @@
    }
   },
   "fire control": {
+   "history": [],
    "name": "Fire Control",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "first sergeant arbmab": {
+   "history": [],
    "name": "First Sergeant Arbmab",
    "kind": "upgrade",
    "weapons": [],
@@ -1813,6 +2361,12 @@
    }
   },
   "flametrooper": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Now can be used in melee."
+    }
+   ],
    "name": "Flametrooper",
    "kind": "upgrade",
    "weapons": [
@@ -1828,12 +2382,24 @@
    }
   },
   "fleet trooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 11 to 7 points."
+    }
+   ],
    "name": "Fleet Trooper",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "fleet trooper squad": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 45 to 40 points."
+    }
+   ],
    "name": "Fleet Trooper Squad",
    "kind": "upgrade",
    "weapons": [],
@@ -1843,6 +2409,16 @@
    }
   },
   "fleet troopers": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 44 to 40 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Gained Charge and lost Ready keywords. Blaster can now be used in melee."
+    }
+   ],
    "name": "Fleet Troopers",
    "kind": "unit",
    "rank": "corps",
@@ -1865,36 +2441,66 @@
    }
   },
   "force barrier": {
+   "history": [],
    "name": "Force Barrier",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "force choke": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost increased from 5 to 10 points."
+    }
+   ],
    "name": "Force Choke",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "force guidance": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 10 to 5 points."
+    }
+   ],
    "name": "Force Guidance",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "force push": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 10 to 40 points."
+    }
+   ],
    "name": "Force Push",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "force reflexes": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 15 to 10 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 10 to 5 points."
+    }
+   ],
    "name": "Force Reflexes",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "fragmentation grenades": {
+   "history": [],
    "name": "Fragmentation Grenades",
    "kind": "upgrade",
    "weapons": [
@@ -1907,6 +2513,12 @@
    "kw": {}
   },
   "fx 9 medical droid": {
+   "history": [
+    {
+     "date": "6 November 2024",
+     "text": "Cost increased from 19 to 22 points."
+    }
+   ],
    "name": "FX-9 Medical Droid",
    "kind": "upgrade",
    "weapons": [],
@@ -1916,6 +2528,12 @@
    }
   },
   "gar saxon galar90 rifle": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 15 to 10 points."
+    }
+   ],
    "name": "Saxon's Galar-90 Rifle",
    "kind": "upgrade",
    "weapons": [
@@ -1934,6 +2552,20 @@
    }
   },
   "gar saxon militant commando": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 105 to 100 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 100 to 95 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 95 to 90 points."
+    }
+   ],
    "name": "Gar Saxon / Militant Commando",
    "kind": "unit",
    "rank": "commandant",
@@ -1972,6 +2604,20 @@
    }
   },
   "general veers": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 80 to 75 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 75 to 70 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost incresed from 70 to 75 points. Lost Precise and Pierce, and gained Guidance: Ground Vehicle and Exemplar keywords. Blaster Rifle changed from 3 white to 3 red."
+    }
+   ],
    "name": "General Veers / Master Tactician",
    "kind": "unit",
    "rank": "commandant",
@@ -2008,6 +2654,16 @@
    }
   },
   "general weiss": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 10 to 1 point."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost increased from 1 to 5 points. Added Field Commander keyword"
+    }
+   ],
    "name": "General Weiss",
    "kind": "upgrade",
    "weapons": [],
@@ -2017,6 +2673,16 @@
    }
   },
   "generator overcharge": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 10 to 7 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 7 to 3 points."
+    }
+   ],
    "name": "Overcharged Generator",
    "kind": "upgrade",
    "weapons": [
@@ -2034,6 +2700,12 @@
    }
   },
   "gideon hask": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 38 to 29 points."
+    }
+   ],
    "name": "Gideon Hask",
    "kind": "upgrade",
    "weapons": [
@@ -2049,6 +2721,16 @@
    }
   },
   "governor pryce": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 10 to 5 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Removed ability to give an aim to transported unit."
+    }
+   ],
    "name": "Governor Pryce",
    "kind": "upgrade",
    "weapons": [],
@@ -2057,6 +2739,16 @@
    }
   },
   "grapnel hooks": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 3 to 1 point."
+    },
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 1 to 2 points."
+    }
+   ],
    "name": "Grappling Hooks",
    "kind": "upgrade",
    "weapons": [],
@@ -2065,6 +2757,16 @@
    }
   },
   "han solo": {
+   "history": [
+    {
+     "date": "23 August 2018",
+     "text": "Released in Han Solo Commander Expansion."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 120 to 100 points."
+    }
+   ],
    "name": "Han Solo / Unorthodox General",
    "kind": "unit",
    "rank": "commandant",
@@ -2103,6 +2805,7 @@
    }
   },
   "handheld scanner": {
+   "history": [],
    "name": "Portable Scanner",
    "kind": "upgrade",
    "weapons": [],
@@ -2111,6 +2814,16 @@
    }
   },
   "heavy laser retrofit": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 16 to 12 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 12 to 7 points."
+    }
+   ],
    "name": "Heavy Laser Retrofit",
    "kind": "upgrade",
    "weapons": [
@@ -2127,6 +2840,20 @@
    }
   },
   "hh 12 stormtrooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 26 to 20 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 20 to 16 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 16 to 22 points, but no longer exhausts."
+    }
+   ],
    "name": "HH-12 Stormtrooper",
    "kind": "upgrade",
    "weapons": [
@@ -2144,6 +2871,7 @@
    }
   },
   "high energy shells": {
+   "history": [],
    "name": "High-Energy Shells",
    "kind": "upgrade",
    "weapons": [
@@ -2163,6 +2891,7 @@
    }
   },
   "hope": {
+   "history": [],
    "name": "Hope",
    "kind": "upgrade",
    "weapons": [],
@@ -2171,6 +2900,7 @@
    }
   },
   "hotshot pilot": {
+   "history": [],
    "name": "Hotshot Pilot",
    "kind": "upgrade",
    "weapons": [],
@@ -2179,12 +2909,19 @@
    }
   },
   "hq uplink": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Can take max 2 copies."
+    }
+   ],
    "name": "HQ Uplink",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "hunter": {
+   "history": [],
    "name": "Hunter",
    "kind": "upgrade",
    "weapons": [],
@@ -2193,6 +2930,7 @@
    }
   },
   "iden s id10 seeker droid": {
+   "history": [],
    "name": "Seeker Droid",
    "kind": "upgrade",
    "weapons": [],
@@ -2209,6 +2947,12 @@
    }
   },
   "iden versio": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Lost Covert Ops and Loadout, and gained Sharpshooter 1 and Infiltrate keywords. Lost Armament but gained Command slot. Melee changed from 2 red to 3 black. Gun now on card - card cost increased by cost of gun (100 to 115)."
+    }
+   ],
    "name": "Iden Versio / Inferno Squad Leader",
    "kind": "unit",
    "rank": "commandant",
@@ -2254,6 +2998,7 @@
    }
   },
   "ig 11": {
+   "history": [],
    "name": "IG-11 / Nurse and Protect",
    "kind": "unit",
    "rank": "operative",
@@ -2298,6 +3043,7 @@
    }
   },
   "ig 88": {
+   "history": [],
    "name": "IG-88 / Notorious Assassin Droid",
    "kind": "unit",
    "rank": "operative",
@@ -2342,6 +3088,7 @@
    }
   },
   "ig11 nanny programming": {
+   "history": [],
    "name": "\"Nanny\" Programming",
    "kind": "upgrade",
    "weapons": [],
@@ -2351,6 +3098,16 @@
    }
   },
   "impact grenades": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 5 to 3 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Now gives a flat Impact 4 and can be used in melee."
+    }
+   ],
    "name": "Impact Grenades",
    "kind": "upgrade",
    "weapons": [
@@ -2367,12 +3124,23 @@
    }
   },
   "imperial comms technician": {
+   "history": [],
    "name": "Imperial Comms Technician",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "imperial death troopers": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 76 to 72 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 72 to 66 points."
+    }
+   ],
    "name": "Imperial Death Troopers",
    "kind": "unit",
    "rank": null,
@@ -2413,12 +3181,14 @@
    }
   },
   "imperial hammers elite armor pilot": {
+   "history": [],
    "name": "Imperial Hammers Elite Armor Pilot",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "imperial march": {
+   "history": [],
    "name": "Imperial March",
    "kind": "upgrade",
    "weapons": [],
@@ -2427,6 +3197,12 @@
    }
   },
   "imperial officer": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 20 to 17 points."
+    }
+   ],
    "name": "Imperial Officer",
    "kind": "upgrade",
    "weapons": [],
@@ -2436,6 +3212,16 @@
    }
   },
   "imperial special forces": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 68 to 62 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 62 to 54 points."
+    }
+   ],
    "name": "Imperial Special Forces",
    "kind": "unit",
    "rank": null,
@@ -2467,6 +3253,7 @@
    }
   },
   "imperial special forces inferno squad": {
+   "history": [],
    "name": "Imperial Special Forces / Inferno Squad",
    "kind": "unit",
    "rank": null,
@@ -2500,36 +3287,60 @@
    }
   },
   "imperial tie pilot": {
+   "history": [],
    "name": "Imperial TIE Pilot",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "improvised orders": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 10 to 5 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Changed to unique and no longer auto refreshes."
+    }
+   ],
    "name": "Improvised Orders",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "in the fray": {
+   "history": [],
    "name": "Into the Fray",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "inquisitorius training": {
+   "history": [],
    "name": "Inquisitorius Training",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "inspiring presence": {
+   "history": [],
    "name": "Inspiring Presence",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "jetpack rockets": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 8 to 5 points."
+    },
+    {
+     "date": "19 June 2026",
+     "text": "Moved from armament to grenade. Changed from 1 red to 4 black. Removed Blast and Critical, and gained Anti-Material."
+    }
+   ],
    "name": "Jetpack Rockets",
    "kind": "upgrade",
    "weapons": [
@@ -2549,6 +3360,20 @@
    }
   },
   "jyn erso": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 110 to 100 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 100 to 90 points."
+    },
+    {
+     "date": "15 April 2025",
+     "text": "Changed from Commander to Operative. Lost Quick Thinking and Danger Sense, and gained Agile 1, Disengage, and Independent: Move keywords. Removed Armament slot, but gained ranged weapon on card. Health decreased from 6 to 5."
+    }
+   ],
    "name": "Jyn Erso / Stardust",
    "kind": "unit",
    "rank": "operative",
@@ -2590,6 +3415,7 @@
    }
   },
   "jyn s se 14 blaster": {
+   "history": [],
    "name": "Jyn's SE-14 Blaster",
    "kind": "upgrade",
    "weapons": [
@@ -2607,6 +3433,12 @@
    }
   },
   "k 2so": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Gained Infiltrate keyword."
+    }
+   ],
    "name": "K-2SO / Sardonic Security Droid",
    "kind": "unit",
    "rank": "operative",
@@ -2639,6 +3471,7 @@
    }
   },
   "kallus the operative": {
+   "history": [],
    "name": "Agent Kallus",
    "kind": "upgrade",
    "weapons": [
@@ -2658,6 +3491,7 @@
    }
   },
   "kraken": {
+   "history": [],
    "name": "Kraken",
    "kind": "upgrade",
    "weapons": [
@@ -2673,6 +3507,12 @@
    }
   },
   "kx series security droids": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 30 to 18 points."
+    }
+   ],
    "name": "KX-Series Security Droids",
    "kind": "upgrade",
    "weapons": [
@@ -2689,6 +3529,20 @@
    }
   },
   "laat le patrol transport": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 120 to 105 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 105 to 100 points. Armor reduced to 5. Gained a second Ordance upgrade. Laser cannons gained Impact 1 and changed from 1 red and 3 black to 2 red and 2 black."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 100 to 90 points."
+    }
+   ],
    "name": "LAAT/le Patrol Transport",
    "kind": "unit",
    "rank": "heavy",
@@ -2728,6 +3582,16 @@
    }
   },
   "lando calrissian": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 105 to 95 points."
+    },
+    {
+     "date": "15 April 2025",
+     "text": "Cost increased from 95 to 105 points. Lost Contingencies, Covert Ops, Flawed, and Sharpshooter 2, but gained Guidance: Corps Trooper Unit, Allies of Convience, One Step Ahead, and Steady keywords. Melee increased from 1 black and 1 white to 3 black, ranged increased from 1 red and 1 black to 1 red and 3 black, but lost Pierce 1."
+    }
+   ],
    "name": "Lando Calrissian / Canny General",
    "kind": "unit",
    "rank": "commandant",
@@ -2761,6 +3625,7 @@
    }
   },
   "lead by example": {
+   "history": [],
    "name": "Lead By Example",
    "kind": "upgrade",
    "weapons": [],
@@ -2771,6 +3636,20 @@
    }
   },
   "leia organa": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 90 to 80 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 80 to 75 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Gained Exemplar and lost Pierce keywords. Blaster changed from 3 black to 3 red."
+    }
+   ],
    "name": "Leia Organa / Fearless and Inventive",
    "kind": "unit",
    "rank": "commandant",
@@ -2808,6 +3687,7 @@
    }
   },
   "linked targeting array": {
+   "history": [],
    "name": "Linked Targeting Array",
    "kind": "upgrade",
    "weapons": [],
@@ -2816,6 +3696,7 @@
    }
   },
   "long gun wookiee": {
+   "history": [],
    "name": "Long Gun Wookiee",
    "kind": "upgrade",
    "weapons": [
@@ -2830,6 +3711,16 @@
    }
   },
   "luke skywalker hero of the rebellion": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 160 to 150 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 150 to 120 point. Gained Inspire and Sharpshooter keywords, and changed Deflect to Block. Blaster gained Long Shot, changed from Pierce 2 to Pierce 1, and changed from 2 red to 1 red and 3 black. Changed lightsaber from 6 black to 2 red and 3 black."
+    }
+   ],
    "name": "Luke Skywalker / Hero of the Rebellion",
    "kind": "unit",
    "rank": "commandant",
@@ -2875,6 +3766,20 @@
    }
   },
   "luke skywalker jedi knight": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 200 to 195 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 195 to 175 points."
+    },
+    {
+     "date": "6 November 2024",
+     "text": "Cost reduced from 175 to 165 points."
+    }
+   ],
    "name": "Luke Skywalker / Jedi Knight",
    "kind": "unit",
    "rank": "operative",
@@ -2912,6 +3817,20 @@
    }
   },
   "m 45 ion blaster": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 38 to 31 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 31 to 25 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 25 to 28 points. No longer exhausts. Gained Critical 1 keyword. Dice changed from 1 black and 4 white to 2 black and 2 white."
+    }
+   ],
    "name": "M-45 Ion Blaster",
    "kind": "upgrade",
    "weapons": [
@@ -2935,6 +3854,12 @@
    }
   },
   "major marquand": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 190 to 180 points. Armor reduced to 5."
+    }
+   ],
    "name": "Major Marquand / Tempest Scout 2",
    "kind": "unit",
    "rank": "heavy",
@@ -2979,6 +3904,12 @@
    }
   },
   "mandalorian combat shields": {
+   "history": [
+    {
+     "date": "19 June 2026",
+     "text": "Renamed from Mandalorian Combat Shields. Requirements changed to mando special forces, support, or corps."
+    }
+   ],
    "name": "Combat Shields",
    "kind": "upgrade",
    "weapons": [],
@@ -2987,6 +3918,20 @@
    }
   },
   "mandalorian resistance clan wren": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 72 to 68 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 68 to 62 points."
+    },
+    {
+     "date": "19 June 2026",
+     "text": "Cost reduced from 62 to 92 points. Changed affiliation from rebel to Clan Wren. Gained Duantless, Mercenary, and We Fight for Our Family keywords. Changed range 0-2 weapon from 2 black to 1 red 1 white, and gained range 3 1 black weapon. Gained an extra mini."
+    }
+   ],
    "name": "Clan Wren Veterans",
    "kind": "unit",
    "rank": null,
@@ -3021,6 +3966,20 @@
    }
   },
   "mandalorian super commandos": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 75 to 70 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 70 to 66 points."
+    },
+    {
+     "date": "29 May 2026",
+     "text": "Changed to mandalorian trooper."
+    }
+   ],
    "name": "Mandalorian Super Commandos",
    "kind": "unit",
    "rank": null,
@@ -3055,6 +4014,16 @@
    }
   },
   "mark ii medium blaster trooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Wound threshold increased from 3 to 4."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost increased from 38 to 40 points."
+    }
+   ],
    "name": "Mark II Medium Blaster Trooper",
    "kind": "unit",
    "rank": "corps",
@@ -3097,6 +4066,16 @@
    }
   },
   "maul a rival": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 170 to 150 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 150 to 130 points."
+    }
+   ],
    "name": "Maul / A Rival",
    "kind": "unit",
    "rank": "operative",
@@ -3134,12 +4113,23 @@
    }
   },
   "mission objective": {
+   "history": [],
    "name": "Mission Objective",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "mo dk power harpoon": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 8 to 3 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 3 to 0 points."
+    }
+   ],
    "name": "MO/DK Power Harpoon",
    "kind": "upgrade",
    "weapons": [
@@ -3158,6 +4148,12 @@
    }
   },
   "moff gideon": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 100 to 80 points."
+    }
+   ],
    "name": "Moff Gideon / Long Live the Empire",
    "kind": "unit",
    "rank": "commandant",
@@ -3198,6 +4194,20 @@
    }
   },
   "mpl 57 barrage trooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 25 to 22 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 22 to 19 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 19 to 22 points. Now cycles."
+    }
+   ],
    "name": "MPL-57 Barrage Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -3216,6 +4226,20 @@
    }
   },
   "mpl 57 ion trooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 24 to 18 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 18 to 17 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 17 to 27 points. No longer exhausts. Gained Critical 1 keyword. Dice changed from 2 red to 2 black and 1 white."
+    }
+   ],
    "name": "MPL-57 Ion Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -3238,6 +4262,12 @@
    }
   },
   "offensive posture": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Lost Sharpshooter 2."
+    }
+   ],
    "name": "Offensive Stance",
    "kind": "upgrade",
    "weapons": [],
@@ -3246,6 +4276,12 @@
    }
   },
   "offensive push": {
+   "history": [
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 4 to 6 points."
+    }
+   ],
    "name": "Offensive Push",
    "kind": "upgrade",
    "weapons": [],
@@ -3254,18 +4290,36 @@
    }
   },
   "old jedi trick": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Restricted to target non-commander, non-operative enemy trooper units instead of any enemy trooper units."
+    }
+   ],
    "name": "Jedi Mind Trick",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "on the hunt": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Name changed from Hunter to On The Hunt."
+    }
+   ],
    "name": "On The Hunt",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "onboard comms channel": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 3 to 10 points. Now gives Coordinate: Trooper instead of giving an order to a unit you are transporting."
+    }
+   ],
    "name": "Onboard Comms Channel",
    "kind": "upgrade",
    "weapons": [],
@@ -3274,6 +4328,7 @@
    }
   },
   "outer rim speeder jockey": {
+   "history": [],
    "name": "Outer Rim Speeder Jockey",
    "kind": "upgrade",
    "weapons": [],
@@ -3282,6 +4337,7 @@
    }
   },
   "prepared materiel": {
+   "history": [],
    "name": "Prepared Supplies",
    "kind": "upgrade",
    "weapons": [],
@@ -3290,6 +4346,7 @@
    }
   },
   "programmed loyalty": {
+   "history": [],
    "name": "Programmed Loyalty",
    "kind": "upgrade",
    "weapons": [],
@@ -3298,12 +4355,27 @@
    }
   },
   "protector": {
+   "history": [],
    "name": "Protector",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "proton charge saboteur": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 26 to 23 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 23 to 20 points. Now can be used in melee. Lost Surge to Crit. Gained Critical 2, lost Arm and Detonate, and Impact keyword value changed from 1 to 3. Dice changed from 1 red and 2 white to a single rainbow."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 20 to 14 points. Lost Critical 2, given Assault 1 keywords."
+    }
+   ],
    "name": "Proton Charge Saboteur",
    "kind": "upgrade",
    "weapons": [
@@ -3324,6 +4396,7 @@
    }
   },
   "pyke soldier electro whip": {
+   "history": [],
    "name": "Electro-Whip Soldier",
    "kind": "upgrade",
    "weapons": [
@@ -3341,6 +4414,12 @@
    }
   },
   "pyke soldier p13m disruptor": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 24 to 22 points."
+    }
+   ],
    "name": "P13-M Disruptor Soldier",
    "kind": "upgrade",
    "weapons": [
@@ -3357,6 +4436,16 @@
    }
   },
   "pyke syndicate capo": {
+   "history": [
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 45 to 48 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 48 to 42 points."
+    }
+   ],
    "name": "Pyke Syndicate Capo",
    "kind": "unit",
    "rank": "commandant",
@@ -3389,6 +4478,16 @@
    }
   },
   "pyke syndicate foot soldiers": {
+   "history": [
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 40 to 44 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 44 to 42 points."
+    }
+   ],
    "name": "Pyke Syndicate Foot Soldiers",
    "kind": "unit",
    "rank": "corps",
@@ -3422,6 +4521,20 @@
    }
   },
   "r2 d2": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost increased from 35 to 45."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost increased from 45 to 55 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Removed Grounded and gained Infiltrate keywords."
+    }
+   ],
    "name": "R2-D2 / Hero of a Thousand Devices",
    "kind": "unit",
    "rank": "operative",
@@ -3448,6 +4561,7 @@
    }
   },
   "r4 astromech droid": {
+   "history": [],
    "name": "R4 Astromech",
    "kind": "upgrade",
    "weapons": [],
@@ -3457,6 +4571,12 @@
    }
   },
   "r5 astromech droid": {
+   "history": [
+    {
+     "date": "6 December 2024",
+     "text": "Change the restriction to Rebel Core Trooper only."
+    }
+   ],
    "name": "R5 Astromech Droid",
    "kind": "upgrade",
    "weapons": [],
@@ -3466,12 +4586,23 @@
    }
   },
   "range trooper": {
+   "history": [],
    "name": "Range Trooper",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "range troopers": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Cost increased from 60 to 70 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 70 to 60 points."
+    }
+   ],
    "name": "Range Troopers",
    "kind": "unit",
    "rank": "support",
@@ -3505,6 +4636,7 @@
    }
   },
   "rebel agent defender of democracy": {
+   "history": [],
    "name": "Rebel Agent / Defender of Democracy",
    "kind": "unit",
    "rank": "operative",
@@ -3534,6 +4666,20 @@
    }
   },
   "rebel commandos": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 60 to 50 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 50 to 48 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 48 to 42 points."
+    }
+   ],
    "name": "Rebel Commandos",
    "kind": "unit",
    "rank": null,
@@ -3567,6 +4713,20 @@
    }
   },
   "rebel commandos strike team": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost increased from 16 to 20 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Gained Detachment keyword."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Rank changed from special forces to support. Surge to hit changed to surge to crit. Lost scout 2 and sharpshooter 1, but gained incognito and prepared supplies keywords."
+    }
+   ],
    "name": "Rebel Commandos / Strike Team",
    "kind": "unit",
    "rank": "support",
@@ -3598,12 +4758,28 @@
    }
   },
   "rebel comms technician": {
+   "history": [
+    {
+     "date": "6 December 2024",
+     "text": "Change the restriction to Rebel Core Trooper only."
+    }
+   ],
    "name": "Rebel Comms Technician",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "rebel officer": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 19 to 16 points."
+    },
+    {
+     "date": "6 December 2024",
+     "text": "Change the restriction to Rebel Core Trooper only."
+    }
+   ],
    "name": "Rebel Officer",
    "kind": "upgrade",
    "weapons": [],
@@ -3613,6 +4789,12 @@
    }
   },
   "rebel sleeper cell": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost increased from 70 to 77 points."
+    }
+   ],
    "name": "Rebel Sleeper Cell / Ready to Strike",
    "kind": "unit",
    "rank": null,
@@ -3655,12 +4837,28 @@
    }
   },
   "rebel trooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 10 to 7 points."
+    }
+   ],
    "name": "Rebel Trooper",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "rebel trooper captain": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 14 to 11 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 11 to 9 points."
+    }
+   ],
    "name": "Rebel Trooper Captain",
    "kind": "upgrade",
    "weapons": [],
@@ -3669,12 +4867,28 @@
    }
   },
   "rebel trooper specialist": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 14 to 12 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 12 to 8 points."
+    }
+   ],
    "name": "Rebel Trooper Specialist",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "rebel trooper squad": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 45 to 40 points."
+    }
+   ],
    "name": "Rebel Trooper Squad",
    "kind": "upgrade",
    "weapons": [],
@@ -3684,6 +4898,12 @@
    }
   },
   "rebel troopers": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Gained Agile keyword."
+    }
+   ],
    "name": "Rebel Troopers",
    "kind": "unit",
    "rank": "corps",
@@ -3714,12 +4934,24 @@
    }
   },
   "rebel veteran": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 12 to 9 points."
+    }
+   ],
    "name": "Rebel Veteran",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "rebel veteran squad": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 63 to 50 points."
+    }
+   ],
    "name": "Rebel Veteran Squad",
    "kind": "upgrade",
    "weapons": [],
@@ -3729,6 +4961,12 @@
    }
   },
   "rebel veterans": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Speed reduced from 2 to 1. Gained Low Profile and Prepared Position, and lost Defend keywords."
+    }
+   ],
    "name": "Rebel Veterans",
    "kind": "unit",
    "rank": "corps",
@@ -3758,6 +4996,16 @@
    }
   },
   "recon intel": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 2 to 5 points."
+    },
+    {
+     "date": "6 November 2024",
+     "text": "Cost increased from 5 to 8 points."
+    }
+   ],
    "name": "Recon Intel",
    "kind": "upgrade",
    "weapons": [],
@@ -3766,6 +5014,7 @@
    }
   },
   "reluctant hero": {
+   "history": [],
    "name": "Reluctant Hero",
    "kind": "upgrade",
    "weapons": [],
@@ -3778,6 +5027,7 @@
    }
   },
   "repeating blaster": {
+   "history": [],
    "name": "Repeating Blaster",
    "kind": "upgrade",
    "weapons": [
@@ -3801,6 +5051,12 @@
    }
   },
   "rook kast": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Can now be used in melee."
+    }
+   ],
    "name": "Rook Kast",
    "kind": "upgrade",
    "weapons": [
@@ -3816,6 +5072,16 @@
    }
   },
   "rps 6 rocket gunner": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 36 to 31 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 31 to 21 points."
+    }
+   ],
    "name": "RPS-6 Rocket Gunner",
    "kind": "upgrade",
    "weapons": [],
@@ -3824,6 +5090,16 @@
    }
   },
   "rt 97c dewback rider": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 15 to 10 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 10 to 5 points."
+    }
+   ],
    "name": "RT-97C Blaster Rifle",
    "kind": "upgrade",
    "weapons": [
@@ -3836,6 +5112,12 @@
    "kw": {}
   },
   "rt 97c pintle mount": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 14 to 10 points."
+    }
+   ],
    "name": "Pintle-Mounted RT-97C",
    "kind": "upgrade",
    "weapons": [
@@ -3848,6 +5130,16 @@
    "kw": {}
   },
   "rt 97c stormtrooper": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 26 to 24 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 24 to 22 points."
+    }
+   ],
    "name": "RT-97C Stormtrooper",
    "kind": "upgrade",
    "weapons": [
@@ -3860,18 +5152,39 @@
    "kw": {}
   },
   "ryder azadi": {
+   "history": [],
    "name": "Ryder Azadi",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "saber throw": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 10 to 5 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost increased from 5 to 10 points."
+    }
+   ],
    "name": "Saber Throw",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "sabine wren": {
+   "history": [
+    {
+     "date": "29 May 2026",
+     "text": "Changed to mandalorian trooper."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 125 to 105 points."
+    }
+   ],
    "name": "Sabine Wren / Explosive Artist",
    "kind": "unit",
    "rank": "operative",
@@ -3902,6 +5215,12 @@
    }
   },
   "scatter gun trooper": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 23 to 22 points. Now can be used in melee."
+    }
+   ],
    "name": "Scatter Gun Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -3918,6 +5237,12 @@
    }
   },
   "scout troopers": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 60 to 48 points."
+    }
+   ],
    "name": "Scout Troopers",
    "kind": "unit",
    "rank": null,
@@ -3951,6 +5276,20 @@
    }
   },
   "scout troopers strike team": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost increased from 16 to 20 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Gained Detachment keyword."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Rank changed from special forces to support. Cost increased from 20 to 22 points. Given surge to crit. Lost scout 3 and sharpshooter 1, but gained incognito and prepared position keywords."
+    }
+   ],
    "name": "Scout Troopers / Strike Team",
    "kind": "unit",
    "rank": "support",
@@ -3982,18 +5321,31 @@
    }
   },
   "seize the opportunity": {
+   "history": [],
    "name": "Seize the Initiative",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "shoretrooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 13 to 10 points."
+    }
+   ],
    "name": "Shoretrooper",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "shoretrooper squad expansion": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 70 to 52 points."
+    }
+   ],
    "name": "Shoretrooper Squad",
    "kind": "upgrade",
    "weapons": [],
@@ -4003,6 +5355,16 @@
    }
   },
   "shoretroopers": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Speed reduced from 2 to 1. Lost Target, and gained Prepared Position and Long Shot keywords."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 52 to 46 points."
+    }
+   ],
    "name": "Shoretroopers",
    "kind": "unit",
    "rank": "corps",
@@ -4032,6 +5394,12 @@
    }
   },
   "shriv suurgav": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Can no longer give a dodge to a unit you are transporting."
+    }
+   ],
    "name": "Shriv Suurgav",
    "kind": "upgrade",
    "weapons": [],
@@ -4040,12 +5408,28 @@
    }
   },
   "situational awareness": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "No longer has a higher points cost for SUPPORT units"
+    },
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 2 to 4 points."
+    }
+   ],
    "name": "Situational Awareness",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "sleeper cell astromech": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost increased from 5 to 10 points."
+    }
+   ],
    "name": "Astromech",
    "kind": "upgrade",
    "weapons": [],
@@ -4054,6 +5438,16 @@
    }
   },
   "sm 9 dark trooper": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost increased from 40 to 45 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 45 to 40 points."
+    }
+   ],
    "name": "SM-9 Frag Launcher",
    "kind": "upgrade",
    "weapons": [
@@ -4072,6 +5466,16 @@
    }
   },
   "smoke grenades": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 6 to 2 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost increased from 2 to 3 points."
+    }
+   ],
    "name": "Smoke Grenades",
    "kind": "upgrade",
    "weapons": [],
@@ -4080,12 +5484,24 @@
    }
   },
   "snowtrooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 12 to 8 points."
+    }
+   ],
    "name": "Snowtrooper",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "snowtrooper squad expansion": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 46 to 40 points."
+    }
+   ],
    "name": "Snowtrooper Squad",
    "kind": "upgrade",
    "weapons": [],
@@ -4095,6 +5511,16 @@
    }
   },
   "snowtroopers": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 48 to 44 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 44 to 42 points. Unarmed is reduced from 1 black to 1 white."
+    }
+   ],
    "name": "Snowtroopers",
    "kind": "unit",
    "rank": "corps",
@@ -4122,6 +5548,16 @@
    }
   },
   "sonic charge saboteur": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 26 to 23 points. No longer surges to crit. Now works in melee. Dice increased from a red and a black to a red, 2 black, and a white. Gained Impact 2 and lost Arm and Detonate keywords."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 23 to 17 points. Dice changed from 1 red 1 black 2 white to 1 red 2 black 1white. Given Assault 1 keyword."
+    }
+   ],
    "name": "Sonic Charge Saboteur",
    "kind": "upgrade",
    "weapons": [
@@ -4141,6 +5577,7 @@
    }
   },
   "sonic imploders": {
+   "history": [],
    "name": "Sonic Imploders",
    "kind": "upgrade",
    "weapons": [
@@ -4155,6 +5592,7 @@
    }
   },
   "spotter link": {
+   "history": [],
    "name": "Spotter Uplink",
    "kind": "upgrade",
    "weapons": [],
@@ -4163,12 +5601,28 @@
    }
   },
   "stormtrooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 11 to 8 points."
+    }
+   ],
    "name": "Stormtrooper",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "stormtrooper captain": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 15 to 12 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 12 to 10 points."
+    }
+   ],
    "name": "Stormtrooper Captain",
    "kind": "upgrade",
    "weapons": [],
@@ -4177,6 +5631,12 @@
    }
   },
   "stormtrooper heavy gunner squad": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost increased from 30 to 40 points."
+    }
+   ],
    "name": "Stormtroopers / Heavy Response Unit",
    "kind": "unit",
    "rank": "corps",
@@ -4210,6 +5670,12 @@
    }
   },
   "stormtrooper riot squad": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 50 to 44 points."
+    }
+   ],
    "name": "Stormtrooper Riot Squad",
    "kind": "unit",
    "rank": "corps",
@@ -4239,12 +5705,28 @@
    }
   },
   "stormtrooper specialist": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 15 to 12 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 12 to 9 points."
+    }
+   ],
    "name": "Stormtrooper Specialist",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "stormtrooper squad": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 46 to 40 points."
+    }
+   ],
    "name": "Stormtrooper Squad",
    "kind": "upgrade",
    "weapons": [],
@@ -4254,6 +5736,12 @@
    }
   },
   "stormtrooper squad expansion": {
+   "history": [
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 46 to 40 points."
+    }
+   ],
    "name": "Stormtrooper Squad",
    "kind": "upgrade",
    "weapons": [],
@@ -4263,6 +5751,12 @@
    }
   },
   "stormtroopers": {
+   "history": [
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 44 to 42 points. Unarmed reduced from 1 black to 1 white."
+    }
+   ],
    "name": "Stormtroopers",
    "kind": "unit",
    "rank": "corps",
@@ -4292,12 +5786,23 @@
    }
   },
   "strict orders": {
+   "history": [],
    "name": "Strict Orders",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "super commando marksman": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 30 to 28 points."
+    },
+    {
+     "date": "17 June 2025",
+     "text": "Cost increased from 28 to 30 points. Lost Precise, but gained Lethal 1 keyword."
+    }
+   ],
    "name": "Super Commando Marksman",
    "kind": "upgrade",
    "weapons": [
@@ -4314,6 +5819,16 @@
    }
   },
   "super commando pistoleer": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 30 to 28 points."
+    },
+    {
+     "date": "19 June 2025",
+     "text": "Cost increased from 28 to 30 points. Lost Lethal 1, gained Overwhelm keyword. Dice changed from 2 black 2 white to 2 red 2 white."
+    }
+   ],
    "name": "Super Commando Gunslinger",
    "kind": "upgrade",
    "weapons": [
@@ -4328,6 +5843,20 @@
    }
   },
   "swoop bike riders": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 70 to 65 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 65 to 70 points."
+    },
+    {
+     "date": "6 December 2024",
+     "text": "Increase the Vibro-Ax's Overrun 1 to Overrun 2."
+    }
+   ],
    "name": "Swoop Bike Riders",
    "kind": "unit",
    "rank": "support",
@@ -4366,6 +5895,20 @@
    }
   },
   "sx 21 trooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 20 to 17 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 17 to 15 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 15 to 13 points."
+    }
+   ],
    "name": "SX-21 Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -4382,6 +5925,12 @@
    }
   },
   "t 21 dewback rider": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 10 to 5 points."
+    }
+   ],
    "name": "T-21 Blaster Rifle",
    "kind": "upgrade",
    "weapons": [
@@ -4398,6 +5947,20 @@
    }
   },
   "t 21 special forces trooper": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 29 to 27 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 27 to 24 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 24 to 20 points."
+    }
+   ],
    "name": "T-21 Special Forces Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -4414,6 +5977,20 @@
    }
   },
   "t 21 stormtrooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 27 to 24 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 24 to 22 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 22 to 20 points."
+    }
+   ],
    "name": "T-21 Stormtrooper",
    "kind": "upgrade",
    "weapons": [
@@ -4430,6 +6007,7 @@
    }
   },
   "t 21a range trooper": {
+   "history": [],
    "name": "T-21A Range Trooper",
    "kind": "upgrade",
    "weapons": [
@@ -4444,6 +6022,20 @@
    }
   },
   "t 21b shoretrooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost increased from 32 to 35 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 35 to 32 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 32 to 28 points."
+    }
+   ],
    "name": "T-21B Shoretrooper",
    "kind": "upgrade",
    "weapons": [
@@ -4460,6 +6052,20 @@
    }
   },
   "t 47 airspeeder": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 175 to 140 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 140 to 130 points. Gained Immunity to range 1 weapons as well as surge to crit."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 130 to 125 points. Armor reduced to 3."
+    }
+   ],
    "name": "T-47 Airspeeder",
    "kind": "unit",
    "rank": "heavy",
@@ -4500,6 +6106,20 @@
    }
   },
   "t 7 ion snowtrooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 26 to 20 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 20 to 18 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 18 to 24 points. No longer exhausts. Dice increased from 2 white and 1 black to 1 white and 2 black. Gained Critical 1 keyword."
+    }
+   ],
    "name": "T-7 Ion Snowtrooper",
    "kind": "upgrade",
    "weapons": [
@@ -4522,6 +6142,12 @@
    }
   },
   "targeting scopes": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 6 to 4 points."
+    }
+   ],
    "name": "Targeting Scopes",
    "kind": "upgrade",
    "weapons": [],
@@ -4530,6 +6156,20 @@
    }
   },
   "tauntaun riders": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost increased from 90 to 95 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 95 to 90 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost increased from 90 to 95 points."
+    }
+   ],
    "name": "Tauntaun Riders",
    "kind": "unit",
    "rank": "support",
@@ -4568,6 +6208,7 @@
    }
   },
   "tech": {
+   "history": [],
    "name": "Tech",
    "kind": "upgrade",
    "weapons": [],
@@ -4577,12 +6218,24 @@
    }
   },
   "tenacity": {
+   "history": [
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 4 to 6 points."
+    }
+   ],
    "name": "Tenacity",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "the bad batch": {
+   "history": [
+    {
+     "date": "21 April 2026",
+     "text": "Cost increased from 160 to 170 points."
+    }
+   ],
    "name": "The Bad Batch / Clone Force 99",
    "kind": "unit",
    "rank": "operative",
@@ -4617,6 +6270,16 @@
    }
   },
   "the darksaber": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 25 to 15 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 15 to 5 points."
+    }
+   ],
    "name": "The Darksaber",
    "kind": "upgrade",
    "weapons": [
@@ -4638,6 +6301,12 @@
    }
   },
   "the fifth brother": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 105 to 97 points."
+    }
+   ],
    "name": "Fifth Brother / The Kill is Mine",
    "kind": "unit",
    "rank": "operative",
@@ -4679,6 +6348,12 @@
    }
   },
   "the seventh sister": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 110 to 102 points."
+    }
+   ],
    "name": "Seventh Sister / Compelled to Inflict Pain",
    "kind": "unit",
    "rank": "operative",
@@ -4722,6 +6397,20 @@
    }
   },
   "tl tt flame projector": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 35 to 20 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 20 to 15 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Now can be used in melee."
+    }
+   ],
    "name": "AT-RT Flamethrower",
    "kind": "upgrade",
    "weapons": [
@@ -4738,6 +6427,20 @@
    }
   },
   "tl tt laser cannon": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 35 to 20 points."
+    },
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 20 to 10 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost increased from 10 to 15 points."
+    }
+   ],
    "name": "AT-RT Laser Cannon",
    "kind": "upgrade",
    "weapons": [
@@ -4755,6 +6458,16 @@
    }
   },
   "tl tt rotary blaster": {
+   "history": [
+    {
+     "date": "12 September 2019",
+     "text": "Cost reduced from 35 to 20 points."
+    },
+    {
+     "date": "16 June 2025",
+     "text": "Cost reduced from 20 to 15 points."
+    }
+   ],
    "name": "AT-RT Rotary Blaster",
    "kind": "upgrade",
    "weapons": [
@@ -4769,6 +6482,16 @@
    }
   },
   "tristan wren": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 38 to 34 points."
+    },
+    {
+     "date": "19 June 2026",
+     "text": "Moved from heavy weapon to personnel. Lost weapon profile. Changed requirements. Gained Precise 2. Lost 1 health. Cost reduced from 34 to 25 points."
+    }
+   ],
    "name": "Tristan Wren",
    "kind": "upgrade",
    "weapons": [],
@@ -4780,12 +6503,27 @@
    }
   },
   "trusted agent": {
+   "history": [],
    "name": "Trusted Agent",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "tx 225 occupier tank": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 155 to 145 points."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost reduced from 145 to 140 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 140 to 125 points. Armor reduced to 5."
+    }
+   ],
    "name": "TX-225 GAVw Occupier Tank",
    "kind": "unit",
    "rank": "heavy",
@@ -4826,6 +6564,7 @@
    }
   },
   "underworld contacts": {
+   "history": [],
    "name": "Underworld Connections",
    "kind": "upgrade",
    "weapons": [],
@@ -4834,18 +6573,44 @@
    }
   },
   "unorthodox tactician": {
+   "history": [
+    {
+     "date": "27 October 2021",
+     "text": "Cost increased from 10 to 16 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Can no longer give an aim to a unit you are transporting."
+    }
+   ],
    "name": "Unorthodox Tactician",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "unstable astromech": {
+   "history": [
+    {
+     "date": "15 November 2025",
+     "text": "Cost increased from 6 to 16 points."
+    }
+   ],
    "name": "Unstable Astromech",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "ursa wren": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 38 to 34 points."
+    },
+    {
+     "date": "19 June 2026",
+     "text": "Cost reduced from 34 to 25 points. Lost 1 health and weapon profile. Lost Daultless and gained Defend 1 keywords. Changed requirements."
+    }
+   ],
    "name": "Ursa Wren",
    "kind": "upgrade",
    "weapons": [],
@@ -4857,12 +6622,32 @@
    }
   },
   "vigilance": {
+   "history": [
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 5 to 12 points."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 12 to 9 points."
+    }
+   ],
    "name": "Vigilance",
    "kind": "upgrade",
    "weapons": [],
    "kw": {}
   },
   "wedge antilles": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 5 to 1 point."
+    },
+    {
+     "date": "27 October 2021",
+     "text": "Cost increased from 1 to 5 points. Added Field Commander keyword."
+    }
+   ],
    "name": "Wedge Antilles",
    "kind": "upgrade",
    "weapons": [],
@@ -4872,6 +6657,16 @@
    }
   },
   "wookiee warriors freedom fighters": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 75 to 69 points. Gained Wookiee Warrior tag and Scale keyword. Lost Expert Climber and Unhindered keywords."
+    },
+    {
+     "date": "21 April 2026",
+     "text": "Cost reduced from 69 to 62 points."
+    }
+   ],
    "name": "Wookiee Warriors / Freedom Fighters",
    "kind": "unit",
    "rank": null,
@@ -4902,6 +6697,12 @@
    }
   },
   "wookiee warriors kashyyyk resistance": {
+   "history": [
+    {
+     "date": "21 April 2026",
+     "text": "Cost increased from 72 to 62 points."
+    }
+   ],
    "name": "Wookiee Warriors / Kashyyyk Resistance",
    "kind": "unit",
    "rank": null,
@@ -4933,6 +6734,7 @@
    }
   },
   "wrecker": {
+   "history": [],
    "name": "Wrecker",
    "kind": "upgrade",
    "weapons": [
@@ -4945,6 +6747,16 @@
    "kw": {}
   },
   "x 34 landspeeder": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 75 to 60 points."
+    },
+    {
+     "date": "19 July 2024",
+     "text": "Cost reduced from 60 to 55 points. Lost transport keyword."
+    }
+   ],
    "name": "X-34 Landspeeder",
    "kind": "unit",
    "rank": "heavy",
@@ -4978,6 +6790,16 @@
    }
   },
   "x 34 mark ii blaster": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 34 to 26 points."
+    },
+    {
+     "date": "5 June 2023",
+     "text": "Cost reduced from 26 to 21 points."
+    }
+   ],
    "name": "Mark II Medium Blaster",
    "kind": "upgrade",
    "weapons": [
@@ -4992,6 +6814,16 @@
    }
   },
   "xs iv dark trooper": {
+   "history": [
+    {
+     "date": "5 June 2023",
+     "text": "Cost increased from 48 to 55 points."
+    },
+    {
+     "date": "15 November 2025",
+     "text": "Cost reduced from 55 to 49 points."
+    }
+   ],
    "name": "XS-IV Assault Cannon",
    "kind": "upgrade",
    "weapons": [
@@ -5008,6 +6840,12 @@
    }
   },
   "z 6 trooper": {
+   "history": [
+    {
+     "date": "19 November 2020",
+     "text": "Cost reduced from 22 to 20 points."
+    }
+   ],
    "name": "Z-6 Trooper",
    "kind": "upgrade",
    "weapons": [
