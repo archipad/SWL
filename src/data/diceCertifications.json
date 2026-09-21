@@ -151,10 +151,47 @@
             "count": 6
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2
+        }
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/ag-2g-quad-laser.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "80d401e222476805f79320a89e24e4830bc060fa01415e17efa2783274e40f29"
+    }
   },
   "at rt": {
     "weapons": [
@@ -516,10 +553,45 @@
             "count": 2
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "armure-x",
+          "value": 1
+        },
+        {
+          "keywordId": "reconfiguration"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/battle-shield-wookiee.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "723bc2b783505b38d7c250258cce06d5b2d47b8cf2f0ae9bbec5bbcbd49f754f"
+    }
   },
   "beskad duelist": {
     "weapons": [
@@ -532,10 +604,41 @@
             "count": 2
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "duelliste"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/beskad-duelist.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "4f52e807be25439170ad393ee3a40fea7a5d8152a301306ba5c8d3fa11215e11"
+    }
   },
   "bowcaster wookiee": {
     "weapons": [
@@ -662,7 +765,8 @@
             "count": 3
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -677,14 +781,64 @@
             "count": 2
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": []
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "intuition-du-danger-x",
+          "value": 3
+        },
+        {
+          "keywordId": "equipe"
+        },
+        {
+          "keywordId": "commandant-des-operations"
+        },
+        {
+          "keywordId": "infiltration"
+        },
+        {
+          "keywordId": "tireur-embusque"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/cassian-andor.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "aed428e8c68c163c064df3a5af4a2639795af76c3d88a269d370de8b37cdcabb"
     }
   },
   "chewbacca": {
@@ -796,20 +950,61 @@
         "name": "Fusil de Sniper DH-447",
         "dice": [
           {
-            "color": "blanc",
-            "count": 2
-          },
-          {
             "color": "noir",
             "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
           }
         ],
-        "range": "2-5"
+        "range": "2-5",
+        "keywordIds": [
+          "haute-velocite",
+          "debordement",
+          "equipe-sniper"
+        ]
       }
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "weaponsResetByErrata": "2026-06-17"
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "haute-velocite"
+        },
+        {
+          "keywordId": "debordement"
+        },
+        {
+          "keywordId": "equipe-sniper"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [
+        "perforant-x"
+      ],
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/dh-447-sniper.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "ad103f239347e6050a8cbb7ffe6e2caf15541122a0eecdd563b42bc1e7c7f9a5"
+    }
   },
   "dlt 19x sniper": {
     "weapons": [
@@ -818,20 +1013,61 @@
         "name": "Fusil DLT-19x",
         "dice": [
           {
-            "color": "blanc",
-            "count": 2
-          },
-          {
             "color": "noir",
             "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
           }
         ],
-        "range": "2-5"
+        "range": "2-5",
+        "keywordIds": [
+          "haute-velocite",
+          "debordement",
+          "equipe-sniper"
+        ]
       }
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "weaponsResetByErrata": "2026-06-17"
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "haute-velocite"
+        },
+        {
+          "keywordId": "debordement"
+        },
+        {
+          "keywordId": "equipe-sniper"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [
+        "perforant-x"
+      ],
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/dlt-19x-sniper.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "fce5be73b0a33d5ef2977fc27a37f57d169e69bc2f7293bc6d94d8e447f49691"
+    }
   },
   "t 21 dewback rider": {
     "weapons": [
@@ -1001,10 +1237,61 @@
             "count": 1
           }
         ],
-        "range": "1-#"
+        "range": "1-#",
+        "keywordIds": [
+          "perforant-x",
+          "encombrant",
+          "haute-velocite"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "encombrant"
+        },
+        {
+          "keywordId": "haute-velocite"
+        },
+        {
+          "keywordId": "reconfiguration"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [
+        "longue-distance"
+      ],
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/a280-cfe-pistol-sniper-config.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "69a27e7084d7d88094cddf8da6788c27224cf36aa35efc45795965b5333f024b"
+    }
   },
   "rt 97c pintle mount": {
     "weapons": [
@@ -1374,10 +1661,49 @@
             "count": 1
           }
         ],
-        "range": "melee-2"
+        "range": "melee-2",
+        "keywordIds": [
+          "longue-distance"
+        ]
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "intrepide"
+        },
+        {
+          "keywordId": "longue-distance"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/ursa-wren.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "4d5356c5490c9434890610ebd56e0d914b3171993ff190970d5d4e5122b09c9c"
+    }
   },
   "tristan wren": {
     "weapons": [
@@ -1390,10 +1716,51 @@
             "count": 2
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "letal-x",
+          "suppressif"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        },
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/tristan-wren.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "4c9d503df96d9ce98e67acbb445c65fc7851fc33a4011dfcf39a6d9bc149be62"
+    }
   },
   "the seventh sister": {
     "weapons": [
@@ -1470,10 +1837,62 @@
             "count": 5
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": [
+          "impact-x",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2,
+          "perforant-x": 1
+        }
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "immunite-perforant-corps-a-corps"
+        },
+        {
+          "keywordId": "intrepide"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [
+        "demoraliser-x"
+      ],
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "fdffd8eb15",
+      "visualPath": "/SWL/cards/the-darksaber.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "927799e4c343fa1974b860ac20b953ee7763f4613f5769ce5cbf1a1f18dc6de1"
+    }
   },
   "tx 225 occupier tank": {
     "weapons": [
@@ -1771,10 +2190,51 @@
             "count": 2
           }
         ],
-        "range": "melee-1"
+        "range": "melee-1",
+        "keywordIds": [
+          "deflagration",
+          "souffle",
+          "fixe"
+        ]
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "souffle"
+        },
+        {
+          "keywordId": "fixe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/tl-tt-flame-projector.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "f04bd6376e5f9496684715cad350676d5f90709c65da6bb4cb4c403a1ae9522f"
+    }
   },
   "t 21b shoretrooper": {
     "weapons": [
@@ -1916,12 +2376,54 @@
             "count": 2
           }
         ],
-        "range": "melee-1"
+        "range": "melee-1",
+        "keywordIds": [
+          "deflagration",
+          "impact-x",
+          "suppressif"
+        ],
+        "keywordValues": {
+          "impact-x": 4
+        }
       }
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "weaponsResetByErrata": "2026-06-17"
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "suppressif"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 4
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/sonic-charge-saboteur.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "957a4d3ef4a5681e87ef0f89ebbc94317c247c48a6d24f70f15ea33bb05f510f"
+    }
   },
   "dark trooper squad": {
     "weapons": [
@@ -1938,7 +2440,8 @@
             "count": 1
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -1949,14 +2452,53 @@
             "count": 1
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": []
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 2,
       "courage": null,
-      "baseModels": 3
+      "baseModels": 3,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "corps",
+      "unitType": "",
+      "speed": "1",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "armure-x",
+          "value": 3
+        },
+        {
+          "keywordId": "mobilite-difficile"
+        },
+        {
+          "keywordId": "indifferent"
+        },
+        {
+          "keywordId": "inarretable"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/dark-trooper-squad.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "e14dc995a3d4ca857d4b1f0b90f42070ab1483eaf72848daf5f9997376281c92"
     }
   },
   "director orson krennic": {
@@ -1970,7 +2512,8 @@
             "count": 1
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -1981,14 +2524,56 @@
             "count": 3
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": []
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "observateur-x",
+          "value": 1
+        },
+        {
+          "keywordId": "contrainte"
+        },
+        {
+          "keywordId": "malin"
+        },
+        {
+          "keywordId": "entourage"
+        },
+        {
+          "keywordId": "exemplaire"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/director-orson-krennic.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "3486884d4dc41adfeebadd02f0e3feb69862bdbd46d1bcda8c11862074b10d53"
     }
   },
   "flametrooper": {
@@ -2002,10 +2587,47 @@
             "count": 1
           }
         ],
-        "range": "melee-1"
+        "range": "melee-1",
+        "keywordIds": [
+          "deflagration",
+          "souffle"
+        ]
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "souffle"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/flametrooper.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "05675cb0399b44ebb2136794080fe5c05072c226e9ce2cd9283dc8bbeeaae452"
+    }
   },
   "fleet troopers": {
     "weapons": [
@@ -2069,7 +2691,8 @@
             "count": 2
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -2080,14 +2703,58 @@
             "count": 3
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": []
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "conseils"
+        },
+        {
+          "keywordId": "observateur-x",
+          "value": 2
+        },
+        {
+          "keywordId": "exemplaire"
+        },
+        {
+          "keywordId": "inspiration-x",
+          "value": 1
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/general-veers.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "fa9de015666c773a34ff4608ce7e0d81780c917c51e1f75e94f9780dfd438a52"
     }
   },
   "heavy laser retrofit": {
@@ -2125,7 +2792,8 @@
             "count": 3
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -2136,14 +2804,66 @@
             "count": 2
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 2
+        }
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "pistolero"
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "aguerri"
+        },
+        {
+          "keywordId": "coup-de-chance-x",
+          "value": 3
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/han-solo.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "eb0e72b8e177498319cb773d670a3579f5934ac3dfcca5095d90f5781d4f79b4"
     }
   },
   "rebel sleeper cell": {
@@ -2204,14 +2924,56 @@
             "count": 2
           }
         ],
-        "range": "melee-2"
+        "range": "melee-2",
+        "keywordIds": []
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 2,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "special",
+      "unitType": "",
+      "speed": "3",
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "equipe"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "agile"
+        },
+        {
+          "keywordId": "escorte"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/mandalorian-resistance-clan-wren.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "27c6bce8f9d939926e755404f7ac7ea8d87a8f2831a46aa21f8d5714db98db30"
     }
   },
   "imperial special forces": {
@@ -2257,10 +3019,51 @@
             "count": 1
           }
         ],
-        "range": "3-4"
+        "range": "3-4",
+        "keywordIds": [
+          "deflagration",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1
+        }
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/jetpack-rockets.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "fe96e7d01663f77d57c8e300189375958b4fdedabf9cbcdd3d267926c3bd83ad"
+    }
   },
   "k 2so": {
     "weapons": [
@@ -2273,14 +3076,60 @@
             "count": 4
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "crit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "calcul-de-probabilites"
+        },
+        {
+          "keywordId": "armure-x",
+          "value": 1
+        },
+        {
+          "keywordId": "detachement"
+        },
+        {
+          "keywordId": "incognito"
+        },
+        {
+          "keywordId": "infiltration"
+        },
+        {
+          "keywordId": "travail-dequipe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/k-2so.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "8b15981ee4af05244c52ee499026471678834e5b05488118ac588a14c26ee995"
     }
   },
   "laat le patrol transport": {
@@ -2471,10 +3320,59 @@
             "count": 2
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "critique-x",
+          "impact-x",
+          "ion-x"
+        ],
+        "keywordValues": {
+          "critique-x": 1,
+          "impact-x": 1,
+          "ion-x": 1
+        }
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "ion-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/mpl-57-ion-trooper.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "829e4e5426a01dbade41b549881ded4d522712bdfcf30af798a270b002d2f2ae"
+    }
   },
   "mandalorian resistance": {
     "weapons": [
@@ -2487,14 +3385,51 @@
             "count": 2
           }
         ],
-        "range": "melee-2"
+        "range": "melee-2",
+        "keywordIds": []
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 2,
-      "baseModels": 3
+      "baseModels": 3,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "special",
+      "unitType": "Soldat",
+      "speed": "3",
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "agile"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "29854778ec",
+      "visualPath": "/SWL/cards/mandalorian-resistance.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "b107c6d48388eaa0af52518786b1dfbfb6875705ac61fe24485ead73873428a9"
     }
   },
   "mo dk power harpoon": {
@@ -2524,14 +3459,59 @@
             "count": 3
           }
         ],
-        "range": "melee-1"
+        "range": "melee-1",
+        "keywordIds": [
+          "suppressif"
+        ]
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 4,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat Droïde",
+      "speed": "1",
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "reparation-x",
+          "value": 2
+        },
+        {
+          "keywordId": "discret"
+        },
+        {
+          "keywordId": "infiltration"
+        },
+        {
+          "keywordId": "mission-secrete"
+        },
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "9e6391a8e0",
+      "visualPath": "/SWL/cards/r2-d2.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "6a50be99953a61704439127821849ddcbd781fa19d7da27ff1b88140c761f1b2"
     }
   },
   "range troopers": {
@@ -2545,7 +3525,8 @@
             "count": 2
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -2556,14 +3537,57 @@
             "count": 1
           }
         ],
-        "range": "1-4"
+        "range": "1-4",
+        "keywordIds": []
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 2,
-      "baseModels": 4
+      "baseModels": 4,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "support",
+      "unitType": "",
+      "speed": "1",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "ciblage-avance",
+          "value": 1
+        },
+        {
+          "keywordId": "armure-x",
+          "value": 1
+        },
+        {
+          "keywordId": "indomptable"
+        },
+        {
+          "keywordId": "ascension"
+        },
+        {
+          "keywordId": "marche-forcee"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/range-troopers.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "c8c089d2c7dbb4820fefe384f70e5b433c9a4cfabb9352fcc107a27ddd2d26c8"
     }
   },
   "rebel commandos strike team": {
@@ -2577,7 +3601,8 @@
             "count": 1
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -2588,7 +3613,8 @@
             "count": 1
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": []
       }
     ],
     "defenseColor": "blanc",
@@ -2598,7 +3624,49 @@
       "baseModels": 1,
       "suppressionImmune": false
     },
-    "weaponsResetByErrata": "2026-06-17"
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "support",
+      "unitType": "Soldat",
+      "speed": "2",
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "detachement"
+        },
+        {
+          "keywordId": "equipe-avec-arme-lourde"
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "incognito"
+        },
+        {
+          "keywordId": "position-preparee"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [
+        "eclaireur-x",
+        "tireur-delite-x"
+      ],
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/rebel-commandos-strike-team.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "1e62b4c30b5968c4e276506811f0e1ef377d5e91cf2e1d4e25515872afdf2965"
+    }
   },
   "rebel veterans": {
     "weapons": [
@@ -2693,10 +3761,47 @@
             "count": 2
           }
         ],
-        "range": "melee-2"
+        "range": "melee-2",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/scatter-gun-trooper.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "1a0bd50d2e5a8bf2c19023386f23fb84089c480cd03c50d934ec869eb7605ded"
+    }
   },
   "scout troopers strike team": {
     "weapons": [
@@ -2709,7 +3814,8 @@
             "count": 1
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -2720,7 +3826,8 @@
             "count": 2
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": []
       }
     ],
     "defenseColor": "blanc",
@@ -2730,7 +3837,49 @@
       "baseModels": 1,
       "suppressionImmune": false
     },
-    "weaponsResetByErrata": "2026-06-17"
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "support",
+      "unitType": "Soldat",
+      "speed": "2",
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "detachement"
+        },
+        {
+          "keywordId": "equipe-avec-arme-lourde"
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "incognito"
+        },
+        {
+          "keywordId": "position-preparee"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [
+        "eclaireur-x",
+        "tireur-delite-x"
+      ],
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/scout-troopers-strike-team.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "9b0e12e898b324fe278500b4eaa7360c34c9d79c780db802d3fb7703d6016928"
+    }
   },
   "tl tt": {
     "weapons": [
@@ -2770,7 +3919,49 @@
     "unitStats": {
       "woundsPerModel": 8,
       "courage": null,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "heavy",
+      "unitType": "",
+      "speed": "1",
+      "attackSurge": "none",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "armure-x",
+          "value": 5
+        },
+        {
+          "keywordId": "sustentation"
+        },
+        {
+          "keywordId": "redeploiement"
+        },
+        {
+          "keywordId": "transport"
+        },
+        {
+          "keywordId": "point-faible-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/a-a5-speeder-truck.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "058d9f70e43ae26f95633c4fa499c8d252422a763f36f1cbe0059d042d43f4ae"
     }
   },
   "1 4 fd laser cannon team": {
@@ -3038,7 +4229,10 @@
             "count": 4
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": [
+          "suppressif"
+        ]
       },
       {
         "index": 1,
@@ -3053,14 +4247,76 @@
             "count": 1
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": [
+          "longue-distance",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 5,
       "courage": 3,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "preste-x",
+          "value": 1
+        },
+        {
+          "keywordId": "retrait"
+        },
+        {
+          "keywordId": "autonome"
+        },
+        {
+          "keywordId": "infiltration"
+        },
+        {
+          "keywordId": "agile"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "suppressif"
+        },
+        {
+          "keywordId": "longue-distance"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/jyn-erso.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "0049a6e7f32da3a3d94674a1a035d2870957a7ae207a611b7107c212fb7d83b1"
     }
   },
   "kx series security droids": {
@@ -3211,7 +4467,11 @@
             "count": 2
           }
         ],
-        "range": "melee-2"
+        "range": "1-2",
+        "keywordIds": [
+          "fixe",
+          "deflagration"
+        ]
       },
       {
         "index": 1,
@@ -3230,7 +4490,14 @@
             "count": 1
           }
         ],
-        "range": "melee-3"
+        "range": "1-3",
+        "keywordIds": [
+          "fixe",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1
+        }
       },
       {
         "index": 2,
@@ -3249,14 +4516,77 @@
             "count": 2
           }
         ],
-        "range": "1-4"
+        "range": "1-4",
+        "keywordIds": [
+          "fixe",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 3
+        }
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 11,
       "courage": null,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "unknown",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "armure-x",
+          "value": 5
+        },
+        {
+          "keywordId": "arsenal-x",
+          "value": 2
+        },
+        {
+          "keywordId": "ordre-direct"
+        },
+        {
+          "keywordId": "commandant-des-operations"
+        },
+        {
+          "keywordId": "specificite"
+        },
+        {
+          "keywordId": "point-faible-x",
+          "value": 1
+        },
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "impact-x"
+        },
+        {
+          "keywordId": "fixe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "58a3dbd043",
+      "visualPath": "/SWL/cards/major-marquand.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "50cd5f7d8aa2be900f49cf80c0b2e8e1df80a396afeb8716619fca862af58eae"
     }
   },
   "mark ii medium blaster trooper": {
@@ -3270,7 +4600,8 @@
             "count": 1
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -3281,14 +4612,75 @@
             "count": 4
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "critique-x",
+          "encombrant",
+          "fixe"
+        ],
+        "keywordValues": {
+          "critique-x": 2
+        }
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 4,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "corps",
+      "unitType": "",
+      "speed": "1",
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "detachement"
+        },
+        {
+          "keywordId": "tirs-de-soutien"
+        },
+        {
+          "keywordId": "pivot-complet"
+        },
+        {
+          "keywordId": "position-preparee"
+        },
+        {
+          "keywordId": "redeploiement"
+        },
+        {
+          "keywordId": "sentinelle"
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 2
+        },
+        {
+          "keywordId": "encombrant"
+        },
+        {
+          "keywordId": "fixe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/mark-ii-medium-blaster-trooper.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "e0bd674129a01435138717fe2f791542f0640858b69e048a4087a6d706044471"
     }
   },
   "moff gideon": {
@@ -3346,10 +4738,47 @@
             "count": 1
           }
         ],
-        "range": "2-4"
+        "range": "2-4",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2
+        }
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/rps-6-rocket-gunner.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "8dee3e84a4d76dfbde450705fca0a2bf99a9c6c4dea577126e980eb28f3d2c64"
+    }
   },
   "rebel commandos": {
     "weapons": [
@@ -3483,7 +4912,33 @@
   },
   "rebel trooper": {
     "weapons": [],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "noKeywordsConfirmed": true,
+      "visualPath": "/SWL/cards/rebel-trooper.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "eb8b87dc5f89300aa13b87e5d4d6e9aafde606fe9df30225387913063bc80898"
+    }
   },
   "rebel trooper specialist": {
     "weapons": [],
@@ -3502,8 +4957,55 @@
     "addedModels": 1
   },
   "kraken": {
-    "weapons": [],
-    "addedModels": 1
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster de Kraken",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee-3",
+        "keywordIds": []
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "chef"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "82662ee16b",
+      "visualPath": "/SWL/cards/kraken.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "629a5722566c6901ca7ee4769b5bdd59bf9866f192f8d31679cda31d25c9ab54"
+    }
   },
   "captain rex": {
     "weapons": [],
@@ -3608,14 +5110,62 @@
             "count": 1
           }
         ],
-        "range": "melee-2"
+        "range": "1-2",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
       "courage": 2,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "",
+      "speed": "3",
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "pistolero"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "agile"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/sabine-wren.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "a0f52bdd70823ad5fe68cb306f2d8af3da2269257779d0281c54fa2e5e1549b6"
     }
   },
   "scout troopers": {
@@ -4335,11 +5885,87 @@
     "addedModels": 0
   },
   "imperial death troopers": {
-    "weapons": [],
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Combat Rapproché",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Blaster Léger SE-14r",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      },
+      {
+        "index": 2,
+        "name": "Fusil Blaster E-11D",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 2,
-      "baseModels": 4
+      "baseModels": 4,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "special",
+      "unitType": "",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "discipline-x",
+          "value": 1
+        },
+        {
+          "keywordId": "precis-x",
+          "value": 2
+        },
+        {
+          "keywordId": "operationnel-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/imperial-death-troopers.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "11b39c889e94ace39914fa4a12f644796f9c96c03a2b7091cd099dd0de8dad08"
     }
   },
   "imperial march": {
@@ -4503,12 +6129,76 @@
     "addedModels": 1
   },
   "stormtrooper heavy gunner squad": {
-    "weapons": [],
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Matraque",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Fusil Blaster E-11",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 1,
-      "baseModels": 3
+      "baseModels": 3,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "corps",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "hit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "riposte-graduee-x",
+          "value": 2
+        },
+        {
+          "keywordId": "precis-x",
+          "value": 1
+        },
+        {
+          "keywordId": "specificite"
+        },
+        {
+          "keywordId": "sans-entrave"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/stormtrooper-heavy-gunner-squad.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "5737eeb8907bc915a20a0dfe6726a15a9b2f908df74d20f7519d37d3bcf916c1"
     }
   },
   "stormtrooper squad": {
@@ -5281,6 +6971,226 @@
       "visualPath": "/SWL/cards/chewbacca-upgrade.png",
       "verifiedAt": "2026-09-20T11:08:56.136Z",
       "visualHash": "20f708f0c0aa8d0a4ad7c3e805efac9ba29253b211078b3b0c3e5a56ba252ad6"
+    }
+  },
+  "iden s id10 seeker droid": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Électrochoc",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "melee-1",
+        "keywordIds": [
+          "suppressif"
+        ]
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "surveillance-x",
+          "value": 1
+        },
+        {
+          "keywordId": "alter-ego"
+        },
+        {
+          "keywordId": "recharger-x",
+          "value": 1
+        },
+        {
+          "keywordId": "bouclier-x",
+          "value": 1
+        },
+        {
+          "keywordId": "petit"
+        },
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/idens-id10-seeker-droid.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "afb15adf25222ed2cdf18a60ba7ccdc74359217274f4f17ceec24cf1ed3bdf58"
+    }
+  },
+  "the bad batch": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Entraînement Avancé",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Pistolets Blaster DC-17",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 2,
+      "courage": 3,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "unknown",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "equipe"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "ascension"
+        },
+        {
+          "keywordId": "aguerri"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "on-est-pas-des-regs"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "a12fad37e1",
+      "visualPath": "/SWL/cards/the-bad-batch.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "11597f8d70ea90de75b1d1a7cc0ff37aaba0c1f9d06a9771caa32e7c7d88d6b0"
+    }
+  },
+  "crosshair": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Firepuncher",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "1-5",
+        "keywordIds": [
+          "haute-velocite",
+          "perforant-x",
+          "critique-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1,
+          "critique-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "precis-x",
+          "value": 1
+        },
+        {
+          "keywordId": "haute-velocite"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "6344394b32",
+      "visualPath": "/SWL/cards/crosshair.jpg",
+      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "visualHash": "b775305172cfca618c142f3a879562e3e9a6f4fc4bc704583a4d9dea4549e129"
     }
   }
 }
