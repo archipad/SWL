@@ -6066,12 +6066,57 @@
             "count": 1
           }
         ],
-        "range": "melee-1"
+        "range": "melee-1",
+        "keywordIds": [
+          "deflagration",
+          "impact-x",
+          "assaut-x"
+        ],
+        "keywordValues": {
+          "impact-x": 6,
+          "assaut-x": 1
+        }
       }
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "weaponsResetByErrata": "2026-06-17"
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 3
+        },
+        {
+          "keywordId": "assaut-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/proton-charge-saboteur.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "3b1718667d0e93baa3cb758ac4cd82dfcba89d27fd25a35e0e74d4e4e286ec1c"
+    }
   },
   "r5 astromech droid": {
     "weapons": [],
@@ -7189,8 +7234,506 @@
       "keywordsReviewed": true,
       "crosscheckSignature": "6344394b32",
       "visualPath": "/SWL/cards/crosshair.jpg",
-      "verifiedAt": "2026-09-21T21:12:38.340Z",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
       "visualHash": "b775305172cfca618c142f3a879562e3e9a6f4fc4bc704583a4d9dea4549e129"
+    }
+  },
+  "protector": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "exhaust",
+      "keywordsReviewed": true,
+      "noKeywordsConfirmed": true,
+      "crosscheckSignature": "2358a587be",
+      "visualPath": "/SWL/cards/protector.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "120750c129d4baa2b8f169d9931efeed821aa6ad715f8272bc2a7d030f1ed02a"
+    }
+  },
+  "engagement protocols": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "ia"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "38a308017a",
+      "visualPath": "/SWL/cards/engagement-protocols.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "f247183fbca1ef8c04f91e84c22b7a6dde554ee9f092bd5eca1c175fd17a8673"
+    }
+  },
+  "barrage generator": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "exhaust",
+      "keywordsReviewed": true,
+      "crosscheckSignature": "79eee965ff",
+      "visualPath": "/SWL/cards/barrage-generator.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "6db53a6bc1bd0a2b87bb0fd7fb44f19c3bb287d04488d9eb49ca2549588ae292"
+    }
+  },
+  "pyke syndicate foot soldiers": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Bâton Étourdissant",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Blaster Long P13",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "corps",
+      "unitType": "",
+      "speed": "2",
+      "attackSurge": "none",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "intuition-du-danger-x",
+          "value": 2
+        },
+        {
+          "keywordId": "autonome"
+        },
+        {
+          "keywordId": "manoeuvre-improbable"
+        },
+        {
+          "keywordId": "instinct-de-survie"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "speedFromHq": true,
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/pyke-syndicate-foot-soldiers.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "0d5f8272a71aba35126ff70197fd90c8657176d4c7949d7027fab0b18c19346e"
+    }
+  },
+  "swoop bike riders": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Vibrohache",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "bordee-x"
+        ],
+        "keywordValues": {
+          "bordee-x": 2
+        }
+      },
+      {
+        "index": 1,
+        "name": "Pistolet Blaster Lourd",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 3,
+      "courage": null,
+      "baseModels": 2,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "support",
+      "unitType": "",
+      "speed": "3",
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "couvert-x",
+          "value": 1
+        },
+        {
+          "keywordId": "autonome"
+        },
+        {
+          "keywordId": "renforts"
+        },
+        {
+          "keywordId": "speeder-x",
+          "value": 1
+        },
+        {
+          "keywordId": "bordee-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "speedFromHq": true,
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/swoop-bike-riders.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "cb587716ff9f2330ca9bc728b293fab952288ccbaa02d850193d14f491de1d04"
+    }
+  },
+  "pyke syndicate capo": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Non Arme",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Blaster Long de Capo",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 2,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "none",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "aide"
+        },
+        {
+          "keywordId": "intuition-du-danger-x",
+          "value": 2
+        },
+        {
+          "keywordId": "autonome"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/pyke-syndicate-capo.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "95186d4eb475269f55edc8aa5ebd83a2ffeb38f13f99e44804ea5f26dd0527e8"
+    }
+  },
+  "cad bane": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Arts Martiaux",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Pistolets Blaster LL-30",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 4
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "saut-x",
+          "value": 1
+        },
+        {
+          "keywordId": "prime"
+        },
+        {
+          "keywordId": "intuition-du-danger-x",
+          "value": 3
+        },
+        {
+          "keywordId": "autonome"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "aguerri"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/cad-bane.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "e7c3ed7467becb37893558bfa23acf2cd22349cc56ffe19a74acbc837c4676cc"
+    }
+  },
+  "kallus the operative": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil-Bo J-19",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": [
+          "longue-distance"
+        ]
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "demoraliser-x",
+          "value": 1
+        },
+        {
+          "keywordId": "arme-de-poing"
+        },
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "longue-distance"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "exhaust",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/kallus-the-operative.jpg",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "visualHash": "cd71eb31866ad5614c8a9bd9394dee368f069eec54cebfd3b563c6286aed8489"
     }
   }
 }
