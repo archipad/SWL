@@ -1,1 +1,24 @@
-{ "_readme": "Correspondances clé de l appli -> nom de carte Legion HQ quand les noms diffèrent.", "aliases": {} }
+{
+  "_readme": "Correspondances clé de l'appli -> nom de carte Legion HQ quand les noms diffèrent (nom seul, ou « nom titre » pour une unité).",
+  "aliases": {
+    "the fifth brother": "fifth brother",
+    "the seventh sister": "seventh sister",
+    "bossk terror of trandosha": "bossk",
+    "mandalorian resistance clan wren": "clan wren veterans",
+    "stormtrooper heavy gunner squad": "stormtroopers heavy response unit",
+    "dark trooper squad": "imperial dark troopers",
+    "a280 cfe pistol sniper config": "a280",
+    "cassian andor operative": "cassian andor",
+    "captain rex": "clone captain rex",
+    "iden s id10 seeker droid": "seeker droid",
+    "tl tt rotary blaster": "at rt rotary blaster",
+    "tl tt laser cannon": "at rt laser cannon",
+    "anti bunker shells": "bunker buster shells",
+    "dlt 19 pintle mount": "pintle mounted dlt 19",
+    "rt 97c pintle mount": "pintle mounted rt 97c",
+    "x 34 mark ii blaster": "mark ii medium blaster",
+    "e 11d focused strike config": "e 11d focused fire configuration",
+    "sm 9 dark trooper": "sm 9 frag launcher",
+    "xs iv dark trooper": "xs iv assault cannon"
+  }
+}

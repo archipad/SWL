@@ -1,0 +1,2514 @@
+{
+ "_meta": {
+  "source": "https://legionhq2.com",
+  "genere": "2026-09-21",
+  "description": "Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write."
+ },
+ "cards": {
+  "1 4 fd laser cannon team": {
+   "name": "1.4 FD Laser Cannon Team",
+   "kind": "unit",
+   "rank": "support",
+   "speed": null,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "2n",
+     "range": "melee"
+    },
+    {
+     "name": "Blaster Pistols",
+     "dice": "4b",
+     "range": "1-2"
+    },
+    {
+     "name": "1.4 FD Laser Cannon",
+     "dice": "",
+     "range": "1-5"
+    }
+   ]
+  },
+  "74 z speeder bikes": {
+   "name": "74-Z Speeder Bikes",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 3,
+   "minis": 2,
+   "hp": 3,
+   "courage": null,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "EC-17 Hold-Out Blaster",
+     "dice": "2n",
+     "range": "1-2"
+    },
+    {
+     "name": "Ax-20 Blaster Cannons",
+     "dice": "1b+1n+1r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "88i twin light blaster": {
+   "name": "88i Twin Light Blaster",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "88i Twin Light Blaster",
+     "dice": "1b+1n+1r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "a a5 speeder truck": {
+   "name": "A-A5 Speeder Truck",
+   "kind": "unit",
+   "rank": "heavy",
+   "speed": 1,
+   "minis": 1,
+   "hp": 8,
+   "courage": 6,
+   "defense": "blanc",
+   "attackSurge": "none",
+   "defenseSurge": "block",
+   "weapons": []
+  },
+  "a280 cfe pistol sniper config": {
+   "name": "A280",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "A280 Pistol",
+     "dice": "1n+2r",
+     "range": "1-2"
+    },
+    {
+     "name": "A280 Rifle",
+     "dice": "1n+1r",
+     "range": "1-14"
+    }
+   ]
+  },
+  "ag 2g quad laser": {
+   "name": "AG-2G Quad Laser",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "AG-2G Quad Laser Cannon",
+     "dice": "6n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "agent kallus": {
+   "name": "Agent Kallus / Hunter of Spectres",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "J-19 Bo-Rifle",
+     "dice": "1r+3n",
+     "range": "?"
+    }
+   ]
+  },
+  "ahsoka tano": {
+   "name": "Ahsoka Tano / Fulcrum",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Ahsoka's Lightsabers",
+     "dice": "2b+2n+2r",
+     "range": "melee"
+    }
+   ]
+  },
+  "anti bunker shells": {
+   "name": "\"Bunker Buster\" Shells",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Bunker Buster Shells",
+     "dice": "1n+3b",
+     "range": "1-2"
+    }
+   ]
+  },
+  "armor piercing shells": {
+   "name": "Armor-Piercing Shells",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Armor-Piercing Shells",
+     "dice": "1r+2n",
+     "range": "2-3"
+    }
+   ]
+  },
+  "at rt": {
+   "name": "AT-RT",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 4,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Grappling Claws",
+     "dice": "3r",
+     "range": "melee"
+    },
+    {
+     "name": "Rocket Launcher",
+     "dice": "1n+2b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "at rt flamethrower": {
+   "name": "AT-RT Flamethrower",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Flamethrower",
+     "dice": "2n",
+     "range": "melee-1"
+    }
+   ]
+  },
+  "at st": {
+   "name": "AT-ST",
+   "kind": "unit",
+   "rank": "heavy",
+   "speed": 2,
+   "minis": 1,
+   "hp": 11,
+   "courage": 8,
+   "defense": "blanc",
+   "attackSurge": "none",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Fence-Cutting Blades",
+     "dice": "4r",
+     "range": "?"
+    },
+    {
+     "name": "MS-4 Twin Blaster",
+     "dice": "2b+2n+2r",
+     "range": "1-4"
+    }
+   ]
+  },
+  "at st mortar launcher": {
+   "name": "AT-ST Mortar Launcher",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "AT-ST Mortar Launcher",
+     "dice": "3b",
+     "range": "4-12"
+    }
+   ]
+  },
+  "ax 108 ground buzzer": {
+   "name": "Ax-108 \"Ground Buzzer\"",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Ax-108 \"Ground Buzzer\"",
+     "dice": "4n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "barrage generator": {
+   "name": "Barrage Generator",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Barrage Generator",
+     "dice": "2b",
+     "range": "?"
+    }
+   ]
+  },
+  "battle shield wookiee": {
+   "name": "Battle Shield Wookiee",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Offense",
+     "dice": "2r",
+     "range": "melee"
+    },
+    {
+     "name": "Defense",
+     "dice": "2n",
+     "range": "melee"
+    }
+   ]
+  },
+  "beskad duelist": {
+   "name": "Beskad Duelist",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Vibro Sword",
+     "dice": "2r",
+     "range": "melee"
+    }
+   ]
+  },
+  "black sun enforcers": {
+   "name": "Black Sun Enforcers",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Close Quarters Combat",
+     "dice": "1r",
+     "range": "melee"
+    },
+    {
+     "name": "BH-4 Double Blaster",
+     "dice": "1b+1n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "black sun vigo": {
+   "name": "Black Sun Vigo",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 4,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Martial Arts",
+     "dice": "3n",
+     "range": "melee"
+    },
+    {
+     "name": "Vigo's BH-4 Double Blaster",
+     "dice": "2b+2n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "boba fett daimyo of mos espa": {
+   "name": "Boba Fett / Daimyo of Mos Espa",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Fett's Gaderffii Stick",
+     "dice": "1n+3r",
+     "range": "melee"
+    },
+    {
+     "name": "Fett's EE-3 Carbine",
+     "dice": "3n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "boba fett infamous bounty hunter": {
+   "name": "Boba Fett / Infamous Bounty Hunter",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 3,
+   "minis": 1,
+   "hp": 5,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Boot Spikes",
+     "dice": "3r",
+     "range": "melee"
+    },
+    {
+     "name": "Integrated Rockets",
+     "dice": "3n",
+     "range": "1-2"
+    },
+    {
+     "name": "Fett's EE-3 Carbine",
+     "dice": "",
+     "range": "1-3"
+    }
+   ]
+  },
+  "bossk terror of trandosha": {
+   "name": "Bossk / Trandoshan Terror",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 7,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Frenzy",
+     "dice": "1b+1r+2n",
+     "range": "melee"
+    },
+    {
+     "name": "Relby-v10 Mortar Rifle",
+     "dice": "1r+4b",
+     "range": "2-4"
+    }
+   ]
+  },
+  "bowcaster wookiee": {
+   "name": "Bowcaster Wookiee",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Bowcaster",
+     "dice": "1b+1r",
+     "range": "melee-3"
+    }
+   ]
+  },
+  "cad bane": {
+   "name": "Cad Bane / Needs No Introduction",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 3,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Martial Arts",
+     "dice": "3n",
+     "range": "melee"
+    },
+    {
+     "name": "Dual LL-30 Blaster Pistols",
+     "dice": "4n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "captain rex": {
+   "name": "Clone Captain Rex",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Dual Hand Blasters",
+     "dice": "2r",
+     "range": "melee-2"
+    }
+   ]
+  },
+  "cassian andor": {
+   "name": "Cassian Andor / Capable Intelligence Agent",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Advanced Combat Training",
+     "dice": "3n",
+     "range": "melee"
+    },
+    {
+     "name": "Cassian's Covert Blaster",
+     "dice": "2b+2n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "cassian andor operative": {
+   "name": "Cassian Andor",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Black Ops",
+     "dice": "2r",
+     "range": "melee-2"
+    },
+    {
+     "name": "A280 Sniper Config",
+     "dice": "2n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "chewbacca": {
+   "name": "Chewbacca / Walking Carpet",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 9,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Overwhelm",
+     "dice": "4r",
+     "range": "melee"
+    },
+    {
+     "name": "Chewbacca's Bowcaster",
+     "dice": "2b+2r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "chewbacca upgrade": {
+   "name": "Chewbacca",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Chewbacca's Bowcaster",
+     "dice": "1r+2b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "cm o 93 trooper": {
+   "name": "CM-0/93 Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "CM-0/93",
+     "dice": "4b",
+     "range": "1-4"
+    }
+   ]
+  },
+  "concussion grenades": {
+   "name": "Concussion Grenades",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Concussion Grenade",
+     "dice": "1n",
+     "range": "1"
+    }
+   ]
+  },
+  "cr 24 flame rifle": {
+   "name": "CR-24 Flame Rifle",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "CR-24 Flame Rifle",
+     "dice": "1b+1n",
+     "range": "melee-1"
+    }
+   ]
+  },
+  "crosshair": {
+   "name": "Crosshair",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Crosshair",
+     "dice": "1r",
+     "range": "1-5"
+    }
+   ]
+  },
+  "dark trooper squad": {
+   "name": "Imperial Dark Troopers",
+   "kind": "unit",
+   "rank": "heavy",
+   "speed": 1,
+   "minis": 3,
+   "hp": 2,
+   "courage": null,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Crushing Punch",
+     "dice": "1b+1r",
+     "range": "melee"
+    },
+    {
+     "name": "E-11D Blaster",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "darth vader dark lord of the sith": {
+   "name": "Darth Vader / Dark Lord of the Sith",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 1,
+   "minis": 1,
+   "hp": 8,
+   "courage": null,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Vader's Lightsaber",
+     "dice": "6r",
+     "range": "melee"
+    }
+   ]
+  },
+  "del meeko": {
+   "name": "Del Meeko",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Del's DLT-19x",
+     "dice": "2n",
+     "range": "1-5"
+    }
+   ]
+  },
+  "dewback rider": {
+   "name": "Dewback Rider",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 1,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Razor Claws & Shock Prod",
+     "dice": "3b+3r",
+     "range": "melee"
+    }
+   ]
+  },
+  "df 90 mortar trooper": {
+   "name": "DF-90 Mortar Trooper",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 1,
+   "minis": 1,
+   "hp": 3,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "E-22 Blaster Rifle",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "DF-90 Mortar",
+     "dice": "2n",
+     "range": "3-4"
+    }
+   ]
+  },
+  "dh 447 sniper": {
+   "name": "DH-447 Sniper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "DH-447 Sniper Rifle",
+     "dice": "1n+2b",
+     "range": "2-5"
+    }
+   ]
+  },
+  "din djarin": {
+   "name": "Din Djarin / The Mandalorian",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Vibro Knife",
+     "dice": "2n",
+     "range": "melee"
+    },
+    {
+     "name": "Din's IB-94 Pistol",
+     "dice": "1n+2r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "director orson krennic": {
+   "name": "Director Orson Krennic / Architect of Terror",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "Krennic's Blaster",
+     "dice": "3r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "dlt 19 pintle mount": {
+   "name": "Pintle-Mounted DLT-19",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "DLT-19 Blaster Rifle",
+     "dice": "2r",
+     "range": "1-4"
+    }
+   ]
+  },
+  "dlt 19 stormtrooper": {
+   "name": "DLT-19 Stormtrooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "DLT-19 Blaster Rifle",
+     "dice": "2r",
+     "range": "1-4"
+    }
+   ]
+  },
+  "dlt 19d trooper": {
+   "name": "DLT-19D Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "DLT-19D Trooper",
+     "dice": "1b+2r",
+     "range": "1-4"
+    }
+   ]
+  },
+  "dlt 19x sniper": {
+   "name": "DLT-19x Sniper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "DLT-19x Sniper Rifle",
+     "dice": "1n+2b",
+     "range": "2-5"
+    }
+   ]
+  },
+  "dlt 20a range trooper": {
+   "name": "DLT-20A Range Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "DLT-20A Range Trooper",
+     "dice": "2r",
+     "range": "1-5"
+    }
+   ]
+  },
+  "dlt 20a trooper": {
+   "name": "DLT-20A Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "DLT-20A Trooper",
+     "dice": "1b+2n",
+     "range": "1-4"
+    }
+   ]
+  },
+  "dt f16": {
+   "name": "DT-F16",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "E-11D Blaster Rifle",
+     "dice": "1b+1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "dw 3 concussion grenade launcher": {
+   "name": "DW-3 Grenade Launcher",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "DW-3 Grenade Launcher",
+     "dice": "2n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "e 11d focused strike config": {
+   "name": "E-11D Focused Fire Configuration",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "E-11D Focused Fire Configuration",
+     "dice": "1n",
+     "range": "1-4"
+    },
+    {
+     "name": "E-11D Grenade Launcher Configuration",
+     "dice": "1r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "e web heavy blaster team": {
+   "name": "E-Web Heavy Blaster Team",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 1,
+   "minis": 1,
+   "hp": 4,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "2n",
+     "range": "melee"
+    },
+    {
+     "name": "Blaster Rifles",
+     "dice": "2b",
+     "range": "1-3"
+    },
+    {
+     "name": "E-Web Heavy Blaster",
+     "dice": "1r",
+     "range": "1-4"
+    }
+   ]
+  },
+  "flametrooper": {
+   "name": "Flametrooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Flamethrower",
+     "dice": "1n",
+     "range": "melee-1"
+    }
+   ]
+  },
+  "fleet troopers": {
+   "name": "Fleet Troopers",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "DH-17 Blaster Pistol",
+     "dice": "2b",
+     "range": "melee-2"
+    }
+   ]
+  },
+  "fragmentation grenades": {
+   "name": "Fragmentation Grenades",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Frag Grenade",
+     "dice": "1r",
+     "range": "1"
+    }
+   ]
+  },
+  "gar saxon militant commando": {
+   "name": "Gar Saxon / Militant Commando",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Advanced Combat Training",
+     "dice": "2r",
+     "range": "melee"
+    },
+    {
+     "name": "Saxon's Westar-35 Blaster Pistol",
+     "dice": "1b+1r+2n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "general veers": {
+   "name": "General Veers / Master Tactician",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Combat Expertise",
+     "dice": "2n",
+     "range": "melee"
+    },
+    {
+     "name": "Veers' Blaster Rifle",
+     "dice": "3r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "gideon hask": {
+   "name": "Gideon Hask",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Gideon's E-11",
+     "dice": "2r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "han solo": {
+   "name": "Han Solo / Unorthodox General",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Brawl",
+     "dice": "3b",
+     "range": "melee"
+    },
+    {
+     "name": "Han's DL-44",
+     "dice": "2r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "heavy laser retrofit": {
+   "name": "Heavy Laser Retrofit",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Heavy Laser Cannon",
+     "dice": "1b+1n+1r",
+     "range": "1-4"
+    }
+   ]
+  },
+  "hh 12 stormtrooper": {
+   "name": "HH-12 Stormtrooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "HH-12 Rocket Launcher",
+     "dice": "3n",
+     "range": "2-4"
+    }
+   ]
+  },
+  "high energy shells": {
+   "name": "High-Energy Shells",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "High-Energy Shells",
+     "dice": "1b+2r",
+     "range": "2-4"
+    }
+   ]
+  },
+  "iden versio": {
+   "name": "Iden Versio / Inferno Squad Leader",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Martial Arts",
+     "dice": "3n",
+     "range": "melee"
+    },
+    {
+     "name": "Iden's DLT-20A Rifle",
+     "dice": "2n",
+     "range": "1-#"
+    },
+    {
+     "name": "Iden's TL-50 Repeater",
+     "dice": "1n+2b+2r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "ig 11": {
+   "name": "IG-11 / Nurse and Protect",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Overpower",
+     "dice": "4r",
+     "range": "melee"
+    },
+    {
+     "name": "Modified E-11 Blaster",
+     "dice": "1n+2b",
+     "range": "1-3"
+    },
+    {
+     "name": "Modified DLT-20A Rifle",
+     "dice": "",
+     "range": "1-4"
+    }
+   ]
+  },
+  "ig 88": {
+   "name": "IG-88 / Notorious Assassin Droid",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "IG-88's Vibro-cleaver",
+     "dice": "1b+1n+1r",
+     "range": "melee"
+    },
+    {
+     "name": "Modified E-11 Blaster",
+     "dice": "1n+2b",
+     "range": "1-3"
+    },
+    {
+     "name": "Modified DLT-20A Rifle",
+     "dice": "",
+     "range": "1-4"
+    }
+   ]
+  },
+  "impact grenades": {
+   "name": "Impact Grenades",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Impact Grenade",
+     "dice": "1n",
+     "range": "melee-1"
+    }
+   ]
+  },
+  "imperial death troopers": {
+   "name": "Imperial Death Troopers",
+   "kind": "unit",
+   "rank": null,
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Close Quarters Combat",
+     "dice": "1r",
+     "range": "melee"
+    },
+    {
+     "name": "SE-14a Light Blaster",
+     "dice": "2b",
+     "range": "1-2"
+    },
+    {
+     "name": "E-11D Blaster Rifle",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "imperial special forces": {
+   "name": "Imperial Special Forces",
+   "kind": "unit",
+   "rank": null,
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "Special Forces E-11 Blaster Rifle",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "imperial special forces inferno squad": {
+   "name": "Imperial Special Forces / Inferno Squad",
+   "kind": "unit",
+   "rank": null,
+   "speed": 2,
+   "minis": 1,
+   "hp": 2,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Close Quarters Combat",
+     "dice": "1r",
+     "range": "melee"
+    },
+    {
+     "name": "Inferno Squad E-11 Blaster Rifle",
+     "dice": "2n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "jetpack rockets": {
+   "name": "Jetpack Rockets",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Jetpack Rockets",
+     "dice": "4n",
+     "range": "3-4"
+    }
+   ]
+  },
+  "jyn erso": {
+   "name": "Jyn Erso / Stardust",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 3,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Collapsible Tonfa",
+     "dice": "4n",
+     "range": "melee"
+    },
+    {
+     "name": "A-180 Blaster Pistol",
+     "dice": "1b+2r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "jyn s se 14 blaster": {
+   "name": "Jyn's SE-14 Blaster",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "SE-14 Blaster",
+     "dice": "5b",
+     "range": "1-2"
+    }
+   ]
+  },
+  "k 2so": {
+   "name": "K-2SO / Sardonic Security Droid",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Overwhelm",
+     "dice": "4r",
+     "range": "melee"
+    }
+   ]
+  },
+  "kraken": {
+   "name": "Kraken",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Kraken's Blaster",
+     "dice": "1b+1n",
+     "range": "melee-3"
+    }
+   ]
+  },
+  "kx series security droids": {
+   "name": "KX-Series Security Droids",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Oppress",
+     "dice": "1r",
+     "range": "melee"
+    }
+   ]
+  },
+  "laat le patrol transport": {
+   "name": "LAAT/le Patrol Transport",
+   "kind": "unit",
+   "rank": "heavy",
+   "speed": 2,
+   "minis": 1,
+   "hp": 8,
+   "courage": 6,
+   "defense": "blanc",
+   "attackSurge": "none",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Twin Laser Cannons",
+     "dice": "2n+2r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "lando calrissian": {
+   "name": "Lando Calrissian / Canny General",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Backup Plan",
+     "dice": "3n",
+     "range": "melee"
+    },
+    {
+     "name": "Lando's X-8 Pistol",
+     "dice": "1r+3n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "leia organa": {
+   "name": "Leia Organa / Fearless and Inventive",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Martial Arts",
+     "dice": "3n",
+     "range": "melee"
+    },
+    {
+     "name": "Leia's Blaster",
+     "dice": "3r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "long gun wookiee": {
+   "name": "Long Gun Wookiee",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Long Gun",
+     "dice": "2n",
+     "range": "1-4"
+    }
+   ]
+  },
+  "luke skywalker hero of the rebellion": {
+   "name": "Luke Skywalker / Hero of the Rebellion",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Anakin's Lightsaber",
+     "dice": "2r+3n",
+     "range": "melee"
+    },
+    {
+     "name": "Luke's Blaster",
+     "dice": "1r+3n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "luke skywalker jedi knight": {
+   "name": "Luke Skywalker / Jedi Knight",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 7,
+   "courage": 4,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Luke's Lightsaber",
+     "dice": "7n",
+     "range": "melee"
+    }
+   ]
+  },
+  "m 45 ion blaster": {
+   "name": "M-45 Ion Blaster",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "M-45 Ion Blaster",
+     "dice": "2b+2n",
+     "range": "1-4"
+    }
+   ]
+  },
+  "major marquand": {
+   "name": "Major Marquand / Tempest Scout 2",
+   "kind": "unit",
+   "rank": "heavy",
+   "speed": 2,
+   "minis": 1,
+   "hp": 11,
+   "courage": 8,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Grenade Launcher",
+     "dice": "2n",
+     "range": "melee"
+    },
+    {
+     "name": "88 Twin Light Blaster",
+     "dice": "1b+1n+1r",
+     "range": "melee"
+    },
+    {
+     "name": "MS-4 Twin Blaster",
+     "dice": "2r",
+     "range": "1-4"
+    }
+   ]
+  },
+  "mandalorian resistance clan wren": {
+   "name": "Clan Wren Veterans",
+   "kind": "unit",
+   "rank": null,
+   "speed": 3,
+   "minis": 3,
+   "hp": 1,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Blaster Pistols",
+     "dice": "1b+1r",
+     "range": "melee-2"
+    },
+    {
+     "name": "Galar-15 Carbines",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "mandalorian super commandos": {
+   "name": "Mandalorian Super Commandos",
+   "kind": "unit",
+   "rank": null,
+   "speed": 3,
+   "minis": 3,
+   "hp": 1,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Westar-35 Blaster Pistols",
+     "dice": "2n",
+     "range": "melee-2"
+    },
+    {
+     "name": "Galar-15 Blaster Carbine",
+     "dice": "1b+1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "mark ii medium blaster trooper": {
+   "name": "Mark II Medium Blaster Trooper",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 1,
+   "minis": 1,
+   "hp": 4,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "A-280 Blaster Rifle",
+     "dice": "1n",
+     "range": "1-3"
+    },
+    {
+     "name": "Mark II Medium Blaster",
+     "dice": "",
+     "range": "1-3"
+    }
+   ]
+  },
+  "maul a rival": {
+   "name": "Maul / A Rival",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Maul's Double-Bladed Lightsaber",
+     "dice": "4b+4r",
+     "range": "melee"
+    }
+   ]
+  },
+  "mo dk power harpoon": {
+   "name": "MO/DK Power Harpoon",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "MO/DK Power Harpoon",
+     "dice": "1r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "moff gideon": {
+   "name": "Moff Gideon / Long Live the Empire",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Advanced Combat Training",
+     "dice": "2r",
+     "range": "melee"
+    },
+    {
+     "name": "Gideon's Custom Blaster Pistol",
+     "dice": "1r+2n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "mpl 57 barrage trooper": {
+   "name": "MPL-57 Barrage Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "MPL-57 Barrage",
+     "dice": "1n+2b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "mpl 57 ion trooper": {
+   "name": "MPL-57 Ion Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "MPL-57 Ion Blaster",
+     "dice": "1b+2n",
+     "range": "melee-3"
+    }
+   ]
+  },
+  "proton charge saboteur": {
+   "name": "Proton Charge Saboteur",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Proton Charge",
+     "dice": "1b+1n+1r",
+     "range": "melee-1"
+    }
+   ]
+  },
+  "pyke syndicate capo": {
+   "name": "Pyke Syndicate Capo",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 4,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "none",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "Capo's P13 Long Blaster",
+     "dice": "3n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "pyke syndicate foot soldiers": {
+   "name": "Pyke Syndicate Foot Soldiers",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "blanc",
+   "attackSurge": "none",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Stun Baton",
+     "dice": "2b",
+     "range": "melee"
+    },
+    {
+     "name": "P13 Long Blaster",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "r2 d2": {
+   "name": "R2-D2 / Hero of a Thousand Devices",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 1,
+   "minis": 1,
+   "hp": 4,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Electro-Shock",
+     "dice": "3b",
+     "range": "melee"
+    }
+   ]
+  },
+  "range troopers": {
+   "name": "Range Troopers",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 1,
+   "minis": 4,
+   "hp": 1,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Gription Boot Kick",
+     "dice": "2b",
+     "range": "?"
+    },
+    {
+     "name": "E-10R Blaster Rifle",
+     "dice": "1n",
+     "range": "1-4"
+    }
+   ]
+  },
+  "rebel agent defender of democracy": {
+   "name": "Rebel Agent / Defender of Democracy",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Combat Training",
+     "dice": "3n",
+     "range": "melee"
+    },
+    {
+     "name": "Blaster Pistol",
+     "dice": "1n+2b",
+     "range": "1-2"
+    }
+   ]
+  },
+  "rebel commandos": {
+   "name": "Rebel Commandos",
+   "kind": "unit",
+   "rank": null,
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "A-200 Blaster Rifle",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "rebel commandos strike team": {
+   "name": "Rebel Commandos / Strike Team",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 2,
+   "minis": 1,
+   "hp": 1,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "A-200 Blaster Rifle",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "rebel sleeper cell": {
+   "name": "Rebel Sleeper Cell / Ready to Strike",
+   "kind": "unit",
+   "rank": null,
+   "speed": 2,
+   "minis": 6,
+   "hp": 1,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Det Packs",
+     "dice": "1r",
+     "range": "melee"
+    },
+    {
+     "name": "Blaster Pistols",
+     "dice": "1b+1n",
+     "range": "melee"
+    },
+    {
+     "name": "Blaster Pistols",
+     "dice": "2n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "rebel troopers": {
+   "name": "Rebel Troopers",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "blanc",
+   "attackSurge": "none",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "A-200 Blaster Rifle",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "rebel veterans": {
+   "name": "Rebel Veterans",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "A-280 Blaster Rifle",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "repeating blaster": {
+   "name": "Repeating Blaster",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Repeating Blaster",
+     "dice": "1r+2n+3b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "rook kast": {
+   "name": "Rook Kast",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Rook's Blaster Pistols",
+     "dice": "2b+2r",
+     "range": "melee-2"
+    }
+   ]
+  },
+  "rt 97c pintle mount": {
+   "name": "Pintle-Mounted RT-97C",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "RT-97C Blaster Rifle",
+     "dice": "1r+3b",
+     "range": "1-4"
+    }
+   ]
+  },
+  "rt 97c stormtrooper": {
+   "name": "RT-97C Stormtrooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "RT-97C Blaster Rifle",
+     "dice": "1r+3b",
+     "range": "1-4"
+    }
+   ]
+  },
+  "sabine wren": {
+   "name": "Sabine Wren / Explosive Artist",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 3,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "WESTAR-35 Pistols",
+     "dice": "1b+1n+1r",
+     "range": "melee-2"
+    }
+   ]
+  },
+  "scatter gun trooper": {
+   "name": "Scatter Gun Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Scatter Gun",
+     "dice": "2r",
+     "range": "melee-2"
+    }
+   ]
+  },
+  "scout troopers": {
+   "name": "Scout Troopers",
+   "kind": "unit",
+   "rank": null,
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "none",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "EC-17 Hold-Out Blaster",
+     "dice": "2n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "scout troopers strike team": {
+   "name": "Scout Troopers / Strike Team",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "EC-17 Hold-Out Blaster",
+     "dice": "2n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "shoretroopers": {
+   "name": "Shoretroopers",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 1,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Unarmed",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "E-22 Blaster Rifle",
+     "dice": "1n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "sm 9 dark trooper": {
+   "name": "SM-9 Frag Launcher",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "SM-9 Frag Launcher",
+     "dice": "1n+2r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "snowtroopers": {
+   "name": "Snowtroopers",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 1,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Bludgeon",
+     "dice": "1b",
+     "range": "melee"
+    },
+    {
+     "name": "E-11 Blaster Rifle",
+     "dice": "1b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "sonic charge saboteur": {
+   "name": "Sonic Charge Saboteur",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Sonic Charge",
+     "dice": "1b+1r+2n",
+     "range": "melee-1"
+    }
+   ]
+  },
+  "sonic imploders": {
+   "name": "Sonic Imploders",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Sonic Imploder",
+     "dice": "1n",
+     "range": "1"
+    }
+   ]
+  },
+  "stormtrooper heavy gunner squad": {
+   "name": "Stormtroopers / Heavy Response Unit",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Bludgeon",
+     "dice": "1b",
+     "range": "melee"
+    },
+    {
+     "name": "E-11 Blaster Rifle",
+     "dice": "1b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "stormtrooper riot squad": {
+   "name": "Stormtrooper Riot Squad",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Stun Baton",
+     "dice": "1n",
+     "range": "melee"
+    },
+    {
+     "name": "E-11 Blaster Rifle",
+     "dice": "1b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "stormtroopers": {
+   "name": "Stormtroopers",
+   "kind": "unit",
+   "rank": "corps",
+   "speed": 2,
+   "minis": 4,
+   "hp": 1,
+   "courage": 1,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Bludgeon",
+     "dice": "1b",
+     "range": "melee"
+    },
+    {
+     "name": "E-11 Blaster Rifle",
+     "dice": "1b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "super commando marksman": {
+   "name": "Super Commando Marksman",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Designated Marksman",
+     "dice": "1n+1r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "swoop bike riders": {
+   "name": "Swoop Bike Riders",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 3,
+   "minis": 2,
+   "hp": 3,
+   "courage": null,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Vibro-Ax",
+     "dice": "1r+2b",
+     "range": "?"
+    },
+    {
+     "name": "Heavy Blaster Pistol",
+     "dice": "1n+1r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "sx 21 trooper": {
+   "name": "SX-21 Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "SX-21 Scatter Blaster",
+     "dice": "2b+2r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "t 21 special forces trooper": {
+   "name": "T-21 Special Forces Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "T-21 Repeating Blaster",
+     "dice": "4b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "t 21 stormtrooper": {
+   "name": "T-21 Stormtrooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "T-21 Repeating Blaster",
+     "dice": "4b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "t 21a range trooper": {
+   "name": "T-21A Range Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "T-21A Repeating Blaster",
+     "dice": "2b+2n",
+     "range": "1-4"
+    }
+   ]
+  },
+  "t 21b shoretrooper": {
+   "name": "T-21B Shoretrooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "T-21B Repeating Blaster",
+     "dice": "2b+2n",
+     "range": "1-4"
+    }
+   ]
+  },
+  "t 47 airspeeder": {
+   "name": "T-47 Airspeeder",
+   "kind": "unit",
+   "rank": "heavy",
+   "speed": 3,
+   "minis": 1,
+   "hp": 7,
+   "courage": 5,
+   "defense": "blanc",
+   "attackSurge": "crit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Double Laser Cannon",
+     "dice": "3n+3r",
+     "range": "1-3"
+    }
+   ]
+  },
+  "t 7 ion snowtrooper": {
+   "name": "T-7 Ion Snowtrooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "T-7 Ion Rifle",
+     "dice": "1b+2n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "tauntaun riders": {
+   "name": "Tauntaun Riders",
+   "kind": "unit",
+   "rank": "support",
+   "speed": 2,
+   "minis": 2,
+   "hp": 1,
+   "courage": 1,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Horns & Hind Claws",
+     "dice": "1b+2n",
+     "range": "melee"
+    },
+    {
+     "name": "DL-44 Blaster Pistol",
+     "dice": "2r",
+     "range": "1-2"
+    }
+   ]
+  },
+  "the bad batch": {
+   "name": "The Bad Batch / Clone Force 99",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 0,
+   "hp": 2,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Advanced Combat Training",
+     "dice": "1r",
+     "range": "melee"
+    },
+    {
+     "name": "DC-17 Hand Blaster",
+     "dice": "1b+1n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "the darksaber": {
+   "name": "The Darksaber",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "The Darksaber",
+     "dice": "5n",
+     "range": "melee"
+    }
+   ]
+  },
+  "the fifth brother": {
+   "name": "Fifth Brother / The Kill is Mine",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Spinning Lightsaber",
+     "dice": "5n",
+     "range": "melee"
+    },
+    {
+     "name": "Thrown Spinning Lightsaber",
+     "dice": "3n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "the seventh sister": {
+   "name": "Seventh Sister / Compelled to Inflict Pain",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Spinning Lightsaber",
+     "dice": "5n",
+     "range": "melee"
+    },
+    {
+     "name": "Thrown Spinning Lightsaber",
+     "dice": "3n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "tl tt laser cannon": {
+   "name": "AT-RT Laser Cannon",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Laser Cannon",
+     "dice": "1r+2n",
+     "range": "2-4"
+    }
+   ]
+  },
+  "tl tt rotary blaster": {
+   "name": "AT-RT Rotary Blaster",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Rotary Blaster",
+     "dice": "5n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "tx 225 occupier tank": {
+   "name": "TX-225 GAVw Occupier Tank",
+   "kind": "unit",
+   "rank": "heavy",
+   "speed": 1,
+   "minis": 1,
+   "hp": 8,
+   "courage": 6,
+   "defense": "rouge",
+   "attackSurge": "none",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Twin Cannons",
+     "dice": "1n+1r",
+     "range": "1-2"
+    },
+    {
+     "name": "Quad Cannons",
+     "dice": "2n+2r",
+     "range": "1-4"
+    }
+   ]
+  },
+  "wookiee warriors freedom fighters": {
+   "name": "Wookiee Warriors / Freedom Fighters",
+   "kind": "unit",
+   "rank": null,
+   "speed": 2,
+   "minis": 3,
+   "hp": 3,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Ryyk Blade",
+     "dice": "2n",
+     "range": "melee"
+    },
+    {
+     "name": "Kashyyyk Pistol",
+     "dice": "1b+1n",
+     "range": "1-2"
+    }
+   ]
+  },
+  "wookiee warriors kashyyyk resistance": {
+   "name": "Wookiee Warriors / Kashyyyk Resistance",
+   "kind": "unit",
+   "rank": null,
+   "speed": 2,
+   "minis": 3,
+   "hp": 3,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Combat Training",
+     "dice": "1b+1n",
+     "range": "melee"
+    },
+    {
+     "name": "X1 Carbine",
+     "dice": "2b",
+     "range": "1-3"
+    }
+   ]
+  },
+  "wrecker": {
+   "name": "Wrecker",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Wrecker",
+     "dice": "1b+1n+1r",
+     "range": "melee-2"
+    }
+   ]
+  },
+  "x 34 landspeeder": {
+   "name": "X-34 Landspeeder",
+   "kind": "unit",
+   "rank": "heavy",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 4,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Blaster Pistol",
+     "dice": "2b",
+     "range": "1-2"
+    }
+   ]
+  },
+  "x 34 mark ii blaster": {
+   "name": "Mark II Medium Blaster",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Mark II Medium Blaster",
+     "dice": "4n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "xs iv dark trooper": {
+   "name": "XS-IV Assault Cannon",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "XS-IV Assault Cannon",
+     "dice": "4n",
+     "range": "1-3"
+    }
+   ]
+  },
+  "z 6 trooper": {
+   "name": "Z-6 Trooper",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Z-6 Rotary Blaster",
+     "dice": "6b",
+     "range": "1-3"
+    }
+   ]
+  }
+ }
+}

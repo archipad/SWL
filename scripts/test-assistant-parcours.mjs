@@ -1324,10 +1324,11 @@ scenario('Certification : relecture IA — badge par carte, filtre « à confirm
   assert.ok(filter, 'filtre « À confirmer, relecture IA »')
   await click(filter)
   const flagged = $$('.cert-status-section.todo [data-cert-card]').map((button) => decodeURIComponent(button.dataset.certCard))
-  assert.ok(flagged.length > 0 && flagged.every((card) => review[card] && review[card].status !== 'relue'), 'le filtre ne garde que les cartes corrigées / illisibles : ' + flagged.slice(0, 5).join(', '))
+  const hqFlag = (card) => app.window.swlCertification.hqDiffs(card).length > 0
+  assert.ok(flagged.length > 0 && flagged.every((card) => (review[card] && review[card].status !== 'relue') || hqFlag(card)), 'le filtre ne garde que les cartes corrigées, illisibles ou en écart Legion HQ : ' + flagged.slice(0, 5).join(', '))
   await click('#startReviewFlagged')
   assert.ok($('.cert-review'), 'le défilé des cartes à confirmer s’ouvre')
-  assert.match(text($('.cert-review .cert-ai')), /⚠/, 'la première carte du défilé est signalée par l’IA : ' + text($('.cert-review')).slice(0, 200))
+  assert.ok($('.cert-review .cert-ai.ai-flag'), 'la première carte du défilé est signalée (IA ou Legion HQ) : ' + text($('.cert-review')).slice(0, 200))
   const first = text($('.cert-review h2'))
   assert.ok(first, 'carte affichée : ' + first)
   assert.match(text($('.cert-review .kicker')), /DÉFILÉ RAPIDE · 1 \/ (\d+)/, 'compteur du défilé')
@@ -1366,6 +1367,32 @@ scenario('Phases du round : Commandement (Agent de Confiance, Brouilleur Comms d
   assert.ok($('[data-card-action="vigilance"]'), 'Vigilance à la Phase Finale')
   await click('#closeRoundPhases')
   assert.ok(!$('.round-phases'), 'retour à l’assistant')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Certification : la vitesse manquante est préremplie d’après Legion HQ (à confirmer) et les écarts Legion HQ sont signalés', async () => {
+  const app = await openAssistant()
+  const { $, $$, text, click } = app
+  await click('#certification')
+  const reference = app.window.SWL_REFERENCE
+  assert.ok(Object.keys(reference.legionhq || {}).length > 100, 'la référence Legion HQ est chargée')
+  // une unité sans vitesse certifiée mais connue de Legion HQ
+  const key = Object.keys(reference.legionhq).find((card) => reference.legionhq[card].kind === 'unit' && reference.legionhq[card].speed && !reference.weapons[card]?.fullCardCertification?.speed && !app.window.swlCertification.hqDiffs(card).length)
+  assert.ok(key, 'une unité sans vitesse est disponible pour le test')
+  await click($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === key))
+  const speed = $('select[data-full-field="speed"]')
+  assert.ok(speed, 'le champ vitesse est présent')
+  assert.equal(speed.value, String(reference.legionhq[key].speed), 'la vitesse est préremplie : ' + speed.value)
+  assert.match(text($('.cert-detail')), /préremplie d’après Legion HQ/, 'la provenance est annoncée')
+  assert.match(text($('.cert-detail')), /Legion HQ \(référence\) : concordant/, 'Legion HQ concordant')
+  await click('#backCertification')
+  // une carte en écart : signalée dans la liste et dans le panneau
+  const diff = Object.keys(reference.legionhq).find((card) => app.window.swlCertification.hqDiffs(card).length > 0 && $$('.cert-status-section.todo [data-cert-card]').some((button) => decodeURIComponent(button.dataset.certCard) === card))
+  assert.ok(diff, 'une carte en écart Legion HQ est listée')
+  assert.match(text($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === diff)), /Legion HQ : \d+ écart/, 'pastille d’écart dans la liste')
+  await click($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === diff))
+  assert.match(text($('.cert-detail')), /écart\(s\) avec l’appli/, 'panneau des écarts dans l’éditeur')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })

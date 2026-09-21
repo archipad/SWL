@@ -171,9 +171,17 @@ try {
   const aiReviewPath = resolve(projectRoot, 'src/data/aiReview.json')
   const aiReview = existsSync(aiReviewPath) ? JSON.parse(await readFile(aiReviewPath, 'utf8')).cards : {}
 
+  // Référence Legion HQ (src/data/legionhqReference.json) : préremplissage de la vitesse et détection d'écarts dans la certification.
+  const hqPath = resolve(projectRoot, 'src/data/legionhqReference.json')
+  const legionhq = existsSync(hqPath) ? JSON.parse(await readFile(hqPath, 'utf8')).cards : {}
+  const hqTriagePath = resolve(projectRoot, 'src/data/legionhqTriage.json')
+  const legionhqIgnore = existsSync(hqTriagePath) ? JSON.parse(await readFile(hqTriagePath, 'utf8')).cards : {}
+
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,
     aiReview,
+    legionhq,
+    legionhqIgnore,
     tags,
     keywordConflicts,
     cardUse,

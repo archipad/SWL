@@ -3,9 +3,12 @@
    rang, vitesse, figurines, PV, courage, dé de défense, adrénalines d'attaque et de défense, et pour chaque arme : dés et portée.
    Deuxième avis automatique, pas une vérité : le site reflète les errata récents (2024-2025), le visuel de la carte peut être une
    version plus ancienne, et le site peut se tromper. Chaque écart se tranche sur le visuel de la carte.
-   Aucune donnée du site n'est recopiée dans le dépôt : seuls les écarts et les valeurs à confirmer sont écrits dans le rapport.
+   Legion HQ est la référence retenue par le propriétaire du projet (21/09/2026) : ses valeurs préremplissent la certification
+   (src/data/legionhqReference.json) ; la certification à la main sur le visuel reste la validation finale.
 
-   Usage : node scripts/audit-legionhq.mjs [--cache <fichier main.*.js déjà téléchargé>]
+   Usage : node scripts/audit-legionhq.mjs [--cache <fichier main.*.js déjà téléchargé>] [--write]
+   --write : écrit aussi src/data/legionhqReference.json (valeurs de référence des cartes appariées), lu par l'écran de certification
+   pour préremplir la vitesse et signaler les écarts.
    Sortie : docs/audit/recoupement-legionhq.md */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -17,6 +20,7 @@ const root = path.resolve(here, '..')
 const SITE = 'https://legionhq2.com'
 const args = process.argv.slice(2)
 const cacheFile = args.includes('--cache') ? args[args.indexOf('--cache') + 1] : null
+const writeReference = args.includes('--write')
 
 /* ---------- Extraction ---------- */
 async function loadBundle() {
@@ -92,7 +96,7 @@ const weaponScore = (appWeapons, hqWeapons) => {
 const best = (list, score) => [...list].sort((a, b) => score(a) - score(b))[0]
 
 /* ---------- Comparaison ---------- */
-const problems = [], unmatched = { unit: [], upgrade: [] }, speedSuggestions = []
+const problems = [], unmatched = { unit: [], upgrade: [] }, speedSuggestions = [], reference = {}
 let comparedUnits = 0, comparedUpgrades = 0, comparedWeapons = 0
 function compareWeapons(list, appWeapons, hqWeapons) {
   const hq = (hqWeapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) }))
@@ -122,6 +126,7 @@ for (const key of Object.keys(ref.weapons)) {
     const score = (c) => weaponScore(profile.weapons, c.weapons) + (c.stats.minicount === profile.unitStats?.baseModels ? 0 : 2) + (c.stats.hp === profile.unitStats?.woundsPerModel ? 0 : 1) + (RANK[c.rank] === rankOf[key] ? 0 : 1)
     const c = best(pool, score), st = c.stats, ustats = profile.unitStats, cert = profile.fullCardCertification, comb = combat[key] || {}
     comparedUnits++
+    reference[key] = { name: c.cardName + (c.title ? ' / ' + c.title : ''), kind: 'unit', rank: RANK[c.rank] || null, speed: st.speed || null, minis: st.minicount ?? null, hp: st.hp ?? null, courage: Number.isFinite(st.courage) && st.courage > 0 ? st.courage : null, defense: { r: 'rouge', w: 'blanc' }[st.defense] || null, attackSurge: { h: 'hit', c: 'crit' }[st.hitsurge] || 'none', defenseSurge: st.defsurge === 'b' ? 'block' : 'none', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
     if (RANK[c.rank] && rankOf[key] && RANK[c.rank] !== rankOf[key]) list.push(`rang : site ${RANK[c.rank]} / appli ${rankOf[key]}`)
     const appSpeed = printedSpeedOf(key)
     if (appSpeed !== null && st.speed && st.speed !== appSpeed) list.push(`vitesse : site ${st.speed} / appli ${appSpeed}`)
@@ -145,6 +150,7 @@ for (const key of Object.keys(ref.weapons)) {
   } else {
     const c = best(pool, (card) => weaponScore(profile.weapons, card.weapons))
     comparedUpgrades++
+    if ((c.weapons || []).some((w) => w.dice)) reference[key] = { name: c.cardName, kind: 'upgrade', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
     if ((c.weapons || []).length || (profile.weapons || []).length) compareWeapons(list, profile.weapons, c.weapons)
     if (list.length) problems.push({ kind: 'amélioration', key, name: c.cardName, list })
   }
@@ -168,4 +174,9 @@ lines.push(`## Vitesse à renseigner dans la certification (${speedSuggestions.l
 for (const item of speedSuggestions) lines.push(`- ${item.name} (\`${item.key}\`) : vitesse ${item.speed}`)
 lines.push('', '## Cartes non appariées', '', 'Unités : ' + (unmatched.unit.join(', ') || '—'), '', 'Améliorations : ' + (unmatched.upgrade.join(', ') || '—'), '')
 fs.writeFileSync(path.join(root, 'docs/audit/recoupement-legionhq.md'), lines.join('\n'))
+if (writeReference) {
+  const sorted = Object.fromEntries(Object.entries(reference).sort(([a], [b]) => a.localeCompare(b)))
+  fs.writeFileSync(path.join(root, 'src/data/legionhqReference.json'), JSON.stringify({ _meta: { source: 'https://legionhq2.com', genere: new Date().toISOString().slice(0, 10), description: 'Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write.' }, cards: sorted }, null, 1) + '\n')
+  console.log('référence écrite : ' + Object.keys(sorted).length + ' cartes -> src/data/legionhqReference.json')
+}
 console.log(`Legion HQ : ${comparedUnits} unités, ${comparedUpgrades} améliorations, ${comparedWeapons} armes comparées ; ${problems.length} carte(s) avec écart ; ${speedSuggestions.length} vitesse(s) à renseigner ; non appariées : ${unmatched.unit.length} unités, ${unmatched.upgrade.length} améliorations.`)

@@ -1,10 +1,10 @@
 # Recoupement des caractéristiques avec Legion HQ
 
-> Deuxième avis automatique (2026-09-20), **pas une vérité** : le site applique les errata récents, le visuel peut être plus ancien, et le site peut se tromper. Chaque écart se tranche sur le visuel. Aucune donnée du site n’est recopiée ici, seulement les écarts.
+> Deuxième avis automatique (2026-09-21), **pas une vérité** : le site applique les errata récents, le visuel peut être plus ancien, et le site peut se tromper. Chaque écart se tranche sur le visuel. Aucune donnée du site n’est recopiée ici, seulement les écarts.
 
-Comparé : 67 unités, 144 améliorations, 179 armes. **35 carte(s) avec au moins un écart.** Non appariées : 11 unités, 79 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
+Comparé : 73 unités, 157 améliorations, 200 armes. **41 carte(s) avec au moins un écart.** Non appariées : 5 unités, 66 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
 
-## Unités avec écart (22)
+## Unités avec écart (25)
 
 ### TL-TT — `at rt`
 - dé de défense : site rouge / appli blanc
@@ -24,6 +24,11 @@ Comparé : 67 unités, 144 améliorations, 179 armes. **35 carte(s) avec au moin
 
 ### Équipe Canon Laser 1.4 FD — `1 4 fd laser cannon team`
 - arme « Canon Laser 1.4 FD » — dés : site — / appli 5n
+
+### Résistance Mandalorienne, Clan Wren — `mandalorian resistance clan wren`
+- figurines : site 3 / appli 1
+- PV par figurine : site 1 / appli 2
+- nombre d’armes : site 2 / appli 1
 
 ### Death Troopers Impériaux — `imperial death troopers`
 - adrénaline d’attaque : site crit / appli hit
@@ -52,6 +57,9 @@ Comparé : 67 unités, 144 améliorations, 179 armes. **35 carte(s) avec au moin
 - figurines : site 4 / appli 1
 - adrénaline d’attaque : site crit / appli none
 
+### Stormtroopers, Unité Lourde d'Intervention — `stormtrooper heavy gunner squad`
+- figurines : site 4 / appli 3
+
 ### Soldats Montés sur Tauntaun — `tauntaun riders`
 - vitesse : site 2 / appli 3
 - PV par figurine : site 1 / appli 4
@@ -69,6 +77,9 @@ Comparé : 67 unités, 144 améliorations, 179 armes. **35 carte(s) avec au moin
 ### Gar Saxon — `gar saxon militant commando`
 - arme « Pistolet Blaster de Gar » — dés : site 1b+1r+2n / appli 1r+2n
 
+### Bossk — `bossk terror of trandosha`
+- dé de défense : site blanc / appli rouge
+
 ### Boba Fett, Infâme Chasseur de Primes — `boba fett infamous bounty hunter`
 - arme « Carabine EE-3 » — dés : site — / appli 2n
 
@@ -84,7 +95,10 @@ Comparé : 67 unités, 144 améliorations, 179 armes. **35 carte(s) avec au moin
 ### Le Bad Batch — `the bad batch`
 - figurines : site 0 / appli 1
 
-## Améliorations avec écart (13)
+## Améliorations avec écart (16)
+
+### A280, Config Fusil — `a280 cfe pistol sniper config`
+- nombre d’armes : site 2 / appli 1
 
 ### Lance-mortier de TR-TT — `at st mortar launcher`
 - arme « Lance-mortier de TR-TT » — portée : site 4-12 / appli 4-#
@@ -113,11 +127,17 @@ Comparé : 67 unités, 144 améliorations, 179 armes. **35 carte(s) avec au moin
 ### Sabre Lancé — `saber throw`
 - nombre d’armes : site 0 / appli 1
 
+### Droïde Chercheur ID10 d'Iden — `iden s id10 seeker droid`
+- nombre d’armes : site 0 / appli 1
+
 ### Tristan Wren — `tristan wren`
 - nombre d’armes : site 0 / appli 1
 
 ### Ursa Wren — `ursa wren`
 - nombre d’armes : site 0 / appli 1
+
+### E-11D Config Frappe Concentrée — `e 11d focused strike config`
+- nombre d’armes : site 2 / appli 1
 
 ### Super Commando Tireur Embusqué — `super commando marksman`
 - arme « Carabine Blaster » — dés : site 1n+1r / appli 1b+1n+1r
@@ -125,16 +145,18 @@ Comparé : 67 unités, 144 améliorations, 179 armes. **35 carte(s) avec au moin
 ### Générateur de Barrage — `barrage generator`
 - nombre d’armes : site 1 / appli 0
 
-## Vitesse à renseigner dans la certification (41 unités)
+## Vitesse à renseigner dans la certification (47 unités)
 
 La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique la valeur ci-dessous. À confirmer sur la carte avant de certifier.
 
 - Cassian Andor (`cassian andor`) : vitesse 2
+- Dark Troopers Impériaux (`dark trooper squad`) : vitesse 1
 - Directeur Orson Krennic (`director orson krennic`) : vitesse 2
 - Général Veers (`general veers`) : vitesse 2
 - Han Solo, Général Peu Orthodoxe (`han solo`) : vitesse 2
 - Camion Speeder A-A5 (`a a5 speeder truck`) : vitesse 1
 - Cellule Dormante Rebelle (`rebel sleeper cell`) : vitesse 2
+- Résistance Mandalorienne, Clan Wren (`mandalorian resistance clan wren`) : vitesse 3
 - Death Troopers Impériaux (`imperial death troopers`) : vitesse 2
 - Forces Spéciales Impériales (`imperial special forces`) : vitesse 2
 - Forces Spéciales Impériales, Escouade Inferno (`imperial special forces inferno squad`) : vitesse 2
@@ -152,8 +174,11 @@ La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique 
 - Vétérans Rebelles (`rebel veterans`) : vitesse 2
 - Sabine Wren (`sabine wren`) : vitesse 3
 - Shoretroopers (`shoretroopers`) : vitesse 1
+- Stormtroopers, Unité Lourde d'Intervention (`stormtrooper heavy gunner squad`) : vitesse 2
 - Airspeeder T-47 (`t 47 airspeeder`) : vitesse 3
 - Tank « Occupier » TX-225 GAVw (`tx 225 occupier tank`) : vitesse 1
+- Le Cinquième Frère (`the fifth brother`) : vitesse 2
+- La Septième Sœur (`the seventh sister`) : vitesse 2
 - Guerriers Wookies, Résistance de Kashyyyk (`wookiee warriors kashyyyk resistance`) : vitesse 2
 - Landspeeder X-34 (`x 34 landspeeder`) : vitesse 2
 - Fantassins du Syndicat Pyke (`pyke syndicate foot soldiers`) : vitesse 2
@@ -163,6 +188,7 @@ La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique 
 - Hommes de Main du Soleil Noir (`black sun enforcers`) : vitesse 2
 - Gar Saxon (`gar saxon militant commando`) : vitesse 2
 - Maul (`maul a rival`) : vitesse 2
+- Bossk (`bossk terror of trandosha`) : vitesse 2
 - Boba Fett, Daimyo de Mos Espa (`boba fett daimyo of mos espa`) : vitesse 2
 - Cad Bane (`cad bane`) : vitesse 2
 - IG-88 (`ig 88`) : vitesse 2
@@ -173,6 +199,6 @@ La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique 
 
 ## Cartes non appariées
 
-Unités : dark trooper squad, mandalorian resistance clan wren, mandalorian resistance, stormtrooper heavy gunner squad, tl tt, tr tt, the fifth brother, the seventh sister, bossk terror of trandosha, grogu, omega
+Unités : mandalorian resistance, tl tt, tr tt, grogu, omega
 
-Améliorations : a280 cfe pistol sniper config, c 3po, cassian andor operative, mandalorian combat shields, sleeper cell astromech, sabine s grapple line, tl tt flame projector, tl tt laser cannon, tl tt rotary blaster, x 34 gunner, x 34 mark ii blaster, captain rex, mounted gunners, kallus the operative, darth vader the emperor s apprentice, iden s id10 seeker droid, sm 9 dark trooper, xs iv dark trooper, cleaver dark trooper, e 11d focused strike config, e 11d grenade launcher config, emp grenades, anti bunker shells, rt 97c dewback rider, t 21 dewback rider, dlt 19 pintle mount, rt 97c pintle mount, stormtrooper sharpshooter, stormtrooper squad expansion, snowtrooper squad expansion, shoretrooper squad expansion, combat armor rebel, pyke foot soldier concealment, pyke soldier p13m disruptor, black sun enforcer magnetic detonator, black sun enforcer scatter gun, black sun enforcer concealment, super commando pistoleer, super commando concealment, super commando combat shields, din djarin beskar spear, din djarin flamethrower, din djarin amban rifle, din djarin jetpack, gar saxon combat shield, gar saxon galar90 rifle, gar saxon zx flamethrower, boba fett flamethrower, ig11 prime programming, ig11 nanny programming, pyke soldier electro whip, gar saxon back mounted rockets, cad bane electro gauntlets, super commando back mounted rockets, offensive posture, sabine s combat shield, rebel ambusher, remote doc, additional supplies, prepared materiel, underworld contacts, handheld scanner, grapnel hooks, spotting, seize the opportunity, defensive posture, command system, comms hacking unit, generator overcharge, old jedi trick, climbing cables, combat group leader, dread, entrenched, hit and run, serenity, spotter link, in the fray, point blank
+Améliorations : c 3po, mandalorian combat shields, sleeper cell astromech, sabine s grapple line, tl tt flame projector, x 34 gunner, mounted gunners, kallus the operative, darth vader the emperor s apprentice, cleaver dark trooper, e 11d grenade launcher config, emp grenades, rt 97c dewback rider, t 21 dewback rider, stormtrooper sharpshooter, stormtrooper squad expansion, snowtrooper squad expansion, shoretrooper squad expansion, combat armor rebel, pyke foot soldier concealment, pyke soldier p13m disruptor, black sun enforcer magnetic detonator, black sun enforcer scatter gun, black sun enforcer concealment, super commando pistoleer, super commando concealment, super commando combat shields, din djarin beskar spear, din djarin flamethrower, din djarin amban rifle, din djarin jetpack, gar saxon combat shield, gar saxon galar90 rifle, gar saxon zx flamethrower, boba fett flamethrower, ig11 prime programming, ig11 nanny programming, pyke soldier electro whip, gar saxon back mounted rockets, cad bane electro gauntlets, super commando back mounted rockets, offensive posture, sabine s combat shield, rebel ambusher, remote doc, additional supplies, prepared materiel, underworld contacts, handheld scanner, grapnel hooks, spotting, seize the opportunity, defensive posture, command system, comms hacking unit, generator overcharge, old jedi trick, climbing cables, combat group leader, dread, entrenched, hit and run, serenity, spotter link, in the fray, point blank

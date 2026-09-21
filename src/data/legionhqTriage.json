@@ -1,0 +1,21 @@
+{
+  "_meta": {
+    "description": "Écarts Legion HQ tranchés sur le visuel de la carte (21/09/2026) : le visuel imprimé fait foi, l'écart n'est plus signalé dans la certification. Clé = carte ; valeur = début des lignes d'écart ignorées.",
+    "verifie": "2026-09-21"
+  },
+  "cards": {
+    "major marquand": ["arme"],
+    "r2 d2": ["arme"],
+    "director orson krennic": ["dé de défense"],
+    "imperial death troopers": ["adrénaline d’attaque"],
+    "rebel commandos strike team": ["rang", "adrénaline d’attaque"],
+    "scout troopers strike team": ["rang", "figurines", "adrénaline d’attaque"],
+    "rebel veterans": ["courage"],
+    "tauntaun riders": ["PV par figurine", "courage"],
+    "dh 447 sniper": ["arme"],
+    "dlt 19x sniper": ["arme"],
+    "jetpack rockets": ["arme"],
+    "at st mortar launcher": ["arme"],
+    "bowcaster wookiee": ["arme"]
+  }
+}
