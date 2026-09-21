@@ -1,4 +1,5 @@
 import certifications from '../data/diceCertifications.json';
+import errata from '../data/errata.json';
 import { CARD_IMAGES } from '../data/cardImages';
 import { CARD_NAMES_FR } from '../data/cardNamesFr';
 import { DICE_PROFILES } from '../data/diceProfiles';
@@ -63,6 +64,10 @@ export function auditImportedList(list: ParsedList): ImportAudit {
       if (profile?.defenseColor && !profile.defenseVerifiedAgainstCard && !certification?.defenseColor) {
         unitIssues.push({ card: name, unit: unit.name, kind: 'dice', scope: 'certification', resolution: 'engine-certification', message: 'Dé de défense non certifié' });
       }
+      // Certification complète V2 (mots-clés, vitesse, adrénalines…) : même critère que l'écran de certification de l'Assistant.
+      if (profile && !profile.fullCardCertification && !(errata.removed as Record<string, string>)[key]) {
+        unitIssues.push({ card: name, unit: unit.name, kind: 'dice', scope: 'certification', resolution: 'engine-certification', message: 'Certification complète de la carte manquante' });
+      }
       if (unitIssues.length === issuesBefore) readyCards += 1;
     };
 
@@ -82,7 +87,8 @@ export function auditImportedList(list: ParsedList): ImportAudit {
     catalogIssues,
     certificationCards: uniqueCards(certificationIssues),
     catalogCards: uniqueCards(catalogIssues),
-    safeForEngine: certificationIssues.length === 0,
+    // Le moteur peut jouer la liste tant que les dés, la défense et le courage sont certifiés ; la certification complète (mots-clés, vitesse…) est signalée à part.
+    safeForEngine: certificationIssues.every((issue) => issue.message === 'Certification complète de la carte manquante'),
     complete: allIssues.length === 0,
   };
 }

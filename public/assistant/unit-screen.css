@@ -434,3 +434,38 @@ label.cert-missing select { border-color: #ff8a5c; }
 .removed-card-banner { display: grid; gap: 4px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid rgba(255, 90, 90, .8); border-radius: 8px; background: rgba(255, 90, 90, .12); }
 .hq-diff { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .hq-diff button { min-height: 36px; }
+/* Fiche de contrôle de la certification (refonte 22/09/2026) : « Appli » et « Legion HQ » au-dessus de chaque champ, le contrôle en dessous */
+.cf-detail .cert-card-visual { position: sticky; top: 8px; align-self: start; }
+.cf-card { display: grid; gap: 10px; }
+.cf-row { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid rgba(150, 200, 255, .22); border-radius: 8px; background: rgba(10, 22, 34, .55); }
+.cf-row.diff { border-color: rgba(255, 180, 94, .85); background: rgba(255, 180, 94, .08); }
+.cf-row.fill { border-color: rgba(120, 190, 255, .7); }
+.cf-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.cf-label { font-weight: 700; flex: 1 1 150px; }
+.cf-label small { font-weight: 400; opacity: .7; }
+.cf-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.cf-chip { display: inline-flex; align-items: baseline; gap: 6px; padding: 3px 9px; border-radius: 999px; font-size: .82rem; border: 1px solid rgba(150, 200, 255, .3); background: rgba(255, 255, 255, .05); max-width: 100%; overflow-wrap: anywhere; }
+.cf-chip i { font-style: normal; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; opacity: .65; }
+.cf-chip.hq.ok { border-color: rgba(120, 220, 160, .7); color: #9ff0b5; }
+.cf-chip.hq.ko { border-color: rgba(255, 140, 80, .95); color: #ffb45e; font-weight: 700; }
+.cf-chip.hq.fill { border-color: rgba(120, 190, 255, .8); color: #9fd0ff; }
+.cf-chip.hq.triaged { opacity: .75; border-style: dashed; }
+.cf-chip.hq.none { opacity: .45; }
+.cf-use { min-height: 36px; padding: 0 12px; }
+.cf-control { display: grid; gap: 6px; }
+.cf-control select, .cf-control input[type="number"], .cf-control input[type="text"], .cf-control input:not([type]) { min-height: 44px; }
+.cf-hint { opacity: .75; }
+.cf-weapon { display: grid; gap: 8px; padding: 10px; border: 1px solid rgba(255, 180, 94, .45); border-radius: 8px; }
+.cf-weapon > header { display: flex; justify-content: space-between; gap: 8px; }
+.cf-weapon-kw { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.kw-assign-row { display: grid; gap: 6px; padding: 8px 0; border-top: 1px solid rgba(150, 200, 255, .18); }
+.kw-assign-row.unassigned b { color: #ffb45e; }
+.kw-assign-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.kw-assign-cell { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.kw-toggle { min-height: 40px; padding: 0 12px; border: 1px solid rgba(150, 200, 255, .4); background: transparent; color: inherit; border-radius: 8px; }
+.kw-toggle.on { background: rgba(120, 220, 160, .18); border-color: rgba(120, 220, 160, .85); font-weight: 700; }
+.kw-assign-value { display: inline-flex; align-items: center; gap: 4px; font-size: .8rem; }
+.kw-assign-value input { width: 64px; min-height: 36px; }
+.cf-history p { margin: 4px 0; font-size: .85rem; }
+.cf-sources > summary, .cf-history > summary, .cf-advanced > summary { cursor: pointer; min-height: 40px; display: flex; align-items: center; opacity: .85; }
+.cf-advanced { display: grid; gap: 8px; }

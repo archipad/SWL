@@ -441,9 +441,9 @@ scenario('Certification : recherche de mots-clés (carte et armes), validation e
   await fire(box)
   assert.match(text($('.kw-none')), /Aucun mot-clé du glossaire/)
 
-  // Mot-clé d'arme avec valeur : recherche, valeur obligatoire, puis ajout à l'arme ET à la liste de la carte.
-  const weaponSearch = $('[data-kw-search="w0"]')
-  assert.ok(weaponSearch, 'champ de recherche des mots-clés de la première arme')
+  // Tous les mots-clés se saisissent au niveau de la carte ; sur une carte à plusieurs armes, on indique ensuite l'arme qui le porte.
+  assert.ok(!$('[data-kw-search="w0"]'), 'plus de saisie de mots-clés arme par arme')
+  const weaponSearch = $('[data-kw-search="card"]')
   weaponSearch.value = 'perfo'
   await fire(weaponSearch)
   const perforant = $$('[data-kw-add]').find((button) => /^Perforant X/.test(text(button)))
@@ -454,8 +454,12 @@ scenario('Certification : recherche de mots-clés (carte et armes), validation e
   value.value = '2'
   await fire(value)
   await click('[data-kw-confirm]')
-  assert.match(text($('[data-kw-scope="w0"] .kw-chips')), /Perforant X 2/, 'le mot-clé est ajouté à l’arme avec sa valeur')
-  assert.match(text($('[data-kw-scope="card"] .kw-chips')), /Perforant X 2/, 'et reporté dans la liste de la carte')
+  assert.match(text($('[data-kw-scope="card"] .kw-chips')), /Perforant X 2/, 'le mot-clé est dans la liste de la carte avec sa valeur')
+  assert.ok($('.cert-weapon-gap[role="alert"]'), 'carte à plusieurs armes : l’appli demande sur quelle arme il s’applique')
+  assert.ok($('#certifyAndNext').disabled, 'certifier est impossible tant que le mot-clé d’arme n’est pas rattaché')
+  await click($('[data-kw-assign="perforant-x|0"]'))
+  assert.ok(!$('.cert-weapon-gap[role="alert"]'), 'plus d’alerte une fois rattaché')
+  assert.match(text($('.cf-weapon')), /Perforant X 2/, 'l’arme porte le mot-clé avec sa valeur')
 
   // Validation en un clic : la carte part dans le lot et la carte suivante s'ouvre.
   await click('#certifyAndNext')
@@ -1161,7 +1165,7 @@ scenario('Certification : un mot-clé d’arme saisi seulement au niveau de la c
   assert.ok($('.cert-weapon-gap[role="alert"]'), 'alerte : mot-clé d’arme à attribuer')
   assert.ok($('#certifyAndNext').disabled, 'certifier est impossible tant que le mot-clé n’est pas attribué')
   await click($('[data-kw-assign="impact-x|0"]'))
-  assert.ok(!$('.cert-weapon-gap'), 'l’alerte disparaît une fois attribué')
+  assert.ok(!$('.cert-weapon-gap[role="alert"]'), 'l’alerte disparaît une fois attribué')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
@@ -1388,8 +1392,9 @@ scenario('Certification : la vitesse manquante est préremplie d’après Legion
   const withKeywords = Object.keys(reference.legionhq).filter((card) => app.window.swlCertification.hqDiffs(card).some((line) => /^mots-clés : /.test(line)))
   assert.ok(withKeywords.length > 5, 'les mots-clés sont aussi comparés à Legion HQ : ' + withKeywords.length + ' cartes en écart')
   assert.ok(!app.window.swlCertification.hqDiffs('kallus the operative').some((line) => /Chef/.test(line)), 'Chef de l’Agent Kallus (amélioration) corrigé')
-  assert.match(text($('.cert-detail')), /préremplie d’après Legion HQ/, 'la provenance est annoncée')
-  assert.match(text($('.cert-detail')), /Legion HQ \(référence\) : concordant/, 'Legion HQ concordant')
+  assert.match(text($('.cert-detail')), /[Pp]réremplie d’après Legion HQ/, 'la provenance est annoncée')
+  assert.ok($$('.cf-row').length >= 5 && $('.cf-chip.app') && $('.cf-chip.hq.ok'), 'chaque champ affiche la donnée de l’appli et celle de Legion HQ')
+  assert.ok(!$('.cf-row.diff'), 'aucun champ en écart pour cette carte')
   await click('#backCertification')
   // une carte en écart : signalée dans la liste et dans le panneau
   const diff = Object.keys(reference.legionhq).find((card) => app.window.swlCertification.hqDiffs(card).length > 0 && $$('.cert-status-section.todo [data-cert-card]').some((button) => decodeURIComponent(button.dataset.certCard) === card))
@@ -1406,7 +1411,7 @@ scenario('Certification : la vitesse manquante est préremplie d’après Legion
   await click('#backCertification')
   assert.match(text($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === diff)), /Legion HQ : \d+ écart/, 'pastille d’écart dans la liste')
   await click($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === diff))
-  assert.match(text($('.cert-detail')), /écart\(s\) avec l’appli/, 'panneau des écarts dans l’éditeur')
+  assert.match(text($('.cf-hq-summary')), /écart\(s\) avec l’appli/, 'résumé des écarts en tête de l’éditeur : ' + text($('.cert-detail')).slice(0, 200))
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
@@ -1452,7 +1457,7 @@ scenario('Erratum : une copie locale ancienne (étiquettes, brouillon) ne ressus
   await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'dlt 19x sniper'))
   const detail = text($('.cert-detail'))
   assert.ok(!/Perforant X/.test(text($('[data-kw-scope="card"]'))), 'le brouillon reconstruit n’a plus Perforant X : ' + text($('[data-kw-scope="card"]')))
-  assert.match(text($('[data-kw-scope="w0"]')), /Équipe Sniper/, 'Équipe Sniper est sur l’arme')
+  assert.match(text($('.cf-weapon')), /Équipe Sniper/, 'Équipe Sniper est porté par l’arme')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
