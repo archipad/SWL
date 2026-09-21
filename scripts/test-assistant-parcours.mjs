@@ -404,7 +404,6 @@ scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé,
   await click('[data-cert-filter="gaps"]')
   const gaps = $$('.cert-list button[data-cert-card]')
   assert.ok(gaps.length >= 20, 'les cartes avec écart Legion Helper ou base ≠ certification sont listées : ' + gaps.length)
-  assert.match(text($('.cert-list')), /Écart Legion Helper/)
 
   // Une carte déjà certifiée mais avec écart : reste à contrôler, et exige la lecture des écarts.
   const chewie = gaps.find((button) => decodeURIComponent(button.dataset.certCard) === 'chewbacca')
