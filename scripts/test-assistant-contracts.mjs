@@ -260,7 +260,7 @@ assert.doesNotMatch(app, /\$\{diceJourney\(\)\}/, 'Le « Suivi des dés » ne do
 assert.match(app, /\[warning,range,fire,arsenal,distract,weapons,pool,poolNote\]\.filter\(Boolean\)\.forEach\(element=>\{anchor\.after\(element\);anchor=element\}\)/, 'Étape 1 : la portée est en haut, puis le Contrôle de Tir, puis les armes, et les dés à lancer tout en bas, sous les armes')
 assert.match(app, /matches\('\.situation-check,\.automation-card,\.token-budget,\.combat-warning,\.cumbersome-checks,\.token-card'\)/, 'Les encadrés de vérification doivent être remontés en haut de chaque étape de résolution')
 assert.match(app, /resolveScreen=function\(\)\{if\(attackStep===0\)prefillWeaponCounts\(\);resolveTacticalBase\(\)/, 'Les effectifs suggérés doivent être appliqués dès l’ouverture de l’écran des armes')
-assert.match(index, /resolver-polish\.css\?v=31/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
+assert.match(index, /resolver-polish\.css\?v=32/, 'La feuille d’harmonisation des écrans de résolution doit être chargée')
 assert.ok(index.indexOf('resolver-polish.css') > index.indexOf('unit-screen.css'), 'resolver-polish.css doit être chargée en dernier')
 assert.match(app, /function fireControlSources\(\)\{return fireControlCandidates\(\)\.map\(entry=>\(\{entry,card:/, 'Le Contrôle de Tir doit identifier l’unité alliée qui le fournit')
 assert.match(app, /Fourni par \$\{who\} · carte \$\{cardName\}/, 'Le message du Contrôle de Tir doit nommer l’unité et la carte source')

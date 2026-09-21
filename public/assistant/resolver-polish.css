@@ -603,3 +603,6 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 
 .card-fx-panel .card-fx-input { display: grid; gap: 4px; }
 .card-fx-panel .card-fx-input input { width: 90px; min-height: 40px; font-size: 1rem; }
+
+/* « Après défense » chevauchait le cadre : le libellé est retiré, les blocages et blessures se lisent seuls. */
+.resolve-center .live-defense-strip > b:first-child { display: none; }
