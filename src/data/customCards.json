@@ -1380,15 +1380,43 @@
         "name": "Paire de Pistolets Blaster",
         "dice": [
           {
-            "color": "blanc",
+            "color": "rouge",
             "count": 2
           },
           {
-            "color": "noir",
+            "color": "blanc",
             "count": 2
           }
         ],
         "range": "melee-2",
+        "keywordIds": [
+          "debordement"
+        ]
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "note": "Amélioration Super Commandos Mandaloriens uniquement.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1-2 — mis à jour d’après Errata Reference FR 17/06/2026 (carte mise à jour)",
+    "addedAt": "2026-09-15"
+  },
+  "super commando marksman": {
+    "nameFr": "Super Commando Tireur Embusqué",
+    "image": "super-commando-marksman.jpg",
+    "weapons": [
+      {
+        "name": "Tireur Embusqué Désigné",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
         "keywordIds": [
           "letal-x"
         ],
@@ -1399,43 +1427,9 @@
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "note": "Amélioration Super Commandos Mandaloriens uniquement.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : portée corps-à-corps ET distance 1-2",
-    "addedAt": "2026-09-15"
-  },
-  "super commando marksman": {
-    "nameFr": "Super Commando Tireur Embusqué",
-    "image": "super-commando-marksman.jpg",
-    "weapons": [
-      {
-        "name": "Carabine Blaster",
-        "dice": [
-          {
-            "color": "rouge",
-            "count": 1
-          },
-          {
-            "color": "blanc",
-            "count": 1
-          },
-          {
-            "color": "noir",
-            "count": 1
-          }
-        ],
-        "range": "1-3"
-      }
-    ],
-    "addedModels": 1,
-    "addedModelWounds": 1,
-    "keywords": [
-      {
-        "keywordId": "precis-x",
-        "value": 1
-      }
-    ],
+    "keywords": [],
     "note": "Amélioration Super Commandos Mandaloriens uniquement — cette unité gagne Précis 1.",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : dés 1 rouge + 1 blanc + 1 noir",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : dés 1 rouge + 1 blanc + 1 noir — mis à jour d’après Errata Reference FR 17/06/2026 (carte mise à jour)",
     "addedAt": "2026-09-15"
   },
   "super commando concealment": {
@@ -1864,7 +1858,7 @@
         "name": "Roquettes Dorsales",
         "dice": [
           {
-            "color": "noir",
+            "color": "rouge",
             "count": 3
           }
         ],
@@ -1879,7 +1873,7 @@
       }
     ],
     "note": "Amélioration Gar Saxon uniquement (Cycle).",
-    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant.",
+    "verificationSource": "Carte française « Mercenary Upgrades FR.pdf » (fournie par l'utilisateur), lecture visuelle IA à fort zoom, à spot-checker en jouant. — mis à jour d’après Errata Reference FR 17/06/2026 (carte mise à jour)",
     "addedAt": "2026-09-15"
   },
   "cad bane electro gauntlets": {

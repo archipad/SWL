@@ -88,8 +88,8 @@ try {
   const mercUpgradeChecks = [
     ['pyke soldier electro whip', 'Électro-fouet', [{ color: 'rouge', count: 2 }]],
     ['pyke soldier p13m disruptor', 'Disrupteur P13-M', [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }]],
-    ['super commando pistoleer', 'Paire de Pistolets Blaster', [{ color: 'blanc', count: 2 }, { color: 'noir', count: 2 }]],
-    ['super commando marksman', 'Carabine Blaster', [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }]], // relu le 20/09/2026 : 3 dés
+    ['super commando pistoleer', 'Paire de Pistolets Blaster', [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }]], // carte mise à jour, Errata Reference FR 17/06/2026
+    ['super commando marksman', 'Tireur Embusqué Désigné', [{ color: 'rouge', count: 1 }, { color: 'noir', count: 1 }]], // carte mise à jour, Errata Reference FR 17/06/2026
     ['gar saxon galar90 rifle', 'Fusil Sniper Galar-90', [{ color: 'rouge', count: 1 }, { color: 'blanc', count: 1 }, { color: 'noir', count: 1 }]], // relu le 20/09/2026
     ['gar saxon zx flamethrower', 'Projecteur de Flammes ZX', [{ color: 'blanc', count: 1 }, { color: 'noir', count: 1 }]], // relu le 20/09/2026
     ['rook kast', 'Pistolets Blaster de Rook', [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 2 }]],

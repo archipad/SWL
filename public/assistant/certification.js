@@ -22,7 +22,9 @@
   }
   const unknownStatus=key=>aliasDrafts[key]?`= ${displayName(aliasDrafts[key])}`:newCardDrafts[key]?.ready?'Nouvelle carte prête':newCardDrafts[key]?'Brouillon en cours':null
   const unknownBatchCount=()=>Object.keys(aliasDrafts).length+Object.values(newCardDrafts).filter(d=>d.ready).length
-  const profiles=()=>Object.entries(weaponProfiles);
+  // Cartes retirées du jeu (erratum 17/06/2026) : plus à certifier.
+  const removedCards=window.SWL_REFERENCE?.removedCards||{};
+  const profiles=()=>Object.entries(weaponProfiles).filter(([card])=>!removedCards[card]);
   const usedCardKeys=()=>new Set(entries.flatMap(entry=>[cardKey(entry.unit.name),...(entry.unit.upgrades||[]).map(upgrade=>cardKey(upgrade.name))]));
   const isUnitCard=card=>!!weaponProfiles[card]?.unitStats||entries.some(entry=>norm(entry.unit.name)===card)||Object.values(rankCatalog).some(cards=>cards.includes(card));
   // --- Deuxième avis et désaccords de mots-clés (voir docs/PROCESSUS-VERIFICATION.md) ---

@@ -51,6 +51,7 @@ const RAPPEL = {
   'pyke foot soldier concealment': 'conserve Cache si la figurine est vaincue : rappelé dans le briefing',
   'super commando concealment': 'conserve Cache si la figurine est vaincue : rappelé dans le briefing',
 }
+for (const unit of ['boba fett daimyo of mos espa', 'boba fett infamous bounty hunter', 'gar saxon militant commando', 'sabine wren', 'mandalorian super commandos']) RAPPEL[unit] = 'carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing'
 const LISTE = { 'imperial comms technician': 'contrainte de construction (amélioration Comms obligatoire)', 'rebel comms technician': 'contrainte de construction (amélioration Comms obligatoire)' }
 const REQUIRES_BUTTON = new Set(['exhaust', 'discard', 'both'])
 

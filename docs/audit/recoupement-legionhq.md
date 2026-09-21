@@ -2,9 +2,9 @@
 
 > Deuxième avis automatique (2026-09-21), **pas une vérité** : le site applique les errata récents, le visuel peut être plus ancien, et le site peut se tromper. Chaque écart se tranche sur le visuel. Aucune donnée du site n’est recopiée ici, seulement les écarts.
 
-Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moins un écart.** Non appariées : 5 unités, 30 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
+Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moins un écart.** Non appariées : 5 unités, 30 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
 
-## Unités avec écart (32)
+## Unités avec écart (31)
 
 ### TL-TT — `at rt`
 - dé de défense : site rouge / appli blanc
@@ -15,7 +15,6 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moin
 
 ### Soldat avec Mortier DF-90 — `df 90 mortar trooper`
 - arme « Fusil Blaster E-22 » — portée : site corps-à-corps / appli corps-à-corps ET distance 1-3
-- arme « Mortier DF-90 » — dés : site 2n / appli 3b
 
 ### Directeur Orson Krennic — `director orson krennic`
 - dé de défense : site rouge / appli blanc
@@ -59,21 +58,11 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moin
 ### R2-D2 — `r2 d2`
 - arme « Électrochoc » — portée : site corps-à-corps / appli corps-à-corps ET distance 1-1
 
-### Commandos Rebelles — `rebel commandos strike team`
-- rang : site support / appli special
-- adrénaline d’attaque : site crit / appli hit
-- mots-clés : Legion HQ indique Incognito, Position Préparée, absent(s) de l’appli
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Éclaireur X, Tireur d'Élite X
-
 ### Vétérans Rebelles — `rebel veterans`
 - courage : site 2 / appli 1
 
 ### Scout Troopers — `scout troopers strike team`
-- rang : site support / appli special
 - figurines : site 4 / appli 1
-- adrénaline d’attaque : site crit / appli none
-- mots-clés : Legion HQ indique Incognito, Position Préparée, absent(s) de l’appli
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Éclaireur X, Tireur d'Élite X
 
 ### Stormtroopers, Unité Lourde d'Intervention — `stormtrooper heavy gunner squad`
 - figurines : site 4 / appli 3
@@ -131,7 +120,7 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moin
 ### Agent Rebelle, Défenseur de la Démocratie — `rebel agent defender of democracy`
 - mots-clés : Legion HQ indique Équipe, absent(s) de l’appli
 
-## Améliorations avec écart (43)
+## Améliorations avec écart (39)
 
 ### A280, Config Fusil — `a280 cfe pistol sniper config`
 - nombre d’armes : site 2 / appli 1
@@ -156,16 +145,6 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moin
 ### Cassian Andor — `cassian andor operative`
 - mots-clés : Legion HQ indique Chef, absent(s) de l’appli
 
-### Sniper avec DH-447 — `dh 447 sniper`
-- arme « Fusil de Sniper DH-447 » — dés : site 1n+2b / appli 1b+1n ; portée : site 2-5 / appli 1-5
-- mots-clés : Legion HQ indique Débordement, Équipe Sniper, absent(s) de l’appli
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Perforant X
-
-### Sniper avec DLT-19x — `dlt 19x sniper`
-- arme « Fusil DLT-19x » — dés : site 1n+2b / appli 2n ; portée : site 2-5 / appli 1-5
-- mots-clés : Legion HQ indique Débordement, Équipe Sniper, absent(s) de l’appli
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Perforant X
-
 ### Escouade Soldat de la Flotte — `fleet trooper squad`
 - mots-clés : Legion HQ indique Transport, absent(s) de l’appli
 
@@ -180,8 +159,6 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moin
 
 ### Saboteur avec Charge à Protons — `proton charge saboteur`
 - mots-clés : Legion HQ indique Assaut X, absent(s) de l’appli
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Critique X
-- mots-clés : valeur de « Impact X » : Legion HQ 6 / appli 3
 
 ### Artilleur avec Lance-roquettes RPS-6 — `rps 6 rocket gunner`
 - nombre d’armes : site 0 / appli 1
@@ -197,7 +174,6 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moin
 
 ### Saboteur avec Charge Sonique — `sonic charge saboteur`
 - mots-clés : Legion HQ indique Assaut X, absent(s) de l’appli
-- mots-clés : valeur de « Impact X » : Legion HQ 4 / appli 2
 
 ### Escouade Stormtrooper — `stormtrooper squad`
 - mots-clés : Legion HQ indique Transport, absent(s) de l’appli
@@ -253,16 +229,6 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moin
 ### Pilote de l'Unité d'Élite Blindée Imperial Hammers — `imperial hammers elite armor pilot`
 - mots-clés : présents dans l’appli mais pas sur Legion HQ : IA : Action
 
-### Super Commando Pistolero — `super commando pistoleer`
-- arme « Paire de Pistolets Blaster » — dés : site 2b+2r / appli 2b+2n
-- mots-clés : Legion HQ indique Débordement, absent(s) de l’appli
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Létal X
-
-### Super Commando Tireur Embusqué — `super commando marksman`
-- arme « Carabine Blaster » — dés : site 1n+1r / appli 1b+1n+1r
-- mots-clés : Legion HQ indique Létal X, absent(s) de l’appli
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Précis X
-
 ### Lance en Beskar — `din djarin beskar spear`
 - mots-clés : Legion HQ indique Perforant X, absent(s) de l’appli
 
@@ -289,7 +255,7 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **75 carte(s) avec au moin
 - nombre d’armes : site 1 / appli 0
 - mots-clés : Legion HQ indique Fixe : Avant/Arrière/Flancs, absent(s) de l’appli
 
-## Vitesse à renseigner dans la certification (47 unités)
+## Vitesse à renseigner dans la certification (49 unités)
 
 La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique la valeur ci-dessous. À confirmer sur la carte avant de certifier.
 
@@ -315,8 +281,10 @@ La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique 
 - Moff Gideon (`moff gideon`) : vitesse 2
 - R2-D2 (`r2 d2`) : vitesse 1
 - Range Troopers (`range troopers`) : vitesse 1
+- Commandos Rebelles (`rebel commandos strike team`) : vitesse 2
 - Vétérans Rebelles (`rebel veterans`) : vitesse 2
 - Sabine Wren (`sabine wren`) : vitesse 3
+- Scout Troopers (`scout troopers strike team`) : vitesse 2
 - Shoretroopers (`shoretroopers`) : vitesse 1
 - Stormtroopers, Unité Lourde d'Intervention (`stormtrooper heavy gunner squad`) : vitesse 2
 - Airspeeder T-47 (`t 47 airspeeder`) : vitesse 3
@@ -345,4 +313,4 @@ La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique 
 
 Unités : mandalorian resistance, tl tt, tr tt, grogu, omega
 
-Améliorations : c 3po, sabine s grapple line, x 34 gunner, mounted gunners, darth vader the emperor s apprentice, cleaver dark trooper, e 11d grenade launcher config, stormtrooper sharpshooter, combat armor rebel, pyke foot soldier concealment, black sun enforcer concealment, super commando concealment, super commando combat shields, gar saxon combat shield, gar saxon zx flamethrower, ig11 prime programming, gar saxon back mounted rockets, super commando back mounted rockets, sabine s combat shield, rebel ambusher, remote doc, spotting, defensive posture, command system, combat group leader, dread, entrenched, hit and run, serenity, point blank
+Améliorations : c 3po, sabine s grapple line, rebel ambusher, x 34 gunner, mounted gunners, darth vader the emperor s apprentice, cleaver dark trooper, e 11d grenade launcher config, stormtrooper sharpshooter, combat armor rebel, pyke foot soldier concealment, black sun enforcer concealment, super commando concealment, super commando combat shields, gar saxon combat shield, gar saxon zx flamethrower, ig11 prime programming, gar saxon back mounted rockets, super commando back mounted rockets, sabine s combat shield, remote doc, spotting, defensive posture, command system, combat group leader, dread, entrenched, hit and run, serenity, point blank

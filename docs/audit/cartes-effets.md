@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.
 
-92 cartes à effet propre · 54 sondes rejouées dans l’Assistant.
+99 cartes à effet propre · 59 sondes rejouées dans l’Assistant.
 
 | Carte | ↱ / ✖ | Traitement | Où | Remarque |
 |---|---|---|---|---|
@@ -13,6 +13,8 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Générateur de Barrage | ↱ | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | Wookie avec Bouclier de Combat | — | Carte retournable | bouton « Retourner la carte » (mots-clés, vitesse et courage selon la face) |  |
 | Homme de Main du Soleil Noir | — | Rappel (briefing) | briefing tactique | conserve Cache si la figurine est vaincue : rappelé dans le briefing |
+| Boba Fett, Daimyo de Mos Espa | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
+| Boba Fett, Infâme Chasseur de Primes | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Pointe de Vitesse | ✖ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Électro-Gantelets | — | Rappel (briefing) | briefing tactique | règle de déplacement engagé rappelée dans le briefing |
 | Capitaine Rex | — | Panneau d’attaque | étape(s) 6 (rappel) |  |
@@ -41,6 +43,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Poussée de la Force | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Réflexes de la Force | ↱ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Grenades à Fragmentation | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
+| Gar Saxon | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Surcharge du Générateur | ↱ | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | •Gideon Hask | — | Statistique | vitesse / courage de la fiche |  |
 | Gouverneur Pryce | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
@@ -60,6 +63,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Présence Inspirante | — | Panneau d’attaque | étape(s) 6 (rappel) |  |
 | Agent Kallus | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Kraken | — | Panneau d’attaque | étape(s) 1, 2 (rappel) |  |
+| Super Commandos Mandaloriens | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Objectif de Mission | ↱ | Panneau d’attaque | étape(s) 2 (bouton) |  |
 | Artilleurs Montés | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Posture Offensive | — | Carte retournable | bouton « Retourner la carte » (mots-clés, vitesse et courage selon la face) |  |
@@ -69,6 +73,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | À Bout Portant | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Loyauté Programmée | — | Rappel (briefing) | briefing tactique | restriction d’ordres rappelée dans le briefing |
 | Protecteur | ↱ | Panneau d’attaque | étape(s) 4 (bouton) |  |
+| Saboteur avec Charge à Protons | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Fantassin du Syndicat Pyke | — | Rappel (briefing) | briefing tactique | conserve Cache si la figurine est vaincue : rappelé dans le briefing |
 | Tireur Embusqué Rebelle | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Technicien Comms Rebelle | — | Construction de liste | — | contrainte de construction (amélioration Comms obligatoire) |
@@ -80,11 +85,13 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Ryder Azadi | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Sabre Lancé | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Électro-grappin | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Sabine Wren | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Saisir l'Opportunité | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Sérénité | ↱ / ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Shriv Suurgav | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Astromech | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Grenades Fumigènes | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Saboteur avec Charge Sonique | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Liaison d'Observateur | — | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | Capitaine Stormtrooper | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Tireur Embusqué Stormtrooper | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |

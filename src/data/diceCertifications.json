@@ -797,48 +797,19 @@
         "dice": [
           {
             "color": "blanc",
-            "count": 1
+            "count": 2
           },
           {
             "color": "noir",
             "count": 1
           }
         ],
-        "range": "1-5"
+        "range": "2-5"
       }
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "fullCardCertification": {
-      "schemaVersion": 2,
-      "cardType": "upgrade",
-      "rank": "",
-      "unitType": "",
-      "speed": "",
-      "attackSurge": "none",
-      "defenseSurge": "none",
-      "keywords": [
-        {
-          "keywordId": "haute-velocite"
-        },
-        {
-          "keywordId": "perforant-x",
-          "value": 1
-        }
-      ],
-      "checks": [
-        "identity",
-        "visual",
-        "stats",
-        "weapons",
-        "conversions",
-        "keywords"
-      ],
-      "rulesVersion": "AMG 2026-06-17",
-      "visualPath": "/SWL/cards/dh-447-sniper.jpg",
-      "verifiedAt": "2026-09-15T08:43:15.247Z",
-      "visualHash": "c7aca2936f9c770402ff6d54afbecf4a566fc749c064084c67ed3e6c011dbbc2"
-    }
+    "weaponsResetByErrata": "2026-06-17"
   },
   "dlt 19x sniper": {
     "weapons": [
@@ -847,45 +818,20 @@
         "name": "Fusil DLT-19x",
         "dice": [
           {
-            "color": "noir",
+            "color": "blanc",
             "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
           }
         ],
-        "range": "1-5"
+        "range": "2-5"
       }
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "fullCardCertification": {
-      "schemaVersion": 2,
-      "cardType": "upgrade",
-      "rank": "",
-      "unitType": "",
-      "speed": "",
-      "attackSurge": "none",
-      "defenseSurge": "none",
-      "keywords": [
-        {
-          "keywordId": "haute-velocite"
-        },
-        {
-          "keywordId": "perforant-x",
-          "value": 1
-        }
-      ],
-      "checks": [
-        "identity",
-        "visual",
-        "stats",
-        "weapons",
-        "conversions",
-        "keywords"
-      ],
-      "rulesVersion": "AMG 2026-06-17",
-      "visualPath": "/SWL/cards/dlt-19x-sniper.jpg",
-      "verifiedAt": "2026-09-15T08:43:15.247Z",
-      "visualHash": "dbdac940ba4367d6af4ea99dd8eb5ea3306be55d5a74876126d24209c163e519"
-    }
+    "weaponsResetByErrata": "2026-06-17"
   },
   "t 21 dewback rider": {
     "weapons": [
@@ -1975,39 +1921,7 @@
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "fullCardCertification": {
-      "schemaVersion": 2,
-      "cardType": "upgrade",
-      "rank": "",
-      "unitType": "",
-      "speed": "",
-      "attackSurge": "none",
-      "defenseSurge": "none",
-      "keywords": [
-        {
-          "keywordId": "deflagration"
-        },
-        {
-          "keywordId": "impact-x",
-          "value": 2
-        },
-        {
-          "keywordId": "suppressif"
-        }
-      ],
-      "checks": [
-        "identity",
-        "visual",
-        "stats",
-        "weapons",
-        "conversions",
-        "keywords"
-      ],
-      "rulesVersion": "AMG 2026-06-17",
-      "visualPath": "/SWL/cards/sonic-charge-saboteur.jpg",
-      "verifiedAt": "2026-09-15T08:43:15.247Z",
-      "visualHash": "e6d93e766c845263e02a691672cc3470cc7c18b9cf1a72d7713385691b036708"
-    }
+    "weaponsResetByErrata": "2026-06-17"
   },
   "dark trooper squad": {
     "weapons": [
@@ -2684,46 +2598,7 @@
       "baseModels": 1,
       "suppressionImmune": false
     },
-    "fullCardCertification": {
-      "schemaVersion": 2,
-      "cardType": "unit",
-      "rank": "special",
-      "unitType": "Soldat",
-      "speed": "2",
-      "attackSurge": "hit",
-      "defenseSurge": "block",
-      "keywords": [
-        {
-          "keywordId": "detachement"
-        },
-        {
-          "keywordId": "equipe-avec-arme-lourde"
-        },
-        {
-          "keywordId": "profil-bas"
-        },
-        {
-          "keywordId": "eclaireur-x",
-          "value": 2
-        },
-        {
-          "keywordId": "tireur-delite-x",
-          "value": 1
-        }
-      ],
-      "checks": [
-        "identity",
-        "visual",
-        "stats",
-        "weapons",
-        "conversions",
-        "keywords"
-      ],
-      "rulesVersion": "AMG 2026-06-17",
-      "visualPath": "/SWL/cards/rebel-commandos-strike-team.jpg",
-      "verifiedAt": "2026-09-15T08:43:15.247Z",
-      "visualHash": "96fff1fa776264eddc9ebf6658b5af4458b354e8070a5cf1e93e6d988ae200e9"
-    }
+    "weaponsResetByErrata": "2026-06-17"
   },
   "rebel veterans": {
     "weapons": [
@@ -2855,46 +2730,7 @@
       "baseModels": 1,
       "suppressionImmune": false
     },
-    "fullCardCertification": {
-      "schemaVersion": 2,
-      "cardType": "unit",
-      "rank": "special",
-      "unitType": "Soldat",
-      "speed": "2",
-      "attackSurge": "none",
-      "defenseSurge": "block",
-      "keywords": [
-        {
-          "keywordId": "detachement"
-        },
-        {
-          "keywordId": "equipe-avec-arme-lourde"
-        },
-        {
-          "keywordId": "profil-bas"
-        },
-        {
-          "keywordId": "eclaireur-x",
-          "value": 3
-        },
-        {
-          "keywordId": "tireur-delite-x",
-          "value": 1
-        }
-      ],
-      "checks": [
-        "identity",
-        "visual",
-        "stats",
-        "weapons",
-        "conversions",
-        "keywords"
-      ],
-      "rulesVersion": "AMG 2026-06-17",
-      "visualPath": "/SWL/cards/scout-troopers-strike-team.jpg",
-      "verifiedAt": "2026-09-15T08:43:15.247Z",
-      "visualHash": "6c4b0bcabc6a0bcb624b9d9dd81385c25984b47a19637bd37c8fabfe838099ee"
-    }
+    "weaponsResetByErrata": "2026-06-17"
   },
   "tl tt": {
     "weapons": [
@@ -4100,8 +3936,8 @@
         "name": "Mortier DF-90",
         "dice": [
           {
-            "color": "blanc",
-            "count": 3
+            "color": "noir",
+            "count": 2
           }
         ],
         "range": "3-4",
@@ -4609,40 +4445,7 @@
     ],
     "addedModels": 1,
     "addedModelWounds": 1,
-    "fullCardCertification": {
-      "schemaVersion": 2,
-      "cardType": "upgrade",
-      "rank": "",
-      "unitType": "",
-      "speed": "",
-      "attackSurge": "none",
-      "defenseSurge": "none",
-      "keywords": [
-        {
-          "keywordId": "deflagration"
-        },
-        {
-          "keywordId": "critique-x",
-          "value": 2
-        },
-        {
-          "keywordId": "impact-x",
-          "value": 3
-        }
-      ],
-      "checks": [
-        "identity",
-        "visual",
-        "stats",
-        "weapons",
-        "conversions",
-        "keywords"
-      ],
-      "rulesVersion": "AMG 2026-06-17",
-      "visualPath": "/SWL/cards/proton-charge-saboteur.jpg",
-      "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "5c619ba956af8ac00635ec855838cf0f4a8773e528fdb17d2010a5438ecec256"
-    }
+    "weaponsResetByErrata": "2026-06-17"
   },
   "r5 astromech droid": {
     "weapons": [],

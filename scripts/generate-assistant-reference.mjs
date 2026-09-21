@@ -179,9 +179,14 @@ try {
   const hqTriagePath = resolve(projectRoot, 'src/data/legionhqTriage.json')
   const legionhqIgnore = existsSync(hqTriagePath) ? JSON.parse(await readFile(hqTriagePath, 'utf8')).cards : {}
 
+  // Erratum officiel FR (src/data/errata.json) : cartes retirées du jeu.
+  const errataPath = resolve(projectRoot, 'src/data/errata.json')
+  const removedCards = existsSync(errataPath) ? JSON.parse(await readFile(errataPath, 'utf8')).removed : {}
+
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,
     aiReview,
+    removedCards,
     legionhq,
     legionhqKeywordIds,
     legionhqIgnore,

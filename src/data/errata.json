@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "source": "Errata Reference FR 17.06.26.pdf (Atomic Mass Games, valide à partir du 17/06/2026)",
+    "description": "Cartes retirées du jeu, cartes mises à jour et corrections de texte de l'erratum officiel. Les cartes retirées ne sont plus à certifier et sont signalées dans les listes."
+  },
+  "removed": {
+    "mandalorian resistance": "Résistance Mandalorienne",
+    "mandalorian resistance clan wren": "Résistance Mandalorienne, Clan Wren",
+    "gar saxon combat shield": "Bouclier de Combat de Saxon",
+    "sabine s combat shield": "Bouclier de Combat de Sabine",
+    "sabine s grapple line": "Électro-grappin",
+    "boba fett flamethrower": "Projecteur de Flammes de Boba",
+    "din djarin flamethrower": "Projecteur de Flammes de Din",
+    "gar saxon zx flamethrower": "Projecteur de Flammes ZX de Saxon",
+    "super commando back mounted rockets": "Super Commando avec Roquettes Dorsales",
+    "super commando combat shields": "Super Commando avec Boucliers de Combat"
+  },
+  "updated": {
+    "dh 447 sniper": "Dés 2 blancs + 1 noir, portée 2-5, Haute Vélocité, Débordement, Équipe Sniper",
+    "dlt 19x sniper": "Dés 2 blancs + 1 noir, portée 2-5, Haute Vélocité, Débordement, Équipe Sniper",
+    "proton charge saboteur": "Déflagration, Impact 6, Assaut 1 accordé aux autres armes à distance",
+    "sonic charge saboteur": "Déflagration, Impact 4, Suppressif, Assaut 1 accordé aux autres armes à distance",
+    "super commando pistoleer": "Dés 2 rouges + 2 blancs, portée corps-à-corps ET 1-2, Débordement",
+    "super commando marksman": "Tireur Embusqué Désigné, 1 rouge + 1 noir, portée 1-3, Létal 1",
+    "gar saxon back mounted rockets": "3 dés rouges, portée 2-3, Déflagration, Impact 2, Cycle",
+    "rebel commandos strike team": "Rang Soutien, adrénaline → Critique, Incognito, Position Préparée",
+    "scout troopers strike team": "Rang Soutien, adrénaline → Critique, Incognito, Position Préparée",
+    "improvised orders": "Carte unique, ne se redresse plus automatiquement"
+  },
+  "textErrata": [
+    "Agent de Confiance : « Cette unité PEUT donner un ordre »",
+    "Capitaine Clone Rex : « vainc une unité ennemie grâce à une attaque, après que l’action d’attaque a été résolue »",
+    "Stimulants d’Urgence : les blessures sont subies « à la fin de sa prochaine activation »",
+    "Soldat avec Mortier DF-90 : le Mortier DF-90 lance 2 dés noirs",
+    "Tireur Embusqué Rebelle : ajoute 1 figurine",
+    "Boba Fett (×2), Gar Saxon, Sabine Wren, Super Commandos Mandaloriens : type d’unité Soldat Mandalorien"
+  ]
+}

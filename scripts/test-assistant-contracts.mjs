@@ -473,7 +473,7 @@ assert.match(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}<\/div>/, 'Le ba
 // (.ov-left/.ov-right, posées par app.js) qui partent du même bord haut,
 // un seul habillage de panneau, un bandeau du haut sur une seule ligne.
 const unitScreen = fs.readFileSync(new URL('../public/assistant/unit-screen.css', import.meta.url), 'utf8')
-assert.match(index, /unit-screen\.css\?v=20/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
+assert.match(index, /unit-screen\.css\?v=21/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
 assert.ok(index.indexOf('unit-screen.css') > index.indexOf('ipad-compact.css'), 'unit-screen.css doit être chargée après ipad-compact.css pour gagner les égalités de spécificité')
 assert.match(app, /overviewColumnsBase=overview;\s*overview=function\(entry,role\)\{overviewColumnsBase\(entry,role\);.*ov-left.*ov-right/, 'app.js doit regrouper les blocs de l’écran d’unité en deux colonnes réelles')
 assert.match(app, /matches\('\.activation-automation,\.post-rally-panel,\.activation-briefing,\.unit-state-editor'\)\?right:left/, 'Automatismes, options de démoralisation, Briefing et état de l’unité doivent aller dans la colonne de droite')
@@ -494,7 +494,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=143/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=144/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)
@@ -564,7 +564,7 @@ assert.match(app, /const secondaryScreenOpen=.*certification-open.*live-game-rep
 assert.match(app, /document\.visibilityState!=='visible'\|\|secondaryScreenOpen\(\)/, 'La synchronisation périodique ne doit jamais fermer la certification')
 assert.match(app, /if\(!secondaryScreenOpen\(\)\)location\.reload\(\)/, 'Une mise à jour de liste ne doit pas recharger la page pendant la certification')
 assert.match(index, /upgrades\.css\?v=2/, 'Le déplacement du bouton de fermeture doit invalider son cache CSS')
-assert.match(index, /certification\.js\?v=90/, 'La certification V2 doit invalider le cache de son interface')
+assert.match(index, /certification\.js\?v=91/, 'La certification V2 doit invalider le cache de son interface')
 assert.match(certificationUiSource, /function fullCardPanel\(card,d\)/, 'La certification doit proposer une fiche complète par carte')
 assert.match(certificationUiSource, /CERTIFIER TOUTE LA CARTE EN UNE FOIS/, 'La carte complète doit pouvoir être validée en une seule action')
 assert.match(certificationUiSource, /\['identity','visual','stats','weapons','conversions','keywords'\]/, 'Les six familles de données doivent être confirmées')

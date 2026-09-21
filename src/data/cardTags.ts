@@ -143,9 +143,9 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Scout Troopers Strike Team': [
     { keywordId: 'detachement' },
     { keywordId: 'equipe-avec-arme-lourde' },
+    { keywordId: 'incognito' },
     { keywordId: 'profil-bas' },
-    { keywordId: 'eclaireur-x', value: 3 },
-    { keywordId: 'tireur-delite-x', value: 1 },
+    { keywordId: 'position-preparee' },
   ],
   '74-Z Speeder Bikes': [
     { keywordId: 'couvert-x', value: 1 },
@@ -396,11 +396,13 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   ],
   'DLT-19x Sniper': [
     { keywordId: 'haute-velocite' },
-    { keywordId: 'perforant-x', value: 1 },
+    { keywordId: 'debordement' },
+    { keywordId: 'equipe-sniper' },
   ],
+  // Erratum 17/06/2026 : Impact 4 ; Assaut 1 (accordé aux AUTRES armes à distance de la réserve) : voir la note de la carte.
   'Sonic Charge Saboteur': [
     { keywordId: 'deflagration' },
-    { keywordId: 'impact-x', value: 2 },
+    { keywordId: 'impact-x', value: 4 },
     { keywordId: 'suppressif' },
   ],
   'DLT-19D Trooper': [
@@ -691,9 +693,9 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'Rebel Commandos Strike Team': [
     { keywordId: 'detachement' },
     { keywordId: 'equipe-avec-arme-lourde' },
+    { keywordId: 'incognito' },
     { keywordId: 'profil-bas' },
-    { keywordId: 'eclaireur-x', value: 2 },
-    { keywordId: 'tireur-delite-x', value: 1 },
+    { keywordId: 'position-preparee' },
   ],
   'Wookiee Warriors Freedom Fighters': [
     { keywordId: 'charge' },
@@ -879,10 +881,10 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   'CM-O/93 Trooper': [
     { keywordId: 'critique-x', value: 2 },
   ],
+  // Erratum 17/06/2026 : Critique 2 retiré, Impact 6 ; Assaut 1 (accordé aux AUTRES armes à distance de la réserve) : voir la note de la carte.
   'Proton Charge Saboteur': [
     { keywordId: 'deflagration' },
-    { keywordId: 'critique-x', value: 2 },
-    { keywordId: 'impact-x', value: 3 },
+    { keywordId: 'impact-x', value: 6 },
   ],
   'Scatter Gun Trooper': [
     { keywordId: 'perforant-x', value: 1 },
@@ -892,7 +894,8 @@ const RAW: Record<string, { keywordId: string; value?: number }[]> = {
   ],
   'DH-447 Sniper': [
     { keywordId: 'haute-velocite' },
-    { keywordId: 'perforant-x', value: 1 },
+    { keywordId: 'debordement' },
+    { keywordId: 'equipe-sniper' },
   ],
   // Armure 1 conditionnelle (carte retournée en début d'activation)
   'Battle Shield Wookiee': [

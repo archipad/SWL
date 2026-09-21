@@ -1,6 +1,6 @@
 {
   "_meta": {
-    "description": "Écarts Legion HQ tranchés sur le visuel de la carte (21/09/2026) : le visuel imprimé fait foi, l'écart n'est plus signalé dans la certification. Clé = carte ; valeur = début des lignes d'écart ignorées. Les escouades (« Transport ») : Legion HQ signale Transport parce que la carte l'interdit ; DH-447, DLT-19x, Del Meeko : mots-clés relus sur le visuel.",
+    "description": "Écarts Legion HQ tranchés sur le visuel de la carte (21/09/2026) : le visuel imprimé fait foi, l'écart n'est plus signalé dans la certification. Clé = carte ; valeur = début des lignes d'écart ignorées. Les escouades (« Transport ») : Legion HQ signale Transport parce que la carte l'interdit ; DH-447, DLT-19x, Del Meeko : mots-clés relus sur le visuel. Proton / Sonique : Assaut 1 est accordé aux autres armes de la réserve (erratum 17/06/2026), non attaché à l’arme.",
     "verifie": "2026-09-21"
   },
   "cards": {
@@ -16,29 +16,12 @@
     "imperial death troopers": [
       "adrénaline d’attaque"
     ],
-    "rebel commandos strike team": [
-      "rang",
-      "adrénaline d’attaque"
-    ],
-    "scout troopers strike team": [
-      "rang",
-      "figurines",
-      "adrénaline d’attaque"
-    ],
     "rebel veterans": [
       "courage"
     ],
     "tauntaun riders": [
       "PV par figurine",
       "courage"
-    ],
-    "dh 447 sniper": [
-      "arme",
-      "mots-clés"
-    ],
-    "dlt 19x sniper": [
-      "arme",
-      "mots-clés"
     ],
     "jetpack rockets": [
       "arme"
@@ -71,6 +54,12 @@
       "mots-clés"
     ],
     "del meeko": [
+      "mots-clés"
+    ],
+    "proton charge saboteur": [
+      "mots-clés"
+    ],
+    "sonic charge saboteur": [
       "mots-clés"
     ]
   }

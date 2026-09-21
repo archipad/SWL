@@ -1400,6 +1400,33 @@ scenario('Certification : la vitesse manquante est préremplie d’après Legion
   app.window.close()
 })
 
+scenario('Erratum FR 17/06/2026 : cartes retirées signalées et non certifiables, cartes mises à jour (DH-447, Charge à Protons, DF-90, Tireur Embusqué Rebelle)', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Sabine Wren', upgrades: [{ name: "Sabine's Grapple Line" }, { name: 'Rebel Ambusher' }] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click } = app
+  app.window.localStorage.setItem('swl.assistant.player-side.v1', 'p1')
+  const reference = app.window.SWL_REFERENCE
+  assert.ok(reference.removedCards['sabine s grapple line'] && reference.removedCards['mandalorian resistance'], 'les cartes retirées sont chargées')
+  await app.pickUnit('Sabine')
+  assert.match(text($('.removed-card-banner')), /Électro-grappin/, 'bandeau « carte retirée du jeu » sur la fiche : ' + text($('.overview')).slice(0, 200))
+  // mises à jour de l'erratum
+  const weapon = (card, name) => reference.weapons[card].weapons.find((item) => item.name === name)
+  assert.equal(JSON.stringify(weapon('dh 447 sniper', 'Fusil de Sniper DH-447').dice), JSON.stringify([{ color: 'blanc', count: 2 }, { color: 'noir', count: 1 }]), 'DH-447 : 2 blancs + 1 noir')
+  assert.equal(weapon('dh 447 sniper', 'Fusil de Sniper DH-447').range, '2-5', 'DH-447 : portée 2-5')
+  assert.equal(weapon('proton charge saboteur', 'Charge à Protons').keywordValues['impact-x'], 6, 'Charge à Protons : Impact 6')
+  assert.equal(JSON.stringify(weapon('df 90 mortar trooper', 'Mortier DF-90').dice), JSON.stringify([{ color: 'noir', count: 2 }]), 'DF-90 : 2 dés noirs')
+  assert.equal(reference.weapons['rebel ambusher'].addedModels, 1, 'Tireur Embusqué Rebelle : +1 figurine')
+  assert.equal(reference.weapons['rebel commandos strike team'].defenseColor, 'blanc', 'Commandos (Groupe de Combat) : défense blanche')
+  // la certification ne propose plus les cartes retirées
+  await click('#certification')
+  const listed = $$('[data-cert-card]').map((button) => decodeURIComponent(button.dataset.certCard))
+  assert.ok(!listed.some((card) => reference.removedCards[card]), 'aucune carte retirée dans la certification')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 /* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
