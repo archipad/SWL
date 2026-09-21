@@ -1401,6 +1401,31 @@ scenario('Retranchement : dés de couvert rouges ; Programmation Prime d’IG-11
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Incognito et mots-clés de défense : rappelés sur la fiche de l’unité, perdus au choix (début d’activation) puis définitivement', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Scout Troopers', upgrades: [{ name: 'Scout Troopers Strike Team' }] }, { name: 'Scout Troopers', upgrades: [{ name: 'Scout Troopers Strike Team' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, text, click } = app
+  app.window.localStorage.setItem('swl.assistant.player-side.v1', 'p1')
+  const ev = (code) => app.window.eval(code)
+  await app.pickUnit('Scout Troopers')
+  const section = [...app.$$('.brief-section')].find((item) => /CIBLÉE/.test(text(item)))
+  assert.ok(section, 'section « quand cette unité est ciblée » sur la fiche')
+  assert.match(text(section), /Incognito/, 'Incognito est rappelé sur la fiche')
+  assert.match(text(section), /Profil Bas/, 'Profil Bas est rappelé sur la fiche')
+  assert.ok(ev("allResolved(entries[0]).some((item) => item.def.id === 'incognito')"), 'Incognito actif au départ')
+  await click($('[data-card-action="incognito"]'))
+  assert.ok(!ev("allResolved(entries[0]).some((item) => item.def.id === 'incognito')"), 'Incognito perdu au choix du joueur')
+  assert.ok(ev("allResolved(entries[1]).some((item) => item.def.id === 'incognito')"), 'l’autre unité garde Incognito')
+  // Une unité qui défend perd Incognito pour le reste de la partie.
+  ev("attacker = entries[2]; defender = entries[1]; initAttack(); saveAttackHistory()")
+  assert.ok(!ev("allResolved(entries[1]).some((item) => item.def.id === 'incognito')"), 'Incognito perdu après avoir défendu')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 scenario('Bonus permanents des cartes : courage (Gideon Hask) et vitesse (Pilote de TIE, Jetpack) dans les statistiques de l’unité', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Agent Kallus', upgrades: [{ name: 'Gideon Hask' }, { name: 'Imperial TIE Pilot' }] }, { name: 'Agent Kallus', upgrades: [] }] },
