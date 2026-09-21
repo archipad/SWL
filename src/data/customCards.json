@@ -28,7 +28,7 @@
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 1,
-      "baseModels": 6
+      "baseModels": 4
     },
     "keywords": [
       {
@@ -48,7 +48,7 @@
         "keywordId": "instinct-de-survie"
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant."
+    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant. — relu le 21/09/2026 sur la carte redécoupée de Mercenary Units FR.pdf : 4 figurines (corrigé, étaient 6)"
   },
   "swoop bike riders": {
     "nameFr": "Pilotes de Swoop",
@@ -236,7 +236,7 @@
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 1,
-      "baseModels": 6
+      "baseModels": 4
     },
     "keywords": [
       {
@@ -256,7 +256,7 @@
         "keywordId": "instinct-de-survie"
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : dé de défense ROUGE (corrigé, était blanc)"
+    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant. — relecture du 20/09/2026 sur le visuel : dé de défense ROUGE (corrigé, était blanc) — relu le 21/09/2026 sur la carte redécoupée de Mercenary Units FR.pdf : 4 figurines (corrigé, étaient 6)"
   },
   "gar saxon militant commando": {
     "nameFr": "Gar Saxon",
@@ -431,7 +431,7 @@
         }
       }
     ],
-    "defenseColor": "rouge",
+    "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 7,
       "courage": 2,
@@ -459,7 +459,7 @@
         "keywordId": "ascension"
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant."
+    "verificationSource": "Mercenary Units FR.pdf (planche a decouper, fournie par l'utilisateur) -- lecture visuelle IA sur visuel corrige (rotation), a spot-checker en jouant. — relu le 21/09/2026 sur la carte redécoupée de Mercenary Units FR.pdf : dé de défense BLANC (corrigé, était rouge)"
   },
   "boba fett infamous bounty hunter": {
     "nameFr": "Boba Fett, Infâme Chasseur de Primes",
@@ -968,7 +968,7 @@
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 2,
-      "baseModels": 4
+      "baseModels": 3
     },
     "keywords": [
       {
@@ -989,7 +989,7 @@
         "keywordId": "autonome"
       }
     ],
-    "verificationSource": "Mercenary Units FR.pdf -- lecture visuelle IA sur visuel corrige (effectif de base suppose a 4 figurines par coherence avec les unites Forces Speciales similaires -- a confirmer). A spot-checker en jouant."
+    "verificationSource": "Mercenary Units FR.pdf -- lecture visuelle IA sur visuel corrige (effectif de base suppose a 4 figurines par coherence avec les unites Forces Speciales similaires -- a confirmer). A spot-checker en jouant. — relu le 21/09/2026 sur la carte redécoupée de Mercenary Units FR.pdf : 3 figurines (corrigé, étaient 4)"
   },
   "grogu": {
     "nameFr": "Grogu",

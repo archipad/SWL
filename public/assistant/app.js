@@ -68,6 +68,22 @@ const combatProfiles={
   'stormtrooper heavy gunner squad':profile('hit',null,'Stormtroopers, Escouade d’artilleurs lourds'),
   'stormtrooper riot squad':profile(null,null,'Stormtroopers, Escouade antiémeute'),
   'stormtroopers':profile('hit',null,'Stormtroopers'),
+  'din djarin':profile('crit','block','Din Djarin'),
+  'cad bane':profile('crit','block','Cad Bane'),
+  'boba fett infamous bounty hunter':profile('crit','block','Boba Fett, Infâme Chasseur de Primes'),
+  'boba fett daimyo of mos espa':profile('crit','block','Boba Fett, Daimyo de Mos Espa'),
+  'gar saxon militant commando':profile('crit','block','Gar Saxon'),
+  'bossk terror of trandosha':profile('crit',null,'Bossk'),
+  'ig 11':profile('hit',null,'IG-11'),
+  'ig 88':profile('crit',null,'IG-88'),
+  'swoop bike riders':profile('hit','block','Pilotes de Swoop'),
+  'mandalorian super commandos':profile(null,'block','Super Commandos Mandaloriens'),
+  'pyke syndicate capo':profile(null,'block','Capo du Syndicat Pyke'),
+  'pyke syndicate foot soldiers':profile(null,'block','Fantassins du Syndicat Pyke'),
+  'black sun vigo':profile(null,null,'Vigo du Soleil Noir'),
+  'black sun enforcers':profile(null,null,'Hommes de Main du Soleil Noir'),
+  'maul a rival':profile(null,null,'Maul, Un Rival'),
+  'the bad batch':profile(null,null,'Le Bad Batch'),
   't 47 airspeeder':profile('crit','block','Airspeeder T-47'),
   'tauntaun riders':profile('crit','block','Cavaliers Tauntaun'),
   'the fifth brother':profile('hit',null,'Cinquième Frère'),
@@ -81,7 +97,7 @@ const combatProfiles={
   'wookiee warriors kashyyyk resistance':profile('hit',null,'Guerriers Wookiees, Résistance de Kashyyyk'),
   'x 34 landspeeder':profile('hit','block','Landspeeder X-34')
 };
-const rankCatalog={commandant:['darth vader dark lord of the sith','director orson krennic','general veers','iden versio','moff gideon','leia organa','luke skywalker hero of the rebellion','han solo','lando calrissian'],operative:['darth vader the emperors apprentice','ahsoka tano','chewbacca','k 2so','luke skywalker jedi knight','sabine wren','r2 d2','the fifth brother','the seventh sister','rebel agent defender of democracy','boba fett infamous bounty hunter','boba fett daimyo of mos espa','agent kallus','cassian andor','jyn erso'],corps:['stormtroopers','stormtrooper riot squad','snowtroopers','shoretroopers','rebel troopers','rebel veterans','fleet troopers','stormtrooper heavy gunner squad','mark ii medium blaster trooper','df 90 mortar trooper'],special:['imperial death troopers','imperial special forces','imperial special forces inferno squad','scout troopers','rebel commandos','rebel sleeper cell','mandalorian resistance','mandalorian resistance clan wren','wookiee warriors freedom fighters','wookiee warriors kashyyyk resistance'],support:['74 z speeder bikes','dewback rider','e web heavy blaster team','at rt','tl tt','tauntaun riders','1 4 fd laser cannon team','range troopers','rebel commandos strike team','scout troopers strike team'],heavy:['at st','tr tt','t 47 airspeeder','tx 225 occupier tank','laat le patrol transport','a a5 speeder truck','x 34 landspeeder','dark trooper squad']};
+const rankCatalog={commandant:['darth vader dark lord of the sith','director orson krennic','general veers','iden versio','moff gideon','leia organa','luke skywalker hero of the rebellion','han solo','lando calrissian','pyke syndicate capo','black sun vigo','gar saxon militant commando'],operative:['darth vader the emperors apprentice','ahsoka tano','chewbacca','k 2so','luke skywalker jedi knight','sabine wren','r2 d2','the fifth brother','the seventh sister','rebel agent defender of democracy','boba fett infamous bounty hunter','boba fett daimyo of mos espa','agent kallus','cassian andor','jyn erso','maul a rival','bossk terror of trandosha','cad bane','ig 88','ig 11','din djarin','the bad batch'],corps:['stormtroopers','stormtrooper riot squad','snowtroopers','shoretroopers','rebel troopers','rebel veterans','fleet troopers','stormtrooper heavy gunner squad','mark ii medium blaster trooper','df 90 mortar trooper','pyke syndicate foot soldiers','black sun enforcers'],special:['imperial death troopers','imperial special forces','imperial special forces inferno squad','scout troopers','rebel commandos','rebel sleeper cell','mandalorian resistance','mandalorian resistance clan wren','wookiee warriors freedom fighters','wookiee warriors kashyyyk resistance','mandalorian super commandos'],support:['74 z speeder bikes','dewback rider','e web heavy blaster team','at rt','tl tt','tauntaun riders','1 4 fd laser cannon team','range troopers','rebel commandos strike team','scout troopers strike team','swoop bike riders'],heavy:['at st','tr tt','t 47 airspeeder','tx 225 occupier tank','laat le patrol transport','a a5 speeder truck','x 34 landspeeder','dark trooper squad','major marquand']};
 const rankLabels={commandant:'Commandant',operative:'Agent',corps:'Troupiers',special:'Forces spéciales',support:'Soutien',heavy:'Lourd',unknown:'Rang à vérifier'},rankIcons={commandant:'commandant.png',operative:'agent.png',corps:'troupiers.png',special:'forces-speciales.png',support:'soutien.png',heavy:'lourd.png'};
 function unitRank(unit){const explicit=norm(unit.rank||unit.section);if(/command/.test(explicit))return'commandant';if(/operat|agent/.test(explicit))return'operative';if(/corps|troup/.test(explicit))return'corps';if(/special/.test(explicit))return'special';if(/soutien|support/.test(explicit))return'support';if(/lourd|heavy/.test(explicit))return'heavy';const key=cardKey(unit.name);return Object.keys(rankCatalog).find(rank=>rankCatalog[rank].includes(key))||'unknown'}
 const armies=[{id:'p1',list:list1},{id:'p2',list:list2}];const entries=armies.flatMap(a=>{const totals={};(a.list.units||[]).forEach(u=>totals[norm(u.name)]=(totals[norm(u.name)]||0)+1);const seen={};return(a.list.units||[]).map((unit,index)=>{const key=norm(unit.name),occurrence=(seen[key]||0)+1;seen[key]=occurrence;return{id:`${a.id}:${unit.key||index}`,legacyId:`${a.id}:${index}`,army:a.id,label:a.list.listName||a.list.faction||a.id,unit,rank:unitRank(unit),occurrence,totalOccurrences:totals[key]}})});

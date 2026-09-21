@@ -2,9 +2,9 @@
 
 > Deuxième avis automatique (2026-09-21), **pas une vérité** : le site applique les errata récents, le visuel peut être plus ancien, et le site peut se tromper. Chaque écart se tranche sur le visuel. Aucune donnée du site n’est recopiée ici, seulement les écarts.
 
-Comparé : 73 unités, 195 améliorations, 216 armes. **71 carte(s) avec au moins un écart.** Non appariées : 5 unités, 28 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
+Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moins un écart.** Non appariées : 5 unités, 28 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
 
-## Unités avec écart (31)
+## Unités avec écart (29)
 
 ### TL-TT — `at rt`
 - dé de défense : site rouge / appli blanc
@@ -75,18 +75,12 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **71 carte(s) avec au moin
 - PV par figurine : site 1 / appli 4
 - courage : site 1 / appli 2
 
-### Fantassins du Syndicat Pyke — `pyke syndicate foot soldiers`
-- figurines : site 4 / appli 6
-
 ### Pilotes de Swoop — `swoop bike riders`
 - mots-clés : Legion HQ indique Surcharge X, absent(s) de l’appli
 
 ### Vigo du Soleil Noir — `black sun vigo`
 - nombre d’armes : site 2 / appli 1
 - mots-clés : Legion HQ indique Aide : Affiliation/Type d'Unité, absent(s) de l’appli
-
-### Hommes de Main du Soleil Noir — `black sun enforcers`
-- figurines : site 4 / appli 6
 
 ### Gar Saxon — `gar saxon militant commando`
 - arme « Pistolet Blaster de Gar » — dés : site 1b+1r+2n / appli 1r+2n  ⟵ expliqué par l’historique (15 November 2025)
@@ -95,11 +89,11 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **71 carte(s) avec au moin
 ### Maul — `maul a rival`
 - mots-clés : présents dans l’appli mais pas sur Legion HQ : Mercenaire : Faction
 
-### Bossk — `bossk terror of trandosha`
-- dé de défense : site blanc / appli rouge
-
 ### Boba Fett, Infâme Chasseur de Primes — `boba fett infamous bounty hunter`
 - arme « Carabine EE-3 » — dés : site — / appli 2n
+
+### Cad Bane — `cad bane`
+- adrénaline d’attaque : site hit / appli crit
 
 ### IG-88 — `ig 88`
 - arme « DLT-20A Modifié » — dés : site — / appli 1b+2n
@@ -110,7 +104,6 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **71 carte(s) avec au moin
 - mots-clés : Legion HQ indique Pistolero, absent(s) de l’appli
 
 ### Super Commandos Mandaloriens — `mandalorian super commandos`
-- figurines : site 3 / appli 4
 - mots-clés : présents dans l’appli mais pas sur Legion HQ : Mercenaire : Faction
 
 ### Le Bad Batch — `the bad batch`
@@ -258,7 +251,7 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **71 carte(s) avec au moin
 - nombre d’armes : site 1 / appli 0
 - mots-clés : Legion HQ indique Fixe : Avant/Arrière/Flancs, absent(s) de l’appli
 
-## Vitesse à renseigner dans la certification (49 unités)
+## Vitesse à renseigner dans la certification (50 unités)
 
 La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique la valeur ci-dessous. À confirmer sur la carte avant de certifier.
 
@@ -304,6 +297,7 @@ La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique 
 - Gar Saxon (`gar saxon militant commando`) : vitesse 2
 - Maul (`maul a rival`) : vitesse 2
 - Bossk (`bossk terror of trandosha`) : vitesse 2
+- Boba Fett, Infâme Chasseur de Primes (`boba fett infamous bounty hunter`) : vitesse 3
 - Boba Fett, Daimyo de Mos Espa (`boba fett daimyo of mos espa`) : vitesse 2
 - Cad Bane (`cad bane`) : vitesse 2
 - IG-88 (`ig 88`) : vitesse 2
