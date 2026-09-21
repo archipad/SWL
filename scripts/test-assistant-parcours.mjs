@@ -1437,6 +1437,23 @@ scenario('Erratum FR 17/06/2026 : cartes retirées signalées et non certifiable
   app.window.close()
 })
 
+scenario('Erratum : une copie locale ancienne (étiquettes, brouillon) ne ressuscite pas les mots-clés retirés (Perforant X du DLT-19x)', async () => {
+  const app = await openAssistant({
+    'swl.card-tags.v1': { 'dlt 19x sniper': [{ keywordId: 'haute-velocite' }, { keywordId: 'perforant-x', value: 1 }] },
+    'swl-dice-certification-batch-v1': { 'dlt 19x sniper': { card: 'dlt 19x sniper', weapons: [{ index: 0, name: 'Fusil DLT-19x', dice: [{ color: 'noir', count: 2 }], range: '1-5', verified: false, queued: false, keywords: [{ keywordId: 'haute-velocite' }, { keywordId: 'perforant-x', value: 1 }], kwEdited: false }], defenseColor: null, defenseVerified: false, defenseQueued: false, unitStats: { woundsPerModel: 1, courage: 1, baseModels: 1, suppressionImmune: false }, unitStatsVerified: false, unitStatsQueued: false, addedModels: 1, addedModelWounds: 1, addedModelsVerified: false, addedModelsQueued: false, fullCard: { cardType: 'upgrade', rank: '', unitType: '', speed: '', attackSurge: 'none', defenseSurge: 'none', keywords: [{ keywordId: 'haute-velocite' }, { keywordId: 'perforant-x', value: 1 }], noKeywords: false, ack: false, checks: {}, rulesVersion: 'x', cardUse: 'passive' }, fullCardQueued: false, weaponKwVersion: 2 } },
+  })
+  const { $, $$, text, click } = app
+  const merged = app.window.eval("tags['dlt 19x sniper'].map((tag) => tag.keywordId)")
+  assert.ok(!merged.includes('perforant-x'), 'Perforant X n’est plus dans les étiquettes fusionnées : ' + merged.join(','))
+  await click('#certification')
+  await click($$('[data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === 'dlt 19x sniper'))
+  const detail = text($('.cert-detail'))
+  assert.ok(!/Perforant X/.test(text($('[data-kw-scope="card"]'))), 'le brouillon reconstruit n’a plus Perforant X : ' + text($('[data-kw-scope="card"]')))
+  assert.match(text($('[data-kw-scope="w0"]')), /Équipe Sniper/, 'Équipe Sniper est sur l’arme')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 /* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {

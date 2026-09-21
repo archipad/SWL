@@ -197,7 +197,10 @@
   reconcileUnknownDrafts();
   function updateBadge(){const button=$('#certification'),count=$('#certificationCount'),pending=pendingTotal();if(!button||!count)return;button.classList.toggle('all-certified',pending===0);button.firstChild.textContent=pending?'⚠ Certification des cartes ':'✓ Cartes certifiées ';count.textContent=pending?String(pending):'✓'}
   function draftFor(card){
-    const p=weaponProfiles[card],saved=drafts[card];
+    const p=weaponProfiles[card];
+    // Carte mise à jour par l'erratum FR du 17/06/2026 : un brouillon créé avant (anciens dés, portée, mots-clés) est reconstruit une seule fois.
+    if(drafts[card]&&(window.SWL_REFERENCE?.errataResetCards||[]).includes(card)&&drafts[card].errataVersion!=='2026-06-17')delete drafts[card];
+    const saved=drafts[card];
     if(!saved||!Array.isArray(saved.weapons))drafts[card]={card,weapons:(p.weapons||[]).map((w,index)=>({index,name:w.name,dice:w.dice==='variable'?'variable':w.dice.map(d=>({...d})),range:w.range,verified:!!w.verifiedAgainstCard,queued:false})),defenseColor:p.defenseColor||null,defenseVerified:!!p.defenseVerifiedAgainstCard,defenseQueued:false,unitStats:p.unitStats?{woundsPerModel:p.unitStats.woundsPerModel,courage:p.unitStats.courage,baseModels:p.unitStats.baseModels,suppressionImmune:!!p.unitStats.suppressionImmune}:{woundsPerModel:1,courage:1,baseModels:1,suppressionImmune:false},unitStatsVerified:!!p.unitStats?.verifiedAgainstCard,unitStatsQueued:false,addedModels:Number.isInteger(p.addedModels)?p.addedModels:0,addedModelWounds:Number.isInteger(p.addedModelWounds)?p.addedModelWounds:1,addedModelsVerified:!!p.addedModelsVerifiedAgainstCard,addedModelsQueued:false};
     const d=drafts[card],defaultStats=p.unitStats?{woundsPerModel:p.unitStats.woundsPerModel,courage:p.unitStats.courage,baseModels:p.unitStats.baseModels,suppressionImmune:!!p.unitStats.suppressionImmune}:{woundsPerModel:1,courage:1,baseModels:1,suppressionImmune:false};
     if(!d.unitStats||typeof d.unitStats!=='object')d.unitStats={...defaultStats};
@@ -222,7 +225,7 @@
     if(d.fullCard){if(d.fullCard.noKeywords===undefined)d.fullCard.noKeywords=false;if(d.fullCard.ack===undefined)d.fullCard.ack=false}
     // Mots-clés d'une arme non modifiée à la main et pas encore dans le lot : toujours relus depuis la base (valeurs corrigées depuis la création du brouillon).
     for(const w of d.weapons||[]){if(!Array.isArray(w.keywords)||(!w.kwEdited&&!w.queued)){const published=p.weapons?.[w.index];w.keywords=(published?.keywordIds||[]).map(id=>{const value=published.keywordValues?.[id]??(tags[card]||[]).find(tag=>tag.keywordId===id)?.value;return{keywordId:id,...(value?{value}:{})}})}}
-    d.weaponKwVersion=2
+    d.weaponKwVersion=2;if((window.SWL_REFERENCE?.errataResetCards||[]).includes(card))d.errataVersion='2026-06-17'
     save();return d;
   }
   const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));

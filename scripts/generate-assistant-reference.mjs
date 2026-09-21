@@ -181,12 +181,17 @@ try {
 
   // Erratum officiel FR (src/data/errata.json) : cartes retirées du jeu.
   const errataPath = resolve(projectRoot, 'src/data/errata.json')
-  const removedCards = existsSync(errataPath) ? JSON.parse(await readFile(errataPath, 'utf8')).removed : {}
+  const errataFile = existsSync(errataPath) ? JSON.parse(await readFile(errataPath, 'utf8')) : {}
+  const removedCards = errataFile.removed || {}
+  const retiredKeywords = errataFile.retiredKeywords || {}
+  const errataResetCards = Object.keys(errataFile.updated || {})
 
   const reference = {
     keywords: keywordModule.SEED_KEYWORDS,
     aiReview,
     removedCards,
+    retiredKeywords,
+    errataResetCards,
     legionhq,
     legionhqKeywordIds,
     legionhqIgnore,

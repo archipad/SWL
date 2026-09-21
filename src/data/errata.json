@@ -34,5 +34,30 @@
     "Soldat avec Mortier DF-90 : le Mortier DF-90 lance 2 dés noirs",
     "Tireur Embusqué Rebelle : ajoute 1 figurine",
     "Boba Fett (×2), Gar Saxon, Sabine Wren, Super Commandos Mandaloriens : type d’unité Soldat Mandalorien"
-  ]
+  ],
+  "retiredKeywords": {
+    "dh 447 sniper": [
+      "perforant-x"
+    ],
+    "dlt 19x sniper": [
+      "perforant-x"
+    ],
+    "proton charge saboteur": [
+      "critique-x"
+    ],
+    "super commando marksman": [
+      "precis-x"
+    ],
+    "super commando pistoleer": [
+      "letal-x"
+    ],
+    "rebel commandos strike team": [
+      "eclaireur-x",
+      "tireur-delite-x"
+    ],
+    "scout troopers strike team": [
+      "eclaireur-x",
+      "tireur-delite-x"
+    ]
+  }
 }
