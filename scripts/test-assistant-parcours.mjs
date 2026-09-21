@@ -45,7 +45,7 @@ async function openAssistant(storage = {}) {
     pretendToBeVisual: true,
     virtualConsole,
     beforeParse(window) {
-      for (const [key, value] of Object.entries(storage)) window.localStorage.setItem(key, JSON.stringify(value))
+      for (const [key, value] of Object.entries({ 'swl.cert-filter.v1': 'all', ...storage })) window.localStorage.setItem(key, JSON.stringify(value))
       // Ce que jsdom ne fournit pas et que l'application utilise.
       window.structuredClone ||= structuredClone
       window.matchMedia ||= () => ({ matches: false, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} })
@@ -397,8 +397,9 @@ scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé,
   const app = await openAssistant()
   const { $, $$, text, click, document } = app
   await click('#certification')
-  const total = Number(text($('#certificationCount')))
-  assert.ok(total > 100, 'toutes les cartes sans certification complète comptent : ' + total)
+  const total = app.window.swlCertification.cards().filter((card) => app.window.swlCertification.pendingFor(card) > 0).length
+  assert.ok(total > 100, 'toutes les cartes sans certification complète sont listées sous « Toutes » : ' + total)
+  assert.ok(Number(text($('#certificationCount'))) < total, 'le bandeau ne compte que les cartes de vos listes : ' + text($('#certificationCount')))
   assert.ok($$('[data-cert-filter]').length === 5, 'filtres : toutes, mes listes, écarts, jamais certifiées, à confirmer (relecture IA)')
   await click('[data-cert-filter="gaps"]')
   const gaps = $$('.cert-list button[data-cert-card]')
@@ -1450,6 +1451,38 @@ scenario('Erratum : une copie locale ancienne (étiquettes, brouillon) ne ressus
   const detail = text($('.cert-detail'))
   assert.ok(!/Perforant X/.test(text($('[data-kw-scope="card"]'))), 'le brouillon reconstruit n’a plus Perforant X : ' + text($('[data-kw-scope="card"]')))
   assert.match(text($('[data-kw-scope="w0"]')), /Équipe Sniper/, 'Équipe Sniper est sur l’arme')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Certification limitée à vos listes : filtre par défaut, compteur du bandeau, confirmation groupée des cartes concordantes', async () => {
+  const app = await openAssistant({
+    'swl.cert-filter.v1': null,
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'DLT-19 Stormtrooper' }, { name: 'Impact Grenades' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click } = app
+  const total = app.window.swlCertification.cards().filter((card) => app.window.swlCertification.pendingFor(card) > 0).length
+  const inLists = app.window.swlCertification.cards().filter((card) => app.window.swlCertification.isInArmy(card) && app.window.swlCertification.pendingFor(card) > 0).length
+  assert.ok(inLists > 0 && inLists < total, 'le périmètre « vos listes » est plus petit que le catalogue : ' + inLists + ' / ' + total)
+  assert.equal(Number(text($('#certificationCount'))), inLists, 'le bandeau ne compte que les cartes de vos listes : ' + text($('#certificationCount')))
+  await click('#certification')
+  assert.ok($('[data-cert-filter="army"]').classList.contains('on'), 'filtre « Dans mes listes » actif par défaut')
+  const listed = $$('.cert-status-section.todo [data-cert-card]').map((button) => decodeURIComponent(button.dataset.certCard))
+  assert.ok(listed.length > 0 && listed.every((card) => app.window.swlCertification.isInArmy(card)), 'seules les cartes de vos listes sont proposées : ' + listed.slice(0, 5).join(', '))
+  assert.match(text($('.cert-scope')), /Vos listes : \d+ carte/, 'synthèse des listes : ' + text($('.cert-scope')).slice(0, 160))
+  const button = $('#confirmConcordant')
+  assert.ok(button, 'bouton de confirmation groupée')
+  if (!button.disabled) {
+    app.window.confirm = () => true
+    const before = app.window.swlCertification.cards().filter((card) => app.window.swlCertification.isConcordant(card)).length
+    await click(button)
+    const after = app.window.swlCertification.cards().filter((card) => app.window.swlCertification.isConcordant(card)).length
+    assert.equal(after, 0, 'les ' + before + ' cartes concordantes sont confirmées (dans le lot)')
+    assert.ok(app.window.swlCertification.batchCount() >= before, 'elles sont dans le lot à envoyer')
+  }
+  await click('[data-cert-filter="all"]')
+  assert.equal(JSON.parse(app.window.localStorage.getItem('swl.cert-filter.v1')), 'all', 'le filtre choisi est mémorisé')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
