@@ -129,6 +129,32 @@ const weaponScore = (appWeapons, hqWeapons) => {
 }
 const best = (list, score) => [...list].sort((a, b) => score(a) - score(b))[0]
 
+/* ---------- Historique daté : un écart est « expliqué » quand une entrée de l'historique de Legion HQ, postérieure à la version
+   imprimée des cartes FR et antérieure ou égale à l'erratum FR en vigueur, décrit ce changement. ---------- */
+const MONTHS = { January: 0, February: 1, March: 2, April: 3, May: 4, June: 5, July: 6, August: 7, September: 8, October: 9, November: 10, December: 11 }
+const parseDate = (text) => { const m = String(text).match(/(\d{1,2}) ([A-Za-z]+) (\d{4})/); return m ? Date.UTC(+m[3], MONTHS[m[2]], +m[1]) : null }
+const argValue = (flag, fallback) => args.includes(flag) ? args[args.indexOf(flag) + 1] : fallback
+const WINDOW_START = Date.parse(argValue('--print-date', '2025-04-15'))   // dernière mise à jour déjà présente dans les PDF FR d'origine
+const WINDOW_END = Date.parse(argValue('--errata-date', '2026-06-17'))    // erratum FR en vigueur
+const FIELD_PATTERNS = [
+  ['rang', /^rang/, /rank|commander|operative|support|corps|special forces|heavy/i],
+  ['vitesse', /^vitesse/, /speed/i],
+  ['figurines', /^figurines/, /mini|figure/i],
+  ['PV', /^PV/, /health|wound/i],
+  ['courage', /^courage/, /courage/i],
+  ['défense', /^dé de défense/, /defen[cs]e|white|red|black/i],
+  ['adrénaline', /^adrénaline/, /surge/i],
+  ['dés', /^arme .*dés :/, /dice|black|white|red|blaster|rainbow|single/i],
+  ['portée', /^arme .*portée :/, /range|melee/i],
+  ['mots-clés', /^mots-clés/, /keyword|gained|lost|removed|given|no longer|value changed/i],
+]
+function explainDiff(line, card) {
+  const pattern = FIELD_PATTERNS.find(([, lineRe]) => lineRe.test(line))
+  if (!pattern) return null
+  const entry = (card.history || []).find((h) => { const t = parseDate(h.date); return t !== null && t > WINDOW_START && t <= WINDOW_END && pattern[2].test(h.description) })
+  return entry ? { field: pattern[0], date: entry.date, text: entry.description } : null
+}
+
 /* ---------- Comparaison ---------- */
 const problems = [], unmatched = { unit: [], upgrade: [] }, speedSuggestions = [], reference = {}
 let comparedUnits = 0, comparedUpgrades = 0, comparedWeapons = 0
@@ -181,18 +207,20 @@ for (const key of Object.keys(ref.weapons)) {
     }
     compareWeapons(list, profile.weapons, c.weapons)
     reference[key].kw = compareKeywords(list, key, profile, c)
-    if (list.length) problems.push({ kind: 'unité', key, name: c.cardName + (c.title ? ', ' + c.title : ''), list })
+    if (list.length) problems.push({ kind: 'unité', key, name: c.cardName + (c.title ? ', ' + c.title : ''), list, explained: list.map((line) => explainDiff(line, c)) })
   } else {
     const c = best(pool, (card) => weaponScore(profile.weapons, card.weapons))
     comparedUpgrades++
     reference[key] = { history: (c.history || []).slice(-3).map((h) => ({ date: h.date, text: h.description })), name: c.cardName, kind: 'upgrade', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
     if ((c.weapons || []).length || (profile.weapons || []).length) compareWeapons(list, profile.weapons, c.weapons)
     reference[key].kw = compareKeywords(list, key, profile, c)
-    if (list.length) problems.push({ kind: 'amélioration', key, name: c.cardName, list })
+    if (list.length) problems.push({ kind: 'amélioration', key, name: c.cardName, list, explained: list.map((line) => explainDiff(line, c)) })
   }
 }
 
 /* ---------- Rapport ---------- */
+const explainedCount = problems.reduce((n, p) => n + p.explained.filter(Boolean).length, 0), totalCount = problems.reduce((n, p) => n + p.list.length, 0)
+console.log(`écarts : ${totalCount}, dont expliqués par l'historique daté (${argValue('--print-date', '2025-04-15')} < date <= ${argValue('--errata-date', '2026-06-17')}) : ${explainedCount}`)
 const lines = [
   '# Recoupement des caractéristiques avec Legion HQ',
   '',
@@ -204,7 +232,7 @@ const lines = [
 for (const kind of ['unité', 'amélioration']) {
   const list = problems.filter((p) => p.kind === kind)
   lines.push(`## ${kind === 'unité' ? 'Unités' : 'Améliorations'} avec écart (${list.length})`, '')
-  for (const p of list) lines.push(`### ${ref.names[p.key] || p.name} — \`${p.key}\``, ...p.list.map((item) => '- ' + item), '')
+  for (const p of list) lines.push(`### ${ref.names[p.key] || p.name} — \`${p.key}\``, ...p.list.map((item, i) => '- ' + item + (p.explained[i] ? '  ⟵ expliqué par l’historique (' + p.explained[i].date + ')' : '')), '')
 }
 lines.push(`## Vitesse à renseigner dans la certification (${speedSuggestions.length} unités)`, '', 'La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique la valeur ci-dessous. À confirmer sur la carte avant de certifier.', '')
 for (const item of speedSuggestions) lines.push(`- ${item.name} (\`${item.key}\`) : vitesse ${item.speed}`)

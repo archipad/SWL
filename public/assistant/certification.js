@@ -43,24 +43,28 @@
   const hqOf=card=>(window.SWL_REFERENCE?.legionhq||{})[card]||null
   const hqDice=dice=>Array.isArray(dice)?dice.map(die=>die.count+die.color[0]).sort().join('+'):''
   const hqRangeText=range=>range==='melee'?'corps-à-corps':String(range).startsWith('melee-')?'corps-à-corps ET distance 1-'+String(range).slice(6):String(range)
-  let hqDiffs=function(card){
+  const HQ_COLOR={r:'rouge',b:'blanc',n:'noir'};
+  const hqDiceList=text=>String(text||'').split('+').filter(Boolean).map(part=>({color:HQ_COLOR[part.slice(-1)],count:Number(part.slice(0,-1))||1}));
+  // Écarts avec Legion HQ, calculés sur le brouillon en cours quand il existe (sinon sur les données publiées) ; « apply » = correction en un clic.
+  function hqDiffItems(card){
     const hq=hqOf(card),p=weaponProfiles[card];if(!hq||!p)return [];
-    const list=[];
+    const d=drafts[card],f=d?.fullCard,items=[],push=(text,apply)=>items.push({text,apply});
     if(hq.kind==='unit'){
-      const stats=p.unitStats,cert=p.fullCardCertification,rank=isUnitCard(card)?unitRank({name:card}):null;
-      if(hq.rank&&rank&&hq.rank!==rank)list.push('rang : Legion HQ '+hq.rank+' / appli '+rank);
-      const speed=Number(cert?.speed);if(hq.speed&&Number.isFinite(speed)&&speed!==hq.speed)list.push('vitesse : Legion HQ '+hq.speed+' / appli '+speed);
+      const stats=d?.unitStats||p.unitStats,cert=p.fullCardCertification,rank=f?.rank||(isUnitCard(card)?unitRank({name:card}):null);
+      if(hq.rank&&rank&&hq.rank!==rank)push('rang : Legion HQ '+hq.rank+' / appli '+rank,{t:'rank',value:hq.rank});
+      const speed=Number(f?.speed||cert?.speed);if(hq.speed&&Number.isFinite(speed)&&speed!==hq.speed)push('vitesse : Legion HQ '+hq.speed+' / appli '+speed,{t:'speed',value:hq.speed});
       if(stats){
-        if(Number.isInteger(hq.minis)&&hq.minis!==stats.baseModels)list.push('figurines : Legion HQ '+hq.minis+' / appli '+stats.baseModels);
-        if(Number.isFinite(hq.hp)&&hq.hp!==stats.woundsPerModel)list.push('PV par figurine : Legion HQ '+hq.hp+' / appli '+stats.woundsPerModel);
-        if(hq.courage&&stats.courage!==null&&hq.courage!==stats.courage)list.push('courage : Legion HQ '+hq.courage+' / appli '+stats.courage);
+        if(Number.isInteger(hq.minis)&&hq.minis!==stats.baseModels)push('figurines : Legion HQ '+hq.minis+' / appli '+stats.baseModels,{t:'stat',field:'baseModels',value:hq.minis});
+        if(Number.isFinite(hq.hp)&&hq.hp!==stats.woundsPerModel)push('PV par figurine : Legion HQ '+hq.hp+' / appli '+stats.woundsPerModel,{t:'stat',field:'woundsPerModel',value:hq.hp});
+        if(hq.courage&&stats.courage!==null&&hq.courage!==stats.courage)push('courage : Legion HQ '+hq.courage+' / appli '+stats.courage,{t:'stat',field:'courage',value:hq.courage});
       }
-      if(hq.defense&&p.defenseColor&&hq.defense!==p.defenseColor)list.push('dé de défense : Legion HQ '+hq.defense+' / appli '+p.defenseColor);
+      const defenseColor=d?.defenseColor||p.defenseColor;
+      if(hq.defense&&defenseColor&&hq.defense!==defenseColor)push('dé de défense : Legion HQ '+hq.defense+' / appli '+defenseColor,{t:'defense',value:hq.defense});
       const printed=typeof combatProfiles!=='undefined'?combatProfiles[card]:null;
       if(cert||printed){
-        const attack=(cert?.attackSurge!==undefined?cert.attackSurge:printed?.attackSurge)||'none',defense=(cert?.defenseSurge!==undefined?cert.defenseSurge:printed?.defenseSurge)||'none';
-        if(hq.attackSurge!==attack)list.push('adrénaline d’attaque : Legion HQ '+hq.attackSurge+' / appli '+attack);
-        if(hq.defenseSurge!==defense)list.push('adrénaline de défense : Legion HQ '+hq.defenseSurge+' / appli '+defense);
+        const attack=(f?.attackSurge??(cert?.attackSurge!==undefined?cert.attackSurge:printed?.attackSurge))||'none',defense=(f?.defenseSurge??(cert?.defenseSurge!==undefined?cert.defenseSurge:printed?.defenseSurge))||'none';
+        if(hq.attackSurge!==attack)push('adrénaline d’attaque : Legion HQ '+hq.attackSurge+' / appli '+attack,{t:'surge',which:'attackSurge',value:hq.attackSurge});
+        if(hq.defenseSurge!==defense)push('adrénaline de défense : Legion HQ '+hq.defenseSurge+' / appli '+defense,{t:'surge',which:'defenseSurge',value:hq.defenseSurge});
       }
     }
     // Mots-clés : union carte + armes, par identifiant (valeurs numériques comparées quand les deux côtés en ont).
@@ -69,28 +73,43 @@
       const addKw=(id,value)=>{appKw[id]=appKw[id]||[];const n=Number(value);if(value!==undefined&&value!==null&&value!==''&&Number.isFinite(n)&&!appKw[id].includes(n))appKw[id].push(n)};
       for(const tag of tags[card]||[])addKw(tag.keywordId,tag.value);
       for(const w of p.weapons||[])for(const id of w.keywordIds||[])addKw(id,w.keywordValues?.[id]);
+      for(const tag of f?.keywords||[])addKw(tag.keywordId,tag.value);
+      for(const w of d?.weapons||[])for(const tag of w.keywords||[])addKw(tag.keywordId,tag.value);
       const missing=Object.keys(hq.kw).filter(id=>!(id in appKw)),extra=Object.keys(appKw).filter(id=>mappable.has(id)&&id!=='mercenaire'&&!(id in hq.kw)),values=Object.keys(hq.kw).filter(id=>id in appKw&&hq.kw[id].length&&appKw[id].length&&hq.kw[id].some(v=>!appKw[id].includes(v)));
-      if(missing.length)list.push('mots-clés : Legion HQ indique '+missing.map(keywordName).join(', ')+', absent(s) de l’appli');
-      if(extra.length)list.push('mots-clés : dans l’appli, pas sur Legion HQ : '+extra.map(keywordName).join(', '));
-      for(const id of values)list.push('mots-clés : valeur de « '+keywordName(id)+' » : Legion HQ '+hq.kw[id].join('/')+' / appli '+appKw[id].join('/'))
+      if(missing.length)push('mots-clés : Legion HQ indique '+missing.map(keywordName).join(', ')+', absent(s) de l’appli',{t:'keywords',ids:missing.map(id=>({keywordId:id,...(hq.kw[id]?.length?{value:hq.kw[id][0]}:{})}))});
+      if(extra.length)push('mots-clés : dans l’appli, pas sur Legion HQ : '+extra.map(keywordName).join(', '),null);
+      for(const id of values)push('mots-clés : valeur de « '+keywordName(id)+' » : Legion HQ '+hq.kw[id].join('/')+' / appli '+appKw[id].join('/'),{t:'keywordValue',id,value:hq.kw[id][0]})
     }
-    const site=hq.weapons||[],app=(p.weapons||[]).map(w=>({name:w.name,dice:hqDice(w.dice),range:w.range||''}));
-    if(site.length!==app.length){list.push('nombre d’armes : Legion HQ '+site.length+' / appli '+app.length);return list}
+    const site=hq.weapons||[],app=(d?.weapons||p.weapons||[]).map(w=>({name:w.name,dice:hqDice(w.dice),range:w.range||''}));
+    if(site.length!==app.length){push('nombre d’armes : Legion HQ '+site.length+' / appli '+app.length,null);return items}
     const remaining=[...site];
     for(const w of app){
       let index=remaining.findIndex(item=>item.dice===w.dice&&item.range===w.range);if(index<0)index=remaining.findIndex(item=>item.dice===w.dice);if(index<0)index=remaining.findIndex(item=>item.range===w.range);if(index<0)index=0;
-      const s=remaining.splice(index,1)[0],diffs=[],openEnded=/^\d+-#$/.test(s.range)&&w.range===s.range.split('-')[0];
-      if(s.dice!==w.dice)diffs.push('dés : Legion HQ '+(s.dice||'—')+' / appli '+(w.dice||'—'));
-      if(s.range!==w.range&&!openEnded&&s.range!=='?')diffs.push('portée : Legion HQ '+hqRangeText(s.range)+' / appli '+hqRangeText(w.range));
-      if(diffs.length)list.push('arme « '+w.name+' » — '+diffs.join(' ; '))
+      const s=remaining.splice(index,1)[0],diffs=[],openEnded=/^\d+-#$/.test(s.range)&&w.range===s.range.split('-')[0],apply={t:'weapon',name:w.name};
+      if(s.dice!==w.dice){diffs.push('dés : Legion HQ '+(s.dice||'—')+' / appli '+(w.dice||'—'));apply.dice=hqDiceList(s.dice)}
+      if(s.range!==w.range&&!openEnded&&s.range!=='?'){diffs.push('portée : Legion HQ '+hqRangeText(s.range)+' / appli '+hqRangeText(w.range));apply.range=s.range}
+      if(diffs.length)push('arme « '+w.name+' » — '+diffs.join(' ; '),apply)
     }
-    return list
+    return items
   }
   // Écarts déjà tranchés sur le visuel (src/data/legionhqTriage.json) : non signalés.
-  const hqDiffsRaw=hqDiffs;hqDiffs=card=>{const ignore=(window.SWL_REFERENCE?.legionhqIgnore||{})[card]||[];return hqDiffsRaw(card).filter(line=>!ignore.some(prefix=>line.startsWith(prefix)))}
-  window.swlCertification={hqDiffs:card=>hqDiffs(card)};
+  const hqDiffItemsFiltered=card=>{const ignore=(window.SWL_REFERENCE?.legionhqIgnore||{})[card]||[];return hqDiffItems(card).filter(item=>!ignore.some(prefix=>item.text.startsWith(prefix)))};
+  const hqDiffs=card=>hqDiffItemsFiltered(card).map(item=>item.text);
+  function applyHqItem(card,apply){
+    const d=draftFor(card),f=d.fullCard;
+    if(apply.t==='stat'){d.unitStats[apply.field]=apply.value;d.unitStatsVerified=false;d.unitStatsQueued=false}
+    else if(apply.t==='defense'){d.defenseColor=apply.value;d.defenseVerified=false;d.defenseQueued=false}
+    else if(apply.t==='rank')f.rank=apply.value;
+    else if(apply.t==='speed'){f.speed=String(apply.value);f.speedFromHq=true}
+    else if(apply.t==='surge')f[apply.which]=apply.value;
+    else if(apply.t==='weapon'){const w=d.weapons.find(item=>item.name===apply.name);if(w){if(apply.dice)w.dice=apply.dice;if(apply.range)w.range=apply.range;w.verified=false;w.queued=false}}
+    else if(apply.t==='keywords'){for(const tag of apply.ids)if(!f.keywords.some(item=>item.keywordId===tag.keywordId))f.keywords.push({...tag});f.noKeywords=false}
+    else if(apply.t==='keywordValue'){for(const tag of f.keywords)if(tag.keywordId===apply.id)tag.value=apply.value;for(const w of d.weapons)for(const tag of w.keywords||[])if(tag.keywordId===apply.id)tag.value=apply.value}
+    d.fullCardQueued=false;save()
+  }
+  window.swlCertification={hqDiffs:card=>hqDiffs(card),hqDiffItems:card=>hqDiffItemsFiltered(card)};
   const hqSpeedFor=card=>{const hq=hqOf(card);return hq&&hq.kind==='unit'&&[1,2,3].includes(hq.speed)?String(hq.speed):''}
-  const hqPanel=(card,d)=>{const hq=hqOf(card);if(!hq)return '';const diffs=hqDiffs(card),f=d?.fullCard,prefilled=!!f&&f.speedFromHq&&String(f.speed)===hqSpeedFor(card);return '<div class="cert-ai '+(diffs.length?'ai-flag':'ai-ok')+'"><strong>'+(diffs.length?'⚠ Legion HQ (référence) : '+diffs.length+' écart(s) avec l’appli':'Legion HQ (référence) : concordant')+'</strong>'+(diffs.length?'<small>'+diffs.map(escapeHtml).join('<br>')+'</small>':'')+(diffs.length&&(hq.history||[]).length?'<small>Historique des errata (Legion HQ) : '+hq.history.map(item=>escapeHtml(item.date+' : '+item.text)).join(' · ')+'</small>':'')+(prefilled?'<small>Vitesse '+escapeHtml(hqSpeedFor(card))+' préremplie d’après Legion HQ : à confirmer sur la carte.</small>':'')+'</div>'}
+  const hqPanel=(card,d)=>{const hq=hqOf(card);if(!hq)return '';const items=hqDiffItemsFiltered(card),f=d?.fullCard,prefilled=!!f&&f.speedFromHq&&String(f.speed)===hqSpeedFor(card);return '<div class="cert-ai '+(items.length?'ai-flag':'ai-ok')+'"><strong>'+(items.length?'⚠ Legion HQ (référence) : '+items.length+' écart(s) avec l’appli':'Legion HQ (référence) : concordant')+'</strong>'+items.map((item,index)=>'<div class="hq-diff"><small>'+escapeHtml(item.text)+'</small>'+(item.apply?'<button type="button" class="secondary" data-hq-apply="'+index+'">Utiliser la valeur Legion HQ</button>':'')+'</div>').join('')+(items.length&&(hq.history||[]).length?'<small>Historique des errata (Legion HQ) : '+hq.history.map(item=>escapeHtml(item.date+' : '+item.text)).join(' · ')+'</small>':'')+(prefilled?'<small>Vitesse '+escapeHtml(hqSpeedFor(card))+' préremplie d’après Legion HQ : à confirmer sur la carte.</small>':'')+'</div>'}
   const aiFlagged=card=>{const review=aiOf(card);return (!!review&&review.status!=='relue')||hqDiffs(card).length>0}
   const aiBadge=card=>{const review=aiOf(card),hq=hqDiffs(card).length?' · ⚠ Legion HQ : '+hqDiffs(card).length+' écart(s)':'';if(!review)return hq;return hq+(review.status==='corrigee'?' · ⚠ IA : corrigée, à confirmer':review.status==='illisible'?' · ⚠ IA : illisible, à lire sur la carte':' · IA : relue, aucun écart')}
   const aiPanel=card=>{const review=aiOf(card);if(!review)return '';const cls=review.status==='relue'?'ai-ok':'ai-flag';return '<div class="cert-ai '+cls+'"><strong>'+(review.status==='corrigee'?'⚠ Corrigée par la relecture IA : à confirmer sur le visuel':review.status==='illisible'?'⚠ Relecture IA : partie illisible, à lire sur la carte':'Relecture IA : aucun écart trouvé')+'</strong><small>'+escapeHtml(review.note)+'</small></div>'}
@@ -198,7 +217,7 @@
     // Armes ajoutées à la base APRÈS la création du brouillon (ex. Soldat avec Mortier DF-90, dont le brouillon local était vide) :
     // elles doivent apparaître dans l'écran, sinon la carte se certifie sans ses armes. La carte doit alors être revalidée.
     if(Array.isArray(d.weapons)){let added=false;(p.weapons||[]).forEach((w,index)=>{if(!d.weapons.some(item=>item.index===index)){d.weapons.push({index,name:w.name,dice:w.dice==='variable'?'variable':w.dice.map(die=>({...die})),range:w.range,verified:!!w.verifiedAgainstCard,queued:false});added=true}});if(added){d.weapons.sort((a,b)=>a.index-b.index);d.fullCardQueued=false}}
-    if(!d.fullCard){const existing=p.fullCardCertification,tagsForCard=tags[card]||[];d.fullCard={cardType:isUnitCard(card)?'unit':'upgrade',rank:isUnitCard(card)?unitRank({name:card}):'',unitType:existing?.unitType||'',speed:existing?.speed||hqSpeedFor(card),speedFromHq:!existing?.speed&&!!hqSpeedFor(card),attackSurge:existing?.attackSurge||p.attackSurge||'none',defenseSurge:existing?.defenseSurge||p.defenseSurge||'none',keywords:mergeKeywords(tagsForCard,existing?.keywords),noKeywords:!!existing?.noKeywordsConfirmed,...(isUnitCard(card)?{}:{cardUse:existing?.cardUse||(window.SWL_REFERENCE?.cardUse||{})[card]||'passive'}),ack:false,checks:Object.fromEntries(['identity','visual','stats','weapons','conversions','keywords'].map(check=>[check,!!existing&&!(check==='keywords'&&secondOpinionOpen(card,p))])),rulesVersion:existing?.rulesVersion||'AMG 2026-06-17'};d.fullCardQueued=false}
+    if(!d.fullCard){const existing=p.fullCardCertification,tagsForCard=tags[card]||[];d.fullCard={cardType:isUnitCard(card)?'unit':'upgrade',rank:isUnitCard(card)?unitRank({name:card}):'',unitType:existing?.unitType||'',speed:existing?.speed||hqSpeedFor(card),speedFromHq:!existing?.speed&&!!hqSpeedFor(card),attackSurge:existing?.attackSurge||p.attackSurge||(typeof combatProfiles!=='undefined'?combatProfiles[card]?.attackSurge:null)||'none',defenseSurge:existing?.defenseSurge||p.defenseSurge||(typeof combatProfiles!=='undefined'?combatProfiles[card]?.defenseSurge:null)||'none',keywords:mergeKeywords(tagsForCard,existing?.keywords),noKeywords:!!existing?.noKeywordsConfirmed,...(isUnitCard(card)?{}:{cardUse:existing?.cardUse||(window.SWL_REFERENCE?.cardUse||{})[card]||'passive'}),ack:false,checks:Object.fromEntries(['identity','visual','stats','weapons','conversions','keywords'].map(check=>[check,!!existing&&!(check==='keywords'&&secondOpinionOpen(card,p))])),rulesVersion:existing?.rulesVersion||'AMG 2026-06-17'};d.fullCardQueued=false}
     if(d.fullCard&&d.fullCard.cardType==='unit'&&!['1','2','3'].includes(String(d.fullCard.speed))&&hqSpeedFor(card)){d.fullCard.speed=hqSpeedFor(card);d.fullCard.speedFromHq=true;d.fullCardQueued=false}
     if(d.fullCard){if(d.fullCard.noKeywords===undefined)d.fullCard.noKeywords=false;if(d.fullCard.ack===undefined)d.fullCard.ack=false}
     // Mots-clés d'une arme non modifiée à la main et pas encore dans le lot : toujours relus depuis la base (valeurs corrigées depuis la création du brouillon).
@@ -291,6 +310,7 @@
     root.querySelectorAll('[data-kw-readd]').forEach(button=>button.onclick=()=>{const d=draftFor(selectedCard),f=d.fullCard,base=(tags[selectedCard]||[]).find(tag=>tag.keywordId===button.dataset.kwReadd);if(base&&!f.keywords.some(item=>item.keywordId===base.keywordId))f.keywords.push({...base});f.confirmedRemovals=(f.confirmedRemovals||[]).filter(id=>id!==button.dataset.kwReadd);d.fullCardQueued=false;save();render()});
     root.querySelectorAll('[data-kw-confirm-removal]').forEach(button=>button.onclick=()=>{const d=draftFor(selectedCard),f=d.fullCard;f.confirmedRemovals=[...new Set([...(f.confirmedRemovals||[]),button.dataset.kwConfirmRemoval])];d.fullCardQueued=false;save();render()});
     root.querySelectorAll('[data-kw-assign]').forEach(button=>button.onclick=()=>{const card=reviewMode?reviewCurrent:selectedCard,d=draftFor(card),[id,index]=button.dataset.kwAssign.split('|'),w=d.weapons[+index],tag=d.fullCard.keywords.find(item=>item.keywordId===id);if(!w||!tag)return;w.keywords=[...(w.keywords||[]).filter(item=>item.keywordId!==id),{...tag}];w.kwEdited=true;w.queued=false;d.fullCardQueued=false;save();render()});
+    root.querySelectorAll('[data-hq-apply]').forEach(button=>button.onclick=()=>{const card=reviewMode?reviewCurrent:selectedCard,item=hqDiffItemsFiltered(card)[+button.dataset.hqApply];if(!item||!item.apply)return;applyHqItem(card,item.apply);render()});
     root.querySelectorAll('[data-range-preset]').forEach(button=>button.onclick=()=>{const [index,preset]=button.dataset.rangePreset.split(':'),d=draftFor(selectedCard),w=d.weapons[+index];if(!w)return;w.range=preset;w.queued=false;d.fullCardQueued=false;save();render()});
     root.querySelectorAll('[data-weapon-range]').forEach(input=>input.onchange=()=>{const d=draftFor(selectedCard),w=d.weapons[+input.dataset.weaponRange];w.range=input.value.trim();w.queued=false;d.fullCardQueued=false;save();render()});
     root.querySelectorAll('[data-full-nokw]').forEach(input=>input.onchange=()=>{const d=draftFor(selectedCard);d.fullCard.noKeywords=input.checked;d.fullCardQueued=false;save();render()});

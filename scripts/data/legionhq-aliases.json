@@ -50,12 +50,13 @@
     "spotter link": "spotter uplink",
     "in the fray": "into the fray",
     "offensive posture": "offensive stance",
-    "defensive posture": "defensive stance",
+    "defensive posture": "offensive stance",
     "stormtrooper squad expansion": "stormtrooper squad",
     "snowtrooper squad expansion": "snowtrooper squad",
     "shoretrooper squad expansion": "shoretrooper squad",
     "mandalorian combat shields": "combat shields",
     "super commando pistoleer": "super commando gunslinger",
-    "din djarin jetpack": "din s jetpack"
+    "din djarin jetpack": "din s jetpack",
+    "point blank": "up close and personal"
   }
 }

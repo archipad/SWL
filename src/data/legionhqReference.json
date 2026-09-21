@@ -1651,6 +1651,20 @@
     "manoeuvre-improbable": []
    }
   },
+  "defensive posture": {
+   "history": [
+    {
+     "date": "15 April 2025",
+     "text": "Lost Sharpshooter 2."
+    }
+   ],
+   "name": "Offensive Stance",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {
+    "reconfiguration": []
+   }
+  },
   "del meeko": {
    "history": [
     {
@@ -4335,6 +4349,18 @@
    "kw": {
     "couvert-x": []
    }
+  },
+  "point blank": {
+   "history": [
+    {
+     "date": "8 December 2022",
+     "text": "Cost increased from 5 to 8 points."
+    }
+   ],
+   "name": "Up Close and Personal",
+   "kind": "upgrade",
+   "weapons": [],
+   "kw": {}
   },
   "prepared materiel": {
    "history": [],

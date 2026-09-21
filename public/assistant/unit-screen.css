@@ -432,3 +432,5 @@ label.cert-missing select { border-color: #ff8a5c; }
 .rp-empty { opacity: .7; margin: 6px 0; }
 /* Cartes retirées du jeu (erratum 17/06/2026) */
 .removed-card-banner { display: grid; gap: 4px; padding: 10px 12px; margin-bottom: 10px; border: 1px solid rgba(255, 90, 90, .8); border-radius: 8px; background: rgba(255, 90, 90, .12); }
+.hq-diff { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.hq-diff button { min-height: 36px; }

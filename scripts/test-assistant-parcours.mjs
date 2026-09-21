@@ -1393,6 +1393,16 @@ scenario('Certification : la vitesse manquante est préremplie d’après Legion
   // une carte en écart : signalée dans la liste et dans le panneau
   const diff = Object.keys(reference.legionhq).find((card) => app.window.swlCertification.hqDiffs(card).length > 0 && $$('.cert-status-section.todo [data-cert-card]').some((button) => decodeURIComponent(button.dataset.certCard) === card))
   assert.ok(diff, 'une carte en écart Legion HQ est listée')
+  // correction en un clic : une carte dont l'écart porte sur une valeur numérique ou un dé
+  const fixable = Object.keys(reference.legionhq).find((card) => $$('.cert-status-section.todo [data-cert-card]').some((button) => decodeURIComponent(button.dataset.certCard) === card) && app.window.swlCertification.hqDiffItems(card).some((item) => item.apply && ['stat', 'defense', 'weapon', 'surge'].includes(item.apply.t)))
+  assert.ok(fixable, 'une carte corrigeable en un clic existe')
+  const before = app.window.swlCertification.hqDiffItems(fixable).length
+  await click($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === fixable))
+  const apply = $('[data-hq-apply]')
+  assert.ok(apply, 'bouton « Utiliser la valeur Legion HQ » : ' + text($('.cert-detail')).slice(0, 200))
+  await click(apply)
+  assert.ok(app.window.swlCertification.hqDiffItems(fixable).length < before, 'l’écart disparaît une fois la valeur Legion HQ appliquée au brouillon')
+  await click('#backCertification')
   assert.match(text($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === diff)), /Legion HQ : \d+ écart/, 'pastille d’écart dans la liste')
   await click($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === diff))
   assert.match(text($('.cert-detail')), /écart\(s\) avec l’appli/, 'panneau des écarts dans l’éditeur')

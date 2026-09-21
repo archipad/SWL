@@ -2,7 +2,7 @@
 
 > Deuxième avis automatique (2026-09-21), **pas une vérité** : le site applique les errata récents, le visuel peut être plus ancien, et le site peut se tromper. Chaque écart se tranche sur le visuel. Aucune donnée du site n’est recopiée ici, seulement les écarts.
 
-Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moins un écart.** Non appariées : 5 unités, 30 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
+Comparé : 73 unités, 195 améliorations, 216 armes. **71 carte(s) avec au moins un écart.** Non appariées : 5 unités, 28 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
 
 ## Unités avec écart (31)
 
@@ -14,7 +14,7 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moin
 - mots-clés : Legion HQ indique Critique X, absent(s) de l’appli
 
 ### Soldat avec Mortier DF-90 — `df 90 mortar trooper`
-- arme « Fusil Blaster E-22 » — portée : site corps-à-corps / appli corps-à-corps ET distance 1-3
+- arme « Fusil Blaster E-22 » — portée : site corps-à-corps / appli corps-à-corps ET distance 1-3  ⟵ expliqué par l’historique (15 November 2025)
 
 ### Directeur Orson Krennic — `director orson krennic`
 - dé de défense : site rouge / appli blanc
@@ -40,7 +40,7 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moin
 
 ### Death Troopers Impériaux — `imperial death troopers`
 - adrénaline d’attaque : site crit / appli hit
-- arme « Fusil Blaster E-11D » — dés : site 1n / appli 1b
+- arme « Fusil Blaster E-11D » — dés : site 1n / appli 1b  ⟵ expliqué par l’historique (16 June 2025)
 - mots-clés : valeur de « Discipliné X » : Legion HQ 2 / appli 1
 
 ### K-2SO — `k 2so`
@@ -89,7 +89,7 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moin
 - figurines : site 4 / appli 6
 
 ### Gar Saxon — `gar saxon militant commando`
-- arme « Pistolet Blaster de Gar » — dés : site 1b+1r+2n / appli 1r+2n
+- arme « Pistolet Blaster de Gar » — dés : site 1b+1r+2n / appli 1r+2n  ⟵ expliqué par l’historique (15 November 2025)
 - mots-clés : présents dans l’appli mais pas sur Legion HQ : Mercenaire : Faction
 
 ### Maul — `maul a rival`
@@ -120,7 +120,7 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moin
 ### Agent Rebelle, Défenseur de la Démocratie — `rebel agent defender of democracy`
 - mots-clés : Legion HQ indique Équipe, absent(s) de l’appli
 
-## Améliorations avec écart (39)
+## Améliorations avec écart (40)
 
 ### A280, Config Fusil — `a280 cfe pistol sniper config`
 - nombre d’armes : site 2 / appli 1
@@ -158,7 +158,7 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moin
 - arme « MPL-57 à Ions » — portée : site corps-à-corps ET distance 1-3 / appli 1-3
 
 ### Saboteur avec Charge à Protons — `proton charge saboteur`
-- mots-clés : Legion HQ indique Assaut X, absent(s) de l’appli
+- mots-clés : Legion HQ indique Assaut X, absent(s) de l’appli  ⟵ expliqué par l’historique (21 April 2026)
 
 ### Artilleur avec Lance-roquettes RPS-6 — `rps 6 rocket gunner`
 - nombre d’armes : site 0 / appli 1
@@ -173,7 +173,7 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moin
 - nombre d’armes : site 0 / appli 1
 
 ### Saboteur avec Charge Sonique — `sonic charge saboteur`
-- mots-clés : Legion HQ indique Assaut X, absent(s) de l’appli
+- mots-clés : Legion HQ indique Assaut X, absent(s) de l’appli  ⟵ expliqué par l’historique (21 April 2026)
 
 ### Escouade Stormtrooper — `stormtrooper squad`
 - mots-clés : Legion HQ indique Transport, absent(s) de l’appli
@@ -247,6 +247,9 @@ Comparé : 73 unités, 193 améliorations, 216 armes. **70 carte(s) avec au moin
 ### Câbles Ascensionnels — `ascension cables`
 - mots-clés : Legion HQ indique Ascension, absent(s) de l’appli
 
+### Posture Défensive — `defensive posture`
+- mots-clés : Legion HQ indique Reconfiguration, absent(s) de l’appli
+
 ### Générateur de Barrage — `barrage generator`
 - nombre d’armes : site 1 / appli 0
 - mots-clés : Legion HQ indique Fixe : Avant/Arrière/Flancs, absent(s) de l’appli
@@ -313,4 +316,4 @@ La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique 
 
 Unités : mandalorian resistance, tl tt, tr tt, grogu, omega
 
-Améliorations : c 3po, sabine s grapple line, rebel ambusher, x 34 gunner, mounted gunners, darth vader the emperor s apprentice, cleaver dark trooper, e 11d grenade launcher config, stormtrooper sharpshooter, combat armor rebel, pyke foot soldier concealment, black sun enforcer concealment, super commando concealment, super commando combat shields, gar saxon combat shield, gar saxon zx flamethrower, ig11 prime programming, gar saxon back mounted rockets, super commando back mounted rockets, sabine s combat shield, remote doc, spotting, defensive posture, command system, combat group leader, dread, entrenched, hit and run, serenity, point blank
+Améliorations : c 3po, sabine s grapple line, rebel ambusher, x 34 gunner, mounted gunners, darth vader the emperor s apprentice, cleaver dark trooper, e 11d grenade launcher config, stormtrooper sharpshooter, combat armor rebel, pyke foot soldier concealment, black sun enforcer concealment, super commando concealment, super commando combat shields, gar saxon combat shield, gar saxon zx flamethrower, ig11 prime programming, gar saxon back mounted rockets, super commando back mounted rockets, sabine s combat shield, remote doc, spotting, command system, combat group leader, dread, entrenched, hit and run, serenity
