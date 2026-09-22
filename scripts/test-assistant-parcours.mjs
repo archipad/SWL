@@ -1440,6 +1440,13 @@ scenario('Contrôles de ciblage : Incognito interdit une attaque au-delà de la 
   assert.match(text($('.target-check-card')), /INCOGNITO/, 'le contrôle de ciblage apparaît pour Incognito')
   assert.match(text($('.target-check-card')), /ATTAQUE INTERDITE/, 'portée 2 : attaque interdite')
   assert.match(ev('stepIssue()'), /Cible interdite/, 'la résolution est bloquée : ' + ev('stepIssue()'))
+  // Déblocage manuel (comme le Contrôle de Tir) : Incognito déjà perdu, puis rétablissement.
+  await click('[data-target-unlock="incognito"]')
+  assert.doesNotMatch(ev('stepIssue()'), /Cible interdite/, 'débloquée : plus de blocage')
+  assert.ok(ev('stateFor(entries[1]).incognitoLost'), 'Incognito est mémorisé comme perdu')
+  assert.match(text($('.target-check-card')), /a perdu Incognito/, 'le panneau explique pourquoi la restriction ne s’applique plus')
+  await click('[data-target-restore="incognito"]')
+  assert.match(ev('stepIssue()'), /Cible interdite/, 'rétablie : de nouveau bloquée')
   ev("attackState.range = 1; resolveScreen()")
   assert.doesNotMatch(text($('.target-check-card')), /ATTAQUE INTERDITE/, 'portée 1 : autorisée')
   assert.doesNotMatch(ev('stepIssue()'), /Cible interdite/, 'plus de blocage à portée 1')
