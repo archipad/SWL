@@ -1698,6 +1698,32 @@ scenario('Certification limitée à vos listes : filtre par défaut, compteur du
   app.window.close()
 })
 
+scenario('Certification : usage réel retient les cartes déjà jouées même après avoir chargé une autre liste', async () => {
+  const first = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'DLT-19 Stormtrooper' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const stormtroopers = first.window.eval("cardKey('Stormtroopers')")
+  assert.ok(first.window.swlCertification.isInArmy(stormtroopers), 'Stormtroopers est bien détecté dans la liste chargée')
+  const history = first.window.localStorage.getItem('swl-cert-usage-history-v1')
+  assert.ok(history && JSON.parse(history)[stormtroopers], 'l’usage réel est enregistré de façon persistante : ' + history)
+  assert.equal(first.errors.length, 0, first.errors.join(' | '))
+  first.window.close()
+
+  // Partie suivante sur le même appareil : une tout autre liste est chargée, Stormtroopers n'y figure plus.
+  const second = await openAssistant({
+    'swl-cert-usage-history-v1': JSON.parse(history),
+    'swl.list.p1.v1': { listName: 'Test mercenaires', faction: 'Rebelles', units: [{ name: 'IG-11', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test empire 2', faction: 'Empire', units: [{ name: 'Commandos Rebelles', upgrades: [] }] },
+  })
+  assert.ok(second.window.swlCertification.isInArmy(stormtroopers), 'Stormtroopers reste prioritaire : déjà joué lors d’une partie précédente sur cette tablette')
+  const total = second.window.swlCertification.cards().length
+  const inArmy = second.window.swlCertification.cards().filter((card) => second.window.swlCertification.isInArmy(card)).length
+  assert.ok(inArmy > 0 && inArmy < total, 'l’usage réel reste plus restreint que tout le catalogue : ' + inArmy + ' / ' + total)
+  assert.equal(second.errors.length, 0, second.errors.join(' | '))
+  second.window.close()
+})
+
 /* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {

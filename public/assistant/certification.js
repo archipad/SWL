@@ -26,6 +26,22 @@
   const removedCards=window.SWL_REFERENCE?.removedCards||{};
   const profiles=()=>Object.entries(weaponProfiles).filter(([card])=>!removedCards[card]);
   const usedCardKeys=()=>new Set(entries.flatMap(entry=>[cardKey(entry.unit.name),...(entry.unit.upgrades||[]).map(upgrade=>cardKey(upgrade.name))]));
+  // Usage réel (22/09/2026) : « dans vos listes » ne doit pas se limiter aux deux listes actuellement
+  // chargées sur cette tablette (elles sont remplacées à chaque nouvelle partie importée) mais retenir
+  // tout ce qui a vraiment servi ici, partie après partie -- sinon une carte jouée la semaine dernière
+  // retombe en bas de la file dès qu'on charge une autre liste pour la partie du jour.
+  const usageHistoryKey='swl-cert-usage-history-v1'
+  const loadUsageHistory=()=>{try{const raw=JSON.parse(localStorage.getItem(usageHistoryKey)||'{}');return raw&&typeof raw==='object'?raw:{}}catch{return{}}}
+  function recordUsage(){
+    const history=loadUsageHistory()
+    if(typeof usingDemo!=='undefined'&&usingDemo)return history // liste de démonstration : ne compte pas comme un usage réel
+    const today=new Date().toISOString().slice(0,10);let changed=false
+    for(const key of usedCardKeys()){if(history[key]!==today){history[key]=today;changed=true}}
+    if(changed)try{localStorage.setItem(usageHistoryKey,JSON.stringify(history))}catch{}
+    return history
+  }
+  let usageHistory=recordUsage()
+  const everUsed=card=>Object.prototype.hasOwnProperty.call(usageHistory,card)
   const isUnitCard=card=>!!weaponProfiles[card]?.unitStats||entries.some(entry=>norm(entry.unit.name)===card)||Object.values(rankCatalog).some(cards=>cards.includes(card));
   // --- Deuxième avis et désaccords de mots-clés (voir docs/PROCESSUS-VERIFICATION.md) ---
   // crosscheck : écarts détectés avec Legion Helper (instantané src/data/crosscheckTakras.json) ;
@@ -115,7 +131,7 @@
   const aiFlagged=card=>{const review=aiOf(card);return (!!review&&review.status!=='relue')||hqDiffs(card).length>0}
   const aiBadge=card=>{const review=aiOf(card),hq=hqDiffs(card).length?' · ⚠ Legion HQ : '+hqDiffs(card).length+' écart(s)':'';if(!review)return hq;return hq+(review.status==='corrigee'?' · ⚠ IA : corrigée, à confirmer':review.status==='illisible'?' · ⚠ IA : illisible, à lire sur la carte':' · IA : relue, aucun écart')}
   const aiPanel=card=>{const review=aiOf(card);if(!review)return '';const cls=review.status==='relue'?'ai-ok':'ai-flag';return '<div class="cert-ai '+cls+'"><strong>'+(review.status==='corrigee'?'⚠ Corrigée par la relecture IA : à confirmer sur le visuel':review.status==='illisible'?'⚠ Relecture IA : partie illisible, à lire sur la carte':'Relecture IA : aucun écart trouvé')+'</strong><small>'+escapeHtml(review.note)+'</small></div>'}
-  const isInArmy=card=>usedCardKeys().has(card)
+  const isInArmy=card=>everUsed(card)||usedCardKeys().has(card)
   const flagText=(card,p)=>[isInArmy(card)?'Dans vos listes':'',crosscheckFor(card)?'Écart Legion Helper':'',conflictFor(card)?'Base ≠ certification':'',!p.fullCardCertification?'Non certifiée':''].filter(Boolean).map(text=>' · <span class="cert-flag">'+text+'</span>').join('')
   const priority=([card,p])=>(aiFlagged(card)?-8:0)+(isInArmy(card)?0:4)+(crosscheckFor(card)||conflictFor(card)?0:2)+(p.fullCardCertification?0:1)+(isUnitCard(card)?0:.5)
   const passesFilter=([card,p])=>certFilter==='army'?isInArmy(card):certFilter==='gaps'?!!(crosscheckFor(card)||conflictFor(card)):certFilter==='todo'?!p.fullCardCertification:certFilter==='ai'?aiFlagged(card):true
@@ -358,7 +374,7 @@
     const inLists=profiles().filter(([card])=>isInArmy(card));
     if(!inLists.length)return '<p class="notice cert-scope">Aucune liste importée : la certification porte sur toutes les cartes du catalogue. Importez une liste pour ne certifier que ce qui sert en partie.</p>';
     const done=inLists.filter(([card,p])=>pendingFor(card,p)===0||hasQueuedCard(card)).length,easy=inLists.filter(([card])=>isConcordant(card)).length;
-    return '<p class="notice cert-scope"><strong>Vos listes : '+inLists.length+' carte(s)</strong> · '+done+' certifiée(s) ou prête(s) · '+easy+' concordante(s) (relue sans écart, Legion HQ et Legion Helper d’accord) · '+(inLists.length-done-easy)+' à examiner. Les autres cartes du catalogue ne servent pas dans vos listes : elles sont sous le filtre « Toutes ».</p>'
+    return '<p class="notice cert-scope"><strong>Vos listes : '+inLists.length+' carte(s)</strong> · '+done+' certifiée(s) ou prête(s) · '+easy+' concordante(s) (relue sans écart, Legion HQ et Legion Helper d’accord) · '+(inLists.length-done-easy)+' à examiner. Cumulé sur toutes les listes déjà chargées sur cette tablette, pas seulement la partie du jour. Les autres cartes du catalogue ne servent pas dans vos listes : elles sont sous le filtre « Toutes ».</p>'
   }
   function concordantButton(){const n=profiles().filter(([card])=>isConcordant(card)).length;return '<button type="button" class="primary" id="confirmConcordant" '+(n?'':'disabled')+'>✓ Confirmer les '+n+' carte(s) concordante(s) de mes listes</button>'}
   function groupedPending(pending,cardButton){

@@ -564,7 +564,7 @@ assert.match(app, /const secondaryScreenOpen=.*certification-open.*live-game-rep
 assert.match(app, /document\.visibilityState!=='visible'\|\|secondaryScreenOpen\(\)/, 'La synchronisation périodique ne doit jamais fermer la certification')
 assert.match(app, /if\(!secondaryScreenOpen\(\)\)location\.reload\(\)/, 'Une mise à jour de liste ne doit pas recharger la page pendant la certification')
 assert.match(index, /upgrades\.css\?v=2/, 'Le déplacement du bouton de fermeture doit invalider son cache CSS')
-assert.match(index, /certification\.js\?v=97/, 'La certification V2 doit invalider le cache de son interface')
+assert.match(index, /certification\.js\?v=98/, 'La certification V2 doit invalider le cache de son interface')
 assert.match(certificationUiSource, /function cfRow\(card,label,appText,hqText,control/, 'La certification doit proposer une fiche par carte avec « Appli » et « Legion HQ » devant chaque champ')
 assert.match(certificationUiSource, /CERTIFIER TOUTE LA CARTE EN UNE FOIS/, 'La carte complète doit pouvoir être validée en une seule action')
 assert.match(certificationUiSource, /\['identity','visual','stats','weapons','conversions','keywords'\]/, 'Les six familles de données doivent être confirmées')
