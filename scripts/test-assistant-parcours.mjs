@@ -1643,6 +1643,80 @@ scenario('Certification : usage réel retient les cartes déjà jouées même ap
   second.window.close()
 })
 
+scenario('Certification : carte inconnue du catalogue -- alias vers une carte connue, puis nouvelle carte complète', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Carte Totalement Imaginaire', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click, settle } = app
+  const setInputValue = async (selector, value) => {
+    const input = $(selector)
+    assert.ok(input, `champ introuvable : ${selector}`)
+    input.value = value
+    input.dispatchEvent(new app.window.Event('input', { bubbles: true }))
+    input.dispatchEvent(new app.window.Event('change', { bubbles: true }))
+    await settle()
+  }
+
+  await click('#certification')
+  assert.match(text($('.cert-status-section.unknown')), /Cartes inconnues du catalogue/, 'la section des cartes inconnues doit apparaître')
+  assert.match(text($('.cert-status-section.unknown')), /Carte Totalement Imaginaire/, 'la carte importée sans visuel ni dés doit être listée comme inconnue')
+  await click('[data-unknown-card]')
+  assert.match(text($('h2')), /Carte Totalement Imaginaire/i, 'l’écran « carte inconnue » doit reprendre le nom importé')
+
+  // --- Chemin « C’est la même carte que… » : alias vers une carte déjà connue (Stormtroopers). ---
+  await click('[data-unknown-action="pick"]')
+  assert.ok($('#aliasSearch'), 'le champ de recherche d’alias doit être affiché')
+  await setInputValue('#aliasSearch', 'stormtroopers')
+  const pickButton = $$('[data-alias-pick]').find((b) => /stormtroopers/i.test(text(b)))
+  assert.ok(pickButton, 'Stormtroopers doit apparaître dans les résultats de recherche d’alias : ' + $$('[data-alias-pick]').map((b) => text(b)).join(', '))
+  await click(pickButton)
+  await click('[data-unknown-card]')
+  assert.match(text($('.notice')), /Alias vers/, 'l’alias choisi doit être mémorisé et rappelé sur l’écran de la carte')
+  assert.ok(app.window.swlCertification.batchCount() >= 1, 'un alias en attente doit compter dans le lot à envoyer')
+
+  // --- Retiré du lot : l’alias ne doit plus être proposé nulle part. ---
+  await click('[data-unknown-action="clear"]')
+  await click('[data-unknown-card]')
+  assert.ok(!$('.notice'), 'aucun alias ne doit plus être rappelé une fois retiré du lot : ' + text($('.notice')))
+
+  // --- Chemin « C’est une nouvelle carte » : chaque garde-fou doit bloquer avant d’être toutes levées. ---
+  await click('[data-unknown-action="new"]')
+  assert.match(text($('h2')), /Carte Totalement Imaginaire/i)
+  let lastAlert = null
+  app.window.alert = (message) => { lastAlert = message }
+  await click('#confirmNewCard')
+  assert.match(lastAlert || '', /photo/i, 'sans photo, la validation doit être bloquée (nom déjà prérempli depuis le nom importé)')
+
+  const file = new app.window.File(['donnee-image-factice'], 'carte.jpg', { type: 'image/jpeg' })
+  const fileInput = $('#newCardImage')
+  Object.defineProperty(fileInput, 'files', { value: [file], configurable: true })
+  fileInput.dispatchEvent(new app.window.Event('change', { bubbles: true }))
+  await settle()
+  lastAlert = null
+  await click('#confirmNewCard')
+  assert.match(lastAlert || '', /défense/i, 'carte Unité : la couleur de défense doit être exigée')
+
+  await click('[data-newcard-defense="blanc"]')
+  await click('#addWeaponRow')
+  assert.ok($('[data-weapon-field="0:name"]'), 'une ligne d’arme doit apparaître')
+  lastAlert = null
+  await click('#confirmNewCard')
+  assert.match(lastAlert || '', /nom/i, 'une arme sans nom doit bloquer la validation (ou la retirer)')
+
+  await setInputValue('[data-weapon-field="0:name"]', 'Fusil de test')
+  await setInputValue('[data-weapon-field="0:range"]', '1-2')
+  lastAlert = null
+  await click('#confirmNewCard')
+  assert.equal(lastAlert, null, 'plus aucune alerte une fois le nom, la photo, la défense et l’arme renseignés : ' + lastAlert)
+  assert.ok(app.window.swlCertification.batchCount() >= 1, 'la nouvelle carte prête doit compter dans le lot à envoyer')
+
+  await click('[data-unknown-card]')
+  assert.match(text($('.notice')), /Nouvelle carte prête à envoyer/, 'l’écran doit rappeler que la nouvelle carte est prête')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 /* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {

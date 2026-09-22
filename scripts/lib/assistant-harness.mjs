@@ -46,6 +46,9 @@ export async function openAssistant(storage = {}) {
       window.scrollTo = () => {}
       window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', '') }
       window.HTMLDialogElement.prototype.close = function () { this.removeAttribute('open') }
+      // Aperçu d'une photo choisie dans le formulaire « nouvelle carte » de la certification (input file).
+      window.URL.createObjectURL ||= () => 'blob:jsdom-fake-url'
+      window.URL.revokeObjectURL ||= () => {}
       window.addEventListener('error', (event) => errors.push(String(event.message)))
     },
   })
