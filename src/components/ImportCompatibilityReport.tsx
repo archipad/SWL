@@ -1,15 +1,33 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { frenchCardName } from '../lib/cardNames';
 import { auditImportedList } from '../lib/importAudit';
 import type { ParsedList } from '../types';
 
 type SelfAuditFinding = { level: 'error' | 'warning'; scope: string; message: string };
 type SelfAuditResult = { errorCount: number; warningCount: number; findings: SelfAuditFinding[] };
-type SelfAuditState = { status: 'idle' } | { status: 'running' } | { status: 'done'; result: SelfAuditResult } | { status: 'timeout' } | { status: 'error'; message: string };
+type SelfAuditState = { status: 'idle' } | { status: 'running'; label: string } | { status: 'done'; result: SelfAuditResult } | { status: 'timeout' } | { status: 'error'; message: string };
+type SelfAuditOptions = { rounds?: number; variants?: boolean; timeoutMs?: number; label?: string };
+
+// Un seul audit à la fois, tous joueurs confondus : chaque liste a son propre bouton (donc son
+// propre état React), mais un audit joue de vraies attaques dans le vrai Assistant et sauvegarde/
+// restaure TOUT le stockage local -- deux audits lancés en même temps depuis deux fiches se
+// marcheraient dessus (chacun restaurerait par-dessus les écritures de l'autre). Ce verrou global,
+// partagé par toutes les fiches d'import de la page, empêche ce chevauchement.
+const selfAuditLock = { running: false, listeners: new Set<() => void>() };
+function setSelfAuditLock(value: boolean) { selfAuditLock.running = value; selfAuditLock.listeners.forEach((listener) => listener()); }
+function useAnySelfAuditRunning() {
+  return useSyncExternalStore(
+    (listener) => { selfAuditLock.listeners.add(listener); return () => selfAuditLock.listeners.delete(listener); },
+    () => selfAuditLock.running,
+  );
+}
 
 // Le vrai Assistant (jeu de cartes complet, moteur d'attaque) tourne dans un cadre caché : au-delà
 // de ce délai, on considère que quelque chose s'est mal passé plutôt que de bloquer la page indéfiniment.
 const SELF_AUDIT_TIMEOUT_MS = 6 * 60 * 1000;
+// L'audit approfondi (dés non nuls + plusieurs rounds) rejoue chaque couple arme/cible plusieurs
+// fois : il lui faut nettement plus de temps qu'une simple passe à jet vierge.
+const DEEP_SELF_AUDIT_TIMEOUT_MS = 15 * 60 * 1000;
 
 /**
  * Lance l'audit de partie complète (fiches + toutes les attaques possibles) dans un cadre caché
@@ -26,7 +44,10 @@ function useSelfAudit() {
   // quand même pour ne jamais laisser le stockage local dans l'état intermédiaire de l'audit.
   useEffect(() => () => cleanupRef.current?.(), []);
 
-  const run = useCallback(() => {
+  const run = useCallback((options: SelfAuditOptions = {}) => {
+    if (selfAuditLock.running) return; // un audit tourne déjà ailleurs sur la page : voir selfAuditLock ci-dessus
+    setSelfAuditLock(true);
+    const { rounds = 1, variants = false, timeoutMs = SELF_AUDIT_TIMEOUT_MS, label = 'Audit en cours' } = options;
     const snapshot: Record<string, string> = {};
     for (let i = 0; i < window.localStorage.length; i += 1) {
       const key = window.localStorage.key(i);
@@ -40,7 +61,10 @@ function useSelfAudit() {
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
     iframe.setAttribute('aria-hidden', 'true');
-    iframe.src = './assistant/index.html?selfaudit=1';
+    const query = new URLSearchParams({ selfaudit: '1' });
+    if (rounds > 1) query.set('rounds', String(rounds));
+    if (variants) query.set('variants', '1');
+    iframe.src = `./assistant/index.html?${query.toString()}`;
 
     const warnBeforeUnload = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = ''; };
     window.addEventListener('beforeunload', warnBeforeUnload);
@@ -52,10 +76,11 @@ function useSelfAudit() {
       iframe.remove();
       restore();
       cleanupRef.current = null;
+      setSelfAuditLock(false);
     };
     cleanupRef.current = cleanup;
 
-    const timeoutId = window.setTimeout(() => { cleanup(); setState({ status: 'timeout' }); }, SELF_AUDIT_TIMEOUT_MS);
+    const timeoutId = window.setTimeout(() => { cleanup(); setState({ status: 'timeout' }); }, timeoutMs);
 
     function onMessage(event: MessageEvent) {
       if (event.source !== iframe.contentWindow || event.data?.source !== 'swl-self-audit') return;
@@ -66,7 +91,7 @@ function useSelfAudit() {
     window.addEventListener('message', onMessage);
 
     document.body.appendChild(iframe);
-    setState({ status: 'running' });
+    setState({ status: 'running', label });
   }, []);
 
   return { state, run };
@@ -74,12 +99,27 @@ function useSelfAudit() {
 
 function SelfAuditPanel({ safeForEngine }: { safeForEngine: boolean }) {
   const { state, run } = useSelfAudit();
+  const running = state.status === 'running';
+  // Un audit lancé depuis L'AUTRE fiche (Joueur 1 ou 2) doit aussi désactiver ces boutons : les deux
+  // partagent le même stockage local, lancer les deux en même temps les ferait se marcher dessus.
+  const anyRunning = useAnySelfAuditRunning();
   return <div className="self-audit-trigger">
-    <button type="button" className="btn btn-ghost" onClick={run} disabled={!safeForEngine || state.status === 'running'}>
+    <button type="button" className="btn btn-ghost" onClick={() => run({ label: 'Audit en cours (fiches et toutes les attaques possibles)' })} disabled={!safeForEngine || anyRunning}>
       🧪 Auditer cette liste avant de jouer
     </button>
     {!safeForEngine && <small className="import-audit-blocking">Certifiez d’abord les cartes ci-dessus : l’audit rejoue de vraies attaques, il lui faut des dés fiables.</small>}
-    {state.status === 'running' && <p className="self-audit-status self-audit-running">Audit en cours (fiches et toutes les attaques possibles)… jusqu’à quelques minutes selon la taille de la liste. Ne fermez pas cet onglet.</p>}
+
+    <div className="self-audit-deep">
+      <p className="self-audit-deep-intro">
+        <strong>Audit approfondi</strong> : rejoue en plus chaque couple arme/cible avec un jet non nul (Impact, Perforant, Létal, Primitif, Armure, Bouclier) et deux rounds de suite sans réinitialiser la Suppression ni les cartes inclinées — ce qui fait apparaître des situations qu’un round frais ne peut jamais produire (Discret une fois de la Suppression accumulée, effets « une fois par partie » déjà consommés). Plus lent : 5 à 15 minutes selon la taille de la liste.
+      </p>
+      <button type="button" className="btn btn-ghost" onClick={() => run({ rounds: 2, variants: true, timeoutMs: DEEP_SELF_AUDIT_TIMEOUT_MS, label: 'Audit approfondi en cours (dés non nuls, 2 rounds)' })} disabled={!safeForEngine || anyRunning}>
+        🔬 Audit approfondi (dés non nuls, 2 rounds)
+      </button>
+      {anyRunning && !running && <small className="self-audit-status">Un audit tourne déjà pour l’autre liste : attendez qu’il se termine.</small>}
+    </div>
+
+    {running && <p className="self-audit-status self-audit-running">{state.label}… ne fermez pas cet onglet.</p>}
     {state.status === 'timeout' && <p className="self-audit-status self-audit-fail">L’audit n’a pas répondu à temps et a été arrêté. Réessayez ; si ça persiste, lancez <code>node scripts/audit-list-playthrough.mjs</code> pour un diagnostic plus détaillé.</p>}
     {state.status === 'done' && <div className={`self-audit-status ${state.result.errorCount ? 'self-audit-fail' : 'self-audit-ok'}`}>
       <p><strong>{state.result.errorCount ? `${state.result.errorCount} problème(s) trouvé(s)` : '✓ Aucun blocage ni mot-clé manquant'}</strong>{!!state.result.warningCount && ` · ${state.result.warningCount} avertissement(s) non bloquant(s)`}</p>

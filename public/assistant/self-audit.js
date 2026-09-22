@@ -1,22 +1,36 @@
-/* Audit de partie complète, PILOTÉ DANS LE NAVIGATEUR (22/09/2026) : version de
-   scripts/audit-list-playthrough.mjs qui tourne directement dans cette page, pour être
-   déclenchée depuis l'écran d'import (src/components/ImportCompatibilityReport.tsx) sans
+/* Audit de partie complète, PILOTÉ DANS LE NAVIGATEUR (22/09/2026, étendu le 22/09/2026) :
+   version de scripts/audit-list-playthrough.mjs qui tourne directement dans cette page, pour
+   être déclenchée depuis l'écran d'import (src/components/ImportCompatibilityReport.tsx) sans
    terminal ni build. N'existe et n'agit QUE si l'URL contient ?selfaudit=1 (chargée dans un
    cadre caché par la page d'import, ou consultable directement pour un contrôle manuel).
    Le pilotage (portée, contrôle de tir, contrôles de ciblage, dés, couvert, modificateurs)
    reprend exactement la même logique que scripts/lib/auto-attack.mjs -- si l'une évolue,
    l'autre doit suivre. Rejoue :
      1. La fiche de chaque unité (et de ses améliorations) des deux camps actuellement
-        chargés : chaque mot-clé imprimé doit être visible sur la fiche.
-     2. Une attaque complète pour chaque arme de chaque unité, contre chaque unité adverse,
-        dans les deux sens, jusqu'à l'écran final ou un blocage réel.
-     3. Les actions de fiche disponibles sans configuration préalable, une fois chacune.
+        chargés : chaque mot-clé imprimé doit être visible sur la fiche. Une seule fois.
+     2. UNE attaque complète pour chaque arme de chaque unité, contre chaque unité adverse,
+        dans les deux sens, jusqu'à l'écran final ou un blocage réel. Jet vierge (0 touche,
+        0 critique) par défaut -- rapide, mais n'exerce jamais les mécaniques qui n'agissent
+        qu'avec un résultat (Impact, Perforant, Létal, Primitif, Armure, Bouclier).
+     2b. Avec ?variants=1 : chaque couple arme/cible portant un de ces mots-clés à seuil est
+        REJOUÉ une seconde fois avec un jet d'attaque rempli au maximum de critiques, pour de
+        vraies blessures.
+     3. Avec ?rounds=N (N>1) : les étapes 2 et 2b sont rejouées round après round SANS remettre
+        à zéro la Suppression ni les cartes inclinées/supprimées (comme une vraie partie) --
+        seuls les jetons de round expirent entre deux rounds (reconcileRoundEffects, la même
+        fonction que l'écran « Phases du round »).
+     4. Les actions de fiche disponibles sans configuration préalable, une fois chacune, après
+        le dernier round.
    Aucune donnée n'est modifiée de façon durable : la page qui déclenche cet audit (dans un
    cadre caché) est responsable de sauvegarder puis restaurer le stockage local autour de son
    exécution -- voir ImportCompatibilityReport.tsx. */
 (() => {
   const params = new URLSearchParams(location.search)
   if (params.get('selfaudit') !== '1') return
+  const rounds = Math.max(1, Number(params.get('rounds') || 1))
+  const variantsEnabled = params.get('variants') === '1'
+  // Mots-clés qui ne s'exécutent vraiment qu'avec un résultat de dé non nul (voir étape 2b).
+  const THRESHOLD_KEYWORDS = new Set(['impact-x', 'perforant-x', 'letal-x', 'primitif', 'armure-x', 'bouclier-x', 'anti-materiel-x', 'anti-personnel-x'])
 
   const errors = []
   window.addEventListener('error', (event) => errors.push(String(event.message)))
@@ -46,8 +60,11 @@
   const logLines = []
   const logPanel = () => $('#selfAuditLog')
   const log = (line) => { logLines.push(line); const panel = logPanel(); if (panel) { panel.textContent = logLines.join('\n'); panel.scrollTop = panel.scrollHeight } }
+  const modeDescription = rounds > 1 || variantsEnabled
+    ? `Audit approfondi : ${rounds} round(s)${variantsEnabled ? ', dés non nuls sur les mécaniques à seuil' : ''}. Peut prendre plusieurs minutes.`
+    : 'Rejoue les fiches et toutes les attaques possibles (jet vierge, 1 round).'
   const render = (extra = '') => {
-    root.innerHTML = `<section class="self-audit"><span class="kicker">AUDIT AUTOMATIQUE</span><h1>Contrôle de la liste en cours</h1><p>Rejoue les fiches et toutes les attaques possibles. Ne fermez pas cet onglet.</p>${extra}<pre id="selfAuditLog"></pre></section>`
+    root.innerHTML = `<section class="self-audit"><span class="kicker">AUDIT AUTOMATIQUE</span><h1>Contrôle de la liste en cours</h1><p>${modeDescription} Ne fermez pas cet onglet.</p>${extra}<pre id="selfAuditLog"></pre></section>`
     logPanel().textContent = logLines.join('\n')
   }
   render()
@@ -130,6 +147,8 @@
   const shortName = (id) => norm((keywordNames[id] || id).split(':')[0].replace(/\s+X\b.*$/i, ''))
   const sideUnits = (sideId) => entries.filter((entry) => entry.army === sideId && entry.occurrence === 1)
   const resetToPicker = async () => { attackState = null; attackStep = 0; attacker = null; defender = null; stage = 1; stageWipe = true; pick('attacker'); await settle() }
+  const entryHasThresholdKeyword = (entry) => [entry.unit.name, ...(entry.unit.upgrades || []).map((upgrade) => upgrade.name)]
+    .some((name) => (window.SWL_REFERENCE.tags[cardKey(name)] || []).some((tag) => THRESHOLD_KEYWORDS.has(tag.keywordId)))
 
   async function run() {
     const sideIds = [...new Set(entries.map((entry) => entry.army))]
@@ -167,40 +186,67 @@
     }
     log(`${sheetsChecked} fiche(s) contrôlée(s).`)
 
-    log('\n--- Attaques : chaque arme, contre chaque unité adverse, dans les deux sens ---')
     let attacksRun = 0, attacksBlocked = 0, attacksWithNewErrors = 0
+    let variantsRun = 0, variantsBlocked = 0, variantsWithNewErrors = 0
     const cardFxSeen = new Set()
-    for (const [attackerSide, defenderSide] of [[sideIds[0], sideIds[1]], [sideIds[1], sideIds[0]]]) {
-      selectedArmy = attackerSide
-      pick('attacker')
-      await settle()
-      for (const entry of sideUnits(attackerSide)) {
-        const cards = [entry.unit.name, ...(entry.unit.upgrades || []).map((upgrade) => upgrade.name)]
-        const weapons = cards.flatMap((card) => (profileFor(card)?.weapons || []).map((weapon, index) => ({ card, key: norm(card) + ':' + index, name: weapon.name, variable: weapon.dice === 'variable' })))
-        if (!weapons.length) { say('warning', 'armes', `${entry.unit.name} : aucune arme exploitable par le moteur`); continue }
-        for (const weapon of weapons) {
-          if (weapon.variable) { say('warning', 'armes', `${entry.unit.name} / ${weapon.name} : réserve variable, non pilotée par cet audit`); continue }
-          for (const target of sideUnits(defenderSide)) {
-            await click($(`.unit-tile[data-id="${entry.id}"]`))
-            dismissDialogs()
-            await click('#next')
-            await click($(`.unit-tile[data-id="${target.id}"]`))
-            dismissDialogs()
-            if (!$('.resolve-center')) { say('error', 'attaque', `${entry.unit.name} → ${target.unit.name} : l’écran de résolution ne s’est pas ouvert`); await resetToPicker(); continue }
-            const errorsBefore = errors.length
-            const result = await autoResolveAttack({ weaponKey: weapon.key })
-            attacksRun += 1
-            const newErrors = errors.slice(errorsBefore)
-            if (newErrors.length) { attacksWithNewErrors += 1; say('error', 'erreur', `${entry.unit.name} (${weapon.name}) → ${target.unit.name} : ${newErrors.join(' | ')}`) }
-            if (!result.finished) { attacksBlocked += 1; say('error', 'blocage', `${entry.unit.name} (${weapon.name}) → ${target.unit.name} : ${result.stuck}`) }
-            for (const key of result.cardFxUsed) cardFxSeen.add(key)
-            await resetToPicker()
+    for (let round = 1; round <= rounds; round += 1) {
+      if (round > 1) {
+        log(`\n=== Round ${round} : jetons de round remis à zéro, Suppression et cartes inclinées/supprimées conservées ===`)
+        localStorage.setItem('swl.game-tracker.v1', JSON.stringify({ round, activatedUnitIds: [] }))
+        if (typeof reconcileRoundEffects === 'function') reconcileRoundEffects()
+      }
+      log(`\n--- Round ${round}/${rounds} · Attaques : chaque arme, contre chaque unité adverse, dans les deux sens ---`)
+      for (const [attackerSide, defenderSide] of [[sideIds[0], sideIds[1]], [sideIds[1], sideIds[0]]]) {
+        selectedArmy = attackerSide
+        pick('attacker')
+        await settle()
+        for (const entry of sideUnits(attackerSide)) {
+          const cards = [entry.unit.name, ...(entry.unit.upgrades || []).map((upgrade) => upgrade.name)]
+          const weapons = cards.flatMap((card) => (profileFor(card)?.weapons || []).map((weapon, index) => ({ card, key: norm(card) + ':' + index, name: weapon.name, variable: weapon.dice === 'variable' })))
+          if (!weapons.length) { if (round === 1) say('warning', 'armes', `${entry.unit.name} : aucune arme exploitable par le moteur`); continue }
+          for (const weapon of weapons) {
+            if (weapon.variable) { if (round === 1) say('warning', 'armes', `${entry.unit.name} / ${weapon.name} : réserve variable, non pilotée par cet audit`); continue }
+            for (const target of sideUnits(defenderSide)) {
+              await click($(`.unit-tile[data-id="${entry.id}"]`))
+              dismissDialogs()
+              await click('#next')
+              await click($(`.unit-tile[data-id="${target.id}"]`))
+              dismissDialogs()
+              if (!$('.resolve-center')) { say('error', 'attaque', `round ${round} : ${entry.unit.name} → ${target.unit.name} : l’écran de résolution ne s’est pas ouvert`); await resetToPicker(); continue }
+              const errorsBefore = errors.length
+              const result = await autoResolveAttack({ weaponKey: weapon.key })
+              attacksRun += 1
+              const newErrors = errors.slice(errorsBefore)
+              if (newErrors.length) { attacksWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} : ${newErrors.join(' | ')}`) }
+              if (!result.finished) { attacksBlocked += 1; say('error', 'blocage', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} : ${result.stuck}`) }
+              for (const key of result.cardFxUsed) cardFxSeen.add(key)
+              await resetToPicker()
+
+              // --- 2b. Mécanique à seuil : rejouée une seconde fois avec un jet non nul plutôt que vierge. ---
+              if (variantsEnabled && (entryHasThresholdKeyword(entry) || entryHasThresholdKeyword(target))) {
+                await click($(`.unit-tile[data-id="${entry.id}"]`))
+                dismissDialogs()
+                await click('#next')
+                await click($(`.unit-tile[data-id="${target.id}"]`))
+                dismissDialogs()
+                if (!$('.resolve-center') && $('.overview.defense')) { await resetToPicker() } else if ($('.resolve-center')) {
+                  const errorsBefore2 = errors.length
+                  const variant = await autoResolveAttack({ weaponKey: weapon.key, diceMode: 'max-hits' })
+                  variantsRun += 1
+                  const newErrors2 = errors.slice(errorsBefore2)
+                  if (newErrors2.length) { variantsWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} [dés non nuls] : ${newErrors2.join(' | ')}`) }
+                  if (!variant.finished) { variantsBlocked += 1; say('error', 'blocage', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} [dés non nuls] : ${variant.stuck}`) }
+                  await resetToPicker()
+                }
+              }
+            }
           }
         }
+        log(`  … ${attacksRun} attaque(s) rejouée(s) au total`)
       }
-      log(`  … ${attacksRun} attaque(s) rejouée(s)`)
     }
-    log(`${attacksRun} attaque(s) rejouée(s), ${attacksBlocked} blocage(s), ${attacksWithNewErrors} avec une erreur JavaScript, ${cardFxSeen.size} effet(s) de carte exercé(s).`)
+    log(`${attacksRun} attaque(s) rejouée(s) (jet vierge), ${attacksBlocked} blocage(s), ${attacksWithNewErrors} avec une erreur JavaScript, ${cardFxSeen.size} effet(s) de carte exercé(s).`)
+    if (variantsEnabled) log(`${variantsRun} variante(s) à jet non nul rejouée(s), ${variantsBlocked} blocage(s), ${variantsWithNewErrors} avec une erreur JavaScript.`)
 
     log('\n--- Actions de fiche disponibles immédiatement ---')
     let actionsRun = 0
