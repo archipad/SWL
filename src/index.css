@@ -1389,3 +1389,11 @@ body:has(.app-game-tracker){min-height:100vh;background-color:#0a0e15;background
 .import-audit-details ul{margin:7px 0 0;padding-left:18px;color:#ffc36f;font-size:.78rem}
 .import-audit-blocking{margin:2px 0 0;padding:9px;border-left:3px solid #ff9d22;background:#2b1c10;color:#ffd097;font-size:.78rem}
 .import-audit-action{justify-self:start;margin-top:4px;text-decoration:none}
+.self-audit-trigger{margin-top:10px;padding-top:10px;border-top:1px solid #263c4b;display:grid;gap:7px}
+.self-audit-status{font-size:.8rem}
+.self-audit-status ul{margin:6px 0 0;padding-left:18px;display:grid;gap:3px}
+.self-audit-running{color:#72d8f7}
+.self-audit-ok{color:#62f0aa}
+.self-audit-fail{color:#ffb34d}
+.self-audit-finding-error{color:#ff9d95}
+.self-audit-finding-warning{color:#ffc36f}

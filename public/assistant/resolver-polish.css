@@ -615,3 +615,11 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 .resolve-center .target-check-card .tc-ask { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
 .resolve-center .target-check-card .tc-ask span { flex: 1 1 100%; color: #ffd9a8; }
 .resolve-center .target-check-card .tc-ask button { min-width: 84px; min-height: 42px; }
+
+/* Audit automatique piloté par la page d'import (22/09/2026) : écran plein cadre, log défilant. */
+.self-audit { max-width: 820px; margin: 16px auto; display: grid; gap: 10px; }
+.self-audit h1 { margin: 2px 0; }
+.self-audit pre#selfAuditLog { max-height: 55vh; overflow: auto; white-space: pre-wrap; background: #050807; border: 1px solid var(--line); padding: 12px; font: 13px/1.5 'Share Tech Mono', monospace; color: var(--text); }
+.self-audit-ok { color: #73d13d; }
+.self-audit-fail { color: #ff6b6b; }
+.self-audit-help { color: var(--muted); }
