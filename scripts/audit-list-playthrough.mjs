@@ -13,9 +13,13 @@
         Le jet est laissé vierge (0 touche, 0 critique) : rapide, mais n'exerce jamais les
         mécaniques qui n'agissent qu'avec un résultat -- voir l'étape 2b.
      2b. Pour les couples arme/cible où l'attaquant ou la cible porte un mot-clé à seuil (Impact,
-        Perforant, Létal, Primitif, Armure, Bouclier), REJOUE l'attaque une seconde fois avec un
-        jet d'attaque rempli au maximum de critiques : de vraies blessures sont infligées, ce qui
-        exécute ces mécaniques pour de vrai plutôt que de les laisser à 0 en permanence.
+        Perforant, Létal, Primitif, Armure, Bouclier), REJOUE l'attaque deux fois de plus avec un
+        jet d'attaque rempli au maximum de critiques (modificateurs Impact/Armure/Boucliers aussi
+        poussés à leur maximum) : une fois en laissant la défense vierge (de vraies blessures
+        passent), une fois en remplissant aussi le jet de défense au maximum de blocages (tout est
+        bloqué malgré les critiques -- Bouclier, Coup de Chance, Tenir Bon...). À elles deux, ces
+        variantes exercent les mécaniques que le jet vierge de l'étape 2 ne peut jamais atteindre,
+        côté attaque comme côté défense.
      3. Les actions de fiche (mots-clés hors combat, effets de carte) disponibles sans configuration
         préalable, une fois chacune. Faite une seule fois, après le dernier round.
    Avec --rounds 2 ou plus, les étapes 2 et 2b sont rejouées round après round SANS remettre à zéro
@@ -155,6 +159,18 @@ try {
     return n + uniqueUnits(attackerSide.list).reduce((m, unit) => m + weaponsOf(unit).filter((w) => !w.variable).length * uniqueUnits(defenderSide.list).length, 0)
   }, 0)
   const combosTotal = totalCombos()
+  // Navigue jusqu'à l'écran de résolution pour ce couple ; renvoie false (et journalise) si un
+  // clic échoue en route (tuile absente) ou si la cible a déjà été vaincue par une variante
+  // précédente (les vraies blessures des variantes peuvent achever une unité en cours de route).
+  const openAttackScreen = async (round, attackerSide, unit, defenderSide, target, suffix) => {
+    if (!(await clickTileById(entryIdFor(attackerSide.id, unit.name), unit.name))) return false
+    await app.click('#next')
+    if (!(await clickTileById(entryIdFor(defenderSide.id, target.name), target.name))) { await resetToPicker(); return false }
+    if (app.$('.resolve-center')) return true
+    if (app.$('.overview.defense')) { if (suffix) say('warning', 'variante', `round ${round} : ${target.name} déjà vaincue par une variante précédente : cette variante est ignorée`); else say('error', 'attaque', `round ${round} : ${unit.name} → ${target.name} : l’écran de résolution ne s’est pas ouvert`) }
+    await resetToPicker()
+    return false
+  }
 
   for (let round = 1; round <= rounds; round += 1) {
     if (round > 1) {
@@ -171,10 +187,7 @@ try {
           if (weapon.variable) { if (round === 1) say('warning', 'armes', `${unit.name} / ${weapon.name} : réserve variable, non pilotée par cet audit automatique (à vérifier à la main)`); continue }
           for (const target of uniqueUnits(defenderSide.list)) {
             if (attacksRun >= maxAttacks * rounds) { say('warning', 'limite', `Plafond de ${maxAttacks * rounds} attaques atteint : audit interrompu avant la fin de la matrice (relancez avec --max-attacks pour aller plus loin)`); break outer }
-            if (!(await clickTileById(entryIdFor(attackerSide.id, unit.name), unit.name))) continue
-            await app.click('#next')
-            if (!(await clickTileById(entryIdFor(defenderSide.id, target.name), target.name))) { await resetToPicker(); continue }
-            if (!app.$('.resolve-center')) { say('error', 'attaque', `round ${round} : ${unit.name} → ${target.name} : l’écran de résolution ne s’est pas ouvert`); await resetToPicker(); continue }
+            if (!(await openAttackScreen(round, attackerSide, unit, defenderSide, target, false))) continue
             const errorsBefore = app.errors.length
             const result = await autoResolveAttack(app, { weaponKey: weapon.key })
             attacksRun += 1
@@ -185,22 +198,20 @@ try {
             await resetToPicker()
             if (attacksRun % 10 === 0) process.stdout.write(`  … ${attacksRun} attaque(s) rejouée(s) au total\n`)
 
-            // --- 2b. Mécanique à seuil : rejouée une seconde fois avec un jet non nul plutôt que vierge. ---
+            // --- 2b. Mécanique à seuil : rejouée avec un jet non nul plutôt que vierge, côté attaque
+            //     seule ('max-attack' : de vraies blessures passent) puis côté défense aussi
+            //     ('max-both' : tout est bloqué malgré des critiques -- Bouclier, Coup de Chance...). ---
             if (unitHasThresholdKeyword(unit) || unitHasThresholdKeyword(target)) {
-              if (variantsRun >= maxVariants) { say('warning', 'limite', `Plafond de ${maxVariants} variantes de dés atteint (relancez avec --max-variants pour aller plus loin)`) } else {
-                if (!(await clickTileById(entryIdFor(attackerSide.id, unit.name), unit.name))) continue
-                await app.click('#next')
-                if (!(await clickTileById(entryIdFor(defenderSide.id, target.name), target.name))) { await resetToPicker(); continue }
-                if (!app.$('.resolve-center') && app.$('.overview.defense')) { say('warning', 'variante', `round ${round} : ${target.name} déjà vaincue par une variante précédente (les vraies blessures des variantes peuvent achever une unité) : cette variante est ignorée`); await resetToPicker(); continue }
-                if (app.$('.resolve-center')) {
-                  const errorsBefore2 = app.errors.length
-                  const variant = await autoResolveAttack(app, { weaponKey: weapon.key, diceMode: 'max-hits' })
-                  variantsRun += 1
-                  const newErrors2 = app.errors.slice(errorsBefore2)
-                  if (newErrors2.length) { variantsWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} [dés non nuls] : ${newErrors2.join(' | ')}`) }
-                  if (!variant.finished) { variantsBlocked += 1; say('error', 'blocage', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} [dés non nuls] : ${variant.stuck}`) }
-                  await resetToPicker()
-                }
+              for (const diceMode of ['max-attack', 'max-both']) {
+                if (variantsRun >= maxVariants) { say('warning', 'limite', `Plafond de ${maxVariants} variantes de dés atteint (relancez avec --max-variants pour aller plus loin)`); break }
+                if (!(await openAttackScreen(round, attackerSide, unit, defenderSide, target, true))) continue
+                const errorsBefore2 = app.errors.length
+                const variant = await autoResolveAttack(app, { weaponKey: weapon.key, diceMode })
+                variantsRun += 1
+                const newErrors2 = app.errors.slice(errorsBefore2)
+                if (newErrors2.length) { variantsWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} [${diceMode}] : ${newErrors2.join(' | ')}`) }
+                if (!variant.finished) { variantsBlocked += 1; say('error', 'blocage', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} [${diceMode}] : ${variant.stuck}`) }
+                await resetToPicker()
               }
             }
           }

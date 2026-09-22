@@ -113,7 +113,17 @@
       if (/Contrôle de Tir disponible/.test(issue)) { await click('[data-fire-control="true"]'); continue }
       if (/Choisissez le couvert observé/.test(issue)) { const none = $('[data-cover="none"]'); if (none) { await click(none); continue } }
       if (/Saisissez le jet de couvert/.test(issue)) { const confirm = $$('.phase-confirm').find((button) => /jet de couvert/i.test(text(button))); if (confirm) { await click(confirm); continue } }
-      if (/Validez les modifications/.test(issue)) { const confirm = $('[data-phase-confirm="mods"]'); if (confirm) { await click(confirm); continue } }
+      if (/Validez les modifications/.test(issue)) {
+        if (diceMode === 'max-attack' || diceMode === 'max-both') {
+          let filled = false
+          for (const id of ['activeShields', 'shieldHit', 'shieldCrit', 'impact', 'armor']) {
+            const input = $('#' + id)
+            if (input && Number(input.value) !== Number(input.max) && Number(input.max) > 0) { await setValue(id, input.max); filled = true }
+          }
+          if (filled) continue
+        }
+        const confirm = $('[data-phase-confirm="mods"]'); if (confirm) { await click(confirm); continue }
+      }
       if (/Cible interdite/.test(issue)) {
         const unlock = $('[data-target-unlock]')
         if (unlock) { await click(unlock); continue }
@@ -123,13 +133,19 @@
       if (/Répondez Oui ou Non/.test(issue)) { const pending = $$('[data-condition][data-value="true"]').find((button) => !button.classList.contains('on')); if (pending) { await click(pending); continue } }
       if (/Sabre Lancé/.test(issue)) { const cancel = $('[data-card-fx-undo]'); if (cancel) { await click(cancel); continue } return { finished: false, stuck: 'Sabre Lancé : saisie de dés spécifique non pilotée par cet audit', cardFxUsed } }
       if (/jet saisi contient|réserve en contient/.test(issue)) {
-        if (diceMode === 'max-hits') {
+        if (diceMode === 'max-attack' || diceMode === 'max-both') {
           const total = Number((issue.match(/réserve en contient (\d+)/) || [])[1])
           if (total) { await setValue('rollCrit', total); continue }
         }
         const all = $('[data-all-blank="roll"]'); if (all) { await click(all); continue }
       }
-      if (/jet de défense saisi contient|doivent être lancés/.test(issue)) { const all = $('[data-all-blank="def"]'); if (all) { await click(all); continue } }
+      if (/jet de défense saisi contient|doivent être lancés/.test(issue)) {
+        if (diceMode === 'max-both') {
+          const total = Number((issue.match(/mais (\d+) doivent être lancés/) || [])[1])
+          if (total) { await setValue('defBlock', total); continue }
+        }
+        const all = $('[data-all-blank="def"]'); if (all) { await click(all); continue }
+      }
       if (/Gardien doit saisir/.test(issue)) { const none = $('[data-guardian-id=""]'); if (none) { await click(none); continue } }
       if (/Coup de Chance|relances/.test(issue)) { attackState.rerolled = 0; attackState.defenseRerolled = 0; await nextAttack(); continue }
       return { finished: false, stuck: 'blocage non reconnu par l’audit : ' + issue, cardFxUsed }
@@ -207,12 +223,15 @@
           for (const weapon of weapons) {
             if (weapon.variable) { if (round === 1) say('warning', 'armes', `${entry.unit.name} / ${weapon.name} : réserve variable, non pilotée par cet audit`); continue }
             for (const target of sideUnits(defenderSide)) {
-              await click($(`.unit-tile[data-id="${entry.id}"]`))
-              dismissDialogs()
-              await click('#next')
-              await click($(`.unit-tile[data-id="${target.id}"]`))
-              dismissDialogs()
-              if (!$('.resolve-center')) { say('error', 'attaque', `round ${round} : ${entry.unit.name} → ${target.unit.name} : l’écran de résolution ne s’est pas ouvert`); await resetToPicker(); continue }
+              const openAttackScreen = async () => {
+                await click($(`.unit-tile[data-id="${entry.id}"]`))
+                dismissDialogs()
+                await click('#next')
+                await click($(`.unit-tile[data-id="${target.id}"]`))
+                dismissDialogs()
+                return !!$('.resolve-center')
+              }
+              if (!(await openAttackScreen())) { say('error', 'attaque', `round ${round} : ${entry.unit.name} → ${target.unit.name} : l’écran de résolution ne s’est pas ouvert`); await resetToPicker(); continue }
               const errorsBefore = errors.length
               const result = await autoResolveAttack({ weaponKey: weapon.key })
               attacksRun += 1
@@ -222,20 +241,18 @@
               for (const key of result.cardFxUsed) cardFxSeen.add(key)
               await resetToPicker()
 
-              // --- 2b. Mécanique à seuil : rejouée une seconde fois avec un jet non nul plutôt que vierge. ---
+              // --- 2b. Mécanique à seuil : rejouée avec un jet non nul plutôt que vierge, côté attaque
+              //     seule ('max-attack') puis côté défense aussi ('max-both'). ---
               if (variantsEnabled && (entryHasThresholdKeyword(entry) || entryHasThresholdKeyword(target))) {
-                await click($(`.unit-tile[data-id="${entry.id}"]`))
-                dismissDialogs()
-                await click('#next')
-                await click($(`.unit-tile[data-id="${target.id}"]`))
-                dismissDialogs()
-                if (!$('.resolve-center') && $('.overview.defense')) { await resetToPicker() } else if ($('.resolve-center')) {
+                for (const diceMode of ['max-attack', 'max-both']) {
+                  const opened = await openAttackScreen()
+                  if (!opened) { await resetToPicker(); continue }
                   const errorsBefore2 = errors.length
-                  const variant = await autoResolveAttack({ weaponKey: weapon.key, diceMode: 'max-hits' })
+                  const variant = await autoResolveAttack({ weaponKey: weapon.key, diceMode })
                   variantsRun += 1
                   const newErrors2 = errors.slice(errorsBefore2)
-                  if (newErrors2.length) { variantsWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} [dés non nuls] : ${newErrors2.join(' | ')}`) }
-                  if (!variant.finished) { variantsBlocked += 1; say('error', 'blocage', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} [dés non nuls] : ${variant.stuck}`) }
+                  if (newErrors2.length) { variantsWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} [${diceMode}] : ${newErrors2.join(' | ')}`) }
+                  if (!variant.finished) { variantsBlocked += 1; say('error', 'blocage', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} [${diceMode}] : ${variant.stuck}`) }
                   await resetToPicker()
                 }
               }

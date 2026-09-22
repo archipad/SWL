@@ -13,9 +13,14 @@
    - Couvert : aucun (le jet de couvert à 0 est toujours valide).
    - Dés : par défaut (mode 'blank'), remplis au total attendu via la case « vierge » -- 0 touche,
      0 critique, ce qui ne fait jamais de blessure et ne peut donc jamais exercer les mécaniques à
-     seuil (Impact, Perforant, Létal, Primitif, Armure). Mode 'max-hits' : le jet d'ATTAQUE est
-     rempli entièrement en critiques (la défense reste vierge) pour que des blessures réelles
-     soient infligées et que ces mécaniques s'exécutent pour de vrai (voir scripts/audit-list-playthrough.mjs).
+     seuil (Impact, Perforant, Létal, Primitif, Armure, Bouclier). Deux modes non vierges (voir
+     scripts/audit-list-playthrough.mjs) :
+       - 'max-attack' : jet d'ATTAQUE rempli entièrement en critiques, modificateurs optionnels
+         (Impact, Armure, Boucliers actifs/annulés) remplis à leur maximum affiché -- de vraies
+         blessures sont infligées et ces mécaniques s'exécutent pour de vrai. Défense vierge.
+       - 'max-both' : comme 'max-attack', mais le jet de DÉFENSE est aussi rempli au maximum de
+         blocages -- exerce le chemin « tout est bloqué malgré des critiques » (Coup de Chance,
+         Tenir Bon, Déflexion qui forcent un résultat de défense).
    - Effets de carte proposés (panneau bleu) : chaque bouton disponible est cliqué une fois. */
 const norm = (value) => String(value || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ').toLowerCase().replace(/\s+/g, ' ').trim()
 
@@ -37,8 +42,7 @@ async function pickRangeFor(app, weaponKey) {
  * @param {object} [opts]
  * @param {string} [opts.weaponKey]   data-key de l'arme à utiliser en priorité à l'étape 1
  * @param {number} [opts.maxSteps]    garde-fou anti-boucle
- * @param {'blank'|'max-hits'} [opts.diceMode]   'max-hits' remplit le jet d'attaque en critiques
- *        au lieu de le laisser vierge, pour de vraies blessures (voir en-tête du fichier)
+ * @param {'blank'|'max-attack'|'max-both'} [opts.diceMode]   voir en-tête du fichier
  * @returns {Promise<{finished:boolean, stuck:string, seen:Record<string,string>, cardFxUsed:string[]}>}
  */
 export async function autoResolveAttack(app, opts = {}) {
@@ -96,7 +100,19 @@ export async function autoResolveAttack(app, opts = {}) {
     if (/Contrôle de Tir disponible/.test(issue)) { await app.click('[data-fire-control="true"]'); continue }
     if (/Choisissez le couvert observé/.test(issue)) { const none = app.$('[data-cover="none"]'); if (none) { await app.click(none); continue } }
     if (/Saisissez le jet de couvert/.test(issue)) { const confirm = app.$$('.phase-confirm').find((button) => /jet de couvert/i.test(app.text(button))); if (confirm) { await app.click(confirm); continue } }
-    if (/Validez les modifications/.test(issue)) { const confirm = app.$('[data-phase-confirm="mods"]'); if (confirm) { await app.click(confirm); continue } }
+    if (/Validez les modifications/.test(issue)) {
+      if (diceMode === 'max-attack' || diceMode === 'max-both') {
+        // Pousse Impact, Armure et Boucliers à leur maximum affiché plutôt que de les laisser à 0 :
+        // sinon ces champs optionnels ne bloquent jamais et leur code n'est jamais vraiment exercé.
+        let filled = false
+        for (const id of ['activeShields', 'shieldHit', 'shieldCrit', 'impact', 'armor']) {
+          const input = app.$('#' + id)
+          if (input && Number(input.value) !== Number(input.max) && Number(input.max) > 0) { await app.setValue(id, input.max); filled = true }
+        }
+        if (filled) continue
+      }
+      const confirm = app.$('[data-phase-confirm="mods"]'); if (confirm) { await app.click(confirm); continue }
+    }
     if (/Cible interdite/.test(issue)) {
       const unlock = app.$('[data-target-unlock]')
       if (unlock) { await app.click(unlock); continue }
@@ -114,13 +130,19 @@ export async function autoResolveAttack(app, opts = {}) {
       return { finished: false, stuck: 'Sabre Lancé : saisie de dés spécifique non pilotée par cet audit', seen, cardFxUsed }
     }
     if (/jet saisi contient|réserve en contient/.test(issue)) {
-      if (diceMode === 'max-hits') {
+      if (diceMode === 'max-attack' || diceMode === 'max-both') {
         const total = Number((issue.match(/réserve en contient (\d+)/) || [])[1])
         if (total) { await app.setValue('rollCrit', total); continue }
       }
       const all = app.$('[data-all-blank="roll"]'); if (all) { await app.click(all); continue }
     }
-    if (/jet de défense saisi contient|doivent être lancés/.test(issue)) { const all = app.$('[data-all-blank="def"]'); if (all) { await app.click(all); continue } }
+    if (/jet de défense saisi contient|doivent être lancés/.test(issue)) {
+      if (diceMode === 'max-both') {
+        const total = Number((issue.match(/mais (\d+) doivent être lancés/) || [])[1])
+        if (total) { await app.setValue('defBlock', total); continue }
+      }
+      const all = app.$('[data-all-blank="def"]'); if (all) { await app.click(all); continue }
+    }
     if (/Gardien doit saisir/.test(issue)) {
       // Le Gardien est une option (jamais activée par défaut ici) : si elle l'a été par un effet de carte, on la désactive plutôt que de deviner un jet.
       const none = app.$('[data-guardian-id=""]')
