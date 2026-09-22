@@ -11,7 +11,11 @@
    - Contrôles de ciblage (Incognito, Discret…) qui POSENT une question : réponse NON (l'attaque
      continue) ; ceux qui BLOQUENT franchement : bouton de déblocage manuel (exerce ce mécanisme).
    - Couvert : aucun (le jet de couvert à 0 est toujours valide).
-   - Dés (attaque, défense) : remplis automatiquement au total attendu (case « vierge »).
+   - Dés : par défaut (mode 'blank'), remplis au total attendu via la case « vierge » -- 0 touche,
+     0 critique, ce qui ne fait jamais de blessure et ne peut donc jamais exercer les mécaniques à
+     seuil (Impact, Perforant, Létal, Primitif, Armure). Mode 'max-hits' : le jet d'ATTAQUE est
+     rempli entièrement en critiques (la défense reste vierge) pour que des blessures réelles
+     soient infligées et que ces mécaniques s'exécutent pour de vrai (voir scripts/audit-list-playthrough.mjs).
    - Effets de carte proposés (panneau bleu) : chaque bouton disponible est cliqué une fois. */
 const norm = (value) => String(value || '').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[’']/g, ' ').toLowerCase().replace(/\s+/g, ' ').trim()
 
@@ -33,10 +37,12 @@ async function pickRangeFor(app, weaponKey) {
  * @param {object} [opts]
  * @param {string} [opts.weaponKey]   data-key de l'arme à utiliser en priorité à l'étape 1
  * @param {number} [opts.maxSteps]    garde-fou anti-boucle
+ * @param {'blank'|'max-hits'} [opts.diceMode]   'max-hits' remplit le jet d'attaque en critiques
+ *        au lieu de le laisser vierge, pour de vraies blessures (voir en-tête du fichier)
  * @returns {Promise<{finished:boolean, stuck:string, seen:Record<string,string>, cardFxUsed:string[]}>}
  */
 export async function autoResolveAttack(app, opts = {}) {
-  const { weaponKey = null, maxSteps = 80 } = opts
+  const { weaponKey = null, maxSteps = 80, diceMode = 'blank' } = opts
   const seen = {}
   const cardFxUsed = []
   const add = (label, text) => { seen[label] = (seen[label] || '') + ' ' + text }
@@ -107,7 +113,13 @@ export async function autoResolveAttack(app, opts = {}) {
       if (cancel) { await app.click(cancel); continue }
       return { finished: false, stuck: 'Sabre Lancé : saisie de dés spécifique non pilotée par cet audit', seen, cardFxUsed }
     }
-    if (/jet saisi contient|réserve en contient/.test(issue)) { const all = app.$('[data-all-blank="roll"]'); if (all) { await app.click(all); continue } }
+    if (/jet saisi contient|réserve en contient/.test(issue)) {
+      if (diceMode === 'max-hits') {
+        const total = Number((issue.match(/réserve en contient (\d+)/) || [])[1])
+        if (total) { await app.setValue('rollCrit', total); continue }
+      }
+      const all = app.$('[data-all-blank="roll"]'); if (all) { await app.click(all); continue }
+    }
     if (/jet de défense saisi contient|doivent être lancés/.test(issue)) { const all = app.$('[data-all-blank="def"]'); if (all) { await app.click(all); continue } }
     if (/Gardien doit saisir/.test(issue)) {
       // Le Gardien est une option (jamais activée par défaut ici) : si elle l'a été par un effet de carte, on la désactive plutôt que de deviner un jet.

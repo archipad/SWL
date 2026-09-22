@@ -31,6 +31,14 @@
   }
   const dismissDialogs = () => $$('dialog').forEach((dialog) => dialog.remove())
   const nextAttack = async () => { await click('#nextAttack'); dismissDialogs(); await settle(60) }
+  const setValue = async (id, value) => {
+    const input = document.getElementById(id)
+    if (!input) throw new Error('champ introuvable : #' + id)
+    input.value = String(value)
+    input.dispatchEvent(new Event('input', { bubbles: true }))
+    input.dispatchEvent(new Event('change', { bubbles: true }))
+    await settle()
+  }
 
   const findings = []
   const say = (level, scope, message) => { findings.push({ level, scope, message }); log(`${level === 'error' ? '✗' : '⚠'} [${scope}] ${message}`) }
@@ -53,7 +61,7 @@
     }
     return false
   }
-  async function autoResolveAttack({ weaponKey = null, maxSteps = 80 } = {}) {
+  async function autoResolveAttack({ weaponKey = null, maxSteps = 80, diceMode = 'blank' } = {}) {
     const cardFxUsed = []
     let previousIssue = null, repeats = 0
     for (let i = 0; i < maxSteps; i += 1) {
@@ -97,7 +105,13 @@
       if (/Contrôle de ciblage : répondez/.test(issue)) { const no = $$('[data-target-ask$=":no"]')[0]; if (no) { await click(no); continue } }
       if (/Répondez Oui ou Non/.test(issue)) { const pending = $$('[data-condition][data-value="true"]').find((button) => !button.classList.contains('on')); if (pending) { await click(pending); continue } }
       if (/Sabre Lancé/.test(issue)) { const cancel = $('[data-card-fx-undo]'); if (cancel) { await click(cancel); continue } return { finished: false, stuck: 'Sabre Lancé : saisie de dés spécifique non pilotée par cet audit', cardFxUsed } }
-      if (/jet saisi contient|réserve en contient/.test(issue)) { const all = $('[data-all-blank="roll"]'); if (all) { await click(all); continue } }
+      if (/jet saisi contient|réserve en contient/.test(issue)) {
+        if (diceMode === 'max-hits') {
+          const total = Number((issue.match(/réserve en contient (\d+)/) || [])[1])
+          if (total) { await setValue('rollCrit', total); continue }
+        }
+        const all = $('[data-all-blank="roll"]'); if (all) { await click(all); continue }
+      }
       if (/jet de défense saisi contient|doivent être lancés/.test(issue)) { const all = $('[data-all-blank="def"]'); if (all) { await click(all); continue } }
       if (/Gardien doit saisir/.test(issue)) { const none = $('[data-guardian-id=""]'); if (none) { await click(none); continue } }
       if (/Coup de Chance|relances/.test(issue)) { attackState.rerolled = 0; attackState.defenseRerolled = 0; await nextAttack(); continue }

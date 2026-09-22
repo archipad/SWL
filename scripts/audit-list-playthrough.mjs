@@ -1,20 +1,34 @@
-/* Audit de PARTIE COMPLÈTE pour une liste importée (22/09/2026).
+/* Audit de PARTIE COMPLÈTE pour une liste importée (22/09/2026, étendu le 22/09/2026).
    Objectif : avant une partie, vérifier qu'AUCUN mot-clé, amélioration ou information ne pose
    problème pour les troupes réellement jouées -- pas seulement un échantillon de cartes de
    démonstration. Le vrai Assistant (app.js) est chargé dans jsdom, exactement comme
    test-assistant-parcours.mjs, mais piloté par un joueur générique (scripts/lib/auto-attack.mjs)
-   qui rejoue :
+   qui rejoue, pour chaque round demandé (--rounds, 1 par défaut) :
      1. La fiche de CHAQUE unité (et de ses améliorations) des deux listes : chaque mot-clé imprimé
         sur la carte doit être visible quelque part sur la fiche (« information au bon endroit »).
+        Fait une seule fois (l'information imprimée ne change pas d'un round à l'autre).
      2. UNE attaque complète pour CHAQUE arme de CHAQUE unité, contre CHAQUE unité adverse, dans les
         deux sens (liste A → liste B puis B → A) : portée, contrôle de tir, contrôles de ciblage,
         dés, couvert, modificateurs, défense, résumé -- jusqu'à l'écran final ou un blocage réel.
+        Le jet est laissé vierge (0 touche, 0 critique) : rapide, mais n'exerce jamais les
+        mécaniques qui n'agissent qu'avec un résultat -- voir l'étape 2b.
+     2b. Pour les couples arme/cible où l'attaquant ou la cible porte un mot-clé à seuil (Impact,
+        Perforant, Létal, Primitif, Armure, Bouclier), REJOUE l'attaque une seconde fois avec un
+        jet d'attaque rempli au maximum de critiques : de vraies blessures sont infligées, ce qui
+        exécute ces mécaniques pour de vrai plutôt que de les laisser à 0 en permanence.
      3. Les actions de fiche (mots-clés hors combat, effets de carte) disponibles sans configuration
-        préalable, une fois chacune.
+        préalable, une fois chacune. Faite une seule fois, après le dernier round.
+   Avec --rounds 2 ou plus, les étapes 2 et 2b sont rejouées round après round SANS remettre à zéro
+   la Suppression ni les cartes inclinées/supprimées (comme une vraie partie) -- seuls les pions de
+   round (Viser, Esquive, Adrénaline, Attente, jauge d'activation) sont remis à zéro entre deux
+   rounds, via la même fonction (reconcileRoundEffects) que l'écran « Phases du round ». Cela permet
+   de voir apparaître des situations qu'un round frais ne peut pas produire : Discret une fois de la
+   Suppression déjà accumulée, effets « une fois par partie » déjà consommés, etc.
 
    Usage :
      node scripts/audit-list-playthrough.mjs <liste.json> [autre-liste.json]
      node scripts/audit-list-playthrough.mjs --list scripts/fixtures/tabletop-admiral-empire.json
+     node scripts/audit-list-playthrough.mjs <liste.json> --rounds 3 --max-attacks 300
    Le fichier est le même texte qu'on colle dans l'écran d'import (export Tabletop Admiral, JSON
    ou texte). Si une seule liste est fournie, elle est dupliquée pour avoir un adversaire.
    Code de sortie 1 s'il reste des cartes non certifiées, un blocage ou une information absente. */
@@ -28,19 +42,24 @@ import { autoResolveAttack, norm } from './lib/auto-attack.mjs'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const args = process.argv.slice(2)
 const flag = (name) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : null }
-const files = args.filter((arg, i) => !arg.startsWith('--') && args[i - 1] !== '--list' && args[i - 1] !== '--max-attacks')
+const files = args.filter((arg, i) => !arg.startsWith('--') && !['--list', '--max-attacks', '--max-variants', '--rounds'].includes(args[i - 1]))
 const listArg = flag('--list')
 if (listArg) files.unshift(listArg)
 const maxAttacks = Number(flag('--max-attacks') || 400)
+const maxVariants = Number(flag('--max-variants') || 120)
+const rounds = Math.max(1, Number(flag('--rounds') || 1))
 
 if (!files.length) {
-  console.error('Usage : node scripts/audit-list-playthrough.mjs <liste.json> [autre-liste.json] [--max-attacks N]')
-  console.error('Exemple : node scripts/audit-list-playthrough.mjs scripts/fixtures/tabletop-admiral-empire.json scripts/fixtures/tabletop-admiral-rebel.json')
+  console.error('Usage : node scripts/audit-list-playthrough.mjs <liste.json> [autre-liste.json] [--rounds N] [--max-attacks N] [--max-variants N]')
+  console.error('Exemple : node scripts/audit-list-playthrough.mjs scripts/fixtures/tabletop-admiral-empire.json scripts/fixtures/tabletop-admiral-rebel.json --rounds 2')
   process.exit(1)
 }
 
 const findings = [] // { level: 'error'|'warning', scope, message }
 const say = (level, scope, message) => { findings.push({ level, scope, message }); console.log(`${level === 'error' ? '✗' : '⚠'} [${scope}] ${message}`) }
+
+// Mots-clés qui ne s'exécutent vraiment qu'avec un résultat de dé non nul (voir étape 2b ci-dessus).
+const THRESHOLD_KEYWORDS = new Set(['impact-x', 'perforant-x', 'letal-x', 'primitif', 'armure-x', 'bouclier-x', 'anti-materiel-x', 'anti-personnel-x'])
 
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom', optimizeDeps: { noDiscovery: true } })
 try {
@@ -81,6 +100,8 @@ try {
   const evalJson = (code) => JSON.parse(evalStr(`JSON.stringify(${code})`))
   const keywordNames = Object.fromEntries(evalJson('window.SWL_REFERENCE.keywords').map((keyword) => [keyword.id, keyword.name]))
   const shortName = (id) => norm((keywordNames[id] || id).split(':')[0].replace(/\s+X\b.*$/i, ''))
+  const cardTags = (name) => evalJson(`window.SWL_REFERENCE.tags[${JSON.stringify(evalStr(`cardKey(${JSON.stringify(name)})`))}]||[]`)
+  const unitHasThresholdKeyword = (unit) => [unit.name, ...unit.upgrades.map((upgrade) => upgrade.name)].some((name) => cardTags(name).some((tag) => THRESHOLD_KEYWORDS.has(tag.keywordId)))
 
   const setArmy = async (side) => { await app.click(app.$$('.army-switch button').find((button) => button.dataset.army === side) || app.$(`[data-army="${side}"]`)); }
   const resetToPicker = async () => { evalStr('attackState=null;attackStep=0;attacker=null;defender=null;stage=1;stageWipe=true;pick("attacker")'); await app.settle() }
@@ -96,6 +117,10 @@ try {
     await app.settle()
     return true
   }
+  const weaponsOf = (unit) => evalJson(`(() => {
+    const cards=[${JSON.stringify(unit.name)}, ...(${JSON.stringify(unit.upgrades.map((u) => u.name))})]
+    return cards.flatMap(card => (profileFor(card)?.weapons||[]).map((w,i) => ({card, key: norm(card)+':'+i, name:w.name, variable: w.dice==='variable'})))
+  })()`)
 
   const sides = [{ id: 'p1', list: listA }, { id: 'p2', list: listB }]
   const uniqueUnits = (list) => { const seen = new Set(); return list.units.filter((unit) => (seen.has(unit.name) ? false : (seen.add(unit.name), true))) }
@@ -110,12 +135,9 @@ try {
       if (!app.$('.overview')) { say('error', 'fiche', `${unit.name} : la fiche d’unité ne s’est pas affichée`); continue }
       sheetsChecked += 1
       const sheetText = norm(app.text(app.$('#app')))
-      const cards = [unit.name, ...unit.upgrades.map((upgrade) => upgrade.name)]
-      for (const cardName of cards) {
+      for (const cardName of [unit.name, ...unit.upgrades.map((upgrade) => upgrade.name)]) {
         cardsChecked += 1
-        const cardKey = evalStr(`cardKey(${JSON.stringify(cardName)})`)
-        const tags = evalJson(`window.SWL_REFERENCE.tags[${JSON.stringify(cardKey)}]||[]`)
-        for (const tag of tags) {
+        for (const tag of cardTags(cardName)) {
           if (!sheetText.includes(shortName(tag.keywordId))) say('error', 'placement', `${unit.name} : le mot-clé « ${keywordNames[tag.keywordId] || tag.keywordId} » (carte ${cardName}) n’apparaît pas sur la fiche`)
         }
       }
@@ -124,40 +146,70 @@ try {
   }
   console.log(`${sheetsChecked} fiche(s) contrôlée(s), ${cardsChecked} carte(s) (unités + améliorations).\n`)
 
-  // --- 2. Une attaque complète par arme, par unité attaquante, contre chaque unité adverse, dans les deux sens. ---
-  console.log('--- Attaques : chaque arme, contre chaque unité adverse, dans les deux sens ---')
+  // --- 2 (+ 2b) : matrice d'attaques, rejouée pour chaque round demandé. ---
   let attacksRun = 0, attacksBlocked = 0, attacksWithNewErrors = 0
+  let variantsRun = 0, variantsBlocked = 0, variantsWithNewErrors = 0
   const cardFxSeen = new Set()
-  outer: for (const [attackerSide, defenderSide] of [[sides[0], sides[1]], [sides[1], sides[0]]]) {
-    await setArmy(attackerSide.id)
-    for (const unit of uniqueUnits(attackerSide.list)) {
-      const weapons = evalJson(`(() => {
-        const cards=[${JSON.stringify(unit.name)}, ...(${JSON.stringify(unit.upgrades.map((u) => u.name))})]
-        return cards.flatMap(card => (profileFor(card)?.weapons||[]).map((w,i) => ({card, key: norm(card)+':'+i, name:w.name, variable: w.dice==='variable'})))
-      })()`)
-      if (!weapons.length) { say('warning', 'armes', `${unit.name} : aucune arme exploitable par le moteur (carte purement passive ?)`); continue }
-      for (const weapon of weapons) {
-        if (weapon.variable) { say('warning', 'armes', `${unit.name} / ${weapon.name} : réserve variable, non pilotée par cet audit automatique (à vérifier à la main)`); continue }
-        for (const target of uniqueUnits(defenderSide.list)) {
-          if (attacksRun >= maxAttacks) { say('warning', 'limite', `Plafond de ${maxAttacks} attaques atteint : audit interrompu avant la fin de la matrice (relancez avec --max-attacks pour aller plus loin)`); break outer }
-          if (!(await clickTileById(entryIdFor(attackerSide.id, unit.name), unit.name))) continue
-          await app.click('#next')
-          if (!(await clickTileById(entryIdFor(defenderSide.id, target.name), target.name))) { await resetToPicker(); continue }
-          if (!app.$('.resolve-center')) { say('error', 'attaque', `${unit.name} → ${target.name} : l’écran de résolution ne s’est pas ouvert`); await resetToPicker(); continue }
-          const errorsBefore = app.errors.length
-          const result = await autoResolveAttack(app, { weaponKey: weapon.key })
-          attacksRun += 1
-          const newErrors = app.errors.slice(errorsBefore)
-          if (newErrors.length) { attacksWithNewErrors += 1; say('error', 'erreur', `${unit.name} (${weapon.name}) → ${target.name} : ${newErrors.join(' | ')}`) }
-          if (!result.finished) { attacksBlocked += 1; say('error', 'blocage', `${unit.name} (${weapon.name}) → ${target.name} : ${result.stuck}`) }
-          for (const key of result.cardFxUsed) cardFxSeen.add(key)
-          await resetToPicker()
-          if (attacksRun % 10 === 0) process.stdout.write(`  … ${attacksRun} attaque(s) rejouée(s)\n`)
+  const totalCombos = () => sides.reduce((n, attackerSide, i) => {
+    const defenderSide = sides[1 - i]
+    return n + uniqueUnits(attackerSide.list).reduce((m, unit) => m + weaponsOf(unit).filter((w) => !w.variable).length * uniqueUnits(defenderSide.list).length, 0)
+  }, 0)
+  const combosTotal = totalCombos()
+
+  for (let round = 1; round <= rounds; round += 1) {
+    if (round > 1) {
+      console.log(`\n=== Round ${round} : jetons de round remis à zéro (Viser, Esquive, Adrénaline, Attente…), Suppression et cartes inclinées/supprimées conservées ===`)
+      evalStr(`localStorage.setItem('swl.game-tracker.v1', JSON.stringify({round: ${round}, activatedUnitIds: []})); if (typeof reconcileRoundEffects === 'function') reconcileRoundEffects()`)
+    }
+    console.log(`--- Round ${round}/${rounds} · Attaques : chaque arme, contre chaque unité adverse, dans les deux sens (${combosTotal} couple(s)) ---`)
+    outer: for (const [attackerSide, defenderSide] of [[sides[0], sides[1]], [sides[1], sides[0]]]) {
+      await setArmy(attackerSide.id)
+      for (const unit of uniqueUnits(attackerSide.list)) {
+        const weapons = weaponsOf(unit)
+        if (!weapons.length) { if (round === 1) say('warning', 'armes', `${unit.name} : aucune arme exploitable par le moteur (carte purement passive ?)`); continue }
+        for (const weapon of weapons) {
+          if (weapon.variable) { if (round === 1) say('warning', 'armes', `${unit.name} / ${weapon.name} : réserve variable, non pilotée par cet audit automatique (à vérifier à la main)`); continue }
+          for (const target of uniqueUnits(defenderSide.list)) {
+            if (attacksRun >= maxAttacks * rounds) { say('warning', 'limite', `Plafond de ${maxAttacks * rounds} attaques atteint : audit interrompu avant la fin de la matrice (relancez avec --max-attacks pour aller plus loin)`); break outer }
+            if (!(await clickTileById(entryIdFor(attackerSide.id, unit.name), unit.name))) continue
+            await app.click('#next')
+            if (!(await clickTileById(entryIdFor(defenderSide.id, target.name), target.name))) { await resetToPicker(); continue }
+            if (!app.$('.resolve-center')) { say('error', 'attaque', `round ${round} : ${unit.name} → ${target.name} : l’écran de résolution ne s’est pas ouvert`); await resetToPicker(); continue }
+            const errorsBefore = app.errors.length
+            const result = await autoResolveAttack(app, { weaponKey: weapon.key })
+            attacksRun += 1
+            const newErrors = app.errors.slice(errorsBefore)
+            if (newErrors.length) { attacksWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} : ${newErrors.join(' | ')}`) }
+            if (!result.finished) { attacksBlocked += 1; say('error', 'blocage', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} : ${result.stuck}`) }
+            for (const key of result.cardFxUsed) cardFxSeen.add(key)
+            await resetToPicker()
+            if (attacksRun % 10 === 0) process.stdout.write(`  … ${attacksRun} attaque(s) rejouée(s) au total\n`)
+
+            // --- 2b. Mécanique à seuil : rejouée une seconde fois avec un jet non nul plutôt que vierge. ---
+            if (unitHasThresholdKeyword(unit) || unitHasThresholdKeyword(target)) {
+              if (variantsRun >= maxVariants) { say('warning', 'limite', `Plafond de ${maxVariants} variantes de dés atteint (relancez avec --max-variants pour aller plus loin)`) } else {
+                if (!(await clickTileById(entryIdFor(attackerSide.id, unit.name), unit.name))) continue
+                await app.click('#next')
+                if (!(await clickTileById(entryIdFor(defenderSide.id, target.name), target.name))) { await resetToPicker(); continue }
+                if (!app.$('.resolve-center') && app.$('.overview.defense')) { say('warning', 'variante', `round ${round} : ${target.name} déjà vaincue par une variante précédente (les vraies blessures des variantes peuvent achever une unité) : cette variante est ignorée`); await resetToPicker(); continue }
+                if (app.$('.resolve-center')) {
+                  const errorsBefore2 = app.errors.length
+                  const variant = await autoResolveAttack(app, { weaponKey: weapon.key, diceMode: 'max-hits' })
+                  variantsRun += 1
+                  const newErrors2 = app.errors.slice(errorsBefore2)
+                  if (newErrors2.length) { variantsWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} [dés non nuls] : ${newErrors2.join(' | ')}`) }
+                  if (!variant.finished) { variantsBlocked += 1; say('error', 'blocage', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} [dés non nuls] : ${variant.stuck}`) }
+                  await resetToPicker()
+                }
+              }
+            }
+          }
         }
       }
     }
   }
-  console.log(`${attacksRun} attaque(s) rejouée(s), ${attacksBlocked} blocage(s), ${attacksWithNewErrors} avec une erreur JavaScript, ${cardFxSeen.size} effet(s) de carte exercé(s).\n`)
+  console.log(`\n${attacksRun} attaque(s) rejouée(s) (jet vierge), ${attacksBlocked} blocage(s), ${attacksWithNewErrors} avec une erreur JavaScript, ${cardFxSeen.size} effet(s) de carte exercé(s).`)
+  console.log(`${variantsRun} variante(s) à jet non nul rejouée(s) (mécaniques à seuil : Impact, Perforant, Létal, Primitif, Armure, Bouclier), ${variantsBlocked} blocage(s), ${variantsWithNewErrors} avec une erreur JavaScript.\n`)
 
   // --- 3. Actions de fiche disponibles sans configuration préalable (mots-clés hors combat, effets de carte). ---
   console.log('--- Actions de fiche (hors combat) disponibles immédiatement ---')
@@ -193,7 +245,7 @@ try {
     console.error(`ÉCHEC : ${errorCount} problème(s) bloquant(s), ${warningCount} avertissement(s) (voir ci-dessus).`)
     process.exitCode = 1
   } else {
-    console.log(`OK : 0 erreur, 0 blocage sur ${sheetsChecked} fiche(s) et ${attacksRun} attaque(s) (${warningCount} avertissement(s) non bloquant(s)).`)
+    console.log(`OK : 0 erreur, 0 blocage sur ${sheetsChecked} fiche(s), ${attacksRun} attaque(s) à jet vierge et ${variantsRun} variante(s) à jet non nul, sur ${rounds} round(s) (${warningCount} avertissement(s) non bloquant(s)).`)
   }
   app.window.close() // sinon les temporisations internes de jsdom empêchent le processus de se terminer
 } finally {
