@@ -606,3 +606,12 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 
 /* « Après défense » chevauchait le cadre : le libellé est retiré, les blocages et blessures se lisent seuls. */
 .resolve-center .live-defense-strip > b:first-child { display: none; }
+
+/* Contrôles de ciblage : blocage (rouge), question à trancher (orange), rappel (bleu) */
+.resolve-center .target-check-card.blocked { border-color: rgba(255, 102, 92, .7) !important; }
+.resolve-center .target-check-card .tc-block { border-color: rgba(255, 102, 92, .7); background: rgba(255, 102, 92, .12); }
+.resolve-center .target-check-card .tc-info { border-color: rgba(120, 190, 230, .4); background: rgba(120, 190, 230, .08); }
+.resolve-center .target-check-card .tc-stop { display: block; margin-top: 6px; color: #ff9d95; font-style: normal; font-weight: 800; letter-spacing: .04em; }
+.resolve-center .target-check-card .tc-ask { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
+.resolve-center .target-check-card .tc-ask span { flex: 1 1 100%; color: #ffd9a8; }
+.resolve-center .target-check-card .tc-ask button { min-width: 84px; min-height: 42px; }

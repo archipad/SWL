@@ -1426,6 +1426,39 @@ scenario('Incognito et mots-clés de défense : rappelés sur la fiche de l’un
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Contrôles de ciblage : Incognito interdit une attaque au-delà de la portée 1, Discret pose une question, aucun panneau sans mot-clé concerné', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Scout Troopers', upgrades: [{ name: 'Scout Troopers Strike Team' }] }, { name: 'Stormtroopers', upgrades: [] }] },
+  })
+  const { $, text, click, pickUnit } = app
+  const ev = (code) => app.window.eval(code)
+  await pickUnit('Soldats Rebelles')
+  await click('#next')
+  await pickUnit('Scout Troopers')
+  await click('[data-range="2"]')
+  assert.match(text($('.target-check-card')), /INCOGNITO/, 'le contrôle de ciblage apparaît pour Incognito')
+  assert.match(text($('.target-check-card')), /ATTAQUE INTERDITE/, 'portée 2 : attaque interdite')
+  assert.match(ev('stepIssue()'), /Cible interdite/, 'la résolution est bloquée : ' + ev('stepIssue()'))
+  ev("attackState.range = 1; resolveScreen()")
+  assert.doesNotMatch(text($('.target-check-card')), /ATTAQUE INTERDITE/, 'portée 1 : autorisée')
+  assert.doesNotMatch(ev('stepIssue()'), /Cible interdite/, 'plus de blocage à portée 1')
+  // Discret : question obligatoire quand la cible a de la Suppression.
+  ev("updateUnitState(entries[1], { suppression: 1 })")
+  ev("attackState.range = 1; resolveScreen()")
+  ev("allResolved = ((base) => (entry) => { const list = base(entry); return entry && entry.id === 'p2:0' ? [...list, { source: 'test', def: keywords.find((item) => item.id === 'discret'), tag: { keywordId: 'discret' } }] : list })(allResolved)")
+  ev("resolveScreen()")
+  assert.match(text($('.target-check-card')), /DISCRET/, 'Discret avec Suppression est contrôlé')
+  assert.match(ev('stepIssue()'), /répondez/, 'la question doit être répondue')
+  await click('[data-target-ask="discret:yes"]')
+  assert.match(ev('stepIssue()'), /Cible interdite/, 'Oui : une autre cible était possible')
+  await click('[data-target-ask="discret:no"]')
+  assert.doesNotMatch(ev('stepIssue()'), /Cible interdite|répondez/, 'Non : l’attaque est autorisée')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 scenario('Bonus permanents des cartes : courage (Gideon Hask) et vitesse (Pilote de TIE, Jetpack) dans les statistiques de l’unité', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Agent Kallus', upgrades: [{ name: 'Gideon Hask' }, { name: 'Imperial TIE Pilot' }] }, { name: 'Agent Kallus', upgrades: [] }] },

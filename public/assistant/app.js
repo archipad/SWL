@@ -549,7 +549,7 @@ function decorateTacticalResolution(){
     // Les dés à lancer (ou à défendre) sont toujours tout en haut, sous les étapes, puis le résumé des touches/critiques en cours ; les vérifications viennent ensuite. Étape 1 : la portée reste juste au-dessus des dés (voir plus bas).
     if(attackStep!==0){const bar=center.querySelector(':scope > .dice-pool,:scope > .defense-dice-pool'),summary=center.querySelector(':scope > .result-strip:not(.live-result-strip):not(.live-defense-strip)');[bar,summary].filter(Boolean).forEach(element=>{anchor.after(element);anchor=element})}
     checks.forEach(element=>{anchor.after(element);anchor=element});
-    if(attackStep===0){const warning=center.querySelector(':scope > .strict-warning'),range=center.querySelector(':scope > .range-picker'),fire=center.querySelector(':scope > .fire-control-card'),arsenal=center.querySelector(':scope > .arsenal-card'),distract=center.querySelector(':scope > .distract-card'),weapons=center.querySelector(':scope > .weapon-picker'),pool=center.querySelector(':scope > .dice-pool'),poolNote=center.querySelector(':scope > .pool-note');[warning,range,fire,arsenal,distract,weapons,pool,poolNote].filter(Boolean).forEach(element=>{anchor.after(element);anchor=element})}
+    if(attackStep===0){const warning=center.querySelector(':scope > .strict-warning'),range=center.querySelector(':scope > .range-picker'),fire=center.querySelector(':scope > .fire-control-card'),targeting=center.querySelector(':scope > .target-check-card'),arsenal=center.querySelector(':scope > .arsenal-card'),distract=center.querySelector(':scope > .distract-card'),weapons=center.querySelector(':scope > .weapon-picker'),pool=center.querySelector(':scope > .dice-pool'),poolNote=center.querySelector(':scope > .pool-note');[warning,range,fire,targeting,arsenal,distract,weapons,pool,poolNote].filter(Boolean).forEach(element=>{anchor.after(element);anchor=element})}
   }
   // Écran Couvert : barre « dés de couvert à lancer » (même design que Jet et Défense) avec l'état de validation du jet, et libellés des résultats avant/après.
   if(attackStep===2&&stepper){
@@ -1628,6 +1628,52 @@ saveAttackHistory=function(){
   saveAttackHistoryIncognitoBase();
   for(const entry of holders)updateUnitState(entry,{incognitoLost:true})
 };
+// ---- Contrôles de ciblage : règles des mots-clés qui limitent QUI peut être attaqué (22/09/2026) ----
+// Même emplacement que le Contrôle de Tir (avant le choix des armes, une fois la portée saisie) ; le panneau n'existe que si un mot-clé de l'attaquant ou du défenseur est concerné.
+// blocage = interdit d'après les données saisies (portée, type d'attaque) ; question = à répondre à la table (Oui interdit l'attaque) ; info = règle rappelée.
+function targetingChecks(){
+  if(!attacker||!defender||!attackState||attackState.range==null)return[];
+  const checks=[],has=(entry,id)=>allResolved(entry).some(item=>item.def.id===id),melee=attackState.range==='melee',distance=Number(attackState.range);
+  if(has(defender,'incognito')){
+    if(!melee&&distance>1)checks.push({id:'incognito',level:'block',title:'INCOGNITO',text:`${entryName(defender)} ne peut pas être attaquée par une unité ennemie à plus de portée 1 (portée saisie : ${attackState.range}). Choisissez une autre cible ou une portée 1.`});
+    else checks.push({id:'incognito',level:'info',title:'INCOGNITO',text:`${entryName(defender)} peut être attaquée : le Chef attaquant est à portée 1 ou moins. Elle perdra Incognito pour le reste de la partie après cette attaque.`})
+  }
+  if(has(attacker,'incognito'))checks.push({id:'incognito-attacker',level:'info',title:'INCOGNITO · ATTAQUANT',text:`${entryName(attacker)} perd les règles d’Incognito pour le reste de la partie en attaquant (fin de l’attaque enregistrée automatiquement).`});
+  if(has(defender,'immunite-corps-a-corps')){
+    if(melee)checks.push({id:'immunite-cac',level:'block',title:'IMMUNITÉ : CORPS-À-CORPS',text:`${entryName(defender)} ne peut pas être ciblée par une attaque au corps-à-corps.`});
+    else checks.push({id:'immunite-cac',level:'info',title:'IMMUNITÉ : CORPS-À-CORPS',text:'Attaque à distance autorisée : l’attaquant peut aussi ajouter des armes à distance même s’il est engagé avec la cible.'})
+  }
+  if(has(defender,'discret')&&(stateFor(defender).suppression||0)>0)checks.push({id:'discret',level:'ask',title:'DISCRET',text:`${entryName(defender)} a ${stateFor(defender).suppression} pion(s) Suppression : l’attaquant doit cibler une autre unité si possible.`,question:'Une autre unité ennemie pouvait-elle être ciblée (portée, LdV) ?',blockOnYes:'Discret : ciblez une autre unité, elle est possible.'});
+  const distractorId=stateFor(attacker).distractedBy;
+  if(distractorId&&distractorId!==defender.id){const distractor=entries.find(entry=>entry.id===distractorId);if(distractor&&!defeated(distractor))checks.push({id:'distraire',level:'ask',title:'DISTRAIRE',text:`${entryName(attacker)} doit attaquer ${entryName(distractor)} jusqu’à la fin du round, si possible.`,question:`${entryName(distractor)} pouvait-elle être attaquée (portée, LdV) ?`,blockOnYes:`Distraire : vous devez attaquer ${entryName(distractor)}.`})}
+  return checks
+}
+function targetingIssue(){
+  if(attackStep!==0)return'';
+  const answers=attackState.targetAsk||{};
+  for(const check of targetingChecks()){
+    if(check.level==='block')return 'Cible interdite — '+check.title+' : '+check.text;
+    if(check.level==='ask'){
+      if(answers[check.id]==null)return 'Contrôle de ciblage : répondez à la question « '+check.title+' » avant de poursuivre.';
+      if(answers[check.id]===true)return 'Cible interdite — '+check.blockOnYes
+    }
+  }
+  return''
+}
+function decorateTargetChecks(){
+  if(attackStep!==0)return;
+  const checks=targetingChecks();
+  if(!checks.length)return;
+  const answers=attackState.targetAsk||{},blocked=!!targetingIssue(),panel=document.createElement('section');
+  panel.className=`fire-control-card target-check-card conditional-card manual-focus ${blocked?'blocked':'answered'}`;
+  panel.innerHTML=`<strong>CONTRÔLES DE CIBLAGE</strong><p class="fc-source">Règles des mots-clés qui concernent cette attaque (${entryName(attacker)} → ${entryName(defender)}).</p><ul class="fc-conditions">${checks.map(check=>`<li class="tc-${check.level}"><b>${check.title}</b> — ${check.text}${check.level==='ask'?`<div class="tc-ask"><span>${check.question}</span><button type="button" class="${answers[check.id]===true?'primary':'secondary'}" data-target-ask="${check.id}:yes">Oui</button><button type="button" class="${answers[check.id]===false?'primary':'secondary'}" data-target-ask="${check.id}:no">Non</button></div>`:''}${check.level==='block'?'<em class="tc-stop">⛔ ATTAQUE INTERDITE</em>':''}</li>`).join('')}</ul>`;
+  root.querySelector('.weapon-picker')?.before(panel);
+  panel.querySelectorAll('[data-target-ask]').forEach(button=>button.onclick=()=>{const [id,answer]=button.dataset.targetAsk.split(':');attackState.targetAsk={...(attackState.targetAsk||{}),[id]:answer==='yes'};resolveScreen()})
+}
+const stepIssueTargetingBase=stepIssue;
+stepIssue=function(){const issue=targetingIssue();return issue||stepIssueTargetingBase()};
+const decorateResolveScreenTargetingBase=decorateResolveScreen;
+decorateResolveScreen=function(){decorateResolveScreenTargetingBase();decorateTargetChecks()};
 // Charges à Protons / Soniques : les autres armes à distance de la réserve gagnent Assaut 1.
 const activeAttackTagsChargesBase=activeAttackTags;
 activeAttackTags=function(){

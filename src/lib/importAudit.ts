@@ -7,7 +7,7 @@ import { canonicalCardKey } from './cardNames';
 import type { ParsedList } from '../types';
 
 type CertifiedWeapon = { index?: number; name?: string };
-type CertifiedRecord = { weapons?: CertifiedWeapon[]; defenseColor?: string; unitStats?: unknown; addedModels?: number };
+type CertifiedRecord = { weapons?: CertifiedWeapon[]; defenseColor?: string; unitStats?: unknown; addedModels?: number; fullCardCertification?: unknown };
 const certified = certifications as Record<string, CertifiedRecord>;
 
 export type ImportIssueKind = 'visual' | 'translation' | 'unit-stats' | 'dice';
@@ -65,7 +65,7 @@ export function auditImportedList(list: ParsedList): ImportAudit {
         unitIssues.push({ card: name, unit: unit.name, kind: 'dice', scope: 'certification', resolution: 'engine-certification', message: 'Dé de défense non certifié' });
       }
       // Certification complète V2 (mots-clés, vitesse, adrénalines…) : même critère que l'écran de certification de l'Assistant.
-      if (profile && !profile.fullCardCertification && !(errata.removed as Record<string, string>)[key]) {
+      if (profile && !profile.fullCardCertification && !certification?.fullCardCertification && !(errata.removed as Record<string, string>)[key]) {
         unitIssues.push({ card: name, unit: unit.name, kind: 'dice', scope: 'certification', resolution: 'engine-certification', message: 'Certification complète de la carte manquante' });
       }
       if (unitIssues.length === issuesBefore) readyCards += 1;
