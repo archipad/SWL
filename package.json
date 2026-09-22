@@ -22,6 +22,7 @@
     "preview": "vite preview",
     "test:assistant-parcours": "node scripts/test-assistant-parcours.mjs",
     "test:reference-consistency": "node scripts/test-reference-consistency.mjs",
+    "audit:list": "node scripts/audit-list-playthrough.mjs",
     "audit:takras": "node scripts/audit-takras-reference.mjs",
     "audit:keywords": "node scripts/audit-keyword-timing.mjs"
   },
