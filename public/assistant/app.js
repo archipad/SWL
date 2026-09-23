@@ -1679,6 +1679,31 @@ const stepIssueTargetingBase=stepIssue;
 stepIssue=function(){const issue=targetingIssue();return issue||stepIssueTargetingBase()};
 const decorateResolveScreenTargetingBase=decorateResolveScreen;
 decorateResolveScreen=function(){decorateResolveScreenTargetingBase();decorateTargetChecks()};
+// Sélection automatique de l'arme quand une seule est éligible à la portée choisie (24/09/2026) :
+// aucun choix réel à faire, donc pas de clic supplémentaire par rapport à la partie physique.
+// Ne s'applique qu'une fois la portée choisie par le joueur, jamais avant (portée non devinée).
+const decorateResolveScreenSoleWeaponBase=decorateResolveScreen;
+decorateResolveScreen=function(){
+  decorateResolveScreenSoleWeaponBase();
+  if(attackStep!==0||attackState.range==null||Object.values(attackState.selected).some(Boolean))return;
+  const eligible=root.querySelectorAll('.weapon-toggle:not([disabled])');
+  if(eligible.length===1){attackState.selected[eligible[0].dataset.key]=true;resolveScreen()}
+};
+// Couvert « Aucun » (24/09/2026) : déjà mis en avant visuellement (classe .on) puisque c'est la
+// valeur par défaut, mais la validation reste exigée -- sans indication, le bouton semble déjà
+// sélectionné et on ne comprend pas pourquoi l'étape reste bloquée. Un rappel discret le précise,
+// sans dispenser de la confirmation (le couvert oublié est une vraie erreur de règle à éviter).
+const decorateResolveScreenCoverHintBase=decorateResolveScreen;
+decorateResolveScreen=function(){
+  decorateResolveScreenCoverHintBase();
+  if(attackStep!==2||attackState.coverChosen)return;
+  const options=root.querySelector('.cover-options');
+  if(!options)return;
+  const hint=document.createElement('small');
+  hint.className='cover-confirm-hint';
+  hint.textContent='Touchez le couvert observé pour confirmer, même si « Aucun » est déjà correct.';
+  options.after(hint);
+};
 // Charges à Protons / Soniques : les autres armes à distance de la réserve gagnent Assaut 1.
 const activeAttackTagsChargesBase=activeAttackTags;
 activeAttackTags=function(){

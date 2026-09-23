@@ -623,3 +623,7 @@ body[data-faction-theme="imperial"] button.primary { background: #cf2b37; border
 .self-audit-ok { color: #73d13d; }
 .self-audit-fail { color: #ff6b6b; }
 .self-audit-help { color: var(--muted); }
+
+/* Couvert « Aucun » déjà mis en avant mais confirmation encore attendue (24/09/2026) : même teinte
+   orange que le reste du vocabulaire « à faire » (cf. .manual-focus), en discret sous les boutons. */
+.cover-confirm-hint { display: block; margin: -4px 0 10px; color: #ffb85c; font-size: .8rem; }

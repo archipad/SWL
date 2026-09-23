@@ -1361,14 +1361,14 @@ scenario('Contrôles de ciblage : Incognito interdit une attaque au-delà de la 
   assert.match(ev('stepIssue()'), /Cible interdite/, 'la résolution est bloquée : ' + ev('stepIssue()'))
   // Déblocage manuel (comme le Contrôle de Tir) : Incognito déjà perdu, puis rétablissement.
   await click('[data-target-unlock="incognito"]')
-  assert.doesNotMatch(ev('stepIssue()'), /Cible interdite/, 'débloquée : plus de blocage')
+  assert.doesNotMatch(ev('stepIssue()') || '', /Cible interdite/, 'débloquée : plus de blocage')
   assert.ok(ev('stateFor(entries[1]).incognitoLost'), 'Incognito est mémorisé comme perdu')
   assert.match(text($('.target-check-card')), /a perdu Incognito/, 'le panneau explique pourquoi la restriction ne s’applique plus')
   await click('[data-target-restore="incognito"]')
   assert.match(ev('stepIssue()'), /Cible interdite/, 'rétablie : de nouveau bloquée')
   ev("attackState.range = 1; resolveScreen()")
   assert.doesNotMatch(text($('.target-check-card')), /ATTAQUE INTERDITE/, 'portée 1 : autorisée')
-  assert.doesNotMatch(ev('stepIssue()'), /Cible interdite/, 'plus de blocage à portée 1')
+  assert.doesNotMatch(ev('stepIssue()') || '', /Cible interdite/, 'plus de blocage à portée 1')
   // Discret : question obligatoire quand la cible a de la Suppression.
   ev("updateUnitState(entries[1], { suppression: 1 })")
   ev("attackState.range = 1; resolveScreen()")
@@ -1379,7 +1379,7 @@ scenario('Contrôles de ciblage : Incognito interdit une attaque au-delà de la 
   await click('[data-target-ask="discret:yes"]')
   assert.match(ev('stepIssue()'), /Cible interdite/, 'Oui : une autre cible était possible')
   await click('[data-target-ask="discret:no"]')
-  assert.doesNotMatch(ev('stepIssue()'), /Cible interdite|répondez/, 'Non : l’attaque est autorisée')
+  assert.doesNotMatch(ev('stepIssue()') || '', /Cible interdite|répondez/, 'Non : l’attaque est autorisée')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
@@ -1713,6 +1713,37 @@ scenario('Certification : carte inconnue du catalogue -- alias vers une carte co
 
   await click('[data-unknown-card]')
   assert.match(text($('.notice')), /Nouvelle carte prête à envoyer/, 'l’écran doit rappeler que la nouvelle carte est prête')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+scenario('Réduction des clics (24/09/2026) : arme unique éligible auto-sélectionnée, rappel de confirmation du couvert « Aucun »', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles solo', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, text, click, pickUnit, gate } = app
+  const ev = (code) => app.window.eval(code)
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+
+  // À portée 2, seul le Fusil Blaster E-11 est éligible (la Matraque est corps-à-corps) :
+  // aucun clic sur l'arme n'est nécessaire, contrairement à la partie physique où le choix est trivial.
+  assert.match(gate(), /BLOQUÉ.*portée/i, 'la portée doit être saisie en premier')
+  await click('[data-range="2"]')
+  assert.match(gate(), /PRÊT/, 'la seule arme éligible est sélectionnée automatiquement')
+  assert.match(text($('.weapon-choice.on')), /Fusil Blaster E-11/, 'le Fusil Blaster E-11 est bien l’arme retenue')
+
+  // Couvert « Aucun » : déjà mis en avant visuellement, mais la confirmation reste exigée
+  // (un couvert oublié est une vraie erreur de règle) ; un rappel discret explique pourquoi.
+  ev('attackStep = 2; resolveScreen()')
+  assert.match(gate(), /BLOQUÉ.*couvert/i, 'le couvert doit encore être confirmé')
+  assert.match(text($('.cover-confirm-hint')), /Touchez le couvert observé pour confirmer/, 'le rappel explique le geste attendu')
+  await click('[data-cover="none"]')
+  assert.match(gate(), /PRÊT/, 'couvert confirmé')
+  assert.ok(!$('.cover-confirm-hint'), 'le rappel disparaît une fois le couvert confirmé')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
