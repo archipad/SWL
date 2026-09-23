@@ -55,6 +55,13 @@ const automatic = new Set([
   'anti-personnel-x',
   'duelliste',
   'point-faible-x',
+  // Reclassifies le 24/09/2026 (le code le fait deja, seul ce classement etait reste perime) :
+  'incognito', // bloque toute attaque au dela de portee 1, debloquable manuellement (controles de ciblage)
+  'discret', // question obligatoire des que la cible a de la Suppression, blocage deterministe selon la reponse
+  'fixe', // case a cocher obligatoire avant ajout de arme a la reserve (arc de tir)
+  'assaut-x', // Charge a Protons ou Soniques : Assaut 1 accorde aux autres armes a distance, calcule automatiquement
+  'surveillance-x', // pions poses par action de carte, depense proposee a etape des relances
+  'arme-a-effet-de-zone', // doit rester seule arme de la réserve : contrainte appliquée automatiquement
   'tireur-embusque',
   'maitrise-du-jarkai',
   'maitrise-du-makashi',
@@ -74,11 +81,9 @@ const assisted = new Set([
   'barrage',
   'charge',
   'ciblage-avance',
-  'discret',
   'exemplaire',
   'fumee-x',
   'implacable',
-  'incognito',
   'influence-divine',
   'intuition-du-danger-x',
   'la-victoire-ou-la-mort',
@@ -86,14 +91,10 @@ const assisted = new Set([
   'maitrise-du-vaapad',
   'nous-nous-battons-pour-notre-famille',
   'pistolero',
-  'surveillance-x',
-  'arme-a-effet-de-zone',
-  'assaut-x',
   'autodestruction-x-arme',
   'bordee-x',
   'equipe-sniper',
   'explosion-x',
-  'fixe',
   'polyvalent',
   'rayons-x',
   'arme-de-poing',
