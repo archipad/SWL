@@ -62,6 +62,31 @@ if (!files.length) {
 const findings = [] // { level: 'error'|'warning', scope, message }
 const say = (level, scope, message) => { findings.push({ level, scope, message }); console.log(`${level === 'error' ? '✗' : '⚠'} [${scope}] ${message}`) }
 
+// Pour agir sans avoir à redemander : que faire pour chaque catégorie de constat, imprimée en
+// fin de rapport (uniquement les catégories qui sont réellement apparues) -- voir aussi la même
+// légende dans le panneau de la page d'import (ImportCompatibilityReport.tsx).
+const FINDING_LEGEND = {
+  certification: "Pas un bug : certifiez la carte citée dans l'écran « Certification des cartes » avant de refaire l'audit.",
+  catalogue: "Pas un bug : cette carte n'est pas encore raccordée au catalogue (visuel ou nom) -- à traiter dans l'écran d'import ou de certification.",
+  placement: "Bug probable : le mot-clé est bien sur la carte mais n'apparaît pas sur sa fiche à l'écran -- à signaler avec le nom de la carte et du mot-clé.",
+  blocage: "Bug probable OU limite du pilote automatique -- signalez la ligne complète (attaquant, arme, cible, message) pour qu'on distingue les deux.",
+  erreur: "Vraie exception JavaScript : toujours un bug réel, priorité haute -- signalez la ligne complète.",
+  attaque: "Bug probable : l'écran de résolution ne s'est pas ouvert alors qu'il aurait dû -- signalez la ligne complète.",
+  'action-fiche': "Vraie exception sur une action de fiche (mot-clé hors combat) : bug réel -- signalez la carte et l'action citées.",
+  fiche: "Bug probable : la fiche de l'unité ne s'est pas affichée -- signalez le nom de l'unité.",
+  armes: "Pas un bug : arme à réserve variable, non pilotée automatiquement -- à vérifier vous-même une fois pour cette carte.",
+  variante: "Pas un bug : effet de bord attendu (une variante précédente a détruit la cible avant qu'une autre variante ne l'attaque).",
+  limite: "Pas un bug : plafond --max-attacks/--max-variants atteint -- relancez avec une valeur plus haute si vous voulez aller plus loin.",
+  sélection: "Problème interne à l'audit (élément introuvable au clic) -- signalez la ligne complète, ce n'est pas forcément un bug de l'appli.",
+  console: "Une ou plusieurs erreurs JavaScript ont été détectées ailleurs pendant l'audit -- voir le détail plus haut dans le journal.",
+}
+function printFindingsLegend(items) {
+  const scopes = [...new Set(items.map((item) => item.scope))].filter((scope) => FINDING_LEGEND[scope])
+  if (!scopes.length) return
+  console.log('\nQue faire de chaque type de constat ci-dessus :')
+  for (const scope of scopes) console.log(`  [${scope}] ${FINDING_LEGEND[scope]}`)
+}
+
 // Mots-clés qui ne s'exécutent vraiment qu'avec un résultat de dé non nul (voir étape 2b ci-dessus).
 const THRESHOLD_KEYWORDS = new Set(['impact-x', 'perforant-x', 'letal-x', 'primitif', 'armure-x', 'bouclier-x', 'anti-materiel-x', 'anti-personnel-x'])
 
@@ -254,9 +279,11 @@ try {
   console.log('='.repeat(70))
   if (errorCount) {
     console.error(`ÉCHEC : ${errorCount} problème(s) bloquant(s), ${warningCount} avertissement(s) (voir ci-dessus).`)
+    printFindingsLegend(findings)
     process.exitCode = 1
   } else {
     console.log(`OK : 0 erreur, 0 blocage sur ${sheetsChecked} fiche(s), ${attacksRun} attaque(s) à jet vierge et ${variantsRun} variante(s) à jet non nul, sur ${rounds} round(s) (${warningCount} avertissement(s) non bloquant(s)).`)
+    if (warningCount) printFindingsLegend(findings)
   }
   app.window.close() // sinon les temporisations internes de jsdom empêchent le processus de se terminer
 } finally {

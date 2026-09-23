@@ -29,6 +29,20 @@ const SELF_AUDIT_TIMEOUT_MS = 6 * 60 * 1000;
 // fois : il lui faut nettement plus de temps qu'une simple passe à jet vierge.
 const DEEP_SELF_AUDIT_TIMEOUT_MS = 15 * 60 * 1000;
 
+// Que faire de chaque type de constat -- même légende que scripts/audit-list-playthrough.mjs et
+// public/assistant/self-audit.js (dupliquée : trois environnements différents, pas de module partagé).
+const FINDING_LEGEND: Record<string, string> = {
+  certification: 'Pas un bug : certifiez la carte citée dans l’écran « Certification des cartes » avant de refaire l’audit.',
+  placement: 'Bug probable : le mot-clé est bien sur la carte mais n’apparaît pas sur sa fiche à l’écran — signalez le nom de la carte et du mot-clé.',
+  blocage: 'Bug probable OU limite du pilote automatique — signalez la ligne complète (attaquant, arme, cible, message).',
+  erreur: 'Vraie exception JavaScript : toujours un bug réel, priorité haute — signalez la ligne complète.',
+  attaque: 'Bug probable : l’écran de résolution ne s’est pas ouvert alors qu’il aurait dû — signalez la ligne complète.',
+  'action-fiche': 'Vraie exception sur une action de fiche (mot-clé hors combat) : bug réel — signalez la carte et l’action citées.',
+  fiche: 'Bug probable : la fiche de l’unité ne s’est pas affichée — signalez le nom de l’unité.',
+  armes: 'Pas un bug : arme à réserve variable, non pilotée automatiquement — à vérifier vous-même une fois pour cette carte.',
+  listes: 'Deux camps sont nécessaires pour dérouler des attaques — importez une seconde liste (même une liste de démonstration suffit).',
+};
+
 /**
  * Lance l'audit de partie complète (fiches + toutes les attaques possibles) dans un cadre caché
  * chargeant le vrai Assistant avec les listes actuellement importées. Aucune trace durable :
@@ -124,6 +138,10 @@ function SelfAuditPanel({ safeForEngine }: { safeForEngine: boolean }) {
     {state.status === 'done' && <div className={`self-audit-status ${state.result.errorCount ? 'self-audit-fail' : 'self-audit-ok'}`}>
       <p><strong>{state.result.errorCount ? `${state.result.errorCount} problème(s) trouvé(s)` : '✓ Aucun blocage ni mot-clé manquant'}</strong>{!!state.result.warningCount && ` · ${state.result.warningCount} avertissement(s) non bloquant(s)`}</p>
       {!!state.result.findings.length && <ul>{state.result.findings.map((finding, index) => <li key={index} className={finding.level === 'error' ? 'self-audit-finding-error' : 'self-audit-finding-warning'}><b>[{finding.scope}]</b> {finding.message}</li>)}</ul>}
+      {!!state.result.findings.length && <div className="self-audit-legend">
+        <strong>Que faire de chaque type de constat :</strong>
+        <ul>{[...new Set(state.result.findings.map((f) => f.scope))].filter((scope) => FINDING_LEGEND[scope]).map((scope) => <li key={scope}><b>[{scope}]</b> {FINDING_LEGEND[scope]}</li>)}</ul>
+      </div>}
     </div>}
   </div>;
 }

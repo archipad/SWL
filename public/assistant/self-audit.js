@@ -56,6 +56,19 @@
 
   const findings = []
   const say = (level, scope, message) => { findings.push({ level, scope, message }); log(`${level === 'error' ? '✗' : '⚠'} [${scope}] ${message}`) }
+  // Que faire de chaque type de constat -- même légende que scripts/audit-list-playthrough.mjs
+  // (voir aussi ImportCompatibilityReport.tsx, qui l'affiche pour le panneau de la page d'import).
+  const FINDING_LEGEND = {
+    certification: "Pas un bug : certifiez la carte citée dans l'écran « Certification des cartes » avant de refaire l'audit.",
+    placement: "Bug probable : le mot-clé est bien sur la carte mais n'apparaît pas sur sa fiche à l'écran -- à signaler avec le nom de la carte et du mot-clé.",
+    blocage: "Bug probable OU limite du pilote automatique -- signalez la ligne complète (attaquant, arme, cible, message).",
+    erreur: "Vraie exception JavaScript : toujours un bug réel, priorité haute -- signalez la ligne complète.",
+    attaque: "Bug probable : l'écran de résolution ne s'est pas ouvert alors qu'il aurait dû -- signalez la ligne complète.",
+    'action-fiche': "Vraie exception sur une action de fiche (mot-clé hors combat) : bug réel -- signalez la carte et l'action citées.",
+    fiche: "Bug probable : la fiche de l'unité ne s'est pas affichée -- signalez le nom de l'unité.",
+    armes: "Pas un bug : arme à réserve variable, non pilotée automatiquement -- à vérifier vous-même une fois pour cette carte.",
+    listes: "Deux camps sont nécessaires pour dérouler des attaques -- importez une seconde liste (même une liste de démonstration suffit).",
+  }
 
   const logLines = []
   const logPanel = () => $('#selfAuditLog')
@@ -297,7 +310,9 @@
     const errorCount = findings.filter((f) => f.level === 'error').length
     const warningCount = findings.filter((f) => f.level === 'warning').length
     const summaryText = errorCount ? `ÉCHEC : ${errorCount} problème(s) bloquant(s), ${warningCount} avertissement(s).` : `OK : 0 erreur, 0 blocage (${warningCount} avertissement(s) non bloquant(s)).`
-    log('\n' + '='.repeat(60) + '\n' + summaryText)
+    const scopesSeen = [...new Set(findings.map((item) => item.scope))].filter((scope) => FINDING_LEGEND[scope])
+    const legendText = scopesSeen.length ? '\n\nQue faire de chaque type de constat ci-dessus :\n' + scopesSeen.map((scope) => `  [${scope}] ${FINDING_LEGEND[scope]}`).join('\n') : ''
+    log('\n' + '='.repeat(60) + '\n' + summaryText + legendText)
     render(`<p class="${errorCount ? 'self-audit-fail' : 'self-audit-ok'}"><strong>${summaryText}</strong></p>${!errorCount ? '' : '<p class="self-audit-help">Le détail complet est listé ci-dessous.</p>'}`)
     if (window.parent !== window) { try { window.parent.postMessage({ source: 'swl-self-audit', done: true, errorCount, warningCount, findings }, location.origin) } catch { /* origine différente : rien à faire, le rapport reste affiché ici */ } }
     return { errorCount, warningCount, findings }
