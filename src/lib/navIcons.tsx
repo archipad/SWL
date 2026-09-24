@@ -18,6 +18,7 @@ export type NavIconId =
   | 'listes'
   | 'armees'
   | 'suivi'
+  | 'commandement'
   | 'assistant'
   | 'glossaire'
   | 'pense-bete'
@@ -57,6 +58,15 @@ export function NavIcon({ id }: { id: NavIconId }) {
           <circle cx="12" cy="12" r="7" />
           <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
           <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
+        </>
+      )}
+      {id === 'commandement' && (
+        // Carte de Commandement : silhouette de carte + pions PIP (2 ronds), comme le coin haut-gauche des vraies cartes.
+        <>
+          <rect x="5" y="3.5" width="14" height="17" rx="1.6" />
+          <circle cx="9.3" cy="8" r="1.5" fill="currentColor" stroke="none" />
+          <circle cx="13.3" cy="8" r="1.5" fill="currentColor" stroke="none" />
+          <path d="M8 14h8M8 17h5" />
         </>
       )}
       {id === 'assistant' && (

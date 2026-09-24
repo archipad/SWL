@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { ADVANTAGE_CARDS, OBJECTIVE_CARDS, SECONDARY_OBJECTIVE_CARDS } from '../data/battleCards';
-import { commandCardById, commandFactionForList, eligibleCommandCards, suiteIsComplete, suitePipCounts } from '../lib/commandDeck';
 import { frenchCardName } from '../lib/cardNames';
 import { getUnitMoraleProfile } from '../lib/unitModels';
-import { DEFAULT_STATE, type BattleColor, type CommandDeckState, type useGameTracker } from '../lib/useGameTracker';
+import { DEFAULT_STATE, type useGameTracker } from '../lib/useGameTracker';
 import { useGameArchive, type ArchivedGame } from '../lib/useGameArchive';
 import type { SyncStatus } from '../lib/useSync';
 import type { ParsedList } from '../types';
@@ -17,6 +16,7 @@ interface Props {
   onSync: (state: ReturnType<typeof useGameTracker>['state']) => void;
   syncStatus: SyncStatus;
   lastSyncAt: number | null;
+  onOpenCommandCards: () => void;
 }
 
 const ROUNDS = [1, 2, 3, 4, 5];
@@ -48,15 +48,8 @@ function gameWinner(game: ArchivedGame): string {
   return game.vpBleu > game.vpRouge ? `🔵 ${bleuLabel}` : `🔴 ${rougeLabel}`;
 }
 
-export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus, lastSyncAt }: Props) {
+export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus, lastSyncAt, onOpenCommandCards }: Props) {
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
-  // Choix « brouillon » d'une carte de Commandement, avant confirmation : reste
-  // purement local (jamais persisté ni synchronisé) pour qu'un survol/mauvais
-  // clic ne divulgue rien et pour laisser une étape de confirmation explicite,
-  // comme le reste de l'écran de résolution (une carte engagée est irréversible
-  // tant que l'adversaire n'a pas révélé la sienne).
-  const [commandDraft, setCommandDraft] = useState<{ bleu: string; rouge: string }>({ bleu: '', rouge: '' });
-  const [commandEditing, setCommandEditing] = useState<{ bleu: boolean; rouge: boolean }>({ bleu: false, rouge: false });
   const [unitStates, setUnitStates] = useState<UnitStates>(readUnitStates);
   const [attackHistory, setAttackHistory] = useState<AttackHistoryEntry[]>(readAttackHistory);
   const [actionHistory, setActionHistory] = useState<GameActionEntry[]>(readGameActions);
@@ -141,53 +134,6 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
   const secondary = SECONDARY_OBJECTIVE_CARDS.find((o) => o.id === state.secondaryId) ?? null;
   const advantageBleu = ADVANTAGE_CARDS.find((a) => a.id === state.advantageBleuId) ?? null;
   const advantageRouge = ADVANTAGE_CARDS.find((a) => a.id === state.advantageRougeId) ?? null;
-
-  // Cartes de Commandement : une suite de 7 cartes par joueur (règle
-  // officielle 2×1/2×2/2×3 PIP + Ordres Permanents), puis un choix privé par
-  // round révélé en même temps par les deux joueurs (demande utilisateur,
-  // 24/09/2026). `commandDecks` peut être absent d'un suivi de partie
-  // sauvegardé avant l'ajout de cette fonctionnalité (compatibilité
-  // ascendante), d'où les valeurs par défaut ci-dessous.
-  const commandDecks = state.commandDecks ?? DEFAULT_STATE.commandDecks;
-  const commandReveal = state.commandReveal ?? null;
-  const commandRevealedThisRound = commandReveal?.round === state.round;
-  const listForColor = (color: BattleColor) => (state.p1Color === color ? listP1 : listP2);
-  const commandFactionFor = (color: BattleColor) => commandFactionForList(listForColor(color));
-
-  const setCommandDecks = (changes: Partial<Record<BattleColor, CommandDeckState>>, label: string) =>
-    update({ commandDecks: { ...commandDecks, ...changes } }, label);
-
-  const setSuiteSlot = (color: BattleColor, pip: 1 | 2 | 3, slot: 0 | 1, cardId: string) => {
-    const deck = commandDecks[color];
-    const withoutPip = deck.suite.filter((id) => commandCardById(id)?.pip !== pip);
-    const pipIds = deck.suite.filter((id) => commandCardById(id)?.pip === pip);
-    pipIds[slot] = cardId;
-    const nextSuite = [...withoutPip, ...pipIds.filter(Boolean)];
-    const withStandingOrders = nextSuite.includes('ordres-permanents') ? nextSuite : [...nextSuite, 'ordres-permanents'];
-    setCommandDecks({ [color]: { ...deck, suite: withStandingOrders } }, `Suite de Commandement ${color} modifiée`);
-  };
-
-  const confirmCommandPick = (color: BattleColor) => {
-    const cardId = commandDraft[color];
-    if (!cardId) return;
-    setCommandDecks({ [color]: { ...commandDecks[color], pendingId: cardId } }, `Carte de Commandement ${color} engagée`);
-    setCommandDraft((prev) => ({ ...prev, [color]: '' }));
-  };
-  const cancelCommandPending = (color: BattleColor) => {
-    setCommandDecks({ [color]: { ...commandDecks[color], pendingId: null } }, `Carte de Commandement ${color} : choix annulé`);
-  };
-  const revealCommandCards = () => {
-    const bleuId = commandDecks.bleu.pendingId;
-    const rougeId = commandDecks.rouge.pendingId;
-    if (!bleuId || !rougeId) return;
-    update({
-      commandDecks: {
-        bleu: { ...commandDecks.bleu, pendingId: null, played: [...commandDecks.bleu.played, bleuId] },
-        rouge: { ...commandDecks.rouge, pendingId: null, played: [...commandDecks.rouge.played, rougeId] },
-      },
-      commandReveal: { round: state.round, bleuId, rougeId },
-    }, 'Cartes de Commandement révélées');
-  };
 
   useEffect(() => {
     const refresh = () => { setUnitStates(readUnitStates()); setAttackHistory(readAttackHistory()); setActionHistory(readGameActions()); };
@@ -432,111 +378,10 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         </div>
       </section>
 
-      <section className="tracker-section tracker-section-command">
-        <h3>Cartes de Commandement</h3>
-        <p className="step-help">
-          Construisez la suite de 7 cartes de chaque joueur (2 à 1 PIP, 2 à 2 PIP, 2 à 3 PIP, plus Ordres Permanents),
-          puis choisissez en secret une carte par round : elle reste cachée tant que les deux joueurs n’ont pas confirmé,
-          et se révèle au même moment pour les deux — comme à la table.
-        </p>
-        <div className="tracker-advantage-columns tracker-command-columns">
-          {([['bleu', bleuLabel], ['rouge', rougeLabel]] as const).map(([color, label]) => {
-            const deck = commandDecks[color];
-            const faction = commandFactionFor(color);
-            const eligible = eligibleCommandCards(faction);
-            const byPip = (pip: number) => eligible.filter((c) => c.pip === pip);
-            const complete = suiteIsComplete(deck.suite);
-            const counts = suitePipCounts(deck.suite);
-            const builderOpen = !complete || commandEditing[color];
-            const remaining = deck.suite.filter((id) => !deck.played.includes(id));
-            const revealedCardId = commandRevealedThisRound ? (color === 'bleu' ? commandReveal!.bleuId : commandReveal!.rougeId) : null;
-            const revealedCard = revealedCardId ? commandCardById(revealedCardId) : null;
-            return (
-              <div className="tracker-advantage-side tracker-command-side" key={color}>
-                <span className="tracker-player-badge">{color === 'bleu' ? '🔵' : '🔴'} {label}</span>
-
-                {builderOpen ? (
-                  <div className="command-builder">
-                    {!faction && <p className="empty-hint">Faction non reconnue pour cette liste : impossible de proposer un catalogue de Cartes de Commandement (le nom de faction importé ne contient ni « Empire » ni « Rebel »).</p>}
-                    {([1, 2, 3] as const).map((pip) => {
-                      const options = byPip(pip);
-                      const pipIds = deck.suite.filter((id) => commandCardById(id)?.pip === pip);
-                      return (
-                        <div className="command-pip-row" key={pip}>
-                          <span className="command-pip-label">PIP {pip}</span>
-                          {([0, 1] as const).map((slot) => {
-                            const currentId = pipIds[slot] || '';
-                            const siblingId = pipIds[slot === 0 ? 1 : 0];
-                            const selectable = options.filter((c) => c.id === currentId || c.id !== siblingId);
-                            return (
-                              <select key={slot} value={currentId} onChange={(e) => setSuiteSlot(color, pip, slot, e.target.value)} disabled={!faction}>
-                                <option value="">— Choisir —</option>
-                                {selectable.map((c) => <option key={c.id} value={c.id}>{c.name}{c.requirement !== 'Empire Galactique' && c.requirement !== 'Alliance Rebelle' ? ` (${c.requirement})` : ''}</option>)}
-                              </select>
-                            );
-                          })}
-                        </div>
-                      );
-                    })}
-                    <div className="command-pip-row command-pip-row-fixed">
-                      <span className="command-pip-label">PIP 4</span>
-                      <span className="command-fixed-card">✓ Ordres Permanents <small>(toujours incluse)</small></span>
-                    </div>
-                    <p className={`command-progress ${complete ? 'done' : ''}`}>
-                      {complete ? '✓ Suite complète (7 cartes)' : `${deck.suite.length}/7 cartes — PIP 1 : ${counts[1]}/2 · PIP 2 : ${counts[2]}/2 · PIP 3 : ${counts[3]}/2`}
-                    </p>
-                    {complete && <button type="button" className="btn btn-ghost" onClick={() => setCommandEditing((prev) => ({ ...prev, [color]: false }))}>Replier</button>}
-                  </div>
-                ) : (
-                  <div className="command-summary">
-                    <p className="command-progress done">✓ Suite complète (7 cartes) — {deck.played.length} déjà jouée{deck.played.length > 1 ? 's' : ''}</p>
-                    <button type="button" className="btn btn-ghost" onClick={() => setCommandEditing((prev) => ({ ...prev, [color]: true }))}>Modifier la suite</button>
-
-                    {commandRevealedThisRound && revealedCard ? (
-                      <div className="command-revealed">
-                        <span className="command-status-badge command-status-done">✓ Révélée — round {state.round}</span>
-                        {revealedCard.image ? (
-                          <button type="button" className="tracker-card-button" onClick={() => setPreview({ src: revealedCard.image!, alt: revealedCard.name })} aria-label={`Agrandir ${revealedCard.name}`}>
-                            <img src={revealedCard.image} alt={revealedCard.name} className="tracker-card-image" onError={(e) => { e.currentTarget.hidden = true; }} />
-                          </button>
-                        ) : null}
-                        <strong>{revealedCard.name}</strong> <small>(PIP {revealedCard.pip})</small>
-                      </div>
-                    ) : deck.pendingId ? (
-                      <div className="command-pending">
-                        <span className="command-status-badge command-status-pending">✓ Carte engagée — cachée jusqu’à la révélation</span>
-                        <button type="button" className="btn btn-ghost" onClick={() => cancelCommandPending(color)}>Changer</button>
-                      </div>
-                    ) : commandDraft[color] ? (
-                      <div className="command-draft">
-                        <span className="command-status-badge command-status-info">Choix (non confirmé) : {commandCardById(commandDraft[color])?.name}</span>
-                        <div className="command-draft-actions">
-                          <button type="button" className="btn btn-primary phase-confirm" onClick={() => confirmCommandPick(color)}>Confirmer ce choix</button>
-                          <button type="button" className="btn btn-ghost" onClick={() => setCommandDraft((prev) => ({ ...prev, [color]: '' }))}>Annuler</button>
-                        </div>
-                      </div>
-                    ) : remaining.length ? (
-                      <select value="" onChange={(e) => setCommandDraft((prev) => ({ ...prev, [color]: e.target.value }))} aria-label={`Choisir la carte de Commandement — ${label}`}>
-                        <option value="">— Choisir la carte du round —</option>
-                        {remaining.map((id) => { const c = commandCardById(id)!; return <option key={id} value={id}>{c.name} (PIP {c.pip})</option>; })}
-                      </select>
-                    ) : (
-                      <p className="empty-hint">Toutes les cartes de la suite ont déjà été jouées.</p>
-                    )}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-        {commandDecks.bleu.pendingId && commandDecks.rouge.pendingId && !commandRevealedThisRound && (
-          <button type="button" className="btn btn-primary btn-large command-reveal-btn" onClick={revealCommandCards}>
-            🎴 Révéler les cartes du round {state.round}
-          </button>
-        )}
-      </section>
-
       <div className="tracker-combat-cta">
+        <button type="button" className="btn btn-primary btn-large" onClick={onOpenCommandCards}>
+          🎴 Cartes de Commandement
+        </button>
         <a className="btn btn-primary btn-large" href="./assistant/">
           ⚔️ Ouvrir l’Assistant d’unité
         </a>

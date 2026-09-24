@@ -11,11 +11,12 @@ import type { ParsedList } from './types';
 
 const ArmyScreen = lazy(() => import('./components/ArmyScreen').then((module) => ({ default: module.ArmyScreen })));
 const GameTrackerScreen = lazy(() => import('./components/GameTrackerScreen').then((module) => ({ default: module.GameTrackerScreen })));
+const CommandCardsScreen = lazy(() => import('./components/CommandCardsScreen').then((module) => ({ default: module.CommandCardsScreen })));
 const LibraryScreen = lazy(() => import('./components/LibraryScreen').then((module) => ({ default: module.LibraryScreen })));
 const CheatSheetScreen = lazy(() => import('./components/CheatSheetScreen').then((module) => ({ default: module.CheatSheetScreen })));
 const PrintCardsScreen = lazy(() => import('./components/PrintCardsScreen').then((module) => ({ default: module.PrintCardsScreen })));
 
-type Page = 'setup' | 'army' | 'game' | 'library' | 'cheatsheet' | 'print-cards';
+type Page = 'setup' | 'army' | 'game' | 'commands' | 'library' | 'cheatsheet' | 'print-cards';
 type PlayerId = 'p1' | 'p2';
 
 const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
@@ -87,7 +88,7 @@ export default function App() {
   );
 
   const goToPage = (target: Page) => {
-    if ((target === 'army' || target === 'game') && !bothReady) {
+    if ((target === 'army' || target === 'game' || target === 'commands') && !bothReady) {
       setPage('setup');
       return;
     }
@@ -124,6 +125,16 @@ export default function App() {
         onSync={(state) => sync.push(listP1, listP2, state)}
         syncStatus={sync.status}
         lastSyncAt={sync.lastSyncAt}
+        onOpenCommandCards={() => setPage('commands')}
+      />
+    );
+  } else if (page === 'commands' && bothReady) {
+    content = (
+      <CommandCardsScreen
+        listP1={listP1}
+        listP2={listP2}
+        tracker={gameTracker}
+        onSync={(state) => sync.push(listP1, listP2, state)}
       />
     );
   } else if (page === 'army' && bothReady && activeList) {
@@ -193,6 +204,9 @@ export default function App() {
           </button>
           <button type="button" className={page === 'game' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('game')}>
             <NavIcon id="suivi" />Suivi de partie
+          </button>
+          <button type="button" className={page === 'commands' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('commands')}>
+            <NavIcon id="commandement" />Cartes de Commandement
           </button>
           {/* Page autonome distincte (public/assistant/), pas un onglet de cette
               SPA : lien externe plutôt qu'une entrée de Page/setPage. Navigue
