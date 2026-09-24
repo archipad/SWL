@@ -1408,8 +1408,10 @@ body:has(.app-game-tracker){min-height:100vh;background-color:#0a0e15;background
    tuiles cliquables en grille, bordure + halo orange à la sélection, coche
    de confirmation, statut vert une fois révélé/complet. */
 .command-cards-screen { display: grid; gap: 1rem; }
-.command-cards-header { text-align: center; padding: 0.7rem 1rem; background: rgba(15, 22, 33, .96); border: 1px solid #294459; box-shadow: inset 2px 2px 0 -1px rgba(127, 216, 255, .65), inset -2px -2px 0 -1px rgba(127, 216, 255, .4), 0 18px 38px rgba(0, 0, 0, .25); }
+.command-cards-header { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; padding: 0.7rem 1rem; background: rgba(15, 22, 33, .96); border: 1px solid #294459; box-shadow: inset 2px 2px 0 -1px rgba(127, 216, 255, .65), inset -2px -2px 0 -1px rgba(127, 216, 255, .4), 0 18px 38px rgba(0, 0, 0, .25); }
 .command-cards-header h2 { margin: 0.1rem 0 0; font-size: 1.25rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.command-undo-btn { margin-top: 0.2rem; }
+.command-builder-actions { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
 .command-duel { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; background: #0f1621; border: 1px solid #294459; }
 .command-duel strong { color: var(--text-dim); font-size: 0.95rem; }
 .command-duel strong.active { color: #ff8c1a; }

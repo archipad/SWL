@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { CommandCard } from '../data/commandCards';
 import { commandCardById, commandFactionForList, eligibleCommandCards, suiteIsComplete, suitePipCounts } from '../lib/commandDeck';
-import { recordGameAction } from '../lib/gameActionHistory';
+import { readGameActions, recordGameAction, removeGameAction, type GameActionEntry } from '../lib/gameActionHistory';
 import type { BattleColor, CommandDeckState, useGameTracker } from '../lib/useGameTracker';
 import { DEFAULT_STATE } from '../lib/useGameTracker';
 import type { ParsedList } from '../types';
+
+/** Ordres Permanents (4 PIP) est obligatoire et unique : jamais un vrai
+ * choix, donc jamais une tuile à cliquer (voir la philosophie « pas de clic
+ * pour un choix forcé » déjà appliquée à la sélection d'arme unique dans
+ * l'Assistant) -- elle est ajoutée automatiquement à la suite. */
+const withStandingOrders = (suite: string[]) => (suite.includes('ordres-permanents') ? suite : [...suite, 'ordres-permanents']);
 
 interface Props {
   listP1: ParsedList | null;
@@ -47,14 +53,23 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
   // qu'un mauvais clic ne divulgue rien à l'adversaire et pour garder une
   // étape de confirmation explicite avant d'engager la carte du round.
   const [draft, setDraft] = useState<{ bleu: string; rouge: string }>({ bleu: '', rouge: '' });
+  const [editingSuite, setEditingSuite] = useState<{ bleu: boolean; rouge: boolean }>({ bleu: false, rouge: false });
+  const [actionHistory, setActionHistory] = useState<GameActionEntry[]>(readGameActions);
 
   const { state, patch } = tracker;
   const update = (changes: Partial<typeof state>, label: string) => {
     const next = { ...state, ...changes };
     if (JSON.stringify(next) === JSON.stringify(state)) return;
-    recordGameAction(label, state);
+    setActionHistory(recordGameAction(label, state));
     patch(changes);
     onSync(next);
+  };
+  const undoLastAction = () => {
+    const latest = actionHistory.find((entry) => !entry.undoneAt);
+    if (!latest) return;
+    tracker.replace(latest.before);
+    onSync(latest.before);
+    setActionHistory(removeGameAction(latest.id));
   };
 
   const commandDecks = state.commandDecks ?? DEFAULT_STATE.commandDecks;
@@ -69,7 +84,28 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
   const setDeck = (color: BattleColor, changes: Partial<CommandDeckState>, label: string) =>
     update({ commandDecks: { ...commandDecks, [color]: { ...commandDecks[color], ...changes } } }, label);
 
+  // Ordres Permanents (obligatoire, sans alternative) n'est jamais retiré ou
+  // recliqué : on s'assure juste, une fois au montage, qu'elle est bien dans
+  // les deux suites (compatibilité avec une suite construite avant ce
+  // correctif, ou tout juste commencée) -- sans clic ni confirmation, comme
+  // tout choix qui n'en est pas vraiment un.
+  useEffect(() => {
+    const bleuSuite = withStandingOrders(commandDecks.bleu.suite);
+    const rougeSuite = withStandingOrders(commandDecks.rouge.suite);
+    if (bleuSuite === commandDecks.bleu.suite && rougeSuite === commandDecks.rouge.suite) return;
+    update({ commandDecks: { bleu: { ...commandDecks.bleu, suite: bleuSuite }, rouge: { ...commandDecks.rouge, suite: rougeSuite } } }, 'Ordres Permanents ajoutée automatiquement');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const refresh = () => setActionHistory(readGameActions());
+    window.addEventListener('storage', refresh);
+    window.addEventListener('focus', refresh);
+    return () => { window.removeEventListener('storage', refresh); window.removeEventListener('focus', refresh); };
+  }, []);
+
   const toggleSuiteCard = (color: BattleColor, card: CommandCard) => {
+    if (card.id === 'ordres-permanents') return; // jamais un vrai choix (voir plus haut)
     const deck = commandDecks[color];
     if (deck.suite.includes(card.id)) {
       setDeck(color, { suite: deck.suite.filter((id) => id !== card.id) }, `Suite de Commandement ${color} : ${card.name} retirée`);
@@ -78,6 +114,12 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
     const sameCount = deck.suite.filter((id) => commandCardById(id)?.pip === card.pip).length;
     if (sameCount >= 2) return; // règle officielle : 2 cartes maximum par PIP (bouton déjà inerte, sécurité supplémentaire)
     setDeck(color, { suite: [...deck.suite, card.id] }, `Suite de Commandement ${color} : ${card.name} ajoutée`);
+  };
+
+  const resetSuite = (color: BattleColor) => {
+    if (!window.confirm(`Réinitialiser la suite de ${labelFor(color)} ? Les cartes déjà choisies (hors Ordres Permanents) seront retirées.`)) return;
+    setDeck(color, { suite: ['ordres-permanents'] }, `Suite de Commandement ${color} réinitialisée`);
+    setEditingSuite((prev) => ({ ...prev, [color]: true }));
   };
 
   const confirmPick = (color: BattleColor) => {
@@ -117,8 +159,9 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
     const remaining = deck.suite.filter((id) => !deck.played.includes(id));
     const revealedCardId = revealedThisRound ? (color === 'bleu' ? commandReveal!.bleuId : commandReveal!.rougeId) : null;
     const revealedCard = revealedCardId ? commandCardById(revealedCardId) : null;
+    const standingOrders = commandCardById('ordres-permanents')!;
 
-    if (!complete) {
+    if (!complete || editingSuite[color]) {
       return (
         <div className="command-phase">
           <p className="step-help">
@@ -133,6 +176,18 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
           <p className={`command-progress ${complete ? 'done' : 'todo'}`}>
             {deck.suite.length}/7 cartes — PIP 1 : {counts[1]}/2 · PIP 2 : {counts[2]}/2 · PIP 3 : {counts[3]}/2 · Ordres Permanents inclus
           </p>
+          <div className="command-builder-actions">
+            {complete && <button type="button" className="btn btn-ghost" onClick={() => setEditingSuite((prev) => ({ ...prev, [color]: false }))}>Terminé</button>}
+            <button type="button" className="btn btn-ghost btn-danger" disabled={deck.played.length > 0} title={deck.played.length > 0 ? 'Impossible : des cartes de cette suite ont déjà été jouées cette partie.' : undefined} onClick={() => resetSuite(color)}>
+              🔄 Réinitialiser la suite
+            </button>
+          </div>
+          <div className="command-pip-block">
+            <h4>PIP 4 (obligatoire)</h4>
+            <div className="command-tile-grid command-tile-grid-single">
+              <CardTile card={standingOrders} selected />
+            </div>
+          </div>
           {([1, 2, 3] as const).map((pip) => (
             <div className="command-pip-block" key={pip}>
               <h4>PIP {pip}</h4>
@@ -152,7 +207,10 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
     return (
       <div className="command-phase">
         <p className="step-help">2. Chaque round, choisissez une carte en secret parmi celles restantes de {labelFor(color)}.</p>
-        <p className="command-progress done">✓ Suite complète — {deck.played.length}/7 déjà jouée{deck.played.length > 1 ? 's' : ''}</p>
+        <div className="command-builder-actions">
+          <p className="command-progress done">✓ Suite complète — {deck.played.length}/7 déjà jouée{deck.played.length > 1 ? 's' : ''}</p>
+          <button type="button" className="btn btn-ghost" onClick={() => setEditingSuite((prev) => ({ ...prev, [color]: true }))}>Modifier la suite</button>
+        </div>
 
         {revealedThisRound && revealedCard ? (
           <div className="command-reveal-card">
@@ -206,6 +264,7 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
       <header className="command-cards-header">
         <span className="tracker-eyebrow">Centre de commandement</span>
         <h2>Cartes de Commandement</h2>
+        <button type="button" className="btn btn-ghost command-undo-btn" disabled={!actionHistory.some((entry) => !entry.undoneAt)} onClick={undoLastAction}>↶ Annuler la dernière action</button>
       </header>
 
       <div className="command-duel">
