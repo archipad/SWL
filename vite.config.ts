@@ -64,6 +64,15 @@ export default defineConfig({
     }),
   ],
   build: {
+    // Sans service worker, le <link rel="modulepreload"> ajouté par Vite est
+    // utile. Ici, le service worker (VitePWA ci-dessus) précache déjà tous
+    // les .js — le module intercepte alors les mêmes requêtes que le
+    // préchargement, et Chrome les traite comme deux « mondes » différents
+    // (avertissement console « cross-world service worker resource
+    // mismatch » : le préchargement est fait pour rien, sans casser
+    // l'appli). Le précache du service worker rend le préchargement inutile
+    // de toute façon dès la deuxième visite — on le désactive donc.
+    modulePreload: false,
     rollupOptions: {
       output: {
         manualChunks(id) {
