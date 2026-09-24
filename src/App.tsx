@@ -7,6 +7,7 @@ import { useCardTags } from './lib/useCardTags';
 import { useSync } from './lib/useSync';
 import { useGameTracker } from './lib/useGameTracker';
 import { NavIcon } from './lib/navIcons';
+import { commandFactionForList } from './lib/commandDeck';
 import type { ParsedList } from './types';
 
 const ArmyScreen = lazy(() => import('./components/ArmyScreen').then((module) => ({ default: module.ArmyScreen })));
@@ -36,15 +37,49 @@ export default function App() {
   const { library: tagLibrary, getTags, addTag, removeTag } = useCardTags();
   const gameTracker = useGameTracker();
   const sync = useSync({ listP1, listP2, setListP1, setListP2, gameTracker: gameTracker.state, setGameTracker: gameTracker.replace });
+  const bothReady = listP1 !== null && listP2 !== null;
 
+  // Permet aux liens de navigation de l'Assistant d'unité (page HTML
+  // autonome, public/assistant/) de rouvrir n'importe quel onglet de la SPA
+  // via une simple ancre (ex. "../#commandement") -- sans ce mapping, seul
+  // "#suivi-partie" ramenait sur un onglet précis.
   useEffect(() => {
+    const HASH_PAGES: Record<string, Page> = {
+      '#listes': 'setup',
+      '#armees': 'army',
+      '#suivi-partie': 'game',
+      '#commandement': 'commands',
+      '#glossaire': 'library',
+      '#pense-bete': 'cheatsheet',
+      '#imprimer': 'print-cards',
+    };
     const openRequestedScreen = () => {
-      if (window.location.hash === '#suivi-partie') setPage('game');
+      const target = HASH_PAGES[window.location.hash];
+      if (!target) return;
+      if ((target === 'army' || target === 'game' || target === 'commands') && !bothReady) {
+        setPage('setup');
+        return;
+      }
+      setPage(target);
     };
     openRequestedScreen();
     window.addEventListener('hashchange', openRequestedScreen);
     return () => window.removeEventListener('hashchange', openRequestedScreen);
-  }, [setPage]);
+  }, [bothReady, setPage]);
+
+  // Même halo de fond que l'Assistant d'unité (voir faction-themes.css et
+  // body[data-faction-theme] dans index.css) : rouge Empire plutôt
+  // qu'orange par défaut quand la liste du Joueur 1 (ou, à défaut, du
+  // Joueur 2) est Empire, pour homogénéiser le visuel entre les deux
+  // parties du site plutôt que de le garder toujours orange.
+  useEffect(() => {
+    const faction = commandFactionForList(listP1) ?? commandFactionForList(listP2);
+    if (faction === 'empire') {
+      document.body.dataset.factionTheme = 'imperial';
+    } else {
+      delete document.body.dataset.factionTheme;
+    }
+  }, [listP1, listP2]);
 
   // Reprend, une seule fois, l'ancienne liste unique (avant le passage à deux
   // joueurs) comme liste du Joueur 1, pour ne rien perdre à cette mise à jour.
@@ -61,8 +96,6 @@ export default function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const bothReady = listP1 !== null && listP2 !== null;
 
   const handleParseP1 = useCallback((text: string) => {
     const parsed = importArmyList(text);
@@ -199,9 +232,6 @@ export default function App() {
           <button type="button" className={page === 'setup' ? 'active' : ''} onClick={() => setPage('setup')}>
             <NavIcon id="listes" />Listes
           </button>
-          <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>
-            <NavIcon id="armees" />Armées
-          </button>
           <button type="button" className={page === 'game' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('game')}>
             <NavIcon id="suivi" />Suivi de partie
           </button>
@@ -241,6 +271,9 @@ export default function App() {
           </button>
           <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>
             <NavIcon id="pense-bete" />Pense-bête
+          </button>
+          <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>
+            <NavIcon id="armees" />Armées
           </button>
           <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>
             <NavIcon id="imprimer" />Imprimer des cartes

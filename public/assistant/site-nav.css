@@ -1,0 +1,54 @@
+/* Barre de navigation identique à celle du site principal (.app-header nav,
+   voir src/index.css), reconstruite ici en HTML/CSS statique puisque cette
+   page n'est pas construite par Vite/React. Demande utilisateur : l'Assistant
+   d'unité doit se sentir comme un onglet du site, pas comme un site à part —
+   ce bandeau permet de rejoindre n'importe quel autre onglet en un clic,
+   sans repasser par « ‹ Legion Compagnon ». Fichier séparé (même logique que
+   header-sync.css) : purement additif, ne touche à aucune règle existante. */
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.7rem max(16px, env(safe-area-inset-left)) 0.55rem;
+}
+
+.site-nav a,
+.site-nav span.active {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.site-nav span.active {
+  background: #ff8c1a;
+  border-color: #ff8c1a;
+  color: #15100a;
+  font-weight: 900;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  border-color: var(--acid, #ff8c1a);
+  color: var(--text);
+}
+
+.site-nav svg {
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.4rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 560px) {
+  .site-nav { padding-top: 0.55rem; }
+}

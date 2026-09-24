@@ -899,6 +899,12 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 
 /* Tableau de partie v65 — disposition inspirée du dashboard officiel. */
 body:has(.app-game-tracker){min-height:100vh;background-color:#0a0e15;background-image:repeating-linear-gradient(0deg,rgba(127,216,255,.075) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(127,216,255,.075) 0 1px,transparent 1px 40px),radial-gradient(1000px 600px at 15% 0,rgba(255,140,26,.12),transparent 65%);background-attachment:fixed}
+/* Même halo que l'Assistant d'unité (public/assistant/faction-themes.css),
+   en rouge Empire plutôt qu'orange Rebelle quand la liste active est
+   Empire — App.tsx pose data-faction-theme="imperial" sur <body>.
+   Homogénéise le fondu de fond entre les deux parties du site plutôt que
+   de le garder toujours orange, quelle que soit la faction jouée. */
+body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0b0d;background-image:repeating-linear-gradient(0deg,rgba(255,69,80,.06) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(255,69,80,.06) 0 1px,transparent 1px 40px),radial-gradient(1000px 600px at 85% 0,rgba(200,35,44,.14),transparent 65%)}
 .app-game-tracker{width:min(100%,1500px);min-height:100vh;font-family:"Rajdhani",sans-serif;background:transparent}
 .tracker-header-actions{display:flex;align-items:center;justify-self:end;gap:.75rem}
 .tracker-combat-link{min-height:42px;white-space:nowrap}

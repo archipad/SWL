@@ -10,9 +10,9 @@
  * liste du joueur (une carte mal filtree serait pire qu'une carte affichee
  * sans filtre : le joueur reste seul juge, comme pour la carte physique).
  *
- * `ordres-permanents` (Standing Orders, 4 PIP) n'a pas de visuel : cette
- * carte generique vient du livret de regles, pas des planches Commandement ;
- * a completer si l'utilisateur fournit ce visuel.
+ * `ordres-permanents` (Standing Orders, 4 PIP) : visuel fourni par
+ * l'utilisateur (carte generique du livret de regles, pas des planches
+ * Commandement Rebelle/Empire).
  *
  * Regle officielle de construction de la Suite de Commandement (2026) :
  * exactement 7 cartes = 2 a 1 PIP + 2 a 2 PIP + 2 a 3 PIP + Ordres
@@ -35,7 +35,7 @@ export interface CommandCard {
 export const COMMAND_CARDS: CommandCard[] = [
   {
     id: 'ordres-permanents', name: 'Ordres Permanents', pip: 4, faction: 'generique',
-    requirement: 'Toujours disponible (aucune image encore fournie -- carte generique du livret de regles)',
+    requirement: 'Toujours disponible (carte generique du livret de regles)', image: `${BASE}ordres-permanents.jpg`,
   },
   {
     id: 'sabotage-des-communications', name: 'Sabotage des Communications', pip: 1, faction: 'rebelles',
