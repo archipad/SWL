@@ -32,15 +32,15 @@ function playerLabel(list: ParsedList | null, fallback: string): string {
  * quand la sélection l'est (carte déjà jouée, PIP complet…). */
 function CardTile({ card, selected, onSelect, onZoom }: { card: CommandCard; selected: boolean; onSelect?: () => void; onZoom?: () => void }) {
   return (
-    <div className={`command-tile ${selected ? 'on' : ''} ${onSelect ? '' : 'inert'}`}>
-      <button type="button" className="command-tile-select" onClick={onSelect} disabled={!onSelect} title={card.requirement}>
-        <span className="command-tile-pip">PIP {card.pip}</span>
-        {selected && <span className="command-tile-check">✓</span>}
-        {card.image ? <img src={card.image} alt={card.name} loading="lazy" /> : <span className="command-tile-noimage">{card.name}</span>}
-        <span className="command-tile-name">{card.name}</span>
+    <div className={`card-tile ${selected ? 'on' : ''} ${onSelect ? '' : 'inert'}`}>
+      <button type="button" className="card-tile-select" onClick={onSelect} disabled={!onSelect} title={card.requirement}>
+        <span className="card-tile-badge">PIP {card.pip}</span>
+        {selected && <span className="card-tile-check">✓</span>}
+        {card.image ? <img src={card.image} alt={card.name} loading="lazy" /> : <span className="card-tile-noimage">{card.name}</span>}
+        <span className="card-tile-name">{card.name}</span>
       </button>
       {onZoom && card.image && (
-        <button type="button" className="command-tile-zoom" aria-label={`Agrandir ${card.name}`} onClick={onZoom}>🔍</button>
+        <button type="button" className="card-tile-zoom" aria-label={`Agrandir ${card.name}`} onClick={onZoom}>🔍</button>
       )}
     </div>
   );
@@ -184,14 +184,14 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
           </div>
           <div className="command-pip-block">
             <h4>PIP 4 (obligatoire)</h4>
-            <div className="command-tile-grid command-tile-grid-single">
+            <div className="card-tile-grid card-tile-grid-single">
               <CardTile card={standingOrders} selected />
             </div>
           </div>
           {([1, 2, 3] as const).map((pip) => (
             <div className="command-pip-block" key={pip}>
               <h4>PIP {pip}</h4>
-              <div className="command-tile-grid">
+              <div className="card-tile-grid">
                 {eligible.filter((c) => c.pip === pip).map((card) => {
                   const selected = deck.suite.includes(card.id);
                   const pipFull = counts[pip] >= 2 && !selected;
@@ -215,7 +215,7 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
         {revealedThisRound && revealedCard ? (
           <div className="command-reveal-card">
             <span className="command-status-badge command-status-done">✓ Révélée — round {state.round}</span>
-            <div className="command-tile-grid command-tile-grid-single">
+            <div className="card-tile-grid card-tile-grid-single">
               <CardTile card={revealedCard} selected onZoom={() => zoom(revealedCard)} />
             </div>
           </div>
@@ -226,7 +226,7 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
           </div>
         ) : draft[color] ? (
           <div className="command-draft">
-            <div className="command-tile-grid command-tile-grid-single">
+            <div className="card-tile-grid card-tile-grid-single">
               <CardTile card={commandCardById(draft[color])!} selected onZoom={() => zoom(commandCardById(draft[color])!)} />
             </div>
             <div className="command-draft-actions">
@@ -235,7 +235,7 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
             </div>
           </div>
         ) : remaining.length ? (
-          <div className="command-tile-grid">
+          <div className="card-tile-grid">
             {remaining.map((id) => {
               const card = commandCardById(id)!;
               return <CardTile key={id} card={card} selected={false} onSelect={() => setDraft((prev) => ({ ...prev, [color]: id }))} onZoom={() => zoom(card)} />;
@@ -248,7 +248,7 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
         {deck.played.length > 0 && (
           <details className="command-played-fold">
             <summary>Cartes déjà jouées ({deck.played.length})</summary>
-            <div className="command-tile-grid command-tile-grid-compact">
+            <div className="card-tile-grid card-tile-grid-compact">
               {deck.played.map((id) => { const card = commandCardById(id)!; return <CardTile key={id} card={card} selected onZoom={() => zoom(card)} />; })}
             </div>
           </details>
@@ -273,11 +273,11 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
         <strong className={activeColor === 'rouge' ? 'active' : ''}>🔴 {labelFor('rouge')}</strong>
       </div>
 
-      <div className="command-color-tabs">
-        <button type="button" className={`command-color-tab ${activeColor === 'bleu' ? 'active' : ''}`} onClick={() => setActiveColor('bleu')}>
+      <div className="segmented-tabs">
+        <button type="button" className={`segmented-tab ${activeColor === 'bleu' ? 'active' : ''}`} onClick={() => setActiveColor('bleu')}>
           🔵 {labelFor('bleu')}
         </button>
-        <button type="button" className={`command-color-tab ${activeColor === 'rouge' ? 'active' : ''}`} onClick={() => setActiveColor('rouge')}>
+        <button type="button" className={`segmented-tab ${activeColor === 'rouge' ? 'active' : ''}`} onClick={() => setActiveColor('rouge')}>
           🔴 {labelFor('rouge')}
         </button>
       </div>

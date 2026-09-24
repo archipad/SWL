@@ -69,11 +69,15 @@ function QuantityStepper({ value, onChange }: { value: number; onChange: (v: num
  * si de nouvelles cartes sont ajoutées plus tard sans mettre à jour une
  * table de classification séparée.
  */
+type TypeFilter = 'all' | 'landscape' | 'portrait';
+
 export function PrintCardsScreen() {
   const cards = useAllCards();
   const [quantities, setQuantities] = usePersistentState<Record<string, number>>('swl.print-cards-qty.v1', {});
   const [orientations, setOrientations] = useState<Record<string, Orientation>>({});
   const [filter, setFilter] = useState('');
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>('all');
+  const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
   const [printing, setPrinting] = useState(false);
 
   const setQty = (key: string, qty: number) => {
@@ -84,9 +88,9 @@ export function PrintCardsScreen() {
     });
   };
 
-  const filtered = filter.trim()
-    ? cards.filter((c) => c.name.toLowerCase().includes(filter.trim().toLowerCase()))
-    : cards;
+  const filtered = cards
+    .filter((c) => !filter.trim() || c.name.toLowerCase().includes(filter.trim().toLowerCase()))
+    .filter((c) => typeFilter === 'all' || (orientations[c.key] ?? 'portrait') === typeFilter);
 
   const selected = cards.filter((c) => (quantities[c.key] ?? 0) > 0);
   const totalCount = selected.reduce((sum, c) => sum + (quantities[c.key] ?? 0), 0);
@@ -120,32 +124,53 @@ export function PrintCardsScreen() {
           imprimez. Utile pour remplacer une carte perdue ou abîmée, ou en avoir un second
           exemplaire.
         </p>
-        <input
-          className="print-cards-filter"
-          placeholder="Filtrer par nom…"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        />
-        <ul className="print-cards-list">
-          {filtered.map((c) => (
-            <li key={c.key} className={`print-cards-row${(quantities[c.key] ?? 0) > 0 ? ' print-cards-row-selected' : ''}`}>
-              <img
-                className="print-cards-thumb"
-                src={c.src}
-                alt={c.name}
-                onLoad={(e) => {
-                  const img = e.currentTarget;
-                  const o: Orientation = img.naturalWidth > img.naturalHeight ? 'landscape' : 'portrait';
-                  setOrientations((prev) => (prev[c.key] === o ? prev : { ...prev, [c.key]: o }));
-                }}
-                onError={(e) => { e.currentTarget.hidden = true; }}
-              />
-              <span className="print-cards-name">{c.name}</span>
-              <QuantityStepper value={quantities[c.key] ?? 0} onChange={(v) => setQty(c.key, v)} />
-            </li>
-          ))}
-          {filtered.length === 0 && <li className="empty-hint">Aucune carte ne correspond à ce filtre.</li>}
-        </ul>
+        <div className="print-cards-filters">
+          <input
+            className="print-cards-filter"
+            placeholder="Filtrer par nom…"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          />
+          <div className="segmented-tabs print-cards-type-tabs">
+            <button type="button" className={`segmented-tab ${typeFilter === 'all' ? 'active' : ''}`} onClick={() => setTypeFilter('all')}>Toutes</button>
+            <button type="button" className={`segmented-tab ${typeFilter === 'landscape' ? 'active' : ''}`} onClick={() => setTypeFilter('landscape')}>Unités</button>
+            <button type="button" className={`segmented-tab ${typeFilter === 'portrait' ? 'active' : ''}`} onClick={() => setTypeFilter('portrait')}>Améliorations</button>
+          </div>
+        </div>
+        <div className="card-tile-grid print-cards-grid-select">
+          {filtered.map((c) => {
+            const qty = quantities[c.key] ?? 0;
+            return (
+              <div className={`card-tile ${qty > 0 ? 'on' : ''}`} key={c.key}>
+                <button
+                  type="button"
+                  className="card-tile-select"
+                  onClick={() => setQty(c.key, qty + 1)}
+                  title={`Ajouter un exemplaire de ${c.name}`}
+                >
+                  {qty > 0 && <span className="card-tile-badge">×{qty}</span>}
+                  <img
+                    src={c.src}
+                    alt={c.name}
+                    loading="lazy"
+                    onLoad={(e) => {
+                      const img = e.currentTarget;
+                      const o: Orientation = img.naturalWidth > img.naturalHeight ? 'landscape' : 'portrait';
+                      setOrientations((prev) => (prev[c.key] === o ? prev : { ...prev, [c.key]: o }));
+                    }}
+                    onError={(e) => { e.currentTarget.hidden = true; }}
+                  />
+                  <span className="card-tile-name">{c.name}</span>
+                </button>
+                <button type="button" className="card-tile-zoom" aria-label={`Agrandir ${c.name}`} onClick={() => setPreview({ src: c.src, alt: c.name })}>🔍</button>
+                <div className="card-tile-footer">
+                  <QuantityStepper value={qty} onChange={(v) => setQty(c.key, v)} />
+                </div>
+              </div>
+            );
+          })}
+          {filtered.length === 0 && <p className="empty-hint">Aucune carte ne correspond à ce filtre.</p>}
+        </div>
       </div>
 
       <div className="print-cards-bar no-print">
@@ -190,6 +215,13 @@ export function PrintCardsScreen() {
             </div>
           )}
         </section>
+      )}
+
+      {preview && (
+        <div className="tracker-card-preview no-print" role="dialog" aria-modal="true" aria-label={preview.alt} onClick={() => setPreview(null)}>
+          <button type="button" aria-label="Fermer" onClick={() => setPreview(null)}>×</button>
+          <img src={preview.src} alt={preview.alt} />
+        </div>
       )}
     </div>
   );

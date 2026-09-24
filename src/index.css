@@ -6,8 +6,13 @@
   --border: #323848;
   --text: #eef0f5;
   --text-dim: #9aa1b4;
-  --accent: #d83a2f;
-  --accent-dim: #7a2019;
+  /* Orange tactique (#ff8c1a) plutôt que l'ancien rouge-corail : c'est déjà
+     la couleur d'accent partout ailleurs sur le site (onglet actif, titres,
+     tuile sélectionnée, table des matières) -- garder --accent en rouge
+     aurait laissé les boutons "primaires" sur une identité différente du
+     reste de l'appli (audit design "site 3.0", 25/09/2026). */
+  --accent: #ff8c1a;
+  --accent-dim: #6b3d10;
   --ok: #4caf7d;
   /* Habillage « viseur » du flux Combat (sélection + séquence plein écran) :
      rouge = attaquant, bleu = défenseur (déjà le code couleur du reste de
@@ -225,19 +230,28 @@ h2 { font-size: 1.05rem; margin: 1.5rem 0 0.75rem; }
 h2:first-child { margin-top: 0; }
 h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 
+/* Boutons : même habillage "console tactique" que le reste du site (audit
+   design "site 3.0", 25/09/2026) -- jusqu'ici .btn gardait l'ancien style
+   arrondi/gris de l'appli d'avant cette identité, alors que .app-game-tracker
+   (toujours posé sur la racine, voir App.tsx) l'applique déjà à toutes les
+   pages : un bouton "primaire" rouge-arrondi au milieu de tuiles orange à
+   coins carrés lisait comme deux sites différents. */
 .btn {
-  border-radius: 8px;
-  border: 1px solid var(--border);
+  border-radius: 2px;
+  border: 1px solid #294459;
   padding: 0.55rem 1rem;
   font-size: 0.9rem;
   cursor: pointer;
-  background: var(--bg-input);
+  background: linear-gradient(135deg, #16232f 0%, #101820 100%);
   color: var(--text);
 }
-.btn-primary { background: var(--accent); border-color: var(--accent); color: white; font-weight: 600; }
+.btn:hover:not(:disabled), .btn:focus-visible { border-color: #ff8c1a; box-shadow: 0 0 10px rgba(255, 140, 26, .25); }
+.btn-primary { background: linear-gradient(135deg, #ffb35c, var(--accent)); border-color: var(--accent); color: #15100a; font-weight: 700; }
+.btn-primary:hover:not(:disabled), .btn-primary:focus-visible { box-shadow: 0 0 14px rgba(255, 140, 26, .45); }
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 .btn-ghost { background: transparent; }
-.btn-danger { color: #e0685e; }
+.btn-danger { color: #ff9d95; border-color: rgba(224, 104, 94, .55); }
+.btn-danger:hover:not(:disabled), .btn-danger:focus-visible { border-color: #e0685e; box-shadow: 0 0 10px rgba(224, 104, 94, .35); }
 
 /* --- Import screen --- */
 .import-steps { color: var(--text-dim); padding-left: 1.2rem; }
@@ -268,6 +282,12 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .setup-slot-filled h2 { margin-top: 0; }
 .setup-slot-summary { color: var(--text-dim); font-size: 0.9rem; margin: 0 0 0.9rem; }
 .setup-slot-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+/* L'action destructive (Supprimer la liste) se distingue des 3 options
+   d'impression (équivalentes entre elles) par plus qu'une couleur de texte :
+   une ligne à part, avec une séparation visible -- pour qu'un geste rapide
+   pendant une partie n'aille pas taper "Supprimer" par erreur (audit design
+   "site 3.0", 25/09/2026). */
+.setup-slot-actions .btn-danger { margin-top: 0.35rem; flex-basis: 100%; }
 
 .sync-panel {
   margin-top: 1.5rem; background: var(--bg-raised); border: 1px solid var(--border);
@@ -956,10 +976,6 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .print-cards-screen .print-cards-bar {
   background: #0f1621; border-color: #294459; border-radius: 2px;
 }
-/* Pas de border-color ici : .print-cards-row-selected (déjà plus bas dans
-   ce fichier) doit garder la main sur la couleur de bordure pour signaler
-   une carte sélectionnée — seuls le fond et l'arrondi sont harmonisés. */
-.print-cards-screen .print-cards-row { background: #0f1621; border-radius: 2px; }
 .library-screen .library-toolbar input,
 .print-cards-screen .print-cards-filter {
   background: #0c1119; border-color: #294459; border-radius: 2px;
@@ -974,8 +990,14 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .setup-screen .sync-panel,
 .army-screen .army-unit,
 .army-screen .visual-list-block {
-  background: #0f1621; border-color: #294459; border-radius: 2px;
+  background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%); border-color: #294459; border-radius: 2px;
 }
+/* Même cadre que les tuiles-image du reste du site (Cartes de Commandement,
+   Imprimer des cartes) plutôt qu'un visuel nu -- ici en lecture seule (pas
+   de sélection), donc pas de halo orange au clic, juste le cadre + fondu.
+   Scopé à l'écran (.army-screen) : la vue imprimée de ce même composant
+   (VisualListSection, page Listes) garde son rendu papier inchangé. */
+.army-screen .visual-list-image { border: 1px solid #294459; background: linear-gradient(135deg, #101c29 0%, #0a0e15 70%); padding: 2px; box-shadow: 0 0 8px rgba(127, 216, 255, .08); }
 
 /* --- Army screen --- */
 .army-toolbar { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem; }
@@ -1062,7 +1084,7 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .tag-editor-actions { display: flex; justify-content: flex-end; gap: 0.5rem; }
 
 .field { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.8rem; color: var(--text-dim); }
-.field input, .field textarea, .field select {
+.field input, .field textarea {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -1071,12 +1093,42 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
   font-size: 0.85rem;
   font-family: inherit;
 }
+.field select { font-size: 0.85rem; }
 /* Cible tactile confortable (~44px, repère Apple) sur les champs qu'on touche
    au doigt en jouant — surtout les select attaquant/défenseur du Combat. */
 @media (pointer: coarse) {
   .field select, .field input { min-height: 2.75rem; }
   .btn { min-height: 2.75rem; }
 }
+
+/* Un seul habillage de <select> pour tout le site (audit design "site 3.0") :
+   jusqu'ici, un select sans classe dédiée gardait le rendu gris natif du
+   navigateur au milieu de tuiles/boutons très travaillés. Règle globale
+   plutôt qu'un composant par écran : chaque select existant (Round,
+   Objectif/Secondaire/Avantage, filtres du Glossaire...) en profite sans
+   modification de leur JSX. Les surcharges plus spécifiques (ex.
+   .tracker-round-controls select, plus gros et toujours orange) restent
+   prioritaires grâce à leur spécificité plus élevée. */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #0f1621;
+  background-image:
+    linear-gradient(135deg, #101c2b 0%, #0f1621 60%, #0a0e15 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237fd8ff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat, no-repeat;
+  background-position: 0 0, right 0.65rem center;
+  background-size: auto, 0.7rem;
+  border: 1px solid #294459;
+  border-radius: 2px;
+  color: var(--text);
+  padding: 0.5rem 2rem 0.5rem 0.7rem;
+  font: inherit;
+  cursor: pointer;
+}
+select:hover, select:focus-visible { border-color: #ff8c1a; box-shadow: 0 0 10px rgba(255, 140, 26, .25); outline: none; }
+select:disabled { opacity: 0.5; cursor: not-allowed; }
+select option { background: #0f1621; color: var(--text); }
 .field-inline { flex-direction: row; align-items: center; gap: 0.4rem; }
 .field-row { display: flex; gap: 0.75rem; align-items: flex-end; }
 
@@ -1173,50 +1225,81 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .card-tag-list li { flex-direction: column; align-items: stretch; }
 
 /* --- Pense-bête --- */
+/* Refonte "site 3.0" (25/09/2026) : le contenu (transcrit d'une aide de jeu)
+   n'est pas modifié, seul son habillage change -- une séquence de règles
+   devient une suite de tuiles numérotées plutôt qu'un mur de texte, dans le
+   même langage visuel (fondu, coins carrés) que le reste du site. */
 .cheat-block {
-  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 10px;
+  background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%);
+  border: 1px solid #294459; border-radius: 2px;
   padding: 0.9rem 1.1rem; margin-bottom: 1.1rem;
 }
 .cheat-block h3 { margin: 0 0 0.6rem; font-size: 1.02rem; }
 .cheat-block h4 { margin: 0 0 0.35rem; font-size: 0.88rem; }
-.cheat-steps, .cheat-substeps { margin: 0; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.4rem; }
-.cheat-substeps { margin-top: 0.35rem; gap: 0.3rem; }
-.cheat-steps li, .cheat-substeps li { font-size: 0.88rem; }
-.cheat-subheading { margin: 0.8rem 0 0.3rem; font-size: 0.82rem; color: var(--text-dim); }
-.cheat-list { margin: 0; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.85rem; }
+/* Étapes principales d'une séquence : une tuile par étape, numérotée par
+   compteur CSS (::before) -- le contenu HTML reste un simple <ol>, seule
+   la présentation change. */
+.cheat-steps { list-style: none; counter-reset: cheat-step; margin: 0; padding-left: 0; display: grid; gap: 0.5rem; }
+.cheat-steps > li {
+  counter-increment: cheat-step; position: relative;
+  padding: 0.6rem 0.8rem 0.6rem 2.7rem;
+  border: 1px solid #294459;
+  background: linear-gradient(135deg, rgba(127, 216, 255, .05), rgba(10, 14, 21, .85) 65%);
+  font-size: 0.88rem;
+}
+.cheat-steps > li::before {
+  content: counter(cheat-step);
+  position: absolute; left: 0.65rem; top: 0.55rem;
+  width: 1.5rem; height: 1.5rem; display: grid; place-items: center;
+  border: 1px solid #ff8c1a; background: rgba(255, 140, 26, .16); color: #ffb85c;
+  font-weight: 900; font-size: 0.78rem;
+}
+/* Sous-étapes (a, b, c...) : reste une liste native (garde le marqueur
+   alphabétique du navigateur), simplement mise en tuile plus discrète. */
+.cheat-substeps { list-style: lower-alpha; margin: 0.5rem 0 0; padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.cheat-substeps li { padding: 0.35rem 0.6rem; border-left: 2px solid #6db6e8; background: rgba(111, 189, 219, .07); font-size: 0.85rem; }
+.cheat-subheading { margin: 0.8rem 0 0.3rem; font-size: 0.82rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+/* Listes d'actions/rappels courts : rangée à liseré orange plutôt qu'une
+   puce native, lisible quelle que soit la longueur du texte. */
+.cheat-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.85rem; }
+.cheat-list li { padding: 0.4rem 0.6rem; border-left: 2px solid #ff8c1a; background: rgba(15, 22, 33, .55); }
 .cheat-note { color: var(--text-dim); font-size: 0.82rem; margin: 0.5rem 0 0; }
 .cheat-blue { color: #6db6e8; }
 .cheat-red { color: #e0685e; }
-.cheat-table-wrap { overflow-x: auto; margin-bottom: 0.6rem; }
-.cheat-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; }
-.cheat-table th, .cheat-table td { border: 1px solid var(--border); padding: 0.35rem 0.5rem; text-align: left; }
-.cheat-table thead th { color: var(--text-dim); font-weight: 600; }
+.cheat-table-wrap { overflow-x: auto; margin-bottom: 0.6rem; border: 1px solid #294459; }
+.cheat-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; background: linear-gradient(135deg, #101d2b 0%, #0f1621 60%, #0a0e15 100%); }
+.cheat-table th, .cheat-table td { border: 1px solid #294459; padding: 0.4rem 0.55rem; text-align: left; }
+.cheat-table thead th { background: rgba(255, 140, 26, .14); color: #ffb85c; font-weight: 800; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.04em; }
 .cheat-table td.cheat-no { color: var(--text-dim); }
 .cheat-rules-grid { display: grid; gap: 0.9rem; }
 @media (min-width: 700px) {
   .cheat-rules-grid { grid-template-columns: 1fr 1fr; }
 }
+.cheat-rule {
+  padding: 0.7rem 0.85rem; border: 1px solid #294459; border-left: 3px solid #ff8c1a;
+  background: linear-gradient(135deg, rgba(255, 140, 26, .08), rgba(10, 14, 21, .9) 60%);
+}
 .cheat-rule p { margin: 0 0 0.4rem; font-size: 0.85rem; }
 .cheat-rule p:last-child { margin-bottom: 0; }
 
 /* --- Imprimer des cartes --- */
+/* Sélecteur en tuiles-image (audit design "site 3.0", 25/09/2026) : reprend
+   .card-tile/.card-tile-grid de Cartes de Commandement plutôt qu'une liste
+   texte -- une carte se choisit par son visuel partout dans le site, pas
+   seulement dans un écran dédié. Toucher la tuile ajoute un exemplaire ;
+   le compteur sous la tuile affine ou ramène à 0. */
+.print-cards-filters { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; margin: 0.6rem 0 0.9rem; }
 .print-cards-filter {
-  width: 100%; max-width: 22rem; margin: 0.6rem 0 0.8rem; padding: 0.45rem 0.7rem;
-  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px;
-  color: var(--text); font-size: 0.9rem;
+  flex: 1 1 16rem; max-width: 22rem; padding: 0.5rem 0.7rem;
+  border-radius: 2px; font-size: 0.9rem;
 }
-.print-cards-list { list-style: none; margin: 0 0 4.5rem; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
-.print-cards-row {
-  display: flex; align-items: center; gap: 0.7rem; padding: 0.35rem 0.6rem;
-  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 8px;
-}
-.print-cards-row-selected { border-color: var(--accent); }
-.print-cards-thumb { width: 2.6rem; height: 2.6rem; object-fit: contain; border-radius: 4px; background: rgba(255,255,255,0.03); }
-.print-cards-name { flex: 1; font-size: 0.9rem; }
-.qty-stepper { display: flex; align-items: center; gap: 0.3rem; }
+.print-cards-type-tabs { flex: 1 1 20rem; max-width: 28rem; }
+.print-cards-type-tabs .segmented-tab { padding: 0.5rem 0.6rem; font-size: 0.82rem; }
+.print-cards-grid-select { margin-bottom: 4.5rem; }
+.qty-stepper { display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
 .qty-stepper input {
-  width: 2.6rem; text-align: center; background: var(--bg); border: 1px solid var(--border);
-  border-radius: 6px; color: var(--text); padding: 0.25rem 0.2rem; font-size: 0.9rem;
+  width: 2.6rem; text-align: center; background: #0a0e15; border: 1px solid #294459;
+  border-radius: 2px; color: var(--text); padding: 0.25rem 0.2rem; font-size: 0.9rem;
 }
 .qty-btn { padding: 0.1rem 0.55rem; line-height: 1.4; }
 .print-cards-bar {
@@ -1418,35 +1501,45 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
    tuiles cliquables en grille, bordure + halo orange à la sélection, coche
    de confirmation, statut vert une fois révélé/complet. */
 .command-cards-screen { display: grid; gap: 1rem; }
-.command-cards-header { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; padding: 0.7rem 1rem; background: rgba(15, 22, 33, .96); border: 1px solid #294459; box-shadow: inset 2px 2px 0 -1px rgba(127, 216, 255, .65), inset -2px -2px 0 -1px rgba(127, 216, 255, .4), 0 18px 38px rgba(0, 0, 0, .25); }
+.command-cards-header { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; padding: 0.7rem 1rem; background: linear-gradient(135deg, rgba(30, 44, 62, .97) 0%, rgba(15, 22, 33, .97) 55%, rgba(9, 13, 20, .97) 100%); border: 1px solid #294459; box-shadow: inset 2px 2px 0 -1px rgba(127, 216, 255, .65), inset -2px -2px 0 -1px rgba(127, 216, 255, .4), 0 18px 38px rgba(0, 0, 0, .25); }
 .command-cards-header h2 { margin: 0.1rem 0 0; font-size: 1.25rem; letter-spacing: 0.04em; text-transform: uppercase; }
 .command-undo-btn { margin-top: 0.2rem; }
 .command-builder-actions { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
-.command-duel { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; background: #0f1621; border: 1px solid #294459; }
+.command-duel { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%); border: 1px solid #294459; }
 .command-duel strong { color: var(--text-dim); font-size: 0.95rem; }
 .command-duel strong.active { color: #ff8c1a; }
 .command-duel span { color: var(--text-dim); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
-.command-color-tabs { display: flex; gap: 0.5rem; }
-.command-color-tab { flex: 1; padding: 0.7rem; border: 1px solid #294459; background: #0f1621; color: var(--text-dim); font-weight: 700; cursor: pointer; }
-.command-color-tab.active { border-color: #ff8c1a; color: #ff8c1a; box-shadow: 0 0 14px rgba(255, 140, 26, .25); }
+/* Onglets segmentés génériques (Bleu/Rouge ici, type de carte sur Imprimer
+   des cartes) : un seul habillage pour tout filtre à 2-4 choix exclusifs
+   dans le site, plutôt qu'un composant par écran. */
+.segmented-tabs { display: flex; gap: 0.5rem; }
+.segmented-tab { flex: 1; padding: 0.7rem; border: 1px solid #294459; background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%); color: var(--text-dim); font-weight: 700; cursor: pointer; }
+.segmented-tab.active { border-color: #ff8c1a; color: #ff8c1a; box-shadow: 0 0 14px rgba(255, 140, 26, .25); }
 .command-adversary-status { margin: 0; padding: 0.5rem 0.8rem; background: rgba(111, 189, 219, .1); border: 1px solid rgba(111, 189, 219, .4); color: #9ad6ee; font-size: 0.85rem; }
 .command-phase { display: grid; gap: 0.8rem; }
 .command-progress { margin: 0; font-weight: 700; color: #ffb85c; }
 .command-progress.done { color: #5cdda3; }
 .command-pip-block h4 { margin: 0 0 0.5rem; color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
-.command-tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.6rem; }
-.command-tile-grid-single { grid-template-columns: minmax(160px, 220px); }
-.command-tile-grid-compact { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); opacity: 0.75; }
-.command-tile { position: relative; }
-.command-tile-select { display: block; width: 100%; padding: 0; border: 1px solid #294459; background: #0a0e15; color: var(--text); cursor: pointer; overflow: hidden; text-align: left; }
-.command-tile.on .command-tile-select { border-color: #ff8c1a; box-shadow: 0 0 14px rgba(255, 140, 26, .4); }
-.command-tile-select:disabled { cursor: not-allowed; opacity: 0.55; }
-.command-tile-select img { display: block; width: 100%; aspect-ratio: 0.72; object-fit: cover; }
-.command-tile-noimage { display: flex; align-items: center; justify-content: center; aspect-ratio: 0.72; padding: 0.5rem; text-align: center; font-size: 0.8rem; color: var(--text-dim); }
-.command-tile-pip { position: absolute; top: 4px; left: 4px; padding: 0.1rem 0.4rem; background: rgba(10, 14, 21, .85); color: #ffb85c; font-size: 0.65rem; font-weight: 800; border: 1px solid #ff8c1a; }
-.command-tile-check { position: absolute; top: 4px; right: 4px; width: 1.3rem; height: 1.3rem; display: grid; place-items: center; background: #ff8c1a; color: #0a0e15; font-size: 0.8rem; font-weight: 900; border-radius: 50%; }
-.command-tile-name { display: block; padding: 0.35rem 0.4rem; font-size: 0.72rem; line-height: 1.25; }
-.command-tile-zoom { position: absolute; bottom: 4px; right: 4px; width: 1.6rem; height: 1.6rem; display: grid; place-items: center; background: rgba(10, 14, 21, .85); border: 1px solid #294459; color: var(--text); font-size: 0.85rem; cursor: pointer; }
+/* Tuile-image générique (24/09/2026, étendue 25/09/2026 à Imprimer des
+   cartes et à la vue visuelle d'Armées) : même grammaire que le
+   sélecteur d'armes/couvert de l'écran de résolution de l'Assistant --
+   tuile cliquable en grille, fondu + halo orange à la sélection, coche de
+   confirmation. Un seul habillage de carte-image pour tout le site plutôt
+   qu'un par écran (audit design "site 3.0"). */
+.card-tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.6rem; }
+.card-tile-grid-single { grid-template-columns: minmax(160px, 220px); }
+.card-tile-grid-compact { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); opacity: 0.75; }
+.card-tile { position: relative; }
+.card-tile-select { display: block; width: 100%; padding: 0; border: 1px solid #294459; background: linear-gradient(135deg, #101c29 0%, #0a0e15 70%); color: var(--text); cursor: pointer; overflow: hidden; text-align: left; }
+.card-tile.on .card-tile-select { border-color: #ff8c1a; box-shadow: 0 0 14px rgba(255, 140, 26, .4); }
+.card-tile-select:disabled { cursor: not-allowed; opacity: 0.55; }
+.card-tile-select img { display: block; width: 100%; aspect-ratio: 0.72; object-fit: cover; }
+.card-tile-noimage { display: flex; align-items: center; justify-content: center; aspect-ratio: 0.72; padding: 0.5rem; text-align: center; font-size: 0.8rem; color: var(--text-dim); }
+.card-tile-badge { position: absolute; top: 4px; left: 4px; padding: 0.1rem 0.4rem; background: rgba(10, 14, 21, .85); color: #ffb85c; font-size: 0.65rem; font-weight: 800; border: 1px solid #ff8c1a; }
+.card-tile-check { position: absolute; top: 4px; right: 4px; width: 1.3rem; height: 1.3rem; display: grid; place-items: center; background: #ff8c1a; color: #0a0e15; font-size: 0.8rem; font-weight: 900; border-radius: 50%; }
+.card-tile-name { display: block; padding: 0.35rem 0.4rem; font-size: 0.72rem; line-height: 1.25; }
+.card-tile-footer { padding: 0.3rem 0.4rem 0.4rem; }
+.card-tile-zoom { position: absolute; bottom: 4px; right: 4px; width: 1.6rem; height: 1.6rem; display: grid; place-items: center; background: rgba(10, 14, 21, .85); border: 1px solid #294459; color: var(--text); font-size: 0.85rem; cursor: pointer; }
 .command-status-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 2px; font-size: 0.8rem; font-weight: 700; border: 1px solid; }
 .command-status-pending { color: #6fbddb; border-color: rgba(111, 189, 219, .55); background: rgba(111, 189, 219, .1); }
 .command-status-done { color: #5cdda3; border-color: rgba(92, 221, 163, .55); background: rgba(92, 221, 163, .1); }
@@ -1454,7 +1547,7 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .command-draft-actions { display: flex; gap: 0.5rem; }
 .command-draft-actions .phase-confirm { border-color: #ffb85c; box-shadow: 0 0 14px rgba(255, 140, 26, .3); }
 .command-reveal-btn { display: block; margin: 0.5rem auto 0; border-color: #ffb85c; background: linear-gradient(135deg, rgba(255, 140, 26, .35), rgba(15, 22, 33, .96)); box-shadow: 0 0 18px rgba(255, 140, 26, .35); }
-.command-played-fold { border: 1px solid #294459; background: #0f1621; padding: 0.6rem 0.8rem; }
+.command-played-fold { border: 1px solid #294459; background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%); padding: 0.6rem 0.8rem; }
 .command-played-fold summary { cursor: pointer; color: var(--text-dim); font-size: 0.8rem; }
 .command-played-fold[open] summary { margin-bottom: 0.6rem; }
 @media (min-width: 980px) { .command-cards-screen { max-width: 900px; margin: 0 auto; } }
