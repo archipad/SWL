@@ -148,3 +148,26 @@ body:has(.cx-attacker-recap) .cx-target-host .unit-picker-grid .unit-tile img.ar
 .app-header-sticky { position: static !important; background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none !important; }
 .app-header-sticky .topbar { background: transparent !important; box-shadow: none !important; filter: none !important; }
 #progress.cx-steps { background: transparent !important; }
+
+/* =====================================================================
+   Retouches du 25/09/2026 (2) : bandeau du rang plus opaque, bouton principal bleu profond à bord lumineux
+   ===================================================================== */
+body:has(.unit-picker-grid) .unit-picker-grid .tile-head {
+  padding: 10px 16px 9px; background: linear-gradient(180deg, rgba(4, 9, 16, .94), rgba(6, 13, 22, .88));
+  border-bottom: 1px solid rgba(120, 165, 195, .18);
+}
+
+:root { --ic-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' d='M3.5 12h16.5M14 5.5l6.5 6.5-6.5 6.5'/%3E%3C/svg%3E"); }
+.cx-arrow { display: inline-block; flex: 0 0 auto; width: 1.7rem; height: 1.7rem; background: #62d3ff; -webkit-mask: var(--ic-arrow) center / contain no-repeat; mask: var(--ic-arrow) center / contain no-repeat; }
+.cx-arrow.back { -webkit-mask-image: var(--ic-back); mask-image: var(--ic-back); background: #62d3ff; }
+.actions > button, .cx-sel-actions button { display: flex; align-items: center; justify-content: center; gap: 22px; }
+.actions > .primary, .cx-sel-actions .primary, #nextAttack, #next {
+  --bd: linear-gradient(180deg, #7fe0ff, #2eb4f2 50%, #7fe0ff);
+  --fill: linear-gradient(180deg, #0f5d92 0%, #083f6c 50%, #052c50 100%);
+  min-height: 60px; font-size: 1.32rem;
+}
+.actions > .primary::after, .cx-sel-actions .primary::after, #nextAttack::after, #next::after { box-shadow: inset 0 0 20px rgba(70, 200, 255, .5), inset 0 1px 0 rgba(150, 230, 255, .45); }
+.actions > .primary .cx-arrow, .cx-sel-actions .primary .cx-arrow, #nextAttack .cx-arrow, #next .cx-arrow { background: #7fe0ff; }
+.actions, .cx-sel-actions { filter: drop-shadow(0 0 8px rgba(53, 194, 255, .6)); }
+#nextAttack.locked .cx-arrow, .cx-sel-actions .primary:disabled .cx-arrow { background: #6c8496; }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected::after { z-index: 5; }

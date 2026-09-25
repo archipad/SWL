@@ -1747,6 +1747,21 @@ decorateResolveScreen=function(){
    Décor en lecture seule (aucune logique, aucun état) : en-tête des colonnes latérales (rôle, emblème, nom),
    portrait, lignes figurines / Viser / Esquive, bouton « Voir la carte ». Tout est ajouté APRÈS le rendu, jamais à la place
    d'un élément existant, et protégé par try/catch : au pire le décor manque, la résolution reste intacte. */
+/* Flèches des boutons d'action : « → » / « ← » du libellé deviennent des pictogrammes (visuel seul, le libellé
+   texte reste identique pour les tests et les lecteurs d'écran : les flèches sont ajoutées, pas remplacées). */
+function codexArrowButtons(scope){
+  (scope||root).querySelectorAll('.actions > button, .cx-sel-actions button').forEach(button=>{
+    if(button.querySelector('.cx-arrow'))return;
+    const label=button.textContent.trim();
+    const forward=/\s*→$/.test(label),backward=/^←\s*/.test(label);
+    if(!forward&&!backward)return;
+    button.textContent=label.replace(/\s*→$/,'').replace(/^←\s*/,'');
+    const arrow=document.createElement('i');
+    arrow.className='cx-arrow'+(backward?' back':'');
+    arrow.setAttribute('aria-hidden','true');
+    if(backward)button.prepend(arrow);else button.append(arrow);
+  });
+}
 function decorateCodexSides(){
   root.querySelectorAll('.combat-side').forEach(aside=>{
     if(aside.querySelector('.cx-side-head'))return;
@@ -1804,7 +1819,7 @@ function decorateCodexNav(){
 }
 decorateResolveScreen=function(){
   decorateResolveScreenCodexShellBase();
-  try{decorateCodexSides();decorateCodexNav()}catch(error){/* décor uniquement */}
+  try{decorateCodexSides();decorateCodexNav();codexArrowButtons()}catch(error){/* décor uniquement */}
 };
 /* Fiche d'unité « Codex » (maquette 09) : en-tête et portrait dans la colonne de gauche, titre au centre.
    Ajouts en lecture seule après le rendu de overview() ; rien de l'existant n'est retiré. */
@@ -1832,7 +1847,7 @@ function decorateCodexOverview(entry,role){
 const overviewCodexBase=overview;
 overview=function(entry,role){
   overviewCodexBase(entry,role);
-  try{decorateCodexOverview(entry,role)}catch(error){/* décor uniquement */}
+  try{decorateCodexOverview(entry,role);codexArrowButtons()}catch(error){/* décor uniquement */}
 };
 /* Écran « Cible » (maquette 02) : rappel permanent de l'unité attaquante à gauche de la grille (lecture seule). */
 const pickCodexBase=pick;
@@ -1871,6 +1886,7 @@ function codexBindSelection(role){
   };
   const emptyFaction=factionThemeForArmy(role==='defender'?(entries.find(candidate=>candidate.id===tiles[0].dataset.id)?.army||selectedArmy):selectedArmy);
   bar.innerHTML=`<div class="cx-sel-empty"><i class="cx-side-emblem ${emptyFaction}" aria-hidden="true"></i><strong>${role==='defender'?'Sélectionner la cible':'Sélectionner l’attaquant'}</strong></div><div class="cx-sel-actions">${role==='defender'&&attacker?'<button type="button" class="secondary" data-cx-back>← Unité attaquante</button>':''}<button type="button" class="primary" data-cx-confirm disabled>${role==='defender'?'Résoudre l’attaque →':'Voir l’unité →'}</button></div>`;
+  codexArrowButtons(bar);
   const emptyBack=bar.querySelector('[data-cx-back]');
   if(emptyBack)emptyBack.onclick=()=>{stage=2;stageWipe=true;overview(attacker,'attack')};
   tiles.forEach(tile=>{
@@ -1883,6 +1899,7 @@ function codexBindSelection(role){
       tiles.forEach(other=>other.classList.toggle('is-selected',other===tile));
       fill(entry);
       bar.hidden=false;
+      codexArrowButtons(bar);
       bar.querySelector('[data-cx-confirm]').onclick=()=>original.call(tile,null);
       const back=bar.querySelector('[data-cx-back]');
       if(back)back.onclick=()=>{stage=2;stageWipe=true;overview(attacker,'attack')};
