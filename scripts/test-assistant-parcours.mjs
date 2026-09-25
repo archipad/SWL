@@ -1782,6 +1782,38 @@ scenario('Couvert (25/09/2026) : l’info « Couvert effectif » explique pourqu
   app.window.close()
 })
 
+scenario('Table holographique (25/09/2026) : décor en lecture seule, hologrammes par faction, portée et couvert reflétés sans toucher au parcours', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles solo', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, text, click, pickUnit, gate } = app
+  const ev = (code) => app.window.eval(code)
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+
+  const holo = $('.holo-table')
+  assert.ok(holo, 'le bandeau holographique est présent sur l’écran de résolution')
+  assert.equal(holo.getAttribute('aria-hidden'), 'true', 'décor : masqué aux lecteurs d’écran')
+  assert.ok(!holo.querySelector('input,button,select,a'), 'décor : aucun élément interactif')
+  assert.match($('.holo-attacker').getAttribute('src'), /stormtrooper-cyan/, 'l’attaquant Empire a l’hologramme Stormtrooper')
+  assert.match($('.holo-defender').getAttribute('src'), /rebel-coral/, 'le défenseur Rebelle a l’hologramme Rebelle')
+  assert.ok(!$('.holo-attacker').classList.contains('flip') && !$('.holo-defender').classList.contains('flip'), 'chaque hologramme regarde vers l’adversaire')
+  assert.match(text($('.holo-readout')), /Portée\s*—/, 'portée non choisie : tiret')
+
+  // Le décor ne doit changer ni le blocage ni les entrées de la résolution.
+  assert.match(gate(), /BLOQUÉ.*portée/i, 'la portée reste exigée en premier')
+  await click('[data-range="2"]')
+  assert.match(text($('.holo-readout')), /Portée\s*2/, 'la portée choisie est reflétée')
+  assert.match(gate(), /PRÊT/, 'le parcours n’est pas modifié par le décor')
+  ev('attackStep = 2; resolveScreen()')
+  await click('[data-cover="heavy"]')
+  assert.match(text($('.holo-readout')), /Couvert\s*Lourd/, 'le couvert choisi est reflété')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 /* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {

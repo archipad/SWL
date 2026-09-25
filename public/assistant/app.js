@@ -1707,6 +1707,35 @@ decorateResolveScreen=function(){
   hint.textContent='Touchez le couvert observé pour confirmer, même si « Aucun » est déjà correct.';
   options.after(hint);
 };
+// Table holographique (25/09/2026, refonte « Codex Legion ») : bandeau PUREMENT décoratif et en lecture
+// seule, inséré au-dessus de la zone de résolution -- hologramme de la faction de l'attaquant à gauche,
+// de celle du défenseur à droite, portée et couvert lus dans attackState. Il ne modifie ni ne lit
+// aucun champ de saisie, ne change aucun état, et tout échec est avalé : la résolution ne peut pas
+// être bloquée par ce décor.
+const decorateResolveScreenHoloBase=decorateResolveScreen;
+decorateResolveScreen=function(){
+  decorateResolveScreenHoloBase();
+  try{
+    const workspace=root.querySelector('.attack-workspace');
+    if(!workspace||!attacker||!defender||!attackState)return;
+    root.querySelector('.holo-table')?.remove();
+    const empire=entry=>factionThemeForArmy(entry.army)==='imperial';
+    const sprite=(entry,facing)=>{
+      const imperial=empire(entry),file=imperial?'stormtrooper-cyan':'rebel-coral',facesRight=imperial;
+      return `<img class="holo-unit holo-${facing}${facesRight===(facing==='attacker')?'':' flip'}" src="../codex/holograms/${file}.png" alt="">`;
+    };
+    const melee=attackState.range==='melee';
+    const rangeText=attackState.range==null?'—':melee?'Corps à corps':String(attackState.range);
+    const coverLabels={none:'Aucun',light:'Léger',heavy:'Lourd'};
+    const coverText=melee?'Sans effet':attackState.coverChosen?(coverLabels[attackState.cover]||'—'):'—';
+    const chip=(icon,label,value)=>`<span class="holo-chip"><i class="cx-icon" style="--cx-icon:url(../codex/icons/${icon}.png)"></i><small>${label}</small><b>${value}</b></span>`;
+    const holo=document.createElement('div');
+    holo.className='holo-table';
+    holo.setAttribute('aria-hidden','true');
+    holo.innerHTML=`${sprite(attacker,'attacker')}<img class="holo-cover" src="../codex/holograms/cover-crates-cyan.png" alt=""><span class="holo-line"></span>${sprite(defender,'defender')}<div class="holo-readout">${chip('range','Portée',rangeText)}${chip('cover','Couvert',coverText)}</div>`;
+    workspace.before(holo);
+  }catch(error){/* décor uniquement : ne jamais gêner la résolution */}
+};
 // Charges à Protons / Soniques : les autres armes à distance de la réserve gagnent Assaut 1.
 const activeAttackTagsChargesBase=activeAttackTags;
 activeAttackTags=function(){

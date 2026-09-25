@@ -1,0 +1,59 @@
+/* Table holographique de la résolution d'attaque (25/09/2026, refonte « Codex
+   Legion », maquette 3 de l'utilisateur) : décor du hangar tactique derrière
+   l'écran de résolution + bandeau holographique (voir decorateResolveScreenHoloBase
+   dans app.js, purement décoratif et en lecture seule). Fichier séparé, additif :
+   aucune règle existante n'est modifiée. */
+
+/* Hangar en fond de page, uniquement pendant la résolution d'une attaque
+   (la présence de .attack-workspace suffit, sans état JS supplémentaire). */
+body[data-faction-theme]:has(.attack-workspace)::before {
+  background:
+    linear-gradient(180deg, rgba(3, 8, 14, 0.62), rgba(3, 8, 14, 0.88)),
+    url(../codex/hangar.jpg) center 70% / cover no-repeat;
+}
+
+.holo-table {
+  position: relative;
+  height: 108px;
+  margin: 6px 0 8px;
+  overflow: hidden;
+  border: 1px solid rgba(66, 205, 255, 0.5);
+  background:
+    linear-gradient(180deg, rgba(4, 10, 18, 0.3), rgba(4, 10, 18, 0.78)),
+    url(../codex/hangar.jpg) center 84% / cover no-repeat;
+  box-shadow: 0 0 22px rgba(66, 205, 255, 0.16), inset 0 0 40px rgba(66, 205, 255, 0.08);
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px);
+  pointer-events: none;
+}
+.holo-unit {
+  position: absolute; bottom: 10px; height: 74px; width: auto;
+  filter: drop-shadow(0 0 10px rgba(66, 205, 255, 0.65));
+}
+.holo-attacker { left: 17%; }
+.holo-defender { right: 17%; }
+.holo-unit.flip { transform: scaleX(-1); }
+.holo-cover { position: absolute; left: 50%; bottom: 12px; height: 28px; width: auto; transform: translateX(-50%); opacity: 0.85; filter: drop-shadow(0 0 8px rgba(66, 205, 255, 0.5)); }
+.holo-line {
+  position: absolute; left: calc(17% + 80px); right: calc(17% + 80px); bottom: 18px; height: 2px;
+  background: repeating-linear-gradient(90deg, rgba(66, 205, 255, 0.85) 0 10px, transparent 10px 16px);
+  box-shadow: 0 0 8px rgba(66, 205, 255, 0.6); opacity: 0.55;
+}
+.holo-readout { position: absolute; left: 50%; top: 10px; transform: translateX(-50%); display: flex; gap: 10px; }
+.holo-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; white-space: nowrap;
+  background: rgba(6, 18, 30, 0.85); border: 1px solid rgba(66, 205, 255, 0.5); color: #cdefff;
+  font: 700 0.72rem "Rajdhani", sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.holo-chip .cx-icon { width: 1.2rem; height: 1.2rem; color: #42cdff; }
+.holo-chip small { color: #8fb6c9; font-size: 0.68rem; }
+.holo-chip b { color: #fff; font-size: 0.95rem; }
+
+@media (max-width: 700px) {
+  .holo-table { height: 100px; }
+  .holo-unit { height: 66px; }
+  .holo-line { left: calc(17% + 70px); right: calc(17% + 70px); }
+}
+/* Écran bas (iPad en paysage avec clavier, petit portable) : le décor cède la place à la saisie. */
+@media (max-height: 700px) {
+  .holo-table { display: none; }
+}
