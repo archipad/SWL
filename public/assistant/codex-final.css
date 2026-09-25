@@ -1,0 +1,83 @@
+/* Retouches finales « Codex Legion » d'après la maquette (25/09/2026) : fond des cartes et de la barre plus
+   sombre et fondu dans l'image de fond, boutons de camp à bordure de faction, en-tête ressemblant à la maquette,
+   suppression du quadrillage, barre du bas toujours visible. Dernier feuillet chargé, visuel seul. */
+
+:root {
+  --cx-steel: linear-gradient(135deg, #9cc0d8 0%, #557f9c 50%, #9cc0d8 100%);
+  --cx-dark: linear-gradient(180deg, rgba(8, 13, 20, .86), rgba(4, 8, 13, .92));
+  --ic-home: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z'/%3E%3C/svg%3E");
+  --ic-clock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' d='M12 7v5.2l3.6 2.1'/%3E%3Ccircle cx='12' cy='12' r='9' fill='none' stroke='%23000' stroke-width='2.2'/%3E%3C/svg%3E");
+  --ic-back: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' d='M10 5.5L3.5 12l6.5 6.5M4 12h16.5'/%3E%3C/svg%3E");
+  --ic-bolt: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M13.5 2L4.5 13.5h6.2L9.5 22l9-12h-6.3z'/%3E%3C/svg%3E");
+}
+
+/* ---------- Quadrillage retiré (les écrans ont maintenant une vraie image de fond) ---------- */
+body[data-faction-theme]::after { display: none; }
+
+/* ---------- Cartes d'unités : fond très sombre et translucide, bord acier fin, sans lueur bleue ---------- */
+body:has(.unit-picker-grid) .unit-picker-grid { filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .55)); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile { --bd: var(--cx-steel); --fill: var(--cx-dark); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile::before { box-shadow: inset 0 1px 0 rgba(200, 225, 240, .14); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:hover,
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:focus-visible { --bd: linear-gradient(135deg, #e2f3fc, #8fc4e2 50%, #e2f3fc); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:hover::before { box-shadow: inset 0 1px 0 rgba(220, 240, 250, .3); }
+/* Sélectionnée : cyan vif, fond toujours sombre. */
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected { --bd: linear-gradient(135deg, #d6f7ff, #46c8ff 45%, #d6f7ff); --fill: linear-gradient(180deg, rgba(6, 22, 38, .9), rgba(3, 10, 18, .94)); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected::before { box-shadow: inset 0 0 34px rgba(66, 205, 255, .28), inset 0 1px 0 rgba(200, 245, 255, .5); }
+
+/* ---------- Choix du camp : fond sombre, bordure rouge (Empire) ou beige (Rébellion), coins coupés ---------- */
+body:has(.unit-picker-grid) .army-switch { gap: 8px; }
+body:has(.unit-picker-grid) .army-switch button { --cut: 12px; color: #e9e2d2; }
+body:has(.unit-picker-grid) .army-switch button[data-faction="imperial"] { --fill: linear-gradient(180deg, rgba(34, 6, 9, .9), rgba(14, 3, 5, .94)); --bd: linear-gradient(180deg, #ff5a4c, #b02218 55%, #ff5a4c); }
+body:has(.unit-picker-grid) .army-switch button[data-faction="imperial"].active { --fill: linear-gradient(180deg, rgba(96, 8, 14, .9), rgba(38, 3, 7, .95)); --bd: linear-gradient(180deg, #ff8378, #ff2f24 50%, #ff8378); box-shadow: none; color: #fff; }
+body:has(.unit-picker-grid) .army-switch button[data-faction="rebel"] { --fill: linear-gradient(180deg, rgba(14, 18, 20, .9), rgba(7, 10, 12, .94)); --bd: linear-gradient(180deg, #e6d3ab, #a48d62 55%, #e6d3ab); color: #cfc8b8; }
+body:has(.unit-picker-grid) .army-switch button[data-faction="rebel"].active { --fill: linear-gradient(180deg, rgba(48, 36, 18, .9), rgba(20, 14, 7, .95)); --bd: linear-gradient(180deg, #fbe7bd, #e8c884 50%, #fbe7bd); box-shadow: none; color: #fff; }
+body:has(.unit-picker-grid) .army-switch button[data-faction="imperial"] .faction-emblem { background: #ff3b30; }
+body:has(.unit-picker-grid) .army-switch button[data-faction="rebel"] .faction-emblem { background: #e6cf9f; }
+body:has(.unit-picker-grid) .army-switch:has(button[data-faction="imperial"].active) { filter: drop-shadow(0 0 9px rgba(255, 59, 48, .38)); }
+body:has(.unit-picker-grid) .army-switch:has(button[data-faction="rebel"].active) { filter: drop-shadow(0 0 9px rgba(230, 200, 132, .3)); }
+
+/* ---------- Barre du bas : fond sombre (plus de bleu), bord acier ---------- */
+.cx-select-bar { background: var(--cx-steel); }
+.cx-select-bar::before { background: linear-gradient(180deg, rgba(7, 12, 18, .94), rgba(3, 7, 11, .96)); box-shadow: none; }
+.cx-sel-empty { display: flex; align-items: center; gap: 14px; min-width: 0; --rx-side-tone: #f4f4f4; color: #fff; }
+.cx-sel-empty .cx-side-emblem { width: 44px; height: 44px; }
+.cx-sel-empty .cx-side-emblem.imperial { background: #ff3b30; }
+.cx-sel-empty .cx-side-emblem.rebel { background: #e6cf9f; }
+.cx-sel-empty strong { font: 700 1.3rem "Rajdhani", sans-serif; letter-spacing: .04em; text-transform: uppercase; }
+.cx-sel-actions .primary:disabled { border-color: rgba(157, 183, 199, .3); background: linear-gradient(180deg, #1a2a38, #111c27); color: #7f95a5; box-shadow: none; text-shadow: none; cursor: not-allowed; }
+
+/* ---------- Étapes : fond sombre translucide, bord acier ; l'étape active reste cyan lumineux ---------- */
+#progress.cx-steps { filter: drop-shadow(0 0 4px rgba(66, 205, 255, .12)); background: rgba(3, 7, 12, .55); }
+#progress.cx-steps i { --bd: linear-gradient(90deg, rgba(130, 175, 200, .55), rgba(90, 135, 160, .4), rgba(130, 175, 200, .55)); --fill: rgba(6, 11, 18, .82); }
+#progress.cx-steps i.done { --bd: linear-gradient(90deg, rgba(140, 190, 215, .6), rgba(100, 150, 175, .45), rgba(140, 190, 215, .6)); }
+#progress.cx-steps i.active { --bd: linear-gradient(180deg, #8ae6ff, #2ba9de 50%, #8ae6ff); --fill: linear-gradient(180deg, rgba(20, 120, 175, .85), rgba(8, 52, 84, .92)); }
+
+/* ---------- En-tête : marque, actions à icônes, coins coupés (maquette) ---------- */
+.app-header-sticky .topbar { background: linear-gradient(180deg, rgba(4, 8, 13, .9), rgba(4, 8, 13, .55)) !important; border-bottom: 0; filter: none; padding-block: 10px 6px; }
+.topbar-brand { border-right-color: rgba(150, 185, 205, .35); }
+.topbar-brand .brand-emblem { width: 2.9rem; height: 2.9rem; }
+.topbar-brand b { font-size: 1.7rem; letter-spacing: .05em; }
+.topbar .topbar-sub strong { font-size: .9rem; letter-spacing: .3em; color: #a7bccb; }
+#roundPhases { display: none; }
+.topbar-actions { gap: 8px; }
+.topbar-actions > a, .topbar-actions > button {
+  --cut: 10px; --bd: linear-gradient(135deg, rgba(170, 205, 225, .8), rgba(90, 130, 155, .6), rgba(170, 205, 225, .8)); --fill: var(--cx-dark);
+  min-height: 44px; padding: 0 16px; gap: 10px; color: #fff; font: 600 1.02rem "Rajdhani", sans-serif; letter-spacing: .01em;
+}
+.topbar-actions > a:hover, .topbar-actions > button:hover { --bd: linear-gradient(135deg, #e6f6ff, #8fd2f0, #e6f6ff); }
+.topbar-actions .tracker-shortcut, #quickMode { --bd: linear-gradient(135deg, rgba(170, 205, 225, .8), rgba(90, 130, 155, .6), rgba(170, 205, 225, .8)); }
+.topbar-actions .tracker-shortcut::before, #gameReadiness::before, #quickMode::before, #history::before, #restart::before {
+  content: ""; flex: 0 0 auto; width: 1.4rem; height: 1.4rem; background: #fff;
+  -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat;
+}
+.topbar-actions .tracker-shortcut { --ic: var(--ic-home); font-size: 0; padding: 0 14px; }
+#quickMode { --ic: var(--ic-bolt); font-size: 0; padding: 0 14px; }
+#quickMode[aria-pressed="false"]::before { background: #7f95a5; }
+#history { --ic: var(--ic-clock); }
+#restart { --ic: var(--ic-back); }
+#gameReadiness { font-size: .95rem; }
+@media (max-width: 899px) {
+  .topbar-actions > a, .topbar-actions > button { min-height: 40px; padding: 0 12px; }
+  #restart, #history, #gameReadiness { font-size: 0; }
+}

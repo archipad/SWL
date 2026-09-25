@@ -1900,6 +1900,10 @@ scenario('Sélection en deux temps (25/09/2026) : un toucher sélectionne et rem
   const tap = (el) => { el.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true, detail: 1 })) }
   const tiles = $$('.unit-picker-grid .unit-tile')
   assert.ok(tiles.length >= 2)
+  const idle = $('.cx-select-bar')
+  assert.ok(idle && !idle.hidden, 'la barre du bas est toujours visible')
+  assert.match(text(idle), /Sélectionner l’attaquant/, 'état vide : invite à choisir l’attaquant')
+  assert.ok(idle.querySelector('[data-cx-confirm]').disabled, 'état vide : le bouton est inactif')
   tap(tiles[0])
   assert.ok(tiles[0].classList.contains('is-selected'), 'la carte touchée est sélectionnée')
   assert.ok($('.attack-workspace, .overview') === null, 'un premier toucher n’ouvre pas encore la fiche')

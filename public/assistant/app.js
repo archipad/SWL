@@ -418,7 +418,7 @@ function placeBlockingWarning(){const center=root.querySelector('.resolve-center
 const resolveScreenWarningBase=resolveScreen;
 resolveScreen=function(){resolveScreenWarningBase();placeBlockingWarning()}
 $('#history').onclick=showAttackHistory;
-function applyQuickMode(){document.body.classList.toggle('quick-mode',quickMode);const button=$('#quickMode');if(button){button.setAttribute('aria-pressed',String(quickMode));button.textContent=quickMode?'Mode rapide':'Mode détaillé'}}
+function applyQuickMode(){document.body.classList.toggle('quick-mode',quickMode);const button=$('#quickMode');if(button){button.setAttribute('aria-pressed',String(quickMode));button.textContent=quickMode?'Mode rapide':'Mode détaillé';button.title=button.textContent;button.setAttribute('aria-label',button.textContent)}}
 $('#quickMode').onclick=()=>{quickMode=!quickMode;localStorage.setItem('swl.assistant.quick-mode.v1',JSON.stringify(quickMode));applyQuickMode();if(attackState)resolveScreen()};applyQuickMode();
 function factionThemeForArmy(armyId){const army=armies.find(candidate=>candidate.id===armyId),identity=norm(`${army?.list?.faction||''} ${army?.list?.listName||''} ${(army?.list?.units||[]).map(unit=>unit.name).join(' ')}`);return /empire|imperial|stormtrooper|snowtrooper|dark vader|at st/.test(identity)?'imperial':'rebel'}
 function applyFactionTheme(theme){document.body.dataset.factionTheme=theme;document.documentElement.style.colorScheme='dark';const color=theme==='imperial'?'#c8232c':'#ff8c1a';document.querySelector('meta[name="theme-color"]')?.setAttribute('content',color)}
@@ -1861,7 +1861,6 @@ function codexBindSelection(role){
   if(!tiles.length||root.querySelector('.cx-select-bar'))return;
   const bar=document.createElement('div');
   bar.className='cx-select-bar';
-  bar.hidden=true;
   root.append(bar);
   const minis=entry=>{const models=unitModelsTotal(entry);return models?`<span class="cx-sel-minis" aria-hidden="true">${tileMini.repeat(Math.min(models,10))}</span><small class="cx-sel-count">${models} figurine${models>1?'s':''}</small>`:''};
   const thumb=entry=>{const portrait=tilePortrait(entry.unit.name);return `<span class="cx-sel-thumb"><img class="${portrait?'cx-portrait':'cx-portrait-card'}" src="${portrait||imageFor(entry.unit.name)}" alt="" onerror="this.hidden=true"></span>`};
@@ -1870,6 +1869,10 @@ function codexBindSelection(role){
     if(role==='defender'&&attacker)bar.innerHTML=`<div class="cx-sel-duel">${unit(attacker,'Duel en cours')}<span class="cx-sel-arrow" aria-hidden="true">→</span>${unit(entry,'Cible')}</div><div class="cx-sel-actions"><button type="button" class="secondary" data-cx-back>← Unité attaquante</button><button type="button" class="primary" data-cx-confirm>Résoudre l’attaque →</button></div>`;
     else bar.innerHTML=`${unit(entry,'Unité sélectionnée')}<div class="cx-sel-actions"><button type="button" class="primary" data-cx-confirm>Voir l’unité →</button></div>`;
   };
+  const emptyFaction=factionThemeForArmy(role==='defender'?(entries.find(candidate=>candidate.id===tiles[0].dataset.id)?.army||selectedArmy):selectedArmy);
+  bar.innerHTML=`<div class="cx-sel-empty"><i class="cx-side-emblem ${emptyFaction}" aria-hidden="true"></i><strong>${role==='defender'?'Sélectionner la cible':'Sélectionner l’attaquant'}</strong></div><div class="cx-sel-actions">${role==='defender'&&attacker?'<button type="button" class="secondary" data-cx-back>← Unité attaquante</button>':''}<button type="button" class="primary" data-cx-confirm disabled>${role==='defender'?'Résoudre l’attaque →':'Voir l’unité →'}</button></div>`;
+  const emptyBack=bar.querySelector('[data-cx-back]');
+  if(emptyBack)emptyBack.onclick=()=>{stage=2;stageWipe=true;overview(attacker,'attack')};
   tiles.forEach(tile=>{
     const original=tile.onclick;
     if(!original)return;
