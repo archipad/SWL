@@ -171,3 +171,29 @@ body:has(.unit-picker-grid) .unit-picker-grid .tile-head {
 .actions, .cx-sel-actions { filter: drop-shadow(0 0 8px rgba(53, 194, 255, .6)); }
 #nextAttack.locked .cx-arrow, .cx-sel-actions .primary:disabled .cx-arrow { background: #6c8496; }
 body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected::after { z-index: 5; }
+
+/* =====================================================================
+   En-tête proportionné comme la maquette : tout est en em, sur une taille qui suit la largeur de l'écran,
+   pictogrammes et libellés des étapes plus grands, filet HUD autour de la marque (retour du 25/09/2026)
+   ===================================================================== */
+@media (min-width: 900px) {
+  .app-header-sticky { --hu: clamp(15px, 1.02vw, 26px); font-size: var(--hu); }
+  .app-header-sticky .topbar { position: relative; padding: .9em 1.4em .6em; min-height: 4.8em; }
+  .app-header-sticky .topbar::before {
+    content: ""; position: absolute; left: .8em; top: .5em; bottom: .1em; width: 56%; pointer-events: none; opacity: .75;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M0 2H82L91 38H0' fill='none' stroke='%2350c8ff' stroke-opacity='.55' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;
+  }
+  .app-header-sticky .topbar > * { position: relative; z-index: 1; }
+  .topbar-brand .brand-emblem { width: 3.2em; height: 3.2em; }
+  .topbar-brand b { font-size: 2em; }
+  .topbar .topbar-sub strong { font-size: .95em; }
+  .topbar-actions > a, .topbar-actions > button { min-height: 2.9em; font-size: 1.05em; padding: 0 1.1em; }
+  .topbar-actions .tracker-shortcut::before, #gameReadiness::before, #quickMode::before, #history::before, #restart::before { width: 1.5em; height: 1.5em; }
+  #progress.cx-steps { padding: .4em 1.4em .8em !important; }
+  #progress.cx-steps i { padding: .5em 1.4em .5em 1.6em; min-height: 4.2em; column-gap: .7em; }
+  #progress.cx-steps i > b { font-size: 2.4em; }
+  #progress.cx-steps i > .cx-icon { width: 2em; height: 2em; }
+  #progress.cx-steps i > em { font-size: 1.2em; }
+  #progress.cx-steps i.done::after { width: 1.5em; height: 1.5em; }
+  #progress.cx-steps i.active { --bd: linear-gradient(180deg, #a6efff, #2aa6e8 50%, #a6efff); }
+}
