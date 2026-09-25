@@ -1,0 +1,161 @@
+/* Écran de sélection des unités « Codex Legion » (25/09/2026, demande
+   utilisateur : l'appli doit ressembler exactement à la maquette fournie).
+
+   Additif : ne modifie aucun sélecteur de logique ; toutes les règles sont
+   posées APRÈS unit-picker.css / engine.css / faction-themes.css et scopées
+   par la présence de la grille de sélection (:has(.unit-picker-grid)) ou par
+   le bandeau, pour ne pas déborder sur les autres écrans. Les contrats de
+   unit-picker.css (plafond de hauteur des cartes, couleurs d'icône de rang)
+   restent en place : on les surcharge ici plutôt que de les retirer. */
+
+/* ---------- Bandeau unique : marque, sous-titre, actions ---------- */
+.app-header-sticky .topbar {
+  display: grid !important; grid-template-columns: auto auto minmax(0, 1fr) !important; align-items: center; gap: 14px;
+  padding: 8px max(16px, env(safe-area-inset-left)) 6px;
+  background: linear-gradient(180deg, rgba(10, 20, 32, .94), rgba(6, 12, 20, .9));
+  border-bottom: 1px solid rgba(66, 205, 255, .22);
+}
+.topbar-brand {
+  display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #fff;
+  padding-right: 16px; border-right: 1px solid rgba(66, 205, 255, .25);
+}
+.topbar-brand .brand-emblem { width: 2.3rem; height: 2.3rem; color: #ff3b30; filter: drop-shadow(0 0 8px rgba(255, 59, 48, .55)); }
+:root:not([data-swl-theme="imperial"]) .topbar-brand .brand-emblem { color: #ffb15c; filter: drop-shadow(0 0 8px rgba(255, 154, 61, .5)); }
+.topbar-brand b { font: 800 1.35rem "Rajdhani", sans-serif; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; }
+.topbar .topbar-sub { display: block; text-align: left; }
+.topbar .topbar-sub strong { font: 600 .85rem "Rajdhani", sans-serif; letter-spacing: .26em; white-space: nowrap; text-transform: uppercase; color: #a9c1d0; }
+.topbar-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; min-width: 0; }
+.topbar-actions > a, .topbar-actions > button {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 34px; padding: 0 11px; text-align: center; white-space: nowrap;
+  background: linear-gradient(180deg, rgba(14, 30, 46, .92), rgba(8, 18, 28, .95)); color: #e3f1fa;
+  border: 1px solid rgba(66, 205, 255, .35); border-radius: 4px; font: 700 .76rem "Rajdhani", sans-serif; letter-spacing: .04em; text-decoration: none;
+}
+.topbar-actions > a:hover, .topbar-actions > button:hover { border-color: #42cdff; box-shadow: 0 0 12px rgba(66, 205, 255, .3); }
+/* Pictogrammes du pack devant les actions qui en ont un équivalent (décoratifs). */
+.topbar-actions .tracker-shortcut::before, #roundPhases::before, #gameReadiness::before, #quickMode::before, #history::before {
+  content: ""; width: 1.15rem; height: 1.15rem; background: #42cdff; flex-shrink: 0;
+  -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat;
+}
+.topbar-actions .tracker-shortcut { --ic: url(../codex/icons/mission.png); }
+#roundPhases { --ic: url(../codex/icons/move.png); }
+#gameReadiness { --ic: url(../codex/icons/dice.png); }
+#quickMode { --ic: url(../codex/icons/surge.png); }
+#history { --ic: url(../codex/icons/rules.png); }
+
+/* ---------- Étapes (mises à jour par progress() dans app.js) ---------- */
+#progress.cx-steps {
+  display: flex !important; justify-content: stretch !important; gap: 0 !important; padding: 8px max(14px, env(safe-area-inset-left)) 10px !important;
+  position: static !important; background: rgba(5, 10, 17, .88);
+}
+#progress.cx-steps i {
+  position: relative; flex: 1 1 0; min-width: 0; width: auto; height: auto; display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 14px; border: 1px solid rgba(66, 205, 255, .25); border-radius: 0; background: linear-gradient(180deg, rgba(12, 26, 40, .92), rgba(7, 15, 24, .95));
+  color: #b8cddb; font-style: normal; font-weight: 700; white-space: nowrap; pointer-events: none;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%, 16px 50%);
+  margin-left: -8px;
+}
+#progress.cx-steps i:first-child { margin-left: 0; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%); }
+#progress.cx-steps i b { font: 800 1.35rem "Rajdhani", sans-serif; opacity: .85; }
+#progress.cx-steps i em { font: 700 .95rem "Rajdhani", sans-serif; font-style: normal; letter-spacing: .02em; }
+#progress.cx-steps i .cx-icon { width: 1.35rem; height: 1.35rem; }
+#progress.cx-steps i.done { color: #7fd7ff; }
+#progress.cx-steps i.active {
+  color: #fff; border-color: #42cdff; background: linear-gradient(180deg, rgba(31, 122, 178, .78), rgba(12, 52, 82, .92));
+  box-shadow: inset 0 0 18px rgba(66, 205, 255, .35);
+}
+/* Pendant la résolution, l'écran a déjà son propre déroulé (.attack-stepper) : on économise la hauteur. */
+body:has(.attack-workspace) #progress.cx-steps { display: none !important; }
+@media (max-width: 900px) {
+  #progress.cx-steps i { padding: 8px 6px; }
+  #progress.cx-steps i em { display: none; }
+  #progress.cx-steps i.active em { display: inline; font-size: .8rem; }
+  .topbar-brand b { font-size: 1.1rem; }
+  .app-header-sticky .topbar { grid-template-columns: 1fr !important; }
+  .topbar .topbar-sub { display: none; }
+  .topbar-actions { justify-content: flex-start; }
+}
+
+/* ---------- Écran « Quelle unité jouez-vous ? » ---------- */
+body:has(.unit-picker-grid)[data-faction-theme]::before {
+  background:
+    linear-gradient(90deg, rgba(4, 9, 15, .72) 0, rgba(4, 9, 15, .96) 60%),
+    url(../codex/art-imperial.jpg) left 60% / auto 115% no-repeat,
+    #060b12;
+}
+body:has(.unit-picker-grid) .intro { text-align: center; padding-top: 6px; }
+body:has(.unit-picker-grid) .intro .kicker { display: none; }
+body:has(.unit-picker-grid) .intro h1 { margin: 4px 0 2px; font: 800 clamp(1.7rem, 3.6vw, 2.6rem) "Rajdhani", sans-serif; letter-spacing: .05em; text-transform: uppercase; color: #fff; }
+body:has(.unit-picker-grid) .intro > p { margin: 0 0 4px; color: #b9cfdc; font-size: 1.1rem; }
+body:has(.unit-picker-grid) .intro .player-side-choice { display: none; }
+
+/* Choix du camp : deux grands boutons à bouts inclinés, emblème + nom. */
+body:has(.unit-picker-grid) .army-switch { display: flex; justify-content: center; gap: 0; max-width: none; margin: 10px auto 14px; }
+body:has(.unit-picker-grid) .army-switch button {
+  flex: 0 1 340px; min-height: 58px; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 8px 40px;
+  border: 1px solid rgba(66, 205, 255, .28); border-radius: 0; background: linear-gradient(180deg, rgba(14, 26, 38, .9), rgba(8, 15, 24, .95)); color: #dbe8f0;
+  clip-path: polygon(22px 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+}
+body:has(.unit-picker-grid) .army-switch button:last-child { clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 100%, 22px 100%); margin-left: -6px; }
+body:has(.unit-picker-grid) .army-switch button small,
+body:has(.unit-picker-grid) .army-switch button > span { display: none; }
+body:has(.unit-picker-grid) .army-switch button strong { font: 800 1.15rem "Rajdhani", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+body:has(.unit-picker-grid) .army-switch .faction-emblem { width: 34px; height: 34px; margin: 0; border: 0; border-radius: 0; background: currentColor; font-size: 0; grid-row: auto; }
+body:has(.unit-picker-grid) .army-switch .faction-emblem::before { content: none; }
+body:has(.unit-picker-grid) .army-switch .faction-emblem.imperial { -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2048%2048%27%3E%3Ccircle%20cx=%2724%27%20cy=%2724%27%20r=%2720.5%27%20fill=%27none%27%20stroke=%27%23000%27%20stroke-width=%273%27/%3E%3Ccircle%20cx=%2724%27%20cy=%2724%27%20r=%275.5%27%20fill=%27%23000%27/%3E%3Cpath%20d=%27M24%2018.5V6.5M28.8%2021.2l10.4-6M28.8%2026.8l10.4%206M24%2029.5v12M19.2%2026.8l-10.4%206M19.2%2021.2l-10.4-6%27%20stroke=%27%23000%27%20stroke-width=%274%27%20fill=%27none%27/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2048%2048%27%3E%3Ccircle%20cx=%2724%27%20cy=%2724%27%20r=%2720.5%27%20fill=%27none%27%20stroke=%27%23000%27%20stroke-width=%273%27/%3E%3Ccircle%20cx=%2724%27%20cy=%2724%27%20r=%275.5%27%20fill=%27%23000%27/%3E%3Cpath%20d=%27M24%2018.5V6.5M28.8%2021.2l10.4-6M28.8%2026.8l10.4%206M24%2029.5v12M19.2%2026.8l-10.4%206M19.2%2021.2l-10.4-6%27%20stroke=%27%23000%27%20stroke-width=%274%27%20fill=%27none%27/%3E%3C/svg%3E") center / contain no-repeat; }
+body:has(.unit-picker-grid) .army-switch .faction-emblem.rebel { -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 5c2.4 3.1 3.2 6.4 2.8 10h-5.6c-.4-3.6.4-6.9 2.8-10zM20.6 19.4C16.4 18.6 9.6 16 4.8 10.4 6.2 19.6 10.6 26.6 18.2 29.8zM27.4 19.4c4.2-.8 11-3.4 15.8-9-1.4 9.2-5.8 16.2-13.4 19.4zM19.2 31.4L24 43l4.8-11.6c-1.6.6-3.2.8-4.8.8s-3.2-.2-4.8-.8z'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M24 5c2.4 3.1 3.2 6.4 2.8 10h-5.6c-.4-3.6.4-6.9 2.8-10zM20.6 19.4C16.4 18.6 9.6 16 4.8 10.4 6.2 19.6 10.6 26.6 18.2 29.8zM27.4 19.4c4.2-.8 11-3.4 15.8-9-1.4 9.2-5.8 16.2-13.4 19.4zM19.2 31.4L24 43l4.8-11.6c-1.6.6-3.2.8-4.8.8s-3.2-.2-4.8-.8z'/%3E%3C/svg%3E") center / contain no-repeat; }
+body:has(.unit-picker-grid) .army-switch .faction-emblem.imperial { background: #f4f4f4; }
+body:has(.unit-picker-grid) .army-switch .faction-emblem.rebel { background: #f0b56a; }
+body:has(.unit-picker-grid) .army-switch button[data-faction="imperial"].active {
+  border-color: #ff3b30; color: #fff; background: linear-gradient(180deg, rgba(255, 59, 48, .42), rgba(110, 12, 16, .82)); box-shadow: inset 0 0 22px rgba(255, 59, 48, .35);
+}
+body:has(.unit-picker-grid) .army-switch button[data-faction="rebel"].active {
+  border-color: #ffb15c; color: #fff; background: linear-gradient(180deg, rgba(255, 160, 60, .4), rgba(120, 62, 10, .82)); box-shadow: inset 0 0 22px rgba(255, 160, 60, .32);
+}
+
+/* ---------- Cartes d'unités ---------- */
+body:has(.unit-picker-grid) .unit-picker-grid { gap: 14px; }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile {
+  padding: 0; gap: 0; border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(66, 205, 255, .42);
+  background: linear-gradient(180deg, rgba(12, 30, 46, .94), rgba(6, 14, 23, .97));
+  box-shadow: inset 0 0 0 1px rgba(66, 205, 255, .06);
+}
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:hover,
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:focus-visible {
+  border-color: #42cdff; box-shadow: 0 0 0 1px rgba(66, 205, 255, .5), 0 10px 26px rgba(0, 0, 0, .5), 0 0 22px rgba(66, 205, 255, .3);
+}
+/* En-tête : rang + icône associée. */
+.unit-picker-grid .tile-head {
+  display: flex; align-items: center; gap: 9px; padding: 8px 12px 7px; min-height: 34px;
+  color: #a9c5d8; font: 700 .76rem "Rajdhani", sans-serif; letter-spacing: .14em; text-transform: uppercase;
+}
+.unit-picker-grid .tile-head .rank-icon {
+  position: static !important; transform: none !important; flex: 0 0 auto; width: 22px !important; height: 20px !important; aspect-ratio: auto; padding: 0; filter: none; background: #d6ebf7 !important;
+}
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile .tile-head b, body:has(.unit-picker-grid) .unit-picker-grid .unit-tile .tile-head .rank-label { font-weight: 700; color: #b7d0e0; }
+/* Illustration : portrait du pack si connu, sinon la moitié « illustration » du visuel de carte. */
+.unit-picker-grid .tile-visual {
+  display: block !important; margin: 0 8px; min-height: 0; border-radius: 2px; background: #050a10; position: relative;
+  height: clamp(56px, calc((100dvh - 330px) / var(--rows, 1) - 112px), 230px);
+}
+.unit-picker-grid .tile-visual > .rank-icon { display: none !important; }
+.unit-picker-grid .unit-tile img.art-portrait { width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: center 25%; }
+.unit-picker-grid .unit-tile img.art-card { width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: 96% 24%; transform: scale(2.05); transform-origin: 97% 24%; }
+/* Nom, figurines, suppression. */
+.unit-picker-grid .tile-body { display: grid; gap: 5px; padding: 8px 12px 10px; }
+.unit-picker-grid .tile-body strong { overflow: hidden; font: 800 1.05rem "Rajdhani", sans-serif; letter-spacing: .04em; text-transform: uppercase; color: #fff; text-overflow: ellipsis; white-space: nowrap; }
+.unit-picker-grid .tile-meta { display: flex; align-items: center; gap: 10px; min-height: 22px; min-width: 0; }
+.unit-picker-grid .tile-minis { display: inline-flex; gap: 2px; flex: 0 1 auto; overflow: hidden; }
+.unit-picker-grid .tile-mini { width: 9px; height: 16px; fill: #fff; flex: 0 0 auto; }
+.unit-picker-grid .tile-mini:nth-child(n + 2) { opacity: .9; }
+.unit-picker-grid .tile-count { color: #9db8c8; font-size: .8rem; white-space: nowrap; }
+.unit-picker-grid .tile-meta .unit-status { margin: 0; flex-wrap: nowrap; overflow: hidden; gap: 6px; }
+.unit-picker-grid .tile-meta .unit-status b { padding: 0; border: 0; background: none; color: #ff6b5e; font: 700 .8rem "Rajdhani", sans-serif; letter-spacing: .02em; white-space: nowrap; }
+.unit-picker-grid .tile-meta .unit-status b:first-child::before {
+  content: "!"; display: inline-grid; place-items: center; width: 17px; height: 17px; margin-right: 6px; border-radius: 50%; background: #ff3b30; color: #fff; font-size: .72rem; font-weight: 900;
+}
+.unit-picker-grid .tile-chevron { margin-left: auto; width: 16px; height: 16px; flex: 0 0 auto; fill: none; stroke: #fff; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 999px) {
+  .unit-picker-grid .tile-visual { height: 130px; }
+}

@@ -1,79 +1,28 @@
-/* Bandeau de navigation identique à celui du site principal (.cx-topbar,
-   voir src/index.css), reconstruit ici en HTML/CSS statique puisque cette
-   page n'est pas construite par Vite/React. Demande utilisateur : l'Assistant
-   d'unité doit se sentir comme un onglet du site, pas comme un site à part.
-   Fichier séparé (même logique que header-sync.css) : purement additif, ne
-   touche à aucune règle existante.
-
-   « Codex Legion » (25/09/2026) : logo + onglets à icône au-dessus du
-   libellé, mêmes pictogrammes que le site (public/codex/icons, masque CSS).
-   Le contenu de l'Assistant reste sombre quel que soit le thème (table
-   holographique) : seuls l'accent et la barre changent (attribut
-   data-swl-theme posé par le script de index.html). */
+/* Éléments communs « Codex Legion » de l'Assistant (pictogrammes en masque
+   CSS, emblèmes de faction, Aurebesh décoratif). Le bandeau de navigation du
+   site qui vivait ici a été retiré (25/09/2026, demande utilisateur : pas de
+   double barre de menu) : l'Assistant n'a plus que son propre bandeau, voir
+   unit-picker-codex.css. Fichier séparé (même logique que header-sync.css) :
+   purement additif, ne touche à aucune règle existante. */
 
 :root {
-  --n-bar: linear-gradient(180deg, #245a86, #143f63); --n-line: #0e2f4d; --n-ink: #e2eef8;
-  --n-active-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.07)); --n-active-line: #b4d3ec; --n-active-ink: #fff; --n-active-icon: #ff9a3d;
-  --n-accent-rgb: 255, 154, 61; --n-icon: #ffb15c; --n-logo-line: #2f6b9e;
+  --n-accent-rgb: 255, 154, 61; --n-icon: #ffb15c;
 }
 :root[data-swl-theme="imperial"] {
-  --n-bar: rgba(13, 8, 9, 0.94); --n-line: #7a1f24; --n-ink: #c9b9ba;
-  --n-active-bg: linear-gradient(180deg, rgba(255, 59, 48, 0.42), rgba(120, 14, 18, 0.62)); --n-active-line: #ff3b30; --n-active-ink: #fff; --n-active-icon: #fff;
-  --n-accent-rgb: 255, 59, 48; --n-icon: #ff8a80; --n-logo-line: #7a1f24;
+  --n-accent-rgb: 255, 59, 48; --n-icon: #ff8a80;
 }
 
 @font-face { font-family: 'Droidobesh'; src: url('../fonts/droidobesh-depot.otf') format('opentype'); font-display: swap; }
 .aurebesh { font-family: 'Droidobesh', 'Rajdhani', sans-serif; letter-spacing: 0.14em; color: rgb(var(--n-accent-rgb)); opacity: 0.9; line-height: 1; }
 
+/* Pictogrammes du pack : PNG blanc utilisé comme masque, recoloré par currentColor. */
 .cx-icon {
   display: inline-block; flex-shrink: 0; width: 1.5em; height: 1.5em; background-color: currentColor;
   -webkit-mask: var(--cx-icon) center / contain no-repeat; mask: var(--cx-icon) center / contain no-repeat;
 }
 
-.site-nav.cx-topbar {
-  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 14px;
-  padding: 5px max(14px, env(safe-area-inset-left)) 4px;
-  background: linear-gradient(180deg, rgba(20, 32, 44, 0.9), rgba(7, 12, 18, 0.7));
-  border-bottom: 1px solid var(--n-line);
-  box-shadow: 0 1px 0 rgba(var(--n-accent-rgb), 0.25);
-}
-.site-nav .cx-logo {
-  display: grid; gap: 3px; padding: 7px 30px 6px; min-width: 14rem; text-decoration: none;
-  background: linear-gradient(90deg, rgba(26, 44, 57, 0.85), rgba(14, 26, 35, 0.75));
-  clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 16px 100%, 0 50%);
-  box-shadow: inset 0 0 0 1px var(--n-logo-line);
-}
-.site-nav .cx-logo strong { font-family: 'Orbitron', 'Rajdhani', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #fff; white-space: nowrap; }
-.site-nav .cx-logo .aurebesh { font-size: 0.72rem; }
-
-.site-nav .cx-tabs {
-  display: flex; align-items: stretch; justify-content: space-between; padding: 0 22px;
-  background: var(--n-bar);
-  clip-path: polygon(18px 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 18px 100%, 0 50%);
-  box-shadow: inset 0 0 0 1px var(--n-line);
-}
-.site-nav .cx-tab {
-  position: relative; isolation: isolate; flex: 1 1 0; min-width: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
-  padding: 6px 6px 5px; text-decoration: none; text-align: center; line-height: 1.1;
-  color: var(--n-ink); font: 700 0.64rem 'Rajdhani', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
-}
-.site-nav .cx-tab .cx-icon { width: 1.35rem; height: 1.35rem; }
-.site-nav .cx-tab::before { content: ''; position: absolute; inset: 3px 6px; z-index: -1; transform: skewX(-16deg); border: 1px solid transparent; transition: background 0.15s, border-color 0.15s; }
-.site-nav .cx-tab + .cx-tab::after { content: ''; position: absolute; left: 0; top: 14%; bottom: 14%; width: 1px; background: var(--n-line); transform: skewX(-16deg); opacity: 0.8; }
-.site-nav a.cx-tab:hover::before, .site-nav a.cx-tab:focus-visible::before { border-color: var(--n-active-line); }
-.site-nav .cx-tab.active::before { background: var(--n-active-bg); border-color: var(--n-active-line); }
-.site-nav .cx-tab.active { color: var(--n-active-ink); }
-.site-nav .cx-tab.active .cx-icon { color: var(--n-active-icon); filter: drop-shadow(0 0 6px rgba(var(--n-accent-rgb), 0.7)); }
-.site-nav .cx-tab:nth-child(n + 2):nth-child(-n + 4) .cx-icon { color: var(--n-icon); }
-.site-nav .cx-tab.active:nth-child(n + 2):nth-child(-n + 4) .cx-icon { color: var(--n-active-icon); }
-
-@media (max-width: 960px) {
-  .site-nav.cx-topbar { grid-template-columns: minmax(0, 1fr); }
-  .site-nav .cx-logo { min-width: 0; padding-inline: 26px; }
-}
-@media (max-width: 560px) {
-  .site-nav .cx-tab { font-size: 0.6rem; padding-inline: 2px; }
-  .site-nav .cx-tab .cx-icon { width: 1.5rem; height: 1.5rem; }
-  .site-nav .cx-tabs { padding: 0 12px; }
-}
+/* Un seul des deux emblèmes de faction est visible, selon le thème. */
+.ni-rebel { display: inline; }
+.ni-imperial { display: none; }
+:root[data-swl-theme="imperial"] .ni-imperial { display: inline; }
+:root[data-swl-theme="imperial"] .ni-rebel { display: none; }

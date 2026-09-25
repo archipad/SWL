@@ -1807,9 +1807,42 @@ scenario('Table holographique (25/09/2026) : décor en lecture seule, hologramme
   await click('[data-range="2"]')
   assert.match(text($('.holo-readout')), /Portée\s*2/, 'la portée choisie est reflétée')
   assert.match(gate(), /PRÊT/, 'le parcours n’est pas modifié par le décor')
+  // « PRÉREMPLI · MODIFIABLE » : une seule étiquette par arme (elle était doublée), et un effectif d'escouade une seule fois.
+  for (const choice of app.window.document.querySelectorAll('.weapon-choice')) {
+    assert.equal(choice.querySelectorAll('.autofill-note').length, 1, 'une seule étiquette « prérempli » par arme')
+    assert.ok(choice.querySelectorAll('.models-note').length <= 1, 'la note d’effectif n’est pas répétée')
+  }
   ev('attackStep = 2; resolveScreen()')
   await click('[data-cover="heavy"]')
   assert.match(text($('.holo-readout')), /Couvert\s*Lourd/, 'le couvert choisi est reflété')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Sélection des unités (25/09/2026) : rang + icône en tête, figurines et suppression dessous, sans noms d’améliorations, une seule barre de menu', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Stormtrooper Heavy Gunner' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles solo', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.assistant.unit-state.v1': { 'p1:0': { suppression: 1 } },
+  })
+  const { $, $$, text } = app
+  const doc = app.window.document
+  assert.ok(!doc.querySelector('.site-nav'), 'plus de double barre de menu : le bandeau de navigation du site est retiré')
+  assert.equal(doc.querySelectorAll('#progress i').length, 8, 'les 8 étapes sont affichées en haut')
+  assert.ok(doc.querySelector('#progress i.active'), 'l’étape courante est mise en évidence')
+  assert.ok(doc.querySelector('.topbar-brand') && doc.querySelector('.topbar-sub'), 'le bandeau unique porte la marque et « Assistant d’unité »')
+  const tile = $('.unit-tile')
+  assert.ok(tile, 'la tuile est présente')
+  assert.match(text(tile.querySelector('.tile-head')), /Troupiers/, 'le rang est affiché en tête de la carte')
+  assert.ok(tile.querySelector('.tile-head .rank-icon'), 'avec son icône')
+  assert.ok(tile.querySelector('.tile-visual > img'), 'la carte garde son illustration (contrat de balisage)')
+  assert.match(text(tile.querySelector('.tile-count')), /\d+ figurines?/, 'le nombre de figurines est affiché sous la carte')
+  assert.match(text(tile.querySelector('.unit-status')), /1 suppression/, 'la suppression actuelle est affichée')
+  assert.doesNotMatch(text(tile), /Sans amélioration|Heavy Gunner|Artilleur/i, 'le nom des améliorations n’est plus affiché')
+  // Un seul toucher ouvre toujours la fiche de l'unité.
+  tile.click()
+  await new Promise((resolve) => setTimeout(resolve, 50))
+  assert.ok(doc.querySelector('.overview'), 'toucher la carte ouvre la fiche de l’unité')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
