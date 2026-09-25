@@ -248,7 +248,7 @@ assert.match(app, /dialog\.className='card-dialog dialog-wipe'/, 'Le zoom de car
 assert.match(app, /dialog\.className='warning-dialog dialog-wipe'/, 'L’avertissement de réserve mixte doit utiliser le balayage commun')
 assert.match(app, /stageWipe=true;pick\('attacker'\)/, 'Changer de joueur doit déclencher le balayage')
 assert.doesNotMatch(app, /unitSearch|data-rank|rank-filters|class="unit-tools"/, 'La recherche et les filtres de rang doivent avoir disparu de l’écran de sélection (demande utilisateur du 19/09/2026)')
-assert.match(app, /function pickerGrid\(units\)\{const n=units\.length,cols=n<=3\?3:n<=8\?4:n<=10\?5:n<=12\?6:7;/, 'La grille de sélection doit adapter le nombre de colonnes au nombre d’unités pour tenir sans défilement')
+assert.match(app, /function pickerGrid\(units\)\{const n=units\.length,cols=4;/, 'La grille de sélection affiche quatre cartes larges et basses par rangée (demande utilisateur du 25/09/2026, maquette)')
 assert.match(fs.readFileSync(new URL('../public/assistant/unit-picker.css', import.meta.url), 'utf8'), /max-height: calc\(\(100dvh - 330px\) \/ var\(--rows, 1\) - 58px\)/, 'La hauteur des cartes de sélection doit être plafonnée pour que toutes les rangées tiennent à l’écran')
 assert.match(app, /data-faction="\$\{factionThemeForArmy\(e\.army\)\}" class="unit-tile[\s\S]*?<span class="tile-visual"><img [^>]*>\$\{rankMark\(e\)\}<\/span>/, 'L’icône de rang doit être dans la carte de la tuile, et la tuile doit porter l’armée de l’unité')
 assert.match(fs.readFileSync(new URL('../public/assistant/unit-picker.css', import.meta.url), 'utf8'), /\[data-faction="rebel"\][^{]*\{ background: rgba\(255, 140, 26, \.86\); \}[\s\S]*\[data-faction="imperial"\][^{]*\{ background: rgba\(255, 69, 80, \.86\); \}/, 'L’icône de rang doit être orange pour les Rebelles et rouge pour l’Empire, avec une légère transparence')
@@ -494,7 +494,7 @@ assert.match(app, /case'place-proton'.*activationActions:\[\.\.\.actions,'arm-pr
 assert.match(app, /case'place-sonic'.*activationActions:\[\.\.\.actions,'arm-sonic'\]/, 'Armer une charge sonique doit consommer une action')
 // La grille d'actions elle-même (et son message de verrouillage) a été
 // retirée avec le Parcours guidé (16/09/2026).
-assert.match(index, /app\.js\?v=159/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
+assert.match(index, /app\.js\?v=160/, 'Le verrou de navigation de la certification doit invalider le cache JavaScript')
 // Pop-up de fin d'attaque (17/09/2026, demande utilisateur) : les effets
 // purement informatifs de fin d'attaque (Agile, Maîtrise de l'Ataru,
 // Matamore, Maîtrise du Djem So, Déflexion, Suppression/Ionique à poser)

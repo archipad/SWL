@@ -165,3 +165,15 @@ body:has(.attack-workspace) .actions #prev:hover, body:has(.attack-workspace) .a
   body:has(.attack-workspace) .resolve-center, body:has(.attack-workspace) .combat-side.is-acting { box-shadow: none; }
   body:has(.attack-workspace) .resolve-center .attack-stepper::before { text-shadow: none; }
 }
+
+/* Pas de hauteur minimale imposée à l'espace de résolution (ancienne règle 65vh) : sur grand écran elle laissait un vide entre le dernier cadre et la barre d'actions. */
+body:has(.attack-workspace) .attack-workspace { min-height: 0; }
+/* Résumé collant (dés à lancer + résultat en cours) : empilé, sinon les deux blocs se chevauchent quand la colonne centrale est étroite. */
+body:has(.attack-workspace) .resolve-center .sticky-summary { flex-direction: column; flex-wrap: nowrap; gap: 8px; background: #07121b; }
+body:has(.attack-workspace) .resolve-center .sticky-summary > .dice-pool,
+body:has(.attack-workspace) .resolve-center .sticky-summary > .defense-dice-pool,
+body:has(.attack-workspace) .resolve-center .sticky-summary > .live-result-strip,
+body:has(.attack-workspace) .resolve-center .sticky-summary > .live-defense-strip { flex: 0 0 auto; min-width: 0; width: 100%; box-sizing: border-box; }
+body:has(.attack-workspace) .resolve-center .dice-pool,
+body:has(.attack-workspace) .resolve-center .defense-dice-pool,
+body:has(.attack-workspace) .resolve-center .result-strip { flex-wrap: wrap; row-gap: 6px; }

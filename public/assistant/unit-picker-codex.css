@@ -157,3 +157,48 @@ body:has(.unit-picker-grid) .unit-picker-grid .unit-tile .tile-head b, body:has(
 @media (max-width: 999px) {
   .unit-picker-grid .tile-visual { height: 130px; }
 }
+
+/* =====================================================================
+   Retouches du 25/09/2026 (demande utilisateur) : cartes plus larges et moins hautes,
+   quatre par rangée, à coins coupés comme la maquette ; boutons du camp assortis ;
+   suppression du titre « Quelle unité jouez-vous ? » pour gagner en hauteur.
+   Bord tracé par un pseudo-élément (le clip-path coupe une bordure classique).
+   ===================================================================== */
+body:has(.army-switch) .intro > h1,
+body:has(.army-switch) .intro > p:not(.notice) { display: none; }
+body:has(.army-switch) .intro { padding-top: 0; }
+
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile {
+  --cut: 14px; --bd: rgba(66, 205, 255, .5); --fill: linear-gradient(180deg, rgba(12, 30, 46, .96), rgba(6, 14, 23, .98));
+  position: relative; isolation: isolate; border: 0; border-radius: 0; overflow: visible; box-shadow: none; background: var(--bd);
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+  padding: 1px;
+}
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile::before {
+  content: ""; position: absolute; inset: 1px; z-index: -1; pointer-events: none; background: var(--fill);
+  clip-path: polygon(calc(var(--cut) - 1px) 0, calc(100% - var(--cut) + 1px) 0, 100% calc(var(--cut) - 1px), 100% calc(100% - var(--cut) + 1px), calc(100% - var(--cut) + 1px) 100%, calc(var(--cut) - 1px) 100%, 0 calc(100% - var(--cut) + 1px), 0 calc(var(--cut) - 1px));
+}
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:not(.unit-defeated)::after { display: none; }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:hover,
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:focus-visible { --bd: #42cdff; box-shadow: none; transform: none; }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.unit-defeated { opacity: .7; }
+/* Illustration large et basse (format de la maquette). */
+.unit-picker-grid .tile-visual { height: auto; aspect-ratio: 2 / 1; max-height: 150px; margin: 0 10px; overflow: hidden; }
+.unit-picker-grid .tile-head { padding: 9px 14px 6px; }
+.unit-picker-grid .tile-body { padding: 8px 14px 12px; }
+
+/* Boutons du camp : même coupe. */
+body:has(.army-switch) .army-switch { background: none !important; border: 0 !important; box-shadow: none !important; gap: 12px; padding: 0; }
+body:has(.unit-picker-grid) .army-switch button {
+  --cut: 14px; --bd: rgba(66, 205, 255, .4); --fill: linear-gradient(180deg, rgba(14, 26, 38, .92), rgba(8, 15, 24, .96));
+  position: relative; isolation: isolate; margin-left: 0 !important; border: 0; border-radius: 0; box-shadow: none; background: var(--bd);
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+}
+body:has(.unit-picker-grid) .army-switch button:last-child { clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut)); }
+body:has(.unit-picker-grid) .army-switch button::before {
+  content: ""; position: absolute; inset: 1px; z-index: -1; pointer-events: none; background: var(--fill);
+  clip-path: polygon(calc(var(--cut) - 1px) 0, calc(100% - var(--cut) + 1px) 0, 100% calc(var(--cut) - 1px), 100% calc(100% - var(--cut) + 1px), calc(100% - var(--cut) + 1px) 100%, calc(var(--cut) - 1px) 100%, 0 calc(100% - var(--cut) + 1px), 0 calc(var(--cut) - 1px));
+}
+body:has(.unit-picker-grid) .army-switch button[data-faction="imperial"].active { --bd: #ff3b30; --fill: linear-gradient(180deg, rgba(255, 59, 48, .42), rgba(110, 12, 16, .85)); background: var(--bd); box-shadow: none; }
+body:has(.unit-picker-grid) .army-switch button[data-faction="rebel"].active { --bd: #ffb15c; --fill: linear-gradient(180deg, rgba(255, 160, 60, .4), rgba(120, 62, 10, .85)); background: var(--bd); box-shadow: none; }
+.unit-picker-grid .unit-tile img.art-card { transform: scale(2.8); transform-origin: 100% 27%; }

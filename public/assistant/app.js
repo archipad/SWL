@@ -221,7 +221,7 @@ function bindCardViewer(){root.querySelectorAll('.upgrade-visual,.unit-card-zoom
 function progress(){const current=attackState?Math.min(8,attackStep+3):stage<=2?1:2;document.querySelectorAll('#progress i').forEach((i,n)=>{i.className=n+1===current?'active':n+1<current?'done':''})}function name(e){return e?.unit?.name?displayName(e.unit.name):'Unité'}
 function entryName(e){const base=displayName(e.unit.name);return e.totalOccurrences>1?`${base} ${e.occurrence}`:base}
 // Grille de sélection (19/09/2026, demande utilisateur) : la carte Unité en grand sert de bouton ; le nombre de colonnes suit le nombre d'unités pour que la liste tienne sur un iPad Air sans défilement (voir unit-picker.css).
-function pickerGrid(units){const n=units.length,cols=n<=3?3:n<=8?4:n<=10?5:n<=12?6:7;return `<div class="unit-grid unit-picker-grid" style="--cols:${cols};--rows:${Math.ceil(n/cols)}">${units.map(tile).join('')}</div>`}
+function pickerGrid(units){const n=units.length,cols=4;return `<div class="unit-grid unit-picker-grid" style="--cols:${cols};--rows:${Math.ceil(n/cols)}">${units.map(tile).join('')}</div>`}
 // Écran de sélection « Codex Legion » (25/09/2026, demande utilisateur, maquette fournie) : en tête de chaque
 // carte, le rang avec son icône ; l'illustration ; puis le nom, le nombre de figurines et la suppression
 // actuelle. Le nom des améliorations n'est plus affiché. La carte reste le bouton (un seul toucher).
