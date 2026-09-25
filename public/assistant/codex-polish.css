@@ -1,0 +1,87 @@
+/* Finitions « Codex Legion » (25/09/2026, retour utilisateur : le rendu n'est pas encore aussi
+   « léché » que la maquette — bordures colorées, ombrages, rangs en blanc / gris).
+   Dernier feuillet chargé, purement visuel, aucun sélecteur de logique retiré.
+   Les formes à coins coupés sont clippées : leur lueur passe par filter: drop-shadow posé sur le
+   CONTENEUR (une ombre portée sur l'élément clippé serait coupée). */
+
+/* ---------- Étapes : vraies bordures sur les bords inclinés + lueur ---------- */
+#progress.cx-steps { filter: drop-shadow(0 0 5px rgba(66, 205, 255, .22)); background: rgba(5, 10, 17, .82); }
+#progress.cx-steps i {
+  --bd: linear-gradient(90deg, rgba(66, 205, 255, .55), rgba(66, 205, 255, .3) 50%, rgba(66, 205, 255, .55));
+  --fill: linear-gradient(180deg, #0f2438 0%, #08131f 100%);
+  isolation: isolate; border: 0; background: var(--bd); box-shadow: none;
+}
+#progress.cx-steps i::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--fill);
+  clip-path: polygon(1px 1px, calc(100% - 16.2px) 1px, calc(100% - 1.2px) 50%, calc(100% - 16.2px) calc(100% - 1px), 1px calc(100% - 1px), 17.2px 50%);
+}
+#progress.cx-steps i:first-child::before { clip-path: polygon(1px 1px, calc(100% - 16.2px) 1px, calc(100% - 1.2px) 50%, calc(100% - 16.2px) calc(100% - 1px), 1px calc(100% - 1px)); }
+#progress.cx-steps i.done { --bd: linear-gradient(90deg, rgba(66, 205, 255, .7), rgba(66, 205, 255, .4) 50%, rgba(66, 205, 255, .7)); }
+#progress.cx-steps i.active {
+  --bd: linear-gradient(180deg, #8ae6ff, #2ba9de 50%, #8ae6ff);
+  --fill: linear-gradient(180deg, #1c7fb8 0%, #0d4a76 55%, #0a3a5e 100%);
+  border: 0; box-shadow: none;
+}
+#progress.cx-steps i.active::before { box-shadow: inset 0 0 22px rgba(120, 225, 255, .45); }
+#progress.cx-steps i b { color: #fff; text-shadow: 0 0 10px rgba(66, 205, 255, .35); }
+#progress.cx-steps i:not(.active):not(.done) b { color: #dfeaf2; opacity: .8; }
+
+/* ---------- Cartes d'unités : bordure dégradée lumineuse, fond profond, rangs en blanc / gris ---------- */
+body:has(.unit-picker-grid) .unit-picker-grid { filter: drop-shadow(0 0 6px rgba(66, 205, 255, .3)) drop-shadow(0 8px 12px rgba(0, 0, 0, .5)); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile {
+  --bd: linear-gradient(135deg, #6fe0ff 0%, #2f8fb8 32%, #1c5f82 55%, #3bb4e0 80%, #7ae4ff 100%);
+  --fill: linear-gradient(180deg, #112b44 0%, #0a1c2e 42%, #071019 100%);
+}
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile::before { box-shadow: inset 0 0 26px rgba(66, 205, 255, .1), inset 0 1px 0 rgba(160, 230, 255, .25); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:hover,
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:focus-visible { --bd: linear-gradient(135deg, #b6f0ff, #52d0ff 50%, #b6f0ff); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:hover::before { box-shadow: inset 0 0 34px rgba(66, 205, 255, .28), inset 0 1px 0 rgba(200, 240, 255, .4); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile .rank-label,
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile .tile-head b { color: #c4d5e1 !important; font-weight: 600; letter-spacing: .16em; }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-head .rank-icon { background: #dfeaf2 !important; opacity: .92; }
+.unit-picker-grid .tile-visual { border-radius: 4px; box-shadow: 0 0 0 1px rgba(160, 200, 225, .18), inset 0 0 18px rgba(0, 0, 0, .55); }
+.unit-picker-grid .tile-body strong { text-shadow: 0 1px 6px rgba(0, 0, 0, .6); }
+.unit-picker-grid .tile-chevron { stroke: #eaf4fa; }
+.unit-picker-grid .tile-count { color: #a8bccb; }
+
+/* ---------- Choix du camp : bordures de la couleur de la faction, lueur sur le camp actif ---------- */
+body:has(.unit-picker-grid) .army-switch button[data-faction="imperial"]:not(.active) { --bd: linear-gradient(135deg, rgba(255, 96, 84, .7), rgba(150, 40, 36, .5)); }
+body:has(.unit-picker-grid) .army-switch button[data-faction="rebel"]:not(.active) { --bd: linear-gradient(135deg, rgba(246, 196, 128, .8), rgba(150, 110, 60, .5)); }
+body:has(.unit-picker-grid) .army-switch button[data-faction="imperial"].active { --bd: linear-gradient(180deg, #ff8a80, #ff3b30 45%, #ff8a80); }
+body:has(.unit-picker-grid) .army-switch button[data-faction="rebel"].active { --bd: linear-gradient(180deg, #ffe0ac, #ffb15c 45%, #ffe0ac); }
+body:has(.unit-picker-grid) .army-switch:has(button[data-faction="imperial"].active) { filter: drop-shadow(0 0 10px rgba(255, 59, 48, .42)); }
+body:has(.unit-picker-grid) .army-switch:has(button[data-faction="rebel"].active) { filter: drop-shadow(0 0 10px rgba(255, 177, 92, .4)); }
+body:has(.unit-picker-grid) .army-switch button:not(.active) { color: #e9dcc8; }
+
+/* ---------- Résolution et fiche : ombrages colorés autour des cadres ---------- */
+body:has(.attack-workspace) .combat-side,
+body:has(.overview) .overview .hero,
+.cx-attacker-recap { box-shadow: 0 0 0 1px rgba(0, 0, 0, .45), 0 0 22px color-mix(in srgb, var(--rx-side-tone, #e5392e) 32%, transparent), inset 0 0 30px rgba(0, 0, 0, .4); }
+body:has(.attack-workspace) .combat-side.is-acting { box-shadow: 0 0 0 1px rgba(66, 205, 255, .45), 0 0 26px rgba(66, 205, 255, .4), inset 0 0 30px rgba(0, 0, 0, .3); }
+body:has(.attack-workspace) .resolve-center {
+  border-color: rgba(96, 216, 255, .7);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .5), 0 0 30px rgba(66, 205, 255, .22), inset 0 0 50px rgba(66, 205, 255, .07), inset 0 1px 0 rgba(160, 230, 255, .25);
+}
+body:has(.attack-workspace) .resolve-center .manual-focus,
+body:has(.attack-workspace) .resolve-center .dice-pool,
+body:has(.attack-workspace) .resolve-center .defense-dice-pool,
+body:has(.attack-workspace) .resolve-center .result-strip,
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field { box-shadow: inset 0 0 26px rgba(66, 205, 255, .08), 0 2px 10px rgba(0, 0, 0, .35) !important; }
+body:has(.overview) .overview .card-strip,
+body:has(.overview) .overview .activation-automation,
+body:has(.overview) .overview .activation-briefing,
+body:has(.overview) .overview .unit-state-editor { box-shadow: 0 0 22px rgba(66, 205, 255, .14), inset 0 0 30px rgba(66, 205, 255, .05) !important; }
+body:has(.attack-workspace) .actions #prev,
+body:has(.overview) .actions button.secondary { box-shadow: 0 0 14px rgba(66, 205, 255, .18), inset 0 1px 0 rgba(160, 230, 255, .18); }
+
+/* ---------- Étapes : numéro en grand à gauche, pictogramme au-dessus du libellé (maquette) ---------- */
+@media (min-width: 900px) {
+  #progress.cx-steps i {
+    display: grid; grid-template-columns: auto auto auto; grid-template-areas: "num icon chk" "num label chk";
+    column-gap: 10px; row-gap: 0; justify-content: center; align-items: center; padding: 6px 22px 6px 26px;
+  }
+  #progress.cx-steps i > b { grid-area: num; font-size: 1.9rem; line-height: 1; }
+  #progress.cx-steps i > .cx-icon { grid-area: icon; justify-self: center; width: 1.4rem; height: 1.4rem; }
+  #progress.cx-steps i > em { grid-area: label; }
+  #progress.cx-steps i.done::after { grid-area: chk; }
+}
