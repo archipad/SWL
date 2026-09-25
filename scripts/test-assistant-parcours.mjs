@@ -1890,6 +1890,40 @@ scenario('Fiche d’unité et Cible « Codex » (25/09/2026) : titre, portrait, 
   app.window.close()
 })
 
+scenario('Sélection en deux temps (25/09/2026) : un toucher sélectionne et remplit la barre, le bouton (ou un second toucher) exécute l’action d’origine, le clic sans détail reste direct', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }, { name: 'Snowtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles solo', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click } = app
+  const win = app.window
+  const tap = (el) => { el.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true, detail: 1 })) }
+  const tiles = $$('.unit-picker-grid .unit-tile')
+  assert.ok(tiles.length >= 2)
+  tap(tiles[0])
+  assert.ok(tiles[0].classList.contains('is-selected'), 'la carte touchée est sélectionnée')
+  assert.ok($('.attack-workspace, .overview') === null, 'un premier toucher n’ouvre pas encore la fiche')
+  const bar = $('.cx-select-bar')
+  assert.ok(bar && !bar.hidden, 'la barre du bas apparaît')
+  assert.match(text(bar), /Unité sélectionnée/i)
+  tap(tiles[1])
+  assert.ok(!tiles[0].classList.contains('is-selected') && tiles[1].classList.contains('is-selected'), 'un seul choix à la fois')
+  assert.match(text($('.cx-select-bar')), /Voir l’unité/)
+  await click('[data-cx-confirm]')
+  assert.ok($('.overview'), 'le bouton de la barre ouvre la fiche (action d’origine)')
+  // Cible : même mécanique avec le duel en cours.
+  await click('#next')
+  const targets = $$('.unit-picker-grid .unit-tile')
+  tap(targets[0])
+  const duel = $('.cx-select-bar')
+  assert.match(text(duel), /Duel en cours/i)
+  assert.ok(duel.querySelector('[data-cx-back]'), 'retour vers l’unité attaquante')
+  tap(targets[0])
+  assert.ok($('.attack-workspace'), 'un second toucher sur la cible sélectionnée lance la résolution')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 scenario('Sélection des unités (25/09/2026) : rang + icône en tête, figurines et suppression dessous, sans noms d’améliorations, une seule barre de menu', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Stormtrooper Heavy Gunner' }] }] },

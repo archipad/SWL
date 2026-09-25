@@ -1,0 +1,115 @@
+/* Sélection en deux temps, fonds, cadre décoratif et en-tête « Codex Legion » (25/09/2026).
+   Suite de codex-polish.css : additif, visuel seul, chargé en dernier. Les formes à coins coupés
+   sont clippées ; leur bord est tracé par un pseudo-élément (le clip-path coupe une bordure classique). */
+
+/* ---------- Carte sélectionnée : bordure vive, lueur intérieure, pastille de validation ---------- */
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected { --bd: linear-gradient(135deg, #d6f7ff, #46c8ff 45%, #d6f7ff); --fill: linear-gradient(180deg, #13385a 0%, #0b2440 45%, #071827 100%); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected::before { box-shadow: inset 0 0 44px rgba(66, 205, 255, .38), inset 0 1px 0 rgba(200, 245, 255, .5); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected::after {
+  display: block; content: ""; position: absolute; top: 0; right: 0; left: auto; bottom: auto; width: 46px; height: 40px; z-index: 2; pointer-events: none; border: 0; padding: 0; opacity: 1;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5.5 12.5l4.2 4.2L18.8 7.6' fill='none' stroke='%23071827' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 24px no-repeat, linear-gradient(180deg, #52d0ff, #1b90cc);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+.unit-picker-grid .unit-tile.is-selected .tile-visual { box-shadow: 0 0 0 1px rgba(120, 220, 255, .55), inset 0 0 18px rgba(0, 0, 0, .4); }
+
+/* ---------- Barre du bas collée au bord de l'écran ---------- */
+.cx-select-bar {
+  --cut: 14px; position: sticky; bottom: max(8px, env(safe-area-inset-bottom)); z-index: 12; margin: 14px 0 0; padding: 12px 18px;
+  display: flex; align-items: center; justify-content: space-between; gap: 18px; isolation: isolate; color: #fff;
+  background: linear-gradient(135deg, #63dcff 0%, #2a86ad 40%, #1d5f80 60%, #4cc8f0 100%);
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+}
+.cx-select-bar[hidden] { display: none; }
+.cx-select-bar::before {
+  content: ""; position: absolute; inset: 1px; z-index: -1; background: linear-gradient(180deg, rgba(10, 30, 50, .97), rgba(5, 13, 22, .98));
+  clip-path: polygon(calc(var(--cut) - 1px) 0, calc(100% - var(--cut) + 1px) 0, 100% calc(var(--cut) - 1px), 100% calc(100% - var(--cut) + 1px), calc(100% - var(--cut) + 1px) 100%, calc(var(--cut) - 1px) 100%, 0 calc(100% - var(--cut) + 1px), 0 calc(var(--cut) - 1px));
+  box-shadow: inset 0 0 40px rgba(66, 205, 255, .12);
+}
+.cx-sel-duel { display: flex; align-items: center; gap: 16px; min-width: 0; flex: 1; }
+.cx-sel-unit { --rx-side-tone: var(--rx-imp); display: flex; align-items: center; gap: 12px; min-width: 0; }
+.cx-sel-unit[data-faction="rebel"] { --rx-side-tone: var(--rx-reb); }
+.cx-sel-unit .cx-side-emblem { width: 40px; height: 40px; border: 0; }
+.cx-sel-thumb { flex: 0 0 auto; width: 132px; height: 62px; overflow: hidden; border: 1px solid rgba(160, 200, 225, .3); border-radius: 4px; background: #05090f; }
+.cx-sel-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.cx-sel-thumb img.cx-portrait-card { object-position: 100% 28%; transform: scale(2.8); transform-origin: 100% 27%; }
+.cx-sel-id { display: grid; gap: 2px; min-width: 0; }
+.cx-sel-id small { color: #8fb6cd; font: 600 .68rem "Rajdhani", sans-serif; letter-spacing: .24em; text-transform: uppercase; }
+.cx-sel-id strong { overflow: hidden; font: 800 1.4rem/1.05 "Rajdhani", sans-serif; letter-spacing: .03em; text-transform: uppercase; text-overflow: ellipsis; white-space: nowrap; }
+.cx-sel-meta { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.cx-sel-minis { display: inline-flex; gap: 2px; }
+.cx-sel-minis .tile-mini { width: 11px; height: 19px; fill: #fff; }
+.cx-sel-id .cx-sel-count { color: #a8bccb; font: 500 .9rem "Rajdhani", sans-serif; letter-spacing: 0; text-transform: none; }
+.cx-sel-sup { color: #ff6b5e; font: 700 .9rem "Rajdhani", sans-serif; }
+.cx-sel-sup::before { content: "!"; display: inline-grid; place-items: center; width: 17px; height: 17px; margin-right: 6px; border-radius: 50%; background: #ff3b30; color: #fff; font-size: .72rem; font-weight: 900; }
+.cx-sel-arrow { color: #ff5b52; font-size: 1.6rem; font-weight: 800; }
+.cx-sel-actions { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; }
+.cx-sel-actions button { min-height: 56px; padding: 0 26px; border-radius: 8px; font: 700 1.2rem "Rajdhani", sans-serif; letter-spacing: .02em; text-transform: none; cursor: pointer; }
+.cx-sel-actions .secondary { border: 1px solid var(--rx-line-2); background: linear-gradient(180deg, rgba(14, 34, 52, .9), rgba(8, 18, 28, .95)); color: var(--rx-text); }
+.cx-sel-actions .primary { min-width: 240px; border: 1px solid #7ee3ff; color: #fff; text-shadow: 0 1px 2px rgba(0, 20, 40, .6); background: linear-gradient(180deg, #23a6e4, #0d6fb3); box-shadow: 0 0 20px rgba(66, 205, 255, .45), inset 0 1px 0 rgba(255, 255, 255, .35); }
+@media (max-width: 899px) {
+  .cx-sel-thumb, .cx-sel-unit .cx-side-emblem { display: none; }
+  .cx-sel-actions .primary { min-width: 0; padding: 0 16px; }
+  .cx-sel-id strong { font-size: 1.1rem; }
+}
+
+/* ---------- Fonds : espace et destroyer côté Empire, cité rebelle côté Rébellion ---------- */
+body:has(.unit-picker-grid)[data-faction-theme]::before {
+  background: linear-gradient(180deg, rgba(4, 9, 15, .1) 0, rgba(4, 9, 15, .6) 42%, rgba(4, 9, 15, .93) 100%), url(../codex/bg-space.svg) left top / cover no-repeat, #050a14;
+}
+body:has(.army-switch button[data-faction="rebel"].active)[data-faction-theme]::before,
+body:has(.cx-attacker-recap[data-faction="imperial"])[data-faction-theme]::before {
+  background: linear-gradient(180deg, rgba(6, 8, 12, .12) 0, rgba(6, 8, 12, .62) 46%, rgba(6, 8, 12, .94) 100%), url(../codex/art-rebel.jpg) center 22% / cover no-repeat, #090a0d;
+}
+
+/* ---------- Cadre fin autour de l'écran et textes latéraux : grands écrans seulement (décor allégeable) ---------- */
+@media (min-width: 1360px) {
+  html:has(.unit-picker-grid)::after {
+    content: "DES\A MONDES\A SOUS\A NOTRE\A CONTRÔLE"; white-space: pre; text-align: right; position: fixed; inset: 6px; z-index: 5; pointer-events: none; box-sizing: border-box;
+    padding: 24vh 22px 0 0; border: 1px solid rgba(66, 205, 255, .3); border-radius: 14px; box-shadow: inset 0 0 50px rgba(66, 205, 255, .05);
+    color: rgba(190, 212, 228, .5); font: 600 .62rem/2.1 "Rajdhani", sans-serif; letter-spacing: .5em;
+    background:
+      linear-gradient(#5fd8ff, #5fd8ff) left top / 30px 2px no-repeat, linear-gradient(#5fd8ff, #5fd8ff) left top / 2px 30px no-repeat,
+      linear-gradient(#5fd8ff, #5fd8ff) right top / 30px 2px no-repeat, linear-gradient(#5fd8ff, #5fd8ff) right top / 2px 30px no-repeat,
+      linear-gradient(#5fd8ff, #5fd8ff) left bottom / 30px 2px no-repeat, linear-gradient(#5fd8ff, #5fd8ff) left bottom / 2px 30px no-repeat,
+      linear-gradient(#5fd8ff, #5fd8ff) right bottom / 30px 2px no-repeat, linear-gradient(#5fd8ff, #5fd8ff) right bottom / 2px 30px no-repeat;
+  }
+  html:has(.unit-picker-grid)::before {
+    content: "ORDRE\A DISCIPLINE\A PUISSANCE"; white-space: pre; position: fixed; left: 26px; top: 56vh; z-index: 5; pointer-events: none; padding: 14px 0;
+    border-top: 1px solid rgba(255, 59, 48, .7); border-bottom: 1px solid rgba(255, 59, 48, .7);
+    color: rgba(190, 212, 228, .5); font: 600 .62rem/2.1 "Rajdhani", sans-serif; letter-spacing: .5em;
+  }
+  html:has(.army-switch button[data-faction="rebel"].active)::before { content: "LIBERTÉ\A ESPOIR\A COURAGE"; border-color: rgba(240, 181, 106, .7); }
+}
+
+/* ---------- En-tête : boutons à coins coupés ---------- */
+.topbar-actions > a, .topbar-actions > button {
+  --cut: 8px; --bd: rgba(66, 205, 255, .6); --fill: linear-gradient(180deg, rgba(14, 30, 46, .96), rgba(8, 18, 28, .98));
+  position: relative; isolation: isolate; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; background: var(--bd) !important;
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+}
+.topbar-actions > a::after, .topbar-actions > button::after {
+  content: ""; position: absolute; inset: 1px; z-index: -1; pointer-events: none; background: var(--fill);
+  clip-path: polygon(calc(var(--cut) - 1px) 0, calc(100% - var(--cut) + 1px) 0, 100% calc(var(--cut) - 1px), 100% calc(100% - var(--cut) + 1px), calc(100% - var(--cut) + 1px) 100%, calc(var(--cut) - 1px) 100%, 0 calc(100% - var(--cut) + 1px), 0 calc(var(--cut) - 1px));
+}
+.topbar-actions > a:hover, .topbar-actions > button:hover { --bd: #9be9ff; }
+.topbar-actions .tracker-shortcut, #quickMode { --bd: rgba(255, 150, 50, .8); }
+#certification.all-certified { --bd: rgba(70, 214, 138, .8); --fill: linear-gradient(180deg, rgba(14, 50, 34, .95), rgba(8, 26, 18, .98)); }
+.app-header-sticky .topbar { filter: drop-shadow(0 2px 8px rgba(66, 205, 255, .12)); }
+
+/* Grands écrans : la zone de sélection laisse des marges où le fond et les textes latéraux restent visibles. */
+@media (min-width: 1360px) {
+  body:has(.unit-picker-grid) #app { max-width: min(1240px, calc(100vw - 300px)); margin-inline: auto; }
+  body:has(.unit-picker-grid)[data-faction-theme]::before {
+    background: linear-gradient(180deg, rgba(4, 9, 15, 0) 0, rgba(4, 9, 15, .45) 40%, rgba(4, 9, 15, .9) 100%), url(../codex/bg-space.svg) left top / cover no-repeat, #050a14;
+  }
+}
+
+/* Duel en cours : version compacte (noms complets, effectif en clair, moins de largeur pour les vignettes). */
+.cx-sel-id small { white-space: nowrap; }
+.cx-sel-duel .cx-sel-minis { display: none; }
+.cx-sel-duel .cx-sel-thumb { width: 96px; height: 52px; }
+.cx-sel-duel .cx-sel-unit .cx-side-emblem { width: 30px; height: 30px; }
+.cx-sel-duel .cx-sel-id strong { font-size: 1.1rem; }
+.cx-sel-duel .cx-sel-unit { flex: 1 1 0; }
+.cx-sel-duel ~ .cx-sel-actions button { padding: 0 16px; min-height: 52px; font-size: 1.05rem; }
+.cx-sel-duel ~ .cx-sel-actions .primary { min-width: 0; }

@@ -1852,6 +1852,45 @@ pick=function(role){
     host.prepend(aside);
   }catch(error){/* décor uniquement */}
 };
+/* Sélection en deux temps (maquettes 01 et 02) : un toucher sur une carte la sélectionne et remplit la barre du bas
+   (« Unité sélectionnée » / « Duel en cours ») ; le bouton de la barre, ou un second toucher sur la carte déjà
+   sélectionnée, exécute EXACTEMENT l'action d'origine de la carte (aucune logique déplacée). Un clic sans détail
+   (clavier, ou appel programmatique des tests et audits) garde le comportement direct d'avant. */
+function codexBindSelection(role){
+  const tiles=[...root.querySelectorAll('.unit-picker-grid .unit-tile')];
+  if(!tiles.length||root.querySelector('.cx-select-bar'))return;
+  const bar=document.createElement('div');
+  bar.className='cx-select-bar';
+  bar.hidden=true;
+  root.append(bar);
+  const minis=entry=>{const models=unitModelsTotal(entry);return models?`<span class="cx-sel-minis" aria-hidden="true">${tileMini.repeat(Math.min(models,10))}</span><small class="cx-sel-count">${models} figurine${models>1?'s':''}</small>`:''};
+  const thumb=entry=>{const portrait=tilePortrait(entry.unit.name);return `<span class="cx-sel-thumb"><img class="${portrait?'cx-portrait':'cx-portrait-card'}" src="${portrait||imageFor(entry.unit.name)}" alt="" onerror="this.hidden=true"></span>`};
+  const unit=(entry,label)=>{const faction=factionThemeForArmy(entry.army),sup=stateFor(entry).suppression;return `<div class="cx-sel-unit" data-faction="${faction}"><i class="cx-side-emblem ${faction}" aria-hidden="true"></i>${thumb(entry)}<div class="cx-sel-id"><small>${label}</small><strong>${entryName(entry)}</strong><div class="cx-sel-meta">${minis(entry)}${sup?`<span class="cx-sel-sup">${sup} suppression</span>`:''}</div></div></div>`};
+  const fill=entry=>{
+    if(role==='defender'&&attacker)bar.innerHTML=`<div class="cx-sel-duel">${unit(attacker,'Duel en cours')}<span class="cx-sel-arrow" aria-hidden="true">→</span>${unit(entry,'Cible')}</div><div class="cx-sel-actions"><button type="button" class="secondary" data-cx-back>← Unité attaquante</button><button type="button" class="primary" data-cx-confirm>Résoudre l’attaque →</button></div>`;
+    else bar.innerHTML=`${unit(entry,'Unité sélectionnée')}<div class="cx-sel-actions"><button type="button" class="primary" data-cx-confirm>Voir l’unité →</button></div>`;
+  };
+  tiles.forEach(tile=>{
+    const original=tile.onclick;
+    if(!original)return;
+    tile.onclick=event=>{
+      if(!event||!event.detail||tile.classList.contains('is-selected')){original.call(tile,event);return}
+      const entry=entries.find(candidate=>candidate.id===tile.dataset.id);
+      if(!entry){original.call(tile,event);return}
+      tiles.forEach(other=>other.classList.toggle('is-selected',other===tile));
+      fill(entry);
+      bar.hidden=false;
+      bar.querySelector('[data-cx-confirm]').onclick=()=>original.call(tile,null);
+      const back=bar.querySelector('[data-cx-back]');
+      if(back)back.onclick=()=>{stage=2;stageWipe=true;overview(attacker,'attack')};
+    };
+  });
+}
+const pickCodexSelectBase=pick;
+pick=function(role){
+  pickCodexSelectBase(role);
+  try{codexBindSelection(role)}catch(error){/* décor uniquement : la carte garde son action directe */}
+};
 // Charges à Protons / Soniques : les autres armes à distance de la réserve gagnent Assaut 1.
 const activeAttackTagsChargesBase=activeAttackTags;
 activeAttackTags=function(){
