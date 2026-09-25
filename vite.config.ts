@@ -44,7 +44,9 @@ export default defineConfig({
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,png,svg,ico,webmanifest,otf}'],
+        // codex/ : cadres, décors et hologrammes du thème (jpg/webp) précachés pour jouer hors ligne,
+        // sans embarquer les visuels de cartes (public/cards, chargés à la demande).
+        globPatterns: ['**/*.{js,css,html,png,svg,ico,webmanifest,otf}', 'codex/**/*.{jpg,webp}'],
         // L'assistant est une page HTML autonome. Sans cette exception,
         // le mode hors-ligne renvoie toute navigation vers l'application React.
         navigateFallbackDenylist: [/^\/SWL\/assistant(?:\/|$)/],

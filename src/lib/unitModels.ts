@@ -50,3 +50,15 @@ export function getUnitMoraleProfile(unit: ParsedUnit): UnitMoraleProfile {
     certified: true,
   };
 }
+
+/**
+ * Caractéristiques imprimées sur la carte (blessures par figurine, courage,
+ * effectif de base), pour AFFICHAGE seulement (fiche « Détails unité »).
+ * Uniquement quand la carte est certifiée : jamais de valeur devinée -- une
+ * carte non certifiée renvoie null partout et l'écran affiche « — ».
+ */
+export function getUnitCardStats(unit: ParsedUnit): { wounds: number | null; courage: number | null; models: number | null; certified: boolean } {
+  const base = certified[canonicalCardKey(unit.name)]?.unitStats;
+  if (!base) return { wounds: null, courage: null, models: null, certified: false };
+  return { wounds: base.woundsPerModel, courage: base.courage, models: base.baseModels, certified: true };
+}

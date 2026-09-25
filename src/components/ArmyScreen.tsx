@@ -1,5 +1,6 @@
 import type { CardKeywordTag, CardTagLibrary, KeywordDef, ParsedList } from '../types';
 import { UiIcon } from '../lib/uiIcons';
+import { ArmyListView } from './ArmyListView';
 import { CardRow } from './CardRow';
 import { GlossarySection } from './GlossarySection';
 import { VisualListSection } from './VisualListSection';
@@ -27,7 +28,11 @@ export function ArmyScreen({
   // partie sans imprimer — signalement utilisateur du 05/09/2026). Persisté
   // comme le reste des préférences d'affichage de l'appli (cf. le même
   // pattern dans CombatScreen).
-  const [view, setView] = usePersistentState<'text' | 'visual'>('swl.army-view.v1', 'text');
+  // « Liste » (maquette Codex Legion : liste d'unités + fiche de détails) est
+  // la vue par défaut ; « Texte » reste la seule à permettre d'éditer les
+  // mots-clés d'une carte. Nouvelle clé (v2) : l'ancien choix stocké ne doit
+  // pas masquer la nouvelle vue par défaut.
+  const [view, setView] = usePersistentState<'list' | 'text' | 'visual'>('swl.army-view.v2', 'list');
   const sections = new Map<string, typeof list.units>();
   for (const unit of list.units) {
     const arr = sections.get(unit.section) ?? [];
@@ -73,6 +78,9 @@ export function ArmyScreen({
       </div>
 
       <div className="btn-group army-view-toggle no-print">
+        <button type="button" className={view === 'list' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setView('list')}>
+          Liste
+        </button>
         <button type="button" className={view === 'text' ? 'btn btn-primary' : 'btn btn-ghost'} onClick={() => setView('text')}>
           Vue texte
         </button>
@@ -81,7 +89,9 @@ export function ArmyScreen({
         </button>
       </div>
 
-      {view === 'text' ? (
+      {view === 'list' ? (
+        <ArmyListView list={list} tagLibrary={tagLibrary} keywords={keywords} />
+      ) : view === 'text' ? (
         <section className="no-print">
           <h2>Composition de la liste</h2>
           {[...sections.entries()].map(([section, units]) => (

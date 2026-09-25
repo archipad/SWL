@@ -26,6 +26,10 @@
   --t-warnbg: rgb(41, 35, 15); --t-warnbg-rgb: 41, 35, 15;
   --t-radius: 2px;
   --t-glow: 0.25;
+  --t-outer: #05090e;
+  --t-nav-bg: rgba(10, 18, 27, 0.92); --t-nav-line: #294459; --t-nav-ink: #9db3c1;
+  --t-nav-active-bg: linear-gradient(180deg, rgba(255, 140, 26, 0.35), rgba(120, 60, 8, 0.5)); --t-nav-active-line: #ff8c1a; --t-nav-active-ink: #fff; --t-nav-icon-active: #fff;
+  --t-emblem: #ff8c1a;
   --bg: #12141c;
   --bg-raised: #1b1e29;
   --bg-input: #232733;
@@ -64,6 +68,10 @@
   --t-warnbg: rgb(48, 34, 10); --t-warnbg-rgb: 48, 34, 10;
   --t-radius: 0px;
   --t-glow: 0.45;
+  --t-outer: #030304;
+  --t-nav-bg: rgba(13, 8, 9, 0.94); --t-nav-line: #7a1f24; --t-nav-ink: #c9b9ba;
+  --t-nav-active-bg: linear-gradient(180deg, rgba(255, 59, 48, 0.42), rgba(120, 14, 18, 0.62)); --t-nav-active-line: #ff3b30; --t-nav-active-ink: #fff; --t-nav-icon-active: #fff;
+  --t-emblem: #f4f4f4;
   --bg: #070708; --bg-raised: #130d0f; --bg-input: #1b1114; --border: #5a2428;
   --text: #f2e8e8; --text-dim: #b0a0a2;
 }
@@ -88,6 +96,10 @@
   --t-warnbg: rgb(245, 228, 188); --t-warnbg-rgb: 245, 228, 188;
   --t-radius: 10px;
   --t-glow: 0.18;
+  --t-outer: #14181e;
+  --t-nav-bg: linear-gradient(180deg, #245a86, #143f63); --t-nav-line: #0e2f4d; --t-nav-ink: #e2eef8;
+  --t-nav-active-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.07)); --t-nav-active-line: #b4d3ec; --t-nav-active-ink: #fff; --t-nav-icon-active: #ff9a3d;
+  --t-emblem: #c8621a;
   --bg: #d9cdb1; --bg-raised: #ece1c7; --bg-input: #f5edda; --border: #a48c5a;
   --text: #2a2418; --text-dim: #6a5d40;
 }
@@ -120,60 +132,7 @@ body {
   .app { max-width: 1180px; }
 }
 
-.app-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  padding: 1rem 1rem 0.75rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.app-header h1 {
-  font-size: 1.25rem;
-  margin: 0;
-  letter-spacing: 0.02em;
-}
-
-.app-header nav {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.app-header nav button,
-.app-header nav a {
-  display: inline-flex;
-  align-items: center;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-dim);
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  /* Sur petit écran, "Glossaire complet" ne doit jamais se couper en deux
-     lignes dans sa pastille (ça déforme sa hauteur par rapport aux autres
-     onglets) : la pastille entière passe à la ligne suivante à la place. */
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-.app-header nav button.active {
-  background: var(--accent-dim);
-  border-color: var(--accent);
-  color: var(--text);
-}
-
-.app-header nav button:disabled { opacity: 0.35; cursor: not-allowed; }
-
-/* Icônes de nav — SVG en currentColor (voir lib/navIcons.tsx) : un seul
-   style de trait pour les 7 onglets, rendu identique sur toutes les
-   plateformes (contrairement aux emoji, dont le dessin dépend de la
-   police système du téléphone/PC). */
-.nav-icon { width: 1.05em; height: 1.05em; margin-right: 0.4rem; flex-shrink: 0; }
-/* Icônes d'action/statut (lib/uiIcons.tsx) : même trait que .nav-icon.
+/* Icônes d'action/statut (lib/uiIcons.tsx) : même style de trait que les icônes du pack.
    Alignées sur la ligne de base du texte plutôt que centrées par flex,
    car elles vivent aussi dans des <span>/<strong> et pas seulement dans
    des boutons. */
@@ -192,8 +151,8 @@ body {
    actif : un bref halo qui s'allume puis retombe, une seule fois par
    activation — ne rejoue pas tant que l'onglet reste actif car l'animation
    ne redémarre que lorsque la classe .active est (re)posée sur le bouton. */
-.app-game-tracker .app-header nav button.active,
-.app-game-tracker .app-header nav a.igniting {
+.cx-tab.active,
+.cx-tab.igniting {
   animation: navIgnite 380ms ease-out;
 }
 @keyframes navIgnite {
@@ -202,8 +161,8 @@ body {
   100% { box-shadow: 0 0 0 0 rgba(var(--t-accent-rgb), 0); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .app-game-tracker .app-header nav button.active,
-  .app-game-tracker .app-header nav a.igniting { animation: none; }
+  .cx-tab.active,
+  .cx-tab.igniting { animation: none; }
 }
 
 /* Transition entre pages façon « star wipe » (balayage gauche → droite
@@ -927,11 +886,6 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 /* --- Suivi de partie --- */
 .game-tracker-screen { display: flex; flex-direction: column; gap: 0.85rem; }
 .app-game-tracker { max-width: 1400px; font-family: "Rajdhani", "Arial Narrow", sans-serif; background-color:var(--t-bg); background-image:repeating-linear-gradient(0deg,rgba(var(--t-hud-rgb),.055) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(var(--t-hud-rgb),.055) 0 1px,transparent 1px 40px),radial-gradient(900px 520px at 12% -8%,rgba(var(--t-accent-rgb),.12),transparent 62%); }
-.app-game-tracker .app-header { padding:.55rem 1rem; background:rgba(var(--t-bg-rgb),.94); border-color:rgba(var(--t-hud-rgb),.22); }
-.app-game-tracker .app-header h1 { text-transform:uppercase; letter-spacing:.12em; }
-.app-game-tracker .app-header nav button,
-.app-game-tracker .app-header nav a { border-radius:2px; font-family:inherit; }
-.app-game-tracker .app-header nav button.active { background:var(--t-accent); border-color:var(--t-accent); color:var(--t-accent-ink); font-weight:900; }
 .app-game-tracker main { padding:.75rem 1rem 1.25rem; }
 .tracker-command-header { position:relative; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem; padding:.7rem 1rem; background:linear-gradient(135deg,rgba(var(--t-s4-rgb),.97) 0%,rgba(var(--t-panel-rgb),.97) 55%,rgba(var(--t-s1-rgb),.97) 100%); border:1px solid var(--t-line); box-shadow:inset 2px 2px 0 -1px rgba(var(--t-hud-rgb),.65),inset -2px -2px 0 -1px rgba(var(--t-hud-rgb),.4),0 18px 38px rgba(0,0,0,.25); }
 .tracker-back { color:var(--t-strong); text-decoration:none; font-weight:800; }
@@ -1004,14 +958,7 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .tracker-combat-cta { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; padding: 1rem 0; }
 
 /* Tableau de partie v65 — disposition inspirée du dashboard officiel. */
-body:has(.app-game-tracker){min-height:100vh;background-color:var(--t-bg);background-image:repeating-linear-gradient(0deg,rgba(var(--t-hud-rgb),.075) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(var(--t-hud-rgb),.075) 0 1px,transparent 1px 40px),radial-gradient(1000px 600px at 15% 0,rgba(var(--t-accent-rgb),.12),transparent 65%);background-attachment:fixed}
-/* Fond propre à chaque thème (les couleurs viennent des variables --t-*, la
-   composition change) : Empire = grille rouge discrète + halo en haut à
-   droite comme la faction-themes.css de l'Assistant ; Rébellion = parchemin
-   (grain SVG, pas d'image à charger) avec un éclairage doux. */
-:root[data-swl-theme="imperial"] body:has(.app-game-tracker){background-image:repeating-linear-gradient(0deg,rgba(var(--t-hud-rgb),.05) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(var(--t-hud-rgb),.05) 0 1px,transparent 1px 40px),radial-gradient(1100px 620px at 85% -5%,rgba(var(--t-accent-rgb),.16),transparent 62%),radial-gradient(900px 500px at 0 100%,rgba(var(--t-accent-rgb),.07),transparent 60%)}
-:root[data-swl-theme="rebel"] body:has(.app-game-tracker){background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38 0 0 0 0 .29 0 0 0 0 .16 0 0 0 .10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(1000px 640px at 20% -10%,rgba(255,250,235,.55),transparent 62%),radial-gradient(900px 560px at 100% 100%,rgba(var(--t-hud-rgb),.12),transparent 60%);background-attachment:scroll,fixed,fixed}
-:root[data-swl-theme="rebel"] .starfield{display:none}
+body:has(.app-game-tracker){min-height:100vh;background-color:var(--t-outer);background-image:radial-gradient(1200px 700px at 50% -10%,rgba(var(--t-accent-rgb),.10),transparent 65%);background-attachment:fixed}
 .app-game-tracker{width:min(100%,1500px);min-height:100vh;font-family:"Rajdhani",sans-serif;background:transparent}
 .tracker-header-actions{display:flex;align-items:center;justify-self:end;gap:.75rem}
 .tracker-combat-link{min-height:42px;white-space:nowrap}
@@ -1635,95 +1582,220 @@ select option { background: var(--t-panel-2); color: var(--text); }
 .command-played-fold[open] summary { margin-bottom: 0.6rem; }
 @media (min-width: 980px) { .command-cards-screen { max-width: 900px; margin: 0 auto; } }
 
-/* ==== Codex Legion : bandeau HUD, onglets inclinés, finitions par thème (25/09/2026) ====
-   Refonte d'après les maquettes de l'utilisateur (Empire « Tactical Command »
-   / Rébellion « Datapad »). Les couleurs viennent des variables --t-* ; ici
-   seule la composition change : marque + emblème à gauche, interrupteur de
-   thème à droite, onglets en parallélogrammes, et trois onglets d'usage
-   courant (Suivi de partie, Cartes de Commandement, Assistant d'unité) en
-   grands boutons avec icône au-dessus du libellé. */
+/* ==== Codex Legion : cadre d'écran, bandeau à onglets, barre latérale (25/09/2026) ====
+   Reproduit les maquettes de l'utilisateur (Empire « Tactical Command » /
+   Rébellion « Datapad ») : cadre d'écran illustré, logo + onglets à icône
+   au-dessus du libellé, barre latérale avec emblème de faction, menu et
+   décor. Les couleurs viennent des variables --t-* ; les images (cadres,
+   décors, icônes) sont dans public/codex. */
 @font-face {
   font-family: 'Droidobesh';
   src: url('/fonts/droidobesh-depot.otf') format('opentype');
   font-display: swap;
 }
-/* Aurebesh : décoratif uniquement (la police ne couvre ni les accents ni
-   les caractères spéciaux, et un texte en Aurebesh n'est pas lisible tel quel). */
-.aurebesh { font-family: 'Droidobesh', 'Rajdhani', sans-serif; letter-spacing: 0.14em; text-transform: none; color: var(--t-dim); opacity: 0.85; }
+/* Aurebesh : décoratif uniquement (la police ne couvre ni les accents ni les
+   caractères spéciaux, et un texte en Aurebesh n'est pas lisible tel quel). */
+.aurebesh { font-family: 'Droidobesh', 'Rajdhani', sans-serif; letter-spacing: 0.14em; color: var(--t-accent); opacity: 0.9; line-height: 1; }
 
 .ni-imperial { display: none; }
 :root[data-swl-theme="imperial"] .ni-imperial { display: inline; }
 :root[data-swl-theme="imperial"] .ni-rebel { display: none; }
 
-.app-game-tracker .app-header {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.55rem 1rem;
-  padding: 0.7rem 1rem 0.6rem;
-  background: linear-gradient(180deg, rgba(var(--t-s3-rgb), 0.96), rgba(var(--t-bg-rgb), 0.92));
-  border-bottom: 1px solid var(--t-line);
-  box-shadow: 0 1px 0 rgba(var(--t-accent-rgb), 0.25), 0 10px 28px rgba(0, 0, 0, 0.18);
+/* Pictogrammes du pack : masque CSS (voir lib/codexIcons.tsx). */
+.cx-icon {
+  display: inline-block; flex-shrink: 0; width: 1.5em; height: 1.5em; background-color: currentColor;
+  -webkit-mask: var(--cx-icon) center / contain no-repeat; mask: var(--cx-icon) center / contain no-repeat;
 }
-.app-game-tracker .app-header nav { grid-column: 1 / -1; align-items: center; gap: 0.4rem; }
-.app-brand { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
-.app-brand-text { display: grid; gap: 0.1rem; min-width: 0; }
-.app-game-tracker .app-header h1 { font-family: 'Orbitron', 'Rajdhani', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.22em; color: var(--t-strong); }
-.app-brand .aurebesh { font-size: 0.78rem; line-height: 1; }
-.faction-emblem { width: 2.5rem; height: 2.5rem; flex-shrink: 0; color: var(--t-accent); filter: drop-shadow(0 0 7px rgba(var(--t-accent-rgb), var(--t-glow))); }
-.theme-switch {
-  border: 1px solid var(--t-line); background: transparent; color: var(--t-dim); cursor: pointer;
-  padding: 0.35rem 0.75rem; font: 700 0.7rem 'Rajdhani', sans-serif; letter-spacing: 0.12em; text-transform: uppercase;
-  border-radius: min(var(--t-radius), 6px);
-}
-.theme-switch:hover, .theme-switch:focus-visible { border-color: var(--t-accent); color: var(--t-accent-hi); }
 
-/* Onglets : parallélogrammes (le libellé et l'icône sont redressés). */
-.app-game-tracker .app-header nav button,
-.app-game-tracker .app-header nav a {
-  transform: skewX(-14deg); border-radius: min(var(--t-radius), 6px);
-  padding: 0.42rem 1rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em;
-  background: linear-gradient(180deg, rgba(var(--t-s4-rgb), 0.7), rgba(var(--t-s1-rgb), 0.85));
-  border: 1px solid var(--t-line); color: var(--t-dim);
-  transition: color 0.15s, border-color 0.15s, box-shadow 0.15s;
+/* Cadre d'écran : image en 9 zones (coins conservés, bords étirés). */
+.app-game-tracker {
+  --frame: 30px;
+  width: min(calc(100% - 20px), 1500px); max-width: none; margin: 10px auto; min-height: calc(100vh - 20px);
+  border: var(--frame) solid transparent;
+  border-image-slice: 120 fill; border-image-width: var(--frame); border-image-repeat: stretch;
 }
-.app-game-tracker .app-header nav button > *,
-.app-game-tracker .app-header nav a > * { transform: skewX(14deg); }
-.app-game-tracker .app-header nav button:hover:not(:disabled),
-.app-game-tracker .app-header nav a:hover { color: var(--t-strong); border-color: var(--t-accent); }
-.app-game-tracker .app-header nav button.active {
-  background: linear-gradient(180deg, var(--t-accent), color-mix(in srgb, var(--t-accent) 72%, #000));
-  border-color: var(--t-accent); color: var(--t-accent-ink);
-  box-shadow: 0 0 14px rgba(var(--t-accent-rgb), var(--t-glow));
-}
-.nav-icon { color: inherit; }
-
-/* Trois onglets d'usage courant : plus grands, icône au-dessus, halo. */
-.app-game-tracker .app-header nav .nav-primary {
-  flex-direction: column; justify-content: center; gap: 0.2rem; min-width: 9rem;
-  padding: 0.5rem 1.4rem 0.45rem; font-size: 0.92rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
-  color: var(--t-text);
-  background: linear-gradient(180deg, rgba(var(--t-accent-rgb), 0.2), rgba(var(--t-s1-rgb), 0.9));
-  border-color: rgba(var(--t-accent-rgb), 0.7);
-  box-shadow: 0 0 16px rgba(var(--t-accent-rgb), calc(var(--t-glow) * 0.55));
-}
-.app-game-tracker .app-header nav .nav-primary .nav-icon { width: 2.1rem; height: 2.1rem; margin: 0; color: var(--t-accent); filter: drop-shadow(0 0 5px rgba(var(--t-accent-rgb), 0.6)); }
-.app-game-tracker .app-header nav .nav-primary .nav-label { text-align: center; line-height: 1.1; }
-.app-game-tracker .app-header nav .nav-primary.active,
-.app-game-tracker .app-header nav .nav-primary.igniting {
-  background: linear-gradient(180deg, var(--t-accent), color-mix(in srgb, var(--t-accent) 68%, #000));
-  color: var(--t-accent-ink);
-}
-.app-game-tracker .app-header nav .nav-primary.active .nav-icon { color: var(--t-accent-ink); filter: none; }
-.app-game-tracker .app-header nav button:not(.nav-primary) { font-size: 0.76rem; }
+:root[data-swl-theme="imperial"] .app-game-tracker { border-image-source: url(/codex/frame-imperial.webp); }
+:root[data-swl-theme="rebel"] .app-game-tracker { border-image-source: url(/codex/frame-rebel.webp); }
+.app-game-tracker > .starfield { display: none; }
 @media (max-width: 720px) {
-  .app-game-tracker .app-header nav .nav-primary { min-width: 0; flex: 1 1 30%; padding-inline: 0.5rem; font-size: 0.72rem; }
-  .app-game-tracker .app-header nav .nav-primary .nav-icon { width: 1.7rem; height: 1.7rem; }
+  .app-game-tracker { --frame: 16px; width: calc(100% - 8px); margin: 4px auto; }
 }
 
-/* Empire : angles coupés (langage des consoles impériales). */
-:root[data-swl-theme="imperial"] :is(.tracker-command-header, .command-cards-header, .tracker-army, .tracker-section, .tracker-console-panel, .cheat-block, .setup-slot-filled, .army-unit, .visual-list-block, .command-duel, .sync-panel) {
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+/* Bandeau : logo | onglets | thème. */
+.cx-topbar { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 8px 14px 6px; }
+.cx-logo {
+  display: grid; gap: 4px; padding: 11px 34px 10px; min-width: 15rem;
+  background: linear-gradient(90deg, rgba(var(--t-s4-rgb), 0.85), rgba(var(--t-s2-rgb), 0.75));
+  clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 16px 100%, 0 50%);
+  box-shadow: inset 0 0 0 1px var(--t-line);
 }
-/* Rébellion : coins doux de datapad. */
-:root[data-swl-theme="rebel"] :is(.tracker-command-header, .command-cards-header, .tracker-army, .tracker-section, .tracker-console-panel, .cheat-block, .setup-slot-filled, .army-unit, .visual-list-block, .command-duel, .sync-panel) {
-  border-radius: var(--t-radius) !important;
+.cx-logo h1 { margin: 0; font-family: 'Orbitron', 'Rajdhani', sans-serif; font-size: 1.22rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--t-strong); white-space: nowrap; }
+.cx-logo .aurebesh { font-size: 0.72rem; }
+
+.cx-tabs {
+  display: flex; align-items: stretch; justify-content: space-between; gap: 0; padding: 0 22px;
+  background: var(--t-nav-bg);
+  clip-path: polygon(18px 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 18px 100%, 0 50%);
+  box-shadow: inset 0 0 0 1px var(--t-nav-line);
 }
-:root[data-swl-theme="rebel"] .app-game-tracker .app-header { box-shadow: 0 1px 0 var(--t-line), 0 8px 22px rgba(90, 66, 24, 0.18); }
+.cx-tab {
+  position: relative; isolation: isolate; flex: 1 1 0; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  padding: 10px 6px 8px; background: transparent; border: 0; cursor: pointer; text-decoration: none;
+  color: var(--t-nav-ink); font: 700 0.7rem 'Rajdhani', sans-serif; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; line-height: 1.1;
+}
+.cx-tab .cx-icon { width: 1.9rem; height: 1.9rem; }
+.cx-tab::before {
+  content: ''; position: absolute; inset: 3px 6px; z-index: -1; transform: skewX(-16deg);
+  border: 1px solid transparent; transition: background 0.15s, border-color 0.15s;
+}
+.cx-tab + .cx-tab::after {
+  content: ''; position: absolute; left: 0; top: 14%; bottom: 14%; width: 1px; background: var(--t-nav-line); transform: skewX(-16deg); opacity: 0.8;
+}
+.cx-tab:hover:not(:disabled)::before, .cx-tab:focus-visible::before { border-color: var(--t-nav-active-line); }
+.cx-tab.active::before, .cx-tab.igniting::before { background: var(--t-nav-active-bg); border-color: var(--t-nav-active-line); }
+.cx-tab.active, .cx-tab.igniting { color: var(--t-nav-active-ink); }
+.cx-tab.active .cx-icon, .cx-tab.igniting .cx-icon { color: var(--t-nav-icon-active); filter: drop-shadow(0 0 6px rgba(var(--t-accent-rgb), 0.7)); }
+.cx-tab:disabled { opacity: 0.35; cursor: not-allowed; }
+/* Les trois onglets d'usage courant (Suivi de partie, Commandement, Assistant) : icône à l'accent du thème. */
+.cx-tab:nth-child(n + 2):nth-child(-n + 4) .cx-icon { color: var(--t-accent-hi); }
+.cx-tab:nth-child(n + 2):nth-child(-n + 4).active .cx-icon, .cx-tab:nth-child(n + 2):nth-child(-n + 4).igniting .cx-icon { color: var(--t-nav-icon-active); }
+:root[data-swl-theme="rebel"] .cx-tab:nth-child(n + 2):nth-child(-n + 4) .cx-icon { color: #ffb15c; }
+
+.cx-topbar-right { display: grid; justify-items: end; gap: 3px; }
+.cx-topbar-right .aurebesh { font-size: 0.7rem; }
+.cx-gear { display: inline-flex; flex-direction: column; align-items: center; gap: 1px; background: transparent; border: 0; color: var(--t-dim); cursor: pointer; padding: 2px 6px; }
+.cx-gear .cx-icon { width: 1.7rem; height: 1.7rem; }
+.cx-gear small { font: 700 0.6rem 'Rajdhani', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+.cx-gear:hover, .cx-gear:focus-visible { color: var(--t-accent-hi); }
+
+/* Corps : barre latérale + page. */
+.cx-body { display: grid; grid-template-columns: 208px minmax(0, 1fr); gap: 14px; align-items: start; padding: 4px 14px 14px; }
+.cx-body > main { min-width: 0; padding: 0 !important; }
+.cx-sidebar-inner {
+  position: sticky; top: 10px; display: flex; flex-direction: column; overflow: hidden;
+  min-height: min(620px, calc(100vh - 150px));
+  background: linear-gradient(180deg, rgba(var(--t-s4-rgb), 0.92), rgba(var(--t-s1-rgb), 0.96));
+  box-shadow: inset 0 0 0 1px var(--t-line);
+  clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+}
+.cx-faction { display: grid; justify-items: center; gap: 6px; padding: 20px 10px 14px; text-align: center; }
+.faction-crest { width: 76px; height: 76px; color: var(--t-emblem); filter: drop-shadow(0 0 8px rgba(var(--t-accent-rgb), var(--t-glow))); }
+.cx-faction strong { font: 800 1.02rem 'Rajdhani', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t-strong); }
+.cx-faction .aurebesh { font-size: 0.66rem; }
+.cx-menu { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 2px; }
+.cx-menu-item {
+  position: relative; width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 14px;
+  background: transparent; border: 0; cursor: pointer; text-align: left;
+  color: var(--t-text); font: 700 0.8rem 'Rajdhani', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.cx-menu-item .cx-icon { width: 1.35rem; height: 1.35rem; color: var(--t-dim); }
+.cx-menu-item:hover:not(:disabled) { background: rgba(var(--t-accent-rgb), 0.12); }
+.cx-menu-item:disabled { opacity: 0.35; cursor: not-allowed; }
+.cx-menu-item.active {
+  background: linear-gradient(90deg, var(--t-accent), rgba(var(--t-accent-rgb), 0.5)); color: var(--t-accent-ink);
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+}
+.cx-menu-item.active .cx-icon { color: var(--t-accent-ink); }
+:root[data-swl-theme="rebel"] .cx-menu-item.active { background: linear-gradient(90deg, rgba(47, 107, 158, 0.34), rgba(47, 107, 158, 0.08)); color: var(--t-strong); box-shadow: inset 4px 0 0 var(--t-accent); }
+:root[data-swl-theme="rebel"] .cx-menu-item.active .cx-icon { color: var(--t-info); }
+.cx-art {
+  margin-top: auto; height: 200px; background-size: cover; background-position: center bottom; opacity: 0.95;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 45%); mask-image: linear-gradient(to bottom, transparent 0, #000 45%);
+}
+:root[data-swl-theme="imperial"] .cx-art { background-image: url(/codex/art-imperial.jpg); }
+:root[data-swl-theme="rebel"] .cx-art { background-image: url(/codex/art-rebel.jpg); }
+
+/* Étroit : la barre latérale devient une bande horizontale sous les onglets. */
+@media (max-width: 960px) {
+  .cx-topbar { grid-template-columns: 1fr auto; }
+  .cx-tabs { grid-column: 1 / -1; grid-row: 2; }
+  .cx-logo { min-width: 0; padding-inline: 26px; }
+  .cx-body { grid-template-columns: minmax(0, 1fr); }
+  .cx-sidebar-inner { position: static; min-height: 0; flex-direction: row; align-items: center; overflow-x: auto; clip-path: none; }
+  .cx-faction { display: none; }
+  .cx-art { display: none; }
+  .cx-menu { display: flex; margin: 0; }
+  .cx-menu-item { white-space: nowrap; padding: 10px 14px; }
+}
+@media (max-width: 560px) {
+  .cx-tab { font-size: 0.6rem; padding-inline: 2px; }
+  .cx-tab .cx-icon { width: 1.5rem; height: 1.5rem; }
+  .cx-tabs { padding: 0 12px; }
+}
+@media print {
+  .app-game-tracker { border: 0; border-image: none; width: auto; margin: 0; }
+}
+
+/* ==== Liste d'armée « Codex Legion » : liste d'unités + fiche de détails ==== */
+.cx-army { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(290px, 1fr); gap: 14px; align-items: start; }
+.cx-panel { background: linear-gradient(180deg, rgba(var(--t-s4-rgb), 0.92), rgba(var(--t-s1-rgb), 0.96)); box-shadow: inset 0 0 0 1px var(--t-line); padding-bottom: 12px; }
+:root[data-swl-theme="imperial"] .cx-panel { clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px)); }
+:root[data-swl-theme="rebel"] .cx-panel { border-radius: 12px; }
+.cx-panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 14px 18px 10px; border-bottom: 1px solid var(--t-line); }
+.cx-panel-head h3 { margin: 0; font: 800 1.15rem 'Rajdhani', sans-serif; letter-spacing: 0.07em; text-transform: uppercase; color: var(--t-strong); }
+.cx-panel-head b { font: 700 1.05rem 'Rajdhani', sans-serif; color: var(--t-strong); }
+
+.cx-army-list ul { list-style: none; margin: 0; padding: 10px 12px 0; display: grid; gap: 8px; }
+.cx-unit-row {
+  width: 100%; display: grid; grid-template-columns: 146px minmax(0, 1fr) auto 18px; align-items: center; gap: 14px;
+  min-height: 92px; padding: 0 14px 0 0; overflow: hidden; text-align: left; cursor: pointer; color: inherit;
+  background: rgba(var(--t-s3-rgb), 0.75); border: 1px solid var(--t-line);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.cx-unit-row:hover { border-color: var(--t-line2); }
+.cx-unit-row.active { border-color: var(--t-accent); background: linear-gradient(90deg, rgba(var(--t-accent-rgb), 0.16), rgba(var(--t-s3-rgb), 0.75)); box-shadow: 0 0 14px rgba(var(--t-accent-rgb), var(--t-glow)); }
+:root[data-swl-theme="rebel"] .cx-unit-row.active { border-color: #6fa4cf; background: linear-gradient(90deg, rgba(47, 107, 158, 0.2), rgba(var(--t-s3-rgb), 0.75)); box-shadow: 0 0 10px rgba(47, 107, 158, 0.28); }
+.cx-thumb { align-self: stretch; display: block; min-height: 92px; background-color: #0b0b0d; background-repeat: no-repeat; }
+.cx-thumb-large { min-height: 0; height: 190px; margin: 12px 14px 0; }
+.cx-thumb-empty { background-image: repeating-linear-gradient(135deg, rgba(var(--t-hud-rgb), 0.12) 0 6px, transparent 6px 12px); }
+.cx-unit-main { display: grid; gap: 3px; padding: 10px 0; min-width: 0; }
+.cx-unit-main strong { font: 800 1.05rem 'Rajdhani', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; color: var(--t-strong); }
+.cx-unit-main small { color: var(--t-dim); font-size: 0.82rem; }
+.cx-minis { display: flex; gap: 3px; margin-top: 2px; }
+.cx-mini { width: 9px; height: 16px; fill: var(--t-dim); opacity: 0.55; }
+.cx-mini.lead { fill: var(--t-strong); opacity: 1; }
+.cx-unit-pts { font: 600 0.8rem 'Rajdhani', sans-serif; color: var(--t-dim); white-space: nowrap; }
+.cx-unit-pts b { font-size: 1.3rem; color: var(--t-strong); margin-right: 2px; }
+.cx-chevron { width: 18px; height: 18px; fill: none; stroke: var(--t-strong); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+.cx-detail-head, .cx-weapon, .cx-abilities { margin: 12px 16px 0; }
+.cx-detail-head h3 { margin: 0; font: 800 1.1rem 'Rajdhani', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; color: var(--t-strong); }
+.cx-detail-head small { color: var(--t-accent-hi); font: 700 0.75rem 'Rajdhani', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+.cx-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 12px 16px 0; padding: 10px 0; border-block: 1px solid var(--t-line); }
+.cx-stats > div { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: center; column-gap: 8px; }
+.cx-stats > div + div { border-left: 1px solid var(--t-line); }
+.cx-stats .cx-icon { width: 1.9rem; height: 1.9rem; color: var(--t-strong); }
+.cx-stats > div:first-child .cx-icon { color: #e0453a; }
+.cx-stats dd { margin: 0; font: 800 1.35rem 'Rajdhani', sans-serif; color: var(--t-strong); text-transform: capitalize; }
+.cx-stats dt { grid-column: 1 / -1; text-align: center; font: 700 0.68rem 'Rajdhani', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t-accent-hi); margin-top: 2px; }
+.cx-def-rouge { color: #e0453a !important; }
+.cx-def-blanc { color: #f2f2f2 !important; }
+.cx-def-noir { color: #7a7a82 !important; }
+:root[data-swl-theme="rebel"] .cx-def-blanc { color: #8a8a90 !important; }
+
+.cx-weapon { padding-top: 12px; border-top: 1px solid var(--t-line); }
+.cx-weapon > strong { font: 800 0.95rem 'Rajdhani', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; color: var(--t-strong); }
+.cx-weapon-line { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+.cx-range { font: 700 0.9rem 'Rajdhani', sans-serif; color: var(--t-text); display: inline-flex; align-items: center; gap: 5px; }
+.cx-range small { color: var(--t-dim); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.7rem; }
+.cx-range-dots { display: inline-flex; gap: 3px; margin-left: 4px; }
+.cx-range-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--t-line2); opacity: 0.5; }
+.cx-range-dots i.on { background: var(--t-strong); opacity: 1; }
+.cx-dice { display: inline-flex; align-items: center; gap: 5px; }
+.cx-dice em { color: var(--t-dim); font-size: 0.75rem; }
+.cx-die { display: inline-block; width: 17px; height: 17px; border-radius: 3px; border: 1px solid rgba(0, 0, 0, 0.45); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+.cx-die-rouge { background: #d8352a; }
+.cx-die-noir { background: #17171b; border-color: #6a6a72; }
+.cx-die-blanc { background: #f1f1f1; }
+
+.cx-abilities { padding-top: 12px; border-top: 1px solid var(--t-line); }
+.cx-abilities h4 { margin: 0 0 6px; font: 800 0.85rem 'Rajdhani', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t-strong); }
+.cx-abilities p { margin: 0 0 8px; font-size: 0.82rem; line-height: 1.35; color: var(--t-text); }
+.cx-abilities p > strong { display: block; color: var(--t-accent-hi); font: 800 0.78rem 'Rajdhani', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+@media (max-width: 1100px) {
+  .cx-army { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .cx-unit-row { grid-template-columns: 96px minmax(0, 1fr) auto 14px; gap: 10px; }
+}

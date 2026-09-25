@@ -1,101 +1,79 @@
-/* Barre de navigation identique à celle du site principal (.app-header nav,
-   voir src/index.css), reconstruite ici en HTML/CSS statique puisque cette
+/* Bandeau de navigation identique à celui du site principal (.cx-topbar,
+   voir src/index.css), reconstruit ici en HTML/CSS statique puisque cette
    page n'est pas construite par Vite/React. Demande utilisateur : l'Assistant
-   d'unité doit se sentir comme un onglet du site, pas comme un site à part —
-   ce bandeau permet de rejoindre n'importe quel autre onglet en un clic.
+   d'unité doit se sentir comme un onglet du site, pas comme un site à part.
    Fichier séparé (même logique que header-sync.css) : purement additif, ne
    touche à aucune règle existante.
 
-   Refonte « Codex Legion » (25/09/2026) : onglets en parallélogrammes et
-   trois onglets d'usage courant (Suivi de partie, Cartes de Commandement,
-   Assistant d'unité) en grand, comme sur le site. Le contenu de l'Assistant
-   reste sombre quel que soit le thème (table holographique) : seul l'accent
-   de la barre change — orange par défaut/Rébellion, rouge pour l'Empire
-   (attribut data-swl-theme posé par le script de index.html). */
+   « Codex Legion » (25/09/2026) : logo + onglets à icône au-dessus du
+   libellé, mêmes pictogrammes que le site (public/codex/icons, masque CSS).
+   Le contenu de l'Assistant reste sombre quel que soit le thème (table
+   holographique) : seuls l'accent et la barre changent (attribut
+   data-swl-theme posé par le script de index.html). */
 
 :root {
-  --n-accent: #ff8c1a; --n-accent-rgb: 255, 140, 26; --n-accent-ink: #15100a;
-  --n-line: #294459;
+  --n-bar: linear-gradient(180deg, #245a86, #143f63); --n-line: #0e2f4d; --n-ink: #e2eef8;
+  --n-active-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.07)); --n-active-line: #b4d3ec; --n-active-ink: #fff; --n-active-icon: #ff9a3d;
+  --n-accent-rgb: 255, 154, 61; --n-icon: #ffb15c; --n-logo-line: #2f6b9e;
 }
 :root[data-swl-theme="imperial"] {
-  --n-accent: #ff3b30; --n-accent-rgb: 255, 59, 48; --n-accent-ink: #fff;
-  --n-line: #5a2428;
+  --n-bar: rgba(13, 8, 9, 0.94); --n-line: #7a1f24; --n-ink: #c9b9ba;
+  --n-active-bg: linear-gradient(180deg, rgba(255, 59, 48, 0.42), rgba(120, 14, 18, 0.62)); --n-active-line: #ff3b30; --n-active-ink: #fff; --n-active-icon: #fff;
+  --n-accent-rgb: 255, 59, 48; --n-icon: #ff8a80; --n-logo-line: #7a1f24;
 }
 
-.site-nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.8rem max(16px, env(safe-area-inset-left)) 0.6rem;
+@font-face { font-family: 'Droidobesh'; src: url('../fonts/droidobesh-depot.otf') format('opentype'); font-display: swap; }
+.aurebesh { font-family: 'Droidobesh', 'Rajdhani', sans-serif; letter-spacing: 0.14em; color: rgb(var(--n-accent-rgb)); opacity: 0.9; line-height: 1; }
+
+.cx-icon {
+  display: inline-block; flex-shrink: 0; width: 1.5em; height: 1.5em; background-color: currentColor;
+  -webkit-mask: var(--cx-icon) center / contain no-repeat; mask: var(--cx-icon) center / contain no-repeat;
+}
+
+.site-nav.cx-topbar {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 14px;
+  padding: 8px max(14px, env(safe-area-inset-left)) 6px;
   background: linear-gradient(180deg, rgba(20, 32, 44, 0.9), rgba(7, 12, 18, 0.7));
   border-bottom: 1px solid var(--n-line);
   box-shadow: 0 1px 0 rgba(var(--n-accent-rgb), 0.25);
 }
-
-.site-nav a,
-.site-nav span.active {
-  display: inline-flex;
-  align-items: center;
-  transform: skewX(-14deg);
-  background: linear-gradient(180deg, rgba(26, 44, 57, 0.7), rgba(7, 18, 27, 0.85));
-  border: 1px solid var(--n-line);
-  color: var(--muted, #9baea4);
-  padding: 0.42rem 1rem;
-  border-radius: 2px;
-  font-family: "Rajdhani", sans-serif;
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  white-space: nowrap;
-  text-decoration: none;
-  transition: color 0.15s, border-color 0.15s;
+.site-nav .cx-logo {
+  display: grid; gap: 4px; padding: 11px 34px 10px; min-width: 15rem; text-decoration: none;
+  background: linear-gradient(90deg, rgba(26, 44, 57, 0.85), rgba(14, 26, 35, 0.75));
+  clip-path: polygon(16px 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 16px 100%, 0 50%);
+  box-shadow: inset 0 0 0 1px var(--n-logo-line);
 }
-.site-nav a > *,
-.site-nav span.active > * { transform: skewX(14deg); }
+.site-nav .cx-logo strong { font-family: 'Orbitron', 'Rajdhani', sans-serif; font-size: 1.22rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #fff; white-space: nowrap; }
+.site-nav .cx-logo .aurebesh { font-size: 0.72rem; }
 
-.site-nav a:hover,
-.site-nav a:focus-visible { border-color: var(--n-accent); color: #fff; }
-
-.site-nav svg {
-  width: 1.05em;
-  height: 1.05em;
-  margin-right: 0.4rem;
-  flex-shrink: 0;
+.site-nav .cx-tabs {
+  display: flex; align-items: stretch; justify-content: space-between; padding: 0 22px;
+  background: var(--n-bar);
+  clip-path: polygon(18px 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 18px 100%, 0 50%);
+  box-shadow: inset 0 0 0 1px var(--n-line);
 }
-.ni-imperial { display: none; }
-:root[data-swl-theme="imperial"] .ni-imperial { display: inline; }
-:root[data-swl-theme="imperial"] .ni-rebel { display: none; }
-
-/* Trois onglets d'usage courant : icône au-dessus du libellé, halo. */
-.site-nav .nav-primary {
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.2rem;
-  min-width: 9rem;
-  padding: 0.5rem 1.4rem 0.45rem;
-  font-size: 0.92rem;
-  font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: #e8f2fb;
-  background: linear-gradient(180deg, rgba(var(--n-accent-rgb), 0.2), rgba(7, 18, 27, 0.9));
-  border-color: rgba(var(--n-accent-rgb), 0.7);
-  box-shadow: 0 0 16px rgba(var(--n-accent-rgb), 0.16);
+.site-nav .cx-tab {
+  position: relative; isolation: isolate; flex: 1 1 0; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  padding: 10px 6px 8px; text-decoration: none; text-align: center; line-height: 1.1;
+  color: var(--n-ink); font: 700 0.7rem 'Rajdhani', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
 }
-.site-nav .nav-primary svg { width: 2.1rem; height: 2.1rem; margin: 0; color: var(--n-accent); filter: drop-shadow(0 0 5px rgba(var(--n-accent-rgb), 0.6)); }
-.site-nav .nav-primary .nav-label { text-align: center; line-height: 1.1; }
+.site-nav .cx-tab .cx-icon { width: 1.9rem; height: 1.9rem; }
+.site-nav .cx-tab::before { content: ''; position: absolute; inset: 3px 6px; z-index: -1; transform: skewX(-16deg); border: 1px solid transparent; transition: background 0.15s, border-color 0.15s; }
+.site-nav .cx-tab + .cx-tab::after { content: ''; position: absolute; left: 0; top: 14%; bottom: 14%; width: 1px; background: var(--n-line); transform: skewX(-16deg); opacity: 0.8; }
+.site-nav a.cx-tab:hover::before, .site-nav a.cx-tab:focus-visible::before { border-color: var(--n-active-line); }
+.site-nav .cx-tab.active::before { background: var(--n-active-bg); border-color: var(--n-active-line); }
+.site-nav .cx-tab.active { color: var(--n-active-ink); }
+.site-nav .cx-tab.active .cx-icon { color: var(--n-active-icon); filter: drop-shadow(0 0 6px rgba(var(--n-accent-rgb), 0.7)); }
+.site-nav .cx-tab:nth-child(n + 2):nth-child(-n + 4) .cx-icon { color: var(--n-icon); }
+.site-nav .cx-tab.active:nth-child(n + 2):nth-child(-n + 4) .cx-icon { color: var(--n-active-icon); }
 
-/* Page courante (Assistant d'unité). */
-.site-nav span.active {
-  background: linear-gradient(180deg, var(--n-accent), color-mix(in srgb, var(--n-accent) 68%, #000));
-  border-color: var(--n-accent);
-  color: var(--n-accent-ink);
-  box-shadow: 0 0 14px rgba(var(--n-accent-rgb), 0.4);
+@media (max-width: 960px) {
+  .site-nav.cx-topbar { grid-template-columns: minmax(0, 1fr); }
+  .site-nav .cx-logo { min-width: 0; padding-inline: 26px; }
 }
-.site-nav span.active svg { color: var(--n-accent-ink); filter: none; }
-
-@media (max-width: 720px) {
-  .site-nav .nav-primary { min-width: 0; flex: 1 1 30%; padding-inline: 0.5rem; font-size: 0.72rem; }
-  .site-nav .nav-primary svg { width: 1.7rem; height: 1.7rem; }
+@media (max-width: 560px) {
+  .site-nav .cx-tab { font-size: 0.6rem; padding-inline: 2px; }
+  .site-nav .cx-tab .cx-icon { width: 1.5rem; height: 1.5rem; }
+  .site-nav .cx-tabs { padding: 0 12px; }
 }

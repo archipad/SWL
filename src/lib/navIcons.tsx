@@ -1,146 +1,42 @@
 /**
- * Icônes de la barre de navigation, dessinées en SVG plutôt qu'en emoji.
+ * Emblèmes de faction (Alliance Rebelle / Empire Galactique), dessinés en SVG.
  *
- * Deux raisons à ce choix (demande utilisateur) :
- * - Unité visuelle : un seul style de trait (même épaisseur, mêmes coins)
- *   pour toutes les icônes, plutôt que des emoji multicolores.
- * - Rendu identique sur toutes les plateformes : contrairement aux emoji
- *   (dont le dessin dépend de la police système), un SVG en `currentColor`
- *   s'affiche pixel pour pixel à l'identique partout, tablette comme PC.
- *
- * Refonte « Star Wars » (25/09/2026) : angles coupés plutôt qu'arrondis
- * (langage des interfaces impériales), sabre laser incliné avec halo,
- * hologramme hexagonal, holocron ; l'icône « Armées » affiche l'insigne de
- * la faction du thème actif (Rébellion / Empire, voir .ni-* dans index.css).
+ * Un seul des deux est visible à la fois, selon le thème actif (voir .ni-*
+ * dans index.css). `FactionCrest` est la version pleine du grand emblème de
+ * la barre latérale ; les icônes de navigation elles-mêmes viennent du pack
+ * d'icônes « Codex Legion » (src/lib/codexIcons.tsx).
  */
-export type NavIconId =
-  | 'listes'
-  | 'armees'
-  | 'suivi'
-  | 'commandement'
-  | 'assistant'
-  | 'glossaire'
-  | 'pense-bete'
-  | 'imprimer';
 
-/** Insigne Impérial (roue à 6 rayons) — repris par l'icône Armées et l'emblème du bandeau. */
-function ImperialMark() {
+/** Insigne Impérial : disque clair, anneau sombre, moyeu et six rayons. */
+function ImperialCrest() {
   return (
     <>
-      <circle cx="12" cy="12" r="9" />
-      <circle cx="12" cy="12" r="2.3" fill="currentColor" stroke="none" />
-      <path d="M12 9.6V3M14.08 10.8l5.72-3.3M14.08 13.2l5.72 3.3M12 14.4V21M9.92 13.2l-5.72 3.3M9.92 10.8L4.2 7.5" />
+      <circle cx="24" cy="24" r="22" fill="currentColor" />
+      <circle cx="24" cy="24" r="17.5" fill="none" stroke="var(--t-bg)" strokeWidth="2.6" />
+      <circle cx="24" cy="24" r="5.4" fill="var(--t-bg)" />
+      <path d="M24 18.6V6.5M28.7 21.3l10.5-6M28.7 26.7l10.5 6M24 29.4v12.1M19.3 26.7l-10.5 6M19.3 21.3l-10.5-6" stroke="var(--t-bg)" strokeWidth="4" strokeLinecap="butt" fill="none" />
     </>
   );
 }
 
-/** Insigne Rebelle (oiseau stellaire, forme simplifiée). */
-function RebelMark() {
+/** Insigne Rebelle : oiseau stellaire (crête, deux ailes, queue), rempli. */
+function RebelCrest() {
   return (
-    <path d="M12 21.5c-.7-2.9-1.5-5-3.1-6.8C6.7 12.5 4.6 11 3 8.4c2.7.9 4.7.9 6.3.1L12 2.8l2.7 5.7c1.6.8 3.6.8 6.3-.1-1.6 2.6-3.7 4.1-5.9 6.3-1.6 1.8-2.4 3.9-3.1 6.8z" />
+    <g fill="currentColor">
+      <path d="M24 5c2.4 3.1 3.2 6.4 2.8 10h-5.6c-.4-3.6.4-6.9 2.8-10z" />
+      <path d="M20.6 19.4C16.4 18.6 9.6 16 4.8 10.4 6.2 19.6 10.6 26.6 18.2 29.8z" />
+      <path d="M27.4 19.4c4.2-.8 11-3.4 15.8-9 -1.4 9.2-5.8 16.2-13.4 19.4z" />
+      <path d="M19.2 31.4L24 43l4.8-11.6c-1.6.6-3.2.8-4.8.8s-3.2-.2-4.8-.8z" />
+    </g>
   );
 }
 
-export function NavIcon({ id }: { id: NavIconId }) {
+/** Grand emblème de la barre latérale (viewBox 48). */
+export function FactionCrest() {
   return (
-    <svg
-      className="nav-icon"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      focusable="false"
-    >
-      {id === 'listes' && (
-        // Datapad à coin coupé — ordre de bataille.
-        <>
-          <path d="M5 3.5h10l4 4v13H5z" />
-          <path d="M15 3.5v4h4" />
-          <path d="M8 11h8M8 14h8M8 17h5" />
-        </>
-      )}
-      {id === 'armees' && (
-        // Insigne de la faction du thème actif (un seul des deux est affiché, voir .ni-*).
-        <>
-          <g className="ni-imperial"><ImperialMark /></g>
-          <g className="ni-rebel"><RebelMark /></g>
-        </>
-      )}
-      {id === 'suivi' && (
-        // Hologramme tactique : hexagone + réticule.
-        <>
-          <path d="M12 2.8l7.4 4.3v8.6L12 20l-7.4-4.3V7.1z" />
-          <circle cx="12" cy="11.4" r="2.2" />
-          <path d="M12 6.2v3M12 13.6v3M7.4 11.4h2.4M14.2 11.4h2.4" />
-        </>
-      )}
-      {id === 'commandement' && (
-        // Carte de Commandement : silhouette à coins coupés + pions PIP.
-        <>
-          <path d="M7 3.5h10l2 2v13l-2 2H7l-2-2v-13z" />
-          <circle cx="9.6" cy="8.4" r="1.4" fill="currentColor" stroke="none" />
-          <circle cx="14.4" cy="8.4" r="1.4" fill="currentColor" stroke="none" />
-          <path d="M8.5 14h7M8.5 17h4.5" />
-        </>
-      )}
-      {id === 'assistant' && (
-        // Sabre laser incliné : lame + halo, garde, poignée à anneaux, pommeau.
-        <g transform="rotate(40 12 12)">
-          <path d="M12 2.4v10" strokeWidth="6" opacity="0.28" />
-          <path d="M12 2.4v10" strokeWidth="2.4" />
-          <path d="M9.5 13h5" />
-          <path d="M10.6 13.4v6.4h2.8v-6.4" />
-          <path d="M10.6 15.5h2.8M10.6 17.6h2.8" />
-          <path d="M11 21h2" />
-        </g>
-      )}
-      {id === 'glossaire' && (
-        // Holocron (cube en perspective) — le savoir.
-        <>
-          <path d="M12 2.8l7.4 4.3v9.8L12 21.2l-7.4-4.3V7.1z" />
-          <path d="M4.6 7.1L12 11.4l7.4-4.3M12 11.4v9.8" />
-        </>
-      )}
-      {id === 'pense-bete' && (
-        // Datapad de mission : pince en haut + cases cochées.
-        <>
-          <path d="M5 4.5h14v16H5z" />
-          <path d="M9 3h6v3H9z" />
-          <path d="M8 11l1.4 1.4L12 9.8M8 16l1.4 1.4L12 14.8M14 11h3M14 16h3" />
-        </>
-      )}
-      {id === 'imprimer' && (
-        // Imprimante.
-        <>
-          <path d="M7 8V4h10v4" />
-          <path d="M4 8h16v8H4z" />
-          <path d="M7 14h10v7H7z" />
-          <circle cx="16.5" cy="11" r="0.8" fill="currentColor" stroke="none" />
-        </>
-      )}
-    </svg>
-  );
-}
-
-/** Emblème du bandeau : insigne de la faction du thème actif, avec halo (voir .faction-emblem). */
-export function FactionEmblem() {
-  return (
-    <svg
-      className="faction-emblem"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <g className="ni-imperial"><ImperialMark /></g>
-      <g className="ni-rebel"><RebelMark /></g>
+    <svg className="faction-crest" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+      <g className="ni-imperial"><ImperialCrest /></g>
+      <g className="ni-rebel"><RebelCrest /></g>
     </svg>
   );
 }

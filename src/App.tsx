@@ -6,7 +6,8 @@ import { useKeywordLibrary } from './lib/useKeywordLibrary';
 import { useCardTags } from './lib/useCardTags';
 import { useSync } from './lib/useSync';
 import { useGameTracker } from './lib/useGameTracker';
-import { FactionEmblem, NavIcon } from './lib/navIcons';
+import { FactionCrest } from './lib/navIcons';
+import { CxIcon, type CxIconName } from './lib/codexIcons';
 import { commandFactionForList } from './lib/commandDeck';
 import type { ParsedList } from './types';
 
@@ -28,6 +29,28 @@ const ASSISTANT_URL = 'https://archipad.github.io/SWL/assistant/';
    d'unité doit la laisser jouer avant de quitter la SPA, sinon la
    navigation coupe l'animation avant qu'elle soit visible. */
 const NAV_IGNITE_MS = 460;
+
+/* Navigation « Codex Legion » : cinq onglets en haut (sections), et une barre
+   latérale qui liste les pages de la section active. Les onglets de la
+   maquette d'origine (Armées / Unités / Attaque / Outils) sont adaptés aux
+   vraies pages de l'appli : Suivi de partie, Cartes de Commandement et
+   Assistant d'unité, les plus utilisés, ont chacun leur onglet. */
+const PAGE_META: Record<Page, { label: string; icon: CxIconName }> = {
+  setup: { label: 'Listes', icon: 'army' },
+  army: { label: 'Armées', icon: 'units' },
+  game: { label: 'Suivi de partie', icon: 'mission' },
+  commands: { label: 'Cartes de Commandement', icon: 'strategy' },
+  library: { label: 'Glossaire complet', icon: 'rules' },
+  cheatsheet: { label: 'Pense-bête', icon: 'info' },
+  'print-cards': { label: 'Imprimer des cartes', icon: 'dice' },
+};
+const SECTIONS: { id: string; label: string; icon: CxIconName; pages: Page[] }[] = [
+  { id: 'armees', label: 'Armées', icon: 'army', pages: ['setup', 'army'] },
+  { id: 'suivi', label: 'Suivi de partie', icon: 'mission', pages: ['game'] },
+  { id: 'commandement', label: 'Commandement', icon: 'strategy', pages: ['commands'] },
+  { id: 'outils', label: 'Outils', icon: 'tools', pages: ['library', 'cheatsheet', 'print-cards'] },
+];
+const NEEDS_LISTS: Page[] = ['army', 'game', 'commands'];
 
 export default function App() {
   const [listP1, setListP1] = usePersistentState<ParsedList | null>('swl.list.p1.v1', null);
@@ -75,14 +98,12 @@ export default function App() {
   // défaut, du Joueur 2), comme le halo de fond de l'Assistant d'unité ;
   // l'interrupteur du bandeau force l'un des deux. Posé sur <html> (et non
   // <body>) pour que les variables --accent & co, déclarées sur :root, se
-  // recalculent avec le thème. Sans faction reconnue et en Auto : aucun
-  // attribut, donc le rendu bleu nuit historique.
+  // recalculent avec le thème. Sans faction reconnue, en Auto : Empire.
   const detectedFaction = commandFactionForList(listP1) ?? commandFactionForList(listP2);
-  const autoTheme: ThemeId | null = detectedFaction === 'empire' ? 'imperial' : detectedFaction === 'rebelles' ? 'rebel' : null;
-  const activeTheme: ThemeId | null = themePref === 'auto' ? autoTheme : themePref;
+  const autoTheme: ThemeId = detectedFaction === 'rebelles' ? 'rebel' : 'imperial';
+  const activeTheme: ThemeId = themePref === 'auto' ? autoTheme : themePref;
   useEffect(() => {
-    if (activeTheme) document.documentElement.dataset.swlTheme = activeTheme;
-    else delete document.documentElement.dataset.swlTheme;
+    document.documentElement.dataset.swlTheme = activeTheme;
   }, [activeTheme]);
   const cycleTheme = () => setThemePref(themePref === 'auto' ? 'imperial' : themePref === 'imperial' ? 'rebel' : 'auto');
 
@@ -224,6 +245,9 @@ export default function App() {
   // ".app-game-tracker" et les sélecteurs dédiés .cheatsheet-screen /
   // .library-screen / .print-cards-screen juste en dessous.
 
+  const currentSection = SECTIONS.find((section) => section.pages.includes(page));
+  const sectionLanding = (section: (typeof SECTIONS)[number]): Page => (section.id === 'armees' && bothReady ? 'army' : section.pages[0]);
+
   return (
     <div className="app app-game-tracker">
       {/* Champ d'étoiles discret en fond, en plus du quadrillage existant
@@ -231,52 +255,43 @@ export default function App() {
           sans z-index : peint donc derrière le contenu normal mais devant
           le fond uni du body. Respecte prefers-reduced-motion (index.css). */}
       <div className="starfield" aria-hidden="true"><i className="shooting-star" /></div>
-      <header className="app-header no-print">
-        <div className="app-brand">
-          <FactionEmblem />
-          <div className="app-brand-text">
-            <h1>Legion Compagnon</h1>
-            {/* Aurebesh purement décoratif (police Droidobesh Depot, sans accents) : jamais du texte à lire. */}
-            <span className="aurebesh" aria-hidden="true">Legion Companion</span>
-          </div>
+      <header className="cx-topbar no-print">
+        <div className="cx-logo">
+          <h1>Legion Compagnon</h1>
+          {/* Aurebesh purement décoratif (police Droidobesh Depot, sans accents) : jamais du texte à lire. */}
+          <span className="aurebesh" aria-hidden="true">Legion Companion</span>
         </div>
-        <button
-          type="button"
-          className="theme-switch"
-          onClick={cycleTheme}
-          title="Changer de thème : Auto (suit la faction du Joueur 1) → Empire → Rébellion"
-          aria-label={`Thème : ${themePref === 'auto' ? 'automatique' : themePref === 'imperial' ? 'Empire' : 'Rébellion'}. Changer de thème.`}
-        >
-          Thème · {themePref === 'auto' ? 'Auto' : themePref === 'imperial' ? 'Empire' : 'Rébellion'}
-        </button>
-        <nav>
-          <button type="button" className={page === 'setup' ? 'active' : ''} onClick={() => setPage('setup')}>
-            <NavIcon id="listes" /><span className="nav-label">Listes</span>
-          </button>
-          <button type="button" className={`nav-primary${page === 'game' ? ' active' : ''}`} disabled={!bothReady} onClick={() => goToPage('game')}>
-            <NavIcon id="suivi" /><span className="nav-label">Suivi de partie</span>
-          </button>
-          <button type="button" className={`nav-primary${page === 'commands' ? ' active' : ''}`} disabled={!bothReady} onClick={() => goToPage('commands')}>
-            <NavIcon id="commandement" /><span className="nav-label">Cartes de Commandement</span>
-          </button>
+        <nav className="cx-tabs" aria-label="Sections">
+          {SECTIONS.slice(0, 3).map((section) => {
+            const isActive = section.pages.includes(page);
+            const locked = !bothReady && section.pages.every((target) => NEEDS_LISTS.includes(target));
+            return (
+              <button
+                key={section.id}
+                type="button"
+                className={`cx-tab${isActive ? ' active' : ''}`}
+                disabled={locked}
+                onClick={() => goToPage(isActive ? page : sectionLanding(section))}
+              >
+                <CxIcon name={section.icon} /><span>{section.label}</span>
+              </button>
+            );
+          })}
           {/* Page autonome distincte (public/assistant/), pas un onglet de cette
               SPA : lien externe plutôt qu'une entrée de Page/setPage. Navigue
-              dans le même onglet (demande explicite de l'utilisateur). Placée
-              juste après Suivi de partie, comme demandé. Le clic déclenche
-              d'abord le même effet d'ignition que les autres onglets (classe
-              .igniting, voir index.css) avant de naviguer, sinon la
-              navigation coupe l'animation avant qu'elle soit visible ; la
-              page d'arrivée rejoue ensuite son propre « star wipe »
-              (public/assistant/header-sync.css). */}
+              dans le même onglet (demande explicite de l'utilisateur). Le clic
+              déclenche d'abord l'effet d'ignition (classe .igniting, voir
+              index.css) avant de naviguer, sinon la navigation coupe
+              l'animation avant qu'elle soit visible ; la page d'arrivée rejoue
+              ensuite son propre « star wipe » (public/assistant/header-sync.css). */}
           <a
-            className={`nav-primary nav-external${assistantIgniting ? ' igniting' : ''}`}
+            className={`cx-tab cx-tab-external${assistantIgniting ? ' igniting' : ''}`}
             href={ASSISTANT_URL}
             onClick={(e) => {
               e.preventDefault();
               // Pas d'attente artificielle si l'utilisateur a demandé de
               // réduire les animations : l'effet ne joue pas (voir la garde
-              // prefers-reduced-motion dans index.css), donc rien à laisser
-              // le temps de voir avant de naviguer.
+              // prefers-reduced-motion dans index.css).
               if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 window.location.href = ASSISTANT_URL;
                 return;
@@ -285,28 +300,61 @@ export default function App() {
               setTimeout(() => { window.location.href = ASSISTANT_URL; }, NAV_IGNITE_MS);
             }}
           >
-            <NavIcon id="assistant" /><span className="nav-label">Assistant d'unité</span>
+            <CxIcon name="attack" /><span>Assistant d'unité</span>
           </a>
-          <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>
-            <NavIcon id="glossaire" /><span className="nav-label">Glossaire complet</span>
-          </button>
-          <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>
-            <NavIcon id="pense-bete" /><span className="nav-label">Pense-bête</span>
-          </button>
-          <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>
-            <NavIcon id="armees" /><span className="nav-label">Armées</span>
-          </button>
-          <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>
-            <NavIcon id="imprimer" /><span className="nav-label">Imprimer des cartes</span>
-          </button>
+          {SECTIONS.slice(3).map((section) => {
+            const isActive = section.pages.includes(page);
+            return (
+              <button key={section.id} type="button" className={`cx-tab${isActive ? ' active' : ''}`} onClick={() => goToPage(isActive ? page : sectionLanding(section))}>
+                <CxIcon name={section.icon} /><span>{section.label}</span>
+              </button>
+            );
+          })}
         </nav>
+        <div className="cx-topbar-right">
+          <span className="aurebesh" aria-hidden="true">Rebel Alliance</span>
+          <button
+            type="button"
+            className="cx-gear"
+            onClick={cycleTheme}
+            title="Changer de thème : Auto (suit la faction du Joueur 1) → Empire → Rébellion"
+            aria-label={`Thème : ${themePref === 'auto' ? 'automatique' : themePref === 'imperial' ? 'Empire' : 'Rébellion'}. Changer de thème.`}
+          >
+            <CxIcon name="settings" />
+            <small>{themePref === 'auto' ? 'Auto' : themePref === 'imperial' ? 'Empire' : 'Rébellion'}</small>
+          </button>
+        </div>
       </header>
 
-      {/* key={page} : force le remontage de <main> à chaque changement de
+      <div className="cx-body">
+        <aside className="cx-sidebar no-print" aria-label="Menu de la section">
+          <div className="cx-sidebar-inner">
+            <div className="cx-faction">
+              <FactionCrest />
+              <strong>{activeTheme === 'imperial' ? 'Empire' : 'Alliance Rebelle'}</strong>
+              <span className="aurebesh" aria-hidden="true">{activeTheme === 'imperial' ? 'Galactic Empire' : 'Rebel Alliance'}</span>
+            </div>
+            <ul className="cx-menu">
+              {(currentSection?.pages ?? []).map((target) => {
+                const locked = !bothReady && NEEDS_LISTS.includes(target);
+                return (
+                  <li key={target}>
+                    <button type="button" className={`cx-menu-item${page === target ? ' active' : ''}`} disabled={locked} onClick={() => goToPage(target)}>
+                      <CxIcon name={PAGE_META[target].icon} /><span>{PAGE_META[target].label}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="cx-art" aria-hidden="true" />
+          </div>
+        </aside>
+        {/* key={page} : force le remontage de <main> à chaque changement de
           page pour rejouer l'animation de transition (« wipe » façon
           Star Wars, voir .page-transition dans index.css) — sans quoi une
           animation CSS ne se rejoue pas au simple changement des enfants. */}
-      <main key={page} className="page-transition"><Suspense fallback={<p className="screen-loading" role="status">Chargement de la console…</p>}>{content}</Suspense></main>
+        <main key={page} className="page-transition"><Suspense fallback={<p className="screen-loading" role="status">Chargement de la console…</p>}>{content}</Suspense></main>
+      </div>
 
       <footer className="app-footer no-print">
         <p>
