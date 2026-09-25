@@ -1794,6 +1794,8 @@ function decorateCodexNav(){
   const stepper=root.querySelector('.resolve-center .attack-stepper');
   if(stepper){stepper.dataset.cxTitle=codexStepTitles[attackStep][0];stepper.dataset.cxSub=codexStepTitles[attackStep][1]}
   const workspace=root.querySelector('.attack-workspace');if(workspace)workspace.dataset.cxStep=attackStep;
+  const holo=root.querySelector('.holo-table');if(holo&&stepper&&attackStep===0)stepper.after(holo);
+  const pool=root.querySelector('.resolve-center .dice-pool');if(pool){const total=[...pool.querySelectorAll('.dice-badge')].reduce((sum,badge)=>sum+(Number(badge.textContent)||0),0);if(total)pool.dataset.total=total;else delete pool.dataset.total}
   const prev=$('#prev'),next=$('#nextAttack');
   if(prev)prev.textContent='← '+codexPrevLabels[attackStep];
   if(next&&attackStep<5)next.textContent=codexNextLabels[attackStep]+' →';

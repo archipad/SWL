@@ -1,0 +1,289 @@
+/* Écrans de résolution « Codex Legion » — contenu des étapes (25/09/2026).
+   Suite de resolve-codex.css (socle) : même principe, additif, scopé par
+   body:has(.attack-workspace), chargé en dernier. Aucun sélecteur de logique
+   n'est retiré. */
+
+/* =====================================================================
+   Contenu du cadre central — habillage commun à toutes les étapes
+   (vocabulaire de l'ancien fil conservé : BLOQUANT / À SAISIR / INFO,
+   mais « à saisir » passe du orange au cyan des maquettes).
+   ===================================================================== */
+body:has(.attack-workspace) .resolve-center {
+  --r-action: var(--rx-hud); --r-input: var(--rx-hud); --r-rule: #8ec3dd; --r-alert: var(--rx-bad); --r-line: rgba(66, 205, 255, .22); --r-radius: 8px;
+  --accent: #5ad8ff; --acid: #5ad8ff;
+  gap: 10px; color: var(--rx-text);
+}
+body:has(.attack-workspace) .resolve-center .manual-focus,
+body:has(.attack-workspace) .resolve-center .situation-check {
+  border: 1px solid var(--rx-line-2) !important; border-left-width: 1px !important; border-radius: 8px !important;
+  background: linear-gradient(180deg, rgba(13, 31, 47, .78), rgba(6, 15, 24, .9)) !important; box-shadow: inset 0 0 22px rgba(66, 205, 255, .05) !important;
+}
+body:has(.attack-workspace) .resolve-center .manual-focus::before,
+body:has(.attack-workspace) .resolve-center .situation-check::before,
+body:has(.attack-workspace) .resolve-center .automation-card::before,
+body:has(.attack-workspace) .resolve-center .strict-warning:not([hidden])::before {
+  font: 700 .62rem/1.2 "Rajdhani", sans-serif; letter-spacing: .22em; background: #08131d;
+}
+body:has(.attack-workspace) .resolve-center .automation-card,
+body:has(.attack-workspace) .resolve-center .conversion-note,
+body:has(.attack-workspace) .resolve-center .pool-note {
+  border: 1px solid var(--rx-line) !important; border-left-width: 1px !important; border-radius: 8px; box-shadow: none !important;
+  background: linear-gradient(180deg, rgba(11, 26, 40, .7), rgba(6, 14, 22, .85)) !important;
+}
+body:has(.attack-workspace) .resolve-center .strict-warning { border-radius: 8px; }
+body:has(.attack-workspace) .resolve-center .dice-pool,
+body:has(.attack-workspace) .resolve-center .defense-dice-pool {
+  border: 1px solid var(--rx-line-2) !important; border-radius: 8px; box-shadow: none !important;
+  background: linear-gradient(180deg, rgba(13, 31, 47, .78), rgba(6, 15, 24, .9)) !important;
+}
+body:has(.attack-workspace) .resolve-center .dice-pool > span:first-child,
+body:has(.attack-workspace) .resolve-center .defense-dice-pool > span:first-child { color: var(--rx-text); font: 700 .8rem "Rajdhani", sans-serif; letter-spacing: .24em; }
+body:has(.attack-workspace) .resolve-center button.primary {
+  border: 1px solid #7ee3ff; border-radius: 8px !important; color: #fff; text-shadow: 0 1px 2px rgba(0, 20, 40, .6);
+  background: linear-gradient(180deg, #23a6e4, #0d6fb3); box-shadow: 0 0 14px rgba(66, 205, 255, .35);
+}
+body:has(.attack-workspace) .resolve-center button.secondary { border: 1px solid var(--rx-line-2); border-radius: 8px; background: rgba(10, 24, 38, .9); color: var(--rx-text); }
+/* Oui / Non et autres choix binaires : même segment que la portée. */
+body:has(.attack-workspace) .resolve-center .yes-no { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rx-line-2); border-radius: 8px; overflow: hidden; }
+body:has(.attack-workspace) .resolve-center .yes-no button { min-height: 46px; border: 0; border-radius: 0 !important; background: rgba(6, 15, 24, .9); color: var(--rx-text); font: 700 1.05rem "Rajdhani", sans-serif; box-shadow: none; }
+body:has(.attack-workspace) .resolve-center .yes-no button + button { border-left: 1px solid var(--rx-line); }
+body:has(.attack-workspace) .resolve-center .yes-no button.on { background: linear-gradient(180deg, #23a6e4, #0d6fb3); color: #fff; box-shadow: inset 0 0 0 1px #7ee3ff, 0 0 14px var(--rx-glow); }
+
+/* Dés : des hexagones (les losanges tournés d'avant restent dans les autres écrans de l'assistant). */
+body:has(.attack-workspace) .resolve-center .dice-badge {
+  transform: none; width: 2.2rem; height: 2.4rem; border: 0; border-radius: 0; font: 800 1.05rem "Rajdhani", sans-serif;
+  clip-path: polygon(50% 0, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%);
+}
+body:has(.attack-workspace) .resolve-center .dice-badge span { transform: none; }
+body:has(.attack-workspace) .resolve-center .dice-row-big .dice-badge { width: 3.4rem; height: 3.7rem; font-size: 1.5rem; }
+body:has(.attack-workspace) .resolve-center .dice-badge-rouge { background: linear-gradient(160deg, #f2554a, #b3261e); color: #fff; }
+body:has(.attack-workspace) .resolve-center .dice-badge-noir { background: linear-gradient(160deg, #56606b, #171b20); color: #fff; box-shadow: inset 0 0 0 2px #9ca69f; }
+body:has(.attack-workspace) .resolve-center .dice-badge-blanc { background: linear-gradient(160deg, #ffffff, #c9d1d8); color: #10161c; }
+
+/* =====================================================================
+   Étape 3 — Armes & portée (maquette 03)
+   ===================================================================== */
+/* Table holographique déplacée DANS le cadre (decorateCodexNav) : illustration de la portée. */
+body:has(.attack-workspace) .resolve-center > .attack-stepper { order: -2; }
+body:has(.attack-workspace) .resolve-center > .holo-table {
+  order: -1; height: 92px; margin: 0 0 2px; border: 0; clip-path: none; box-shadow: none; overflow: hidden; border-radius: 6px;
+  background: linear-gradient(180deg, rgba(4, 10, 18, .15), rgba(4, 10, 18, .7)), url(../codex/hangar.jpg) center 84% / cover no-repeat;
+  border-bottom: 1px solid var(--rx-line);
+}
+body:has(.attack-workspace) .resolve-center > .holo-table .holo-unit { height: 64px; bottom: 8px; }
+body:has(.attack-workspace) .resolve-center > .holo-table .holo-readout { top: 6px; }
+body:has(.attack-workspace) .resolve-center > .holo-table .holo-line { left: calc(17% + 66px); right: calc(17% + 66px); bottom: 14px; }
+
+/* Portée : un seul contrôle segmenté. */
+body:has(.attack-workspace) .resolve-center .range-picker {
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 0; margin: 0; padding: 0; overflow: hidden;
+}
+body:has(.attack-workspace) .resolve-center .range-picker button {
+  min-height: 50px; border: 0; border-radius: 0 !important; background: transparent; color: var(--rx-text); box-shadow: none;
+  font: 700 1.15rem "Rajdhani", sans-serif; letter-spacing: .02em; text-transform: none;
+}
+body:has(.attack-workspace) .resolve-center .range-picker button + button { border-left: 1px solid var(--rx-line); }
+body:has(.attack-workspace) .resolve-center .range-picker button.on {
+  background: linear-gradient(180deg, #23a6e4, #0d6fb3); color: #fff; box-shadow: inset 0 0 0 1px #7ee3ff, 0 0 16px var(--rx-glow) !important;
+}
+
+/* Armes : une ligne par arme, case cyan, effectif compact. */
+body:has(.attack-workspace) .resolve-center .weapon-picker { display: grid; gap: 8px; padding: 12px; }
+body:has(.attack-workspace) .resolve-center .weapon-choice {
+  gap: 10px; padding: 8px 12px; border: 1px solid var(--rx-line) !important; border-radius: 8px !important; box-shadow: none !important;
+  background: linear-gradient(180deg, rgba(10, 26, 40, .9), rgba(6, 14, 22, .95)) !important;
+}
+body:has(.attack-workspace) .resolve-center .weapon-choice.on { border-color: var(--rx-hud) !important; box-shadow: 0 0 14px var(--rx-glow) !important; }
+body:has(.attack-workspace) .resolve-center .weapon-toggle > .weapon-check {
+  width: 28px; height: 28px; border: 2px solid var(--rx-line-2); border-radius: 5px; color: #04121c; font-weight: 900;
+}
+body:has(.attack-workspace) .resolve-center .weapon-choice.on .weapon-toggle > .weapon-check { background: var(--rx-hud); border-color: var(--rx-hud); box-shadow: 0 0 10px var(--rx-glow); }
+body:has(.attack-workspace) .resolve-center .weapon-copy b { font: 800 1.05rem/1.1 "Rajdhani", sans-serif; letter-spacing: .03em; text-transform: uppercase; color: #fff; }
+body:has(.attack-workspace) .resolve-center .weapon-copy small { color: var(--rx-dim); font: 500 .85rem "Rajdhani", sans-serif; }
+body:has(.attack-workspace) .resolve-center .weapon-copy .range-tag { color: var(--rx-text); font: 700 .85rem "Rajdhani", sans-serif; }
+body:has(.attack-workspace) .resolve-center .weapon-copy .data-verification {
+  display: inline-block; padding: 0; border: 0; background: none; color: var(--rx-ok); font: 700 .8rem "Rajdhani", sans-serif;
+}
+body:has(.attack-workspace) .resolve-center .weapon-copy .models-note { color: var(--rx-dim); font-size: .72rem; }
+body:has(.attack-workspace) .resolve-center .count-control .autofill-note { color: var(--rx-hud) !important; font: 600 .56rem "Rajdhani", sans-serif; letter-spacing: .12em; }
+body:has(.attack-workspace) .resolve-center .count-control button {
+  border: 1px solid var(--rx-line-2); border-radius: 5px; background: rgba(10, 30, 46, .9); color: #fff; font-weight: 800;
+}
+body:has(.attack-workspace) .resolve-center .count-control input {
+  border: 1px solid var(--rx-line); border-radius: 5px; background: rgba(4, 10, 16, .9); color: #fff; font: 800 1.4rem "Rajdhani", sans-serif; text-align: center;
+}
+body:has(.attack-workspace) .resolve-center .count-control label small { color: var(--rx-dim); font: 600 .62rem "Rajdhani", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+
+/* Réserve d'attaque : dés à lancer réunis dans un cadre, avec le total. */
+body:has(.attack-workspace) .resolve-center .dice-pool { display: flex; align-items: center; gap: 14px; padding: 10px 14px; }
+body:has(.attack-workspace) .resolve-center .dice-pool > span:first-child { flex: 0 0 auto; color: var(--rx-text); }
+body:has(.attack-workspace) .resolve-center .dice-pool .dice-row-big { margin-left: auto; gap: 10px; padding: 0; }
+body:has(.attack-workspace) .resolve-center .dice-pool[data-total]::after {
+  content: attr(data-total) " dés"; order: 3; padding-left: 14px; border-left: 1px solid var(--rx-line); font: 800 1.6rem "Rajdhani", sans-serif; text-transform: uppercase; white-space: nowrap;
+}
+body:has(.attack-workspace) .resolve-center .rules-panel { border: 1px solid var(--rx-line); border-radius: 8px; background: rgba(8, 20, 32, .8); }
+
+/* Teinte d'accentuation des colonnes latérales et du contrôle de tir : cyan, comme les maquettes. */
+body:has(.attack-workspace) .combat-side { --accent: #5ad8ff; --acid: #5ad8ff; }
+body:has(.attack-workspace) .combat-side .side-collapse,
+body:has(.attack-workspace) .combat-side .unit-card-zoom > span,
+body:has(.attack-workspace) .combat-side .upgrade-visual > span,
+body:has(.attack-workspace) .combat-side .side-surge > small { color: #5ad8ff; border-color: var(--rx-line-2); }
+body:has(.attack-workspace) .resolve-center .fire-control-card > strong { color: #fff; font: 800 1.15rem "Rajdhani", sans-serif; letter-spacing: .06em; }
+body:has(.attack-workspace) .resolve-center .fc-conditions b { color: #7fdcff; }
+
+/* Effectif de l'arme : note « prérempli » au-dessus, compteur compact, pour laisser la place au nom et aux dés. */
+body:has(.attack-workspace) .resolve-center .weapon-choice { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+body:has(.attack-workspace) .resolve-center .weapon-choice .count-control {
+  display: grid; grid-template-columns: 38px 58px 38px; grid-template-rows: auto auto; gap: 3px 4px; align-items: end; justify-items: stretch; min-width: 0;
+}
+body:has(.attack-workspace) .resolve-center .weapon-choice .count-control .autofill-note { grid-column: 1 / -1; grid-row: 1; text-align: right; white-space: nowrap; }
+body:has(.attack-workspace) .resolve-center .weapon-choice .count-control > button { grid-row: 2; min-height: 42px; padding: 0; }
+body:has(.attack-workspace) .resolve-center .weapon-choice .count-control > label { grid-row: 2; grid-column: 2; display: grid; gap: 1px; margin: 0; }
+body:has(.attack-workspace) .resolve-center .weapon-choice .count-control > button:first-of-type { grid-column: 1; }
+body:has(.attack-workspace) .resolve-center .weapon-choice .count-control > button:last-of-type { grid-column: 3; }
+body:has(.attack-workspace) .resolve-center .weapon-choice .count-control input { width: 100%; min-height: 42px; padding: 0; }
+body:has(.attack-workspace) .resolve-center .weapon-toggle { min-width: 0; }
+body:has(.attack-workspace) .resolve-center .weapon-toggle > .weapon-copy { min-width: 0; }
+body:has(.attack-workspace) .resolve-center .weapon-toggle > .weapon-printed-dice { flex-shrink: 0; }
+
+/* =====================================================================
+   Étape 4 — Jet & relances (maquette 04) — composants partagés avec Couvert et Défense
+   ===================================================================== */
+/* Compteurs − n + : trois cases jointes. */
+body:has(.attack-workspace) .resolve-center .touch-counter {
+  grid-template-columns: 44px minmax(44px, 1fr) 44px; gap: 0; margin: 0; border: 1px solid var(--rx-line-2); border-radius: 6px; overflow: hidden; background: rgba(4, 10, 16, .9);
+}
+body:has(.attack-workspace) .resolve-center .touch-counter button {
+  min-width: 0; min-height: 46px; border: 0; border-radius: 0; background: rgba(14, 38, 58, .9); color: #fff; font: 800 1.3rem "Rajdhani", sans-serif;
+}
+body:has(.attack-workspace) .resolve-center .touch-counter button:active:not(:disabled) { background: var(--rx-hud-2); color: #fff; }
+body:has(.attack-workspace) .resolve-center .touch-counter input {
+  width: 100%; min-width: 0; min-height: 46px; padding: 0; border: 0; border-radius: 0; background: transparent; color: #fff; font: 800 1.7rem "Rajdhani", sans-serif; text-align: center;
+}
+
+/* Résultats des dés : une carte par face, étiquette en haut, dé, compteur. */
+body:has(.attack-workspace) .resolve-center .dice-tray { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; min-height: 0; padding: 10px 10px 12px;
+  border: 1px solid var(--rx-line-2); border-radius: 8px; background: linear-gradient(180deg, rgba(13, 31, 47, .8), rgba(6, 15, 24, .92)); box-shadow: none;
+}
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field.is-empty { border-color: var(--rx-line-2); }
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field .quick-label { order: -1; color: #fff; font: 700 1.05rem "Rajdhani", sans-serif; letter-spacing: .02em; text-transform: none; }
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field .touch-counter { width: 100%; }
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field .face-medal {
+  display: grid; place-items: center; width: 62px; height: 68px; border: 0; border-radius: 0; padding: 0;
+  clip-path: polygon(50% 0, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%); background: linear-gradient(160deg, #f2554a, #b3261e);
+}
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field:nth-child(2) .face-medal,
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field:nth-child(4) .face-medal { background: linear-gradient(160deg, #ffffff, #c9d1d8); }
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field .face-medal img.dice-symbol { width: 34px; height: 34px; filter: invert(1) brightness(2.6); background: none; }
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field:nth-child(2) .face-medal img.dice-symbol { filter: none; }
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field .blank-die { width: 0; height: 0; border: 0; background: none; box-shadow: none; }
+
+/* Progression de saisie : pastille, verte quand tout est saisi. */
+body:has(.attack-workspace) .resolve-center .entry-progress { border: 1px solid var(--rx-line-2); border-radius: 8px; background: rgba(8, 20, 32, .85); color: var(--rx-text); }
+body:has(.attack-workspace) .resolve-center .entry-progress > span { background: rgba(66, 205, 255, .18); color: var(--rx-hud); }
+body:has(.attack-workspace) .resolve-center .entry-progress.complete { border-color: rgba(70, 214, 138, .7); background: rgba(70, 214, 138, .12); color: #b8f4d4; }
+body:has(.attack-workspace) .resolve-center .entry-progress.complete > span { background: var(--rx-ok); color: #04150d; }
+body:has(.attack-workspace) .resolve-center .entry-progress.over { border-color: rgba(255, 91, 82, .7); background: rgba(255, 91, 82, .12); }
+body:has(.attack-workspace) .resolve-center .entry-progress.over > span { background: var(--rx-bad); color: #fff; }
+
+/* Résumé « Après conversion » et cartes de pions. */
+body:has(.attack-workspace) .resolve-center .result-strip {
+  border: 1px solid var(--rx-line-2) !important; border-left-width: 1px !important; border-radius: 8px; box-shadow: none !important;
+  background: linear-gradient(180deg, rgba(13, 31, 47, .78), rgba(6, 15, 24, .9)) !important;
+}
+body:has(.attack-workspace) .resolve-center .result-strip > b:first-child:not(:has(img)) { color: var(--rx-text); font: 700 .8rem "Rajdhani", sans-serif; letter-spacing: .24em; }
+body:has(.attack-workspace) .resolve-center .result-strip > b:not(:first-child),
+body:has(.attack-workspace) .resolve-center .result-strip > b:first-child:has(img) { border-radius: 6px; background: rgba(4, 10, 16, .75); font: 800 1.35rem "Rajdhani", sans-serif; }
+body:has(.attack-workspace) .resolve-center .token-card {
+  border: 1px solid var(--rx-line) !important; border-left-width: 1px !important; border-radius: 8px; box-shadow: none !important;
+  background: linear-gradient(180deg, rgba(11, 26, 40, .7), rgba(6, 14, 22, .85)) !important;
+}
+body:has(.attack-workspace) .resolve-center .token-card .token-text b { font: 800 .95rem "Rajdhani", sans-serif; letter-spacing: .05em; color: #fff; }
+body:has(.attack-workspace) .resolve-center .token-card .token-text span { color: var(--rx-dim); font: 500 .85rem "Rajdhani", sans-serif; }
+
+/* La pulsation « à faire » passe du orange au cyan (mêmes durées, mêmes éléments : seul le keyframe change). */
+@keyframes todo-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(66, 205, 255, 0); border-color: rgba(66, 205, 255, .45); }
+  50% { box-shadow: 0 0 14px 2px rgba(66, 205, 255, .4); border-color: #42cdff; }
+}
+body:has(.attack-workspace) .resolve-center .touch-counter button[data-delta] { background: rgba(14, 38, 58, .9); }
+body:has(.attack-workspace) .resolve-center .auto-chip { border: 1px solid var(--rx-line-2); border-radius: 999px; background: rgba(10, 26, 40, .9); color: var(--rx-text); font: 700 .95rem "Rajdhani", sans-serif; }
+body:has(.attack-workspace) .resolve-center .automation-card > summary,
+body:has(.attack-workspace) .resolve-center .rules-panel > summary { color: #b9d9ea; font-family: "Rajdhani", sans-serif; }
+
+/* =====================================================================
+   Étape 5 — Couvert & esquives (maquette 05)
+   Trois cartes de terrain. Les illustrations de la maquette n'existent pas dans le pack : on réutilise
+   l'hologramme de caisses (une fois « léger », plus grand « lourd », rien pour « aucun »).
+   ===================================================================== */
+body:has(.attack-workspace) .resolve-center .cover-options { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 14px 12px 12px; }
+body:has(.attack-workspace) .resolve-center .cover-options > button {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; min-height: 150px; padding: 10px 8px 40px;
+  border: 1px solid var(--rx-line-2) !important; border-radius: 8px !important; box-shadow: none !important; overflow: hidden;
+  background: linear-gradient(180deg, rgba(10, 26, 40, .35) 0%, rgba(4, 10, 16, .85) 100%), url(../codex/holograms/cover-crates-cyan.png) center 62% / 0 auto no-repeat, linear-gradient(180deg, #0c1a27, #060d15) !important;
+  color: var(--rx-text); font: 800 1.15rem "Rajdhani", sans-serif; letter-spacing: .08em; text-transform: uppercase;
+}
+body:has(.attack-workspace) .resolve-center .cover-options > button:nth-child(2) {
+  background: linear-gradient(180deg, rgba(10, 26, 40, .35) 0%, rgba(4, 10, 16, .8) 100%), url(../codex/holograms/cover-crates-cyan.png) center 66% / 46% auto no-repeat, linear-gradient(180deg, #0c1a27, #060d15) !important;
+}
+body:has(.attack-workspace) .resolve-center .cover-options > button:nth-child(3) {
+  background: linear-gradient(180deg, rgba(10, 26, 40, .3) 0%, rgba(4, 10, 16, .78) 100%), url(../codex/holograms/cover-crates-cyan.png) center 58% / 78% auto no-repeat, linear-gradient(180deg, #0c1a27, #060d15) !important;
+}
+body:has(.attack-workspace) .resolve-center .cover-options > button::after {
+  content: ""; position: absolute; left: 50%; bottom: 12px; width: 22px; height: 22px; transform: translateX(-50%); border: 2px solid var(--rx-dim); border-radius: 50%; background: transparent;
+}
+body:has(.attack-workspace) .resolve-center .cover-options > button.on {
+  border-color: var(--rx-hud) !important; color: var(--rx-hud); box-shadow: 0 0 18px var(--rx-glow), inset 0 0 22px rgba(66, 205, 255, .16) !important;
+}
+body:has(.attack-workspace) .resolve-center .cover-options > button.on::after { border-color: var(--rx-hud); background: radial-gradient(circle, var(--rx-hud) 0 45%, transparent 50%); }
+
+body:has(.attack-workspace) .resolve-center .phase-confirm {
+  min-height: 46px; border: 1px solid var(--rx-line-2) !important; border-radius: 8px !important; color: var(--rx-text) !important; font: 700 1.05rem "Rajdhani", sans-serif;
+  background: linear-gradient(180deg, rgba(14, 34, 52, .9), rgba(8, 18, 28, .95)) !important; box-shadow: none !important;
+}
+body:has(.attack-workspace) .resolve-center .phase-confirm.todo { border-color: var(--rx-hud) !important; box-shadow: 0 0 14px var(--rx-glow) !important; }
+body:has(.attack-workspace) .resolve-center .dice-pool .entry-progress, body:has(.attack-workspace) .resolve-center .defense-dice-pool .entry-progress { flex: 0 1 auto; min-width: 0; padding: 4px 10px; }
+body:has(.attack-workspace) .resolve-center .dice-pool .entry-progress strong { font: 700 .9rem "Rajdhani", sans-serif; white-space: nowrap; }
+
+/* =====================================================================
+   Étape 7 — Jet de défense (maquette 07)
+   ===================================================================== */
+body:has(.attack-workspace) .resolve-center .defense-dice-pool { display: flex; align-items: center; gap: 14px; padding: 10px 14px; }
+body:has(.attack-workspace) .resolve-center .defense-die-badge {
+  display: inline-grid; place-items: center; width: 3.4rem; height: 3.7rem; margin-left: auto; border: 0; border-radius: 0; transform: none; font: 800 1.5rem "Rajdhani", sans-serif;
+  clip-path: polygon(50% 0, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%); color: #fff;
+}
+body:has(.attack-workspace) .resolve-center .defense-die-badge > span { transform: none; }
+body:has(.attack-workspace) .resolve-center .defense-die-rouge { background: linear-gradient(160deg, #f2554a, #b3261e); }
+body:has(.attack-workspace) .resolve-center .defense-die-blanc { background: linear-gradient(160deg, #ffffff, #c9d1d8); color: #10161c; }
+/* Les faces du jet de défense prennent la couleur du dé de défense de l'unité. */
+body:has(.attack-workspace) .resolve-center:has(.defense-die-blanc) .dice-tray:has(#defBlock) > .quick-field .face-medal { background: linear-gradient(160deg, #ffffff, #c9d1d8); }
+body:has(.attack-workspace) .resolve-center:has(.defense-die-blanc) .dice-tray:has(#defBlock) > .quick-field .face-medal img.dice-symbol { filter: none; }
+body:has(.attack-workspace) .resolve-center:has(.defense-die-rouge) .dice-tray:has(#defBlock) > .quick-field .face-medal { background: linear-gradient(160deg, #f2554a, #b3261e); }
+body:has(.attack-workspace) .resolve-center:has(.defense-die-rouge) .dice-tray:has(#defBlock) > .quick-field .face-medal img.dice-symbol { filter: invert(1) brightness(2.6); }
+
+/* =====================================================================
+   Étape 8 — Suppression & bilan (maquette 08)
+   Blessures et suppression côte à côte en grandes tuiles.
+   ===================================================================== */
+body:has(.attack-workspace) .resolve-center .attack-recap { grid-template-columns: 1fr 1fr; }
+body:has(.attack-workspace) .resolve-center .attack-recap > :not(.recap-card) { grid-column: 1 / -1; }
+body:has(.attack-workspace) .resolve-center .recap-card {
+  display: grid; grid-template-columns: auto auto; grid-template-areas: "text text" "icon num"; justify-content: center; justify-items: center; align-items: center; gap: 6px 14px;
+  padding: 12px 14px 14px; border-radius: 8px; border-left-width: 1px;
+}
+body:has(.attack-workspace) .resolve-center .recap-card > .recap-text { grid-area: text; text-align: center; }
+body:has(.attack-workspace) .resolve-center .recap-card > .recap-icon { grid-area: icon; }
+body:has(.attack-workspace) .resolve-center .recap-card > .recap-num { grid-area: num; font: 800 3.4rem/1 "Rajdhani", sans-serif; }
+body:has(.attack-workspace) .resolve-center .recap-card > .recap-text strong { font: 800 1.15rem "Rajdhani", sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+body:has(.attack-workspace) .resolve-center .recap-card.suppression { border-color: rgba(240, 176, 58, .75); background: rgba(240, 176, 58, .08); }
+body:has(.attack-workspace) .resolve-center details.morale-fold,
+body:has(.attack-workspace) .resolve-center .recap-spent { border: 1px solid var(--rx-line-2); border-left-width: 1px; border-radius: 8px; background: linear-gradient(180deg, rgba(13, 31, 47, .78), rgba(6, 15, 24, .9)); }
+body:has(.attack-workspace) .resolve-center details.morale-fold > summary b { color: #fff; font: 800 1rem "Rajdhani", sans-serif; letter-spacing: .12em; }
+
+/* Fenêtres de rappel (fin d'attaque, règles) : même vocabulaire que les cadres. */
+body:has(.attack-workspace) .rule-popup { border-radius: 10px; }
+body:has(.attack-workspace) .rule-popup button { border: 1px solid #7ee3ff; border-radius: 8px; background: linear-gradient(180deg, #23a6e4, #0d6fb3); color: #fff; font: 700 1.05rem "Rajdhani", sans-serif; }
