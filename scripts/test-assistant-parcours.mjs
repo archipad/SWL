@@ -1748,6 +1748,40 @@ scenario('Réduction des clics (24/09/2026) : arme unique éligible auto-sélect
   app.window.close()
 })
 
+scenario('Couvert (25/09/2026) : l’info « Couvert effectif » explique pourquoi le couvert n’agit pas (corps à corps, aucun couvert)', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles solo', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, text, click, pickUnit } = app
+  const ev = (code) => app.window.eval(code)
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+
+  // Corps à corps + couvert Lourd sélectionné : le moteur ignore le couvert, l'écran doit le dire.
+  await click('[data-range="melee"]')
+  ev('attackStep = 2; resolveScreen()')
+  await click('[data-cover="heavy"]')
+  const info = text($('.automation-card[class*="cover-"]'))
+  assert.match(info, /COUVERT EFFECTIF : AUCUN/, 'corps à corps : le couvert effectif est « Aucun », pas « Lourd »')
+  assert.match(info, /corps à corps : le couvert ne s’applique pas/i, 'la raison (corps à corps) est affichée dans l’info')
+  assert.ok(!$('#coverBlock'), 'aucun champ de dés de couvert n’est proposé au corps à corps')
+
+  // À distance : couvert « Aucun » choisi → raison explicite ; couvert Lourd → plus de raison « n'agit pas ».
+  ev('attackStep = 0; resolveScreen()')
+  await click('[data-range="2"]')
+  ev('attackStep = 2; resolveScreen()')
+  await click('[data-cover="none"]')
+  assert.match(text($('.automation-card[class*="cover-"]')), /Aucun couvert sélectionné/, 'à distance sans couvert : la raison est affichée')
+  await click('[data-cover="heavy"]')
+  const heavy = text($('.automation-card[class*="cover-"]'))
+  assert.match(heavy, /COUVERT EFFECTIF : LOURD/, 'à distance : le couvert lourd s’applique')
+  assert.doesNotMatch(heavy, /corps à corps/i, 'à distance : aucune raison de corps à corps')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 /* ------------------------------------------------------------------ */
 async function run() {
   for (const { name, run: body } of scenarios) {
