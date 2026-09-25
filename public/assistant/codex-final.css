@@ -99,3 +99,52 @@ body:has(.cx-attacker-recap[data-faction="imperial"])[data-faction-theme]::befor
 .app-header-sticky { background: linear-gradient(180deg, rgba(3, 6, 10, .55), rgba(3, 6, 10, .3)) !important; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-bottom: 0 !important; }
 .app-header-sticky .topbar { background: transparent !important; }
 #progress.cx-steps { background: transparent !important; }
+
+/* =====================================================================
+   Cartes d'unités : l'illustration monte jusqu'en haut, coins biseautés comme la carte,
+   rang + icône posés sur l'image (maquette) — retour du 25/09/2026
+   ===================================================================== */
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual {
+  margin: 0; border-radius: 0; box-shadow: none; max-height: none; aspect-ratio: 2.05 / 1; height: auto; overflow: hidden;
+  clip-path: polygon(calc(var(--cut) - 1px) 0, calc(100% - var(--cut) + 1px) 0, 100% calc(var(--cut) - 1px), 100% 100%, 0 100%, 0 calc(var(--cut) - 1px));
+}
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected .tile-visual { box-shadow: none; }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-head {
+  position: absolute; top: 1px; left: 1px; right: 1px; z-index: 3; min-height: 0; padding: 12px 16px 26px; pointer-events: none;
+  background: linear-gradient(180deg, rgba(2, 5, 9, .78), rgba(2, 5, 9, .35) 55%, rgba(2, 5, 9, 0));
+  clip-path: polygon(calc(var(--cut) - 1px) 0, calc(100% - var(--cut) + 1px) 0, 100% calc(var(--cut) - 1px), 100% 100%, 0 100%, 0 calc(var(--cut) - 1px));
+}
+body:has(.unit-picker-grid) .unit-picker-grid .tile-head .rank-label { text-shadow: 0 1px 4px rgba(0, 0, 0, .8); }
+/* Recadrage de l'art des cartes : la colonne d'illustration occupe ~34 % de la largeur du scan. */
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile img.art-card,
+body:has(.cx-attacker-recap) .cx-target-host .unit-picker-grid .unit-tile img.art-card { transform: scale(2.95); transform-origin: 100% 30%; }
+.cx-sel-thumb img.cx-portrait-card { transform: scale(2.95); transform-origin: 100% 30%; }
+
+/* =====================================================================
+   Boutons d'action : coins coupés, bord lumineux (maquette). Le fond est tracé par ::after
+   (le ::before du bouton verrouillé porte déjà son cadenas).
+   ===================================================================== */
+.actions > button, .cx-sel-actions button {
+  --cut: 12px; --bd: var(--cx-steel); --fill: var(--cx-dark);
+  position: relative; isolation: isolate; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; background: var(--bd) !important;
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+}
+.actions > button::after, .cx-sel-actions button::after {
+  content: ""; position: absolute; inset: 2px; z-index: -1; pointer-events: none; background: var(--fill);
+  clip-path: polygon(calc(var(--cut) - 2px) 0, calc(100% - var(--cut) + 2px) 0, 100% calc(var(--cut) - 2px), 100% calc(100% - var(--cut) + 2px), calc(100% - var(--cut) + 2px) 100%, calc(var(--cut) - 2px) 100%, 0 calc(100% - var(--cut) + 2px), 0 calc(var(--cut) - 2px));
+}
+.actions > .primary, .cx-sel-actions .primary, #nextAttack, #next {
+  --bd: linear-gradient(135deg, #c4f6ff, #3cb9f0 50%, #c4f6ff); --fill: linear-gradient(180deg, #1f9bdc 0%, #0a5c96 100%); text-shadow: 0 1px 3px rgba(0, 20, 40, .7);
+}
+.actions > .primary::after, .cx-sel-actions .primary::after, #nextAttack::after, #next::after { box-shadow: inset 0 0 26px rgba(170, 238, 255, .4); }
+#nextAttack.locked, #next:disabled, .cx-sel-actions .primary:disabled { --bd: linear-gradient(135deg, rgba(150, 170, 185, .45), rgba(90, 110, 125, .35)); --fill: linear-gradient(180deg, #131d27, #0c141c); }
+#nextAttack.locked::after, #next:disabled::after, .cx-sel-actions .primary:disabled::after { box-shadow: none; }
+.actions { filter: drop-shadow(0 0 9px rgba(66, 205, 255, .28)); }
+.cx-sel-actions { filter: drop-shadow(0 0 9px rgba(66, 205, 255, .35)); }
+
+/* =====================================================================
+   Le fond couvre aussi le menu du haut : plus de bandeau, l'en-tête n'est plus collant (il ne masque plus le contenu)
+   ===================================================================== */
+.app-header-sticky { position: static !important; background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; box-shadow: none !important; }
+.app-header-sticky .topbar { background: transparent !important; box-shadow: none !important; filter: none !important; }
+#progress.cx-steps { background: transparent !important; }
