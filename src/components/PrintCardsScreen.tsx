@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { CARD_IMAGES } from '../data/cardImages';
 import { frenchCardName } from '../lib/cardNames';
 import { usePersistentState } from '../lib/storage';
+import { UiIcon } from '../lib/uiIcons';
 
 /**
  * Format réel d'une carte Legion, imposé en dur dans index.css
@@ -162,7 +163,7 @@ export function PrintCardsScreen() {
                   />
                   <span className="card-tile-name">{c.name}</span>
                 </button>
-                <button type="button" className="card-tile-zoom" aria-label={`Agrandir ${c.name}`} onClick={() => setPreview({ src: c.src, alt: c.name })}>🔍</button>
+                <button type="button" className="card-tile-zoom" aria-label={`Agrandir ${c.name}`} onClick={() => setPreview({ src: c.src, alt: c.name })}><UiIcon id="zoom" /></button>
                 <div className="card-tile-footer">
                   <QuantityStepper value={qty} onChange={(v) => setQty(c.key, v)} />
                 </div>
@@ -180,7 +181,7 @@ export function PrintCardsScreen() {
             : `${totalCount} carte${totalCount > 1 ? 's' : ''} sélectionnée${totalCount > 1 ? 's' : ''} (${selected.length} modèle${selected.length > 1 ? 's' : ''})`}
         </span>
         <button type="button" className="btn btn-primary" disabled={totalCount === 0} onClick={() => setPrinting(true)}>
-          🖶 Imprimer
+          <UiIcon id="print" />Imprimer
         </button>
       </div>
 

@@ -5,6 +5,7 @@ import { UnitCardsSection } from './UnitCardsSection';
 import { MinimalKeywordsSection } from './MinimalKeywordsSection';
 import { VisualListSection } from './VisualListSection';
 import { DiceIcon } from '../lib/diceIcons';
+import { UiIcon } from '../lib/uiIcons';
 import { ImportCompatibilityReport } from './ImportCompatibilityReport';
 import type { useSync } from '../lib/useSync';
 import type { CardTagLibrary, KeywordDef, ParsedList } from '../types';
@@ -36,13 +37,13 @@ function ImportSlot({ playerLabel, list, onParse, onClear, onPrint, onPrintMinim
       </p>
       <div className="setup-slot-actions">
         <button type="button" className="btn btn-ghost" onClick={onPrint}>
-          🖶 Imprimer les fiches d'unité
+          <UiIcon id="print" />Imprimer les fiches d'unité
         </button>
         <button type="button" className="btn btn-ghost" onClick={onPrintVisual}>
-          🖶 Imprimer la liste (visuel + mots-clés)
+          <UiIcon id="print" />Imprimer la liste (visuel + mots-clés)
         </button>
         <button type="button" className="btn btn-ghost" onClick={onPrintMinimal}>
-          🖶 Imprimer mots-clés (mode rapide)
+          <UiIcon id="print" />Imprimer mots-clés (mode rapide)
         </button>
         <button
           type="button"
@@ -53,7 +54,7 @@ function ImportSlot({ playerLabel, list, onParse, onClear, onPrint, onPrintMinim
             }
           }}
         >
-          🗑 Supprimer la liste
+          <UiIcon id="trash" />Supprimer la liste
         </button>
       </div>
       <ImportCompatibilityReport list={list} />

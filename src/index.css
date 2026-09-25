@@ -105,6 +105,20 @@ body {
    plateformes (contrairement aux emoji, dont le dessin dépend de la
    police système du téléphone/PC). */
 .nav-icon { width: 1.05em; height: 1.05em; margin-right: 0.4rem; flex-shrink: 0; }
+/* Icônes d'action/statut (lib/uiIcons.tsx) : même trait que .nav-icon.
+   Alignées sur la ligne de base du texte plutôt que centrées par flex,
+   car elles vivent aussi dans des <span>/<strong> et pas seulement dans
+   des boutons. */
+.ui-icon { display: inline-block; width: 1.05em; height: 1.05em; margin-right: 0.4em; vertical-align: -0.16em; flex-shrink: 0; }
+.ui-icon:only-child { margin-right: 0; }
+/* Un bouton avec icône reste sur une ligne (icône + libellé côte à côte) même
+   dans une colonne étroite, au lieu de renvoyer l'icône seule au-dessus du texte. */
+.btn:has(> .ui-icon), a.btn:has(> .ui-icon) { display: inline-flex; align-items: center; justify-content: center; }
+.btn > .ui-icon { vertical-align: 0; }
+/* Pastille de camp : remplace les emoji 🔵/🔴 (teinte variable selon la plateforme). */
+.side-dot { display: inline-block; width: 0.75em; height: 0.75em; margin-right: 0.4em; border-radius: 50%; vertical-align: -0.02em; flex-shrink: 0; }
+.side-dot-bleu { background: radial-gradient(circle at 35% 30%, #a8e2ff, #55bcea 55%, #1f6f97); box-shadow: 0 0 6px rgba(85, 188, 234, .6); }
+.side-dot-rouge { background: radial-gradient(circle at 35% 30%, #ffb4ac, #e65a50 55%, #8f2a23); box-shadow: 0 0 6px rgba(230, 90, 80, .6); }
 
 /* Effet d'« ignition » (façon sabre laser) au moment où un onglet devient
    actif : un bref halo qui s'allume puis retombe, une seule fois par

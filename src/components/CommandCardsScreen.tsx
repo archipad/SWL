@@ -4,6 +4,7 @@ import { commandCardById, commandFactionForList, eligibleCommandCards, suiteIsCo
 import { readGameActions, recordGameAction, removeGameAction, type GameActionEntry } from '../lib/gameActionHistory';
 import type { BattleColor, CommandDeckState, useGameTracker } from '../lib/useGameTracker';
 import { DEFAULT_STATE } from '../lib/useGameTracker';
+import { SideDot, UiIcon } from '../lib/uiIcons';
 import type { ParsedList } from '../types';
 
 /** Ordres Permanents (4 PIP) est obligatoire et unique : jamais un vrai
@@ -40,7 +41,7 @@ function CardTile({ card, selected, onSelect, onZoom }: { card: CommandCard; sel
         <span className="card-tile-name">{card.name}</span>
       </button>
       {onZoom && card.image && (
-        <button type="button" className="card-tile-zoom" aria-label={`Agrandir ${card.name}`} onClick={onZoom}>🔍</button>
+        <button type="button" className="card-tile-zoom" aria-label={`Agrandir ${card.name}`} onClick={onZoom}><UiIcon id="zoom" /></button>
       )}
     </div>
   );
@@ -179,7 +180,7 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
           <div className="command-builder-actions">
             {complete && <button type="button" className="btn btn-ghost" onClick={() => setEditingSuite((prev) => ({ ...prev, [color]: false }))}>Terminé</button>}
             <button type="button" className="btn btn-ghost btn-danger" disabled={deck.played.length > 0} title={deck.played.length > 0 ? 'Impossible : des cartes de cette suite ont déjà été jouées cette partie.' : undefined} onClick={() => resetSuite(color)}>
-              🔄 Réinitialiser la suite
+              <UiIcon id="reset" />Réinitialiser la suite
             </button>
           </div>
           <div className="command-pip-block">
@@ -264,33 +265,33 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
       <header className="command-cards-header">
         <span className="tracker-eyebrow">Centre de commandement</span>
         <h2>Cartes de Commandement</h2>
-        <button type="button" className="btn btn-ghost command-undo-btn" disabled={!actionHistory.some((entry) => !entry.undoneAt)} onClick={undoLastAction}>↶ Annuler la dernière action</button>
+        <button type="button" className="btn btn-ghost command-undo-btn" disabled={!actionHistory.some((entry) => !entry.undoneAt)} onClick={undoLastAction}><UiIcon id="undo" />Annuler la dernière action</button>
       </header>
 
       <div className="command-duel">
-        <strong className={activeColor === 'bleu' ? 'active' : ''}>🔵 {labelFor('bleu')}</strong>
+        <strong className={activeColor === 'bleu' ? 'active' : ''}><SideDot color="bleu" />{labelFor('bleu')}</strong>
         <span>Suite de Commandement</span>
-        <strong className={activeColor === 'rouge' ? 'active' : ''}>🔴 {labelFor('rouge')}</strong>
+        <strong className={activeColor === 'rouge' ? 'active' : ''}><SideDot color="rouge" />{labelFor('rouge')}</strong>
       </div>
 
       <div className="segmented-tabs">
         <button type="button" className={`segmented-tab ${activeColor === 'bleu' ? 'active' : ''}`} onClick={() => setActiveColor('bleu')}>
-          🔵 {labelFor('bleu')}
+          <SideDot color="bleu" />{labelFor('bleu')}
         </button>
         <button type="button" className={`segmented-tab ${activeColor === 'rouge' ? 'active' : ''}`} onClick={() => setActiveColor('rouge')}>
-          🔴 {labelFor('rouge')}
+          <SideDot color="rouge" />{labelFor('rouge')}
         </button>
       </div>
 
       <p className="command-adversary-status">
-        {otherColor === 'bleu' ? '🔵' : '🔴'} {labelFor(otherColor)} : {statusFor(otherColor)}
+        <SideDot color={otherColor} />{labelFor(otherColor)} : {statusFor(otherColor)}
       </p>
 
       {renderSide(activeColor)}
 
       {commandDecks.bleu.pendingId && commandDecks.rouge.pendingId && !revealedThisRound && (
         <button type="button" className="btn btn-primary btn-large command-reveal-btn" onClick={reveal}>
-          🎴 Révéler les cartes du round {state.round}
+          <UiIcon id="cards" />Révéler les cartes du round {state.round}
         </button>
       )}
 

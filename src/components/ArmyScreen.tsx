@@ -1,4 +1,5 @@
 import type { CardKeywordTag, CardTagLibrary, KeywordDef, ParsedList } from '../types';
+import { UiIcon } from '../lib/uiIcons';
 import { CardRow } from './CardRow';
 import { GlossarySection } from './GlossarySection';
 import { VisualListSection } from './VisualListSection';
@@ -65,7 +66,7 @@ export function ArmyScreen({
               }
             }}
           >
-            🗑 Supprimer la liste
+            <UiIcon id="trash" />Supprimer la liste
           </button>
           <button type="button" className="btn btn-primary" onClick={() => window.print()}>Imprimer le glossaire</button>
         </div>

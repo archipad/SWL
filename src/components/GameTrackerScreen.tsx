@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
+import { SideDot, UiIcon } from '../lib/uiIcons';
 import { ADVANTAGE_CARDS, OBJECTIVE_CARDS, SECONDARY_OBJECTIVE_CARDS } from '../data/battleCards';
 import { frenchCardName } from '../lib/cardNames';
 import { getUnitMoraleProfile } from '../lib/unitModels';
@@ -41,11 +42,11 @@ function playerLabel(list: ParsedList | null, fallback: string): string {
 
 const unitIdFor = (player: 'p1' | 'p2', unit: ParsedList['units'][number], index: number) => `${player}:${unit.key || index}`;
 
-function gameWinner(game: ArchivedGame): string {
+function gameWinner(game: ArchivedGame): ReactNode {
   const bleuLabel = game.p1Color === 'bleu' ? game.p1Label : game.p2Label;
   const rougeLabel = game.p1Color === 'bleu' ? game.p2Label : game.p1Label;
   if (game.vpBleu === game.vpRouge) return 'Égalité';
-  return game.vpBleu > game.vpRouge ? `🔵 ${bleuLabel}` : `🔴 ${rougeLabel}`;
+  return game.vpBleu > game.vpRouge ? <><SideDot color="bleu" />{bleuLabel}</> : <><SideDot color="rouge" />{rougeLabel}</>;
 }
 
 export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus, lastSyncAt, onOpenCommandCards }: Props) {
@@ -181,9 +182,9 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         <div className="tracker-header-actions">
           <span className={`tracker-sync tracker-sync-${syncStatus}`}><i />{syncLabel}</span>
           <span className="tracker-device" title="Identifiant local utilisé dans le journal">{deviceLabel()}</span>
-          <button type="button" className="btn btn-ghost" disabled={!actionHistory.some((entry) => !entry.undoneAt)} onClick={undoLastAction}>↶ Annuler</button>
-          <button type="button" className="btn btn-ghost btn-danger" onClick={startNewGame}>🆕 Nouvelle partie</button>
-          <a className="btn btn-primary tracker-combat-link" href="./assistant/">⚔ Assistant d’unité</a>
+          <button type="button" className="btn btn-ghost" disabled={!actionHistory.some((entry) => !entry.undoneAt)} onClick={undoLastAction}><UiIcon id="undo" />Annuler</button>
+          <button type="button" className="btn btn-ghost btn-danger" onClick={startNewGame}><UiIcon id="new" />Nouvelle partie</button>
+          <a className="btn btn-primary tracker-combat-link" href="./assistant/"><UiIcon id="saber" />Assistant d’unité</a>
         </div>
       </header>
 
@@ -201,7 +202,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
           </div>
         </article>
         <article className="tracker-army tracker-army-bleu">
-          <div><span>🔵 Bleu</span><strong>{bleuLabel}</strong></div>
+          <div><span><SideDot color="bleu" />Bleu</span><strong>{bleuLabel}</strong></div>
           <div className="tracker-vp-controls">
             <button type="button" className="btn btn-ghost" onClick={() => update({ vpBleu: Math.max(0, state.vpBleu - 1) })}>−</button>
             <span className="tracker-vp-value">{state.vpBleu}</span>
@@ -209,7 +210,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
           </div>
         </article>
         <article className="tracker-army tracker-army-rouge">
-          <div><span>🔴 Rouge</span><strong>{rougeLabel}</strong></div>
+          <div><span><SideDot color="rouge" />Rouge</span><strong>{rougeLabel}</strong></div>
           <div className="tracker-vp-controls">
             <button type="button" className="btn btn-ghost" onClick={() => update({ vpRouge: Math.max(0, state.vpRouge - 1) })}>−</button>
             <span className="tracker-vp-value">{state.vpRouge}</span>
@@ -233,12 +234,12 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
 
       {roundHistory.length > 0 && <section className="tracker-round-history tracker-console-panel">
         <h3>Rounds terminés</h3>
-        <div>{roundHistory.slice().reverse().map((entry) => <article key={entry.round}><b>Round {entry.round}</b><span>{entry.activatedUnitIds.length} activation(s)</span><span>🔵 {entry.vpBleu} · 🔴 {entry.vpRouge}</span></article>)}</div>
+        <div>{roundHistory.slice().reverse().map((entry) => <article key={entry.round}><b>Round {entry.round}</b><span>{entry.activatedUnitIds.length} activation(s)</span><span><SideDot color="bleu" />{entry.vpBleu} · <SideDot color="rouge" />{entry.vpRouge}</span></article>)}</div>
       </section>}
 
       <section className="tracker-round-history tracker-action-history tracker-console-panel" aria-label="Historique des actions du suivi">
         <h3>Dernières modifications</h3>
-        {actionHistory.length ? <div>{actionHistory.slice(0, 8).map((entry) => <article className={entry.undoneAt ? 'undone' : ''} key={entry.id}><b>{entry.undoneAt ? '↶ ' : ''}{entry.label}</b><span>{entry.device}</span><span>{new Date(entry.at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span></article>)}</div> : <p className="empty-hint">Aucune modification manuelle enregistrée.</p>}
+        {actionHistory.length ? <div>{actionHistory.slice(0, 8).map((entry) => <article className={entry.undoneAt ? 'undone' : ''} key={entry.id}><b>{entry.undoneAt && <UiIcon id="undo" />}{entry.label}</b><span>{entry.device}</span><span>{new Date(entry.at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</span></article>)}</div> : <p className="empty-hint">Aucune modification manuelle enregistrée.</p>}
       </section>
 
       <section className="tracker-unit-status tracker-console-panel" aria-label="État détaillé des armées">
@@ -257,7 +258,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
                   <dl>
                     <div><dt>Supp.</dt><dd>{snapshot.moraleProfile.suppressionImmune ? '—' : snapshot.suppression}</dd></div>
                   </dl>
-                  <button type="button" className={`tracker-activation ${activated ? 'done' : ''}`} disabled={snapshot.outOfAction} onClick={() => toggleActivation(unitId)}>{snapshot.outOfAction ? '☠' : activated ? '✓ Jouée' : 'À jouer'}</button>
+                  <button type="button" className={`tracker-activation ${activated ? 'done' : ''}`} disabled={snapshot.outOfAction} onClick={() => toggleActivation(unitId)}>{snapshot.outOfAction ? <UiIcon id="skull" /> : activated ? '✓ Jouée' : 'À jouer'}</button>
                 </article>;
               })}
             </div>
@@ -279,10 +280,10 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         <div>{archiveHook.games.map((game) => <article key={game.id}>
           <b>{game.p1Label} vs {game.p2Label}</b>
           <span>{new Date(game.archivedAt).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' })} · round {game.finalRound}</span>
-          <span>🔵 {game.vpBleu} · 🔴 {game.vpRouge} · 🏆 {gameWinner(game)}</span>
+          <span><SideDot color="bleu" />{game.vpBleu} · <SideDot color="rouge" />{game.vpRouge} · <UiIcon id="trophy" />{gameWinner(game)}</span>
           <div className="tracker-archive-actions">
-            <button type="button" className="btn btn-ghost" onClick={() => restoreGame(game)}>↩ Restaurer</button>
-            <button type="button" className="btn btn-ghost btn-danger" aria-label={`Supprimer la partie du ${new Date(game.archivedAt).toLocaleDateString('fr-FR')}`} onClick={() => { if (window.confirm('Supprimer cette partie de l’historique ? Définitif.')) archiveHook.remove(game.id); }}>🗑</button>
+            <button type="button" className="btn btn-ghost" onClick={() => restoreGame(game)}><UiIcon id="restore" />Restaurer</button>
+            <button type="button" className="btn btn-ghost btn-danger" aria-label={`Supprimer la partie du ${new Date(game.archivedAt).toLocaleDateString('fr-FR')}`} onClick={() => { if (window.confirm('Supprimer cette partie de l’historique ? Définitif.')) archiveHook.remove(game.id); }}><UiIcon id="trash" /></button>
           </div>
         </article>)}</div>
       </section>}
@@ -298,14 +299,14 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
           className={state.p1Color === 'bleu' ? 'btn btn-primary' : 'btn btn-ghost'}
           onClick={() => update({ p1Color: 'bleu' })}
         >
-          🔵 Bleu
+          <SideDot color="bleu" />Bleu
         </button>
         <button
           type="button"
           className={state.p1Color === 'rouge' ? 'btn btn-primary' : 'btn btn-ghost'}
           onClick={() => update({ p1Color: 'rouge' })}
         >
-          🔴 Rouge
+          <SideDot color="rouge" />Rouge
         </button>
       </div>
 
@@ -352,7 +353,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
         <h3>Avantage</h3>
         <div className="tracker-advantage-columns">
           <div className="tracker-advantage-side">
-            <span className="tracker-player-badge">🔵 {bleuLabel}</span>
+            <span className="tracker-player-badge"><SideDot color="bleu" />{bleuLabel}</span>
             <select value={state.advantageBleuId ?? ''} onChange={(e) => update({ advantageBleuId: e.target.value || null })}>
               <option value="">— Choisir —</option>
               {ADVANTAGE_CARDS.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
@@ -364,7 +365,7 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
             )}
           </div>
           <div className="tracker-advantage-side">
-            <span className="tracker-player-badge">🔴 {rougeLabel}</span>
+            <span className="tracker-player-badge"><SideDot color="rouge" />{rougeLabel}</span>
             <select value={state.advantageRougeId ?? ''} onChange={(e) => update({ advantageRougeId: e.target.value || null })}>
               <option value="">— Choisir —</option>
               {ADVANTAGE_CARDS.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
@@ -380,10 +381,10 @@ export function GameTrackerScreen({ listP1, listP2, tracker, onSync, syncStatus,
 
       <div className="tracker-combat-cta">
         <button type="button" className="btn btn-primary btn-large" onClick={onOpenCommandCards}>
-          🎴 Cartes de Commandement
+          <UiIcon id="cards" />Cartes de Commandement
         </button>
         <a className="btn btn-primary btn-large" href="./assistant/">
-          ⚔️ Ouvrir l’Assistant d’unité
+          <UiIcon id="saber" />Ouvrir l’Assistant d’unité
         </a>
       </div>
       {preview && (

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { frenchCardName } from '../lib/cardNames';
 import { auditImportedList } from '../lib/importAudit';
+import { UiIcon } from '../lib/uiIcons';
 import type { ParsedList } from '../types';
 
 type SelfAuditFinding = { level: 'error' | 'warning'; scope: string; message: string };
@@ -119,7 +120,7 @@ function SelfAuditPanel({ safeForEngine }: { safeForEngine: boolean }) {
   const anyRunning = useAnySelfAuditRunning();
   return <div className="self-audit-trigger">
     <button type="button" className="btn btn-ghost" onClick={() => run({ label: 'Audit en cours (fiches et toutes les attaques possibles)' })} disabled={!safeForEngine || anyRunning}>
-      🧪 Auditer cette liste avant de jouer
+      <UiIcon id="audit" />Auditer cette liste avant de jouer
     </button>
     {!safeForEngine && <small className="import-audit-blocking">Certifiez d’abord les cartes ci-dessus : l’audit rejoue de vraies attaques, il lui faut des dés fiables.</small>}
 
@@ -128,7 +129,7 @@ function SelfAuditPanel({ safeForEngine }: { safeForEngine: boolean }) {
         <strong>Audit approfondi</strong> : rejoue en plus chaque couple arme/cible avec un jet non nul (Impact, Perforant, Létal, Primitif, Armure, Bouclier) et deux rounds de suite sans réinitialiser la Suppression ni les cartes inclinées — ce qui fait apparaître des situations qu’un round frais ne peut jamais produire (Discret une fois de la Suppression accumulée, effets « une fois par partie » déjà consommés). Plus lent : 5 à 15 minutes selon la taille de la liste.
       </p>
       <button type="button" className="btn btn-ghost" onClick={() => run({ rounds: 2, variants: true, timeoutMs: DEEP_SELF_AUDIT_TIMEOUT_MS, label: 'Audit approfondi en cours (dés non nuls, 2 rounds)' })} disabled={!safeForEngine || anyRunning}>
-        🔬 Audit approfondi (dés non nuls, 2 rounds)
+        <UiIcon id="audit" />Audit approfondi (dés non nuls, 2 rounds)
       </button>
       {anyRunning && !running && <small className="self-audit-status">Un audit tourne déjà pour l’autre liste : attendez qu’il se termine.</small>}
     </div>

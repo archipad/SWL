@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { SyncNotice, SyncStatus } from '../lib/useSync';
+import { UiIcon } from '../lib/uiIcons';
 
 interface Props {
   token: string | null;
@@ -101,7 +102,7 @@ function PairingPanel({ token }: { token: string }) {
         )}
       </div>
       <p className="sync-pairing-warning">
-        ⚠️ Ce lien contient votre jeton en clair : ne l'envoyez qu'à vous-même, sur un appareil que
+        <UiIcon id="warning" />Ce lien contient votre jeton en clair : ne l'envoyez qu'à vous-même, sur un appareil que
         vous contrôlez.
       </p>
     </div>
@@ -178,7 +179,7 @@ export function SyncSettings({ token, status, error, lastSyncAt, notice, onSaveT
               Synchroniser maintenant
             </button>
             <button type="button" className="btn btn-ghost" onClick={() => setPairing((v) => !v)}>
-              📱 {pairing ? 'Masquer' : 'Ajouter un appareil'}
+              <UiIcon id="device" />{pairing ? 'Masquer' : 'Ajouter un appareil'}
             </button>
             <button type="button" className="btn btn-ghost" onClick={() => setEditing(true)}>
               Changer le jeton
@@ -191,7 +192,7 @@ export function SyncSettings({ token, status, error, lastSyncAt, notice, onSaveT
         </>
       )}
       {error && <p className="sync-error">{error}</p>}
-      {notice && status !== 'error' && <p className={`sync-notice sync-notice-${notice.kind}`} role="status">{notice.kind === 'conflict' ? '⚠ ' : '✓ '}{notice.message}</p>}
+      {notice && status !== 'error' && <p className={`sync-notice sync-notice-${notice.kind}`} role="status">{notice.kind === 'conflict' ? <UiIcon id="warning" /> : '✓ '}{notice.message}</p>}
     </div>
   );
 }
