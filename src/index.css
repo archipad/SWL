@@ -1,18 +1,39 @@
+/* ==== Thèmes (refonte "Codex Legion", 25/09/2026) ====
+   Toutes les couleurs de l'interface passent par des variables --t-* : une
+   « peau » (thème) n'est qu'un jeu de valeurs posé sur <html data-swl-theme>.
+   - défaut (aucun attribut) : le rendu historique bleu nuit / orange ;
+   - imperial : « Tactical Command », noir et rouge, angles coupés ;
+   - rebel : « Datapad », parchemin clair, bleu et orange, angles arrondis.
+   Convention des surfaces : s0 = la plus sombre (ou la plus marquée) ...
+   s4 = la plus claire ; un dégradé de panneau va de s3/s4 vers s0/s1.
+   Chaque teinte existe en `--t-x` (couleur) et `--t-x-rgb` (pour rgba()). */
 :root {
   color-scheme: dark;
+  --t-bg: #0a0e15; --t-bg-rgb: 10, 14, 21;
+  --t-panel-1: #101d2b; --t-panel-2: #0f1621; --t-panel-rgb: 15, 22, 33;
+  --t-s0: rgb(5, 10, 15); --t-s0-rgb: 5, 10, 15;
+  --t-s1: rgb(7, 18, 27); --t-s1-rgb: 7, 18, 27;
+  --t-s2: rgb(14, 26, 35); --t-s2-rgb: 14, 26, 35;
+  --t-s3: rgb(20, 32, 44); --t-s3-rgb: 20, 32, 44;
+  --t-s4: rgb(26, 44, 57); --t-s4-rgb: 26, 44, 57;
+  --t-line: #294459; --t-line2: #5b7180;
+  --t-accent: #ff8c1a; --t-accent-rgb: 255, 140, 26; --t-accent-hi: #ffb85c; --t-accent-ink: #15100a;
+  --t-hud: #7fd8ff; --t-hud-rgb: 127, 216, 255;
+  --t-strong: #fff; --t-text: #e8f2fb; --t-dim: #9db3c1;
+  --t-info: #6db6e8; --t-warn: #e0b34d; --t-ok: #62f0aa; --t-danger: #e0685e;
+  --t-badbg: rgb(63, 12, 15); --t-badbg-rgb: 63, 12, 15;
+  --t-goodbg: rgb(11, 35, 24); --t-goodbg-rgb: 11, 35, 24;
+  --t-warnbg: rgb(41, 35, 15); --t-warnbg-rgb: 41, 35, 15;
+  --t-radius: 2px;
+  --t-glow: 0.25;
   --bg: #12141c;
   --bg-raised: #1b1e29;
   --bg-input: #232733;
   --border: #323848;
   --text: #eef0f5;
   --text-dim: #9aa1b4;
-  /* Orange tactique (#ff8c1a) plutôt que l'ancien rouge-corail : c'est déjà
-     la couleur d'accent partout ailleurs sur le site (onglet actif, titres,
-     tuile sélectionnée, table des matières) -- garder --accent en rouge
-     aurait laissé les boutons "primaires" sur une identité différente du
-     reste de l'appli (audit design "site 3.0", 25/09/2026). */
-  --accent: #ff8c1a;
-  --accent-dim: #6b3d10;
+  --accent: var(--t-accent);
+  --accent-dim: rgba(var(--t-accent-rgb), 0.45);
   --ok: #4caf7d;
   /* Habillage « viseur » du flux Combat (sélection + séquence plein écran) :
      rouge = attaquant, bleu = défenseur (déjà le code couleur du reste de
@@ -24,9 +45,56 @@
   line-height: 1.45;
 }
 
+/* Empire — Tactical Command : noir chaud, rouge impérial, texte clair. */
+:root[data-swl-theme="imperial"] {
+  --t-bg: #070708; --t-bg-rgb: 7, 7, 8;
+  --t-panel-1: #1b1214; --t-panel-2: #130d0f; --t-panel-rgb: 19, 13, 15;
+  --t-s0: rgb(6, 5, 6); --t-s0-rgb: 6, 5, 6;
+  --t-s1: rgb(11, 8, 9); --t-s1-rgb: 11, 8, 9;
+  --t-s2: rgb(18, 12, 14); --t-s2-rgb: 18, 12, 14;
+  --t-s3: rgb(27, 17, 20); --t-s3-rgb: 27, 17, 20;
+  --t-s4: rgb(38, 23, 27); --t-s4-rgb: 38, 23, 27;
+  --t-line: #5a2428; --t-line2: #8a3b41;
+  --t-accent: #ff3b30; --t-accent-rgb: 255, 59, 48; --t-accent-hi: #ff8a80; --t-accent-ink: #fff;
+  --t-hud: #ff5a4f; --t-hud-rgb: 255, 90, 79;
+  --t-strong: #fff; --t-text: #f2e8e8; --t-dim: #b0a0a2;
+  --t-info: #cdd5dd; --t-warn: #ffb04a; --t-ok: #62f0aa; --t-danger: #ff7a6e;
+  --t-badbg: rgb(74, 12, 14); --t-badbg-rgb: 74, 12, 14;
+  --t-goodbg: rgb(12, 42, 30); --t-goodbg-rgb: 12, 42, 30;
+  --t-warnbg: rgb(48, 34, 10); --t-warnbg-rgb: 48, 34, 10;
+  --t-radius: 0px;
+  --t-glow: 0.45;
+  --bg: #070708; --bg-raised: #130d0f; --bg-input: #1b1114; --border: #5a2428;
+  --text: #f2e8e8; --text-dim: #b0a0a2;
+}
+
+/* Rébellion — Datapad : parchemin clair, encre brune, bleu Alliance + orange. */
+:root[data-swl-theme="rebel"] {
+  color-scheme: light;
+  --t-bg: #d9cdb1; --t-bg-rgb: 217, 205, 177;
+  --t-panel-1: #f4ecd6; --t-panel-2: #ece1c7; --t-panel-rgb: 236, 225, 199;
+  --t-s0: rgb(214, 202, 172); --t-s0-rgb: 214, 202, 172;
+  --t-s1: rgb(228, 217, 188); --t-s1-rgb: 228, 217, 188;
+  --t-s2: rgb(238, 228, 204); --t-s2-rgb: 238, 228, 204;
+  --t-s3: rgb(245, 237, 218); --t-s3-rgb: 245, 237, 218;
+  --t-s4: rgb(251, 246, 233); --t-s4-rgb: 251, 246, 233;
+  --t-line: #a48c5a; --t-line2: #7c6636;
+  --t-accent: #c2570d; --t-accent-rgb: 194, 87, 13; --t-accent-hi: #8c3b05; --t-accent-ink: #fff;
+  --t-hud: #2f6b9e; --t-hud-rgb: 47, 107, 158;
+  --t-strong: #15110a; --t-text: #2a2418; --t-dim: #6a5d40;
+  --t-info: #1f5f96; --t-warn: #8a5a00; --t-ok: #1f6b3a; --t-danger: #a3241c;
+  --t-badbg: rgb(242, 210, 202); --t-badbg-rgb: 242, 210, 202;
+  --t-goodbg: rgb(210, 234, 216); --t-goodbg-rgb: 210, 234, 216;
+  --t-warnbg: rgb(245, 228, 188); --t-warnbg-rgb: 245, 228, 188;
+  --t-radius: 10px;
+  --t-glow: 0.18;
+  --bg: #d9cdb1; --bg-raised: #ece1c7; --bg-input: #f5edda; --border: #a48c5a;
+  --text: #2a2418; --text-dim: #6a5d40;
+}
+
 /* État de partie partagé avec l'Assistant d'unité */
-.tracker-unit-status{grid-column:1/-1;padding:12px 14px}.tracker-unit-status>h3{margin:0 0 8px;color:#f3f7fa;font-size:1rem;text-transform:uppercase;letter-spacing:.1em}.tracker-unit-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tracker-unit-column{display:grid;gap:6px;align-content:start}.tracker-unit-column>strong{color:#8edbff;text-transform:uppercase;letter-spacing:.08em}.tracker-unit-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:8px 10px;border:1px solid #294152;background:linear-gradient(135deg,rgba(20,32,44,.9) 0%,rgba(7,18,27,.9) 60%,rgba(5,10,15,.92) 100%)}.tracker-unit-row>div{display:grid}.tracker-unit-row small{color:#6fcf87;text-transform:uppercase;font-weight:700}.tracker-unit-row dl{display:flex;margin:0;gap:6px}.tracker-unit-row dl div{min-width:54px;padding:4px 6px;text-align:center;border-left:1px solid #294152}.tracker-unit-row dt{font-size:.65rem;color:#7ea0b5;text-transform:uppercase}.tracker-unit-row dd{margin:0;font-size:1rem;font-weight:800;color:#fff}.tracker-unit-row.suppressed{border-color:#d68a20;background:linear-gradient(135deg,rgba(214,138,32,.18) 0%,rgba(7,18,27,.9) 60%,rgba(5,10,15,.92) 100%)}.tracker-unit-row.suppressed small{color:#ffb23d}.tracker-unit-row.panicked{border-color:#e34b4b;background:linear-gradient(135deg,rgba(227,75,75,.22) 0%,rgba(63,12,15,.85) 55%,rgba(20,5,6,.9) 100%)}.tracker-unit-row.panicked small,.tracker-unit-row.defeated small{color:#ff6b6b}.tracker-unit-row.defeated{opacity:.62;filter:grayscale(.65)}.tracker-unit-row.activated{opacity:.68;border-color:#47735a;background:linear-gradient(135deg,rgba(71,115,90,.2) 0%,rgba(11,35,24,.85) 55%,rgba(5,15,10,.9) 100%)}.tracker-unit-row.activated>div>b{text-decoration:line-through;text-decoration-color:#66d995}.tracker-activation{min-width:78px;min-height:46px;padding:6px 9px;border:1px solid #5b7180;background:linear-gradient(160deg,#1a2c39,#0e1920);color:#fff;font:800 .72rem Rajdhani,sans-serif;text-transform:uppercase;letter-spacing:.06em;touch-action:manipulation}.tracker-activation:hover:not(:disabled){border-color:#7fd8ff;box-shadow:0 0 12px rgba(127,216,255,.3)}.tracker-activation.done{border-color:#58d68d;background:linear-gradient(160deg,#164a35,#0d2419);color:#8ff0b5;box-shadow:0 0 12px rgba(88,214,141,.3)}.tracker-activation:disabled{opacity:.5}
-.tracker-round label{display:grid;gap:4px}.tracker-next-round{min-height:48px;margin-top:8px}.tracker-round-history{grid-column:1/-1;padding:10px 12px}.tracker-round-history h3{margin:0 0 7px;color:#ffb45f;text-transform:uppercase;letter-spacing:.09em}.tracker-round-history>div{display:flex;gap:7px;overflow-x:auto}.tracker-round-history article{display:flex;align-items:center;gap:10px;min-width:220px;padding:7px 10px;border:1px solid #3c5362;background:linear-gradient(135deg,#12212d 0%,#0c1720 60%,#080f16 100%)}.tracker-round-history article b{color:#fff}.tracker-round-history article span{color:#9db3c1;font-size:.78rem}.tracker-game-archive article{flex-direction:column;align-items:flex-start;gap:4px;min-width:190px}.tracker-archive-actions{display:flex;gap:6px;margin-top:2px}.tracker-archive-actions button{min-height:36px;padding:0 10px;font-size:.78rem}
+.tracker-unit-status{grid-column:1/-1;padding:12px 14px}.tracker-unit-status>h3{margin:0 0 8px;color:var(--t-strong);font-size:1rem;text-transform:uppercase;letter-spacing:.1em}.tracker-unit-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tracker-unit-column{display:grid;gap:6px;align-content:start}.tracker-unit-column>strong{color:var(--t-info);text-transform:uppercase;letter-spacing:.08em}.tracker-unit-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:10px;padding:8px 10px;border:1px solid var(--t-line);background:linear-gradient(135deg,rgba(var(--t-s3-rgb),.9) 0%,rgba(var(--t-s1-rgb),.9) 60%,rgba(var(--t-s0-rgb),.92) 100%)}.tracker-unit-row>div{display:grid}.tracker-unit-row small{color:var(--t-ok);text-transform:uppercase;font-weight:700}.tracker-unit-row dl{display:flex;margin:0;gap:6px}.tracker-unit-row dl div{min-width:54px;padding:4px 6px;text-align:center;border-left:1px solid var(--t-line)}.tracker-unit-row dt{font-size:.65rem;color:var(--t-dim);text-transform:uppercase}.tracker-unit-row dd{margin:0;font-size:1rem;font-weight:800;color:var(--t-strong)}.tracker-unit-row.suppressed{border-color:#d68a20;background:linear-gradient(135deg,rgba(214,138,32,.18) 0%,rgba(var(--t-s1-rgb),.9) 60%,rgba(var(--t-s0-rgb),.92) 100%)}.tracker-unit-row.suppressed small{color:var(--t-warn)}.tracker-unit-row.panicked{border-color:#e34b4b;background:linear-gradient(135deg,rgba(227,75,75,.22) 0%,rgba(var(--t-badbg-rgb),.85) 55%,rgba(var(--t-badbg-rgb),.9) 100%)}.tracker-unit-row.panicked small,.tracker-unit-row.defeated small{color:var(--t-danger)}.tracker-unit-row.defeated{opacity:.62;filter:grayscale(.65)}.tracker-unit-row.activated{opacity:.68;border-color:#47735a;background:linear-gradient(135deg,rgba(71,115,90,.2) 0%,rgba(var(--t-goodbg-rgb),.85) 55%,rgba(var(--t-goodbg-rgb),.9) 100%)}.tracker-unit-row.activated>div>b{text-decoration:line-through;text-decoration-color:var(--t-ok)}.tracker-activation{min-width:78px;min-height:46px;padding:6px 9px;border:1px solid var(--t-line2);background:linear-gradient(160deg,var(--t-s4),var(--t-s2));color:var(--t-strong);font:800 .72rem Rajdhani,sans-serif;text-transform:uppercase;letter-spacing:.06em;touch-action:manipulation}.tracker-activation:hover:not(:disabled){border-color:var(--t-hud);box-shadow:0 0 12px rgba(var(--t-hud-rgb),.3)}.tracker-activation.done{border-color:#58d68d;background:linear-gradient(160deg,var(--t-goodbg),var(--t-goodbg));color:var(--t-ok);box-shadow:0 0 12px rgba(88,214,141,.3)}.tracker-activation:disabled{opacity:.5}
+.tracker-round label{display:grid;gap:4px}.tracker-next-round{min-height:48px;margin-top:8px}.tracker-round-history{grid-column:1/-1;padding:10px 12px}.tracker-round-history h3{margin:0 0 7px;color:var(--t-accent-hi);text-transform:uppercase;letter-spacing:.09em}.tracker-round-history>div{display:flex;gap:7px;overflow-x:auto}.tracker-round-history article{display:flex;align-items:center;gap:10px;min-width:220px;padding:7px 10px;border:1px solid var(--t-line);background:linear-gradient(135deg,var(--t-s3) 0%,var(--t-s2) 60%,var(--t-s1) 100%)}.tracker-round-history article b{color:var(--t-strong)}.tracker-round-history article span{color:var(--t-dim);font-size:.78rem}.tracker-game-archive article{flex-direction:column;align-items:flex-start;gap:4px;min-width:190px}.tracker-archive-actions{display:flex;gap:6px;margin-top:2px}.tracker-archive-actions button{min-height:36px;padding:0 10px;font-size:.78rem}
 @media (max-width:700px){.tracker-unit-columns{grid-template-columns:1fr}.tracker-unit-row{grid-template-columns:minmax(0,1fr) auto}.tracker-unit-row dl{grid-column:1/-1;order:3}.tracker-unit-row dl div{min-width:46px;padding-inline:4px}.tracker-activation{grid-column:2;grid-row:1}}
 
 * { box-sizing: border-box; }
@@ -129,9 +197,9 @@ body {
   animation: navIgnite 380ms ease-out;
 }
 @keyframes navIgnite {
-  0% { box-shadow: 0 0 0 0 rgba(255, 140, 26, 0); }
-  45% { box-shadow: 0 0 16px 3px rgba(255, 140, 26, 0.85); }
-  100% { box-shadow: 0 0 0 0 rgba(255, 140, 26, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(var(--t-accent-rgb), 0); }
+  45% { box-shadow: 0 0 16px 3px rgba(var(--t-accent-rgb), 0.85); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--t-accent-rgb), 0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .app-game-tracker .app-header nav button.active,
@@ -208,7 +276,7 @@ body {
   inset: 0;
   z-index: 500;
   pointer-events: none;
-  background: rgba(5, 7, 12, 0.35);
+  background: rgba(var(--t-s0-rgb),0.35);
   overflow: hidden;
 }
 .hyperspace-overlay .beam {
@@ -252,19 +320,19 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
    coins carrés lisait comme deux sites différents. */
 .btn {
   border-radius: 2px;
-  border: 1px solid #294459;
+  border: 1px solid var(--t-line);
   padding: 0.55rem 1rem;
   font-size: 0.9rem;
   cursor: pointer;
-  background: linear-gradient(135deg, #16232f 0%, #101820 100%);
+  background: linear-gradient(135deg, var(--t-s3) 0%, var(--t-s2) 100%);
   color: var(--text);
 }
-.btn:hover:not(:disabled), .btn:focus-visible { border-color: #ff8c1a; box-shadow: 0 0 10px rgba(255, 140, 26, .25); }
-.btn-primary { background: linear-gradient(135deg, #ffb35c, var(--accent)); border-color: var(--accent); color: #15100a; font-weight: 700; }
-.btn-primary:hover:not(:disabled), .btn-primary:focus-visible { box-shadow: 0 0 14px rgba(255, 140, 26, .45); }
+.btn:hover:not(:disabled), .btn:focus-visible { border-color: var(--t-accent); box-shadow: 0 0 10px rgba(var(--t-accent-rgb), .25); }
+.btn-primary { background: linear-gradient(135deg, #ffb35c, var(--accent)); border-color: var(--accent); color: var(--t-accent-ink); font-weight: 700; }
+.btn-primary:hover:not(:disabled), .btn-primary:focus-visible { box-shadow: 0 0 14px rgba(var(--t-accent-rgb), .45); }
 .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
 .btn-ghost { background: transparent; }
-.btn-danger { color: #ff9d95; border-color: rgba(224, 104, 94, .55); }
+.btn-danger { color: var(--t-danger); border-color: rgba(224, 104, 94, .55); }
 .btn-danger:hover:not(:disabled), .btn-danger:focus-visible { border-color: #e0685e; box-shadow: 0 0 10px rgba(224, 104, 94, .35); }
 
 /* --- Import screen --- */
@@ -315,16 +383,16 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   font-size: 0.78rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 999px;
   border: 1px solid var(--border); color: var(--text-dim);
 }
-.sync-badge-idle { color: #6ec78a; border-color: #6ec78a; }
+.sync-badge-idle { color: var(--t-ok); border-color: #6ec78a; }
 .sync-badge-syncing { color: var(--accent); border-color: var(--accent); }
-.sync-badge-error { color: #e0685e; border-color: #e0685e; }
+.sync-badge-error { color: var(--t-danger); border-color: #e0685e; }
 .sync-last { color: var(--text-dim); font-size: 0.78rem; }
-.sync-error { color: #e0685e; font-size: 0.82rem; margin: 0.6rem 0 0; }
-.sync-notice { margin:0.6rem 0 0; padding:0.55rem 0.7rem; border-left:3px solid #63d28b; background:#10251b; color:#9ce8b7; font-size:0.82rem; }
-.sync-notice-conflict { border-color:#e7bd49; background:#29230f; color:#ffe58b; }
+.sync-error { color: var(--t-danger); font-size: 0.82rem; margin: 0.6rem 0 0; }
+.sync-notice { margin:0.6rem 0 0; padding:0.55rem 0.7rem; border-left:3px solid #63d28b; background:var(--t-goodbg); color:var(--t-ok); font-size:0.82rem; }
+.sync-notice-conflict { border-color:#e7bd49; background:var(--t-warnbg); color:var(--t-warn); }
 .screen-loading { min-height:35vh; display:grid; place-items:center; color:var(--accent); letter-spacing:0.12em; text-transform:uppercase; }
 .import-audit-categories { display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:.7rem; }
-.import-audit-categories span { padding:.35rem .55rem; border:1px solid #5b4b2b; background:#201b10; color:#f4d58b; font-size:.78rem; }
+.import-audit-categories span { padding:.35rem .55rem; border:1px solid #5b4b2b; background:var(--t-warnbg); color:var(--t-warn); font-size:.78rem; }
 
 /* --- Appairage sans ressaisie du jeton (QR code / lien) --- */
 .sync-pairing {
@@ -391,7 +459,7 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   background: rgba(224, 179, 77, 0.1); border: 1px solid #e0b34d; border-radius: 10px;
   padding: 0.75rem 1rem; margin: 0 0 1.25rem;
 }
-.combat-interactions-heading { margin: 0 0 0.4rem; font-size: 0.85rem; color: #e0b34d; }
+.combat-interactions-heading { margin: 0 0 0.4rem; font-size: 0.85rem; color: var(--t-warn); }
 .combat-interactions ul { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.3rem; }
 .combat-interactions li { font-size: 0.85rem; color: var(--text); }
 .card-row-definition-highlight {
@@ -450,7 +518,7 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .sequence-step-hint { margin: 0.35rem 0 0 2.7rem; color: var(--text-dim); font-size: 0.8rem; }
 .sequence-step-body { margin: 0.5rem 0 0 2.7rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .sequence-interaction-note {
-  margin: 0; font-size: 0.82rem; color: #e0b34d; background: rgba(224, 179, 77, 0.1);
+  margin: 0; font-size: 0.82rem; color: var(--t-warn); background: rgba(224, 179, 77, 0.1);
   border-radius: 6px; padding: 0.3rem 0.5rem;
 }
 .sequence-side { border-left: 2px solid var(--border); padding-left: 0.6rem; }
@@ -468,7 +536,7 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
   background: rgba(224, 179, 77, 0.1); border-radius: 6px; padding: 0.3rem 0.5rem;
   color: var(--text);
 }
-.sequence-keyword-bolt { color: #e0b34d; margin-right: 0.2rem; }
+.sequence-keyword-bolt { color: var(--t-warn); margin-right: 0.2rem; }
 
 /* Bandeau attaquant/défenseur épinglé en haut du guide pas-à-pas, pour ne
    pas perdre le fil du duel en cours pendant qu'on fait défiler les étapes. */
@@ -524,7 +592,7 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
    défenseur. Transition rapide et discrète entre étapes (glissement +
    fondu, ~160ms) déclenchée par un simple remount React (key={step.id}). */
 .hud-overlay {
-  position: fixed; inset: 0; z-index: 200; background: #05070c;
+  position: fixed; inset: 0; z-index: 200; background: var(--t-s0);
   display: flex; flex-direction: column; gap: 0.75rem;
   padding: 0.75rem 1rem 1rem; overflow: hidden;
 }
@@ -674,8 +742,8 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 }
 .dice-badge span { transform: rotate(-45deg); display: inline-block; }
 .dice-badge-blanc { background: #f2f2f2; color: #111; border: 1px solid #999; }
-.dice-badge-rouge { background: #b3261e; color: #fff; }
-.dice-badge-noir { background: #1a1a1a; color: #fff; border: 1px solid #555; }
+.dice-badge-rouge { background: #b3261e; color: var(--t-strong); }
+.dice-badge-noir { background: var(--t-s2); color: var(--t-strong); border: 1px solid #555; }
 /* Version agrandie pour le total en haut du panneau — doit se voir de loin sur la table. */
 .dice-row-big { gap: 0.6rem; }
 .dice-row-big .dice-badge { width: 3.2rem; height: 3.2rem; border-radius: 8px; font-size: 1.5rem; }
@@ -803,7 +871,7 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 }
 
 .live-modal-backdrop {
-  position: fixed; inset: 0; z-index: 100; background: rgba(5, 7, 12, 0.72);
+  position: fixed; inset: 0; z-index: 100; background: rgba(var(--t-s0-rgb),0.72);
   display: flex; align-items: center; justify-content: center; padding: 1.5rem;
 }
 .live-modal {
@@ -858,15 +926,15 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 
 /* --- Suivi de partie --- */
 .game-tracker-screen { display: flex; flex-direction: column; gap: 0.85rem; }
-.app-game-tracker { max-width: 1400px; font-family: "Rajdhani", "Arial Narrow", sans-serif; background-color:#0a0e15; background-image:repeating-linear-gradient(0deg,rgba(127,216,255,.055) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(127,216,255,.055) 0 1px,transparent 1px 40px),radial-gradient(900px 520px at 12% -8%,rgba(255,140,26,.12),transparent 62%); }
-.app-game-tracker .app-header { padding:.55rem 1rem; background:rgba(10,14,21,.94); border-color:rgba(127,216,255,.22); }
+.app-game-tracker { max-width: 1400px; font-family: "Rajdhani", "Arial Narrow", sans-serif; background-color:var(--t-bg); background-image:repeating-linear-gradient(0deg,rgba(var(--t-hud-rgb),.055) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(var(--t-hud-rgb),.055) 0 1px,transparent 1px 40px),radial-gradient(900px 520px at 12% -8%,rgba(var(--t-accent-rgb),.12),transparent 62%); }
+.app-game-tracker .app-header { padding:.55rem 1rem; background:rgba(var(--t-bg-rgb),.94); border-color:rgba(var(--t-hud-rgb),.22); }
 .app-game-tracker .app-header h1 { text-transform:uppercase; letter-spacing:.12em; }
 .app-game-tracker .app-header nav button,
 .app-game-tracker .app-header nav a { border-radius:2px; font-family:inherit; }
-.app-game-tracker .app-header nav button.active { background:#ff8c1a; border-color:#ff8c1a; color:#15100a; font-weight:900; }
+.app-game-tracker .app-header nav button.active { background:var(--t-accent); border-color:var(--t-accent); color:var(--t-accent-ink); font-weight:900; }
 .app-game-tracker main { padding:.75rem 1rem 1.25rem; }
-.tracker-command-header { position:relative; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem; padding:.7rem 1rem; background:linear-gradient(135deg,rgba(30,44,62,.97) 0%,rgba(15,22,33,.97) 55%,rgba(9,13,20,.97) 100%); border:1px solid #294459; box-shadow:inset 2px 2px 0 -1px rgba(127,216,255,.65),inset -2px -2px 0 -1px rgba(127,216,255,.4),0 18px 38px rgba(0,0,0,.25); }
-.tracker-back { color:#e8f2fb; text-decoration:none; font-weight:800; }
+.tracker-command-header { position:relative; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem; padding:.7rem 1rem; background:linear-gradient(135deg,rgba(var(--t-s4-rgb),.97) 0%,rgba(var(--t-panel-rgb),.97) 55%,rgba(var(--t-s1-rgb),.97) 100%); border:1px solid var(--t-line); box-shadow:inset 2px 2px 0 -1px rgba(var(--t-hud-rgb),.65),inset -2px -2px 0 -1px rgba(var(--t-hud-rgb),.4),0 18px 38px rgba(0,0,0,.25); }
+.tracker-back { color:var(--t-strong); text-decoration:none; font-weight:800; }
 .tracker-command-header>div { text-align:center; }
 .tracker-command-header>.tracker-sync { justify-self:end; }
 .tracker-command-header h2 { margin: 0.1rem 0 0; font-size: 1.25rem; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -875,18 +943,18 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .tracker-sync i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #63d28b; box-shadow: 0 0 8px #63d28b; }
 .tracker-sync-syncing i { background: #e7bd49; box-shadow: 0 0 8px #e7bd49; animation: pulse 1s infinite alternate; }
 .tracker-sync-error i, .tracker-sync-disabled i { background: #e15b64; box-shadow: none; }
-.tracker-device { padding:.2rem .45rem; border:1px solid #294459; color:#9db3c1; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; }
+.tracker-device { padding:.2rem .45rem; border:1px solid var(--t-line); color:var(--t-dim); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; }
 .tracker-action-history article { min-width:180px; }
 .tracker-action-history article.undone { opacity:.55; text-decoration:line-through; }
 .tracker-armies { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
-.tracker-army { position:relative; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.65rem 0.8rem; background:linear-gradient(135deg,#101d2b 0%,#0f1621 55%,#0a0e15 100%); border:1px solid #294459; box-shadow:0 12px 26px rgba(0,0,0,.2); }
-.tracker-army::after,.tracker-section::after { content:""; position:absolute; right:-1px; bottom:-1px; width:16px; height:16px; border-right:2px solid #7fd8ff; border-bottom:2px solid #7fd8ff; opacity:.75; }
+.tracker-army { position:relative; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.65rem 0.8rem; background:linear-gradient(135deg,var(--t-panel-1) 0%,var(--t-panel-2) 55%,var(--t-bg) 100%); border:1px solid var(--t-line); box-shadow:0 12px 26px rgba(0,0,0,.2); }
+.tracker-army::after,.tracker-section::after { content:""; position:absolute; right:-1px; bottom:-1px; width:16px; height:16px; border-right:2px solid var(--t-hud); border-bottom:2px solid var(--t-hud); opacity:.75; }
 /* Même « fondu » teinté que les cartes Contrôle de Tir/Arsenal de
    l'Assistant (unit-screen.css) : dégradé diagonal vers la couleur du
    camp plutôt qu'un simple liseré, pour identifier Bleu/Rouge d'un
    coup d'œil sur ce tableau de bord aussi. */
-.tracker-army-bleu { border-left: 3px solid #55bcea; background:linear-gradient(135deg,rgba(85,188,234,.16) 0%,rgba(85,188,234,.03) 55%,#0a0e15 100%); box-shadow:0 0 16px rgba(85,188,234,.1),0 12px 26px rgba(0,0,0,.2); }
-.tracker-army-rouge { border-left: 3px solid #e65a50; background:linear-gradient(135deg,rgba(230,90,80,.16) 0%,rgba(230,90,80,.03) 55%,#0a0e15 100%); box-shadow:0 0 16px rgba(230,90,80,.1),0 12px 26px rgba(0,0,0,.2); }
+.tracker-army-bleu { border-left: 3px solid #55bcea; background:linear-gradient(135deg,rgba(85,188,234,.16) 0%,rgba(85,188,234,.03) 55%,var(--t-bg) 100%); box-shadow:0 0 16px rgba(85,188,234,.1),0 12px 26px rgba(0,0,0,.2); }
+.tracker-army-rouge { border-left: 3px solid #e65a50; background:linear-gradient(135deg,rgba(230,90,80,.16) 0%,rgba(230,90,80,.03) 55%,var(--t-bg) 100%); box-shadow:0 0 16px rgba(230,90,80,.1),0 12px 26px rgba(0,0,0,.2); }
 .tracker-army > div { display: flex; flex-direction: column; min-width: 0; }
 .tracker-army > div span { color: var(--text-dim); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; }
 .tracker-army > div strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -895,12 +963,12 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .tracker-army dt { color: var(--text-dim); font-size: 0.6rem; text-transform: uppercase; }
 .tracker-army dd { margin: 0.1rem 0 0; font-size: 1.05rem; font-weight: 800; }
 .tracker-color-assign { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9rem; }
-.tracker-color-assign>strong { color:#ff8c1a; margin-right:auto; letter-spacing:.1em; text-transform:uppercase; }
-.tracker-console-panel { background:linear-gradient(135deg,#101d2b 0%,#0f1621 55%,#0a0e15 100%)!important; border:1px solid #294459!important; border-radius:2px!important; }
+.tracker-color-assign>strong { color:var(--t-accent); margin-right:auto; letter-spacing:.1em; text-transform:uppercase; }
+.tracker-console-panel { background:linear-gradient(135deg,var(--t-panel-1) 0%,var(--t-panel-2) 55%,var(--t-bg) 100%)!important; border:1px solid var(--t-line)!important; border-radius:2px!important; }
 /* Round + PV : même bandeau que .tracker-armies (Joueur 1/2), voir la
    section "v65" plus bas pour le style de carte .tracker-army réutilisé
    ici (demande utilisateur, 13/09/2026). */
-.tracker-round-card { border-left: 3px solid #ff8c1a; background:linear-gradient(135deg,rgba(255,140,26,.14) 0%,rgba(255,140,26,.03) 55%,#0a0e15 100%); box-shadow:0 0 16px rgba(255,140,26,.1),0 12px 26px rgba(0,0,0,.2); }
+.tracker-round-card { border-left: 3px solid var(--t-accent); background:linear-gradient(135deg,rgba(var(--t-accent-rgb),.14) 0%,rgba(var(--t-accent-rgb),.03) 55%,var(--t-bg) 100%); box-shadow:0 0 16px rgba(var(--t-accent-rgb),.1),0 12px 26px rgba(0,0,0,.2); }
 .tracker-round-controls { display: flex; align-items: center; gap: 0.6rem; }
 .tracker-round-controls select { font-size: 1.1rem; padding: 0.4rem 0.6rem; }
 .tracker-player-badge { font-weight: 600; font-size: 0.9rem; }
@@ -915,12 +983,12 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .tracker-vp-controls .tracker-vp-value { font-size: 1.6rem; font-weight: 700; min-width: 2.2rem; text-align: center; }
 
 .tracker-section {
-  position:relative; background:linear-gradient(135deg,#101d2b 0%,#0f1621 55%,#0a0e15 100%); border:1px solid #294459; border-radius:2px; padding:.85rem 1rem;
+  position:relative; background:linear-gradient(135deg,var(--t-panel-1) 0%,var(--t-panel-2) 55%,var(--t-bg) 100%); border:1px solid var(--t-line); border-radius:2px; padding:.85rem 1rem;
 }
-.tracker-section h3 { margin:0 0 .6rem; color:#ff8c1a; letter-spacing:.1em; text-transform:uppercase; }
+.tracker-section h3 { margin:0 0 .6rem; color:var(--t-accent); letter-spacing:.1em; text-transform:uppercase; }
 .tracker-section select { width: 100%; max-width: 26rem; }
 .tracker-visuals { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.9rem; }
-.tracker-card-image { max-width:320px; width:100%; border-radius:2px; border:1px solid #294459; background:#050807; }
+.tracker-card-image { max-width:320px; width:100%; border-radius:2px; border:1px solid var(--t-line); background:var(--t-s0); }
 .tracker-missing-visual { align-self: center; }
 .tracker-advantage-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
 @media (max-width: 640px) {
@@ -936,13 +1004,14 @@ h3 { font-size: 0.95rem; margin: 1rem 0 0.4rem; color: var(--text-dim); }
 .tracker-combat-cta { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; padding: 1rem 0; }
 
 /* Tableau de partie v65 — disposition inspirée du dashboard officiel. */
-body:has(.app-game-tracker){min-height:100vh;background-color:#0a0e15;background-image:repeating-linear-gradient(0deg,rgba(127,216,255,.075) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(127,216,255,.075) 0 1px,transparent 1px 40px),radial-gradient(1000px 600px at 15% 0,rgba(255,140,26,.12),transparent 65%);background-attachment:fixed}
-/* Même halo que l'Assistant d'unité (public/assistant/faction-themes.css),
-   en rouge Empire plutôt qu'orange Rebelle quand la liste active est
-   Empire — App.tsx pose data-faction-theme="imperial" sur <body>.
-   Homogénéise le fondu de fond entre les deux parties du site plutôt que
-   de le garder toujours orange, quelle que soit la faction jouée. */
-body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0b0d;background-image:repeating-linear-gradient(0deg,rgba(255,69,80,.06) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(255,69,80,.06) 0 1px,transparent 1px 40px),radial-gradient(1000px 600px at 85% 0,rgba(200,35,44,.14),transparent 65%)}
+body:has(.app-game-tracker){min-height:100vh;background-color:var(--t-bg);background-image:repeating-linear-gradient(0deg,rgba(var(--t-hud-rgb),.075) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(var(--t-hud-rgb),.075) 0 1px,transparent 1px 40px),radial-gradient(1000px 600px at 15% 0,rgba(var(--t-accent-rgb),.12),transparent 65%);background-attachment:fixed}
+/* Fond propre à chaque thème (les couleurs viennent des variables --t-*, la
+   composition change) : Empire = grille rouge discrète + halo en haut à
+   droite comme la faction-themes.css de l'Assistant ; Rébellion = parchemin
+   (grain SVG, pas d'image à charger) avec un éclairage doux. */
+:root[data-swl-theme="imperial"] body:has(.app-game-tracker){background-image:repeating-linear-gradient(0deg,rgba(var(--t-hud-rgb),.05) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(var(--t-hud-rgb),.05) 0 1px,transparent 1px 40px),radial-gradient(1100px 620px at 85% -5%,rgba(var(--t-accent-rgb),.16),transparent 62%),radial-gradient(900px 500px at 0 100%,rgba(var(--t-accent-rgb),.07),transparent 60%)}
+:root[data-swl-theme="rebel"] body:has(.app-game-tracker){background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38 0 0 0 0 .29 0 0 0 0 .16 0 0 0 .10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),radial-gradient(1000px 640px at 20% -10%,rgba(255,250,235,.55),transparent 62%),radial-gradient(900px 560px at 100% 100%,rgba(var(--t-hud-rgb),.12),transparent 60%);background-attachment:scroll,fixed,fixed}
+:root[data-swl-theme="rebel"] .starfield{display:none}
 .app-game-tracker{width:min(100%,1500px);min-height:100vh;font-family:"Rajdhani",sans-serif;background:transparent}
 .tracker-header-actions{display:flex;align-items:center;justify-self:end;gap:.75rem}
 .tracker-combat-link{min-height:42px;white-space:nowrap}
@@ -950,18 +1019,18 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .tracker-army{min-height:92px;padding:12px 16px}
 .tracker-army>div strong{font-size:1.18rem}.tracker-army dl{gap:1.3rem}.tracker-army dd{font-size:1.45rem}
 .tracker-topbar.tracker-armies{grid-template-columns:repeat(3,minmax(0,1fr))}
-.tracker-round-card>div strong{font-size:1.5rem;color:#ffb45f}
-.tracker-round-controls select{border:1px solid #ff8c1a;background:#090d13;color:#fff;font-size:1.3rem;font-weight:900;text-align:center}
+.tracker-round-card>div strong{font-size:1.5rem;color:var(--t-accent-hi)}
+.tracker-round-controls select{border:1px solid var(--t-accent);background:var(--t-s1);color:var(--t-strong);font-size:1.3rem;font-weight:900;text-align:center}
 .tracker-vp-controls .tracker-vp-value{font-size:3.6rem;line-height:1;min-width:2.8rem}.tracker-vp-controls .btn{width:2.7rem;height:2.7rem}
-.tracker-section{padding:10px 12px}.tracker-section select{max-width:none;min-height:42px}.tracker-visuals{gap:8px;margin-top:8px}.tracker-card-button{display:block;width:auto;padding:0;border:1px solid #294459;background:linear-gradient(135deg,#101c29,#050807 65%);box-shadow:0 0 10px rgba(127,216,255,.08);cursor:zoom-in}.tracker-card-button:hover,.tracker-card-button:focus-visible{border-color:#ff8c1a;box-shadow:0 0 18px rgba(255,140,26,.25)}.tracker-card-image{display:block;width:auto;max-width:155px;max-height:205px;border:0;object-fit:contain}.tracker-section-objective .tracker-card-image{max-width:190px}.tracker-advantage-columns{gap:10px}.tracker-advantage-side{min-width:0}.tracker-advantage-side .tracker-card-image{max-width:155px}
-.tracker-card-preview{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;padding:32px;background:rgba(0,0,0,.88);cursor:zoom-out}.tracker-card-preview img{max-width:min(88vw,720px);max-height:88vh;object-fit:contain;filter:drop-shadow(0 18px 40px #000)}.tracker-card-preview>button{position:fixed;right:24px;top:18px;width:48px;height:48px;border:1px solid #ff8c1a;background:#101721;color:#fff;font-size:2rem;cursor:pointer}
+.tracker-section{padding:10px 12px}.tracker-section select{max-width:none;min-height:42px}.tracker-visuals{gap:8px;margin-top:8px}.tracker-card-button{display:block;width:auto;padding:0;border:1px solid var(--t-line);background:linear-gradient(135deg,var(--t-panel-1),var(--t-s0) 65%);box-shadow:0 0 10px rgba(var(--t-hud-rgb),.08);cursor:zoom-in}.tracker-card-button:hover,.tracker-card-button:focus-visible{border-color:var(--t-accent);box-shadow:0 0 18px rgba(var(--t-accent-rgb),.25)}.tracker-card-image{display:block;width:auto;max-width:155px;max-height:205px;border:0;object-fit:contain}.tracker-section-objective .tracker-card-image{max-width:190px}.tracker-advantage-columns{gap:10px}.tracker-advantage-side{min-width:0}.tracker-advantage-side .tracker-card-image{max-width:155px}
+.tracker-card-preview{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;padding:32px;background:rgba(0,0,0,.88);cursor:zoom-out}.tracker-card-preview img{max-width:min(88vw,720px);max-height:88vh;object-fit:contain;filter:drop-shadow(0 18px 40px #000)}.tracker-card-preview>button{position:fixed;right:24px;top:18px;width:48px;height:48px;border:1px solid var(--t-accent);background:var(--t-s2);color:var(--t-strong);font-size:2rem;cursor:pointer}
 @media(min-width:980px){.game-tracker-screen{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:12px}.tracker-command-header,.tracker-armies,.tracker-color-assign,.tracker-combat-cta{grid-column:1/-1}.tracker-section-advantage .tracker-advantage-columns{grid-template-columns:1fr}.tracker-card-image{max-height:175px}.tracker-section-objective .tracker-card-image{max-width:155px}}
 @media(max-width:760px){.tracker-command-header{grid-template-columns:1fr}.tracker-header-actions{justify-self:start;flex-wrap:wrap}.tracker-armies{grid-template-columns:1fr}.tracker-topbar.tracker-armies{grid-template-columns:1fr}.tracker-card-image,.tracker-section-objective .tracker-card-image{max-width:130px;max-height:175px}}
 
 /* --- Harmonisation « console tactique » (toutes les pages de la SPA) ---
    Ces écrans gagnent la même identité visuelle que le Suivi de partie
    (police Rajdhani, fond quadrillé, titres orange, panneaux
-   #0f1621/#294459 à coins nets) via la classe .app-game-tracker, posée sur
+   var(--t-panel-2)/var(--t-line) à coins nets) via la classe .app-game-tracker, posée sur
    .app pour toutes les pages (App.tsx). Uniquement des couleurs/styles
    ici, sur des sélecteurs déjà existants : aucune structure ni
    fonctionnalité de ces écrans n'est modifiée par ces règles. Le mode
@@ -973,14 +1042,14 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .print-cards-screen h2,
 .setup-screen h2,
 .army-screen h2 {
-  color: #ff8c1a; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--t-accent); text-transform: uppercase; letter-spacing: 0.06em;
 }
-.army-screen h3 { color: #ffb45f; text-transform: uppercase; letter-spacing: 0.03em; }
+.army-screen h3 { color: var(--t-accent-hi); text-transform: uppercase; letter-spacing: 0.03em; }
 .cheat-block h3,
 .library-screen .keyword-group h3 {
-  color: #ff8c1a; text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--t-accent); text-transform: uppercase; letter-spacing: 0.04em;
 }
-.cheat-block h4 { color: #ffb45f; text-transform: uppercase; letter-spacing: 0.03em; }
+.cheat-block h4 { color: var(--t-accent-hi); text-transform: uppercase; letter-spacing: 0.03em; }
 
 .cheat-block,
 .library-screen .keyword-list-item,
@@ -988,13 +1057,13 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .library-screen .tag-editor,
 .print-cards-screen .print-cards-filter,
 .print-cards-screen .print-cards-bar {
-  background: #0f1621; border-color: #294459; border-radius: 2px;
+  background: var(--t-panel-2); border-color: var(--t-line); border-radius: 2px;
 }
 .library-screen .library-toolbar input,
 .print-cards-screen .print-cards-filter {
-  background: #0c1119; border-color: #294459; border-radius: 2px;
+  background: var(--t-s1); border-color: var(--t-line); border-radius: 2px;
 }
-.library-screen .keyword-group-toggle { background: #0a0e15; }
+.library-screen .keyword-group-toggle { background: var(--t-bg); }
 .print-cards-screen .qty-stepper input { border-radius: 2px; }
 /* .glossary-entry n'est pas repris ici : cette classe est aussi utilisée
    par le mode impression (@media print plus bas, noir sur blanc) — un
@@ -1004,14 +1073,14 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 .setup-screen .sync-panel,
 .army-screen .army-unit,
 .army-screen .visual-list-block {
-  background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%); border-color: #294459; border-radius: 2px;
+  background: linear-gradient(135deg, var(--t-panel-1) 0%, var(--t-panel-2) 55%, var(--t-bg) 100%); border-color: var(--t-line); border-radius: 2px;
 }
 /* Même cadre que les tuiles-image du reste du site (Cartes de Commandement,
    Imprimer des cartes) plutôt qu'un visuel nu -- ici en lecture seule (pas
    de sélection), donc pas de halo orange au clic, juste le cadre + fondu.
    Scopé à l'écran (.army-screen) : la vue imprimée de ce même composant
    (VisualListSection, page Listes) garde son rendu papier inchangé. */
-.army-screen .visual-list-image { border: 1px solid #294459; background: linear-gradient(135deg, #101c29 0%, #0a0e15 70%); padding: 2px; box-shadow: 0 0 8px rgba(127, 216, 255, .08); }
+.army-screen .visual-list-image { border: 1px solid var(--t-line); background: linear-gradient(135deg, var(--t-panel-1) 0%, var(--t-bg) 70%); padding: 2px; box-shadow: 0 0 8px rgba(var(--t-hud-rgb), .08); }
 
 /* --- Army screen --- */
 .army-toolbar { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.5rem; }
@@ -1126,23 +1195,23 @@ body:has(.app-game-tracker)[data-faction-theme="imperial"]{background-color:#0a0
 select {
   appearance: none;
   -webkit-appearance: none;
-  background-color: #0f1621;
+  background-color: var(--t-panel-2);
   background-image:
-    linear-gradient(135deg, #101c2b 0%, #0f1621 60%, #0a0e15 100%),
+    linear-gradient(135deg, var(--t-s3) 0%, var(--t-panel-2) 60%, var(--t-bg) 100%),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237fd8ff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat, no-repeat;
   background-position: 0 0, right 0.65rem center;
   background-size: auto, 0.7rem;
-  border: 1px solid #294459;
+  border: 1px solid var(--t-line);
   border-radius: 2px;
   color: var(--text);
   padding: 0.5rem 2rem 0.5rem 0.7rem;
   font: inherit;
   cursor: pointer;
 }
-select:hover, select:focus-visible { border-color: #ff8c1a; box-shadow: 0 0 10px rgba(255, 140, 26, .25); outline: none; }
+select:hover, select:focus-visible { border-color: var(--t-accent); box-shadow: 0 0 10px rgba(var(--t-accent-rgb), .25); outline: none; }
 select:disabled { opacity: 0.5; cursor: not-allowed; }
-select option { background: #0f1621; color: var(--text); }
+select option { background: var(--t-panel-2); color: var(--text); }
 .field-inline { flex-direction: row; align-items: center; gap: 0.4rem; }
 .field-row { display: flex; gap: 0.75rem; align-items: flex-end; }
 
@@ -1231,8 +1300,8 @@ select option { background: #0f1621; color: var(--text); }
   display: inline-block; margin-left: 0.5rem; padding: 0.05rem 0.5rem; border-radius: 999px;
   font-size: 0.7rem; vertical-align: middle; border: 1px solid var(--border);
 }
-.impact-attaque { color: #e0685e; border-color: #e0685e; }
-.impact-défense { color: #6db6e8; border-color: #6db6e8; }
+.impact-attaque { color: var(--t-danger); border-color: #e0685e; }
+.impact-défense { color: var(--t-info); border-color: #6db6e8; }
 .impact-autre { color: var(--text-dim); }
 .keyword-list-actions { display: flex; gap: 0.4rem; }
 .keyword-editor { display: flex; flex-direction: column; gap: 0.5rem; width: 100%; }
@@ -1244,8 +1313,8 @@ select option { background: #0f1621; color: var(--text); }
    devient une suite de tuiles numérotées plutôt qu'un mur de texte, dans le
    même langage visuel (fondu, coins carrés) que le reste du site. */
 .cheat-block {
-  background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%);
-  border: 1px solid #294459; border-radius: 2px;
+  background: linear-gradient(135deg, var(--t-panel-1) 0%, var(--t-panel-2) 55%, var(--t-bg) 100%);
+  border: 1px solid var(--t-line); border-radius: 2px;
   padding: 0.9rem 1.1rem; margin-bottom: 1.1rem;
 }
 .cheat-block h3 { margin: 0 0 0.6rem; font-size: 1.02rem; }
@@ -1257,15 +1326,15 @@ select option { background: #0f1621; color: var(--text); }
 .cheat-steps > li {
   counter-increment: cheat-step; position: relative;
   padding: 0.6rem 0.8rem 0.6rem 2.7rem;
-  border: 1px solid #294459;
-  background: linear-gradient(135deg, rgba(127, 216, 255, .05), rgba(10, 14, 21, .85) 65%);
+  border: 1px solid var(--t-line);
+  background: linear-gradient(135deg, rgba(var(--t-hud-rgb), .05), rgba(var(--t-bg-rgb), .85) 65%);
   font-size: 0.88rem;
 }
 .cheat-steps > li::before {
   content: counter(cheat-step);
   position: absolute; left: 0.65rem; top: 0.55rem;
   width: 1.5rem; height: 1.5rem; display: grid; place-items: center;
-  border: 1px solid #ff8c1a; background: rgba(255, 140, 26, .16); color: #ffb85c;
+  border: 1px solid var(--t-accent); background: rgba(var(--t-accent-rgb), .16); color: var(--t-accent-hi);
   font-weight: 900; font-size: 0.78rem;
 }
 /* Sous-étapes (a, b, c...) : reste une liste native (garde le marqueur
@@ -1276,22 +1345,22 @@ select option { background: #0f1621; color: var(--text); }
 /* Listes d'actions/rappels courts : rangée à liseré orange plutôt qu'une
    puce native, lisible quelle que soit la longueur du texte. */
 .cheat-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.85rem; }
-.cheat-list li { padding: 0.4rem 0.6rem; border-left: 2px solid #ff8c1a; background: rgba(15, 22, 33, .55); }
+.cheat-list li { padding: 0.4rem 0.6rem; border-left: 2px solid var(--t-accent); background: rgba(var(--t-panel-rgb), .55); }
 .cheat-note { color: var(--text-dim); font-size: 0.82rem; margin: 0.5rem 0 0; }
-.cheat-blue { color: #6db6e8; }
-.cheat-red { color: #e0685e; }
-.cheat-table-wrap { overflow-x: auto; margin-bottom: 0.6rem; border: 1px solid #294459; }
-.cheat-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; background: linear-gradient(135deg, #101d2b 0%, #0f1621 60%, #0a0e15 100%); }
-.cheat-table th, .cheat-table td { border: 1px solid #294459; padding: 0.4rem 0.55rem; text-align: left; }
-.cheat-table thead th { background: rgba(255, 140, 26, .14); color: #ffb85c; font-weight: 800; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.04em; }
+.cheat-blue { color: var(--t-info); }
+.cheat-red { color: var(--t-danger); }
+.cheat-table-wrap { overflow-x: auto; margin-bottom: 0.6rem; border: 1px solid var(--t-line); }
+.cheat-table { border-collapse: collapse; width: 100%; font-size: 0.8rem; background: linear-gradient(135deg, var(--t-panel-1) 0%, var(--t-panel-2) 60%, var(--t-bg) 100%); }
+.cheat-table th, .cheat-table td { border: 1px solid var(--t-line); padding: 0.4rem 0.55rem; text-align: left; }
+.cheat-table thead th { background: rgba(var(--t-accent-rgb), .14); color: var(--t-accent-hi); font-weight: 800; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.04em; }
 .cheat-table td.cheat-no { color: var(--text-dim); }
 .cheat-rules-grid { display: grid; gap: 0.9rem; }
 @media (min-width: 700px) {
   .cheat-rules-grid { grid-template-columns: 1fr 1fr; }
 }
 .cheat-rule {
-  padding: 0.7rem 0.85rem; border: 1px solid #294459; border-left: 3px solid #ff8c1a;
-  background: linear-gradient(135deg, rgba(255, 140, 26, .08), rgba(10, 14, 21, .9) 60%);
+  padding: 0.7rem 0.85rem; border: 1px solid var(--t-line); border-left: 3px solid var(--t-accent);
+  background: linear-gradient(135deg, rgba(var(--t-accent-rgb), .08), rgba(var(--t-bg-rgb), .9) 60%);
 }
 .cheat-rule p { margin: 0 0 0.4rem; font-size: 0.85rem; }
 .cheat-rule p:last-child { margin-bottom: 0; }
@@ -1312,7 +1381,7 @@ select option { background: #0f1621; color: var(--text); }
 .print-cards-grid-select { margin-bottom: 4.5rem; }
 .qty-stepper { display: flex; align-items: center; justify-content: center; gap: 0.4rem; }
 .qty-stepper input {
-  width: 2.6rem; text-align: center; background: #0a0e15; border: 1px solid #294459;
+  width: 2.6rem; text-align: center; background: var(--t-bg); border: 1px solid var(--t-line);
   border-radius: 2px; color: var(--text); padding: 0.25rem 0.2rem; font-size: 0.9rem;
 }
 .qty-btn { padding: 0.1rem 0.55rem; line-height: 1.4; }
@@ -1481,33 +1550,33 @@ select option { background: #0f1621; color: var(--text); }
   .visual-list-kw { color: black; font-size: 7.5pt; line-height: 1.25; margin: 0 0 0.15em; break-inside: avoid; }
 }
 /* Rapport de compatibilité affiché immédiatement après chaque import. */
-.import-audit{margin-top:14px;border:1px solid #33485a;background:#0b151d}
+.import-audit{margin-top:14px;border:1px solid var(--t-line);background:var(--t-s2)}
 .import-audit-ok{border-color:#2f9d68;box-shadow:inset 3px 0 #49e59a}
 .import-audit-warning{border-color:#d58a2b;box-shadow:inset 3px 0 #ff9d22}
 .import-audit-summary{width:100%;min-height:58px;padding:10px 12px;display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}
 .import-audit-summary>span:nth-child(2){display:grid;gap:3px}
-.import-audit-summary small{color:#9bb0bf;font-size:.76rem}
-.import-audit-icon{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900;background:#173229;color:#62f0aa}
-.import-audit-warning .import-audit-icon{background:#3d2912;color:#ffb34d}
+.import-audit-summary small{color:var(--t-dim);font-size:.76rem}
+.import-audit-icon{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900;background:var(--t-goodbg);color:var(--t-ok)}
+.import-audit-warning .import-audit-icon{background:var(--t-warnbg);color:var(--t-warn)}
 .import-audit-details{padding:0 12px 12px;display:grid;gap:7px}
-.import-audit-details article{padding:9px;border:1px solid #263c4b;background:#0e1a23}
+.import-audit-details article{padding:9px;border:1px solid var(--t-line);background:var(--t-s2)}
 .import-audit-details article>div{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.import-audit-details article>div span,.import-audit-unit-ok{color:#72d8f7;font-size:.78rem}
-.import-audit-details ul{margin:7px 0 0;padding-left:18px;color:#ffc36f;font-size:.78rem}
-.import-audit-blocking{margin:2px 0 0;padding:9px;border-left:3px solid #ff9d22;background:#2b1c10;color:#ffd097;font-size:.78rem}
+.import-audit-details article>div span,.import-audit-unit-ok{color:var(--t-info);font-size:.78rem}
+.import-audit-details ul{margin:7px 0 0;padding-left:18px;color:var(--t-warn);font-size:.78rem}
+.import-audit-blocking{margin:2px 0 0;padding:9px;border-left:3px solid #ff9d22;background:var(--t-warnbg);color:var(--t-warn);font-size:.78rem}
 .import-audit-action{justify-self:start;margin-top:4px;text-decoration:none}
-.self-audit-trigger{margin-top:10px;padding-top:10px;border-top:1px solid #263c4b;display:grid;gap:7px}
+.self-audit-trigger{margin-top:10px;padding-top:10px;border-top:1px solid var(--t-line);display:grid;gap:7px}
 .self-audit-status{font-size:.8rem}
 .self-audit-status ul{margin:6px 0 0;padding-left:18px;display:grid;gap:3px}
-.self-audit-running{color:#72d8f7}
-.self-audit-ok{color:#62f0aa}
-.self-audit-fail{color:#ffb34d}
-.self-audit-finding-error{color:#ff9d95}
-.self-audit-finding-warning{color:#ffc36f}
-.self-audit-legend{margin-top:10px;padding:9px;border-left:3px solid #33485a;background:#0e1a23;font-size:.76rem}
-.self-audit-legend ul{margin:5px 0 0;padding-left:18px;display:grid;gap:3px;color:#9bb0bf}
-.self-audit-deep{margin-top:4px;padding:9px;border:1px dashed #3a2f12;background:#1c1608;display:grid;gap:7px}
-.self-audit-deep-intro{margin:0;color:#e3c98a;font-size:.76rem;line-height:1.4}
+.self-audit-running{color:var(--t-info)}
+.self-audit-ok{color:var(--t-ok)}
+.self-audit-fail{color:var(--t-warn)}
+.self-audit-finding-error{color:var(--t-danger)}
+.self-audit-finding-warning{color:var(--t-warn)}
+.self-audit-legend{margin-top:10px;padding:9px;border-left:3px solid var(--t-line);background:var(--t-s2);font-size:.76rem}
+.self-audit-legend ul{margin:5px 0 0;padding-left:18px;display:grid;gap:3px;color:var(--t-dim)}
+.self-audit-deep{margin-top:4px;padding:9px;border:1px dashed #3a2f12;background:var(--t-warnbg);display:grid;gap:7px}
+.self-audit-deep-intro{margin:0;color:var(--t-warn);font-size:.76rem;line-height:1.4}
 
 /* Écran Cartes de Commandement (24/09/2026) : onglet séparé, cartes lues et
    choisies par leur visuel (jamais par une liste texte), même grammaire que
@@ -1515,24 +1584,24 @@ select option { background: #0f1621; color: var(--text); }
    tuiles cliquables en grille, bordure + halo orange à la sélection, coche
    de confirmation, statut vert une fois révélé/complet. */
 .command-cards-screen { display: grid; gap: 1rem; }
-.command-cards-header { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; padding: 0.7rem 1rem; background: linear-gradient(135deg, rgba(30, 44, 62, .97) 0%, rgba(15, 22, 33, .97) 55%, rgba(9, 13, 20, .97) 100%); border: 1px solid #294459; box-shadow: inset 2px 2px 0 -1px rgba(127, 216, 255, .65), inset -2px -2px 0 -1px rgba(127, 216, 255, .4), 0 18px 38px rgba(0, 0, 0, .25); }
+.command-cards-header { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; padding: 0.7rem 1rem; background: linear-gradient(135deg, rgba(var(--t-s4-rgb),.97) 0%, rgba(var(--t-panel-rgb), .97) 55%, rgba(var(--t-s1-rgb),.97) 100%); border: 1px solid var(--t-line); box-shadow: inset 2px 2px 0 -1px rgba(var(--t-hud-rgb), .65), inset -2px -2px 0 -1px rgba(var(--t-hud-rgb), .4), 0 18px 38px rgba(0, 0, 0, .25); }
 .command-cards-header h2 { margin: 0.1rem 0 0; font-size: 1.25rem; letter-spacing: 0.04em; text-transform: uppercase; }
 .command-undo-btn { margin-top: 0.2rem; }
 .command-builder-actions { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; flex-wrap: wrap; }
-.command-duel { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%); border: 1px solid #294459; }
+.command-duel { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; background: linear-gradient(135deg, var(--t-panel-1) 0%, var(--t-panel-2) 55%, var(--t-bg) 100%); border: 1px solid var(--t-line); }
 .command-duel strong { color: var(--text-dim); font-size: 0.95rem; }
-.command-duel strong.active { color: #ff8c1a; }
+.command-duel strong.active { color: var(--t-accent); }
 .command-duel span { color: var(--text-dim); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
 /* Onglets segmentés génériques (Bleu/Rouge ici, type de carte sur Imprimer
    des cartes) : un seul habillage pour tout filtre à 2-4 choix exclusifs
    dans le site, plutôt qu'un composant par écran. */
 .segmented-tabs { display: flex; gap: 0.5rem; }
-.segmented-tab { flex: 1; padding: 0.7rem; border: 1px solid #294459; background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%); color: var(--text-dim); font-weight: 700; cursor: pointer; }
-.segmented-tab.active { border-color: #ff8c1a; color: #ff8c1a; box-shadow: 0 0 14px rgba(255, 140, 26, .25); }
-.command-adversary-status { margin: 0; padding: 0.5rem 0.8rem; background: rgba(111, 189, 219, .1); border: 1px solid rgba(111, 189, 219, .4); color: #9ad6ee; font-size: 0.85rem; }
+.segmented-tab { flex: 1; padding: 0.7rem; border: 1px solid var(--t-line); background: linear-gradient(135deg, var(--t-panel-1) 0%, var(--t-panel-2) 55%, var(--t-bg) 100%); color: var(--text-dim); font-weight: 700; cursor: pointer; }
+.segmented-tab.active { border-color: var(--t-accent); color: var(--t-accent); box-shadow: 0 0 14px rgba(var(--t-accent-rgb), .25); }
+.command-adversary-status { margin: 0; padding: 0.5rem 0.8rem; background: rgba(111, 189, 219, .1); border: 1px solid rgba(111, 189, 219, .4); color: var(--t-info); font-size: 0.85rem; }
 .command-phase { display: grid; gap: 0.8rem; }
-.command-progress { margin: 0; font-weight: 700; color: #ffb85c; }
-.command-progress.done { color: #5cdda3; }
+.command-progress { margin: 0; font-weight: 700; color: var(--t-accent-hi); }
+.command-progress.done { color: var(--t-ok); }
 .command-pip-block h4 { margin: 0 0 0.5rem; color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
 /* Tuile-image générique (24/09/2026, étendue 25/09/2026 à Imprimer des
    cartes et à la vue visuelle d'Armées) : même grammaire que le
@@ -1544,24 +1613,117 @@ select option { background: #0f1621; color: var(--text); }
 .card-tile-grid-single { grid-template-columns: minmax(160px, 220px); }
 .card-tile-grid-compact { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); opacity: 0.75; }
 .card-tile { position: relative; }
-.card-tile-select { display: block; width: 100%; padding: 0; border: 1px solid #294459; background: linear-gradient(135deg, #101c29 0%, #0a0e15 70%); color: var(--text); cursor: pointer; overflow: hidden; text-align: left; }
-.card-tile.on .card-tile-select { border-color: #ff8c1a; box-shadow: 0 0 14px rgba(255, 140, 26, .4); }
+.card-tile-select { display: block; width: 100%; padding: 0; border: 1px solid var(--t-line); background: linear-gradient(135deg, var(--t-panel-1) 0%, var(--t-bg) 70%); color: var(--text); cursor: pointer; overflow: hidden; text-align: left; }
+.card-tile.on .card-tile-select { border-color: var(--t-accent); box-shadow: 0 0 14px rgba(var(--t-accent-rgb), .4); }
 .card-tile-select:disabled { cursor: not-allowed; opacity: 0.55; }
 .card-tile-select img { display: block; width: 100%; aspect-ratio: 0.72; object-fit: cover; }
 .card-tile-noimage { display: flex; align-items: center; justify-content: center; aspect-ratio: 0.72; padding: 0.5rem; text-align: center; font-size: 0.8rem; color: var(--text-dim); }
-.card-tile-badge { position: absolute; top: 4px; left: 4px; padding: 0.1rem 0.4rem; background: rgba(10, 14, 21, .85); color: #ffb85c; font-size: 0.65rem; font-weight: 800; border: 1px solid #ff8c1a; }
-.card-tile-check { position: absolute; top: 4px; right: 4px; width: 1.3rem; height: 1.3rem; display: grid; place-items: center; background: #ff8c1a; color: #0a0e15; font-size: 0.8rem; font-weight: 900; border-radius: 50%; }
+.card-tile-badge { position: absolute; top: 4px; left: 4px; padding: 0.1rem 0.4rem; background: rgba(var(--t-bg-rgb), .85); color: var(--t-accent-hi); font-size: 0.65rem; font-weight: 800; border: 1px solid var(--t-accent); }
+.card-tile-check { position: absolute; top: 4px; right: 4px; width: 1.3rem; height: 1.3rem; display: grid; place-items: center; background: var(--t-accent); color: var(--t-bg); font-size: 0.8rem; font-weight: 900; border-radius: 50%; }
 .card-tile-name { display: block; padding: 0.35rem 0.4rem; font-size: 0.72rem; line-height: 1.25; }
 .card-tile-footer { padding: 0.3rem 0.4rem 0.4rem; }
-.card-tile-zoom { position: absolute; bottom: 4px; right: 4px; width: 1.6rem; height: 1.6rem; display: grid; place-items: center; background: rgba(10, 14, 21, .85); border: 1px solid #294459; color: var(--text); font-size: 0.85rem; cursor: pointer; }
+.card-tile-zoom { position: absolute; bottom: 4px; right: 4px; width: 1.6rem; height: 1.6rem; display: grid; place-items: center; background: rgba(var(--t-bg-rgb), .85); border: 1px solid var(--t-line); color: var(--text); font-size: 0.85rem; cursor: pointer; }
 .command-status-badge { display: inline-block; padding: 0.3rem 0.6rem; border-radius: 2px; font-size: 0.8rem; font-weight: 700; border: 1px solid; }
-.command-status-pending { color: #6fbddb; border-color: rgba(111, 189, 219, .55); background: rgba(111, 189, 219, .1); }
-.command-status-done { color: #5cdda3; border-color: rgba(92, 221, 163, .55); background: rgba(92, 221, 163, .1); }
+.command-status-pending { color: var(--t-info); border-color: rgba(111, 189, 219, .55); background: rgba(111, 189, 219, .1); }
+.command-status-done { color: var(--t-ok); border-color: rgba(92, 221, 163, .55); background: rgba(92, 221, 163, .1); }
 .command-locked, .command-draft, .command-reveal-card { display: flex; flex-direction: column; gap: 0.6rem; align-items: flex-start; }
 .command-draft-actions { display: flex; gap: 0.5rem; }
-.command-draft-actions .phase-confirm { border-color: #ffb85c; box-shadow: 0 0 14px rgba(255, 140, 26, .3); }
-.command-reveal-btn { display: block; margin: 0.5rem auto 0; border-color: #ffb85c; background: linear-gradient(135deg, rgba(255, 140, 26, .35), rgba(15, 22, 33, .96)); box-shadow: 0 0 18px rgba(255, 140, 26, .35); }
-.command-played-fold { border: 1px solid #294459; background: linear-gradient(135deg, #101d2b 0%, #0f1621 55%, #0a0e15 100%); padding: 0.6rem 0.8rem; }
+.command-draft-actions .phase-confirm { border-color: var(--t-accent-hi); box-shadow: 0 0 14px rgba(var(--t-accent-rgb), .3); }
+.command-reveal-btn { display: block; margin: 0.5rem auto 0; border-color: var(--t-accent-hi); background: linear-gradient(135deg, rgba(var(--t-accent-rgb), .35), rgba(var(--t-panel-rgb), .96)); box-shadow: 0 0 18px rgba(var(--t-accent-rgb), .35); }
+.command-played-fold { border: 1px solid var(--t-line); background: linear-gradient(135deg, var(--t-panel-1) 0%, var(--t-panel-2) 55%, var(--t-bg) 100%); padding: 0.6rem 0.8rem; }
 .command-played-fold summary { cursor: pointer; color: var(--text-dim); font-size: 0.8rem; }
 .command-played-fold[open] summary { margin-bottom: 0.6rem; }
 @media (min-width: 980px) { .command-cards-screen { max-width: 900px; margin: 0 auto; } }
+
+/* ==== Codex Legion : bandeau HUD, onglets inclinés, finitions par thème (25/09/2026) ====
+   Refonte d'après les maquettes de l'utilisateur (Empire « Tactical Command »
+   / Rébellion « Datapad »). Les couleurs viennent des variables --t-* ; ici
+   seule la composition change : marque + emblème à gauche, interrupteur de
+   thème à droite, onglets en parallélogrammes, et trois onglets d'usage
+   courant (Suivi de partie, Cartes de Commandement, Assistant d'unité) en
+   grands boutons avec icône au-dessus du libellé. */
+@font-face {
+  font-family: 'Droidobesh';
+  src: url('/fonts/droidobesh-depot.otf') format('opentype');
+  font-display: swap;
+}
+/* Aurebesh : décoratif uniquement (la police ne couvre ni les accents ni
+   les caractères spéciaux, et un texte en Aurebesh n'est pas lisible tel quel). */
+.aurebesh { font-family: 'Droidobesh', 'Rajdhani', sans-serif; letter-spacing: 0.14em; text-transform: none; color: var(--t-dim); opacity: 0.85; }
+
+.ni-imperial { display: none; }
+:root[data-swl-theme="imperial"] .ni-imperial { display: inline; }
+:root[data-swl-theme="imperial"] .ni-rebel { display: none; }
+
+.app-game-tracker .app-header {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.55rem 1rem;
+  padding: 0.7rem 1rem 0.6rem;
+  background: linear-gradient(180deg, rgba(var(--t-s3-rgb), 0.96), rgba(var(--t-bg-rgb), 0.92));
+  border-bottom: 1px solid var(--t-line);
+  box-shadow: 0 1px 0 rgba(var(--t-accent-rgb), 0.25), 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+.app-game-tracker .app-header nav { grid-column: 1 / -1; align-items: center; gap: 0.4rem; }
+.app-brand { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+.app-brand-text { display: grid; gap: 0.1rem; min-width: 0; }
+.app-game-tracker .app-header h1 { font-family: 'Orbitron', 'Rajdhani', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.22em; color: var(--t-strong); }
+.app-brand .aurebesh { font-size: 0.78rem; line-height: 1; }
+.faction-emblem { width: 2.5rem; height: 2.5rem; flex-shrink: 0; color: var(--t-accent); filter: drop-shadow(0 0 7px rgba(var(--t-accent-rgb), var(--t-glow))); }
+.theme-switch {
+  border: 1px solid var(--t-line); background: transparent; color: var(--t-dim); cursor: pointer;
+  padding: 0.35rem 0.75rem; font: 700 0.7rem 'Rajdhani', sans-serif; letter-spacing: 0.12em; text-transform: uppercase;
+  border-radius: min(var(--t-radius), 6px);
+}
+.theme-switch:hover, .theme-switch:focus-visible { border-color: var(--t-accent); color: var(--t-accent-hi); }
+
+/* Onglets : parallélogrammes (le libellé et l'icône sont redressés). */
+.app-game-tracker .app-header nav button,
+.app-game-tracker .app-header nav a {
+  transform: skewX(-14deg); border-radius: min(var(--t-radius), 6px);
+  padding: 0.42rem 1rem; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em;
+  background: linear-gradient(180deg, rgba(var(--t-s4-rgb), 0.7), rgba(var(--t-s1-rgb), 0.85));
+  border: 1px solid var(--t-line); color: var(--t-dim);
+  transition: color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.app-game-tracker .app-header nav button > *,
+.app-game-tracker .app-header nav a > * { transform: skewX(14deg); }
+.app-game-tracker .app-header nav button:hover:not(:disabled),
+.app-game-tracker .app-header nav a:hover { color: var(--t-strong); border-color: var(--t-accent); }
+.app-game-tracker .app-header nav button.active {
+  background: linear-gradient(180deg, var(--t-accent), color-mix(in srgb, var(--t-accent) 72%, #000));
+  border-color: var(--t-accent); color: var(--t-accent-ink);
+  box-shadow: 0 0 14px rgba(var(--t-accent-rgb), var(--t-glow));
+}
+.nav-icon { color: inherit; }
+
+/* Trois onglets d'usage courant : plus grands, icône au-dessus, halo. */
+.app-game-tracker .app-header nav .nav-primary {
+  flex-direction: column; justify-content: center; gap: 0.2rem; min-width: 9rem;
+  padding: 0.5rem 1.4rem 0.45rem; font-size: 0.92rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--t-text);
+  background: linear-gradient(180deg, rgba(var(--t-accent-rgb), 0.2), rgba(var(--t-s1-rgb), 0.9));
+  border-color: rgba(var(--t-accent-rgb), 0.7);
+  box-shadow: 0 0 16px rgba(var(--t-accent-rgb), calc(var(--t-glow) * 0.55));
+}
+.app-game-tracker .app-header nav .nav-primary .nav-icon { width: 2.1rem; height: 2.1rem; margin: 0; color: var(--t-accent); filter: drop-shadow(0 0 5px rgba(var(--t-accent-rgb), 0.6)); }
+.app-game-tracker .app-header nav .nav-primary .nav-label { text-align: center; line-height: 1.1; }
+.app-game-tracker .app-header nav .nav-primary.active,
+.app-game-tracker .app-header nav .nav-primary.igniting {
+  background: linear-gradient(180deg, var(--t-accent), color-mix(in srgb, var(--t-accent) 68%, #000));
+  color: var(--t-accent-ink);
+}
+.app-game-tracker .app-header nav .nav-primary.active .nav-icon { color: var(--t-accent-ink); filter: none; }
+.app-game-tracker .app-header nav button:not(.nav-primary) { font-size: 0.76rem; }
+@media (max-width: 720px) {
+  .app-game-tracker .app-header nav .nav-primary { min-width: 0; flex: 1 1 30%; padding-inline: 0.5rem; font-size: 0.72rem; }
+  .app-game-tracker .app-header nav .nav-primary .nav-icon { width: 1.7rem; height: 1.7rem; }
+}
+
+/* Empire : angles coupés (langage des consoles impériales). */
+:root[data-swl-theme="imperial"] :is(.tracker-command-header, .command-cards-header, .tracker-army, .tracker-section, .tracker-console-panel, .cheat-block, .setup-slot-filled, .army-unit, .visual-list-block, .command-duel, .sync-panel) {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+}
+/* Rébellion : coins doux de datapad. */
+:root[data-swl-theme="rebel"] :is(.tracker-command-header, .command-cards-header, .tracker-army, .tracker-section, .tracker-console-panel, .cheat-block, .setup-slot-filled, .army-unit, .visual-list-block, .command-duel, .sync-panel) {
+  border-radius: var(--t-radius) !important;
+}
+:root[data-swl-theme="rebel"] .app-game-tracker .app-header { box-shadow: 0 1px 0 var(--t-line), 0 8px 22px rgba(90, 66, 24, 0.18); }

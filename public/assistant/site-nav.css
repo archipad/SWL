@@ -2,45 +2,60 @@
    voir src/index.css), reconstruite ici en HTML/CSS statique puisque cette
    page n'est pas construite par Vite/React. Demande utilisateur : l'Assistant
    d'unité doit se sentir comme un onglet du site, pas comme un site à part —
-   ce bandeau permet de rejoindre n'importe quel autre onglet en un clic,
-   sans repasser par « ‹ Legion Compagnon ». Fichier séparé (même logique que
-   header-sync.css) : purement additif, ne touche à aucune règle existante. */
+   ce bandeau permet de rejoindre n'importe quel autre onglet en un clic.
+   Fichier séparé (même logique que header-sync.css) : purement additif, ne
+   touche à aucune règle existante.
+
+   Refonte « Codex Legion » (25/09/2026) : onglets en parallélogrammes et
+   trois onglets d'usage courant (Suivi de partie, Cartes de Commandement,
+   Assistant d'unité) en grand, comme sur le site. Le contenu de l'Assistant
+   reste sombre quel que soit le thème (table holographique) : seul l'accent
+   de la barre change — orange par défaut/Rébellion, rouge pour l'Empire
+   (attribut data-swl-theme posé par le script de index.html). */
+
+:root {
+  --n-accent: #ff8c1a; --n-accent-rgb: 255, 140, 26; --n-accent-ink: #15100a;
+  --n-line: #294459;
+}
+:root[data-swl-theme="imperial"] {
+  --n-accent: #ff3b30; --n-accent-rgb: 255, 59, 48; --n-accent-ink: #fff;
+  --n-line: #5a2428;
+}
 
 .site-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0.7rem max(16px, env(safe-area-inset-left)) 0.55rem;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem max(16px, env(safe-area-inset-left)) 0.6rem;
+  background: linear-gradient(180deg, rgba(20, 32, 44, 0.9), rgba(7, 12, 18, 0.7));
+  border-bottom: 1px solid var(--n-line);
+  box-shadow: 0 1px 0 rgba(var(--n-accent-rgb), 0.25);
 }
 
 .site-nav a,
 .site-nav span.active {
   display: inline-flex;
   align-items: center;
-  background: transparent;
-  border: 1px solid var(--line);
-  color: var(--muted);
-  padding: 0.4rem 0.8rem;
-  border-radius: 999px;
+  transform: skewX(-14deg);
+  background: linear-gradient(180deg, rgba(26, 44, 57, 0.7), rgba(7, 18, 27, 0.85));
+  border: 1px solid var(--n-line);
+  color: var(--muted, #9baea4);
+  padding: 0.42rem 1rem;
+  border-radius: 2px;
   font-family: "Rajdhani", sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   white-space: nowrap;
   text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
 }
-
-.site-nav span.active {
-  background: #ff8c1a;
-  border-color: #ff8c1a;
-  color: #15100a;
-  font-weight: 900;
-}
+.site-nav a > *,
+.site-nav span.active > * { transform: skewX(14deg); }
 
 .site-nav a:hover,
-.site-nav a:focus-visible {
-  border-color: var(--acid, #ff8c1a);
-  color: var(--text);
-}
+.site-nav a:focus-visible { border-color: var(--n-accent); color: #fff; }
 
 .site-nav svg {
   width: 1.05em;
@@ -48,7 +63,39 @@
   margin-right: 0.4rem;
   flex-shrink: 0;
 }
+.ni-imperial { display: none; }
+:root[data-swl-theme="imperial"] .ni-imperial { display: inline; }
+:root[data-swl-theme="imperial"] .ni-rebel { display: none; }
 
-@media (max-width: 560px) {
-  .site-nav { padding-top: 0.55rem; }
+/* Trois onglets d'usage courant : icône au-dessus du libellé, halo. */
+.site-nav .nav-primary {
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  min-width: 9rem;
+  padding: 0.5rem 1.4rem 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #e8f2fb;
+  background: linear-gradient(180deg, rgba(var(--n-accent-rgb), 0.2), rgba(7, 18, 27, 0.9));
+  border-color: rgba(var(--n-accent-rgb), 0.7);
+  box-shadow: 0 0 16px rgba(var(--n-accent-rgb), 0.16);
+}
+.site-nav .nav-primary svg { width: 2.1rem; height: 2.1rem; margin: 0; color: var(--n-accent); filter: drop-shadow(0 0 5px rgba(var(--n-accent-rgb), 0.6)); }
+.site-nav .nav-primary .nav-label { text-align: center; line-height: 1.1; }
+
+/* Page courante (Assistant d'unité). */
+.site-nav span.active {
+  background: linear-gradient(180deg, var(--n-accent), color-mix(in srgb, var(--n-accent) 68%, #000));
+  border-color: var(--n-accent);
+  color: var(--n-accent-ink);
+  box-shadow: 0 0 14px rgba(var(--n-accent-rgb), 0.4);
+}
+.site-nav span.active svg { color: var(--n-accent-ink); filter: none; }
+
+@media (max-width: 720px) {
+  .site-nav .nav-primary { min-width: 0; flex: 1 1 30%; padding-inline: 0.5rem; font-size: 0.72rem; }
+  .site-nav .nav-primary svg { width: 1.7rem; height: 1.7rem; }
 }

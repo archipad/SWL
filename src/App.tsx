@@ -6,7 +6,7 @@ import { useKeywordLibrary } from './lib/useKeywordLibrary';
 import { useCardTags } from './lib/useCardTags';
 import { useSync } from './lib/useSync';
 import { useGameTracker } from './lib/useGameTracker';
-import { NavIcon } from './lib/navIcons';
+import { FactionEmblem, NavIcon } from './lib/navIcons';
 import { commandFactionForList } from './lib/commandDeck';
 import type { ParsedList } from './types';
 
@@ -17,6 +17,8 @@ const LibraryScreen = lazy(() => import('./components/LibraryScreen').then((modu
 const CheatSheetScreen = lazy(() => import('./components/CheatSheetScreen').then((module) => ({ default: module.CheatSheetScreen })));
 const PrintCardsScreen = lazy(() => import('./components/PrintCardsScreen').then((module) => ({ default: module.PrintCardsScreen })));
 
+type ThemeId = 'imperial' | 'rebel';
+type ThemePref = 'auto' | ThemeId;
 type Page = 'setup' | 'army' | 'game' | 'commands' | 'library' | 'cheatsheet' | 'print-cards';
 type PlayerId = 'p1' | 'p2';
 
@@ -32,6 +34,7 @@ export default function App() {
   const [listP2, setListP2] = usePersistentState<ParsedList | null>('swl.list.p2.v1', null);
   const [page, setPage] = usePersistentState<Page>('swl.page.v1', 'setup');
   const [activePlayer, setActivePlayer] = useState<PlayerId>('p1');
+  const [themePref, setThemePref] = usePersistentState<ThemePref>('swl.theme.v1', 'auto');
   const [assistantIgniting, setAssistantIgniting] = useState(false);
   const { keywords, upsertKeyword, removeKeyword, resetToDefaults } = useKeywordLibrary();
   const { library: tagLibrary, getTags, addTag, removeTag } = useCardTags();
@@ -67,19 +70,21 @@ export default function App() {
     return () => window.removeEventListener('hashchange', openRequestedScreen);
   }, [bothReady, setPage]);
 
-  // Même halo de fond que l'Assistant d'unité (voir faction-themes.css et
-  // body[data-faction-theme] dans index.css) : rouge Empire plutôt
-  // qu'orange par défaut quand la liste du Joueur 1 (ou, à défaut, du
-  // Joueur 2) est Empire, pour homogénéiser le visuel entre les deux
-  // parties du site plutôt que de le garder toujours orange.
+  // Thème visuel (« Codex Legion ») : Empire = noir/rouge, Rébellion =
+  // parchemin/bleu. En mode Auto il suit la faction du Joueur 1 (ou, à
+  // défaut, du Joueur 2), comme le halo de fond de l'Assistant d'unité ;
+  // l'interrupteur du bandeau force l'un des deux. Posé sur <html> (et non
+  // <body>) pour que les variables --accent & co, déclarées sur :root, se
+  // recalculent avec le thème. Sans faction reconnue et en Auto : aucun
+  // attribut, donc le rendu bleu nuit historique.
+  const detectedFaction = commandFactionForList(listP1) ?? commandFactionForList(listP2);
+  const autoTheme: ThemeId | null = detectedFaction === 'empire' ? 'imperial' : detectedFaction === 'rebelles' ? 'rebel' : null;
+  const activeTheme: ThemeId | null = themePref === 'auto' ? autoTheme : themePref;
   useEffect(() => {
-    const faction = commandFactionForList(listP1) ?? commandFactionForList(listP2);
-    if (faction === 'empire') {
-      document.body.dataset.factionTheme = 'imperial';
-    } else {
-      delete document.body.dataset.factionTheme;
-    }
-  }, [listP1, listP2]);
+    if (activeTheme) document.documentElement.dataset.swlTheme = activeTheme;
+    else delete document.documentElement.dataset.swlTheme;
+  }, [activeTheme]);
+  const cycleTheme = () => setThemePref(themePref === 'auto' ? 'imperial' : themePref === 'imperial' ? 'rebel' : 'auto');
 
   // Reprend, une seule fois, l'ancienne liste unique (avant le passage à deux
   // joueurs) comme liste du Joueur 1, pour ne rien perdre à cette mise à jour.
@@ -227,16 +232,32 @@ export default function App() {
           le fond uni du body. Respecte prefers-reduced-motion (index.css). */}
       <div className="starfield" aria-hidden="true"><i className="shooting-star" /></div>
       <header className="app-header no-print">
-        <h1>Legion Compagnon</h1>
+        <div className="app-brand">
+          <FactionEmblem />
+          <div className="app-brand-text">
+            <h1>Legion Compagnon</h1>
+            {/* Aurebesh purement décoratif (police Droidobesh Depot, sans accents) : jamais du texte à lire. */}
+            <span className="aurebesh" aria-hidden="true">Legion Companion</span>
+          </div>
+        </div>
+        <button
+          type="button"
+          className="theme-switch"
+          onClick={cycleTheme}
+          title="Changer de thème : Auto (suit la faction du Joueur 1) → Empire → Rébellion"
+          aria-label={`Thème : ${themePref === 'auto' ? 'automatique' : themePref === 'imperial' ? 'Empire' : 'Rébellion'}. Changer de thème.`}
+        >
+          Thème · {themePref === 'auto' ? 'Auto' : themePref === 'imperial' ? 'Empire' : 'Rébellion'}
+        </button>
         <nav>
           <button type="button" className={page === 'setup' ? 'active' : ''} onClick={() => setPage('setup')}>
-            <NavIcon id="listes" />Listes
+            <NavIcon id="listes" /><span className="nav-label">Listes</span>
           </button>
-          <button type="button" className={page === 'game' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('game')}>
-            <NavIcon id="suivi" />Suivi de partie
+          <button type="button" className={`nav-primary${page === 'game' ? ' active' : ''}`} disabled={!bothReady} onClick={() => goToPage('game')}>
+            <NavIcon id="suivi" /><span className="nav-label">Suivi de partie</span>
           </button>
-          <button type="button" className={page === 'commands' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('commands')}>
-            <NavIcon id="commandement" />Cartes de Commandement
+          <button type="button" className={`nav-primary${page === 'commands' ? ' active' : ''}`} disabled={!bothReady} onClick={() => goToPage('commands')}>
+            <NavIcon id="commandement" /><span className="nav-label">Cartes de Commandement</span>
           </button>
           {/* Page autonome distincte (public/assistant/), pas un onglet de cette
               SPA : lien externe plutôt qu'une entrée de Page/setPage. Navigue
@@ -248,7 +269,7 @@ export default function App() {
               page d'arrivée rejoue ensuite son propre « star wipe »
               (public/assistant/header-sync.css). */}
           <a
-            className={`nav-external${assistantIgniting ? ' igniting' : ''}`}
+            className={`nav-primary nav-external${assistantIgniting ? ' igniting' : ''}`}
             href={ASSISTANT_URL}
             onClick={(e) => {
               e.preventDefault();
@@ -264,19 +285,19 @@ export default function App() {
               setTimeout(() => { window.location.href = ASSISTANT_URL; }, NAV_IGNITE_MS);
             }}
           >
-            <NavIcon id="assistant" />Assistant d'unité
+            <NavIcon id="assistant" /><span className="nav-label">Assistant d'unité</span>
           </a>
           <button type="button" className={page === 'library' ? 'active' : ''} onClick={() => setPage('library')}>
-            <NavIcon id="glossaire" />Glossaire complet
+            <NavIcon id="glossaire" /><span className="nav-label">Glossaire complet</span>
           </button>
           <button type="button" className={page === 'cheatsheet' ? 'active' : ''} onClick={() => setPage('cheatsheet')}>
-            <NavIcon id="pense-bete" />Pense-bête
+            <NavIcon id="pense-bete" /><span className="nav-label">Pense-bête</span>
           </button>
           <button type="button" className={page === 'army' ? 'active' : ''} disabled={!bothReady} onClick={() => goToPage('army')}>
-            <NavIcon id="armees" />Armées
+            <NavIcon id="armees" /><span className="nav-label">Armées</span>
           </button>
           <button type="button" className={page === 'print-cards' ? 'active' : ''} onClick={() => setPage('print-cards')}>
-            <NavIcon id="imprimer" />Imprimer des cartes
+            <NavIcon id="imprimer" /><span className="nav-label">Imprimer des cartes</span>
           </button>
         </nav>
       </header>
