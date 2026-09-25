@@ -54,31 +54,24 @@ body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected::after {
 
 /* ---------- Fonds : espace et destroyer côté Empire, cité rebelle côté Rébellion ---------- */
 body:has(.unit-picker-grid)[data-faction-theme]::before {
-  background: linear-gradient(180deg, rgba(4, 9, 15, .1) 0, rgba(4, 9, 15, .6) 42%, rgba(4, 9, 15, .93) 100%), url(../codex/bg-space.svg) left top / cover no-repeat, #050a14;
+  background: linear-gradient(180deg, rgba(4, 9, 15, 0) 0, rgba(4, 9, 15, .25) 50%, rgba(4, 9, 15, .6) 100%), url(../codex/bg-imperial.webp) left top / cover no-repeat, #050a14;
 }
 body:has(.army-switch button[data-faction="rebel"].active)[data-faction-theme]::before,
 body:has(.cx-attacker-recap[data-faction="imperial"])[data-faction-theme]::before {
   background: linear-gradient(180deg, rgba(6, 8, 12, .12) 0, rgba(6, 8, 12, .62) 46%, rgba(6, 8, 12, .94) 100%), url(../codex/art-rebel.jpg) center 22% / cover no-repeat, #090a0d;
 }
 
-/* ---------- Cadre fin autour de l'écran et textes latéraux : grands écrans seulement (décor allégeable) ---------- */
+/* ---------- Textes latéraux : grands écrans seulement (le cadre HUD et les repères rouges sont dans l image de fond) ---------- */
 @media (min-width: 1360px) {
   html:has(.unit-picker-grid)::after {
-    content: "DES\A MONDES\A SOUS\A NOTRE\A CONTRÔLE"; white-space: pre; text-align: right; position: fixed; inset: 6px; z-index: 5; pointer-events: none; box-sizing: border-box;
-    padding: 24vh 22px 0 0; border: 1px solid rgba(66, 205, 255, .3); border-radius: 14px; box-shadow: inset 0 0 50px rgba(66, 205, 255, .05);
+    content: "DES\A MONDES\A SOUS\A NOTRE\A CONTRÔLE"; white-space: pre; text-align: right; position: fixed; right: 3.4vw; top: 28vh; z-index: 5; pointer-events: none;
     color: rgba(190, 212, 228, .5); font: 600 .62rem/2.1 "Rajdhani", sans-serif; letter-spacing: .5em;
-    background:
-      linear-gradient(#5fd8ff, #5fd8ff) left top / 30px 2px no-repeat, linear-gradient(#5fd8ff, #5fd8ff) left top / 2px 30px no-repeat,
-      linear-gradient(#5fd8ff, #5fd8ff) right top / 30px 2px no-repeat, linear-gradient(#5fd8ff, #5fd8ff) right top / 2px 30px no-repeat,
-      linear-gradient(#5fd8ff, #5fd8ff) left bottom / 30px 2px no-repeat, linear-gradient(#5fd8ff, #5fd8ff) left bottom / 2px 30px no-repeat,
-      linear-gradient(#5fd8ff, #5fd8ff) right bottom / 30px 2px no-repeat, linear-gradient(#5fd8ff, #5fd8ff) right bottom / 2px 30px no-repeat;
   }
   html:has(.unit-picker-grid)::before {
-    content: "ORDRE\A DISCIPLINE\A PUISSANCE"; white-space: pre; position: fixed; left: 26px; top: 56vh; z-index: 5; pointer-events: none; padding: 14px 0;
-    border-top: 1px solid rgba(255, 59, 48, .7); border-bottom: 1px solid rgba(255, 59, 48, .7);
+    content: "ORDRE\A DISCIPLINE\A PUISSANCE"; white-space: pre; position: fixed; left: 2.6vw; top: 68vh; z-index: 5; pointer-events: none;
     color: rgba(190, 212, 228, .5); font: 600 .62rem/2.1 "Rajdhani", sans-serif; letter-spacing: .5em;
   }
-  html:has(.army-switch button[data-faction="rebel"].active)::before { content: "LIBERTÉ\A ESPOIR\A COURAGE"; border-color: rgba(240, 181, 106, .7); }
+  html:has(.army-switch button[data-faction="rebel"].active)::before { content: "LIBERTÉ\A ESPOIR\A COURAGE"; }
 }
 
 /* ---------- En-tête : boutons à coins coupés ---------- */
@@ -100,7 +93,7 @@ body:has(.cx-attacker-recap[data-faction="imperial"])[data-faction-theme]::befor
 @media (min-width: 1360px) {
   body:has(.unit-picker-grid) #app { max-width: min(1240px, calc(100vw - 300px)); margin-inline: auto; }
   body:has(.unit-picker-grid)[data-faction-theme]::before {
-    background: linear-gradient(180deg, rgba(4, 9, 15, 0) 0, rgba(4, 9, 15, .45) 40%, rgba(4, 9, 15, .9) 100%), url(../codex/bg-space.svg) left top / cover no-repeat, #050a14;
+    background: linear-gradient(180deg, rgba(4, 9, 15, 0) 0, rgba(4, 9, 15, .2) 50%, rgba(4, 9, 15, .55) 100%), url(../codex/bg-imperial.webp) left top / cover no-repeat, #050a14;
   }
 }
 
