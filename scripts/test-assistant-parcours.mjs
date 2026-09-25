@@ -1819,6 +1819,50 @@ scenario('Table holographique (25/09/2026) : décor en lecture seule, hologramme
   app.window.close()
 })
 
+scenario('Résolution « Codex » (25/09/2026) : colonnes Attaquant / Défenseur décorées, étapes du bandeau cliquables, libellés de boutons, sans toucher aux entrées', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles solo', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, $$, text, click, pickUnit, gate } = app
+  const ev = (code) => app.window.eval(code)
+  await pickUnit('Stormtroopers')
+  await click('#next')
+  await pickUnit('Soldats Rebelles')
+
+  const [attackSide, defenseSide] = [$('.combat-side.attack'), $('.combat-side.defense')]
+  assert.match(text(attackSide.querySelector('.cx-side-role')), /Attaquant/i)
+  assert.match(text(defenseSide.querySelector('.cx-side-role')), /Défenseur/i)
+  assert.equal(attackSide.dataset.faction, 'imperial', 'l’emblème et la teinte suivent la faction de l’unité, pas le rôle')
+  assert.equal(defenseSide.dataset.faction, 'rebel')
+  assert.match(text(attackSide.querySelector('.cx-side-stats')), /figurines?.*Viser.*Esquive/, 'effectif, Viser et Esquive présents')
+  assert.ok(attackSide.querySelector('.unit-card-zoom[data-card-image]'), 'le bouton d’ouverture de la carte est conservé')
+  assert.ok(attackSide.querySelector('.cx-side-card'), 'bouton « Voir la carte »')
+  assert.equal(attackSide.querySelectorAll('.cx-side-head').length, 1, 'décor posé une seule fois')
+  assert.ok(attackSide.classList.contains('is-acting') && !defenseSide.classList.contains('is-acting'), 'l’attaquant agit aux étapes 3 à 6')
+  assert.equal($('.attack-stepper').dataset.cxTitle, 'Armes & portée')
+  assert.match($('#nextAttack').textContent, /Saisir le jet/)
+  assert.match($('#prev').textContent, /Revoir la cible/)
+
+  // Le parcours n'a pas changé : portée exigée, puis débloqué.
+  assert.match(gate(), /BLOQUÉ.*portée/i)
+  await click('[data-range="2"]')
+  assert.match(gate(), /PRÊT/)
+
+  // Les étapes du bandeau reprennent les boutons de l'ancien fil (retour libre).
+  ev('attackStep = 2; resolveScreen()')
+  assert.equal($('.attack-stepper').dataset.cxTitle, 'Couvert & esquives')
+  assert.match($('#prev').textContent, /Jet/)
+  assert.equal(app.window.document.querySelectorAll('#progress i')[2].className, 'done', 'l’étape 3 (Armes) est faite')
+  await click('#progress i:nth-child(3)')
+  assert.equal(ev('attackStep'), 0, 'un toucher sur « Armes » revient à l’étape')
+  assert.ok($$('.combat-side').length === 2)
+  ev('attackStep = 4; resolveScreen()')
+  assert.ok($('.combat-side.defense').classList.contains('is-acting'), 'le défenseur agit à l’étape Défense')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 scenario('Sélection des unités (25/09/2026) : rang + icône en tête, figurines et suppression dessous, sans noms d’améliorations, une seule barre de menu', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Stormtrooper Heavy Gunner' }] }] },

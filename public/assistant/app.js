@@ -1743,6 +1743,67 @@ decorateResolveScreen=function(){
     workspace.before(holo);
   }catch(error){/* décor uniquement : ne jamais gêner la résolution */}
 };
+/* Écrans de résolution « Codex Legion » (25/09/2026) : socle commun.
+   Décor en lecture seule (aucune logique, aucun état) : en-tête des colonnes latérales (rôle, emblème, nom),
+   portrait, lignes figurines / Viser / Esquive, bouton « Voir la carte ». Tout est ajouté APRÈS le rendu, jamais à la place
+   d'un élément existant, et protégé par try/catch : au pire le décor manque, la résolution reste intacte. */
+function decorateCodexSides(){
+  root.querySelectorAll('.combat-side').forEach(aside=>{
+    if(aside.querySelector('.cx-side-head'))return;
+    const defense=aside.classList.contains('defense'),entry=defense?defender:attacker;
+    if(!entry)return;
+    const detail=aside.querySelector('.side-detail'),zoom=aside.querySelector('.unit-card-zoom');
+    if(!detail||!zoom)return;
+    const state=stateFor(entry),models=unitModelsTotal(entry),faction=factionThemeForArmy(entry.army),
+      portrait=tilePortrait(entry.unit.name),role=defense?'Défenseur':'Attaquant';
+    aside.dataset.faction=faction;
+    const head=document.createElement('div');
+    head.className='cx-side-head';
+    head.innerHTML=`<span class="cx-side-role">${role}</span><div class="cx-side-id"><i class="cx-side-emblem ${faction}" aria-hidden="true"></i><div><strong>${entryName(entry)}</strong><small>${rankLabels[entry.rank]||''}</small></div></div>`;
+    detail.before(head);
+    if(portrait){zoom.classList.add('has-portrait');zoom.insertAdjacentHTML('afterbegin',`<img class="cx-portrait" src="${portrait}" alt="">`)}
+    const icon=name=>`<i class="cx-icon" style="--cx-icon:url(../codex/icons/${name}.png)" aria-hidden="true"></i>`;
+    const stats=document.createElement('ul');
+    stats.className='cx-side-stats';
+    stats.setAttribute('aria-label','Effectif et pions');
+    stats.innerHTML=`${models?`<li class="cx-models">${icon('units')}<b>${models}</b><span>figurine${models>1?'s':''}</span></li>`:''}<li>${icon('aim')}<span>Viser</span><b>${state.aim}</b></li><li>${icon('dodge')}<span>Esquive</span><b>${state.dodge}</b></li>`;
+    zoom.after(stats);
+    const card=document.createElement('button');
+    card.type='button';
+    card.className='cx-side-card';
+    card.innerHTML='<span>Voir la carte</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+    card.onclick=()=>zoom.click();
+    detail.append(card);
+  });
+}
+/* Étapes du bandeau : pendant la résolution elles réutilisent les boutons de l'ancien fil (mêmes garde-fous :
+   retour libre, avance seulement si rien ne bloque). Ecouteur unique, posé une fois. */
+document.querySelector('#progress')?.addEventListener('click',event=>{
+  const item=event.target.closest('i');
+  if(!item||!attackState)return;
+  const index=[...item.parentElement.children].indexOf(item)-2;
+  if(index<0)return;
+  root.querySelector(`.attack-stepper [data-go="${index}"]`)?.click();
+});
+const decorateResolveScreenCodexShellBase=decorateResolveScreen;
+/* Titre de l'étape, libellés des boutons (nom de l'étape voisine) et colonne « qui agit » : texte et classes seulement. */
+const codexStepTitles=[['Armes & portée','Sélectionnez les armes utilisées et la portée de l’attaque.'],['Jet & relances','Lancez vos dés à la table, puis saisissez les résultats.'],['Couvert & esquives','Choisissez le type de couvert, gérez les blocages et les esquives.'],['Modifications','Appliquez les effets qui modifient les résultats de vos dés.'],['Jet de défense','Lancez les dés de défense à la table, puis saisissez les résultats.'],['Bilan de l’attaque','']];
+const codexPrevLabels=['Revoir la cible','Armes','Jet','Couvert','Modifications','Revoir la défense'];
+const codexNextLabels=['Saisir le jet','Couvert & esquives','Valider le couvert','Confirmer et passer à la défense','Voir le bilan'];
+function decorateCodexNav(){
+  const stepper=root.querySelector('.resolve-center .attack-stepper');
+  if(stepper){stepper.dataset.cxTitle=codexStepTitles[attackStep][0];stepper.dataset.cxSub=codexStepTitles[attackStep][1]}
+  const workspace=root.querySelector('.attack-workspace');if(workspace)workspace.dataset.cxStep=attackStep;
+  const prev=$('#prev'),next=$('#nextAttack');
+  if(prev)prev.textContent='← '+codexPrevLabels[attackStep];
+  if(next&&attackStep<5)next.textContent=codexNextLabels[attackStep]+' →';
+  root.querySelector('.combat-side.attack')?.classList.toggle('is-acting',attackStep<4);
+  root.querySelector('.combat-side.defense')?.classList.toggle('is-acting',attackStep>=4);
+}
+decorateResolveScreen=function(){
+  decorateResolveScreenCodexShellBase();
+  try{decorateCodexSides();decorateCodexNav()}catch(error){/* décor uniquement */}
+};
 // Charges à Protons / Soniques : les autres armes à distance de la réserve gagnent Assaut 1.
 const activeAttackTagsChargesBase=activeAttackTags;
 activeAttackTags=function(){

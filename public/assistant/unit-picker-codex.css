@@ -64,7 +64,6 @@
   box-shadow: inset 0 0 18px rgba(66, 205, 255, .35);
 }
 /* Pendant la résolution, l'écran a déjà son propre déroulé (.attack-stepper) : on économise la hauteur. */
-body:has(.attack-workspace) #progress.cx-steps { display: none !important; }
 @media (max-width: 900px) {
   #progress.cx-steps i { padding: 8px 6px; }
   #progress.cx-steps i em { display: none; }
