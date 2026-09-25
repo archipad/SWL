@@ -1806,6 +1806,52 @@ decorateResolveScreen=function(){
   decorateResolveScreenCodexShellBase();
   try{decorateCodexSides();decorateCodexNav()}catch(error){/* décor uniquement */}
 };
+/* Fiche d'unité « Codex » (maquette 09) : en-tête et portrait dans la colonne de gauche, titre au centre.
+   Ajouts en lecture seule après le rendu de overview() ; rien de l'existant n'est retiré. */
+function decorateCodexOverview(entry,role){
+  const section=root.querySelector('.overview');
+  if(!section||section.querySelector('.cx-ov-title'))return;
+  const faction=factionThemeForArmy(entry.army),portrait=tilePortrait(entry.unit.name),fr=entryName(entry);
+  section.dataset.faction=faction;
+  const hero=section.querySelector('.hero');
+  if(hero){
+    const head=document.createElement('div');
+    head.className='cx-side-head';
+    head.innerHTML=`<span class="cx-side-role">${role==='defense'?'Défenseur':'Attaquant'}</span><div class="cx-side-id"><i class="cx-side-emblem ${faction}" aria-hidden="true"></i><div><strong>${fr}</strong><small>${rankLabels[entry.rank]||''}</small></div></div>`;
+    const art=document.createElement('div');
+    art.className='cx-ov-portrait';
+    art.setAttribute('aria-hidden','true');
+    art.innerHTML=`<img class="${portrait?'cx-portrait':'cx-portrait-card'}" src="${portrait||imageFor(entry.unit.name)}" alt="" onerror="this.hidden=true">`;
+    hero.prepend(head,art);
+  }
+  const title=document.createElement('div');
+  title.className='cx-ov-title';
+  title.innerHTML=`<h2>Fiche d’unité — ${fr}</h2><p>Consultez les cartes et ajustez les pions</p>`;
+  section.prepend(title);
+}
+const overviewCodexBase=overview;
+overview=function(entry,role){
+  overviewCodexBase(entry,role);
+  try{decorateCodexOverview(entry,role)}catch(error){/* décor uniquement */}
+};
+/* Écran « Cible » (maquette 02) : rappel permanent de l'unité attaquante à gauche de la grille (lecture seule). */
+const pickCodexBase=pick;
+pick=function(role){
+  pickCodexBase(role);
+  try{
+    if(role!=='defender'||!attacker)return;
+    const host=root.querySelector('.army-units')?.parentElement;
+    if(!host||host.querySelector('.cx-attacker-recap'))return;
+    const faction=factionThemeForArmy(attacker.army),portrait=tilePortrait(attacker.unit.name),models=unitModelsTotal(attacker);
+    const aside=document.createElement('aside');
+    aside.className='cx-attacker-recap';
+    aside.dataset.faction=faction;
+    aside.setAttribute('aria-label','Unité attaquante');
+    aside.innerHTML=`<span class="cx-side-role">Unité attaquante</span><div class="cx-side-id"><i class="cx-side-emblem ${faction}" aria-hidden="true"></i><div><strong>${entryName(attacker)}</strong><small>${rankLabels[attacker.rank]||''}</small></div></div><div class="cx-ov-portrait" aria-hidden="true"><img class="${portrait?'cx-portrait':'cx-portrait-card'}" src="${portrait||imageFor(attacker.unit.name)}" alt="" onerror="this.hidden=true"></div>${models?`<ul class="cx-side-stats"><li class="cx-models"><i class="cx-icon" style="--cx-icon:url(../codex/icons/units.png)" aria-hidden="true"></i><b>${models}</b><span>figurine${models>1?'s':''}</span></li></ul>`:''}`;
+    host.classList.add('cx-target-host');
+    host.prepend(aside);
+  }catch(error){/* décor uniquement */}
+};
 // Charges à Protons / Soniques : les autres armes à distance de la réserve gagnent Assaut 1.
 const activeAttackTagsChargesBase=activeAttackTags;
 activeAttackTags=function(){

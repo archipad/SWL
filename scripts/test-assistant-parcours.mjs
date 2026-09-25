@@ -1863,6 +1863,33 @@ scenario('Résolution « Codex » (25/09/2026) : colonnes Attaquant / Défenseur
   app.window.close()
 })
 
+scenario('Fiche d’unité et Cible « Codex » (25/09/2026) : titre, portrait, colonnes, rappel de l’attaquant, boutons et état des pions inchangés', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles solo', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, text, click, pickUnit } = app
+  await pickUnit('Stormtroopers')
+  assert.match(text($('.cx-ov-title h2')), /Fiche d’unité — /)
+  assert.match(text($('.cx-ov-title p')), /Consultez les cartes et ajustez les pions/)
+  assert.equal($('.overview').dataset.faction, 'imperial')
+  assert.match(text($('.hero .cx-side-role')), /Attaquant/i)
+  assert.ok($('.hero .cx-ov-portrait img'), 'portrait présent')
+  assert.equal(app.window.document.querySelectorAll('.cx-ov-title').length, 1, 'décor posé une seule fois')
+  assert.ok($('.unit-state-editor [data-unit-state], .unit-state-editor .touch-counter'), 'les compteurs d’état sont conservés')
+  assert.ok($('#back') && $('#next'), 'boutons Changer d’unité / Choisir la cible conservés')
+  await click('#next')
+  const recap = $('.cx-attacker-recap')
+  assert.ok(recap, 'rappel de l’unité attaquante sur l’écran Cible')
+  assert.match(text(recap), /Unité attaquante/i)
+  assert.equal(recap.dataset.faction, 'imperial')
+  assert.ok($('.unit-picker-grid .unit-tile'), 'la grille de cibles reste cliquable')
+  await pickUnit('Soldats Rebelles')
+  assert.ok($('.attack-workspace'), 'un toucher sur la cible ouvre toujours la résolution')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 scenario('Sélection des unités (25/09/2026) : rang + icône en tête, figurines et suppression dessous, sans noms d’améliorations, une seule barre de menu', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Stormtrooper Heavy Gunner' }] }] },
