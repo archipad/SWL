@@ -81,3 +81,21 @@ body:has(.unit-picker-grid) .army-switch:has(button[data-faction="rebel"].active
   .topbar-actions > a, .topbar-actions > button { min-height: 40px; padding: 0 12px; }
   #restart, #history, #gameReadiness { font-size: 0; }
 }
+
+/* =====================================================================
+   Un seul fond pour toute la partie Assistant, menu compris (retour du 25/09/2026)
+   L'image (bg-imperial.webp) sert pour les deux factions en attendant une version Rébellion de mêmes
+   dimensions : il suffira alors de la brancher ici. Elle passe derrière l'en-tête et les étapes.
+   ===================================================================== */
+body[data-faction-theme]::before,
+body[data-faction-theme]:has(.attack-workspace)::before,
+body[data-faction-theme]:has(.overview)::before,
+body:has(.unit-picker-grid)[data-faction-theme]::before,
+body:has(.army-switch button[data-faction="rebel"].active)[data-faction-theme]::before,
+body:has(.cx-attacker-recap[data-faction="imperial"])[data-faction-theme]::before {
+  background: linear-gradient(180deg, rgba(3, 6, 10, 0) 0, rgba(3, 6, 10, .3) 55%, rgba(3, 6, 10, .55) 100%), url(../codex/bg-imperial.webp) left top / cover no-repeat, #04080d !important;
+}
+/* En-tête et étapes : on voit le fond à travers (léger voile + flou pour rester lisible quand le contenu défile dessous). */
+.app-header-sticky { background: linear-gradient(180deg, rgba(3, 6, 10, .55), rgba(3, 6, 10, .3)) !important; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border-bottom: 0 !important; }
+.app-header-sticky .topbar { background: transparent !important; }
+#progress.cx-steps { background: transparent !important; }
