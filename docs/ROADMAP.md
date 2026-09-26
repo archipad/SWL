@@ -2,6 +2,13 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (26/09/2026) Bibliothèque visuelle complète des 76 cartes d'unité de la base :
+  conservation des portraits HD déjà créés, puis création des 51 visuels manquants à partir
+  de l'illustration de leur carte de référence. Chaque fichier est livré en WebP 1536 × 1024,
+  sans texte ni statistique incrustés, avec cadrage central, extension latérale et coloration
+  discrète par faction. Les noms techniques de la base sont reliés aux fichiers dans
+  `portrait-assets.js` ; les visuels restent purement décoratifs et ne modifient pas le moteur.
+
 - [x] (26/09/2026) Finition visuelle de l'Assistant selon les maquettes Codex : hiérarchie
   de sélection, cartes 3:2, écran de résolution tactique, huit icônes d'étapes et 25 portraits
   optimisés en WebP (20 illustrations HD et cinq découpages de la maquette). Les commandes
