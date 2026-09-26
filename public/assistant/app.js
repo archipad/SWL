@@ -2225,6 +2225,18 @@ window.addEventListener('storage',event=>{if(event.key==='swl.list.p1.v1'||event
 /* Chaque changement d'écran repart du haut. Le second frame attend que le
    nouvel écran et sa transition soient réellement présents dans le DOM. */
 function resetViewportAfterNavigation(){requestAnimationFrame(()=>requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'auto'})))}
+let viewportScreenKey='';
+function currentViewportScreen(){
+  if(root.querySelector('.attack-workspace'))return `attack:${attackStep}`;
+  if(root.querySelector('.overview.attack'))return `attacker:${attacker?.id||''}`;
+  if(root.querySelector('.overview.defense'))return `defender:${defender?.id||''}`;
+  if(root.querySelector('.unit-picker-grid'))return `pick:${stage}`;
+  if(root.querySelector('.live-game-report'))return 'readiness';
+  if(root.querySelector('.round-phases'))return 'round-phases';
+  return document.body.classList.contains('certification-open')?'certification':'';
+}
+viewportScreenKey=currentViewportScreen();
+new MutationObserver(()=>{const next=currentViewportScreen();if(!next||next===viewportScreenKey)return;viewportScreenKey=next;resetViewportAfterNavigation()}).observe(root,{childList:true,subtree:true});
 document.addEventListener('click',event=>{
   const control=event.target.closest?.('.unit-tile,[data-army],#back,#next,#restart,#closeHistory,#closeRoundPhases');
   if(!control)return;

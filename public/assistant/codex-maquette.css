@@ -163,12 +163,55 @@ body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected .tile-head:
   letter-spacing: .08em;
 }
 
-/* Harmonise les sources d'images variées par une même densité et une légère
-   teinte froide, sans masquer ni recadrer davantage les portraits. */
+/* Traitement commun des portraits : densité, contraste et teinte froide
+   identiques sur la sélection, les récapitulatifs et la résolution. */
 .tile-visual img.art-portrait,
 .unit-card-zoom img.cx-portrait,
+.cx-ov-portrait img.cx-portrait,
 .cx-sel-thumb img {
-  filter: saturate(.88) contrast(1.07) brightness(.94);
+  filter: saturate(.74) contrast(1.13) brightness(.91) sepia(.04) hue-rotate(-3deg);
+  image-rendering: auto;
+}
+
+/* Les visuels catalog-* ont été livrés avec des bandes latérales floutées
+   directement dans l'image. Un cadrage central resserré les sort du cadre,
+   sans créer de copie floue ni modifier les autres portraits. */
+.tile-visual img.art-portrait[src*="/catalog-"],
+.cx-sel-thumb img[src*="/catalog-"] {
+  transform: scale(1.48);
+  transform-origin: 50% 38%;
+}
+.cx-ov-portrait img.cx-portrait[src*="/catalog-"] {
+  transform: scale(1.36);
+  transform-origin: 50% 38%;
+}
+body:has(.attack-workspace) .combat-side .unit-card-zoom img.cx-portrait[src*="/catalog-"] {
+  transform: scale(1.08);
+  transform-origin: 50% 38%;
+}
+
+/* Grain fin commun, sans flou ni vignettage sur les côtés. */
+.cx-ov-portrait::after,
+.cx-sel-thumb::after,
+body:has(.attack-workspace) .combat-side .unit-card-zoom.has-portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .22;
+  background:
+    linear-gradient(180deg, rgba(75, 175, 214, .05), rgba(2, 10, 16, .035)),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, .018) 0 1px, transparent 1px 4px);
+  mix-blend-mode: soft-light;
+}
+.cx-sel-thumb { position: relative; }
+body:has(.attack-workspace) .combat-side .unit-card-zoom > span { z-index: 2; }
+
+@media (max-width: 1050px) {
+  body:has(.attack-workspace) .combat-side .unit-card-zoom img.cx-portrait[src*="/catalog-"] {
+    transform: scale(1.36);
+  }
 }
 
 /* Barre d'action toujours disponible pendant le défilement. Un espace de fin
@@ -208,24 +251,54 @@ body:has(.attack-workspace) .resolve-center .attack-stepper > button {
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) !important;
     grid-template-rows: auto auto auto !important;
-    gap: 2px !important;
-    padding: 12px 12px 9px !important;
+    gap: 1px !important;
+    padding: 8px 10px 7px !important;
   }
   .app-header-sticky .topbar .topbar-brand { grid-column: 1; grid-row: 1; justify-self: start; }
   .app-header-sticky .topbar .topbar-sub { grid-column: 1; grid-row: 2; justify-self: start; padding-left: 48px !important; margin-top: -1px; }
   .app-header-sticky .topbar .topbar-actions {
-    grid-column: 1; grid-row: 3; display: flex !important; justify-content: center; gap: 6px; margin-top: 7px;
+    grid-column: 1; grid-row: 3; display: flex !important; flex-wrap: nowrap !important; justify-content: center; gap: 5px; margin-top: 4px;
+    max-width: 100%; overflow-x: auto; scrollbar-width: none; overscroll-behavior-inline: contain;
   }
-  .topbar-actions > a, .topbar-actions > button { flex: 1 1 150px; min-height: 36px; }
+  .app-header-sticky .topbar .topbar-actions::-webkit-scrollbar { display: none; }
+  .topbar-actions > a, .topbar-actions > button { flex: 1 0 auto; min-height: 32px; padding-block: 3px; }
+  body:has(.attack-workspace) .resolve-center .attack-stepper {
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(116px, 1fr));
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+    justify-content: start;
+  }
+  body:has(.attack-workspace) .resolve-center .attack-stepper::before,
+  body:has(.attack-workspace) .resolve-center .attack-stepper::after {
+    grid-column: 1 / -1;
+    position: sticky;
+    left: 0;
+    width: min(calc(100vw - 44px), 100%);
+    justify-self: start;
+  }
+  body:has(.attack-workspace) .resolve-center .attack-stepper > button {
+    grid-row: 3;
+    min-width: 112px;
+    min-height: 32px !important;
+    margin: 2px !important;
+    white-space: nowrap;
+  }
 }
 
 @media (max-width: 620px) {
-  .app-header-sticky .topbar { padding: 10px 8px 7px !important; }
-  .topbar-brand b { font-size: 1.35rem !important; }
-  .topbar .topbar-sub { padding-left: 42px !important; }
-  .topbar .topbar-sub strong { font-size: .76rem; letter-spacing: .2em; }
-  .app-header-sticky .topbar .topbar-actions { gap: 4px; margin-top: 6px; }
-  .topbar-actions > a, .topbar-actions > button { flex-basis: calc(50% - 2px); min-height: 34px; padding: 4px 6px; font-size: .72rem; }
+  .app-header-sticky .topbar { padding: 6px 7px 5px !important; }
+  .topbar-brand .brand-emblem { width: 30px !important; height: 30px !important; }
+  .topbar-brand b { font-size: 1.18rem !important; }
+  .topbar .topbar-sub { padding-left: 36px !important; }
+  .topbar .topbar-sub strong { font-size: .66rem; letter-spacing: .18em; }
+  .app-header-sticky .topbar .topbar-actions { justify-content: flex-start; gap: 4px; margin-top: 3px; }
+  .topbar-actions > a, .topbar-actions > button { flex: 0 0 auto; min-height: 30px; padding: 3px 9px; font-size: .68rem; }
+  body:has(.attack-workspace) .resolve-center .attack-stepper { grid-template-columns: repeat(6, 102px); }
+  body:has(.attack-workspace) .resolve-center .attack-stepper::before { font-size: 1.45rem; }
+  body:has(.attack-workspace) .resolve-center .attack-stepper::after { display: none; }
+  body:has(.attack-workspace) .resolve-center .attack-stepper > button { grid-row: 2; min-width: 98px; }
   body:has(.cx-select-bar), body:has(#app .actions) { padding-bottom: calc(98px + env(safe-area-inset-bottom)); }
   .cx-select-bar, #app .actions { width: calc(100% - 12px) !important; bottom: max(6px, env(safe-area-inset-bottom)) !important; }
   .cx-select-bar { padding: 8px !important; }
