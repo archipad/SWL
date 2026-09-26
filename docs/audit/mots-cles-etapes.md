@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 199 mots-clés du glossaire.
 
-- Combat (attaque / défense), gérés par le moteur : **86** (52 automatiques, 34 assistés).
+- Combat (attaque / défense), gérés par le moteur : **86** (58 automatiques, 28 assistés).
 - Hors combat, **application par bouton** : 78.
 - Hors combat, **règle de mouvement affichée dans le Briefing** : 12.
 - Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 9.
@@ -29,10 +29,10 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Accomplir la Mission | Attaque | moteur (automatique) | 0 |
 | Anti-matériel X | Attaque | moteur (automatique) | 0 |
 | Anti-personnel X | Attaque | moteur (automatique) | 0 |
-| Arme à Effet de Zone | Attaque | moteur (assisté) | 0 |
+| Arme à Effet de Zone | Attaque | moteur (automatique) | 0 |
 | Arme de Poing : Corps-à-Corps/à Distance | Attaque | moteur (assisté) | 1 |
 | Arsenal X | Attaque | moteur (assisté) | 12 |
-| Assaut X | Attaque | moteur (assisté) | 0 |
+| Assaut X | Attaque | moteur (automatique) | 1 |
 | Autodestruction X (arme) | Attaque | moteur (assisté) | 0 |
 | Autodestruction X (unité) | Attaque | moteur (assisté) | 0 |
 | Barrage | Attaque | moteur (assisté) | 0 |
@@ -43,25 +43,25 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Chasseur de Jedi | Attaque | moteur (automatique) | 1 |
 | Ciblage Avancé : Type d'Unité X | Attaque | moteur (assisté) | 1 |
 | Critique X | Attaque | moteur (automatique) | 21 |
-| Débordement | Attaque | moteur (automatique) | 0 |
+| Débordement | Attaque | moteur (automatique) | 3 |
 | Déflagration | Attaque | moteur (automatique) | 20 |
 | Dispersion | Attaque | moteur (automatique) | 2 |
 | Duelliste | Attaque | moteur (automatique) | 3 |
 | Encombrant | Attaque | moteur (automatique) | 5 |
-| Équipe Sniper | Attaque | moteur (assisté) | 0 |
+| Équipe Sniper | Attaque | moteur (assisté) | 2 |
 | Exemplaire | Attaque | moteur (assisté) | 3 |
 | Explosion X : Type de Charge | Attaque | moteur (assisté) | 0 |
-| Fixe : Avant/Arrière/Flancs | Attaque | moteur (assisté) | 24 |
+| Fixe : Avant/Arrière/Flancs | Attaque | moteur (automatique) | 25 |
 | Haute Vélocité | Attaque | moteur (automatique) | 8 |
 | Immobiliser X | Attaque | moteur (automatique) | 3 |
 | Immunité : Déflexion | Attaque | moteur (automatique) | 0 |
-| Impact X | Attaque | moteur (automatique) | 52 |
+| Impact X | Attaque | moteur (automatique) | 53 |
 | Implacable | Attaque | moteur (assisté) | 5 |
 | Ion X | Attaque | moteur (automatique) | 4 |
 | La Mort Venue du Ciel | Attaque | moteur (automatique) | 0 |
 | Les Mandaloriens sont Plus Forts Ensemble | Attaque | moteur (assisté) | 0 |
 | Létal X | Attaque | moteur (automatique) | 7 |
-| Longue Distance | Attaque | moteur (automatique) | 12 |
+| Longue Distance | Attaque | moteur (automatique) | 11 |
 | Maîtrise de l'Ataru | Attaque | moteur (automatique) | 0 |
 | Maîtrise du Jar'Kai | Attaque | moteur (automatique) | 1 |
 | Maîtrise du Makashi | Attaque | moteur (automatique) | 0 |
@@ -69,19 +69,19 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Matamore | Attaque | moteur (automatique) | 0 |
 | Non-combattant | Attaque | moteur (assisté) | 5 |
 | Nous nous Battons pour notre Famille | Attaque | moteur (assisté) | 0 |
-| Perforant X | Attaque | moteur (automatique) | 30 |
+| Perforant X | Attaque | moteur (automatique) | 28 |
 | Pistolero | Attaque | moteur (assisté) | 2 |
 | Poison X | Attaque | moteur (automatique) | 0 |
 | Polyvalent | Attaque | moteur (assisté) | 3 |
-| Précis X | Attaque | moteur (automatique) | 9 |
+| Précis X | Attaque | moteur (automatique) | 8 |
 | Primitif | Attaque | moteur (automatique) | 0 |
 | Rayons X | Attaque | moteur (assisté) | 0 |
 | Souffle | Attaque | moteur (automatique) | 7 |
 | Suppressif | Attaque | moteur (automatique) | 23 |
-| Surveillance X | Attaque | moteur (assisté) | 3 |
+| Surveillance X | Attaque | moteur (automatique) | 3 |
 | Tenir Bon | Attaque | moteur (automatique) | 1 |
 | Tir de Soutien | Attaque | moteur (assisté) | 2 |
-| Tireur d'Élite X | Attaque | moteur (automatique) | 23 |
+| Tireur d'Élite X | Attaque | moteur (automatique) | 21 |
 | Tireur Embusqué | Attaque | moteur (automatique) | 5 |
 | Transport X : Ouvert/Fermé | Attaque | moteur (assisté) | 0 |
 | Aléas X | Composition d'armée | composition | 0 |
@@ -105,7 +105,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Coup de Chance X | Défense | moteur (automatique) | 3 |
 | Couvert X | Défense | moteur (assisté) | 6 |
 | Déflexion | Défense | moteur (automatique) | 5 |
-| Discret | Défense | moteur (assisté) | 1 |
+| Discret | Défense | moteur (automatique) | 1 |
 | Fumée X | Défense | moteur (assisté) | 1 |
 | Gardien X | Défense | moteur (assisté) | 1 |
 | Immunité : Armes Portée 1 | Défense | moteur (automatique) | 2 |
@@ -113,7 +113,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Immunité : Déflagration | Défense | moteur (automatique) | 2 |
 | Immunité : Perforant | Défense | moteur (automatique) | 8 |
 | Immunité : Perforant au Corps-à-Corps | Défense | moteur (automatique) | 2 |
-| Incognito | Défense | moteur (assisté) | 1 |
+| Incognito | Défense | moteur (automatique) | 3 |
 | Indifférent | Défense | moteur (automatique) | 1 |
 | Influence Divine | Défense | moteur (assisté) | 0 |
 | Insensible | Défense | moteur (automatique) | 11 |
@@ -146,7 +146,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Tacticien X | Déplacement | auto | 8 |
 | Véhicule Grimpant | Déplacement | regle | 2 |
 | Alourdi | Effets permanents | regle | 0 |
-| Chef | Effets permanents | rappel | 10 |
+| Chef | Effets permanents | rappel | 12 |
 | Enragé X | Effets permanents | auto | 3 |
 | Immunité : Effets Ennemis | Effets permanents | rappel | 0 |
 | Je Sens le Profit | Effets permanents | rappel | 0 |
@@ -161,11 +161,11 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Alter Ego : Nom d'Unité | Mise en place | auto | 4 |
 | Blessure X | Mise en place | auto | 1 |
 | Cache | Mise en place | auto | 5 |
-| Éclaireur X | Mise en place | auto | 8 |
+| Éclaireur X | Mise en place | auto | 6 |
 | Équipe d'Éclaireurs X | Mise en place | auto | 0 |
 | Infiltration | Mise en place | auto | 8 |
 | Opérations Secrètes | Mise en place | auto | 0 |
-| Position Préparée | Mise en place | auto | 6 |
+| Position Préparée | Mise en place | auto | 8 |
 | Prime | Mise en place | auto | 6 |
 | Transport | Mise en place | auto | 3 |
 | Transport Léger X : Ouvert/Fermé | Mise en place | auto | 0 |
@@ -197,14 +197,14 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Permanent | Phase Finale | rappel | 0 |
 | Renforts | Phase Finale | auto | 1 |
 | Contrainte : Rang/Type d'Unité | Rallier · récupérer | auto | 4 |
-| Démoraliser X | Rallier · récupérer | auto | 4 |
+| Démoraliser X | Rallier · récupérer | auto | 3 |
 | Indomptable | Rallier · récupérer | auto | 10 |
 | Instinct de Survie | Rallier · récupérer | rappel | 2 |
-| Intrépide | Rallier · récupérer | auto | 4 |
+| Intrépide | Rallier · récupérer | auto | 5 |
 | Pilotage de Véhicule X | Rallier · récupérer | auto | 0 |
 | Pions Graffiti | Rallier · récupérer | rappel | 0 |
 | Recharger X | Rallier · récupérer | auto | 3 |
-| Reconfiguration | Rallier · récupérer | auto | 2 |
+| Reconfiguration | Rallier · récupérer | auto | 4 |
 | Aide : Affiliation/Type d'Unité | Réactions | auto | 1 |
 | Impitoyable | Réactions | auto | 1 |
 | Sentinelle | Réactions | auto | 6 |

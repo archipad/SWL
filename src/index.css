@@ -1695,6 +1695,8 @@ a.cx-menu-item { text-decoration: none; box-sizing: border-box; }
 a.cx-menu-item-external .cx-icon { color: var(--t-accent-hi); }
 a.cx-menu-item-external:hover, a.cx-menu-item-external:focus-visible { background: rgba(var(--t-accent-rgb), 0.12); }
 a.cx-menu-item-external.igniting { background: rgba(var(--t-accent-rgb), 0.22); color: var(--t-strong); }
+.cx-menu-subaction { padding-block: 9px; padding-left: 28px; font-size: 0.72rem; color: var(--t-dim); }
+.cx-menu-subaction .cx-icon { width: 1.05rem; height: 1.05rem; }
 .cx-menu-item:hover:not(:disabled) { background: rgba(var(--t-accent-rgb), 0.12); }
 .cx-menu-item:disabled { opacity: 0.35; cursor: not-allowed; }
 .cx-menu-item.active {

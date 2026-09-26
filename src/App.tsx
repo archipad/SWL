@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState, type MouseEvent as ReactMouseEvent } from 'react';
+import { Fragment, lazy, Suspense, useCallback, useEffect, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { SetupScreen } from './components/SetupScreen';
 import { importArmyList } from './lib/importList';
 import { usePersistentState } from './lib/storage';
@@ -25,6 +25,8 @@ type PlayerId = 'p1' | 'p2';
 
 const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
 const ASSISTANT_URL = 'https://archipad.github.io/SWL/assistant/';
+const ASSISTANT_READINESS_URL = `${ASSISTANT_URL}?open=readiness`;
+const ASSISTANT_CERTIFICATION_URL = `${ASSISTANT_URL}?open=certification`;
 /* Durée de l'animation .nav-ignite (voir index.css) : le clic sur Assistant
    d'unité doit la laisser jouer avant de quitter la SPA, sinon la
    navigation coupe l'animation avant qu'elle soit visible. */
@@ -325,11 +327,19 @@ export default function App() {
               {(currentSection?.pages ?? []).map((target) => {
                 const locked = !bothReady && NEEDS_LISTS.includes(target);
                 return (
-                  <li key={target}>
+                  <Fragment key={target}>
+                  <li>
                     <button type="button" className={`cx-menu-item${page === target ? ' active' : ''}`} disabled={locked} onClick={() => goToPage(target)}>
                       <CxIcon name={PAGE_META[target].icon} /><span>{PAGE_META[target].label}</span>
                     </button>
                   </li>
+                  {currentSection?.id === 'armees' && target === 'setup' && (
+                    <>
+                      <li><a className="cx-menu-item cx-menu-item-external cx-menu-subaction" href={ASSISTANT_READINESS_URL}><CxIcon name="info" /><span>Tester mes listes</span></a></li>
+                      <li><a className="cx-menu-item cx-menu-item-external cx-menu-subaction" href={ASSISTANT_CERTIFICATION_URL}><CxIcon name="rules" /><span>Cartes certifiées</span></a></li>
+                    </>
+                  )}
+                  </Fragment>
                 );
               })}
               {currentSection?.id === 'partie' && (

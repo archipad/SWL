@@ -439,7 +439,9 @@ for (const card of ['reluctant hero', 'fire control', 'combat armor rebel', 'rep
   assert.ok(reference.names[card], `${card}: nom français absent du référentiel Assistant`)
 }
 assert.match(app, /swl\.assistant\.player-side\.v1/, 'Le camp choisi doit être mémorisé localement sur chaque tablette')
-assert.match(app, /CAMP UTILISÉ SUR CETTE TABLETTE/, 'Le sélecteur doit expliquer que le camp est propre à la tablette')
+assert.doesNotMatch(app, /CAMP UTILISÉ SUR CETTE TABLETTE/, 'Le texte explicatif du camp a été retiré pour alléger la sélection')
+assert.doesNotMatch(app, /Le choix reste mémorisé uniquement sur cet appareil/, 'La note de mémorisation ne doit plus occuper l’écran de sélection')
+assert.match(app, /class="army-switch" role="tablist"/, 'Le choix de camp doit rester utilisable après le retrait du texte introductif')
 assert.match(app, /setInterval\(\(\)=>\{if\(document\.visibilityState!==['"]visible['"]\|\|secondaryScreenOpen\(\)\)return;syncUnitStates\(['"]pull['"]\)/, 'L’Assistant doit relever régulièrement l’état de l’autre tablette hors écran secondaire')
 for (const effect of ['force-reflexes', 'burst-of-speed', 'offensive-push', 'linked-targeting-array', 'emergency-transponder', 'in-the-fray', 'force-choke']) {
   assert.ok(app.includes(effect), `${effect}: automatisme d’activation absent`)
