@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { SetupScreen } from './components/SetupScreen';
 import { importArmyList } from './lib/importList';
 import { usePersistentState } from './lib/storage';
@@ -30,11 +30,12 @@ const ASSISTANT_URL = 'https://archipad.github.io/SWL/assistant/';
    navigation coupe l'animation avant qu'elle soit visible. */
 const NAV_IGNITE_MS = 460;
 
-/* Navigation « Codex Legion » : cinq onglets en haut (sections), et une barre
-   latérale qui liste les pages de la section active. Les onglets de la
-   maquette d'origine (Armées / Unités / Attaque / Outils) sont adaptés aux
-   vraies pages de l'appli : Suivi de partie, Cartes de Commandement et
-   Assistant d'unité, les plus utilisés, ont chacun leur onglet. */
+/* Navigation « Codex Legion » : trois onglets en haut (sections), et une barre
+   latérale qui liste les pages de la section active.
+   - Gestion Armée : listes, armées, impression des cartes ;
+   - Partie : suivi de partie, cartes de Commandement, pense-bête, et le
+     raccourci vers l'Assistant d'unité (page autonome, lien externe) ;
+   - Glossaire : bibliothèque des mots-clés. */
 const PAGE_META: Record<Page, { label: string; icon: CxIconName }> = {
   setup: { label: 'Listes', icon: 'army' },
   army: { label: 'Armées', icon: 'units' },
@@ -45,10 +46,9 @@ const PAGE_META: Record<Page, { label: string; icon: CxIconName }> = {
   'print-cards': { label: 'Imprimer des cartes', icon: 'dice' },
 };
 const SECTIONS: { id: string; label: string; icon: CxIconName; pages: Page[] }[] = [
-  { id: 'armees', label: 'Armées', icon: 'army', pages: ['setup', 'army'] },
-  { id: 'suivi', label: 'Suivi de partie', icon: 'mission', pages: ['game'] },
-  { id: 'commandement', label: 'Commandement', icon: 'strategy', pages: ['commands'] },
-  { id: 'outils', label: 'Outils', icon: 'tools', pages: ['library', 'cheatsheet', 'print-cards'] },
+  { id: 'armees', label: 'Gestion Armée', icon: 'army', pages: ['setup', 'army', 'print-cards'] },
+  { id: 'partie', label: 'Partie', icon: 'mission', pages: ['game', 'commands', 'cheatsheet'] },
+  { id: 'glossaire', label: 'Glossaire', icon: 'search', pages: ['library'] },
 ];
 const NEEDS_LISTS: Page[] = ['army', 'game', 'commands'];
 
@@ -246,7 +246,27 @@ export default function App() {
   // .library-screen / .print-cards-screen juste en dessous.
 
   const currentSection = SECTIONS.find((section) => section.pages.includes(page));
-  const sectionLanding = (section: (typeof SECTIONS)[number]): Page => (section.id === 'armees' && bothReady ? 'army' : section.pages[0]);
+  const sectionLanding = (section: (typeof SECTIONS)[number]): Page => (
+    section.id === 'armees' && bothReady
+      ? 'army'
+      : section.pages.find((target) => bothReady || !NEEDS_LISTS.includes(target)) ?? section.pages[0]
+  );
+  // Assistant d'unité : page autonome distincte (public/assistant/), pas un onglet de cette
+  // SPA. Navigue dans le même onglet (demande explicite de l'utilisateur). Le clic déclenche
+  // d'abord l'effet d'ignition (classe .igniting, voir index.css) avant de naviguer, sinon la
+  // navigation coupe l'animation avant qu'elle soit visible ; la page d'arrivée rejoue ensuite
+  // son propre « star wipe » (public/assistant/header-sync.css).
+  const openAssistant = (event: ReactMouseEvent) => {
+    event.preventDefault();
+    // Pas d'attente artificielle si l'utilisateur a demandé de réduire les animations :
+    // l'effet ne joue pas (voir la garde prefers-reduced-motion dans index.css).
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.location.href = ASSISTANT_URL;
+      return;
+    }
+    setAssistantIgniting(true);
+    setTimeout(() => { window.location.href = ASSISTANT_URL; }, NAV_IGNITE_MS);
+  };
 
   return (
     <div className="app app-game-tracker">
@@ -262,7 +282,7 @@ export default function App() {
           <span className="aurebesh" aria-hidden="true">Legion Companion</span>
         </div>
         <nav className="cx-tabs" aria-label="Sections">
-          {SECTIONS.slice(0, 3).map((section) => {
+          {SECTIONS.map((section) => {
             const isActive = section.pages.includes(page);
             const locked = !bothReady && section.pages.every((target) => NEEDS_LISTS.includes(target));
             return (
@@ -273,39 +293,6 @@ export default function App() {
                 disabled={locked}
                 onClick={() => goToPage(isActive ? page : sectionLanding(section))}
               >
-                <CxIcon name={section.icon} /><span>{section.label}</span>
-              </button>
-            );
-          })}
-          {/* Page autonome distincte (public/assistant/), pas un onglet de cette
-              SPA : lien externe plutôt qu'une entrée de Page/setPage. Navigue
-              dans le même onglet (demande explicite de l'utilisateur). Le clic
-              déclenche d'abord l'effet d'ignition (classe .igniting, voir
-              index.css) avant de naviguer, sinon la navigation coupe
-              l'animation avant qu'elle soit visible ; la page d'arrivée rejoue
-              ensuite son propre « star wipe » (public/assistant/header-sync.css). */}
-          <a
-            className={`cx-tab cx-tab-external${assistantIgniting ? ' igniting' : ''}`}
-            href={ASSISTANT_URL}
-            onClick={(e) => {
-              e.preventDefault();
-              // Pas d'attente artificielle si l'utilisateur a demandé de
-              // réduire les animations : l'effet ne joue pas (voir la garde
-              // prefers-reduced-motion dans index.css).
-              if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                window.location.href = ASSISTANT_URL;
-                return;
-              }
-              setAssistantIgniting(true);
-              setTimeout(() => { window.location.href = ASSISTANT_URL; }, NAV_IGNITE_MS);
-            }}
-          >
-            <CxIcon name="attack" /><span>Assistant d'unité</span>
-          </a>
-          {SECTIONS.slice(3).map((section) => {
-            const isActive = section.pages.includes(page);
-            return (
-              <button key={section.id} type="button" className={`cx-tab${isActive ? ' active' : ''}`} onClick={() => goToPage(isActive ? page : sectionLanding(section))}>
                 <CxIcon name={section.icon} /><span>{section.label}</span>
               </button>
             );
@@ -345,6 +332,17 @@ export default function App() {
                   </li>
                 );
               })}
+              {currentSection?.id === 'partie' && (
+                <li>
+                  <a
+                    className={`cx-menu-item cx-menu-item-external${assistantIgniting ? ' igniting' : ''}`}
+                    href={ASSISTANT_URL}
+                    onClick={openAssistant}
+                  >
+                    <CxIcon name="attack" /><span>Assistant d'unité</span>
+                  </a>
+                </li>
+              )}
             </ul>
             <div className="cx-art" aria-hidden="true" />
           </div>
@@ -353,7 +351,20 @@ export default function App() {
           page pour rejouer l'animation de transition (« wipe » façon
           Star Wars, voir .page-transition dans index.css) — sans quoi une
           animation CSS ne se rejoue pas au simple changement des enfants. */}
-        <main key={page} className="page-transition"><Suspense fallback={<p className="screen-loading" role="status">Chargement de la console…</p>}>{content}</Suspense></main>
+        <main key={page} className="page-transition">
+          {currentSection?.id === 'partie' && (
+            <a
+              className={`cx-assistant-shortcut no-print${assistantIgniting ? ' igniting' : ''}`}
+              href={ASSISTANT_URL}
+              onClick={openAssistant}
+            >
+              <CxIcon name="attack" />
+              <span><strong>Assistant d'unité</strong><small>Résoudre une attaque pas à pas</small></span>
+              <CxIcon name="next" />
+            </a>
+          )}
+          <Suspense fallback={<p className="screen-loading" role="status">Chargement de la console…</p>}>{content}</Suspense>
+        </main>
       </div>
 
       <footer className="app-footer no-print">

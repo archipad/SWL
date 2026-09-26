@@ -1657,10 +1657,10 @@ select option { background: var(--t-panel-2); color: var(--text); }
 .cx-tab.active, .cx-tab.igniting { color: var(--t-nav-active-ink); }
 .cx-tab.active .cx-icon, .cx-tab.igniting .cx-icon { color: var(--t-nav-icon-active); filter: drop-shadow(0 0 6px rgba(var(--t-accent-rgb), 0.7)); }
 .cx-tab:disabled { opacity: 0.35; cursor: not-allowed; }
-/* Les trois onglets d'usage courant (Suivi de partie, Commandement, Assistant) : icône à l'accent du thème. */
-.cx-tab:nth-child(n + 2):nth-child(-n + 4) .cx-icon { color: var(--t-accent-hi); }
-.cx-tab:nth-child(n + 2):nth-child(-n + 4).active .cx-icon, .cx-tab:nth-child(n + 2):nth-child(-n + 4).igniting .cx-icon { color: var(--t-nav-icon-active); }
-:root[data-swl-theme="rebel"] .cx-tab:nth-child(n + 2):nth-child(-n + 4) .cx-icon { color: #ffb15c; }
+/* L'onglet d'usage courant (Partie : suivi, commandement, pense-bête, Assistant) : icône à l'accent du thème. */
+.cx-tab:nth-child(2) .cx-icon { color: var(--t-accent-hi); }
+.cx-tab:nth-child(2).active .cx-icon, .cx-tab:nth-child(2).igniting .cx-icon { color: var(--t-nav-icon-active); }
+:root[data-swl-theme="rebel"] .cx-tab:nth-child(2) .cx-icon { color: #ffb15c; }
 
 .cx-topbar-right { display: grid; justify-items: end; gap: 3px; }
 .cx-topbar-right .aurebesh { font-size: 0.7rem; }
@@ -1690,6 +1690,11 @@ select option { background: var(--t-panel-2); color: var(--text); }
   color: var(--t-text); font: 700 0.8rem 'Rajdhani', sans-serif; letter-spacing: 0.08em; text-transform: uppercase;
 }
 .cx-menu-item .cx-icon { width: 1.35rem; height: 1.35rem; color: var(--t-dim); }
+/* Lien externe (Assistant d'unité) dans la barre latérale de la section Partie : même gabarit que les boutons. */
+a.cx-menu-item { text-decoration: none; box-sizing: border-box; }
+a.cx-menu-item-external .cx-icon { color: var(--t-accent-hi); }
+a.cx-menu-item-external:hover, a.cx-menu-item-external:focus-visible { background: rgba(var(--t-accent-rgb), 0.12); }
+a.cx-menu-item-external.igniting { background: rgba(var(--t-accent-rgb), 0.22); color: var(--t-strong); }
 .cx-menu-item:hover:not(:disabled) { background: rgba(var(--t-accent-rgb), 0.12); }
 .cx-menu-item:disabled { opacity: 0.35; cursor: not-allowed; }
 .cx-menu-item.active {
@@ -1799,3 +1804,18 @@ select option { background: var(--t-panel-2); color: var(--text); }
 @media (max-width: 560px) {
   .cx-unit-row { grid-template-columns: 96px minmax(0, 1fr) auto 14px; gap: 10px; }
 }
+
+/* Raccourci vers l'Assistant d'unité en tête de la section Partie. */
+.cx-assistant-shortcut {
+  display: flex; align-items: center; gap: 14px; margin: 0 0 14px; padding: 12px 18px; text-decoration: none;
+  color: var(--t-strong); background: linear-gradient(90deg, rgba(var(--t-accent-rgb), 0.2), rgba(var(--t-accent-rgb), 0.05));
+  border: 1px solid rgba(var(--t-accent-rgb), 0.55); border-radius: var(--t-radius, 6px); box-shadow: 0 0 18px rgba(var(--t-accent-rgb), 0.16);
+}
+.cx-assistant-shortcut > .cx-icon:first-child { width: 2rem; height: 2rem; color: var(--t-accent-hi); flex: 0 0 auto; }
+.cx-assistant-shortcut > .cx-icon:last-child { width: 1.4rem; height: 1.4rem; margin-left: auto; color: var(--t-accent-hi); flex: 0 0 auto; }
+.cx-assistant-shortcut span:not(.cx-icon) { display: grid; gap: 1px; min-width: 0; }
+.cx-assistant-shortcut strong { font: 800 1.1rem 'Rajdhani', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+.cx-assistant-shortcut small { color: var(--t-dim); font: 500 0.85rem 'Rajdhani', sans-serif; }
+.cx-assistant-shortcut:hover, .cx-assistant-shortcut:focus-visible { border-color: var(--t-accent-hi); box-shadow: 0 0 24px rgba(var(--t-accent-rgb), 0.32); }
+.cx-assistant-shortcut.igniting { background: rgba(var(--t-accent-rgb), 0.32); }
+@media print { .cx-assistant-shortcut { display: none; } }
