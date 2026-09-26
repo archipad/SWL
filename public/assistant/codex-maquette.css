@@ -1,0 +1,109 @@
+/* Alignement sur les maquettes : décor uniquement. Les contrôles et leurs
+   garde-fous restent ceux de l'application, y compris les boutons secondaires. */
+:root { --hud-text: #e6f1f8; --hud-muted: #a8c3d4; --hud-line: #527b91; }
+body[data-faction-theme] { --acid: #47d4ff; --text: var(--hud-text); --muted: var(--hud-muted); }
+.app-header-sticky { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.topbar-brand b { font-weight: 700; letter-spacing: .025em; }
+.topbar-actions .tracker-shortcut, .topbar #quickMode { color: var(--hud-text); }
+.topbar #quickMode[aria-pressed="true"] { color: #65dcff; }
+.topbar .topbar-sub strong { font-weight: 500; letter-spacing: .25em; }
+@media (min-width: 1051px) {
+  .app-header-sticky .topbar { grid-template-columns: minmax(280px, 1fr) repeat(4, auto) !important; gap: 6px 8px; padding: 8px 20px !important; }
+  .app-header-sticky .topbar .topbar-actions { display: contents !important; }
+  .topbar-brand { grid-column: 1; grid-row: 1; border: 0; }
+  .topbar .topbar-sub { grid-column: 1; grid-row: 2; text-align: left; padding-left: 50px; }
+  .topbar #quickMode { grid-column: 2; grid-row: 1; }
+  .topbar #history { grid-column: 3; grid-row: 1; }
+  .topbar .tracker-shortcut { grid-column: 4; grid-row: 1; }
+  .topbar #restart { grid-column: 5; grid-row: 1; }
+  .topbar #roundPhases { grid-column: 2; grid-row: 2; }
+  .topbar #gameReadiness { grid-column: 3; grid-row: 2; }
+  .topbar #certification { grid-column: 4 / 6; grid-row: 2; }
+  .topbar-actions > a, .topbar-actions > button { justify-content: center; }
+  .topbar #roundPhases, .topbar #gameReadiness, .topbar #certification { font-size: .8rem; min-height: 36px; padding-block: 4px; }
+  .topbar-brand b { font-size: clamp(1.4rem, 2vw, 2rem); }
+}
+#progress.cx-steps i { color: #bfd2df; --fill: linear-gradient(120deg, #07131c, #030b12); }
+#progress.cx-steps i.active { color: #8ce9ff; --fill: radial-gradient(ellipse at 50% 100%, #0e5980, #032539); --bd: #21d8ff; }
+#progress.cx-steps i.active::before { box-shadow: inset 0 0 22px #00bfff55; }
+#progress.cx-steps i > .cx-icon { width: 30px; height: 30px; mask-size: 94%; -webkit-mask-size: 94%; }
+#progress.cx-steps i > em { font-size: 1.05rem; font-weight: 600; letter-spacing: .03em; }
+#progress.cx-steps i > b { color: #a6c2d5; font-size: 2rem; font-weight: 700; text-shadow: none; }
+#progress.cx-steps i.active > b { color: #67dcff; }
+#progress.cx-steps i:nth-child(1) { --hud-icon: url(../codex/icons/hud-units.svg); }
+#progress.cx-steps i:nth-child(2) { --hud-icon: url(../codex/icons/hud-aim.svg); }
+#progress.cx-steps i:nth-child(3) { --hud-icon: url(../codex/icons/hud-attack.svg); }
+#progress.cx-steps i:nth-child(4) { --hud-icon: url(../codex/icons/hud-dice.svg); }
+#progress.cx-steps i:nth-child(5) { --hud-icon: url(../codex/icons/hud-cover.svg); }
+#progress.cx-steps i:nth-child(6) { --hud-icon: url(../codex/icons/hud-modifiers.svg); }
+#progress.cx-steps i:nth-child(7) { --hud-icon: url(../codex/icons/hud-defense.svg); }
+#progress.cx-steps i:nth-child(8) { --hud-icon: url(../codex/icons/hud-suppression.svg); }
+#progress.cx-steps i > .cx-icon { mask-image: var(--hud-icon); -webkit-mask-image: var(--hud-icon); }
+/* Hiérarchie de sélection et proportion des vignettes, identique d'une unité à l'autre. */
+body:has(.unit-picker-grid) .intro > h1 { font-size: clamp(1.75rem, 2.8vw, 2.7rem); font-weight: 700; margin-top: 12px; }
+body:has(.unit-picker-grid) .intro > p:not(.notice) { font-weight: 500; color: #b9d3e4; font-size: 1.18rem; }
+body:has(.unit-picker-grid) .intro .player-side-choice { background: transparent; border: 0; margin: 5px auto; padding: 0; line-height: 1.4; }
+body:has(.unit-picker-grid) .intro .notice { padding: 6px 12px; margin: 8px auto 12px; font-size: .9rem; border-radius: 2px; background: #071724ba; max-width: 850px; }
+body:has(.unit-picker-grid) .army-switch { margin-block: 8px 10px; }
+body:has(.unit-picker-grid) .army-switch button { min-height: 70px; }
+body:has(.unit-picker-grid) .army-switch .faction-emblem { width: 36px; height: 36px; }
+body:has(.unit-picker-grid) .army-switch button strong .army-faction-title { display: block; font: 700 1.4rem/1.15 Rajdhani, sans-serif; letter-spacing: .03em; }
+body:has(.unit-picker-grid) .army-switch button strong .army-list-name { display: block; margin-top: 3px; font: 500 .8rem/1.2 Rajdhani, sans-serif; color: #a9c2d3; letter-spacing: .02em; text-transform: none; }
+body:has(.unit-picker-grid) .unit-picker-grid { gap: 12px; }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile { flex-basis: calc((100% - 36px) / 4); --bd: #6e95ab; --fill: linear-gradient(150deg, #091923e8, #030a10f2); background: var(--bd) !important; }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile .tile-head { padding: 6px 12px; min-height: 30px; font-size: .73rem; font-weight: 500; }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual { margin: 0 7px; }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual img.art-portrait { object-position: 50% 35%; }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-body strong { font-size: 1.14rem; font-weight: 700; letter-spacing: .015em; line-height: 1.12; }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-body { padding: 8px 12px 10px; }
+.unit-picker-grid .tile-count { font-size: .9rem; font-weight: 500; }
+.unit-picker-grid .tile-mini { width: 11px; height: 20px; }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected { --bd: #24d8ff; --fill: linear-gradient(160deg, #0b3045, #03131e); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected::before { box-shadow: inset 0 0 20px #00bfff35; }
+.cx-select-bar { margin-top: 12px; padding: 12px 18px; }
+.cx-sel-id strong { font-size: 1.5rem; font-weight: 700; }
+.cx-sel-thumb { width: 150px; height: 90px; }
+.cx-sel-actions .primary:not(:disabled) { --bd: #2bd7ff; --fill: radial-gradient(ellipse at top, #09638c, #042238); }
+/* Les trois colonnes et les réserves reprennent le métal sombre et les filets fins. */
+body:has(.attack-workspace) .attack-workspace { gap: 14px; }
+body:has(.attack-workspace) .resolve-center { border: 1px solid #3b809b; padding: 14px; background: linear-gradient(135deg, #03151eeb, #020c14f5); box-shadow: inset 0 0 40px #00527713; }
+body:has(.attack-workspace) .combat-side { background: linear-gradient(150deg, #081721eb, #02080ff2); }
+body:has(.attack-workspace) :is(.combat-side, .side-detail, .cx-side-id, .cx-side-id > div) { min-width: 0; }
+body:has(.attack-workspace) .cx-side-id :is(strong, small) { white-space: normal; overflow-wrap: anywhere; }
+body:has(.attack-workspace) .combat-side .unit-card-zoom { height: auto; aspect-ratio: 4 / 5; max-height: 295px; }
+body:has(.attack-workspace) .combat-side .unit-card-zoom img.cx-portrait { object-position: 50% 35%; }
+.cx-side-role { letter-spacing: .24em; padding: 9px 14px; font-size: .83rem; }
+.cx-side-id { padding: 11px; gap: 10px; }
+.cx-side-id strong { font-size: 1.16rem; font-weight: 700; line-height: 1.15; }
+.cx-side-id small { font-size: .73rem; letter-spacing: .18em; }
+.cx-side-emblem { width: 42px; height: 42px; }
+body:has(.attack-workspace) .resolve-center .attack-stepper::before { font-size: clamp(1.7rem, 2.5vw, 2.6rem); text-shadow: none; font-weight: 700; }
+body:has(.attack-workspace) .resolve-center .attack-stepper::after { font-size: 1.12rem; margin-bottom: 8px; }
+body:has(.attack-workspace) .resolve-center .attack-stepper > button { border: 1px solid #284351; border-radius: 2px; background: #05111a; color: #a9c4d6; }
+body:has(.attack-workspace) .resolve-center .attack-stepper > button.active { color: #79e2ff; border-color: #2bb3d7; background: #093145; }
+body:has(.attack-workspace) .resolve-center > .holo-table { height: 120px; background: linear-gradient(180deg, #00101c22, #00121ddd), url(../codex/hangar.jpg) center 72% / cover; }
+body:has(.attack-workspace) .resolve-center > .holo-table .holo-unit { height: 92px; opacity: 1; filter: drop-shadow(0 0 5px #29c9ff66); }
+body:has(.attack-workspace) .resolve-center .weapon-picker { padding: 8px 0; background: transparent !important; border: 0 !important; gap: 8px; }
+body:has(.attack-workspace) .resolve-center .weapon-choice { background: #041723c9; border: 1px solid #325c71; border-radius: 3px; padding: 9px 10px; }
+body:has(.attack-workspace) .resolve-center .weapon-choice.on { border-color: #27d4ff; background: linear-gradient(100deg, #06416390, #061824); }
+body:has(.attack-workspace) .resolve-center .weapon-copy strong { font-size: 1.15rem; font-weight: 700; }
+body:has(.attack-workspace) .resolve-center .weapon-copy .models-note { font-size: .85rem; }
+body:has(.attack-workspace) .resolve-center .count-control .autofill-note { font-size: .65rem; }
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field { border-radius: 3px; background: linear-gradient(160deg, #0a283bb8, #05111d); }
+body:has(.attack-workspace) .resolve-center :is(.dice-pool,.defense-dice-pool,.rules-panel) { border-radius: 3px; }
+body:has(.attack-workspace) .actions #nextAttack:not(.locked) { --fill: radial-gradient(ellipse at top, #096b96, #03263c); --bd: #41dfff; }
+body:has(.attack-workspace) .actions button { font-size: 1.15rem; }
+/* Pas de rognage des avertissements ni des noms pour faire entrer une maquette. */
+@media (max-width: 1050px) {
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile { flex-basis: calc((100% - 24px) / 3); }
+  body:has(.attack-workspace) .combat-side .unit-card-zoom { aspect-ratio: 3 / 2; max-height: 165px; }
+  #progress.cx-steps i > em { font-size: .95rem; }
+}
+@media (max-width: 620px) {
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile { flex-basis: calc((100% - 12px) / 2); }
+  #progress.cx-steps i > em { font-size: .72rem; }
+  #progress.cx-steps i > .cx-icon { width: 24px; height: 24px; }
+  #progress.cx-steps i > b { font-size: 1.3rem; }
+  .cx-side-id { flex-wrap: wrap; }
+  body:has(.attack-workspace) .combat-side .unit-card-zoom { max-height: 110px; }
+}

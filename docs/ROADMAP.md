@@ -2,6 +2,17 @@
 
 ## Dernier lot prêt à valider
 
+- [x] (26/09/2026) Finition visuelle de l'Assistant selon les maquettes Codex : hiérarchie
+  de sélection, cartes 3:2, écran de résolution tactique, huit icônes d'étapes et 25 portraits
+  optimisés en WebP (20 illustrations HD et cinq découpages de la maquette). Les commandes
+  existantes restent visibles et utilisables, y compris Phases du round, Mode rapide,
+  navigation clavier, noms longs et états sur tablette/mobile. Fichiers :
+  `codex-accessible.css`, `codex-maquette.css`, `portrait-assets.js`, `index.html`,
+  correspondance décorative dans `app.js` et assets sous `public/codex/`.
+  Validation : `npm run verify`, contrats Assistant, construction PWA, attaque manuelle,
+  contrôle visuel à 1280 px et 390 px, absence de débordement horizontal et d'erreur console.
+  Aucun calcul, profil de combat ou format de stockage modifié.
+
 - [x] (19/09/2026, incident) Précis 1 des Stormtroopers ignoré par le moteur :
   cause = correctif manuel faux (reference-corrections.js) + copie locale des
   étiquettes qui masquait le référentiel livré + certification `keywords: []`

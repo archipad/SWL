@@ -1,0 +1,140 @@
+/* Finition de la maquette sans modifier le DOM, les états ou le moteur.
+   Les hauteurs suivent le contenu : les longues listes et alertes défilent.
+   Ce feuillet rétablit aussi les libellés masqués par les finitions précédentes. */
+.app-header-sticky .topbar {
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  gap: 8px 20px; padding: 10px 20px !important; min-height: 0;
+}
+.topbar-brand b { font-size: clamp(1.3rem, 2.2vw, 2rem); }
+.topbar-brand .brand-emblem { width: 38px; height: 38px; }
+.topbar .topbar-sub { display: block; text-align: right; }
+.app-header-sticky .topbar .topbar-actions {
+  grid-column: 1 / -1; justify-content: flex-end; gap: 6px;
+}
+.topbar-actions > a, .topbar-actions > button,
+.topbar-actions .tracker-shortcut, #roundPhases, #quickMode,
+#restart, #history, #gameReadiness {
+  display: inline-flex; min-height: 44px; padding: 6px 12px;
+  font-size: .95rem; line-height: 1.2; white-space: normal;
+}
+.topbar #quickMode { display: inline-flex; }
+.topbar-actions > a::before, .topbar-actions > button::before {
+  width: 20px; height: 20px;
+}
+#progress.cx-steps { padding: 4px 18px 10px !important; filter: none; }
+#progress.cx-steps i {
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: 26px auto; column-gap: 8px;
+  padding: 8px 16px 8px 22px; min-height: 66px;
+}
+#progress.cx-steps i > b { grid-row: 1 / 3; grid-column: 1; font-size: 1.8rem; }
+#progress.cx-steps i > .cx-icon { grid-row: 1; grid-column: 2; width: 24px; height: 24px; justify-self: center; }
+#progress.cx-steps i > em { display: block; grid-row: 2; grid-column: 2; font-size: .96rem; text-align: center; white-space: normal; }
+#progress.cx-steps i.done::after { position: absolute; right: 14px; top: 5px; width: 9px; height: 9px; }
+body:has(.unit-picker-grid) #app { max-width: 1240px; width: calc(100% - 40px); margin-inline: auto; padding-inline: 0; }
+body:has(.unit-picker-grid) .intro { display: block; }
+body:has(.unit-picker-grid) .intro .player-side-choice { padding: 6px 12px; }
+.player-side-choice > * { margin-inline: 5px; }
+body:has(.unit-picker-grid) .intro > h1 {
+  display: block; margin: 12px 0 2px;
+  font: 700 clamp(1.7rem, 3vw, 2.6rem)/1.15 Rajdhani, sans-serif;
+  letter-spacing: .06em;
+}
+body:has(.unit-picker-grid) .intro > p:not(.notice) { display: block; font-size: 1.1rem; margin: 0 0 10px; }
+body:has(.unit-picker-grid) .intro .player-side-choice { display: block; margin: 8px auto; font-size: .85rem; }
+body:has(.unit-picker-grid) .army-switch { gap: 8px; margin: 12px auto; max-width: 850px; }
+body:has(.unit-picker-grid) .army-switch button {
+  display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center;
+  gap: 4px 12px; min-width: 0; padding: 10px 20px; flex: 1; min-height: 76px;
+}
+body:has(.unit-picker-grid) .army-switch button .faction-emblem { grid-column: 1; grid-row: 1 / 3; }
+body:has(.unit-picker-grid) .army-switch button small { grid-column: 2; grid-row: 1; }
+body:has(.unit-picker-grid) .army-switch button strong { grid-column: 2; grid-row: 2; }
+body:has(.unit-picker-grid) .army-switch button > span:not(.faction-emblem) { grid-column: 3; grid-row: 1 / 3; }
+body:has(.unit-picker-grid) .army-switch button small { display: block; flex-basis: 100%; font-size: .8rem; color: #b8cad5; }
+body:has(.unit-picker-grid) .army-switch button > span { display: inline; font-size: .8rem; }
+body:has(.unit-picker-grid) .army-switch button strong { font-size: 1.12rem; overflow-wrap: anywhere; }
+body:has(.unit-picker-grid) .unit-picker-grid { gap: 14px; filter: none; align-items: stretch; }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile { flex-basis: calc((100% - 42px) / 4); height: auto; max-height: none; }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-head {
+  position: relative; top: auto; left: auto; right: auto;
+  padding: 7px 12px; min-height: 32px; background: rgba(5, 12, 19, .92);
+}
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual {
+  margin: 0 6px; aspect-ratio: 3 / 2; height: auto; max-height: none; clip-path: none;
+  background: radial-gradient(ellipse at center, #203342, #050a10);
+}
+body:has(.unit-picker-grid) .unit-picker-grid .tile-body { padding: 9px 12px 12px; gap: 6px; }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-body strong,
+.cx-sel-id strong { white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; }
+.unit-picker-grid .tile-meta { flex-wrap: wrap; gap: 5px 8px; }
+.unit-picker-grid .tile-meta .unit-status { flex-basis: 100%; flex-wrap: wrap; overflow: visible; }
+.unit-picker-grid .tile-meta .unit-status b { white-space: normal; overflow: visible; }
+.unit-picker-grid .tile-chevron { margin-left: auto; }
+.cx-select-bar { position: relative; bottom: auto; margin-top: 16px; gap: 12px; }
+.cx-sel-duel, .cx-sel-meta { flex-wrap: wrap; }
+.cx-sel-id { min-width: 0; }
+.cx-sel-actions { flex-wrap: wrap; }
+.cx-sel-actions .primary { min-width: 210px; }
+.actions, .cx-sel-actions { filter: none; }
+/* Les états verrouillés et désactivés gardent un contraste distinct. */
+#nextAttack.locked, .cx-sel-actions .primary:disabled {
+  --bd: #536777; --fill: #111f29; color: #91a6b5;
+}
+#nextAttack.locked::after, .cx-sel-actions .primary:disabled::after { box-shadow: none; }
+/* Résolution : cadres sobres, contrôles et avertissements libres de grandir. */
+body:has(.attack-workspace) { --rx-side: clamp(175px, 19vw, 255px); }
+body:has(.attack-workspace) .resolve-center { background: rgba(4, 15, 24, .94); border-radius: 3px; }
+body:has(.attack-workspace) .combat-side { border-radius: 3px; }
+body:has(.attack-workspace) .actions { position: relative; bottom: auto; }
+body:has(.attack-workspace) .actions .gate-status { white-space: normal; overflow: visible; }
+/* On conserve les vrais boutons d'étapes : ils sont aussi accessibles au clavier. */
+body:has(.attack-workspace) .resolve-center .attack-stepper > button {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  min-height: 44px; padding: 6px 10px; margin: 4px 2px;
+  white-space: normal; font-size: .85rem;
+}
+body:has(.attack-workspace) .resolve-center .attack-stepper > button span { display: inline; font-size: .85rem; line-height: 1.2; }
+:is(button, a, input, select, summary):focus-visible { outline: 2px solid #7de2ff; outline-offset: 3px; }
+@media (min-width: 1360px) {
+  body:has(.unit-picker-grid) #app { width: calc(100% - 160px); }
+}
+@media (max-width: 1050px) {
+  .app-header-sticky { position: relative !important; top: auto; }
+  .app-header-sticky .topbar .topbar-actions { justify-content: center; }
+  #progress.cx-steps { flex-wrap: wrap; gap: 4px !important; }
+  #progress.cx-steps i { flex: 1 1 calc(25% - 8px); margin-left: 0; padding-inline: 18px; }
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile { flex-basis: calc((100% - 28px) / 3); }
+  body:has(.attack-workspace) .attack-workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  body:has(.attack-workspace) .resolve-center { grid-column: 1 / -1; grid-row: 2; }
+  body:has(.attack-workspace) .combat-side { position: relative; top: auto; grid-row: 1; }
+  body:has(.attack-workspace) .actions { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  body:has(.attack-workspace) .actions .gate-status { grid-column: 1 / -1; grid-row: 1; }
+  body:has(.attack-workspace) .actions #prev { grid-row: 2; grid-column: 1; }
+  body:has(.attack-workspace) .actions #nextAttack { grid-row: 2; grid-column: 2; }
+}
+@media (max-width: 620px) {
+  .app-header-sticky .topbar { grid-template-columns: minmax(0, 1fr) !important; padding: 8px 12px !important; }
+  .topbar-brand { justify-content: center; border-right: 0; padding-right: 0; }
+  .topbar .topbar-sub { text-align: center; }
+  .topbar-actions > a, .topbar-actions > button { flex: 1 1 42%; justify-content: center; }
+  #progress.cx-steps { padding: 4px 8px 10px !important; }
+  #progress.cx-steps i { column-gap: 3px; padding: 6px 14px; }
+  #progress.cx-steps i > b { font-size: 1.25rem; }
+  #progress.cx-steps i > b { grid-row: 1; }
+  #progress.cx-steps i > em { grid-column: 1 / -1; font-size: .7rem; white-space: nowrap; }
+  #progress.cx-steps i { padding-inline: 10px; }
+  body:has(.attack-workspace) .combat-side .unit-card-zoom { height: 100px; }
+  body:has(.unit-picker-grid) #app { width: calc(100% - 24px); }
+  body:has(.unit-picker-grid) .army-switch button { padding: 10px 12px; }
+  body:has(.unit-picker-grid) .army-switch button { grid-template-columns: 28px minmax(0, 1fr); }
+  body:has(.unit-picker-grid) .army-switch button .faction-emblem { grid-column: 1; grid-row: 1; width: 24px; height: 24px; }
+  body:has(.unit-picker-grid) .army-switch button small { grid-column: 2; grid-row: 1; letter-spacing: .03em; }
+  body:has(.unit-picker-grid) .army-switch button strong { grid-column: 1 / -1; grid-row: 2; font-size: .9rem; letter-spacing: .03em; }
+  body:has(.unit-picker-grid) .army-switch button > span:not(.faction-emblem) { grid-column: 1 / -1; grid-row: 3; }
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile { flex-basis: calc((100% - 14px) / 2); }
+  .cx-select-bar { flex-wrap: wrap; padding: 12px; }
+  .cx-sel-actions { width: 100%; }
+  .cx-sel-actions button { flex: 1; min-width: 0 !important; padding: 10px; }
+  .cx-sel-empty strong { font-size: 1rem; }
+}
