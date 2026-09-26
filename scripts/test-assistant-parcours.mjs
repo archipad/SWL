@@ -1910,7 +1910,7 @@ scenario('Page Partie (26/09/2026) : round, points de victoire et cartes de Comm
   assert.equal($('#roundStatus').dataset.faction, 'imperial', 'pastille : liée au camp sélectionné')
   await click('#roundPhases')
   assert.ok($('.game-hub'), 'Suivi Partie ouvre la même page')
-  assert.equal($('.tracker-shortcut').getAttribute('href'), '../#armees', 'Armée renvoie vers la gestion d’armée du site')
+  assert.equal($('.tracker-shortcut').getAttribute('href'), 'https://archipad.github.io/SWL/assistant/', 'Armée renvoie vers l’assistant d’unité')
   assert.equal($('#siteHome').getAttribute('href'), 'https://archipad.github.io/SWL/', 'l’engrenage renvoie vers le site')
   assert.match(text($('.gh-round')), /ROUND.*1\s*\/\s*5/)
   await click('[data-gh-vp="bleu"][data-delta="1"]')
