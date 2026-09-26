@@ -28,3 +28,6 @@ dev-dist
 *.njsproj
 *.sln
 *.sw?
+
+# Images brutes générées par scripts/generate-portraits.mjs
+generated-portraits/
