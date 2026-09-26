@@ -1,0 +1,11 @@
+/* Fenêtres d'alerte rouges (rappel de règle, fin d'attaque, avertissement de réserve mixte) : centrage explicite
+   (27/09/2026, retour utilisateur : sur iPad elles occupaient toute la hauteur au lieu d'être centrées).
+   On ne dépend plus du style natif de <dialog> (qui varie selon la version de Safari) : position fixe au centre
+   par translation, hauteur qui suit le contenu, défilement interne si le texte dépasse l'écran. */
+dialog.rule-popup[open], dialog.warning-dialog[open] {
+  position: fixed; inset: auto; top: 50%; left: 50%; margin: 0; transform: translate(-50%, -50%);
+  width: min(92vw, 480px); height: auto; min-height: 0;
+  max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px);
+  overflow-y: auto; -webkit-overflow-scrolling: touch; box-sizing: border-box;
+  align-content: start; align-items: start;
+}
