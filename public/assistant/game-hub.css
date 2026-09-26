@@ -87,3 +87,39 @@
 }
 .game-hub button.primary:disabled { opacity: .35; box-shadow: none; }
 .game-hub button.secondary { border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 8px; background: rgba(10, 24, 38, .9); color: var(--rx-text, #e8f3fa); font: 700 1rem "Rajdhani", sans-serif; }
+
+/* =====================================================================
+   En-tête (26/09/2026) : Armée / Suivi Partie / Mode rapide / engrenage, et pastille round + unités à jouer
+   ===================================================================== */
+.topbar-actions .tracker-shortcut { --ic: url(../codex/icons/army.png); font-size: .95rem; }
+#roundPhases { --ic: url(../codex/icons/mission.png); font-size: .95rem; }
+#roundPhases::before, #siteHome::before {
+  content: ""; flex: 0 0 auto; width: 1.5em; height: 1.5em; background: #fff;
+  -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat;
+}
+/* Engrenage sans texte : accueil du site. Le bouton « Retour » (#restart) reste dans le DOM, masqué : sa logique est conservée. */
+#restart { display: none !important; }
+#siteHome { --ic: url(../codex/icons/settings.png); min-width: 46px; padding: 0 12px !important; font-size: 0; }
+.topbar #siteHome { grid-column: 5; grid-row: 1 / 3; }
+@media (max-width: 1050px) { .topbar-actions > #siteHome { flex: 0 0 48px; } }
+
+/* Pastille « ROUND n · x unités restantes à jouer » : en haut à droite du bloc Legion Compagnon / Assistant d'unité. */
+.topbar-status {
+  grid-column: 1; grid-row: 1 / 3; justify-self: end; align-self: center; z-index: 2;
+  display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 4px 14px; cursor: pointer;
+  border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 6px; color: #fff;
+  background: var(--hud-scan, none), var(--hud-glass, rgba(8, 20, 32, .72));
+  box-shadow: 0 0 14px rgba(66, 205, 255, .18), inset 0 0 16px rgba(66, 205, 255, .06);
+  font: 700 .95rem "Rajdhani", sans-serif; letter-spacing: .03em; white-space: nowrap;
+}
+.topbar-status .rs-round { display: inline-flex; align-items: baseline; gap: 6px; color: var(--rx-dim, #9db7c7); font-size: .72rem; letter-spacing: .24em; }
+.topbar-status .rs-round b { color: #fff; font-size: 1.6rem; letter-spacing: 0; text-shadow: 0 0 10px rgba(98, 214, 255, .5); }
+.topbar-status .rs-left { padding-left: 12px; border-left: 1px solid var(--rx-line, rgba(66, 205, 255, .3)); }
+.topbar-status .rs-left b { font-size: 1.35rem; text-shadow: 0 0 10px rgba(98, 214, 255, .5); }
+.topbar-status[data-faction="imperial"] { border-color: rgba(255, 91, 82, .75); box-shadow: 0 0 14px rgba(255, 59, 48, .28), inset 0 0 16px rgba(255, 59, 48, .08); }
+.topbar-status[data-faction="rebel"] { border-color: rgba(240, 200, 130, .8); box-shadow: 0 0 14px rgba(240, 190, 110, .26), inset 0 0 16px rgba(240, 190, 110, .08); }
+.topbar-status:hover, .topbar-status:focus-visible { filter: drop-shadow(0 0 8px rgba(98, 214, 255, .6)); }
+@media (max-width: 1050px) { .topbar-status { min-height: 38px; padding: 2px 10px; } }
+@media (max-width: 620px) { .topbar-status .rs-left { max-width: 9.5em; white-space: normal; line-height: 1.05; font-size: .8rem; } }
+#siteHome::before { width: 24px; height: 24px; }
+.topbar #roundPhases, .topbar .tracker-shortcut { font-size: .95rem !important; min-height: 44px; padding-block: 6px; }

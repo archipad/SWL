@@ -218,7 +218,7 @@ function upgradeGallery(entry){
   return `<section class="card-strip">${unitCard}<div class="upgrade-row">${upgradeCards}</div></section>`
 }
 function bindCardViewer(){root.querySelectorAll('.upgrade-visual,.unit-card-zoom,.unit-card-visual,.upgrade-card-visual').forEach(button=>button.onclick=()=>{const dialog=document.createElement('dialog');dialog.className='card-dialog dialog-wipe';dialog.innerHTML=`<button class="dialog-close" aria-label="Fermer">×</button><img src="${button.dataset.cardImage}" alt="${button.dataset.cardName}"><strong>${button.dataset.cardName}</strong>`;document.body.append(dialog);const dismiss=()=>{dialog.close();dialog.remove()};dialog.querySelector('button').onclick=dismiss;dialog.onclick=e=>{if(e.target===dialog)dismiss()};dialog.onclose=()=>dialog.remove();dialog.showModal()})}
-function progress(){const current=attackState?Math.min(8,attackStep+3):stage<=2?1:2;document.querySelectorAll('#progress i').forEach((i,n)=>{i.className=n+1===current?'active':n+1<current?'done':''})}function name(e){return e?.unit?.name?displayName(e.unit.name):'Unité'}
+function progress(){const current=attackState?Math.min(8,attackStep+3):stage<=2?1:2;document.querySelectorAll('#progress i').forEach((i,n)=>{i.className=n+1===current?'active':n+1<current?'done':''});updateRoundStatus()}function name(e){return e?.unit?.name?displayName(e.unit.name):'Unité'}
 function entryName(e){const base=displayName(e.unit.name);return e.totalOccurrences>1?`${base} ${e.occurrence}`:base}
 // Grille de sélection (19/09/2026, demande utilisateur) : la carte Unité en grand sert de bouton ; le nombre de colonnes suit le nombre d'unités pour que la liste tienne sur un iPad Air sans défilement (voir unit-picker.css).
 function pickerGrid(units){const n=units.length,cols=4;return `<div class="unit-grid unit-picker-grid" style="--cols:${cols};--rows:${Math.ceil(n/cols)}">${units.map(tile).join('')}</div>`}
@@ -2114,6 +2114,18 @@ function roundPhaseCrossReminders(phase){
 // Lit et écrit le MÊME suivi que l'appli principale (clé swl.game-tracker.v1, même forme : round, points de victoire par couleur,
 // suites de Commandement, révélation), pour que les deux restent d'accord. La suite de 7 cartes se construit une fois dans
 // l'appli principale ; ici on choisit la carte de chaque round, on la révèle, et on suit round et points de victoire.
+/* Pastille « round en cours + unités restant à jouer » de l'en-tête (26/09/2026) : suit le camp sélectionné sur la tablette
+   (selectedArmy) et lit le suivi de partie partagé (activations du round). Purement informatif ; un toucher ouvre la page Partie. */
+function updateRoundStatus(){
+  const chip=document.getElementById('roundStatus');if(!chip)return;
+  try{
+    const tracker=readTracker(),army=armies.find(item=>item.id===selectedArmy)||armies[0],activated=tracker.activatedUnitIds||[],
+      left=entries.filter(entry=>entry.army===army.id&&!defeated(entry)&&!activated.includes(entry.id)).length;
+    chip.dataset.faction=factionThemeForArmy(army.id);
+    chip.innerHTML='<span class="rs-round">ROUND <b>'+tracker.round+'</b></span><span class="rs-left"><b>'+left+'</b> '+(left>1?'unités restantes à jouer':left===1?'unité restante à jouer':'unité à jouer')+'</span>';
+    chip.setAttribute('aria-label','Round '+tracker.round+' : '+left+(left>1?' unités restent':' unité reste')+' à jouer pour '+(army.list.listName||army.list.faction||army.id));
+  }catch(error){/* affichage seul : rien à faire si le suivi n’est pas encore chargé */}
+}
 const trackerKey='swl.game-tracker.v1',BLANK_DECK={suite:[],played:[],pendingId:null},MAX_ROUND=5;
 const ghEsc=value=>String(value).replace(/[&<>"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char]));
 const readTracker=()=>{const stored=read(trackerKey,{})||{},deck=color=>({...BLANK_DECK,...((stored.commandDecks||{})[color]||{})});return{round:1,p1Color:'bleu',vpBleu:0,vpRouge:0,activatedUnitIds:[],roundHistory:[],commandReveal:null,...stored,commandDecks:{bleu:deck('bleu'),rouge:deck('rouge')}}};
@@ -2159,7 +2171,7 @@ function gameHubHtml(){
   const vp=color=>`<article class="gh-vp ${color}"><div><small><i class="gh-dot ${color}"></i>${color==='bleu'?'BLEU':'ROUGE'}${color===mine?' · MON CAMP':''}</small><strong>${ghEsc(ghLabel(tracker,color))}</strong></div><div class="gh-counter"><button type="button" data-gh-vp="${color}" data-delta="-1" aria-label="Retirer un point de victoire (${color})">−</button><b>${tracker['vp'+(color==='bleu'?'Bleu':'Rouge')]}</b><button type="button" data-gh-vp="${color}" data-delta="1" aria-label="Ajouter un point de victoire (${color})">+</button></div></article>`;
   return `<section class="gh-tracker" aria-label="Suivi de partie"><article class="gh-round"><small>ROUND</small><div class="gh-counter"><button type="button" data-gh-round="-1" ${tracker.round<=1?'disabled':''} aria-label="Round précédent">−</button><b>${tracker.round}<i> / ${MAX_ROUND}</i></b><button type="button" data-gh-round="1" ${tracker.round>=MAX_ROUND?'disabled':''} aria-label="Round suivant">+</button></div><button type="button" class="primary" data-gh-next ${tracker.round>=MAX_ROUND?'disabled':''}>Round suivant →</button></article>${vp('bleu')}${vp('rouge')}</section>`+ghCommandHtml(tracker,side)
 }
-function bindGameHub(){
+function bindGameHub(){updateRoundStatus();
   const refresh=()=>showRoundPhases();
   root.querySelectorAll('[data-gh-round]').forEach(button=>button.onclick=()=>{const tracker=readTracker(),round=Math.min(MAX_ROUND,Math.max(1,tracker.round+Number(button.dataset.ghRound)));if(round===tracker.round)return;writeTracker({round,activatedUnitIds:[]});reconcileRoundEffects();refresh()});
   const next=root.querySelector('[data-gh-next]');
@@ -2191,7 +2203,7 @@ function showRoundPhases(){
   root.querySelectorAll('[data-kw-cancel-action]').forEach(button=>button.onclick=()=>{kwActionPick=null;showRoundPhases()})
 }
 $('#roundPhases').onclick=()=>{kwActionPick=null;showRoundPhases()};
-const trackerShortcut=document.querySelector('.tracker-shortcut');if(trackerShortcut)trackerShortcut.onclick=event=>{event.preventDefault();kwActionPick=null;showRoundPhases()};
+const roundStatusChip=document.getElementById('roundStatus');if(roundStatusChip)roundStatusChip.onclick=()=>{kwActionPick=null;showRoundPhases()};updateRoundStatus();
 // Cartes retirées du jeu (Errata Reference FR 17/06/2026) : bandeau sur la fiche d'unité et avertissement dans « Tester mes listes ».
 const REMOVED_CARDS=window.SWL_REFERENCE?.removedCards||{};
 const removedInEntry=entry=>[entry.unit.name,...(entry.unit.upgrades||[]).map(up=>up.name)].filter(name=>REMOVED_CARDS[cardKey(name)]).map(name=>displayName(name));
