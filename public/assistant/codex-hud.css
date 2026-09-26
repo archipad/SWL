@@ -1,0 +1,146 @@
+/* Effets « HUD » du design Codex Legion (26/09/2026, retour utilisateur : il manque des effets glow, de la
+   transparence, des lignes techniques et des textures). Dernier feuillet, visuel seul : aucun sélecteur de
+   logique retiré, aucune structure modifiée. Les effets lourds (flou d'arrière-plan) ne s'appliquent qu'aux
+   grands panneaux ; tout est allégeable via les variables ci-dessous ou en supprimant ce fichier. */
+
+:root {
+  /* Textures */
+  --hud-scan: repeating-linear-gradient(0deg, rgba(130, 205, 255, .045) 0 1px, transparent 1px 4px);
+  --hud-grid: linear-gradient(rgba(66, 205, 255, .05) 1px, transparent 1px) 0 0 / 30px 30px, linear-gradient(90deg, rgba(66, 205, 255, .05) 1px, transparent 1px) 0 0 / 30px 30px;
+  --hud-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .7 0 0 0 0 .9 0 0 0 0 1 .9 0 0 0 -.38'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.13'/%3E%3C/svg%3E");
+  /* Verre : fond translucide + flou (les grands panneaux laissent voir l'image de fond) */
+  --hud-glass: linear-gradient(180deg, rgba(10, 27, 44, .66), rgba(5, 12, 20, .78));
+  --hud-blur: blur(5px) saturate(1.25);
+  /* Lueurs */
+  --hud-glow: 0 0 22px rgba(66, 205, 255, .22);
+  --hud-text-glow: 0 0 14px rgba(66, 205, 255, .55);
+  /* Repères d'angle (coins des panneaux) : quatre équerres de 22 px */
+  --hud-corners:
+    linear-gradient(#62d6ff, #62d6ff) left top / 22px 2px no-repeat, linear-gradient(#62d6ff, #62d6ff) left top / 2px 22px no-repeat,
+    linear-gradient(#62d6ff, #62d6ff) right top / 22px 2px no-repeat, linear-gradient(#62d6ff, #62d6ff) right top / 2px 22px no-repeat,
+    linear-gradient(#62d6ff, #62d6ff) left bottom / 22px 2px no-repeat, linear-gradient(#62d6ff, #62d6ff) left bottom / 2px 22px no-repeat,
+    linear-gradient(#62d6ff, #62d6ff) right bottom / 22px 2px no-repeat, linear-gradient(#62d6ff, #62d6ff) right bottom / 2px 22px no-repeat;
+}
+
+/* ---------- Toute la page : lignes de balayage + vignettage sur le fond (derrière le contenu) ---------- */
+body[data-faction-theme]::after {
+  display: block; content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 1;
+  background:
+    radial-gradient(ellipse at 50% 42%, transparent 52%, rgba(0, 0, 0, .5) 100%),
+    var(--hud-noise),
+    var(--hud-scan);
+  background-blend-mode: normal, screen, normal;
+}
+
+/* ---------- Résolution : cadre central et colonnes en verre, texturés, à équerres et filets techniques ---------- */
+body:has(.attack-workspace) .resolve-center {
+  background:
+    var(--hud-corners),
+    var(--hud-scan),
+    var(--hud-grid),
+    var(--hud-glass);
+  -webkit-backdrop-filter: var(--hud-blur); backdrop-filter: var(--hud-blur);
+}
+/* Les équerres haut-gauche / bas-droite existent déjà en pseudo-éléments : on les masque pour éviter le doublon. */
+body:has(.attack-workspace) .resolve-center::before,
+body:has(.attack-workspace) .resolve-center::after { display: none !important; }
+/* Filet sous le titre de l'étape : ligne dégradée avec losange central. */
+body:has(.attack-workspace) .resolve-center .attack-stepper {
+  padding-bottom: 14px !important; margin-bottom: 8px !important;
+  background:
+    linear-gradient(45deg, transparent 42%, #62d6ff 42% 58%, transparent 58%) center bottom / 9px 9px no-repeat,
+    linear-gradient(90deg, transparent, rgba(98, 214, 255, .7) 22%, rgba(98, 214, 255, .7) 78%, transparent) center calc(100% - 4px) / 70% 1px no-repeat !important;
+}
+body:has(.attack-workspace) .resolve-center .attack-stepper::before { text-shadow: var(--hud-text-glow), 0 2px 0 rgba(0, 0, 0, .5); }
+
+body:has(.attack-workspace) .combat-side {
+  background:
+    var(--hud-scan),
+    linear-gradient(180deg, color-mix(in srgb, var(--rx-side-tone, #e5392e) 8%, rgba(8, 19, 29, .68)) 0%, rgba(6, 15, 24, .78) 55%, color-mix(in srgb, var(--rx-side-tone, #e5392e) 22%, rgba(6, 15, 24, .8)) 100%);
+  -webkit-backdrop-filter: var(--hud-blur); backdrop-filter: var(--hud-blur);
+}
+/* En-tête de colonne : filet technique prolongé par un repère carré. */
+.cx-side-role { position: relative; }
+.cx-side-role::after {
+  content: ""; position: absolute; left: 5px; right: 8px; bottom: 0; height: 1px;
+  background: linear-gradient(90deg, var(--rx-side-tone), transparent 85%);
+}
+.cx-side-role::before {
+  content: ""; position: absolute; right: 8px; top: 50%; width: 7px; height: 7px; transform: translateY(-50%) rotate(45deg);
+  border: 1px solid var(--rx-side-tone); opacity: .75;
+}
+.cx-side-emblem { filter: drop-shadow(0 0 6px color-mix(in srgb, var(--rx-side-tone) 70%, transparent)); }
+.cx-side-stats li > b { text-shadow: 0 0 8px rgba(255, 255, 255, .25); }
+
+/* Cartes de contenu à l'intérieur du cadre : texture + lueur intérieure douce. */
+body:has(.attack-workspace) .resolve-center .manual-focus,
+body:has(.attack-workspace) .resolve-center .dice-pool,
+body:has(.attack-workspace) .resolve-center .defense-dice-pool,
+body:has(.attack-workspace) .resolve-center .result-strip,
+body:has(.attack-workspace) .resolve-center .automation-card,
+body:has(.attack-workspace) .resolve-center .dice-tray > .quick-field {
+  background-image: var(--hud-scan), linear-gradient(180deg, rgba(13, 31, 47, .6), rgba(6, 15, 24, .72)) !important;
+}
+/* Chiffres et titres : lueur. */
+body:has(.attack-workspace) .resolve-center .touch-counter input,
+body:has(.attack-workspace) .resolve-center .result-strip > b,
+body:has(.attack-workspace) .cx-side-stats li > b { text-shadow: 0 0 10px rgba(98, 214, 255, .45); }
+body:has(.attack-workspace) .resolve-center .touch-counter:focus-within { box-shadow: 0 0 0 1px #62d6ff, 0 0 14px rgba(98, 214, 255, .55); }
+
+/* ---------- Fiche d'unité et cible : mêmes panneaux de verre ---------- */
+body:has(.overview) .overview .hero,
+.cx-attacker-recap {
+  background:
+    var(--hud-scan),
+    linear-gradient(180deg, color-mix(in srgb, var(--rx-side-tone, #e5392e) 8%, rgba(8, 19, 29, .68)) 0%, rgba(6, 15, 24, .78) 55%, color-mix(in srgb, var(--rx-side-tone, #e5392e) 22%, rgba(6, 15, 24, .8)) 100%);
+  -webkit-backdrop-filter: var(--hud-blur); backdrop-filter: var(--hud-blur);
+}
+body:has(.overview) .overview .card-strip,
+body:has(.overview) .overview .activation-automation,
+body:has(.overview) .overview .activation-briefing,
+body:has(.overview) .overview .unit-state-editor {
+  background: var(--hud-corners), var(--hud-scan), var(--hud-grid), var(--hud-glass) !important;
+  -webkit-backdrop-filter: var(--hud-blur); backdrop-filter: var(--hud-blur);
+}
+body:has(.overview) .overview .activation-automation::before, body:has(.overview) .overview .activation-automation::after,
+body:has(.overview) .overview .activation-briefing::before, body:has(.overview) .overview .activation-briefing::after,
+body:has(.overview) .overview .unit-state-editor::before, body:has(.overview) .overview .unit-state-editor::after { display: none; }
+.cx-ov-title h2 { text-shadow: var(--hud-text-glow), 0 2px 0 rgba(0, 0, 0, .5); }
+
+/* ---------- Sélection : cartes texturées, lueur de survol, barre du bas en verre ---------- */
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile::before { background: var(--hud-scan), var(--fill); }
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile:hover { filter: drop-shadow(0 0 10px rgba(98, 214, 255, .55)); }
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 62%, rgba(4, 9, 16, .75) 100%), repeating-linear-gradient(0deg, rgba(0, 0, 0, .12) 0 1px, transparent 1px 3px);
+}
+.cx-select-bar::before { background: var(--hud-scan), linear-gradient(180deg, rgba(7, 12, 18, .86), rgba(3, 7, 11, .9)); -webkit-backdrop-filter: var(--hud-blur); backdrop-filter: var(--hud-blur); }
+.cx-sel-id strong { text-shadow: 0 0 10px rgba(98, 214, 255, .35); }
+
+/* ---------- En-tête : étapes avec filet pointillé et lueur d'ensemble ---------- */
+#progress.cx-steps { position: relative; }
+#progress.cx-steps::after {
+  content: ""; position: absolute; left: 1.4em; right: 1.4em; bottom: 0; height: 1px; opacity: .6;
+  background: repeating-linear-gradient(90deg, rgba(98, 214, 255, .7) 0 6px, transparent 6px 12px);
+}
+#progress.cx-steps i.active b, #progress.cx-steps i.active em { text-shadow: 0 0 12px rgba(160, 235, 255, .9); }
+#progress.cx-steps i.active::before { box-shadow: inset 0 0 26px rgba(120, 225, 255, .5), inset 0 0 2px rgba(200, 245, 255, .9); }
+.topbar-brand b { text-shadow: 0 0 16px rgba(98, 214, 255, .35); }
+.topbar-actions > a:hover, .topbar-actions > button:hover { filter: drop-shadow(0 0 8px rgba(98, 214, 255, .7)); }
+
+/* ---------- Boutons : texture de balayage sur le fond ---------- */
+.actions > button::after, .cx-sel-actions button::after { background: var(--hud-scan), var(--fill); }
+
+/* ---------- Écrans étroits : on garde les lueurs, on retire le flou (coût GPU) et le quadrillage ---------- */
+@media (max-width: 899px) {
+  body:has(.attack-workspace) .resolve-center, body:has(.attack-workspace) .combat-side,
+  body:has(.overview) .overview .hero, .cx-attacker-recap, .cx-select-bar::before,
+  body:has(.overview) .overview .card-strip, body:has(.overview) .overview .unit-state-editor { -webkit-backdrop-filter: none; backdrop-filter: none; }
+  body:has(.attack-workspace) .resolve-center { background: var(--hud-scan), var(--hud-glass); }
+}
+@media (prefers-reduced-motion: reduce), (prefers-reduced-transparency: reduce) {
+  body:has(.attack-workspace) .resolve-center, body:has(.attack-workspace) .combat-side { -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* Cartes de la fiche : fond translucide au lieu du noir plein. */
+body:has(.overview) .overview .card-strip .unit-card-visual, body:has(.overview) .overview .card-strip .upgrade-card-visual { background: rgba(3, 8, 14, .5) !important; }
