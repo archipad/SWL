@@ -621,3 +621,12 @@ assert.match(corrections, /const corrections = \[\]/, 'Le registre de correction
 assert.doesNotMatch(corrections, /localStorage/, 'reference-corrections.js ne doit jamais toucher au stockage local')
 assert.match(index, /reference-corrections\.js\?v=3/, 'Le registre de corrections doit être versionné dans index.html')
 assert.match(app, /seedTags=window\.SWL_REFERENCE\?\.tags\|\|\{\},localTags=read\('swl\.card-tags\.v1',\{\}\),removedTags=read\('swl\.card-tags-removed\.v1',\{\}\)/, 'app.js doit fusionner étiquettes livrées + locales + retraits explicites')
+// Page « Partie » (26/09/2026) : les cartes de Commandement de l'Assistant viennent de src/data/commandCards.ts (voir scripts/generate-assistant-command-cards.cjs).
+const commandCardsTs = fs.readFileSync(new URL('../src/data/commandCards.ts', import.meta.url), 'utf8')
+const commandCardsJs = fs.readFileSync(new URL('../public/assistant/command-cards.js', import.meta.url), 'utf8')
+const tsIds = [...commandCardsTs.matchAll(/^\s*id: '([a-z0-9-]+)'/gm)].map((match) => match[1])
+const jsIds = [...commandCardsJs.matchAll(/"id":"([a-z0-9-]+)"/g)].map((match) => match[1])
+assert.ok(tsIds.length > 40, 'src/data/commandCards.ts doit exposer les cartes de Commandement')
+assert.deepEqual(jsIds, tsIds, 'public/assistant/command-cards.js doit rester synchronisé avec src/data/commandCards.ts (relancer scripts/generate-assistant-command-cards.cjs)')
+assert.match(index, /command-cards\.js\?v=1/, 'index.html doit charger command-cards.js avant app.js')
+assert.match(app, /const trackerKey='swl\.game-tracker\.v1'/, 'La page Partie doit lire et écrire le même suivi que l’appli principale')

@@ -1890,6 +1890,48 @@ scenario('Fiche d’unité et Cible « Codex » (25/09/2026) : titre, portrait, 
   app.window.close()
 })
 
+scenario('Page Partie (26/09/2026) : round, points de victoire et cartes de Commandement du round, dans le même suivi que l’appli principale', async () => {
+  const fs = await import('node:fs')
+  const source = fs.readFileSync(new URL('../public/assistant/command-cards.js', import.meta.url), 'utf8')
+  const cards = JSON.parse(source.slice(source.indexOf('['), source.lastIndexOf(']') + 1))
+  const suiteFor = (faction) => ['ordres-permanents', ...[1, 2, 3].flatMap((pip) => cards.filter((card) => card.faction === faction && card.pip === pip).slice(0, 2).map((card) => card.id))]
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.game-tracker.v1': { round: 1, p1Color: 'bleu', vpBleu: 0, vpRouge: 0, activatedUnitIds: [], roundHistory: [], commandReveal: null,
+      commandDecks: { bleu: { suite: suiteFor('empire'), played: [], pendingId: null }, rouge: { suite: suiteFor('rebelles'), played: [], pendingId: null } } },
+  })
+  const { $, $$, text, click } = app
+  const tracker = () => JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1'))
+  await click('.tracker-shortcut')
+  assert.ok($('.game-hub'), 'l’icône Partie ouvre la page (sans quitter l’Assistant)')
+  assert.match(text($('.gh-round')), /ROUND.*1\s*\/\s*5/)
+  await click('[data-gh-vp="bleu"][data-delta="1"]')
+  assert.equal(tracker().vpBleu, 1, 'un point de victoire ajouté au suivi partagé')
+  assert.equal($$('[data-gh-pick]').length, 7, 'les 7 cartes de la suite sont proposées')
+  await click('[data-gh-pick]')
+  assert.ok($('[data-gh-confirm]'), 'choix en brouillon : confirmation demandée')
+  assert.equal(tracker().commandDecks.bleu.pendingId, null, 'rien n’est engagé avant la confirmation')
+  await click('[data-gh-confirm]')
+  assert.ok(tracker().commandDecks.bleu.pendingId, 'la carte est engagée')
+  assert.ok(!$('[data-gh-reveal]'), 'pas de révélation tant que l’adversaire n’a pas choisi')
+  await click('[data-gh-side="rouge"]')
+  await click('[data-gh-pick]')
+  await click('[data-gh-confirm]')
+  assert.ok($('[data-gh-reveal]'), 'les deux cartes sont engagées : la révélation est proposée')
+  await click('[data-gh-reveal]')
+  assert.equal(tracker().commandReveal.round, 1, 'les cartes du round 1 sont révélées')
+  assert.equal(tracker().commandDecks.bleu.played.length, 1, 'la carte jouée quitte la suite')
+  await click('[data-gh-next]')
+  assert.equal(tracker().round, 2, 'round suivant')
+  assert.equal(tracker().roundHistory.length, 1, 'le round terminé est archivé')
+  assert.equal(tracker().vpBleu, 1, 'les points sont conservés')
+  assert.equal($$('[data-gh-pick]').length, 6, 'au round 2 il reste 6 cartes à choisir')
+  assert.ok($('[data-rp-tab="commandement"]'), 'les phases du round restent sous le suivi')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 scenario('Sélection en deux temps (25/09/2026) : un toucher sélectionne et remplit la barre, le bouton (ou un second toucher) exécute l’action d’origine, le clic sans détail reste direct', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }, { name: 'Snowtroopers', upgrades: [] }] },

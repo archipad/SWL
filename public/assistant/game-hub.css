@@ -1,0 +1,89 @@
+/* Page « Partie » de l'Assistant (26/09/2026) : suivi de partie (round, points de victoire) + cartes de
+   Commandement + phases du round. Habillage « Codex Legion » comme le reste de l'Assistant : verre translucide,
+   bords à équerres, cyan pour l'action, bleu / rouge pour les deux côtés du tapis. Visuel seul. */
+
+.game-hub { gap: 14px; }
+.game-hub > header h1 { text-shadow: var(--hud-text-glow, 0 0 12px rgba(66, 205, 255, .5)); }
+.game-hub .rp-title { color: #7fe0ff; }
+.game-hub .rp-tabs button { border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 6px; background: rgba(8, 20, 32, .7); color: var(--rx-text, #e8f3fa); font: 700 1rem "Rajdhani", sans-serif; }
+.game-hub .rp-tabs button.on { background: linear-gradient(180deg, #23a6e4, #0d6fb3); border-color: #7ee3ff; color: #fff; box-shadow: 0 0 14px rgba(66, 205, 255, .4); }
+.game-hub .rp-army { background: var(--hud-glass, rgba(8, 20, 32, .7)); border-color: var(--rx-line-2, rgba(66, 205, 255, .4)); }
+
+/* ---------- Suivi : round + points de victoire ---------- */
+.gh-tracker { display: grid; grid-template-columns: minmax(0, 1.15fr) repeat(2, minmax(0, 1fr)); gap: 12px; }
+.gh-round, .gh-vp {
+  position: relative; display: grid; gap: 10px; padding: 14px 16px; min-width: 0; border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 8px;
+  background: var(--hud-corners, none), var(--hud-scan, none), var(--hud-glass, rgba(8, 20, 32, .72));
+  -webkit-backdrop-filter: var(--hud-blur, none); backdrop-filter: var(--hud-blur, none);
+  box-shadow: 0 0 22px rgba(66, 205, 255, .16), inset 0 0 30px rgba(66, 205, 255, .05);
+}
+.gh-round > small, .gh-vp small { display: flex; align-items: center; gap: 7px; color: var(--rx-dim, #9db7c7); font: 700 .75rem "Rajdhani", sans-serif; letter-spacing: .26em; text-transform: uppercase; }
+.gh-vp strong { display: block; overflow: hidden; margin-top: 2px; font: 800 1.15rem/1.1 "Rajdhani", sans-serif; letter-spacing: .04em; text-transform: uppercase; text-overflow: ellipsis; white-space: nowrap; color: #fff; }
+.gh-vp.bleu { border-color: rgba(58, 166, 255, .7); box-shadow: 0 0 22px rgba(58, 166, 255, .22), inset 0 0 30px rgba(58, 166, 255, .06); }
+.gh-vp.rouge { border-color: rgba(255, 91, 82, .7); box-shadow: 0 0 22px rgba(255, 91, 82, .22), inset 0 0 30px rgba(255, 91, 82, .06); }
+.gh-dot { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; background: #3aa6ff; box-shadow: 0 0 8px currentColor; color: #3aa6ff; }
+.gh-dot.rouge { background: #ff5b52; color: #ff5b52; }
+
+.gh-counter { display: grid; grid-template-columns: 52px minmax(0, 1fr) 52px; align-items: stretch; border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 8px; overflow: hidden; background: rgba(4, 10, 16, .8); }
+.gh-counter button { min-height: 56px; border: 0; border-radius: 0; background: rgba(14, 38, 58, .9); color: #fff; font: 800 1.6rem "Rajdhani", sans-serif; cursor: pointer; }
+.gh-counter button:active:not(:disabled) { background: #0d6fb3; }
+.gh-counter button:disabled { opacity: .3; cursor: not-allowed; }
+.gh-counter b { display: grid; place-items: center; font: 800 2.6rem/1 "Rajdhani", sans-serif; color: #fff; text-shadow: 0 0 14px rgba(98, 214, 255, .55); }
+.gh-counter b i { font-size: 1.1rem; font-style: normal; font-weight: 600; color: var(--rx-dim, #9db7c7); text-shadow: none; }
+.gh-counter b { grid-auto-flow: column; gap: 6px; }
+.gh-round > .primary { min-height: 50px; }
+
+/* ---------- Cartes de Commandement ---------- */
+.gh-commands {
+  display: grid; gap: 12px; padding: 14px 16px; border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 8px;
+  background: var(--hud-corners, none), var(--hud-scan, none), var(--hud-glass, rgba(8, 20, 32, .72));
+  -webkit-backdrop-filter: var(--hud-blur, none); backdrop-filter: var(--hud-blur, none);
+  box-shadow: 0 0 26px rgba(66, 205, 255, .18), inset 0 0 40px rgba(66, 205, 255, .05);
+}
+.gh-commands > header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.gh-commands h2 { margin: 0; font: 800 1.1rem "Rajdhani", sans-serif; letter-spacing: .14em; color: #fff; text-shadow: 0 0 12px rgba(98, 214, 255, .4); }
+.gh-side-toggle { display: inline-flex; border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 6px; overflow: hidden; }
+.gh-side-toggle button { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 14px; border: 0; border-radius: 0; background: rgba(6, 15, 24, .85); color: var(--rx-text, #e8f3fa); font: 700 .95rem "Rajdhani", sans-serif; cursor: pointer; }
+.gh-side-toggle button + button { border-left: 1px solid var(--rx-line, rgba(66, 205, 255, .3)); }
+.gh-side-toggle button.on { background: linear-gradient(180deg, #23a6e4, #0d6fb3); color: #fff; }
+.gh-status { display: flex; align-items: center; gap: 8px; margin: 0; color: var(--rx-dim, #9db7c7); font: 600 .95rem "Rajdhani", sans-serif; }
+.gh-note { margin: 0; padding: 10px 12px; border: 1px dashed var(--rx-line-2, rgba(66, 205, 255, .5)); border-radius: 8px; color: var(--rx-text, #e8f3fa); }
+.gh-note a { color: #7fe0ff; }
+.gh-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.gh-grid-small { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+.gh-card { position: relative; min-width: 0; }
+.gh-card-pick {
+  position: relative; display: grid; gap: 6px; width: 100%; padding: 6px 6px 8px; text-align: center; cursor: pointer;
+  border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .5)); border-radius: 8px; background: rgba(4, 9, 15, .8); color: var(--rx-text, #e8f3fa);
+}
+.gh-card-pick img { display: block; width: 100%; height: auto; border-radius: 4px; background: rgba(0, 0, 0, .4); }
+.gh-card-pick:hover:not(:disabled), .gh-card-pick:focus-visible { border-color: #7fe0ff; box-shadow: 0 0 16px rgba(98, 214, 255, .5); }
+.gh-card.on .gh-card-pick { border-color: #62d6ff; box-shadow: 0 0 18px rgba(98, 214, 255, .5), inset 0 0 20px rgba(66, 205, 255, .18); }
+.gh-card.inert .gh-card-pick { cursor: default; opacity: 1; }
+.gh-card-name { font: 700 .9rem/1.15 "Rajdhani", sans-serif; letter-spacing: .02em; }
+.gh-pip { position: absolute; top: 10px; left: 10px; z-index: 2; padding: 2px 8px; border-radius: 4px; background: rgba(3, 8, 14, .85); border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .5)); color: #7fe0ff; font: 800 .72rem "Rajdhani", sans-serif; letter-spacing: .12em; }
+.gh-check { position: absolute; bottom: 44px; right: 12px; z-index: 2; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #46d68a; color: #04150d; font-weight: 900; }
+.gh-zoom { position: absolute; top: 10px; right: 10px; z-index: 3; display: grid; place-items: center; width: 30px; height: 30px; padding: 0; border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .5)); border-radius: 50%; background: rgba(3, 8, 14, .85); color: #7fe0ff; font: 800 1.1rem "Rajdhani", sans-serif; cursor: pointer; }
+.gh-revealed { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 260px)); gap: 16px; justify-content: center; }
+.gh-revealed small { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; color: var(--rx-dim, #9db7c7); font: 700 .8rem "Rajdhani", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.gh-pending, .gh-draft-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.gh-draft { display: grid; grid-template-columns: minmax(150px, 220px) minmax(0, 1fr); gap: 16px; align-items: center; }
+.gh-badge { padding: 10px 14px; border: 1px solid rgba(70, 214, 138, .7); border-radius: 8px; background: rgba(70, 214, 138, .12); color: #b8f4d4; font-weight: 700; }
+.gh-reveal { min-height: 56px; font: 800 1.15rem "Rajdhani", sans-serif; box-shadow: 0 0 22px rgba(66, 205, 255, .5); }
+.gh-played > summary { cursor: pointer; color: var(--rx-dim, #9db7c7); font-weight: 700; }
+.gh-played[open] > summary { margin-bottom: 8px; }
+
+@media (max-width: 899px) {
+  .gh-tracker { grid-template-columns: 1fr 1fr; }
+  .gh-round { grid-column: 1 / -1; }
+  .gh-draft { grid-template-columns: 1fr; }
+}
+
+/* Boutons principaux de la page : cyan, quel que soit le thème de faction. */
+.game-hub button.primary, .gh-commands button.primary, .gh-round > button.primary {
+  border: 1px solid #7ee3ff; border-radius: 8px; color: #fff; text-shadow: 0 1px 2px rgba(0, 20, 40, .6);
+  background: linear-gradient(180deg, #1d8ec9, #0a5e96); box-shadow: 0 0 16px rgba(66, 205, 255, .4), inset 0 0 14px rgba(150, 230, 255, .25);
+  font: 700 1.1rem "Rajdhani", sans-serif;
+}
+.game-hub button.primary:disabled { opacity: .35; box-shadow: none; }
+.game-hub button.secondary { border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 8px; background: rgba(10, 24, 38, .9); color: var(--rx-text, #e8f3fa); font: 700 1rem "Rajdhani", sans-serif; }
