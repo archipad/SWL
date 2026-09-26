@@ -1,0 +1,534 @@
+[
+  {
+    "id": "canon-laser-1-4-fd",
+    "nom": "Équipe Canon Laser 1.4 FD",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Équipe de canon laser rebelle en position sur une crête rocheuse, artilleurs concentrés derrière le bouclier, éclair orangé du tir, poussière et fumée"
+  },
+  {
+    "id": "speederbikes-74-z",
+    "nom": "Speederbikes 74-Z",
+    "type": "Véhicule",
+    "faction": "Empire Galactique",
+    "ambiance": "Deux speeder bikes impériaux filant entre les arbres géants d’Endor, pilotes en armure de scout, brume verte, sensation de vitesse, lumière filtrée"
+  },
+  {
+    "id": "camion-speeder-a-a5",
+    "nom": "Camion Speeder A-A5",
+    "type": "Véhicule",
+    "faction": "Empire Galactique",
+    "ambiance": "Lourd camion speeder impérial sur une route poussiéreuse, feux rouges, troupes à l’arrière, ciel d’aube industriel, ambiance militaire"
+  },
+  {
+    "id": "agent-kallus",
+    "nom": "Agent Kallus",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Agent de la Sécurité impériale en uniforme gris, regard froid et calculateur, salle de commandement sombre aux hologrammes bleutés"
+  },
+  {
+    "id": "ahsoka-tano",
+    "nom": "Ahsoka Tano",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Ancienne Padawan aux deux sabres laser blancs, tenue de combat sobre, posture défensive, brume crépusculaire, silhouette élancée"
+  },
+  {
+    "id": "hommes-de-main-soleil-noir",
+    "nom": "Hommes de Main du Soleil Noir",
+    "type": "Infanterie",
+    "faction": "Mercenaires",
+    "ambiance": "Hommes de main du Soleil Noir en manteaux sombres et masques, armes lourdes, ruelle d’une ville-monde criminelle, reflets néon violets et verts"
+  },
+  {
+    "id": "vigo-soleil-noir",
+    "nom": "Vigo du Soleil Noir",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Chef criminel du Soleil Noir en costume luxueux et cape sombre, bijoux, salon privé éclairé de néons violets, regard menaçant"
+  },
+  {
+    "id": "boba-fett-daimyo",
+    "nom": "Boba Fett, Daimyo de Mos Espa",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Boba Fett en armure mandalorienne patinée, assis en seigneur du crime sur un trône de pierre, palais de Tatooine, lumière dorée du désert"
+  },
+  {
+    "id": "boba-fett-chasseur-de-primes",
+    "nom": "Boba Fett, Infâme Chasseur de Primes",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Boba Fett en armure mandalorienne verte usée, jetpack, blaster levé, ciel orangé de tempête de sable, silhouette menaçante"
+  },
+  {
+    "id": "bossk",
+    "nom": "Bossk",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Chasseur de primes trandoshan reptilien en combinaison usée, fusil à l’épaule, vaisseau en arrière-plan, éclairage vert-jaune inquiétant"
+  },
+  {
+    "id": "cad-bane",
+    "nom": "Cad Bane",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Chasseur de primes duro à la peau bleue et au chapeau à large bord, deux blasters, ville poussiéreuse au crépuscule, yeux rouges luisants"
+  },
+  {
+    "id": "cassian-andor",
+    "nom": "Cassian Andor",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Capitaine rebelle en veste de terrain, regard tendu, blaster en main, base secrète en pleine jungle, lueur froide de l’aube"
+  },
+  {
+    "id": "chewbacca",
+    "nom": "Chewbacca",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Wookiee en bandoulière de munitions, arbalète bowcaster, forêt brumeuse de Kashyyyk, lumière verte, présence imposante et loyale"
+  },
+  {
+    "id": "dark-troopers-imperiaux",
+    "nom": "Dark Troopers Impériaux",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Escouade de droïdes Dark Troopers noirs, armures blindées, yeux rouges luisants, hangar sombre enfumé, poussée mécanique inquiétante"
+  },
+  {
+    "id": "dark-vador",
+    "nom": "Dark Vador, Seigneur Noir des Sith",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Cinématique sombre, lueur rouge menaçante, casque détaillé, vaisseau impérial en arrière-plan"
+  },
+  {
+    "id": "soldat-dewback",
+    "nom": "Soldat Monté sur Dewback",
+    "type": "Cavalerie",
+    "faction": "Empire Galactique",
+    "ambiance": "Stormtrooper monté sur un dewback dans le désert de Tatooine, soleil écrasant, armure blanche poussiéreuse, ambiance chaude"
+  },
+  {
+    "id": "mortier-df-90",
+    "nom": "Soldat avec Mortier DF-90",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Soldat impérial servant un mortier DF-90, position abritée, fumée des tirs, tranchée boueuse, éclairage froid et lueurs orange"
+  },
+  {
+    "id": "din-djarin",
+    "nom": "Din Djarin",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Mandalorien en beskar argenté, casque au T brillant, fusil à l’épaule, planète enneigée, lueur froide et reflets métalliques"
+  },
+  {
+    "id": "directeur-krennic",
+    "nom": "Directeur Orson Krennic",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Directeur en cape blanche de la Marine de la Mort, expression suffisante, plateforme de l’Étoile de la Mort en arrière-plan, éclairage froid"
+  },
+  {
+    "id": "equipe-e-web",
+    "nom": "Équipe Blaster Lourd E-Web",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Équipe de deux stormtroopers servant un blaster lourd E-Web sur trépied, position défensive dans la neige, éclairs de tir bleus"
+  },
+  {
+    "id": "soldats-de-la-flotte",
+    "nom": "Soldats de la Flotte",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Soldats de la flotte impériale en uniforme gris et casque, fusils en main, coursive de croiseur, éclairage rouge d’alerte"
+  },
+  {
+    "id": "gar-saxon",
+    "nom": "Gar Saxon",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Chef mandalorien en armure sombre gravée, casque à visière, sabre-lame, forteresse impériale, lueur rouge et poussière"
+  },
+  {
+    "id": "general-veers",
+    "nom": "Général Veers",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Général impérial en uniforme sombre et casque, regard dur, champ de bataille enneigé de Hoth, marcheurs AT-AT dans la brume"
+  },
+  {
+    "id": "han-solo",
+    "nom": "Han Solo, Général Peu Orthodoxe",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Han Solo en veste et gilet, blaster à la hanche, sourire narquois, forêt d’Endor en contre-jour, lumière chaude"
+  },
+  {
+    "id": "iden-versio",
+    "nom": "Iden Versio",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Commandante de l’Inferno Squad en armure noire et rouge, casque sous le bras, hangar éclairé de rouge, regard déterminé"
+  },
+  {
+    "id": "ig-11",
+    "nom": "IG-11",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Droïde assassin gris argenté aux gestes précis, éclairage industriel froid, forge en arrière-plan, reflets métalliques"
+  },
+  {
+    "id": "ig-88",
+    "nom": "IG-88",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Droïde chasseur de primes noir et gris, armes multiples, crâne mécanique, éclairage sombre bleuté, silhouette angulaire"
+  },
+  {
+    "id": "death-troopers-imperiaux",
+    "nom": "Death Troopers Impériaux",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Death Troopers en armure noire brillante et casque lisse, fusils en joue, couloir sombre, éclats rouges, ambiance de terreur"
+  },
+  {
+    "id": "forces-speciales-imperiales",
+    "nom": "Forces Spéciales Impériales",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Forces spéciales impériales en armure sombre et visières, embuscade nocturne, lueurs rouges, discrétion menaçante"
+  },
+  {
+    "id": "escouade-inferno",
+    "nom": "Forces Spéciales Impériales, Escouade Inferno",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Escouade Inferno en armures noires et rouges, formation tactique, ciel de flammes, ruines d’une base impériale"
+  },
+  {
+    "id": "jyn-erso",
+    "nom": "Jyn Erso",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Jyn Erso en manteau et pendentif kyber, blaster, plage tropicale de Scarif, lumière dramatique, regard résolu"
+  },
+  {
+    "id": "k-2so",
+    "nom": "K-2SO",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Grand droïde impérial reprogrammé, noir aux yeux jaunes, posture sardonique, hangar rebelle en arrière-plan"
+  },
+  {
+    "id": "transport-laat-le",
+    "nom": "Transport de Patrouille LAAT/LE",
+    "type": "Véhicule",
+    "faction": "Empire Galactique",
+    "ambiance": "Transport LAAT/le en vol stationnaire au-dessus d’une ville, rampe ouverte, soldats prêts à débarquer, lueur orange de fin de journée"
+  },
+  {
+    "id": "lando-calrissian",
+    "nom": "Lando Calrissian",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Lando en cape et uniforme de général rebelle, charisme, sourire assuré, passerelle d’un vaisseau, lumière chaude"
+  },
+  {
+    "id": "leia-organa",
+    "nom": "Leia Organa",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Leia en tenue de combat sobre, blaster, regard résolu, base rebelle de Hoth, éclairage bleu et blanc"
+  },
+  {
+    "id": "luke-heros-de-la-rebellion",
+    "nom": "Luke Skywalker, Héros de la Rébellion",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Luke en tunique claire, sabre laser bleu, lumière dorée du crépuscule sur Tatooine, regard déterminé"
+  },
+  {
+    "id": "luke-chevalier-jedi",
+    "nom": "Luke Skywalker, Chevalier Jedi",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Luke en tenue noire, sabre laser vert, cape, palais de Jabba en flammes en arrière-plan, calme puissant"
+  },
+  {
+    "id": "major-marquand",
+    "nom": "Major Marquand",
+    "type": "Véhicule",
+    "faction": "Empire Galactique",
+    "ambiance": "Marcheur impérial commandé par le Major Marquand, canons en position, forêt d’Endor, lueur rouge, ombre longue"
+  },
+  {
+    "id": "resistance-mandalorienne-clan-wren",
+    "nom": "Résistance Mandalorienne, Clan Wren",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Résistants mandaloriens du clan Wren en armures peintes et colorées, jetpacks, peinture de guerre, planète rebelle, lumière chaude"
+  },
+  {
+    "id": "super-commandos-mandaloriens",
+    "nom": "Super Commandos Mandaloriens",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Super Commandos mandaloriens en armures grises et vertes, jetpacks, déploiement en plein ciel, lueur orange"
+  },
+  {
+    "id": "blaster-moyen-mark-ii",
+    "nom": "Soldat avec Blaster Moyen Mark II",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Soldat avec blaster moyen Mark II, position de tir à genoux, tranchée, fumée, éclairage froid contrasté"
+  },
+  {
+    "id": "maul",
+    "nom": "Maul",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Maul aux cornes noires et tatouages rouges, sabre laser rouge à double lame, rire sinistre, égouts éclairés de rouge"
+  },
+  {
+    "id": "moff-gideon",
+    "nom": "Moff Gideon",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Moff en armure cuirassée et cape sombre, sabre noir, regard calculateur, base impériale en ruine, éclairage froid"
+  },
+  {
+    "id": "capo-syndicat-pyke",
+    "nom": "Capo du Syndicat Pyke",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Capo du Syndicat Pyke, masque respirateur pyke, robe épaisse, mines d’épice, éclairage ocre et sang"
+  },
+  {
+    "id": "fantassins-syndicat-pyke",
+    "nom": "Fantassins du Syndicat Pyke",
+    "type": "Infanterie",
+    "faction": "Mercenaires",
+    "ambiance": "Fantassins Pyke en cagoule et masque respirateur, armes lourdes, mines d’épice, lumière ocre et poussière"
+  },
+  {
+    "id": "r2-d2",
+    "nom": "R2-D2",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "R2-D2 bleu et blanc, dôme lumineux, atelier d’un hangar rebelle, lueurs bleues, petit mais héroïque"
+  },
+  {
+    "id": "range-troopers",
+    "nom": "Range Troopers",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Range troopers en tenue de désert et casques, fusils à longue portée, dunes, chaleur écrasante, lumière dure"
+  },
+  {
+    "id": "agent-rebelle",
+    "nom": "Agent Rebelle, Défenseur de la Démocratie",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Agent rebelle en manteau tactique, blaster, base clandestine, lampe froide, ambiance d’espionnage"
+  },
+  {
+    "id": "commandos-rebelles",
+    "nom": "Commandos Rebelles",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Commandos rebelles en camouflage de jungle et visières, fusils, embuscade dans la forêt d’Endor, lumière verte diffuse"
+  },
+  {
+    "id": "commandos-rebelles-equipe-d-assaut",
+    "nom": "Commandos Rebelles",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Équipe d’assaut de commandos rebelles, grappin et grenades, escalade d’une paroi rocheuse, aube froide, tension avant l’attaque"
+  },
+  {
+    "id": "cellule-dormante-rebelle",
+    "nom": "Cellule Dormante Rebelle",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Agents rebelles infiltrés en vêtements civils, armes cachées, ruelle d’une ville impériale, néons humides, tension"
+  },
+  {
+    "id": "soldats-rebelles",
+    "nom": "Soldats Rebelles",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Soldats rebelles casqués, blasters, formation dans une tranchée, ciel chaud, lumière dorée, détermination"
+  },
+  {
+    "id": "veterans-rebelles",
+    "nom": "Vétérans Rebelles",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Vétérans rebelles en équipement usé, blaster, regards marqués par l’expérience, camp dans la neige de Hoth"
+  },
+  {
+    "id": "sabine-wren",
+    "nom": "Sabine Wren",
+    "type": "Personnage",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Sabine Wren en armure mandalorienne colorée, casque peint, deux blasters, graffiti sur un mur d’hangar, lumière néon"
+  },
+  {
+    "id": "scout-troopers",
+    "nom": "Scout Troopers",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Scout troopers en armure blanche légère et casque à visière, blaster, forêt d’Endor brumeuse, lumière verte"
+  },
+  {
+    "id": "scout-troopers-equipe-d-assaut",
+    "nom": "Scout Troopers",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Équipe de scout troopers en observation sur une falaise, jumelles et blasters, forêt en contrebas, brume matinale"
+  },
+  {
+    "id": "shoretroopers",
+    "nom": "Shoretroopers",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Shoretroopers en armure sable et casque à visière, plage de Scarif, lumière tropicale, chaleur"
+  },
+  {
+    "id": "snowtroopers",
+    "nom": "Snowtroopers",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Snowtroopers en armure blanche à capuche et masque, tempête de neige de Hoth, blaster lourd, souffle glacé"
+  },
+  {
+    "id": "stormtroopers-unite-lourde",
+    "nom": "Stormtroopers, Unité Lourde d'Intervention",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Stormtroopers lourds en armure renforcée avec blasters lourds, position de tir, fumée, lueur rouge"
+  },
+  {
+    "id": "escouade-antimeute",
+    "nom": "Escouade Stormtrooper Antiémeute",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Stormtroopers antiémeute avec boucliers et matraques, casques arrondis, rue sombre, lueur rouge d’alerte"
+  },
+  {
+    "id": "stormtroopers",
+    "nom": "Stormtroopers",
+    "type": "Infanterie",
+    "faction": "Empire Galactique",
+    "ambiance": "Stormtroopers en armure blanche, blaster E-11, couloir de l’Étoile de la Mort, lueurs bleutées, formation menaçante"
+  },
+  {
+    "id": "pilotes-de-swoop",
+    "nom": "Pilotes de Swoop",
+    "type": "Véhicule",
+    "faction": "Mercenaires",
+    "ambiance": "Pilotes de swoop en casques rugueux sur leurs motos, course à toute vitesse dans le désert, poussière et lumière rouge"
+  },
+  {
+    "id": "airspeeder-t-47",
+    "nom": "Airspeeder T-47",
+    "type": "Véhicule",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Airspeeder T-47 rebelle survolant la glace de Hoth, câble de remorquage, éclats de tir, ciel blanc et bleu"
+  },
+  {
+    "id": "soldats-tauntaun",
+    "nom": "Soldats Montés sur Tauntaun",
+    "type": "Cavalerie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Soldats rebelles montés sur tauntauns dans le blizzard de Hoth, buée, tenue polaire, lumière bleutée"
+  },
+  {
+    "id": "le-bad-batch",
+    "nom": "Le Bad Batch",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Le Bad Batch, clones altérés en armures colorées dépareillées, équipe soudée, ciel de tempête, lumière contrastée"
+  },
+  {
+    "id": "cinquieme-frere",
+    "nom": "Le Cinquième Frère",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Inquisiteur au visage pâle, sabre laser rouge à double lame, armure noire, cachot obscur, lueur rouge"
+  },
+  {
+    "id": "septieme-soeur",
+    "nom": "La Septième Sœur",
+    "type": "Personnage",
+    "faction": "Empire Galactique",
+    "ambiance": "Inquisitrice masquée en tenue noire, sabres laser rouges, couloir métallique, lueur rouge froide"
+  },
+  {
+    "id": "tank-occupier-tx-225",
+    "nom": "Tank « Occupier » TX-225 GAVw",
+    "type": "Véhicule",
+    "faction": "Empire Galactique",
+    "ambiance": "Tank Occupier impérial lourd en position, canon fumant, base impériale, lueur rouge du soir, ambiance écrasante"
+  },
+  {
+    "id": "landspeeder-x-34",
+    "nom": "Landspeeder X-34",
+    "type": "Véhicule",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Landspeeder X-34 flottant au-dessus du sable, ciel bicolore, poussière, lumière dorée nostalgique"
+  },
+  {
+    "id": "guerriers-wookies-combattants",
+    "nom": "Guerriers Wookies, Combattants de la Liberté",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Guerriers wookies avec bowcasters, jungle de Kashyyyk, fourrure mouillée, lumière verte brumeuse"
+  },
+  {
+    "id": "guerriers-wookies-resistance",
+    "nom": "Guerriers Wookies, Résistance de Kashyyyk",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Résistants wookies en armes de fortune, arbres géants, feu, ambiance de résistance, lumière verte et orange"
+  },
+  {
+    "id": "tl-tt",
+    "nom": "TL-TT",
+    "type": "Véhicule",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Marcheur TL-TT (AT-RT) rebelle en pleine course dans la forêt, canon blaster, feuillage, lumière du soir"
+  },
+  {
+    "id": "tr-tt",
+    "nom": "TR-TT",
+    "type": "Véhicule",
+    "faction": "Empire Galactique",
+    "ambiance": "Marcheur TR-TT (AT-ST) impérial, silhouette imposante, ombre longue, forêt et neige, lumière rouge"
+  },
+  {
+    "id": "resistance-mandalorienne",
+    "nom": "Résistance Mandalorienne",
+    "type": "Infanterie",
+    "faction": "Alliance Rebelle",
+    "ambiance": "Résistance mandalorienne en armures peintes, casques colorés, jetpacks, terrain accidenté, lumière chaude et poussière"
+  },
+  {
+    "id": "grogu",
+    "nom": "Grogu",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Grogu, grandes oreilles vertes, robe brune, main tendue avec la Force, lumière douce et chaude, expression curieuse"
+  },
+  {
+    "id": "omega",
+    "nom": "Omega",
+    "type": "Personnage",
+    "faction": "Mercenaires",
+    "ambiance": "Omega, jeune clone d’élite du Bad Batch, tenue de combat, air décidé, planète tropicale, lumière douce"
+  }
+]
