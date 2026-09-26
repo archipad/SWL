@@ -630,3 +630,18 @@ assert.ok(tsIds.length > 40, 'src/data/commandCards.ts doit exposer les cartes d
 assert.deepEqual(jsIds, tsIds, 'public/assistant/command-cards.js doit rester synchronisé avec src/data/commandCards.ts (relancer scripts/generate-assistant-command-cards.cjs)')
 assert.match(index, /command-cards\.js\?v=1/, 'index.html doit charger command-cards.js avant app.js')
 assert.match(app, /const trackerKey='swl\.game-tracker\.v1'/, 'La page Partie doit lire et écrire le même suivi que l’appli principale')
+
+// Couverture visuelle complète : le registre couvre toutes les illustrations
+// attendues par la base, pas uniquement les unités des listes de démonstration.
+const portraitSource = fs.readFileSync(new URL('../public/assistant/portrait-assets.js', import.meta.url), 'utf8')
+const portraitRegistry = JSON.parse(portraitSource.replace(/^\/\/[^\n]*\n/, '').replace(/^window\.SWL_CODEX_PORTRAITS=/, '').replace(/;\s*$/, ''))
+const expectedPortraits = JSON.parse(fs.readFileSync(new URL('../docs/portraits-unites.json', import.meta.url), 'utf8'))
+const uniquePortraitSources = [...new Set(Object.values(portraitRegistry))]
+const assistantDir = new URL('../public/assistant/', import.meta.url)
+assert.equal(uniquePortraitSources.length, expectedPortraits.length, `La base attend ${expectedPortraits.length} visuels d’unité uniques`)
+for (const source of uniquePortraitSources) {
+  const url = source.startsWith('../') ? new URL(source, assistantDir) : new URL(`../codex/portraits/${source}`, assistantDir)
+  assert.ok(fs.existsSync(url), `Portrait d’unité absent : ${source}`)
+}
+assert.equal(portraitRegistry.grogu, '../cards/grogu.jpg', 'Grogu doit utiliser la zone illustrée de sa carte, pas l’ancien fragment blanc')
+assert.equal(portraitRegistry.omega, '../cards/omega.jpg', 'Omega doit utiliser la zone illustrée de sa carte, pas l’ancien fragment blanc')

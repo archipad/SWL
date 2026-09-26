@@ -208,9 +208,33 @@ body:has(.attack-workspace) .combat-side .unit-card-zoom.has-portrait::before {
 .cx-sel-thumb { position: relative; }
 body:has(.attack-workspace) .combat-side .unit-card-zoom > span { z-index: 2; }
 
+/* Grogu et Omega sont des cartes Alter Ego dont les anciens fichiers de
+   portrait contenaient surtout la zone de texte blanche. Leur illustration
+   source est cadrée directement depuis la carte, côté gauche, sans fond
+   dupliqué ni bandes latérales floutées. */
+.tile-visual img.art-portrait:is([src$="/cards/grogu.jpg"], [src$="/cards/omega.jpg"]),
+.cx-sel-thumb img:is([src$="/cards/grogu.jpg"], [src$="/cards/omega.jpg"]) {
+  object-position: left center !important;
+  transform: scale(2.9) !important;
+  transform-origin: 0 40% !important;
+}
+.cx-ov-portrait img.cx-portrait:is([src$="/cards/grogu.jpg"], [src$="/cards/omega.jpg"]) {
+  object-position: left center !important;
+  transform: scale(2.95) !important;
+  transform-origin: 0 40% !important;
+}
+body:has(.attack-workspace) .combat-side .unit-card-zoom img.cx-portrait:is([src$="/cards/grogu.jpg"], [src$="/cards/omega.jpg"]) {
+  object-position: left center !important;
+  transform: scale(1.65) !important;
+  transform-origin: 0 42% !important;
+}
+
 @media (max-width: 1050px) {
   body:has(.attack-workspace) .combat-side .unit-card-zoom img.cx-portrait[src*="/catalog-"] {
     transform: scale(1.36);
+  }
+  body:has(.attack-workspace) .combat-side .unit-card-zoom img.cx-portrait:is([src$="/cards/grogu.jpg"], [src$="/cards/omega.jpg"]) {
+    transform: scale(2.9) !important;
   }
 }
 

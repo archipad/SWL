@@ -79,6 +79,6 @@ window.SWL_CODEX_PORTRAITS={
   "wookiee warriors freedom fighters": "catalog-guerriers-wookies-combattants.webp",
   "wookiee warriors kashyyyk resistance": "catalog-guerriers-wookies-resistance.webp",
   "mandalorian resistance": "catalog-resistance-mandalorienne.webp",
-  "grogu": "catalog-grogu.webp",
-  "omega": "catalog-omega.webp"
+  "grogu": "../cards/grogu.jpg",
+  "omega": "../cards/omega.jpg"
 };
