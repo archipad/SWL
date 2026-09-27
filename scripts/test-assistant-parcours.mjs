@@ -98,6 +98,9 @@ scenario('Attaque complète à distance : sélection → portée → armes → d
   assert.equal(text($('.recap-card.suppression .recap-num')), '1', '1 suppression')
   assert.equal($$('.recap-spent .spent-item').length, 4, 'quatre types de pions dépensés')
   assert.ok($('details.morale-fold') && !$('details.morale-fold').open, 'suppression et moral repliés par défaut')
+  await click('#nextAttack')
+  const unitState = JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}')
+  assert.equal(unitState['p2:0'].damage, 3, 'les 3 blessures validées sont enregistrées sur le défenseur')
   assert.equal(app.errors.length, 0, `aucune erreur JavaScript : ${app.errors.join(' | ')}`)
   app.window.close()
 })
@@ -2049,9 +2052,9 @@ scenario('Sélection des unités (25/09/2026) : rang + icône en tête, figurine
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Stormtrooper Heavy Gunner' }] }] },
     'swl.list.p2.v1': { listName: 'Test rebelles solo', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
-    'swl.assistant.unit-state.v1': { 'p1:0': { suppression: 1 } },
+    'swl.assistant.unit-state.v1': { 'p1:0': { suppression: 1, damage: 2 } },
   })
-  const { $, $$, text } = app
+  const { $, $$, text, click } = app
   const doc = app.window.document
   assert.ok(!doc.querySelector('.site-nav'), 'plus de double barre de menu : le bandeau de navigation du site est retiré')
   assert.equal(doc.querySelectorAll('#progress i').length, 8, 'les 8 étapes sont affichées en haut')
@@ -2062,13 +2065,19 @@ scenario('Sélection des unités (25/09/2026) : rang + icône en tête, figurine
   assert.match(text(tile.querySelector('.tile-head')), /Troupiers/, 'le rang est affiché en tête de la carte')
   assert.ok(tile.querySelector('.tile-head .rank-icon'), 'avec son icône')
   assert.ok(tile.querySelector('.tile-visual > img'), 'la carte garde son illustration (contrat de balisage)')
-  assert.match(text(tile.querySelector('.tile-count')), /\d+ figurines?/, 'le nombre de figurines est affiché sous la carte')
+  assert.match(text(tile.querySelector('.tile-count')), /2\/4 figurines/, 'les figurines restantes sont affichées sous la carte')
   assert.match(text(tile.querySelector('.unit-status')), /1 suppression/, 'la suppression actuelle est affichée')
   assert.doesNotMatch(text(tile), /Sans amélioration|Heavy Gunner|Artilleur/i, 'le nom des améliorations n’est plus affiché')
   // Un seul toucher ouvre toujours la fiche de l'unité.
   tile.click()
   await new Promise((resolve) => setTimeout(resolve, 50))
   assert.ok(doc.querySelector('.overview'), 'toucher la carte ouvre la fiche de l’unité')
+  assert.match(text(doc.querySelector('.unit-health-editor')), /2\/4 figurines restantes.*Blessures subies.*2/s, 'la fiche permet de corriger les blessures et explique l’effectif restant')
+  await click('[data-state-field="damage"][data-delta="-1"]')
+  const correctedState = JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}')
+  assert.equal(correctedState['p1:0'].damage, 1, 'la correction manuelle des blessures est mémorisée')
+  await click('#back')
+  assert.match(text($('.unit-tile .tile-count')), /3\/4 figurines/, 'la grille reflète immédiatement la correction manuelle')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })

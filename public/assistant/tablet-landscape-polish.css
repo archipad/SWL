@@ -176,6 +176,52 @@ body:has(.unit-picker-grid) .unit-picker-grid .tile-count {
   font-size: .84rem;
 }
 
+body:has(.unit-picker-grid) .unit-picker-grid .tile-meta { gap: 6px; }
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-count.is-damaged,
+body:has(.unit-picker-grid) .unit-picker-grid .tile-health.is-damaged,
+.models-chip.is-damaged {
+  color: #ff7168 !important;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-health {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  color: #dcecf5;
+  font: 800 .72rem/1 "Share Tech Mono", monospace;
+  white-space: nowrap;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-health > span {
+  color: #ff6259;
+  font-size: .82rem;
+}
+
+.unit-health-editor {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(230px, .8fr);
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--faction-ui-accent) 45%, transparent);
+  background: rgba(13, 32, 44, .58);
+}
+
+.unit-health-editor > div:first-child { display: grid; gap: 2px; }
+.unit-health-editor > div:first-child > strong {
+  color: #f2f8fb;
+  font: 800 .78rem/1 Rajdhani, sans-serif;
+  letter-spacing: .09em;
+}
+.unit-health-editor > div:first-child > small { color: #a9c4d3; font-size: .78rem; }
+.unit-health-editor .state-counter { margin: 0; }
+
+@media (max-width: 780px) {
+  .unit-health-editor { grid-template-columns: 1fr; }
+}
+
 /* Les libellés techniques restent petits mais lisibles à distance de bras. */
 body:has(.unit-picker-grid) .unit-picker-grid .rank-label,
 .cx-sel-id small,
