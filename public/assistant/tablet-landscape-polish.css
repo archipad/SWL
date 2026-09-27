@@ -44,6 +44,65 @@ body:has(.unit-picker-grid) .unit-picker-grid .tile-visual::after {
   background: linear-gradient(180deg, rgba(2, 7, 12, .08) 0%, transparent 48%, rgba(2, 7, 12, .6) 100%) !important;
 }
 
+/* Bain colorimétrique commun aux portraits réalistes, illustrations et
+   extractions de cartes. Il uniformise sans flouter les côtés. */
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual {
+  isolation: isolate;
+  background: #07111a !important;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(115deg, rgba(72, 155, 196, .08), transparent 42%),
+    linear-gradient(180deg, rgba(3, 10, 16, .02), rgba(3, 10, 16, .14));
+  mix-blend-mode: color;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual img {
+  filter: saturate(.58) contrast(1.14) brightness(.91) sepia(.02) hue-rotate(-2deg) !important;
+}
+
+body[data-faction-theme="rebel"]:has(.unit-picker-grid) .unit-picker-grid .tile-visual::before {
+  background:
+    linear-gradient(115deg, rgba(216, 171, 102, .075), transparent 42%),
+    linear-gradient(180deg, rgba(12, 9, 5, .015), rgba(3, 10, 16, .13));
+}
+
+body[data-faction-theme="rebel"]:has(.unit-picker-grid) .unit-picker-grid .tile-visual img {
+  filter: saturate(.7) contrast(1.1) brightness(.95) sepia(.045) hue-rotate(-1deg) !important;
+}
+
+/* Une même unité conserve son portrait, mais chaque exemplaire répété montre
+   une zone légèrement différente de l'escouade. */
+body:has(.unit-picker-grid) .unit-tile[data-occurrence="2"] .tile-visual img.art-portrait:not([src*="/catalog-"]):not([src*="/cards/"]) {
+  object-position: 72% 35% !important;
+  transform: scale(1.18);
+  transform-origin: 72% 35%;
+}
+
+body:has(.unit-picker-grid) .unit-tile[data-occurrence="3"] .tile-visual img.art-portrait:not([src*="/catalog-"]):not([src*="/cards/"]) {
+  object-position: 32% 35% !important;
+  transform: scale(1.14);
+  transform-origin: 30% 35%;
+}
+
+body:has(.unit-picker-grid) .unit-tile[data-occurrence="4"] .tile-visual img.art-portrait:not([src*="/catalog-"]):not([src*="/cards/"]) {
+  object-position: 76% 38% !important;
+  transform: scale(1.22);
+  transform-origin: 78% 38%;
+}
+
+body:has(.unit-picker-grid) .unit-tile[data-portrait-variant="alternate"] .tile-visual img.art-portrait:not([src*="/catalog-"]):not([src*="/cards/"]) {
+  object-position: 70% 36% !important;
+  transform: scale(1.16);
+  transform-origin: 70% 36%;
+}
+
 body:has(.unit-picker-grid) .unit-picker-grid .unit-tile::before,
 .actions > button::after,
 .cx-sel-actions button::after {
@@ -62,6 +121,35 @@ body:has(.unit-picker-grid) .unit-picker-grid .tile-body > strong {
   word-break: normal;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile[data-name-size="long"] .tile-body > strong {
+  font-size: 1rem;
+  letter-spacing: .01em;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile[data-name-size="xlong"] .tile-body > strong {
+  font-size: .9rem;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+/* Un pictogramme d'escouade et un nombre remplacent la succession de
+   silhouettes, plus encombrante que l'information qu'elle portait. */
+body:has(.unit-picker-grid) .unit-picker-grid .tile-minis {
+  flex: 0 0 auto;
+  width: 13px;
+  overflow: visible;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-minis .tile-mini {
+  width: 13px;
+  height: 19px;
+  opacity: .95;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-count {
+  font-size: .84rem;
 }
 
 /* Les libellés techniques restent petits mais lisibles à distance de bras. */
@@ -289,6 +377,12 @@ body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected .tile-head:
   .topbar .topbar-sub strong { font-size: .66rem !important; }
 
   body:has(.unit-picker-grid) .unit-picker-grid .tile-body strong { font-size: 1.02rem; }
-  body:has(.unit-picker-grid) .unit-picker-grid .tile-minis .tile-mini:nth-child(n+7) { display: none; }
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile[data-name-size="long"] .tile-body strong { font-size: .92rem; }
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile[data-name-size="xlong"] .tile-body strong { font-size: .82rem; }
+}
+
+@media (max-width: 620px) {
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile[data-name-size="long"] .tile-body > strong { font-size: .88rem; }
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile[data-name-size="xlong"] .tile-body > strong { font-size: .78rem; }
 }
 
