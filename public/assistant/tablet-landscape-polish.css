@@ -63,6 +63,30 @@ body:has(.unit-picker-grid) .unit-picker-grid .tile-visual::before {
   mix-blend-mode: color;
 }
 
+/* La composition rend immédiatement lisible la différence entre une unité
+   complète et une petite équipe utilisant la même famille d'armure. */
+body:has(.unit-picker-grid) .unit-picker-grid .tile-formation {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 auto;
+  gap: 5px;
+  min-width: 0;
+  padding: 3px 5px;
+  color: #e7f6ff;
+  background: rgba(22, 48, 63, .72);
+  border: 1px solid color-mix(in srgb, var(--faction-ui-accent) 58%, transparent);
+  font: 700 .6rem/1 Rajdhani, sans-serif;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-formation small {
+  color: var(--faction-ui-accent);
+  font: 800 .65rem/1 "Share Tech Mono", monospace;
+  white-space: nowrap;
+}
+
 body:has(.unit-picker-grid) .unit-picker-grid .tile-visual img {
   filter: saturate(.58) contrast(1.14) brightness(.91) sepia(.02) hue-rotate(-2deg) !important;
 }

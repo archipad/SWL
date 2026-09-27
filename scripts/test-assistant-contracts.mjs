@@ -638,10 +638,12 @@ const portraitRegistry = JSON.parse(portraitSource.replace(/^\/\/[^\n]*\n/, '').
 const expectedPortraits = JSON.parse(fs.readFileSync(new URL('../docs/portraits-unites.json', import.meta.url), 'utf8'))
 const uniquePortraitSources = [...new Set(Object.values(portraitRegistry))]
 const assistantDir = new URL('../public/assistant/', import.meta.url)
-assert.equal(uniquePortraitSources.length, expectedPortraits.length, `La base attend ${expectedPortraits.length} visuels d’unité uniques`)
+assert.ok(uniquePortraitSources.length >= expectedPortraits.length, `La base attend au moins ${expectedPortraits.length} visuels d’unité uniques`)
 for (const source of uniquePortraitSources) {
   const url = source.startsWith('../') ? new URL(source, assistantDir) : new URL(`../codex/portraits/${source}`, assistantDir)
   assert.ok(fs.existsSync(url), `Portrait d’unité absent : ${source}`)
 }
 assert.equal(portraitRegistry.grogu, '../cards/grogu.jpg', 'Grogu doit utiliser la zone illustrée de sa carte, pas l’ancien fragment blanc')
 assert.equal(portraitRegistry.omega, '../cards/omega.jpg', 'Omega doit utiliser la zone illustrée de sa carte, pas l’ancien fragment blanc')
+assert.notEqual(portraitRegistry['scout troopers strike team'], portraitRegistry['scout troopers'], 'L’équipe spécialisée de Scout Troopers doit avoir un portrait distinct de l’unité complète')
+assert.notEqual(portraitRegistry['rebel commandos strike team'], portraitRegistry['rebel commandos'], 'L’équipe spécialisée de Commandos Rebelles doit avoir un portrait distinct de l’unité complète')

@@ -2,7 +2,7 @@
 window.SWL_CODEX_PORTRAITS={
   "leia organa": "leia-organa.webp",
   "scout troopers": "scout-troopers-hd.webp",
-  "scout troopers strike team": "scout-troopers-hd.webp",
+  "scout troopers strike team": "scout-troopers-strike-team.webp",
   "snowtroopers": "snowtroopers.webp",
   "cassian andor": "cassian-andor.webp",
   "cassian andor operative": "cassian-andor.webp",
@@ -10,7 +10,7 @@ window.SWL_CODEX_PORTRAITS={
   "sabine wren": "sabine-wren.webp",
   "rebel troopers": "rebel-troopers-hd.webp",
   "rebel commandos": "rebel-commandos-hd.webp",
-  "rebel commandos strike team": "rebel-commandos-hd.webp",
+  "rebel commandos strike team": "rebel-commandos-strike-team.webp",
   "at st": "at-st-hd.webp",
   "tr tt": "at-st-hd.webp",
   "at rt": "at-rt-hd.webp",
