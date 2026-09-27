@@ -1984,6 +1984,29 @@ scenario('Page Partie (27/09/2026) : construction de la suite de Commandement di
   app.window.close()
 })
 
+scenario('Page Partie (27/09/2026) : bouton Annuler, en cohérence avec le journal du site (swl.game-action-history.v1)', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.game-tracker.v1': { round: 1, p1Color: 'bleu', vpBleu: 0, vpRouge: 0, activatedUnitIds: [], roundHistory: [], commandReveal: null,
+      commandDecks: { bleu: { suite: [], played: [], pendingId: null }, rouge: { suite: [], played: [], pendingId: null } } },
+  })
+  const { $, click } = app
+  const tracker = () => JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1'))
+  const history = () => JSON.parse(app.window.localStorage.getItem('swl.game-action-history.v1') || '[]')
+  await click('#roundPhases')
+  assert.ok($('[data-gh-undo]').disabled, 'rien à annuler avant la première action')
+  await click('[data-gh-vp="bleu"][data-delta="1"]')
+  assert.equal(tracker().vpBleu, 1, 'point de victoire ajouté')
+  assert.equal(history().length, 1, 'l’action est journalisée (même journal que le site)')
+  assert.ok(!$('[data-gh-undo]').disabled, 'Annuler devient disponible')
+  await click('[data-gh-undo]')
+  assert.equal(tracker().vpBleu, 0, 'Annuler restaure l’état précédent')
+  assert.ok(history()[0].undoneAt, 'l’action annulée est marquée comme telle dans le journal, pas supprimée')
+  assert.ok($('[data-gh-undo]').disabled, 'plus rien à annuler après le seul Annuler disponible')
+  app.window.close()
+})
+
 scenario('Sélection en deux temps (25/09/2026) : un toucher sélectionne et remplit la barre, le bouton (ou un second toucher) exécute l’action d’origine, le clic sans détail reste direct', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }, { name: 'Snowtroopers', upgrades: [] }] },

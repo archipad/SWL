@@ -31,7 +31,10 @@
 .gh-counter b { display: grid; place-items: center; font: 800 2.6rem/1 "Rajdhani", sans-serif; color: #fff; text-shadow: 0 0 14px rgba(98, 214, 255, .55); }
 .gh-counter b i { font-size: 1.1rem; font-style: normal; font-weight: 600; color: var(--rx-dim, #9db7c7); text-shadow: none; }
 .gh-counter b { grid-auto-flow: column; gap: 6px; }
-.gh-round > .primary { min-height: 50px; }
+.gh-round-actions { display: flex; gap: 8px; }
+.gh-round-actions > .primary { flex: 1 1 auto; min-height: 50px; }
+.gh-round-actions > .gh-undo { flex: 0 0 auto; min-height: 50px; }
+.gh-undo:disabled { opacity: .35; }
 
 /* ---------- Cartes de Commandement ---------- */
 .gh-commands {

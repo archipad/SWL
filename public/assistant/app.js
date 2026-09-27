@@ -2142,7 +2142,15 @@ async function syncGameTracker(){
     await fetch(`https://api.github.com/gists/${gistId}`,{method:'PATCH',headers,body:JSON.stringify({files:{[syncFilename]:{content:JSON.stringify({...remote,gameTracker:readTracker(),updatedAt:Date.now()})}}})})
   }catch(error){console.warn('Synchronisation du suivi de partie indisponible',error)}
 }
-function writeTracker(changes){const next={...readTracker(),...changes};localStorage.setItem(trackerKey,JSON.stringify(next));clearTimeout(trackerSyncTimer);trackerSyncTimer=setTimeout(syncGameTracker,800);return next}
+const gameActionHistoryKey='swl.game-action-history.v1',deviceLabelKey='swl.device-label.v1',MAX_GAME_ACTIONS=30;
+const ghDeviceLabel=()=>{try{const existing=localStorage.getItem(deviceLabelKey);if(existing)return existing;const value='Appareil '+Math.random().toString(36).slice(2,6).toUpperCase();localStorage.setItem(deviceLabelKey,value);return value}catch(error){return'Cet appareil'}};
+const readGameActions=()=>{try{return JSON.parse(localStorage.getItem(gameActionHistoryKey)||'[]')}catch(error){return[]}};
+const recordGameAction=(label,before)=>{const entry={id:Date.now()+'-'+Math.random().toString(36).slice(2,7),at:new Date().toISOString(),device:ghDeviceLabel(),label,before},next=[entry,...readGameActions()].slice(0,MAX_GAME_ACTIONS);try{localStorage.setItem(gameActionHistoryKey,JSON.stringify(next))}catch(error){}return next};
+const removeGameAction=id=>{const next=readGameActions().map(entry=>entry.id===id?{...entry,undoneAt:new Date().toISOString()}:entry);try{localStorage.setItem(gameActionHistoryKey,JSON.stringify(next))}catch(error){}return next};
+// Même journal que le site (swl.game-action-history.v1) : un « avant » complet du suivi est
+// enregistré à chaque écriture nommée, pour permettre un Annuler en cohérence avec le site.
+function writeTracker(changes,label){const before=readTracker(),next={...before,...changes};if(label)recordGameAction(label,before);localStorage.setItem(trackerKey,JSON.stringify(next));clearTimeout(trackerSyncTimer);trackerSyncTimer=setTimeout(syncGameTracker,800);return next}
+function undoLastGameAction(){const latest=readGameActions().find(entry=>!entry.undoneAt);if(!latest)return false;localStorage.setItem(trackerKey,JSON.stringify(latest.before));clearTimeout(trackerSyncTimer);trackerSyncTimer=setTimeout(syncGameTracker,800);removeGameAction(latest.id);return true}
 const ghCards=window.SWL_COMMAND_CARDS||[],ghCardById=id=>ghCards.find(card=>card.id===id),ghImage=id=>'../commandcards/'+id+'.jpg';
 let gameHubSide=null;const gameHubDraft={bleu:'',rouge:''};const gameHubEditingSuite={bleu:false,rouge:false};
 const ghMineColor=tracker=>((selectedArmy==='p1')===(tracker.p1Color==='bleu'))?'bleu':'rouge';
@@ -2185,38 +2193,42 @@ function ghCommandHtml(tracker,side){
 function gameHubHtml(){
   const tracker=readTracker(),mine=ghMineColor(tracker),side=gameHubSide||mine;
   const vp=color=>`<article class="gh-vp ${color}"><div><small><i class="gh-dot ${color}"></i>${color==='bleu'?'BLEU':'ROUGE'}${color===mine?' · MON CAMP':''}</small><strong>${ghEsc(ghLabel(tracker,color))}</strong></div><div class="gh-counter"><button type="button" data-gh-vp="${color}" data-delta="-1" aria-label="Retirer un point de victoire (${color})">−</button><b>${tracker['vp'+(color==='bleu'?'Bleu':'Rouge')]}</b><button type="button" data-gh-vp="${color}" data-delta="1" aria-label="Ajouter un point de victoire (${color})">+</button></div></article>`;
-  return `<section class="gh-tracker" aria-label="Suivi de partie"><article class="gh-round"><small>ROUND</small><div class="gh-counter"><button type="button" data-gh-round="-1" ${tracker.round<=1?'disabled':''} aria-label="Round précédent">−</button><b>${tracker.round}<i> / ${MAX_ROUND}</i></b><button type="button" data-gh-round="1" ${tracker.round>=MAX_ROUND?'disabled':''} aria-label="Round suivant">+</button></div><button type="button" class="primary" data-gh-next ${tracker.round>=MAX_ROUND?'disabled':''}>Round suivant →</button></article>${vp('bleu')}${vp('rouge')}</section>`+ghCommandHtml(tracker,side)
+  const lastAction=readGameActions().find(entry=>!entry.undoneAt);
+  const undo=`<button type="button" class="secondary gh-undo" data-gh-undo ${lastAction?'':'disabled'} title="${lastAction?ghEsc('Annuler : '+lastAction.label):'Aucune modification à annuler'}">↩ Annuler</button>`;
+  return `<section class="gh-tracker" aria-label="Suivi de partie"><article class="gh-round"><small>ROUND</small><div class="gh-counter"><button type="button" data-gh-round="-1" ${tracker.round<=1?'disabled':''} aria-label="Round précédent">−</button><b>${tracker.round}<i> / ${MAX_ROUND}</i></b><button type="button" data-gh-round="1" ${tracker.round>=MAX_ROUND?'disabled':''} aria-label="Round suivant">+</button></div><div class="gh-round-actions"><button type="button" class="primary" data-gh-next ${tracker.round>=MAX_ROUND?'disabled':''}>Round suivant →</button>${undo}</div></article>${vp('bleu')}${vp('rouge')}</section>`+ghCommandHtml(tracker,side)
 }
 function bindGameHub(){updateRoundStatus();
   const refresh=()=>showRoundPhases();
-  root.querySelectorAll('[data-gh-round]').forEach(button=>button.onclick=()=>{const tracker=readTracker(),round=Math.min(MAX_ROUND,Math.max(1,tracker.round+Number(button.dataset.ghRound)));if(round===tracker.round)return;writeTracker({round,activatedUnitIds:[]});reconcileRoundEffects();refresh()});
+  root.querySelectorAll('[data-gh-round]').forEach(button=>button.onclick=()=>{const tracker=readTracker(),round=Math.min(MAX_ROUND,Math.max(1,tracker.round+Number(button.dataset.ghRound)));if(round===tracker.round)return;writeTracker({round,activatedUnitIds:[]},`Passage au round ${round}`);reconcileRoundEffects();refresh()});
   const next=root.querySelector('[data-gh-next]');
-  if(next)next.onclick=()=>{const tracker=readTracker();if(tracker.round>=MAX_ROUND)return;writeTracker({round:tracker.round+1,activatedUnitIds:[],roundHistory:[...(tracker.roundHistory||[]).filter(entry=>entry.round!==tracker.round),{round:tracker.round,activatedUnitIds:tracker.activatedUnitIds||[],vpBleu:tracker.vpBleu,vpRouge:tracker.vpRouge,completedAt:new Date().toISOString()}]});reconcileRoundEffects();refresh()};
-  root.querySelectorAll('[data-gh-vp]').forEach(button=>button.onclick=()=>{const tracker=readTracker(),key='vp'+(button.dataset.ghVp==='bleu'?'Bleu':'Rouge');writeTracker({[key]:Math.max(0,(Number(tracker[key])||0)+Number(button.dataset.delta))});refresh()});
+  if(next)next.onclick=()=>{const tracker=readTracker();if(tracker.round>=MAX_ROUND)return;writeTracker({round:tracker.round+1,activatedUnitIds:[],roundHistory:[...(tracker.roundHistory||[]).filter(entry=>entry.round!==tracker.round),{round:tracker.round,activatedUnitIds:tracker.activatedUnitIds||[],vpBleu:tracker.vpBleu,vpRouge:tracker.vpRouge,completedAt:new Date().toISOString()}]},`Fin du round ${tracker.round}`);reconcileRoundEffects();refresh()};
+  root.querySelectorAll('[data-gh-vp]').forEach(button=>button.onclick=()=>{const tracker=readTracker(),key='vp'+(button.dataset.ghVp==='bleu'?'Bleu':'Rouge');writeTracker({[key]:Math.max(0,(Number(tracker[key])||0)+Number(button.dataset.delta))},'Mise à jour du suivi');refresh()});
   root.querySelectorAll('[data-gh-side]').forEach(button=>button.onclick=()=>{gameHubSide=button.dataset.ghSide;refresh()});
   root.querySelectorAll('[data-gh-suite-toggle]').forEach(button=>button.onclick=()=>{
     const side=button.dataset.ghSuiteSide,id=button.dataset.ghSuiteToggle;if(id==='ordres-permanents')return;
-    const tracker=readTracker(),deck=tracker.commandDecks[side],suite=ghSuite(deck);
-    if(suite.includes(id)){writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:deck.suite.filter(existing=>existing!==id)}}});refresh();return}
-    const card=ghCardById(id),count=suite.filter(existing=>ghCardById(existing)?.pip===card.pip).length;
+    const tracker=readTracker(),deck=tracker.commandDecks[side],suite=ghSuite(deck),card=ghCardById(id);
+    if(suite.includes(id)){writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:deck.suite.filter(existing=>existing!==id)}}},`Suite de Commandement ${side} : ${card.name} retirée`);refresh();return}
+    const count=suite.filter(existing=>ghCardById(existing)?.pip===card.pip).length;
     if(count>=2)return;
-    writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:[...deck.suite,id]}}});refresh()
+    writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:[...deck.suite,id]}}},`Suite de Commandement ${side} : ${card.name} ajoutée`);refresh()
   });
   root.querySelectorAll('[data-gh-suite-reset]').forEach(button=>button.onclick=()=>{
     const side=button.dataset.ghSuiteReset,tracker=readTracker(),deck=tracker.commandDecks[side];
     if(deck.played.length)return;
     if(!window.confirm(`Réinitialiser la suite de ${ghLabel(tracker,side)} ? Les cartes déjà choisies (hors Ordres Permanents) seront retirées.`))return;
-    writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:[]}}});gameHubEditingSuite[side]=true;refresh()
+    writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:[]}}},`Suite de Commandement ${side} réinitialisée`);gameHubEditingSuite[side]=true;refresh()
   });
   root.querySelectorAll('[data-gh-suite-done]').forEach(button=>button.onclick=()=>{gameHubEditingSuite[button.dataset.ghSuiteDone]=false;refresh()});
   root.querySelectorAll('[data-gh-suite-edit]').forEach(button=>button.onclick=()=>{gameHubEditingSuite[button.dataset.ghSuiteEdit]=true;refresh()});
   root.querySelectorAll('[data-gh-pick]').forEach(button=>button.onclick=()=>{gameHubDraft[button.dataset.ghSideOf]=button.dataset.ghPick;refresh()});
   root.querySelectorAll('[data-gh-cancel-draft]').forEach(button=>button.onclick=()=>{gameHubDraft[button.dataset.ghCancelDraft]='';refresh()});
-  root.querySelectorAll('[data-gh-confirm]').forEach(button=>button.onclick=()=>{const side=button.dataset.ghConfirm,tracker=readTracker(),id=gameHubDraft[side];if(!id)return;writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...tracker.commandDecks[side],pendingId:id}}});gameHubDraft[side]='';refresh()});
-  root.querySelectorAll('[data-gh-cancel]').forEach(button=>button.onclick=()=>{const side=button.dataset.ghCancel,tracker=readTracker();writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...tracker.commandDecks[side],pendingId:null}}});refresh()});
+  root.querySelectorAll('[data-gh-confirm]').forEach(button=>button.onclick=()=>{const side=button.dataset.ghConfirm,tracker=readTracker(),id=gameHubDraft[side];if(!id)return;writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...tracker.commandDecks[side],pendingId:id}}},`Carte de Commandement ${side} engagée`);gameHubDraft[side]='';refresh()});
+  root.querySelectorAll('[data-gh-cancel]').forEach(button=>button.onclick=()=>{const side=button.dataset.ghCancel,tracker=readTracker();writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...tracker.commandDecks[side],pendingId:null}}},`Carte de Commandement ${side} : choix annulé`);refresh()});
   const reveal=root.querySelector('[data-gh-reveal]');
-  if(reveal)reveal.onclick=()=>{const tracker=readTracker(),{bleu,rouge}=tracker.commandDecks;if(!bleu.pendingId||!rouge.pendingId)return;writeTracker({commandDecks:{bleu:{...bleu,pendingId:null,played:[...bleu.played,bleu.pendingId]},rouge:{...rouge,pendingId:null,played:[...rouge.played,rouge.pendingId]}},commandReveal:{round:tracker.round,bleuId:bleu.pendingId,rougeId:rouge.pendingId}});refresh()};
+  if(reveal)reveal.onclick=()=>{const tracker=readTracker(),{bleu,rouge}=tracker.commandDecks;if(!bleu.pendingId||!rouge.pendingId)return;writeTracker({commandDecks:{bleu:{...bleu,pendingId:null,played:[...bleu.played,bleu.pendingId]},rouge:{...rouge,pendingId:null,played:[...rouge.played,rouge.pendingId]}},commandReveal:{round:tracker.round,bleuId:bleu.pendingId,rougeId:rouge.pendingId}},'Cartes de Commandement révélées');refresh()};
   root.querySelectorAll('[data-gh-zoom]').forEach(button=>button.onclick=()=>{const card=ghCardById(button.dataset.ghZoom);if(!card)return;const dialog=document.createElement('dialog');dialog.className='card-dialog dialog-wipe';dialog.innerHTML=`<button class="dialog-close" aria-label="Fermer">×</button><img src="${ghImage(card.id)}" alt="${ghEsc(card.name)}"><strong>${ghEsc(card.name)}</strong>`;document.body.append(dialog);const dismiss=()=>{dialog.close();dialog.remove()};dialog.querySelector('button').onclick=dismiss;dialog.onclick=event=>{if(event.target===dialog)dismiss()};dialog.onclose=()=>dialog.remove();dialog.showModal()})
+  const undo=root.querySelector('[data-gh-undo]');
+  if(undo)undo.onclick=()=>{if(undoLastGameAction())refresh()};
 }
 function showRoundPhases(){
   stage=1;const phase=ROUND_PHASES.find(item=>item.id===roundPhaseTab)||ROUND_PHASES[0],mine=armies.some(army=>army.id===selectedArmy)?selectedArmy:armies[0].id,order=[mine,...armies.map(army=>army.id).filter(id=>id!==mine)];

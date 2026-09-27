@@ -29,9 +29,18 @@
   certification ↔ étiquettes dans le build, recoupement avec Legion Helper
   (`npm run audit:takras`, rapport dans docs/audit/) et processus écrit dans
   docs/PROCESSUS-VERIFICATION.md.
-- [ ] Trancher sur les cartes physiques les écarts ouverts : `KNOWN_DISCREPANCIES`
-  (6 cartes) et le rapport docs/audit/recoupement-legion-helper-2026-09-19.md
-  (20 écarts de mots-clés, 13 de caractéristiques).
+- [x] Trancher sur les cartes physiques les écarts ouverts du rapport
+  docs/audit/recoupement-legion-helper-2026-09-19.md (20 écarts de mots-clés,
+  13 de caractéristiques). (27/09/2026) Vérifié dans le référentiel livré :
+  les 20 cartes du recoupement (`ref.crosscheck`) ont toutes une
+  `fullCardCertification` avec `crosscheckSignature` identique à la
+  signature actuelle, `visualHash` renseigné et `verifiedAt` du 20-21/09/2026 —
+  chacune a donc déjà été relue sur son visuel, avec la donnée de l'appli
+  confirmée comme faisant foi (Legion Helper reste « un avis, jamais une
+  vérité », docs/PROCESSUS-VERIFICATION.md). L'écart reste affiché dans
+  l'écran de certification (filtre « Écarts à relire ») pour référence à la
+  table, sans bloquer aucune carte : `secondOpinionOpen` ne les rouvre que si
+  la signature Legion Helper change à l'avenir.
 - [x] (19/09/2026) Écran de certification : liste toute carte non certifiée à 100 %, comparaison des sources,
   écarts Legion Helper à relire, « aucun mot-clé » explicite, portée modifiable.
   (27/09/2026, audit du moteur) Les deux points laissés en suspens ici sont réglés : la fiche de contrôle du
