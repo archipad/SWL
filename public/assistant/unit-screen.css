@@ -145,6 +145,41 @@
 }
 .overview .unit-card-visual small { min-height: 0; -webkit-line-clamp: 1; }
 
+/* Attaquant, écran large (iPad paysage et plus, >=1000px, demande utilisateur du 28/09/2026) :
+   dans la colonne étroite de gauche, à côté du Briefing, les vignettes de cartes prenaient trop
+   de place pour peu d'information utile pendant la partie. On les remplace par une liste de noms
+   cliquables, à la suite du bloc d'identité — même bouton, mêmes data-card-image/-name qu'avant :
+   le clic ouvre toujours le visuel complet (bindCardViewer, app.js), rien à changer côté JS.
+   Le défenseur garde ses vignettes : sa colonne de cartes est large, pas de contrainte de place. */
+@media (min-width: 1000px) {
+  .overview:not(.defense) .card-strip {
+    display: block; padding: 4px var(--u-pad) 12px; border: 0 !important; background: none !important; box-shadow: none !important;
+  }
+  .overview:not(.defense) .card-strip::before,
+  .overview:not(.defense) .card-strip::after { display: none; }
+  .overview:not(.defense) .card-strip .upgrade-row { display: contents; }
+  .overview:not(.defense) .card-strip .unit-card-visual,
+  .overview:not(.defense) .card-strip .upgrade-card-visual {
+    display: inline-flex; width: auto; margin: 0 16px 6px 0; padding: 0; border: 0; border-radius: 0; background: none;
+  }
+  .overview:not(.defense) .card-strip .unit-card-visual img,
+  .overview:not(.defense) .card-strip .upgrade-card-visual img,
+  .overview:not(.defense) .card-strip .zoom { display: none; }
+  /* Le libellé « Voir la carte » posé en ::after (resolve-codex-overview.css) n'a plus de sens
+     une fois la vignette masquée : le nom lui-même devient le lien. */
+  .overview:not(.defense) .card-strip .unit-card-visual::after,
+  .overview:not(.defense) .card-strip .upgrade-card-visual::after { display: none !important; }
+  .overview:not(.defense) .card-strip .unit-card-visual small,
+  .overview:not(.defense) .card-strip .upgrade-card-visual small {
+    display: inline; min-height: 0; -webkit-line-clamp: unset; overflow: visible; white-space: nowrap;
+    color: var(--u-accent); font-size: .92rem; font-weight: 700; text-decoration: underline; text-underline-offset: 3px;
+  }
+  .overview:not(.defense) .card-strip .unit-card-visual:hover small,
+  .overview:not(.defense) .card-strip .upgrade-card-visual:hover small,
+  .overview:not(.defense) .card-strip .unit-card-visual:focus-visible small,
+  .overview:not(.defense) .card-strip .upgrade-card-visual:focus-visible small { color: #fff; }
+}
+
 /* ---------- Briefing tactique ---------- */
 .overview .activation-briefing { padding: 0; }
 .overview .activation-briefing > header { grid-template-columns: none; }
