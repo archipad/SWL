@@ -1,0 +1,294 @@
+/* Finition visuelle de l'Assistant, avec priorité aux tablettes en paysage.
+   Ce feuillet ne change aucun état, contrôle ou comportement du moteur. */
+
+:root {
+  /* La texture reste perceptible dans les panneaux sans traverser les textes. */
+  --hud-scan: repeating-linear-gradient(0deg, rgba(130, 205, 255, .006) 0 1px, transparent 1px 8px);
+}
+
+body[data-faction-theme="imperial"] {
+  --faction-ui-accent: #ff5b52;
+  --faction-ui-line: rgba(255, 91, 82, .32);
+}
+
+body[data-faction-theme="rebel"] {
+  --faction-ui-accent: #e7c990;
+  --faction-ui-line: rgba(231, 201, 144, .34);
+}
+
+/* L'emblème et sa lueur suivent le camp effectivement sélectionné, même si
+   le thème général du site est réglé sur Auto. */
+body[data-faction-theme="imperial"] .topbar-brand .ni-imperial,
+body[data-faction-theme="rebel"] .topbar-brand .ni-rebel { display: inline; }
+body[data-faction-theme="imperial"] .topbar-brand .ni-rebel,
+body[data-faction-theme="rebel"] .topbar-brand .ni-imperial { display: none; }
+body[data-faction-theme="imperial"] .topbar-brand .brand-emblem {
+  color: #ff4b43;
+  filter: drop-shadow(0 0 7px rgba(255, 75, 67, .45));
+}
+body[data-faction-theme="rebel"] .topbar-brand .brand-emblem {
+  color: #e7c990;
+  filter: drop-shadow(0 0 7px rgba(231, 201, 144, .4));
+}
+
+/* Le bref effet d'arrivée ne recouvre plus fortement les portraits et les textes. */
+.hologram-flicker {
+  background:
+    repeating-linear-gradient(0deg, rgba(127, 216, 255, .1) 0 1px, transparent 1px 7px),
+    linear-gradient(rgba(127, 216, 255, .055), rgba(127, 216, 255, .012));
+  animation-duration: 430ms;
+}
+
+/* Sur les images, uniquement un dégradé de lisibilité : aucune ligne de balayage. */
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual::after {
+  background: linear-gradient(180deg, rgba(2, 7, 12, .08) 0%, transparent 48%, rgba(2, 7, 12, .6) 100%) !important;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile::before,
+.actions > button::after,
+.cx-sel-actions button::after {
+  background-image: var(--fill) !important;
+}
+
+/* Titres de cartes stables sur deux lignes, quelle que soit la longueur du nom. */
+body:has(.unit-picker-grid) .unit-picker-grid .tile-body > strong {
+  display: -webkit-box;
+  min-height: 2.28em;
+  max-height: 2.28em;
+  overflow: hidden;
+  line-height: 1.14;
+  white-space: normal;
+  overflow-wrap: normal;
+  word-break: normal;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* Les libellés techniques restent petits mais lisibles à distance de bras. */
+body:has(.unit-picker-grid) .unit-picker-grid .rank-label,
+.cx-sel-id small,
+.cx-side-role,
+.overview :is(.identity-rank, header > small),
+.attack-workspace :is(.side-surge small, .side-status small) {
+  font-size: max(.72rem, 11px) !important;
+  letter-spacing: .11em !important;
+}
+
+/* Un seul filet par composant : l'image ne reçoit plus un second cadre interne. */
+body:has(.unit-picker-grid) .unit-picker-grid,
+body:has(.unit-picker-grid) .army-switch {
+  filter: none !important;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile::before,
+body:has(.unit-picker-grid) .army-switch button::before {
+  inset: 1px !important;
+  box-shadow: inset 0 1px 0 rgba(220, 238, 248, .09) !important;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-visual {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+body:has(.unit-picker-grid) .unit-picker-grid .tile-head {
+  border-bottom-color: rgba(150, 185, 205, .13) !important;
+}
+
+/* La coche d'angle suffit : on évite le second libellé « ACTIVE » qui se
+   superposait à elle sur les cartes les plus étroites. */
+body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected .tile-head::after {
+  display: none !important;
+}
+
+.cx-sel-actions .primary { color: #fff !important; }
+
+.app-header-sticky {
+  border-bottom: 1px solid var(--faction-ui-line, rgba(90, 190, 230, .25)) !important;
+}
+
+/* Les slogans décoratifs ne doivent jamais réduire la surface utile d'une tablette. */
+@media (max-width: 1439px) {
+  html:has(.unit-picker-grid)::before,
+  html:has(.unit-picker-grid)::after {
+    display: none !important;
+    content: none !important;
+  }
+}
+
+/* iPad 10/11/13 pouces et tablettes Android en orientation paysage. */
+@media (min-width: 900px) and (max-width: 1366px) and (orientation: landscape) {
+  body { font-size: 16px; }
+
+  body:has(.overview) {
+    --rx-side: clamp(180px, 18vw, 230px);
+    --rx-state: clamp(304px, 27vw, 320px);
+  }
+
+  body:has(.unit-picker-grid) #app {
+    width: calc(100% - 28px);
+    max-width: 1280px;
+  }
+
+  .app-header-sticky .topbar {
+    display: grid !important;
+    grid-template-columns: minmax(240px, 1fr) auto auto !important;
+    grid-template-rows: auto auto !important;
+    gap: 1px 8px !important;
+    min-height: 68px !important;
+    padding: 7px max(12px, env(safe-area-inset-left)) 7px max(12px, env(safe-area-inset-right)) !important;
+  }
+
+  .app-header-sticky .topbar .topbar-brand {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+    justify-self: start;
+  }
+
+  .app-header-sticky .topbar .topbar-sub {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: start;
+    justify-self: start;
+    padding: 0 0 0 47px !important;
+    margin: -1px 0 0 !important;
+    text-align: left;
+  }
+
+  .app-header-sticky .topbar .topbar-status {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    min-height: 44px;
+  }
+
+  .app-header-sticky .topbar .topbar-actions {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-self: center;
+    justify-content: flex-end !important;
+    gap: 5px !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  .topbar-brand .brand-emblem { width: 34px !important; height: 34px !important; }
+  .topbar-brand b { font-size: clamp(1.2rem, 2vw, 1.55rem) !important; }
+  .topbar .topbar-sub strong { font-size: .72rem !important; letter-spacing: .22em !important; }
+
+  .topbar-actions > a,
+  .topbar-actions > button {
+    flex: 0 0 auto !important;
+    min-height: 44px !important;
+    padding: 5px 10px !important;
+    font-size: .82rem !important;
+    white-space: nowrap !important;
+  }
+
+  .topbar-actions .tracker-shortcut,
+  #quickMode { padding-inline: 12px !important; }
+
+  body:has(.unit-picker-grid) .intro {
+    margin-bottom: 7px !important;
+    padding-top: 3px !important;
+  }
+
+  body:has(.unit-picker-grid) .army-switch {
+    max-width: 920px;
+    margin-block: 7px 10px !important;
+  }
+
+  body:has(.unit-picker-grid) .army-switch button {
+    min-height: 64px;
+    padding-block: 7px;
+  }
+
+  body:has(.unit-picker-grid) .unit-picker-grid {
+    gap: 12px;
+  }
+
+  body:has(.unit-picker-grid) .unit-picker-grid .unit-tile {
+    flex-basis: calc((100% - 36px) / 4) !important;
+    min-width: 0;
+  }
+
+  body:has(.unit-picker-grid) .unit-picker-grid .tile-head {
+    min-height: 34px;
+    padding: 8px 11px !important;
+  }
+
+  body:has(.unit-picker-grid) .unit-picker-grid .tile-body {
+    min-height: 82px;
+    padding: 9px 11px 11px !important;
+  }
+
+  .cx-select-bar,
+  #app .actions {
+    width: calc(100% - 24px) !important;
+    max-width: 1280px !important;
+    bottom: max(8px, env(safe-area-inset-bottom)) !important;
+  }
+
+  .cx-select-bar { min-height: 74px; padding: 9px 14px !important; }
+  .cx-sel-thumb { width: 112px; height: 54px; }
+  .cx-sel-id strong { font-size: 1.18rem; }
+  .cx-sel-actions button { min-height: 52px; }
+
+  /* Les grands panneaux gardent un seul contour ; les sous-blocs sont séparés
+     par des filets, sans halo ni cadre supplémentaire. */
+  body:has(.overview) .overview :is(.unit-state-editor, .activation-briefing, .card-strip),
+  body:has(.attack-workspace) :is(.resolve-center, .combat-side) {
+    box-shadow: none !important;
+  }
+
+  body:has(.attack-workspace) .resolve-center :is(.automation-card, .quick-field, .rules-panel),
+  body:has(.overview) .overview :is(.brief-section, .token-mini) {
+    box-shadow: none !important;
+  }
+
+  /* Les trois compteurs tactiles restent entièrement dans la colonne d'état
+     sur un iPad 1024 px, tout en conservant des boutons de 40 px minimum. */
+  body:has(.overview) .overview .unit-state-editor .token-mini {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    gap: 6px;
+    padding: 6px 8px;
+  }
+
+  body:has(.overview) .overview .unit-state-editor .token-mini .token-icon {
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+  }
+
+  body:has(.overview) .overview .unit-state-editor .token-mini small {
+    min-width: 0;
+  }
+
+  body:has(.overview) .overview .unit-state-editor .token-mini .touch-counter {
+    flex: 0 0 128px;
+    grid-template-columns: 40px 48px 40px;
+  }
+}
+
+/* Les iPad 10,2 pouces peuvent exposer exactement 1024 px en paysage. */
+@media (min-width: 900px) and (max-width: 1080px) and (orientation: landscape) {
+  .app-header-sticky .topbar {
+    grid-template-columns: minmax(218px, 1fr) auto auto !important;
+    gap: 1px 5px !important;
+  }
+
+  .app-header-sticky .topbar .topbar-status { padding-inline: 8px; }
+  .topbar-actions > a,
+  .topbar-actions > button { padding-inline: 8px !important; font-size: .76rem !important; }
+  .topbar-brand b { font-size: 1.2rem !important; }
+  .topbar .topbar-sub strong { font-size: .66rem !important; }
+
+  body:has(.unit-picker-grid) .unit-picker-grid .tile-body strong { font-size: 1.02rem; }
+  body:has(.unit-picker-grid) .unit-picker-grid .tile-minis .tile-mini:nth-child(n+7) { display: none; }
+}
+
