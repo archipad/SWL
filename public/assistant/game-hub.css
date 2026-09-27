@@ -113,13 +113,15 @@
 #siteHome { --ic: url(../codex/icons/settings.png); min-width: 46px; padding: 0 12px !important; font-size: 0; }
 /* Compagnon téléphone : même gabarit que l'engrenage, juste à sa gauche. */
 #phoneCompanion { min-width: 46px; padding: 0 12px !important; font-size: 0; }
-.topbar #phoneCompanion { grid-column: 5; grid-row: 1 / 3; }
-.topbar #siteHome { grid-column: 6; grid-row: 1 / 3; }
+.topbar #phoneCompanion { grid-column: 6; grid-row: 1 / 3; }
+.topbar #siteHome { grid-column: 7; grid-row: 1 / 3; }
 @media (max-width: 1050px) { .topbar-actions > #siteHome, .topbar-actions > #phoneCompanion { flex: 0 0 48px; } }
 
-/* Pastille « ROUND n · x unités restantes à jouer » : en haut à droite du bloc Legion Compagnon / Assistant d'unité. */
+/* Pastille « ROUND n · x unités restantes à jouer » : juste à droite du titre Legion Compagnon
+   (colonne dédiée, immédiatement après la marque — pas de justify-self:end dans une colonne
+   flexible, qui la poussait loin à droite, contre le menu, sur grand écran (27/09/2026)). */
 .topbar-status {
-  grid-column: 1; grid-row: 1 / 3; justify-self: end; align-self: center; z-index: 2;
+  grid-column: 2; grid-row: 1 / 3; justify-self: start; align-self: center; z-index: 2;
   display: inline-flex; align-items: center; gap: 12px; min-height: 44px; padding: 4px 14px; cursor: pointer;
   border: 1px solid var(--rx-line-2, rgba(66, 205, 255, .55)); border-radius: 6px; color: #fff;
   background: var(--hud-scan, none), var(--hud-glass, rgba(8, 20, 32, .72));

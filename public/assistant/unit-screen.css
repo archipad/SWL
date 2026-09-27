@@ -31,8 +31,8 @@
 .overview > .ov-col > .hero { order: 1; }
 .overview > .ov-col > .post-rally-panel { order: 2; }
 .overview > .ov-col > .activation-automation { order: 3; }
-.overview > .ov-col > .card-strip { order: 4; }
-.overview > .ov-col > .activation-briefing { order: 5; }
+.overview > .ov-col > .activation-briefing { order: 4; }
+.overview > .ov-col > .card-strip { order: 5; }
 .overview > .ov-col > .unit-state-editor { order: 6; }
 
 @media (min-width: 1000px) {
@@ -118,6 +118,7 @@
    de même taille. Écran moyen en une colonne : carte Unité à gauche,
    améliorations à droite. */
 .overview .card-strip {
+  container-type: inline-size;
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-content: start; gap: 10px;
   padding: 0 var(--u-pad) var(--u-pad); overflow: hidden;
 }
@@ -143,12 +144,6 @@
   min-height: 2.5em; color: var(--muted); font-size: .66rem; line-height: 1.25;
 }
 .overview .unit-card-visual small { min-height: 0; -webkit-line-clamp: 1; }
-
-@media (min-width: 600px) and (max-width: 999px) {
-  .overview .card-strip { grid-template-columns: minmax(200px, 36%) minmax(0, 1fr); align-items: start; }
-  .overview .card-strip .unit-card-visual { grid-column: 1; }
-  .overview .card-strip .upgrade-row { display: grid; grid-column: 2; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; min-width: 0; }
-}
 
 /* ---------- Briefing tactique ---------- */
 .overview .activation-briefing { padding: 0; }
@@ -294,6 +289,22 @@
 .overview .card-strip .upgrade-card-visual { flex: 0 0 96px; scroll-snap-align: start; }
 @media (min-width: 600px) and (max-width: 999px) {
   .overview .card-strip .upgrade-row { display: flex; grid-template-columns: none; }
+}
+
+/* Basé sur la largeur réelle du bloc (container query) et non sur celle de l'écran : sur iPad
+   paysage, le Briefing prend la colonne large (>=1000px) et la colonne des cartes reste étroite
+   malgré un grand écran — la bande défilante ci-dessus, prévue pour ce cas étroit, laissait alors
+   la moitié de la colonne inutilisée à côté de la carte. Dès qu'il y a la place, la carte se
+   resserre et les améliorations reprennent une petite grille à côté plutôt qu'une bande en dessous
+   (27/09/2026). */
+@container (min-width: 400px) {
+  .overview .card-strip { grid-template-columns: minmax(180px, 34%) minmax(0, 1fr); align-items: start; }
+  .overview .card-strip .unit-card-visual { grid-column: 1; }
+  .overview .card-strip .upgrade-row {
+    display: grid; grid-column: 2; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; min-width: 0;
+    overflow-x: visible; padding-bottom: 0; scroll-snap-type: none;
+  }
+  .overview .card-strip .upgrade-card-visual { flex: initial; }
 }
 
 /* --- Briefing : sections repliables --- */
