@@ -16,7 +16,11 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      // 'prompt' plutôt que 'autoUpdate' : sur iPad en appli (écran d'accueil), l'onglet reste
+      // ouvert des heures/jours sans jamais recharger tout seul — une mise à jour silencieuse
+      // remplacerait le code sous les pieds du joueur en pleine partie. On affiche à la place un
+      // bandeau (voir src/pwaUpdate.ts) que le joueur touche quand il veut recharger.
+      registerType: 'prompt',
       includeAssets: ['icons/apple-touch-icon.png'],
       manifest: {
         name: 'Legion Compagnon',
