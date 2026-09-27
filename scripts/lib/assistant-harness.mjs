@@ -88,3 +88,46 @@ export async function openAssistant(storage = {}) {
   const nextAttack = async () => { await click('#nextAttack'); dismissDialogs(); await settle(150) }
   return { dom, window, document, errors, $, $$, text, settle, click, setValue, pickUnit, dismissDialogs, center, gate, isDimmed, nextAttack }
 }
+
+/** Charge le compagnon téléphone (phone.html/phone.js) dans jsdom, avec un stockage local pré-rempli. */
+export async function openPhone(storage = {}) {
+  const errors = []
+  const virtualConsole = new VirtualConsole()
+  virtualConsole.on('jsdomError', (error) => errors.push(String(error.message || error)))
+  const dom = new JSDOM(fs.readFileSync(path.join(assistantDir, 'phone.html'), 'utf8'), {
+    url: `${baseUrl}phone.html`,
+    runScripts: 'dangerously',
+    resources: new LocalScriptsOnly(),
+    pretendToBeVisual: true,
+    virtualConsole,
+    beforeParse(window) {
+      for (const [key, value] of Object.entries(storage)) window.localStorage.setItem(key, JSON.stringify(value))
+      window.HTMLDialogElement.prototype.showModal = function () { this.setAttribute('open', '') }
+      window.HTMLDialogElement.prototype.close = function () { this.removeAttribute('open') }
+      window.addEventListener('error', (event) => errors.push(String(event.message)))
+    },
+  })
+  await new Promise((resolve) => dom.window.addEventListener('load', resolve))
+  await sleep(120)
+  const { window } = dom
+  const { document } = window
+  const $ = (selector, root = document) => root.querySelector(selector)
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)]
+  const text = (element) => (element?.textContent || '').replace(/\s+/g, ' ').trim()
+  const settle = (ms = 90) => sleep(ms)
+  const click = async (target) => {
+    const element = typeof target === 'string' ? $(target) : target
+    assert.ok(element, `élément introuvable : ${target}`)
+    element.click()
+    await settle()
+  }
+  const setValue = async (selectorOrElement, value) => {
+    const input = typeof selectorOrElement === 'string' ? $(selectorOrElement) : selectorOrElement
+    assert.ok(input, `champ introuvable : ${selectorOrElement}`)
+    input.value = String(value)
+    input.dispatchEvent(new window.Event('input', { bubbles: true }))
+    input.dispatchEvent(new window.Event('change', { bubbles: true }))
+    await settle()
+  }
+  return { dom, window, document, errors, $, $$, text, settle, click, setValue }
+}

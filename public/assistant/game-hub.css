@@ -17,6 +17,7 @@
   -webkit-backdrop-filter: var(--hud-blur, none); backdrop-filter: var(--hud-blur, none);
   box-shadow: 0 0 22px rgba(66, 205, 255, .16), inset 0 0 30px rgba(66, 205, 255, .05);
 }
+.gh-vp > div { min-width: 0; }
 .gh-round > small, .gh-vp small { display: flex; align-items: center; gap: 7px; color: var(--rx-dim, #9db7c7); font: 700 .75rem "Rajdhani", sans-serif; letter-spacing: .26em; text-transform: uppercase; }
 .gh-vp strong { display: block; overflow: hidden; margin-top: 2px; font: 800 1.15rem/1.1 "Rajdhani", sans-serif; letter-spacing: .04em; text-transform: uppercase; text-overflow: ellipsis; white-space: nowrap; color: #fff; }
 .gh-vp.bleu { border-color: rgba(58, 166, 255, .7); box-shadow: 0 0 22px rgba(58, 166, 255, .22), inset 0 0 30px rgba(58, 166, 255, .06); }

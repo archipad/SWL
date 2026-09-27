@@ -2208,6 +2208,7 @@ function gameHubHtml(){
   const lastAction=readGameActions().find(entry=>!entry.undoneAt);
   const undo=`<button type="button" class="secondary gh-undo" data-gh-undo ${lastAction?'':'disabled'} title="${lastAction?ghEsc('Annuler : '+lastAction.label):'Aucune modification à annuler'}">↩ Annuler</button>`;
   return `<section class="gh-tracker" aria-label="Suivi de partie"><article class="gh-round"><small>ROUND</small><div class="gh-counter"><button type="button" data-gh-round="-1" ${tracker.round<=1?'disabled':''} aria-label="Round précédent">−</button><b>${tracker.round}<i> / ${MAX_ROUND}</i></b><button type="button" data-gh-round="1" ${tracker.round>=MAX_ROUND?'disabled':''} aria-label="Round suivant">+</button></div><div class="gh-round-actions"><button type="button" class="primary" data-gh-next ${tracker.round>=MAX_ROUND?'disabled':''}>Round suivant →</button>${undo}</div></article>${vp('bleu')}${vp('rouge')}</section>`+ghCommandHtml(tracker,side)
+    +'<p class="gh-note gh-phone-note">📱 <a href="./phone.html">Ouvrir le compagnon téléphone</a> — round, score et unités restantes sur un second appareil, en lecture seule.</p>'
 }
 function bindGameHub(){updateRoundStatus();
   const refresh=()=>showRoundPhases();
