@@ -29,6 +29,11 @@ body {
 .ph-round-readonly, .ph-vp-readonly { grid-template-columns: 1fr; justify-items: center; background: transparent; border: 0; }
 .gh-vp.ph-mine { box-shadow: 0 0 26px rgba(98, 214, 255, .35), inset 0 0 30px rgba(66, 205, 255, .1); }
 
+/* Round agrandi (27/09/2026) : visible de plus loin que la table de jeu. */
+.gh-round > small { font-size: .85rem; }
+.ph-round-readonly b { font-size: 5.4rem; text-shadow: 0 0 22px rgba(98, 214, 255, .6); }
+.ph-round-readonly b i { font-size: 1.8rem; }
+
 .ph-left-card {
   display: grid; justify-items: center; gap: 4px; padding: 18px 16px; text-align: center;
   border: 1px solid rgba(66, 205, 255, .55); border-radius: 8px; background: rgba(8, 20, 32, .72);

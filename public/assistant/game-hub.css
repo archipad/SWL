@@ -104,15 +104,18 @@
    ===================================================================== */
 .topbar-actions .tracker-shortcut { --ic: url(../codex/icons/army.png); font-size: .95rem; }
 #roundPhases { --ic: url(../codex/icons/mission.png); font-size: .95rem; }
-#roundPhases::before, #siteHome::before {
+#roundPhases::before, #siteHome::before, #phoneCompanion::before {
   content: ""; flex: 0 0 auto; width: 1.5em; height: 1.5em; background: #fff;
   -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat;
 }
 /* Engrenage sans texte : accueil du site. Le bouton « Retour » (#restart) reste dans le DOM, masqué : sa logique est conservée. */
 #restart { display: none !important; }
 #siteHome { --ic: url(../codex/icons/settings.png); min-width: 46px; padding: 0 12px !important; font-size: 0; }
-.topbar #siteHome { grid-column: 5; grid-row: 1 / 3; }
-@media (max-width: 1050px) { .topbar-actions > #siteHome { flex: 0 0 48px; } }
+/* Compagnon téléphone : même gabarit que l'engrenage, juste à sa gauche. */
+#phoneCompanion { min-width: 46px; padding: 0 12px !important; font-size: 0; }
+.topbar #phoneCompanion { grid-column: 5; grid-row: 1 / 3; }
+.topbar #siteHome { grid-column: 6; grid-row: 1 / 3; }
+@media (max-width: 1050px) { .topbar-actions > #siteHome, .topbar-actions > #phoneCompanion { flex: 0 0 48px; } }
 
 /* Pastille « ROUND n · x unités restantes à jouer » : en haut à droite du bloc Legion Compagnon / Assistant d'unité. */
 .topbar-status {
@@ -132,5 +135,5 @@
 .topbar-status:hover, .topbar-status:focus-visible { filter: drop-shadow(0 0 8px rgba(98, 214, 255, .6)); }
 @media (max-width: 1050px) { .topbar-status { min-height: 38px; padding: 2px 10px; } }
 @media (max-width: 620px) { .topbar-status .rs-left { max-width: 9.5em; white-space: normal; line-height: 1.05; font-size: .8rem; } }
-#siteHome::before { width: 24px; height: 24px; }
+#siteHome::before, #phoneCompanion::before { width: 24px; height: 24px; }
 .topbar #roundPhases, .topbar .tracker-shortcut { font-size: .95rem !important; min-height: 44px; padding-block: 6px; }
