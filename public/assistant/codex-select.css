@@ -54,7 +54,7 @@ body:has(.unit-picker-grid) .unit-picker-grid .unit-tile.is-selected::after {
 
 /* ---------- Fonds : espace et destroyer côté Empire, cité rebelle côté Rébellion ---------- */
 body:has(.unit-picker-grid)[data-faction-theme]::before {
-  background: linear-gradient(180deg, rgba(4, 9, 15, 0) 0, rgba(4, 9, 15, .25) 50%, rgba(4, 9, 15, .6) 100%), url(../codex/bg-imperial.webp) left top / cover no-repeat, #050a14;
+  background: linear-gradient(180deg, rgba(4, 9, 15, 0) 0, rgba(4, 9, 15, .25) 50%, rgba(4, 9, 15, .6) 100%), var(--codex-bg, url(../codex/bg-imperial.webp)) left top / cover no-repeat, #050a14;
 }
 body:has(.army-switch button[data-faction="rebel"].active)[data-faction-theme]::before,
 body:has(.cx-attacker-recap[data-faction="imperial"])[data-faction-theme]::before {
@@ -93,7 +93,7 @@ body:has(.cx-attacker-recap[data-faction="imperial"])[data-faction-theme]::befor
 @media (min-width: 1360px) {
   body:has(.unit-picker-grid) #app { max-width: min(1240px, calc(100vw - 300px)); margin-inline: auto; }
   body:has(.unit-picker-grid)[data-faction-theme]::before {
-    background: linear-gradient(180deg, rgba(4, 9, 15, 0) 0, rgba(4, 9, 15, .2) 50%, rgba(4, 9, 15, .55) 100%), url(../codex/bg-imperial.webp) left top / cover no-repeat, #050a14;
+    background: linear-gradient(180deg, rgba(4, 9, 15, 0) 0, rgba(4, 9, 15, .2) 50%, rgba(4, 9, 15, .55) 100%), var(--codex-bg, url(../codex/bg-imperial.webp)) left top / cover no-repeat, #050a14;
   }
 }
 
