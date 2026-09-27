@@ -73,6 +73,13 @@
 .gh-played > summary { cursor: pointer; color: var(--rx-dim, #9db7c7); font-weight: 700; }
 .gh-played[open] > summary { margin-bottom: 8px; }
 
+/* ---------- Construction de la suite de Commandement (27/09/2026) ---------- */
+.gh-suite-progress { font-weight: 700; }
+.gh-suite-progress.done { color: #7fe9b4; }
+.gh-suite-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 14px; }
+.gh-pip-block h4 { margin: 0 0 8px; color: var(--rx-dim, #9db7c7); font: 700 .82rem "Rajdhani", sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+.gh-pip-block + .gh-pip-block { margin-top: 4px; }
+
 @media (max-width: 899px) {
   .gh-tracker { grid-template-columns: 1fr 1fr; }
   .gh-round { grid-column: 1 / -1; }

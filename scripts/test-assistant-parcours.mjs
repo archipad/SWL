@@ -1939,6 +1939,51 @@ scenario('Page Partie (26/09/2026) : round, points de victoire et cartes de Comm
   app.window.close()
 })
 
+scenario('Page Partie (27/09/2026) : construction de la suite de Commandement directement dans l’Assistant', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.game-tracker.v1': { round: 1, p1Color: 'bleu', vpBleu: 0, vpRouge: 0, activatedUnitIds: [], roundHistory: [], commandReveal: null,
+      commandDecks: { bleu: { suite: [], played: [], pendingId: null }, rouge: { suite: [], played: [], pendingId: null } } },
+  })
+  const { $, $$, text, click } = app
+  const tracker = () => JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1'))
+  await click('#roundPhases')
+  assert.match(text($('.gh-commands')), /Construisez la suite/, 'suite vide : l’écran de construction s’affiche directement dans l’Assistant, sans renvoi vers le site')
+  assert.equal($$('[data-gh-suite-toggle]').length > 0, true, 'des cartes de Commandement Empire (+ génériques) sont proposées')
+  assert.ok(!$('[data-gh-suite-toggle="ordres-permanents"]'), 'Ordres Permanents n’est jamais un choix cliquable')
+  const clickNthOfPip = async (pip, n) => {
+    const block = $$('.gh-pip-block').find((el) => text(el.querySelector('h4')).trim() === `PIP ${pip}`)
+    const buttons = [...block.querySelectorAll('[data-gh-suite-toggle]')]
+    await click(buttons[n])
+  }
+  await clickNthOfPip(1, 0)
+  assert.equal(tracker().commandDecks.bleu.suite.length, 1, 'une carte PIP 1 ajoutée à la suite')
+  await clickNthOfPip(1, 1)
+  assert.equal(tracker().commandDecks.bleu.suite.length, 2, 'deuxième carte PIP 1 ajoutée')
+  const pip1Block = () => $$('.gh-pip-block').find((el) => text(el.querySelector('h4')).trim() === 'PIP 1')
+  assert.ok([...pip1Block().querySelectorAll('.gh-card')].some((card) => card.classList.contains('inert') && !card.classList.contains('on')), 'PIP 1 complet (2/2) : les cartes non choisies deviennent inertes')
+  await clickNthOfPip(1, 0)
+  assert.equal(tracker().commandDecks.bleu.suite.length, 1, 'toucher une carte déjà choisie la retire de la suite')
+  await clickNthOfPip(1, 0)
+  await clickNthOfPip(2, 0); await clickNthOfPip(2, 1)
+  await clickNthOfPip(3, 0); await clickNthOfPip(3, 1)
+  assert.equal(tracker().commandDecks.bleu.suite.length, 6, '2+2+2 cartes choisies (Ordres Permanents s’ajoute automatiquement à l’usage, hors stockage)')
+  assert.equal($$('[data-gh-pick]').length, 7, 'suite complète (7 avec Ordres Permanents) : transition automatique vers le choix de la carte du round, sans clic supplémentaire')
+  assert.ok($('[data-gh-suite-edit="bleu"]'), 'Modifier la suite reste accessible même une fois complète')
+  await click('[data-gh-suite-edit]')
+  assert.ok($('[data-gh-suite-reset="bleu"]'), 'retour en construction : bouton de réinitialisation visible')
+  assert.ok($('[data-gh-suite-done="bleu"]'), 'suite déjà complète en mode édition : bouton Terminé proposé pour ressortir sans réinitialiser')
+  await click('[data-gh-suite-done]')
+  assert.equal($$('[data-gh-pick]').length, 7, 'Terminé referme l’édition et revient au choix de la carte du round')
+  await click('[data-gh-suite-edit]')
+  app.window.confirm = () => true
+  await click('[data-gh-suite-reset]')
+  assert.equal(tracker().commandDecks.bleu.suite.length, 0, 'la suite (hors Ordres Permanents) est vidée après confirmation')
+  assert.equal($$('[data-gh-suite-toggle]').length > 0, true, 'retour direct sur l’écran de construction (aucun clic supplémentaire nécessaire)')
+  app.window.close()
+})
+
 scenario('Sélection en deux temps (25/09/2026) : un toucher sélectionne et remplit la barre, le bouton (ou un second toucher) exécute l’action d’origine, le clic sans détail reste direct', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire solo', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }, { name: 'Snowtroopers', upgrades: [] }] },

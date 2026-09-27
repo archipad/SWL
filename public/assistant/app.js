@@ -2144,26 +2144,42 @@ async function syncGameTracker(){
 }
 function writeTracker(changes){const next={...readTracker(),...changes};localStorage.setItem(trackerKey,JSON.stringify(next));clearTimeout(trackerSyncTimer);trackerSyncTimer=setTimeout(syncGameTracker,800);return next}
 const ghCards=window.SWL_COMMAND_CARDS||[],ghCardById=id=>ghCards.find(card=>card.id===id),ghImage=id=>'../commandcards/'+id+'.jpg';
-let gameHubSide=null;const gameHubDraft={bleu:'',rouge:''};
+let gameHubSide=null;const gameHubDraft={bleu:'',rouge:''};const gameHubEditingSuite={bleu:false,rouge:false};
 const ghMineColor=tracker=>((selectedArmy==='p1')===(tracker.p1Color==='bleu'))?'bleu':'rouge';
 const ghLabel=(tracker,color)=>{const army=color===tracker.p1Color?armies[0]:armies[1];return army.list.listName||army.list.faction||(army.id==='p1'?'Joueur 1':'Joueur 2')};
 const ghSuite=deck=>[...new Set([...deck.suite,'ordres-permanents'])].filter(id=>ghCardById(id));
 const ghSuiteComplete=suite=>suite.length===7&&[1,2,3].every(pip=>suite.filter(id=>ghCardById(id).pip===pip).length===2);
 const ghStatus=(tracker,color,revealed)=>{const deck=tracker.commandDecks[color];if(!ghSuiteComplete(ghSuite(deck)))return'suite en construction';if(revealed)return'carte révélée';return deck.pendingId?'carte engagée ✓':'en train de choisir…'};
 const ghTile=(card,pickAttr='',selected=false)=>`<div class="gh-card${selected?' on':''}${pickAttr?'':' inert'}"><button type="button" class="gh-card-pick" ${pickAttr} ${pickAttr?'':'disabled'} title="${ghEsc(card.requirement)}"><span class="gh-pip">PIP ${card.pip}</span>${selected?'<span class="gh-check">✓</span>':''}<img src="${ghImage(card.id)}" alt="${ghEsc(card.name)}" loading="lazy"><span class="gh-card-name">${ghEsc(card.name)}</span></button><button type="button" class="gh-zoom" data-gh-zoom="${card.id}" aria-label="Agrandir ${ghEsc(card.name)}">+</button></div>`;
+const ghFaction=(tracker,side)=>{const army=side===tracker.p1Color?armies[0]:armies[1],label=(army.list.faction||'').toLowerCase();if(label.includes('empire'))return'empire';if(label.includes('rebel'))return'rebelles';return null};
+const ghEligibleCards=faction=>ghCards.filter(card=>card.faction==='generique'||card.faction===faction);
+function ghSuiteBuilderHtml(tracker,side,suite,deck){
+  const faction=ghFaction(tracker,side),eligible=ghEligibleCards(faction),complete=ghSuiteComplete(suite);
+  const counts={1:0,2:0,3:0};suite.forEach(id=>{const card=ghCardById(id);if(card&&card.pip<=3)counts[card.pip]++});
+  const pipBlock=pip=>`<div class="gh-pip-block"><h4>PIP ${pip}</h4><div class="gh-grid">${eligible.filter(card=>card.pip===pip).map(card=>{const selected=suite.includes(card.id),full=counts[pip]>=2&&!selected;return ghTile(card,full?'':`data-gh-suite-toggle="${card.id}" data-gh-suite-side="${side}"`,selected)}).join('')}</div></div>`;
+  return `<p class="gh-note">Construisez la suite de ${ghEsc(ghLabel(tracker,side))} : exactement 2 cartes à 1, 2 et 3 PIP, plus Ordres Permanents (déjà incluse). Touchez une carte pour l’ajouter ou la retirer.</p>`
+    +(faction?'':`<p class="gh-note">Faction non reconnue pour cette liste (le texte importé ne contient ni « Empire » ni « Rebel ») : seule Ordres Permanents est proposée.</p>`)
+    +`<p class="gh-status gh-suite-progress ${complete?'done':''}">${suite.length}/7 cartes — PIP 1 : ${counts[1]}/2 · PIP 2 : ${counts[2]}/2 · PIP 3 : ${counts[3]}/2 · Ordres Permanents incluse</p>`
+    +`<div class="gh-suite-actions">${complete?`<button type="button" class="secondary" data-gh-suite-done="${side}">Terminé</button>`:''}<button type="button" class="secondary" data-gh-suite-reset="${side}" ${deck.played.length?'disabled title="Impossible : des cartes de cette suite ont déjà été jouées cette partie."':''}>Réinitialiser la suite</button></div>`
+    +`<div class="gh-pip-block"><h4>PIP 4 (obligatoire)</h4><div class="gh-grid gh-grid-small">${ghTile(ghCardById('ordres-permanents'),'',true)}</div></div>`
+    +[1,2,3].map(pipBlock).join('');
+}
 function ghCommandHtml(tracker,side){
   const other=side==='bleu'?'rouge':'bleu',deck=tracker.commandDecks[side],suite=ghSuite(deck),revealed=!!tracker.commandReveal&&tracker.commandReveal.round===tracker.round,draft=gameHubDraft[side];
   const bothPending=!!tracker.commandDecks.bleu.pendingId&&!!tracker.commandDecks.rouge.pendingId;
   const toggle=['bleu','rouge'].map(color=>`<button type="button" data-gh-side="${color}" class="${color===side?'on':''}"><i class="gh-dot ${color}"></i>${ghEsc(ghLabel(tracker,color))}</button>`).join('');
-  let body='';
-  if(!ghSuiteComplete(suite))body=`<p class="gh-note">La suite de Commandement de ${ghEsc(ghLabel(tracker,side))} n’est pas encore construite (7 cartes : 2 à 1, 2 et 3 PIP, plus Ordres Permanents). Construisez-la une fois dans l’appli : <a href="../#commandement">Cartes de Commandement</a>.</p>`;
-  else if(revealed){const reveal=tracker.commandReveal;body='<div class="gh-revealed">'+['bleu','rouge'].map(color=>{const card=ghCardById(color==='bleu'?reveal.bleuId:reveal.rougeId);return card?`<div><small><i class="gh-dot ${color}"></i>${ghEsc(ghLabel(tracker,color))} — révélée, round ${tracker.round}</small>${ghTile(card,'',true)}</div>`:''}).join('')+'</div>'}
-  else if(deck.pendingId)body=`<div class="gh-pending"><span class="gh-badge">✓ Carte engagée — cachée jusqu’à la révélation</span><button type="button" class="secondary" data-gh-cancel="${side}">Changer mon choix</button></div>`;
-  else if(draft&&ghCardById(draft))body=`<div class="gh-draft">${ghTile(ghCardById(draft),'',true)}<div class="gh-draft-actions"><button type="button" class="primary" data-gh-confirm="${side}">Confirmer ce choix</button><button type="button" class="secondary" data-gh-cancel-draft="${side}">Annuler</button></div></div>`;
-  else{const remaining=suite.filter(id=>!deck.played.includes(id));body=remaining.length?`<div class="gh-grid">${remaining.map(id=>ghTile(ghCardById(id),`data-gh-pick="${id}" data-gh-side-of="${side}"`)).join('')}</div>`:'<p class="gh-note">Toutes les cartes de la suite ont déjà été jouées.</p>'}
+  let body='',editing=!ghSuiteComplete(suite)||gameHubEditingSuite[side];
+  if(editing)body=ghSuiteBuilderHtml(tracker,side,suite,deck);
+  else{
+    const suiteHeader=`<div class="gh-suite-actions"><p class="gh-status gh-suite-progress done">✓ Suite complète — ${deck.played.length}/7 déjà jouée${deck.played.length>1?'s':''}</p><button type="button" class="secondary" data-gh-suite-edit="${side}">Modifier la suite</button></div>`;
+    if(revealed){const reveal=tracker.commandReveal;body=suiteHeader+'<div class="gh-revealed">'+['bleu','rouge'].map(color=>{const card=ghCardById(color==='bleu'?reveal.bleuId:reveal.rougeId);return card?`<div><small><i class="gh-dot ${color}"></i>${ghEsc(ghLabel(tracker,color))} — révélée, round ${tracker.round}</small>${ghTile(card,'',true)}</div>`:''}).join('')+'</div>'}
+    else if(deck.pendingId)body=suiteHeader+`<div class="gh-pending"><span class="gh-badge">✓ Carte engagée — cachée jusqu’à la révélation</span><button type="button" class="secondary" data-gh-cancel="${side}">Changer mon choix</button></div>`;
+    else if(draft&&ghCardById(draft))body=suiteHeader+`<div class="gh-draft">${ghTile(ghCardById(draft),'',true)}<div class="gh-draft-actions"><button type="button" class="primary" data-gh-confirm="${side}">Confirmer ce choix</button><button type="button" class="secondary" data-gh-cancel-draft="${side}">Annuler</button></div></div>`;
+    else{const remaining=suite.filter(id=>!deck.played.includes(id));body=suiteHeader+(remaining.length?`<div class="gh-grid">${remaining.map(id=>ghTile(ghCardById(id),`data-gh-pick="${id}" data-gh-side-of="${side}"`)).join('')}</div>`:'<p class="gh-note">Toutes les cartes de la suite ont déjà été jouées.</p>')}
+  }
   const played=deck.played.filter(id=>ghCardById(id));
   return `<section class="gh-commands"><header><h2>CARTES DE COMMANDEMENT · ROUND ${tracker.round}</h2><div class="gh-side-toggle" role="group" aria-label="Camp qui choisit">${toggle}</div></header><p class="gh-status"><i class="gh-dot ${other}"></i>${ghEsc(ghLabel(tracker,other))} : ${ghStatus(tracker,other,revealed)}</p>${body}`
-    +(bothPending&&!revealed?`<button type="button" class="primary gh-reveal" data-gh-reveal>Révéler les cartes du round ${tracker.round}</button>`:'')
+    +(!editing&&bothPending&&!revealed?`<button type="button" class="primary gh-reveal" data-gh-reveal>Révéler les cartes du round ${tracker.round}</button>`:'')
     +(played.length?`<details class="gh-played"><summary>Cartes déjà jouées (${played.length})</summary><div class="gh-grid gh-grid-small">${played.map(id=>ghTile(ghCardById(id),'',true)).join('')}</div></details>`:'')+'</section>'
 }
 function gameHubHtml(){
@@ -2178,6 +2194,22 @@ function bindGameHub(){updateRoundStatus();
   if(next)next.onclick=()=>{const tracker=readTracker();if(tracker.round>=MAX_ROUND)return;writeTracker({round:tracker.round+1,activatedUnitIds:[],roundHistory:[...(tracker.roundHistory||[]).filter(entry=>entry.round!==tracker.round),{round:tracker.round,activatedUnitIds:tracker.activatedUnitIds||[],vpBleu:tracker.vpBleu,vpRouge:tracker.vpRouge,completedAt:new Date().toISOString()}]});reconcileRoundEffects();refresh()};
   root.querySelectorAll('[data-gh-vp]').forEach(button=>button.onclick=()=>{const tracker=readTracker(),key='vp'+(button.dataset.ghVp==='bleu'?'Bleu':'Rouge');writeTracker({[key]:Math.max(0,(Number(tracker[key])||0)+Number(button.dataset.delta))});refresh()});
   root.querySelectorAll('[data-gh-side]').forEach(button=>button.onclick=()=>{gameHubSide=button.dataset.ghSide;refresh()});
+  root.querySelectorAll('[data-gh-suite-toggle]').forEach(button=>button.onclick=()=>{
+    const side=button.dataset.ghSuiteSide,id=button.dataset.ghSuiteToggle;if(id==='ordres-permanents')return;
+    const tracker=readTracker(),deck=tracker.commandDecks[side],suite=ghSuite(deck);
+    if(suite.includes(id)){writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:deck.suite.filter(existing=>existing!==id)}}});refresh();return}
+    const card=ghCardById(id),count=suite.filter(existing=>ghCardById(existing)?.pip===card.pip).length;
+    if(count>=2)return;
+    writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:[...deck.suite,id]}}});refresh()
+  });
+  root.querySelectorAll('[data-gh-suite-reset]').forEach(button=>button.onclick=()=>{
+    const side=button.dataset.ghSuiteReset,tracker=readTracker(),deck=tracker.commandDecks[side];
+    if(deck.played.length)return;
+    if(!window.confirm(`Réinitialiser la suite de ${ghLabel(tracker,side)} ? Les cartes déjà choisies (hors Ordres Permanents) seront retirées.`))return;
+    writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...deck,suite:[]}}});gameHubEditingSuite[side]=true;refresh()
+  });
+  root.querySelectorAll('[data-gh-suite-done]').forEach(button=>button.onclick=()=>{gameHubEditingSuite[button.dataset.ghSuiteDone]=false;refresh()});
+  root.querySelectorAll('[data-gh-suite-edit]').forEach(button=>button.onclick=()=>{gameHubEditingSuite[button.dataset.ghSuiteEdit]=true;refresh()});
   root.querySelectorAll('[data-gh-pick]').forEach(button=>button.onclick=()=>{gameHubDraft[button.dataset.ghSideOf]=button.dataset.ghPick;refresh()});
   root.querySelectorAll('[data-gh-cancel-draft]').forEach(button=>button.onclick=()=>{gameHubDraft[button.dataset.ghCancelDraft]='';refresh()});
   root.querySelectorAll('[data-gh-confirm]').forEach(button=>button.onclick=()=>{const side=button.dataset.ghConfirm,tracker=readTracker(),id=gameHubDraft[side];if(!id)return;writeTracker({commandDecks:{...tracker.commandDecks,[side]:{...tracker.commandDecks[side],pendingId:id}}});gameHubDraft[side]='';refresh()});
