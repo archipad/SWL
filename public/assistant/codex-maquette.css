@@ -273,15 +273,14 @@ body:has(.attack-workspace) .resolve-center .attack-stepper > button {
 @media (max-width: 1050px) {
   .app-header-sticky .topbar {
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    grid-template-rows: auto auto auto !important;
-    gap: 1px !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    gap: 1px 10px !important;
     padding: 8px 10px 7px !important;
   }
   .app-header-sticky .topbar .topbar-brand { grid-column: 1; grid-row: 1; justify-self: start; }
-  .app-header-sticky .topbar .topbar-sub { grid-column: 1; grid-row: 2; justify-self: start; padding-left: 48px !important; margin-top: -1px; }
   .app-header-sticky .topbar .topbar-actions {
-    grid-column: 1; grid-row: 3; display: flex !important; flex-wrap: nowrap !important; justify-content: center; gap: 5px; margin-top: 4px;
+    grid-column: 1 / -1; grid-row: 2; display: flex !important; flex-wrap: nowrap !important; justify-content: center; gap: 5px; margin-top: 4px;
     max-width: 100%; overflow-x: auto; scrollbar-width: none; overscroll-behavior-inline: contain;
   }
   .app-header-sticky .topbar .topbar-actions::-webkit-scrollbar { display: none; }

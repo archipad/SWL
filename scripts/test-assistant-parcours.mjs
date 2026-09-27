@@ -2056,7 +2056,7 @@ scenario('Sélection des unités (25/09/2026) : rang + icône en tête, figurine
   assert.ok(!doc.querySelector('.site-nav'), 'plus de double barre de menu : le bandeau de navigation du site est retiré')
   assert.equal(doc.querySelectorAll('#progress i').length, 8, 'les 8 étapes sont affichées en haut')
   assert.ok(doc.querySelector('#progress i.active'), 'l’étape courante est mise en évidence')
-  assert.ok(doc.querySelector('.topbar-brand') && doc.querySelector('.topbar-sub'), 'le bandeau unique porte la marque et « Assistant d’unité »')
+  assert.ok(doc.querySelector('.topbar-brand'), 'le bandeau unique porte la marque Legion Compagnon')
   const tile = $('.unit-tile')
   assert.ok(tile, 'la tuile est présente')
   assert.match(text(tile.querySelector('.tile-head')), /Troupiers/, 'le rang est affiché en tête de la carte')
