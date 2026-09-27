@@ -33,8 +33,12 @@
   (6 cartes) et le rapport docs/audit/recoupement-legion-helper-2026-09-19.md
   (20 écarts de mots-clés, 13 de caractéristiques).
 - [x] (19/09/2026) Écran de certification : liste toute carte non certifiée à 100 %, comparaison des sources,
-  écarts Legion Helper à relire, « aucun mot-clé » explicite, portée modifiable. Reste : porte à l'import qui
-  refuse un lot incohérent, et mots-clés d'arme éditables (seuls 48 profils sur ~300 ont une certification complète).
+  écarts Legion Helper à relire, « aucun mot-clé » explicite, portée modifiable.
+  (27/09/2026, audit du moteur) Les deux points laissés en suspens ici sont réglés : la fiche de contrôle du
+  22/09/2026 rend les mots-clés d'arme éditables pour n'importe quelle carte (pas seulement les 48 déjà
+  certifiées à l'époque — 100/~300 au 27/09/2026), et `apply-dice-certification.mjs` refuse désormais un lot
+  incohérent tout de suite après l'avoir régénéré, sans attendre `npm run build`. Détails dans
+  docs/PROCESSUS-VERIFICATION.md.
 - [x] (19/09/2026) Arsenal X : carte d'information bleue avant le choix des armes ; portée des armes en orange.
 
 - [x] (17/09/2026, demande utilisateur) Audité les 85 mots-clés

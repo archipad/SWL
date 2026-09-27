@@ -167,6 +167,15 @@ if(newCards.length){
 // audit:assistant) ne s'exécute juste après cette étape.
 execSync('node scripts/generate-assistant-reference.mjs',{stdio:'inherit'})
 
+// Porte à l'import (27/09/2026, audit du moteur de certification) : un lot qui rendrait le référentiel
+// incohérent (mot-clé inconnu, certification vide face à des étiquettes non vides, liste manquante...)
+// était déjà rattrapé par `npm run build` dans le workflow GitHub, mais seulement plusieurs étapes plus
+// loin -- un échec s'y confondait avec n'importe quel autre test, et rien ne garantissait que l'ordre des
+// étapes du workflow resterait toujours « build avant commit ». On relance ici la même vérification tout de
+// suite après avoir régénéré le référentiel : le lot est refusé (aucun commit) avec un message qui pointe
+// directement le problème, avant même verify:assistant-dice.
+execSync('node scripts/test-reference-consistency.mjs',{stdio:'inherit'})
+
 // GitHub Pages et le mode PWA peuvent conserver longtemps le référentiel.
 // Chaque lot change donc automatiquement sa version dans la page afin que
 // tous les appareils téléchargent immédiatement les données nouvellement certifiées.
