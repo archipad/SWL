@@ -11,7 +11,10 @@ body {
   font: 600 1rem "Rajdhani", sans-serif;
   padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
 }
-#app { display: grid; gap: 14px; max-width: 560px; margin: 0 auto; padding: 14px 16px 28px; }
+#app, #phMusicSlot { display: grid; gap: 14px; max-width: 560px; margin: 0 auto; padding-inline: 16px; }
+#app { padding-top: 14px; }
+#phMusicSlot:empty { display: none; }
+#phMusicSlot { padding-bottom: 28px; }
 
 .ph-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .ph-top strong { font: 800 1rem "Orbitron", sans-serif; letter-spacing: .12em; color: #fff; text-shadow: 0 0 12px rgba(98, 214, 255, .4); }
@@ -66,3 +69,8 @@ body {
 .ph-kw-detail { position: absolute; inset: 0; top: auto; display: grid; gap: 10px; align-content: start; padding: 16px 16px calc(env(safe-area-inset-bottom, 0px) + 16px); background: #04080d; border-top: 1px solid rgba(66, 205, 255, .4); max-height: 70vh; overflow-y: auto; }
 .ph-kw-detail strong { font: 800 1.2rem "Orbitron", sans-serif; color: #7fe0ff; }
 .ph-kw-detail p { margin: 0; line-height: 1.5; color: #e8f3fa; }
+
+.ph-music-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ph-music-head h1 { margin: 0; }
+.ph-music button.secondary { min-height: 40px; padding: 0 14px; border-radius: 6px; border: 1px solid rgba(66, 205, 255, .55); background: rgba(10, 24, 38, .9); color: #e8f3fa; font: 700 .9rem "Rajdhani", sans-serif; cursor: pointer; }
+.ph-spotify-frame { border-radius: 10px; }

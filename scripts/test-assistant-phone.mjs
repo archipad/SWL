@@ -58,6 +58,35 @@ scenario('Recherche de mot-clé : résultats filtrés, définition affichée au 
   app.window.close()
 })
 
+scenario('Musique d’ambiance (Spotify) : playlist enregistrée, lecteur non détruit par le tirage périodique du suivi', async () => {
+  const app = await openPhone({
+    'swl.list.p1.v1': { listName: 'Patrouille Impériale', faction: 'Empire', units: [{ name: 'Stormtroopers' }] },
+    'swl.game-tracker.v1': { round: 1, p1Color: 'bleu', vpBleu: 0, vpRouge: 0, activatedUnitIds: [] },
+  })
+  const { $, text, click, setValue, window } = app
+  assert.match(text($('#phMusicSlot')), /MUSIQUE D.AMBIANCE/)
+  assert.ok($('#phSpotifyInput'), 'un champ pour coller le lien de playlist est proposé par défaut')
+  await setValue('#phSpotifyInput', 'https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M?si=abc')
+  await click('#phSpotifySave')
+  const iframe = $('#phMusicSlot iframe')
+  assert.ok(iframe, 'le lecteur Spotify intégré apparaît après enregistrement')
+  assert.match(iframe.src, /open\.spotify\.com\/embed\/playlist\/37i9dQZF1DXcBWIGoYBM5M/)
+  assert.equal(window.localStorage.getItem('swl.phone.spotify-playlist.v1'), 'https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M?si=abc')
+  // Un tirage périodique du suivi de partie (round/score) ne doit jamais reconstruire le panneau
+  // musique : ça couperait la lecture en cours.
+  iframe.dataset.probe = 'unchanged'
+  window.localStorage.setItem('swl.game-tracker.v1', JSON.stringify({ round: 2, p1Color: 'bleu', vpBleu: 1, vpRouge: 0, activatedUnitIds: [] }))
+  window.dispatchEvent(new window.StorageEvent('storage', { key: 'swl.game-tracker.v1' }))
+  await app.settle(200)
+  const iframeAfter = $('#phMusicSlot iframe')
+  assert.equal(iframeAfter, iframe, 'le nœud iframe est le même objet DOM : la lecture n’a pas été interrompue')
+  assert.equal(iframeAfter.dataset.probe, 'unchanged')
+  await click('#phSpotifyChange')
+  assert.ok($('#phSpotifyInput'), 'Changer revient au champ de saisie')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 let failed = 0
 for (const { name, fn } of scenarios) {
   try { await fn(); console.log('  ✓ ' + name) }

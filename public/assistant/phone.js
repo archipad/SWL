@@ -97,6 +97,29 @@
     return keywords.filter(k => norm(k.name).includes(q) || norm(k.id.replace(/-/g, ' ')).includes(q)).slice(0, 30);
   }
 
+  // ---------- Musique d'ambiance : lecteur Spotify intégré (widget officiel Spotify, pas de fichier
+  // audio hébergé ici — les musiques Star Wars sont protégées, seul Spotify a le droit de les diffuser).
+  // Play/pause est le contrôle propre du lecteur Spotify ; on ne fait qu'y encapsuler la playlist choisie.
+  const spotifyKey = 'swl.phone.spotify-playlist.v1';
+  function parseSpotifyId(input) {
+    const value = String(input || '').trim();
+    const fromUrl = value.match(/playlist[\/:]([a-zA-Z0-9]+)/);
+    if (fromUrl) return fromUrl[1];
+    return /^[a-zA-Z0-9]{15,30}$/.test(value) ? value : '';
+  }
+  function musicHtml() {
+    const saved = localStorage.getItem(spotifyKey) || '';
+    const id = parseSpotifyId(saved);
+    if (!id) {
+      return `<section class="ph-card ph-music"><h1>🎵 MUSIQUE D’AMBIANCE</h1>
+        <p>Collez le lien de votre playlist Spotify (bouton Partager → Copier le lien de la playlist) pour l’écouter ici, avec ses propres contrôles lecture/pause.</p>
+        <label class="ph-token-field">Lien ou ID de playlist Spotify<input id="phSpotifyInput" type="text" inputmode="url" placeholder="https://open.spotify.com/playlist/…" autocomplete="off"></label>
+        <button type="button" class="primary" id="phSpotifySave">Enregistrer</button></section>`;
+    }
+    return `<section class="ph-card ph-music"><div class="ph-music-head"><h1>🎵 MUSIQUE D’AMBIANCE</h1><button type="button" class="secondary" id="phSpotifyChange">Changer</button></div>
+      <iframe class="ph-spotify-frame" src="https://open.spotify.com/embed/playlist/${id}?utm_source=generator&theme=0" width="100%" height="152" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Playlist Spotify"></iframe></section>`;
+  }
+
   function pairingHtml() {
     return `<section class="ph-card ph-pairing"><h1>EN ATTENTE DE SYNCHRONISATION</h1>
       <p>Cet appareil n’a pas encore de partie à afficher. Sur un appareil déjà connecté, ouvrez Legion Compagnon → <b>Synchronisation entre appareils</b> → <b>Ajouter un appareil</b>, puis scannez le code ici — ou collez le même jeton ci-dessous.</p>
@@ -174,6 +197,22 @@
     };
   }
 
+  // Le panneau musique vit dans son propre conteneur, jamais reconstruit par render() (qui tourne
+  // toutes les 5 s pour le suivi de partie) : ça couperait la lecture Spotify à chaque tirage.
+  const musicSlot = document.getElementById('phMusicSlot');
+  function renderMusic() {
+    musicSlot.innerHTML = musicHtml();
+    const save = $('#phSpotifySave', musicSlot);
+    if (save) save.onclick = () => {
+      const raw = $('#phSpotifyInput', musicSlot).value;
+      if (!parseSpotifyId(raw)) return;
+      localStorage.setItem(spotifyKey, raw);
+      renderMusic();
+    };
+    const change = $('#phSpotifyChange', musicSlot);
+    if (change) change.onclick = () => { localStorage.removeItem(spotifyKey); renderMusic(); };
+  }
+
   // Ne jamais reconstruire la page pendant qu'une recherche est ouverte : ça fermerait le dialogue
   // et perdrait la saisie en cours. Les nouvelles données restent en attente dans localStorage.
   function rerenderUnlessSearching() {
@@ -183,6 +222,7 @@
   }
 
   render();
+  renderMusic();
   pullFromGist().then(() => rerenderUnlessSearching());
   setInterval(() => { pullFromGist().then(changed => { if (changed) rerenderUnlessSearching(); }); }, 5000);
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') pullFromGist().then(changed => { if (changed) rerenderUnlessSearching(); }); });
