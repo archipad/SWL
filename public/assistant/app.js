@@ -1185,7 +1185,7 @@ function activationBriefing(entry){
   const rows=list=>list.map(item=>`<li><b>${keywordTitle(item)}</b><small>${definitionText(item)}</small></li>`).join('');
   // Chaque mot-clé hors combat est rangé à l'étape où il agit (scripts/data/keyword-timing.json) : pastille d'étape + tri chronologique.
   const timing=window.SWL_REFERENCE?.keywordTiming||{phases:{},keywords:{}},phaseOrder=['ordre','deplacement','action','finactivation','ralliement','reaction','passif','miseenplace','commandement','phasefinale'],phaseOf=item=>timing.keywords?.[item.def.id]?.[0]||null,treatmentOf=item=>timing.keywords?.[item.def.id]?.[1]||null;
-  const phaseRows=list=>[...list].sort((a,b)=>{const ia=phaseOrder.indexOf(phaseOf(a)),ib=phaseOrder.indexOf(phaseOf(b));return(ia<0?99:ia)-(ib<0?99:ib)}).map(item=>{const phase=phaseOf(item);return`<li><b>${phase?`<i class="phase-tag phase-${phase}">${timing.phases[phase]||phase}</i>`:''}${keywordTitle(item)}</b><small>${definitionText(item)}</small>${treatmentOf(item)==='auto'?'<em class="auto-hint">Bouton d’application dans « Automatismes des mots-clés » ou dans l’écran concerné</em>':''}</li>`}).join('');
+  const phaseRows=list=>[...list].sort((a,b)=>{const ia=phaseOrder.indexOf(phaseOf(a)),ib=phaseOrder.indexOf(phaseOf(b));return(ia<0?99:ia)-(ib<0?99:ib)}).map(item=>{const phase=phaseOf(item);return`<li><b>${phase?`<i class="phase-tag phase-${phase}">${timing.phases[phase]||phase}</i> `:''}${keywordTitle(item)}</b><small>${definitionText(item)}</small>${treatmentOf(item)==='auto'?'<em class="auto-hint">Bouton d’application dans « Automatismes des mots-clés » ou dans l’écran concerné</em>':''}</li>`}).join('');
   const allActivationRules=rules.filter(item=>displayImpacts(item).includes('autre')),armyRules=allActivationRules.filter(item=>phaseOf(item)==='armee'),activationRules=allActivationRules.filter(item=>phaseOf(item)!=='armee');
   const attackRules=rules.filter(item=>displayImpacts(item).includes('attaque'));
   // Mots-clés qui jouent quand cette unité est ciblée (Incognito, Profil Bas, Discret, Armure…) : rappelés aussi sur sa propre fiche.
@@ -2392,6 +2392,12 @@ function contextualStrip(entry){
   const message=blocking?'Déplacement obligatoire à confirmer avant la fin de l’activation.':optional?`${optional} effet${optional>1?'s':''} applicable${optional>1?'s':''} à vérifier avant de terminer.`:'Aucun effet de fin d’activation en attente.';
   return `<section class="contextual-activation-strip ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span><button type="button" class="ca-open-end" data-ca-review-end>Voir</button></section>`
 }
+function contextualOverviewStack(host){
+  const column=host?.querySelector('.ov-right')||host;if(!column)return null;
+  let stack=[...column.children].find(child=>child.classList?.contains('contextual-activation-stack'));
+  if(!stack){stack=document.createElement('div');stack.className='contextual-activation-stack';column.prepend(stack)}
+  return stack
+}
 function closeContextualDialog(dialog){if(dialog?.open)dialog.close();dialog?.remove()}
 let contextualEndDraft=null;
 function abandonContextualDraft(){if(contextualEndDraft?.before){unitStates=JSON.parse(JSON.stringify(contextualEndDraft.before));persistUnitStates()}contextualEndDraft=null}
@@ -2472,8 +2478,8 @@ const overviewContextualActivationBase=overview;
 overview=function(entry,role){
   overviewContextualActivationBase(entry,role);
   if(role!=='attack'||defeated(entry)||!contextualActivationEnabled())return;
-  const host=root.querySelector('.overview'),anchor=host?.querySelector('.activation-briefing,.activation-automation,.card-strip,.actions');
-  const strip=contextualStrip(entry);if(strip&&host&&!host.querySelector('.contextual-activation-strip'))(anchor||host.firstElementChild)?.insertAdjacentHTML('beforebegin',strip);
+  const host=root.querySelector('.overview'),stack=contextualOverviewStack(host);
+  const strip=contextualStrip(entry);if(strip&&stack&&!stack.querySelector('.contextual-activation-strip'))stack.insertAdjacentHTML('beforeend',strip);
   const end=root.querySelector('[data-end-activation]');
   if(end&&!end.dataset.contextualBound){const finish=end.onclick;end._contextualFinish=finish;end.dataset.contextualBound='true';end.onclick=()=>openContextualEndDialog(entry,finish)}
   const review=root.querySelector('[data-ca-review-end]');
@@ -2492,14 +2498,17 @@ resolveScreen=function(){
 // place, mais une synthèse compacte n'affiche que ceux qui sont utilisables à
 // l'écran courant. Une étape avec choix facultatifs est vérifiée une seule fois.
 function contextualNowItems(){
-  const buttons=[...root.querySelectorAll('.overview .activation-automation button:not([disabled])')].filter(button=>!button.matches('[data-kw-undo],[data-kw-reset],[data-ca-disable]'));
+  const buttons=[...root.querySelectorAll('.overview .activation-automation button:not([disabled])')].filter(button=>{
+    if(button.matches('[data-kw-undo],[data-kw-reset],[data-ca-disable],[data-kw2-open="regen"],[data-kw2-open="latent"],[data-kw2-ready],[data-kw2-cycle]'))return false;
+    const actionId=button.dataset.cardAction;return !actionId||CARD_KEYWORD_ACTIONS[actionId]?.kind!=='end'
+  });
   const actions=buttons.map(button=>{const host=button.closest('.kw-action,.effect-choice')||button,title=(host.querySelector('b')||button.querySelector('b'))?.textContent?.trim()||button.textContent.trim(),text=(host.querySelector('small')||button.querySelector('small'))?.textContent?.trim()||'';return{title,text,button,kind:'control'}});
   // Certaines unités, notamment Luke, ont des choix d'activation (Saut, Charge…)
   // décrits dans le briefing sans bouton d'automatisation. Ils doivent eux aussi
   // remonter dans le bandeau « Maintenant », qui sert avant tout de raccourci.
   const activationSection=[...root.querySelectorAll('.overview .activation-briefing details.brief-section')].find(section=>/ACTIVATION|DÉPLACEMENT/i.test(section.querySelector('summary')?.textContent||''));
-  const reminders=[...(activationSection?.querySelectorAll('li:not(.brief-empty)')||[])].map(row=>({title:row.querySelector('b')?.textContent?.replace(/\s+/g,' ').trim()||'',text:row.querySelector('small')?.textContent?.replace(/\s+/g,' ').trim()||'',button:row,kind:'reminder'}));
-  const seen=new Set;return [...actions,...reminders].filter(item=>item.title&&!seen.has(item.title)&&(seen.add(item.title),true)).slice(0,6)
+  const reminders=[...(activationSection?.querySelectorAll('li:not(.brief-empty)')||[])].filter(row=>!row.querySelector('.phase-finactivation,.phase-phasefinale,.phase-commandement,.phase-miseenplace,.phase-ralliement')).map(row=>{const label=row.querySelector('b')?.cloneNode(true);label?.querySelectorAll('.phase-tag').forEach(tag=>tag.remove());return{title:label?.textContent?.replace(/\s+/g,' ').trim()||'',text:row.querySelector('small')?.textContent?.replace(/\s+/g,' ').trim()||'',button:row,kind:'reminder'}});
+  const seen=new Set;return [...actions,...reminders].filter(item=>{const key=norm(item.title);return key&&!seen.has(key)&&(seen.add(key),true)}).slice(0,6)
 }
 function openContextualNowDialog(entry,items){
   const dialog=document.createElement('dialog');dialog.className='ca-dialog ca-now-dialog';dialog.innerHTML=`<header><small>ACTIONS ET RAPPELS · ${ghEsc(entryName(entry))}</small><h2>QUE POUVEZ-VOUS FAIRE MAINTENANT ?</h2><p>Cette liste reprend les actions, réactions et capacités de déplacement utiles pendant cette activation.</p></header><div class="ca-list">${items.map((item,index)=>`<article class="ca-item"><i>${index+1}</i><span class="ca-item-copy"><b>${ghEsc(item.title)}</b><small>${ghEsc(item.text)}</small></span><span class="ca-item-actions"><button type="button" class="primary" data-ca-now-go="${index}">${item.kind==='reminder'?'Voir le rappel':'Voir le contrôle'}</button></span></article>`).join('')}</div><footer><button type="button" class="secondary" data-ca-now-close>Fermer</button></footer>`;
@@ -2508,7 +2517,7 @@ function openContextualNowDialog(entry,items){
 function decorateContextualOverview(entry){
   if(!contextualActivationEnabled())return;const items=contextualNowItems(),host=root.querySelector('.overview');if(!host||!items.length)return;
   const strip=document.createElement('section');strip.className='contextual-activation-strip ca-now';strip.innerHTML=`<span class="ca-signal">${items.length}</span><span class="ca-copy"><strong>MAINTENANT · ${ghEsc(items.map(item=>item.title).join(' · '))}</strong><small>Actions, réactions et capacités utiles pendant cette activation.</small></span><button type="button" class="ca-open-now">Voir</button>`;
-  const endStrip=host.querySelector('.contextual-activation-strip:not(.ca-now)'),anchor=host.querySelector('.activation-automation,.activation-briefing');if(endStrip)endStrip.insertAdjacentElement('afterend',strip);else(anchor||host.firstElementChild)?.insertAdjacentElement('beforebegin',strip);
+  contextualOverviewStack(host)?.append(strip);
   strip.querySelector('.ca-open-now')?.addEventListener('click',()=>openContextualNowDialog(entry,items))
 }
 const overviewContextualNowBase=overview;

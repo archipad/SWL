@@ -809,12 +809,37 @@ scenario('Alertes par étape : une synthèse ne montre que les règles de l’é
   app.window.close()
 
   const rebel = await openAssistant({
-    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Luke Skywalker Hero of the Rebellion', upgrades: [] }] },
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [
+      { name: 'Luke Skywalker Hero of the Rebellion', upgrades: [] },
+      { name: 'Wookiee Warriors Freedom Fighters', upgrades: [] },
+      { name: 'Rebel Troopers', upgrades: [] },
+    ] },
     'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+    'swl.assistant.unit-state.v1': { 'p1:1': { suppression: 1 } },
   })
   await rebel.pickUnit('Luke Skywalker')
+  const stack = rebel.$('.contextual-activation-stack')
+  assert.ok(stack, 'les alertes contextuelles sont regroupées dans un seul bloc en haut de la fiche')
+  assert.equal(stack.parentElement.firstElementChild, stack, 'le bloc contextuel précède les cartes, automatismes et briefing')
+  assert.equal(stack.querySelectorAll(':scope > .contextual-activation-strip').length, 2, 'fin d’activation et actions immédiates sont côte à côte dans le même bloc')
+  assert.match(rebel.text(rebel.$('.activation-briefing')), /DÉPLACEMENT\s+Saut 1/i, 'un espace sépare la phase Déplacement du mot-clé Saut')
+  assert.match(rebel.text(rebel.$('.activation-briefing')), /FIN D.ACTIVATION\s+Inspiration 2/i, 'un espace sépare la phase Fin d’activation du mot-clé Inspiration')
   assert.ok(rebel.$('.contextual-activation-strip.ca-now'), 'Luke affiche aussi le bandeau grâce à ses capacités d’activation')
   assert.match(rebel.text(rebel.$('.contextual-activation-strip.ca-now')), /SAUT/, 'le bandeau rebelle remonte Saut depuis le briefing')
+  const nowText = rebel.text(rebel.$('.contextual-activation-strip.ca-now'))
+  assert.doesNotMatch(nowText, /INSPIRATION 2/i, 'Inspiration reste dans le bandeau de fin d’activation et ne pollue pas les actions disponibles maintenant')
+  assert.equal((nowText.match(/SAUT 1/gi) || []).length, 1, 'Saut n’est pas dupliqué entre automatisme et briefing')
+  await rebel.click('[data-ca-review-end]')
+  let targetIds = rebel.$$('[data-ca-target]').map(node => node.dataset.caTarget)
+  assert.ok(targetIds.includes('p1:1'), 'Inspiration propose l’unité alliée qui possède une Suppression')
+  assert.ok(!targetIds.includes('p1:2'), 'Inspiration masque une unité sans Suppression')
+  assert.ok(!targetIds.includes('p1:0'), 'Inspiration ne peut pas cibler Luke lui-même')
+  await rebel.click('[data-ca-cancel]')
+  rebel.window.eval("{const target=entries.find(e=>e.unit.name==='Rebel Troopers');unitStates[target.id]={...stateFor(target),suppression:1};persistUnitStates();overview(entries[0],'attack')}")
+  await rebel.click('[data-ca-review-end]')
+  targetIds = rebel.$$('[data-ca-target]').map(node => node.dataset.caTarget)
+  assert.ok(targetIds.includes('p1:1') && targetIds.includes('p1:2'), 'la liste Inspiration se recalcule dès qu’une autre unité gagne une Suppression')
+  await rebel.click('[data-ca-cancel]')
   await rebel.click('.ca-open-now')
   assert.match(rebel.text(rebel.$('.ca-now-dialog[open]')), /Voir le rappel/, 'une capacité sans automatisme est présentée comme un rappel')
   const reminderButton = rebel.$$('[data-ca-now-go]').find(button => /Voir le rappel/.test(rebel.text(button)))

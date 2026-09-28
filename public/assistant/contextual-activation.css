@@ -1,8 +1,13 @@
+.contextual-activation-stack {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+}
 .contextual-activation-strip {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 0 0 12px;
+  margin: 0;
   padding: 10px 13px;
   border: 1px solid color-mix(in srgb, var(--accent, #49c7ff) 48%, transparent);
   border-left: 3px solid var(--accent, #49c7ff);
