@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maquette · Table de jeu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="screen-shell">
+    <header class="command-bar">
+      <div class="brand">
+        <span class="brand-mark">◆</span>
+        <div><strong>LEGION COMPAGNON</strong><small>TABLE DE JEU · MAQUETTE</small></div>
+      </div>
+
+      <section class="round-control" aria-label="Round actuel">
+        <button data-round="-1" aria-label="Round précédent">−</button>
+        <div><small>ROUND</small><strong id="roundValue">1</strong><span>/ 5</span></div>
+        <button data-round="1" aria-label="Round suivant">+</button>
+      </section>
+
+      <div class="top-actions">
+        <button class="ghost" id="missionBtn"><span>◇</span> Mission</button>
+        <button class="ghost" id="journalBtn"><span>▤</span> Journal <b>4</b></button>
+        <button class="settings" aria-label="Paramètres">⚙</button>
+      </div>
+    </header>
+
+    <section class="score-strip">
+      <article class="score-side rebel-score">
+        <div><small>JOUEUR 1 · BLEU</small><strong>REBELLION</strong><span>Simon</span></div>
+        <div class="score-control"><button data-score="rebel:-1">−</button><strong id="rebelScore">0</strong><button data-score="rebel:1">+</button></div>
+        <p><b id="rebelReady">5</b> unités à jouer · <span>11 unités</span></p>
+      </article>
+      <div class="versus"><span>OBJECTIF</span><strong>PERCÉE</strong><small>Avantage · Rebelle</small></div>
+      <article class="score-side imperial-score">
+        <p><b id="imperialReady">4</b> unités à jouer · <span>10 unités</span></p>
+        <div class="score-control"><button data-score="imperial:-1">−</button><strong id="imperialScore">0</strong><button data-score="imperial:1">+</button></div>
+        <div><small>JOUEUR 2 · ROUGE</small><strong>EMPIRE</strong><span>Antoine</span></div>
+      </article>
+    </section>
+
+    <main class="battlefield">
+      <section class="army-panel rebel-panel" aria-labelledby="rebelTitle">
+        <header class="army-heading">
+          <div><span class="faction-emblem">◉</span><div><small>ALLIANCE REBELLE</small><h1 id="rebelTitle">UNITÉS EN COMBAT</h1></div></div>
+          <div class="army-summary"><b>8</b><span>figurines perdues</span></div>
+        </header>
+        <div class="unit-list" id="rebelUnits"></div>
+        <details class="defeated-fold">
+          <summary><span>UNITÉS VAINCUES</span><b>1</b></summary>
+          <div class="defeated-row">Soldats Rebelles 1 <span>0/10 figurines</span></div>
+        </details>
+      </section>
+
+      <div class="center-rail" aria-hidden="true"><i></i><span>VS</span><i></i></div>
+
+      <section class="army-panel imperial-panel" aria-labelledby="imperialTitle">
+        <header class="army-heading">
+          <div><span class="faction-emblem">✹</span><div><small>EMPIRE GALACTIQUE</small><h1 id="imperialTitle">UNITÉS EN COMBAT</h1></div></div>
+          <div class="army-summary"><b>3</b><span>figurines perdues</span></div>
+        </header>
+        <div class="unit-list" id="imperialUnits"></div>
+        <details class="defeated-fold">
+          <summary><span>UNITÉS VAINCUES</span><b>1</b></summary>
+          <div class="defeated-row">Scout Troopers · Équipe <span>0/2 figurines</span></div>
+        </details>
+      </section>
+    </main>
+
+    <footer class="action-dock">
+      <div class="selection" id="selectionSummary">
+        <span class="selection-icon">◎</span>
+        <div><small>UNITÉ SÉLECTIONNÉE</small><strong>Sélectionnez une unité</strong><p>La fiche rapide s’ouvrira sans quitter cette page.</p></div>
+      </div>
+      <button class="secondary" id="quickBtn" disabled>Fiche rapide</button>
+      <button class="primary" id="attackBtn" disabled>Résoudre une attaque <span>→</span></button>
+    </footer>
+  </div>
+
+  <aside class="drawer quick-drawer" id="quickDrawer" aria-hidden="true">
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <section class="drawer-panel">
+      <header><div><small>FICHE RAPIDE</small><h2 id="drawerName">Unité</h2></div><button data-close-drawer aria-label="Fermer">×</button></header>
+      <img id="drawerPortrait" alt="" />
+      <div class="health-block">
+        <span>EFFECTIF & BLESSURES</span>
+        <strong id="drawerHealth">—</strong>
+        <div class="meter"><i id="healthMeter"></i></div>
+      </div>
+      <div class="quick-stats">
+        <label>Blessures <span><button data-adjust="wounds:-1">−</button><b id="woundValue">0</b><button data-adjust="wounds:1">+</button></span></label>
+        <label>Suppression <span><button data-adjust="suppression:-1">−</button><b id="suppressionValue">0</b><button data-adjust="suppression:1">+</button></span></label>
+      </div>
+      <button class="activation-btn" id="activationBtn">✓ Marquer comme jouée</button>
+      <button class="primary full" id="drawerAttack">Résoudre une attaque <span>→</span></button>
+    </section>
+  </aside>
+
+  <aside class="drawer journal-drawer" id="journalDrawer" aria-hidden="true">
+    <div class="drawer-backdrop" data-close-journal></div>
+    <section class="drawer-panel journal-panel">
+      <header><div><small>ROUND 1</small><h2>JOURNAL TACTIQUE</h2></div><button data-close-journal aria-label="Fermer">×</button></header>
+      <div class="timeline">
+        <article><time>15:42</time><i></i><div><strong>Stormtroopers → Soldats Rebelles</strong><p>7 blessures · 7 figurines éliminées</p><span>Attaque à distance · portée 3</span></div></article>
+        <article><time>15:37</time><i></i><div><strong>Soldats Rebelles 2 activés</strong><p>1 suppression retirée au ralliement</p></div></article>
+        <article><time>15:31</time><i></i><div><strong>Dark Vador → Guerriers Wookies</strong><p>2 blessures · 1 blocage</p><span>Corps-à-corps</span></div></article>
+        <article><time>15:24</time><i></i><div><strong>Score mis à jour</strong><p>Rébellion 0 · Empire 0</p></div></article>
+      </div>
+    </section>
+  </aside>
+
+  <div class="toast" id="toast">Fonction simulée dans la maquette</div>
+  <script src="./mockup.js"></script>
+</body>
+</html>

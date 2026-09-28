@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maquette · Alertes d’activation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span>◆</span><div><b>LEGION COMPAGNON</b><small>ASSISTANT D’UNITÉ</small></div></div>
+      <div class="round"><small>ROUND</small><b>2</b><span>8 unités restantes</span></div>
+      <nav><button>Armée</button><button>Suivi partie</button><button class="fast">ϟ Mode rapide</button><button>⚙</button></nav>
+    </header>
+
+    <div class="demo-switcher" role="tablist" aria-label="Choisir un scénario de maquette">
+      <button class="active" data-scene="during"><small>ÉCRAN 1</small>Alerte contextuelle</button>
+      <button data-scene="ending"><small>ÉCRAN 2</small>Fin assistée</button>
+      <button data-scene="clear"><small>ÉCRAN 3</small>Fin immédiate</button>
+    </div>
+
+    <main>
+      <aside class="identity">
+        <small>UNITÉ ACTIVE · COMMANDANT</small>
+        <h1>LUKE SKYWALKER</h1>
+        <img src="../codex/portraits/luke-skywalker.png" alt="Luke Skywalker">
+        <div class="stats"><span><b>1/1</b> figurine</span><span><b>6/6</b> PV</span><span><b>0</b> suppression</span></div>
+        <div class="tokens"><button>◎ <b>0</b><small>Viser</small></button><button>◒ <b>0</b><small>Esquive</small></button><button>◆ <b>0</b><small>Adrénaline</small></button></div>
+      </aside>
+
+      <section class="workspace">
+        <header class="activation-head">
+          <div><small>ACTIVATION EN COURS</small><h2>QUE FAIT LUKE MAINTENANT ?</h2></div>
+          <ol><li class="done">Début</li><li class="active">Actions</li><li>Attaque</li><li>Fin</li></ol>
+        </header>
+
+        <section class="scene active" id="during">
+          <div class="context-strip amber">
+            <div class="context-icon">!</div>
+            <div><small>ALERTE CONTEXTUELLE · APRÈS UN DÉPLACEMENT</small><h3>CHARGE EST MAINTENANT DISPONIBLE</h3><p>Luke a terminé un déplacement au contact d’une unité ennemie. Il peut effectuer une attaque gratuite avec une arme de corps-à-corps.</p></div>
+            <div class="context-actions"><button class="primary">Lancer l’attaque →</button><button class="secondary">Ne pas utiliser</button></div>
+          </div>
+          <div class="action-grid">
+            <article class="suggested"><span>RECOMMANDÉ</span><b>⚔</b><h3>ATTAQUER</h3><p>Attaque gratuite grâce à Charge.</p><button>Choisir la cible</button></article>
+            <article><b>➤</b><h3>SE DÉPLACER</h3><p>Vitesse 2 · Saut 1 disponible.</p><button>Nouveau déplacement</button></article>
+            <article><b>◎</b><h3>VISER</h3><p>Gagner un pion Viser.</p><button>Appliquer</button></article>
+            <article><b>◒</b><h3>ESQUIVER</h3><p>Gagner un pion Esquive.</p><button>Appliquer</button></article>
+          </div>
+          <details class="reference"><summary>Voir les règles et cartes de référence</summary><p>Charge · Saut 1 · Inspiration 2 · Impact 2 · Perforant 1 · Tireur d’élite 1</p></details>
+        </section>
+
+        <section class="scene" id="ending">
+          <div class="finish-card">
+            <header><div><small>FIN D’ACTIVATION</small><h2>2 ÉLÉMENTS À VÉRIFIER</h2></div><span class="progress">2 / 4</span></header>
+            <div class="check done"><i>✓</i><div><b>Actions de l’unité terminées</b><p>Une action Se déplacer et une attaque ont été enregistrées.</p></div><span>Terminé</span></div>
+            <div class="check decision"><i>!</i><div><b>INSPIRATION 2</b><p>Retirez jusqu’à deux suppressions à d’autres unités alliées à portée 2.</p><small>Luke Skywalker · effet facultatif de fin d’activation</small></div><div class="buttons"><button class="primary">Choisir les unités</button><button>Ne pas utiliser</button></div></div>
+            <div class="check warning"><i>!</i><div><b>Pointe de Vitesse utilisée</b><p>La carte doit rester supprimée pour le reste de la partie.</p></div><button class="confirm">Confirmer</button></div>
+            <div class="check pending"><i>○</i><div><b>Marquer Luke comme joué</b><p>L’unité passera dans la section « Activées ».</p></div><span>Automatique</span></div>
+            <button class="finish" disabled>Résoudre les 2 éléments restants</button>
+            <button class="back">← Revenir à l’activation</button>
+          </div>
+        </section>
+
+        <section class="scene" id="clear">
+          <div class="finish-card clear-card">
+            <div class="success-ring">✓</div>
+            <small>FIN D’ACTIVATION</small>
+            <h2>TOUT EST RÉSOLU</h2>
+            <p>Aucun effet obligatoire ou facultatif ne reste à vérifier pour Luke Skywalker.</p>
+            <div class="clear-summary"><span>✓ État enregistré</span><span>✓ Unité marquée comme jouée</span><span>✓ Journal mis à jour</span></div>
+            <button class="finish ready">Terminer et choisir l’unité suivante →</button>
+            <small class="auto">Retour automatique dans 3 secondes</small>
+          </div>
+        </section>
+      </section>
+
+      <aside class="now-panel">
+        <small>À FAIRE MAINTENANT</small>
+        <h3>ACTIONS DE L’UNITÉ</h3>
+        <div class="mini-status"><span>Actions</span><b>1 / 2</b><i><u></u></i></div>
+        <div class="reminder"><b>SAUT 1</b><p>Disponible à chaque déplacement.</p></div>
+        <div class="reminder"><b>INSPIRATION 2</b><p>À vérifier à la fin de l’activation.</p><span>EN ATTENTE</span></div>
+        <button class="end">Terminer l’activation</button>
+      </aside>
+    </main>
+
+    <footer class="bottom-bar"><button>← Changer d’unité</button><div><small>ÉTAPE ACTUELLE</small><b>Effectuer les actions</b></div><button class="end-main">Terminer l’activation →</button></footer>
+  </div>
+  <script src="./mockup.js"></script>
+</body>
+</html>
