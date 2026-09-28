@@ -647,6 +647,20 @@ scenario('Fin d’activation assistée : un déplacement obligatoire bloque la s
   app.window.close()
 })
 
+scenario('Fin d’attaque assistée : Speeder peut être confirmé depuis le résumé sans boucle', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: '74-Z Speeder Bikes', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  await app.pickUnit('Speeder')
+  app.window.eval("{const render=resolveScreen;resolveScreen=()=>{};root.innerHTML='<section class=resolve-center><h2>Résumé de l’attaque</h2></section>';attackStep=5;attackState={};focusContextualControl(entries[0],contextualEndItems(entries[0])[0],null);resolveScreen=render}")
+  const state = JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}')['p1:0']
+  assert.equal(state.mandatoryMoveDone, true, 'le résumé applique directement le même automatisme Speeder')
+  assert.ok(!app.$('.ca-dialog'), 'aucune fenêtre bloquante ne reste ouverte')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 scenario('Alertes contextuelles : masquage temporaire sans modifier le moteur ni les préférences persistantes', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: '74-Z Speeder Bikes', upgrades: [] }] },

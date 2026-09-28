@@ -2365,9 +2365,15 @@ function closeContextualDialog(dialog){if(dialog?.open)dialog.close();dialog?.re
 function focusContextualControl(entry,item,dialog){
   closeContextualDialog(dialog);
   const control=root.querySelector(item.selector);
-  if(!control)return;
-  control.scrollIntoView({behavior:'smooth',block:'center'});
-  setTimeout(()=>{control.focus({preventScroll:true});control.click()},180)
+  if(control){control.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>{control.focus({preventScroll:true});control.click()},180);return}
+  // Au résumé d'une attaque, les boutons de la fiche ne sont plus dans le DOM.
+  // Pour une obligation simple comme Speeder/Mobile, on appelle donc le même
+  // automatisme de règle directement puis on reconstruit le résumé. Cela évite
+  // de perdre l'attaque ou de rouvrir indéfiniment le contrôle.
+  if(item.source&&CARD_KEYWORD_ACTIONS[item.source]){
+    applyCardKeywordAction(entry,item.source,0);
+    if(attackState&&attackStep===5)resolveScreen();else overview(entry,'attack')
+  }
 }
 function finishContextualActivation(entry,finish){
   localStorage.removeItem(contextualSkipKey(entry));
@@ -2378,7 +2384,8 @@ function openContextualEndDialog(entry,finish){
   if(!items.length){finishContextualActivation(entry,finish);return}
   const dialog=document.createElement('dialog');dialog.className='ca-dialog';
   const rows=items.map(item=>`<article class="ca-item ${item.blocking?'blocking':''}" data-ca-item="${item.id}"><i>${item.blocking?'!':'✓'}</i><span class="ca-item-copy"><b>${item.title}</b><small>${item.text}</small></span><span class="ca-item-actions"><button type="button" class="primary" data-ca-resolve="${item.id}">${item.blocking?'Marquer comme effectué':'Résoudre'}</button>${item.blocking?'':`<button type="button" class="secondary" data-ca-ignore="${item.id}">Ignorer</button>`}</span></article>`).join('');
-  dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ${entryName(entry)}</small><h2>FIN D’ACTIVATION</h2><p>Seuls les effets applicables maintenant sont affichés. Les effets facultatifs peuvent être ignorés pour cette activation.</p></header><div class="ca-list">${rows}</div><footer><button type="button" class="secondary" data-ca-cancel>Revenir à la fiche</button><button type="button" class="primary" data-ca-finish ${items.some(item=>item.blocking)?'disabled':''}>Terminer l’activation</button></footer>`;
+  const returnLabel=attackState&&attackStep===5?'Revenir au résumé':'Revenir à la fiche';
+  dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ${entryName(entry)}</small><h2>FIN D’ACTIVATION</h2><p>Seuls les effets applicables maintenant sont affichés. Les effets facultatifs peuvent être ignorés pour cette activation.</p></header><div class="ca-list">${rows}</div><footer><button type="button" class="secondary" data-ca-cancel>${returnLabel}</button><button type="button" class="primary" data-ca-finish ${items.some(item=>item.blocking)?'disabled':''}>Terminer l’activation</button></footer>`;
   document.body.append(dialog);dialog.showModal();
   dialog.querySelector('[data-ca-cancel]').onclick=()=>closeContextualDialog(dialog);
   dialog.querySelectorAll('[data-ca-resolve]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id===button.dataset.caResolve);if(item)focusContextualControl(entry,item,dialog)});
