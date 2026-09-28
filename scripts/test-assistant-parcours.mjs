@@ -631,6 +631,10 @@ scenario('Fin d’activation assistée : un déplacement obligatoire bloque la s
   const { $, text, click, pickUnit, settle } = app
   await pickUnit('Speeder')
   assert.match(text($('.contextual-activation-strip')), /ACTION OBLIGATOIRE.*Déplacement obligatoire/i, 'la fiche ne montre que l’alerte applicable')
+  assert.ok($('[data-ca-review-end]'), 'tout bandeau de fin d’activation propose le bouton Voir')
+  await click('[data-ca-review-end]')
+  assert.ok($('.ca-dialog[open]'), 'Voir ouvre directement les contrôles de fin d’activation')
+  await click('[data-ca-cancel]')
   await click('[data-end-activation]')
   assert.ok($('.ca-dialog[open]'), 'le contrôle s’ouvre avant de marquer l’unité comme jouée')
   assert.ok($('[data-ca-finish]').disabled, 'la fin d’activation reste bloquée tant que le déplacement n’est pas confirmé')

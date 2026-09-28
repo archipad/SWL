@@ -37,7 +37,9 @@
 }
 .contextual-activation-strip.ca-now { border-left-color: #50d697; }
 .contextual-activation-strip.ca-now .ca-signal { color: #50d697; }
-.contextual-activation-strip .ca-open-now { margin-left: auto; min-height: 36px; padding: 6px 13px; border: 1px solid rgba(80, 214, 151, .5); background: rgba(30, 105, 72, .16); color: #dfffee; font-weight: 800; }
+.contextual-activation-strip .ca-open-now,
+.contextual-activation-strip .ca-open-end { margin-left: auto; min-height: 36px; padding: 6px 13px; border: 1px solid rgba(80, 214, 151, .5); background: rgba(30, 105, 72, .16); color: #dfffee; font-weight: 800; }
+.contextual-activation-strip .ca-open-end { border-color: rgba(73, 199, 255, .52); background: rgba(28, 91, 126, .18); color: #e4f8ff; }
 
 /* Fiche d'unité : la couleur indique immédiatement ce qui demande une action.
    Bleu = information, ambre = saisie/action, vert = action disponible maintenant,

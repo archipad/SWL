@@ -2390,7 +2390,7 @@ function contextualEndItems(entry){
 function contextualStrip(entry){
   const items=contextualEndItems(entry);if(!items.length)return'';const blocking=items.some(item=>item.blocking),optional=items.filter(item=>!item.blocking).length;
   const message=blocking?'Déplacement obligatoire à confirmer avant la fin de l’activation.':optional?`${optional} effet${optional>1?'s':''} applicable${optional>1?'s':''} à vérifier avant de terminer.`:'Aucun effet de fin d’activation en attente.';
-  return `<section class="contextual-activation-strip ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span></section>`
+  return `<section class="contextual-activation-strip ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span><button type="button" class="ca-open-end" data-ca-review-end>Voir</button></section>`
 }
 function closeContextualDialog(dialog){if(dialog?.open)dialog.close();dialog?.remove()}
 let contextualEndDraft=null;
@@ -2475,7 +2475,9 @@ overview=function(entry,role){
   const host=root.querySelector('.overview'),anchor=host?.querySelector('.activation-briefing,.activation-automation,.card-strip,.actions');
   const strip=contextualStrip(entry);if(strip&&host&&!host.querySelector('.contextual-activation-strip'))(anchor||host.firstElementChild)?.insertAdjacentHTML('beforebegin',strip);
   const end=root.querySelector('[data-end-activation]');
-  if(end&&!end.dataset.contextualBound){const finish=end.onclick;end.dataset.contextualBound='true';end.onclick=()=>openContextualEndDialog(entry,finish)}
+  if(end&&!end.dataset.contextualBound){const finish=end.onclick;end._contextualFinish=finish;end.dataset.contextualBound='true';end.onclick=()=>openContextualEndDialog(entry,finish)}
+  const review=root.querySelector('[data-ca-review-end]');
+  if(review)review.onclick=()=>openContextualEndDialog(entry,end?._contextualFinish||(()=>{}),true)
 };
 const resolveScreenContextualActivationBase=resolveScreen;
 resolveScreen=function(){
