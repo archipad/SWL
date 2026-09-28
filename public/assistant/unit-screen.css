@@ -389,6 +389,16 @@
 .overview .kw-targets small { flex-basis: 100%; color: #ffd9a8; }
 .overview .kw-targets button { min-height: 40px; padding: 6px 10px; border: 1px solid var(--u-line); border-radius: 6px; background: rgba(255, 255, 255, .04); color: #e8f2f7; }
 .overview .kw-targets button.on { border-color: #5cdda3; background: #5cdda3; color: #062014; font-weight: 800; }
+/* Thème Rébellion (faction-themes.css) : « button.primary » passe le texte en presque noir, pensé
+   pour le fond acide clair des boutons d'action principaux — mais .kw-choices (Autonome, etc.) a son
+   propre fond bleu marine fixe (voir style.css, .activation-automation button) avec du texte blanc.
+   Sans ce correctif, le texte redevient illisible (noir sur marine) côté Rébellion (28/09/2026). */
+body[data-faction-theme="rebel"] .overview .activation-automation button.primary,
+body[data-faction-theme="rebel"] .rp-actions.activation-automation button.primary { color: #fff; }
+/* Symboles de dés (icônes noires par défaut) : partout ailleurs dans l'appli, un contexte sombre leur
+   applique un filtre pour les rendre blancs — la fiche d'unité (Briefing, automatismes) n'en avait
+   pas, ils restaient noirs sur fond sombre (28/09/2026). */
+.overview .dice-symbol { filter: invert(1) brightness(2.4); background: transparent; }
 
 /* Lot 2 : compteurs, saisies, contraintes */
 .overview .kw-counters { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px var(--u-pad); border-top: 1px solid var(--u-line-soft); }

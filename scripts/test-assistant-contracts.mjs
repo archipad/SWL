@@ -475,7 +475,7 @@ assert.match(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}<\/div>/, 'Le ba
 // (.ov-left/.ov-right, posées par app.js) qui partent du même bord haut,
 // un seul habillage de panneau, un bandeau du haut sur une seule ligne.
 const unitScreen = fs.readFileSync(new URL('../public/assistant/unit-screen.css', import.meta.url), 'utf8')
-assert.match(index, /unit-screen\.css\?v=25/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
+assert.match(index, /unit-screen\.css\?v=26/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
 assert.ok(index.indexOf('unit-screen.css') > index.indexOf('ipad-compact.css'), 'unit-screen.css doit être chargée après ipad-compact.css pour gagner les égalités de spécificité')
 assert.match(app, /overviewColumnsBase=overview;\s*overview=function\(entry,role\)\{overviewColumnsBase\(entry,role\);.*ov-left.*ov-right/, 'app.js doit regrouper les blocs de l’écran d’unité en deux colonnes réelles')
 assert.match(app, /matches\('\.activation-automation,\.post-rally-panel,\.activation-briefing,\.unit-state-editor'\)\?right:left/, 'Automatismes, options de démoralisation, Briefing et état de l’unité doivent aller dans la colonne de droite')
