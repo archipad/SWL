@@ -97,7 +97,8 @@ async function sheetOf(cardKey) {
 
 const engine = await open([{ name: 'Stormtroopers', upgrades: [] }], [{ name: 'Sabine Wren', upgrades: [] }])
 const win = engine.dom.window
-const defs = win.eval('Object.entries(CARD_KEYWORD_ACTIONS).filter(([, def]) => def.card).map(([id, def]) => ({ id, cards: [].concat(def.card), use: def.use || null }))')
+const defs = win.eval('Object.entries(CARD_KEYWORD_ACTIONS).filter(([, def]) => def.card).map(([id, def]) => ({ id, cards: [].concat(def.card), use: def.use || null, kind: def.kind }))')
+const endKeywordActions = win.eval('Object.entries(CARD_KEYWORD_ACTIONS).filter(([, def]) => def.kind === "end").map(([id]) => id)')
 const attackFx = win.eval('ATTACK_CARD_FX.map((fx) => ({ id: fx.id, card: fx.card, steps: fx.steps, use: fx.use || null, info: !!fx.info }))')
 const speed = Object.keys(win.eval('CARD_SPEED_BONUS')), courage = Object.keys(win.eval('CARD_COURAGE_BONUS'))
 const flips = [...win.eval('FLIP_CARDS')]
@@ -151,6 +152,11 @@ for (const row of rows) {
   }
 }
 for (const card of crossCards) if (!ref.names[card]) problems.push(`${card} : rappel inter-unités sur une carte inconnue`)
+// Les effets « fin d’activation » sont découverts automatiquement par la fenêtre contextuelle.
+// Cette vérification évite qu’une future carte soit bien automatisée sur la fiche mais oubliée
+// dans le contrôle rapide de fin d’activation.
+if (!appSource.includes("def.kind!=='end'") || !appSource.includes('contextualEndItems(entry)')) problems.push('fenêtre contextuelle : découverte générique des effets de fin d’activation introuvable')
+for (const id of endKeywordActions) if (!appSource.includes(`'${id}'`) && !appSource.includes(`\"${id}\"`)) problems.push(`${id} : effet de fin absent du code chargé`)
 
 const symbol = { passive: '—', exhaust: '↱', discard: '✖', both: '↱ / ✖' }
 const label = { 'bouton-fiche': 'Bouton (fiche d’unité)', attaque: 'Panneau d’attaque', automatique: 'Automatique', statistique: 'Statistique', face: 'Carte retournable', rappel: 'Rappel (briefing)', liste: 'Construction de liste' }
@@ -159,7 +165,7 @@ const lines = [
   '',
   'Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.',
   '',
-  `${rows.length} cartes à effet propre · ${probes} sondes rejouées dans l’Assistant.`,
+  `${Object.keys(ref.names).length} cartes connues dans le référentiel · ${rows.length} cartes à effet propre · ${probes} sondes rejouées dans l’Assistant.`,
   '',
   '| Carte | ↱ / ✖ | Traitement | Où | Remarque |',
   '|---|---|---|---|---|',
@@ -168,7 +174,7 @@ const lines = [
 ]
 fs.writeFileSync(path.join(root, 'docs/audit/cartes-effets.md'), lines.join('\n'))
 const counts = rows.reduce((acc, row) => ({ ...acc, [row.treatment || 'non classé']: (acc[row.treatment || 'non classé'] || 0) + 1 }), {})
-console.log(`Audit effets de cartes : ${rows.length} cartes, ${probes} sondes — ` + Object.entries(counts).map(([name, count]) => `${name} ${count}`).join(', '))
+console.log(`Audit effets de cartes : référentiel ${Object.keys(ref.names).length} cartes, ${rows.length} effets, ${probes} sondes — ` + Object.entries(counts).map(([name, count]) => `${name} ${count}`).join(', '))
 if (problems.length) {
   console.error('\n' + problems.map((problem) => '✗ ' + problem).join('\n'))
   process.exit(1)

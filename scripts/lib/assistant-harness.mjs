@@ -85,7 +85,13 @@ export async function openAssistant(storage = {}) {
   const center = () => $('.resolve-center')
   const gate = () => text($('.gate-status'))
   const isDimmed = (selector) => $(selector, center())?.classList.contains('is-dimmed') === true
-  const nextAttack = async () => { await click('#nextAttack'); dismissDialogs(); await settle(150) }
+  const nextAttack = async () => {
+    await click('#nextAttack')
+    const contextualContinue = $('[data-ca-step-continue]:not([disabled])')
+    if (contextualContinue) await click(contextualContinue)
+    dismissDialogs()
+    await settle(150)
+  }
   return { dom, window, document, errors, $, $$, text, settle, click, setValue, pickUnit, dismissDialogs, center, gate, isDimmed, nextAttack }
 }
 

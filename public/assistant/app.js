@@ -2237,7 +2237,8 @@ function gameHubHtml(){
   const vp=color=>`<article class="gh-vp ${color}"><div><small><i class="gh-dot ${color}"></i>${color==='bleu'?'BLEU':'ROUGE'}${color===mine?' · MON CAMP':''}</small><strong>${ghEsc(ghLabel(tracker,color))}</strong></div><div class="gh-counter"><button type="button" data-gh-vp="${color}" data-delta="-1" aria-label="Retirer un point de victoire (${color})">−</button><b>${tracker['vp'+(color==='bleu'?'Bleu':'Rouge')]}</b><button type="button" data-gh-vp="${color}" data-delta="1" aria-label="Ajouter un point de victoire (${color})">+</button></div></article>`;
   const lastAction=readGameActions().find(entry=>!entry.undoneAt);
   const undo=`<button type="button" class="secondary gh-undo" data-gh-undo ${lastAction?'':'disabled'} title="${lastAction?ghEsc('Annuler : '+lastAction.label):'Aucune modification à annuler'}">↩ Annuler</button>`;
-  return `<section class="gh-tracker" aria-label="Suivi de partie"><article class="gh-round"><small>ROUND</small><div class="gh-counter"><button type="button" data-gh-round="-1" ${tracker.round<=1?'disabled':''} aria-label="Round précédent">−</button><b>${tracker.round}<i> / ${MAX_ROUND}</i></b><button type="button" data-gh-round="1" ${tracker.round>=MAX_ROUND?'disabled':''} aria-label="Round suivant">+</button></div><div class="gh-round-actions"><button type="button" class="primary" data-gh-next ${tracker.round>=MAX_ROUND?'disabled':''}>Round suivant →</button>${undo}</div></article>${vp('bleu')}${vp('rouge')}</section>`+ghCommandHtml(tracker,side)
+  const assistantRows=contextualJournal().filter(item=>item.round===tracker.round).slice(0,8),assistantLast=assistantRows.find(item=>!item.undoneAt),assistantJournal=assistantRows.length?`<details class="gh-assistant-journal"><summary>JOURNAL DE L’ASSISTANT · ${assistantRows.filter(item=>!item.undoneAt).length} EFFET(S)</summary><ol>${assistantRows.map(item=>{const unit=entries.find(entry=>entry.id===item.entryId);return`<li class="${item.undoneAt?'undone':''}"><b>${ghEsc(item.label)}</b><span>${ghEsc(unit?entryName(unit):item.entryId)} · ${ghEsc(item.summary)}${item.undoneAt?' · annulé':''}</span></li>`}).join('')}</ol>${assistantLast?`<button type="button" class="secondary" data-gh-context-undo="${assistantLast.entryId}">↩ Annuler le dernier effet</button>`:''}</details>`:'';
+  return `<section class="gh-tracker" aria-label="Suivi de partie"><article class="gh-round"><small>ROUND</small><div class="gh-counter"><button type="button" data-gh-round="-1" ${tracker.round<=1?'disabled':''} aria-label="Round précédent">−</button><b>${tracker.round}<i> / ${MAX_ROUND}</i></b><button type="button" data-gh-round="1" ${tracker.round>=MAX_ROUND?'disabled':''} aria-label="Round suivant">+</button></div><div class="gh-round-actions"><button type="button" class="primary" data-gh-next ${tracker.round>=MAX_ROUND?'disabled':''}>Round suivant →</button>${undo}</div></article>${vp('bleu')}${vp('rouge')}</section>${assistantJournal}`+ghCommandHtml(tracker,side)
     +'<p class="gh-note gh-phone-note">📱 <a href="./phone.html">Ouvrir le compagnon téléphone</a> — round, score et unités restantes sur un second appareil, en lecture seule.</p>'
 }
 function bindGameHub(){updateRoundStatus();
@@ -2272,6 +2273,7 @@ function bindGameHub(){updateRoundStatus();
   root.querySelectorAll('[data-gh-zoom]').forEach(button=>button.onclick=()=>{const card=ghCardById(button.dataset.ghZoom);if(!card)return;const dialog=document.createElement('dialog');dialog.className='card-dialog dialog-wipe';dialog.innerHTML=`<button class="dialog-close" aria-label="Fermer">×</button><img src="${ghImage(card.id)}" alt="${ghEsc(card.name)}"><strong>${ghEsc(card.name)}</strong>`;document.body.append(dialog);const dismiss=()=>{dialog.close();dialog.remove()};dialog.querySelector('button').onclick=dismiss;dialog.onclick=event=>{if(event.target===dialog)dismiss()};dialog.onclose=()=>dialog.remove();dialog.showModal()})
   const undo=root.querySelector('[data-gh-undo]');
   if(undo)undo.onclick=()=>{if(undoLastGameAction())refresh()};
+  root.querySelectorAll('[data-gh-context-undo]').forEach(button=>button.onclick=()=>{const entry=entries.find(candidate=>candidate.id===button.dataset.ghContextUndo);if(entry&&undoContextualResolution(entry))refresh()});
 }
 function showRoundPhases(){
   stage=1;const phase=ROUND_PHASES.find(item=>item.id===roundPhaseTab)||ROUND_PHASES[0],mine=armies.some(army=>army.id===selectedArmy)?selectedArmy:armies[0].id,order=[mine,...armies.map(army=>army.id).filter(id=>id!==mine)];
@@ -2338,6 +2340,31 @@ const contextualActivationEnabled=()=>sessionStorage.getItem(contextualActivatio
 const contextualSkipKey=entry=>`swl.assistant.contextual-skip.${currentRound()}.${entry.id}`;
 const contextualSkips=entry=>new Set(read(contextualSkipKey(entry),[]));
 const saveContextualSkips=(entry,skips)=>localStorage.setItem(contextualSkipKey(entry),JSON.stringify([...skips]));
+const contextualJournalKey='swl.assistant.contextual-journal.v1';
+const contextualJournal=()=>read(contextualJournalKey,[]);
+function saveContextualJournal(list){localStorage.setItem(contextualJournalKey,JSON.stringify(list.slice(0,40)))}
+function recordContextualResolution(entry,label,before){
+  const initial=kwDiff(before,unitStates);if(!initial.length)return false;
+  const summary=describeEffectDiffs(initial)||'État de l’unité mis à jour';
+  logActivationEffect(entry,label,summary);
+  const diffs=kwDiff(before,unitStates),id=Date.now()+'-'+Math.random().toString(36).slice(2,7);
+  kwUndoLog.push({id,entryId:entry.id,round:currentRound(),label,diffs,contextual:true});
+  if(kwUndoLog.length>30)kwUndoLog.shift();kwUndoSave();
+  saveContextualJournal([{id,entryId:entry.id,round:currentRound(),at:new Date().toISOString(),label,summary},...contextualJournal()]);
+  return true
+}
+function runContextualResolution(entry,label,apply,before=null){const snapshot=before||JSON.parse(JSON.stringify(unitStates));apply();recordContextualResolution(entry,label,snapshot)}
+function undoContextualResolution(entry){
+  const latest=contextualJournal().find(item=>item.entryId===entry.id&&item.round===currentRound()&&!item.undoneAt);if(!latest)return false;
+  const at=kwUndoLog.findIndex(item=>item.id===latest.id);if(at<0)return false;
+  const newer=kwUndoLog.splice(at+1),target=kwUndoLog[at];kwUndoLast(entry.id);kwUndoLog.push(...newer);kwUndoSave();
+  saveContextualJournal(contextualJournal().map(item=>item.id===target.id?{...item,undoneAt:new Date().toISOString()}:item));return true
+}
+function contextualJournalHtml(entry){
+  const rows=contextualJournal().filter(item=>item.entryId===entry.id&&item.round===currentRound()).slice(0,5),last=rows.find(item=>!item.undoneAt);
+  if(!rows.length)return'';
+  return `<details class="ca-journal"><summary>JOURNAL DE L’ACTIVATION · ${rows.filter(item=>!item.undoneAt).length} EFFET(S)</summary><ol>${rows.map(item=>`<li class="${item.undoneAt?'undone':''}"><b>${ghEsc(item.label)}</b><small>${ghEsc(item.summary)}${item.undoneAt?' · annulé':''}</small></li>`).join('')}</ol>${last?`<button type="button" class="secondary" data-ca-undo>↩ Annuler : ${ghEsc(last.label)}</button>`:''}</details>`
+}
 function contextualEndItems(entry){
   const state=stateFor(entry),items=[],skips=contextualSkips(entry);
   const mandatoryId=['mobile','speeder-x','deplacement-obligatoire'].find(id=>keywordValue(entry,id));
@@ -2364,7 +2391,7 @@ function contextualStrip(entry){
 function closeContextualDialog(dialog){if(dialog?.open)dialog.close();dialog?.remove()}
 let contextualEndDraft=null;
 function contextualDraft(entry,item){
-  if(!contextualEndDraft||contextualEndDraft.entryId!==entry.id||contextualEndDraft.itemId!==item.id)contextualEndDraft={entryId:entry.id,itemId:item.id,stage:0,value:0,selected:[]};
+  if(!contextualEndDraft||contextualEndDraft.entryId!==entry.id||contextualEndDraft.itemId!==item.id)contextualEndDraft={entryId:entry.id,itemId:item.id,stage:0,value:0,selected:[],before:null};
   return contextualEndDraft
 }
 function contextualControlsHtml(entry,item){
@@ -2417,21 +2444,22 @@ function openContextualEndDialog(entry,finish,review=false){
   const dialog=document.createElement('dialog');dialog.className='ca-dialog';
   const rows=items.length?items.map(item=>`<article class="ca-item ${item.blocking?'blocking':''}" data-ca-item="${item.id}"><i>${item.blocking?'!':'✓'}</i><span class="ca-item-copy"><b>${item.title}</b><small>${item.text}</small></span><span class="ca-item-actions">${contextualControlsHtml(entry,item)}</span></article>`).join(''):'<article class="ca-complete"><i>✓</i><span><b>TOUS LES EFFETS ONT ÉTÉ TRAITÉS</b><small>L’activation peut maintenant être terminée.</small></span></article>';
   const returnLabel=attackState&&attackStep===5?'Revenir au résumé':'Revenir à la fiche';
-  dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ${entryName(entry)}</small><h2>FIN D’ACTIVATION</h2><p>Seuls les effets applicables maintenant sont affichés. Les effets facultatifs peuvent être ignorés pour cette activation.</p></header><div class="ca-list">${rows}</div><footer><button type="button" class="secondary" data-ca-cancel>${returnLabel}</button><button type="button" class="primary" data-ca-finish ${items.some(item=>item.blocking)?'disabled':''}>Terminer l’activation</button></footer>`;
+  dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ${entryName(entry)}</small><h2>FIN D’ACTIVATION</h2><p>Seuls les effets applicables maintenant sont affichés. Les effets facultatifs peuvent être ignorés pour cette activation.</p></header><div class="ca-list">${rows}${contextualJournalHtml(entry)}</div><footer><button type="button" class="secondary" data-ca-cancel>${returnLabel}</button><button type="button" class="primary" data-ca-finish ${items.some(item=>item.blocking)?'disabled':''}>Terminer l’activation</button></footer>`;
   document.body.append(dialog);dialog.showModal();
   const reopen=()=>{closeContextualDialog(dialog);openContextualEndDialog(entry,finish,true)};
   dialog.querySelector('[data-ca-cancel]').onclick=()=>closeContextualDialog(dialog);
-  dialog.querySelectorAll('[data-ca-mandatory]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.blocking);if(item?.source)applyCardKeywordAction(entry,item.source,0);contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-mandatory]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.blocking);if(item?.source)runContextualResolution(entry,item.title,()=>applyCardKeywordAction(entry,item.source,0));contextualEndDraft=null;reopen()});
   dialog.querySelectorAll('[data-ca-ignore]').forEach(button=>button.onclick=()=>{const skips=contextualSkips(entry);skips.add(button.dataset.caIgnore);saveContextualSkips(entry,skips);contextualEndDraft=null;reopen()});
   dialog.querySelectorAll('[data-ca-target]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>CARD_KEYWORD_ACTIONS[candidate.id]?.pick),draft=contextualDraft(entry,item),def=CARD_KEYWORD_ACTIONS[item.id],max=def.pick.max(keywordValue(entry,item.id)),id=button.dataset.caTarget;draft.selected=draft.selected.includes(id)?draft.selected.filter(targetId=>targetId!==id):draft.selected.length<max?[...draft.selected,id]:draft.selected;reopen()});
-  dialog.querySelectorAll('[data-ca-card]').forEach(button=>button.onclick=()=>{const id=button.dataset.caCard,draft=contextualDraft(entry,items.find(item=>item.id===id));kwActionPick={entryId:entry.id,id,selected:[...draft.selected]};applyCardKeywordAction(entry,id,0);kwActionPick=null;contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-card]').forEach(button=>button.onclick=()=>{const id=button.dataset.caCard,item=items.find(candidate=>candidate.id===id),draft=contextualDraft(entry,item);kwActionPick={entryId:entry.id,id,selected:[...draft.selected]};runContextualResolution(entry,item.title,()=>applyCardKeywordAction(entry,id,0));kwActionPick=null;contextualEndDraft=null;reopen()});
   dialog.querySelectorAll('[data-ca-regen-value]').forEach(input=>input.oninput=()=>{const item=items.find(candidate=>candidate.id==='regenerer-x');contextualDraft(entry,item).value=Number(input.value)||0});
-  dialog.querySelectorAll('[data-ca-regen]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='regenerer-x'),draft=contextualDraft(entry,item),state=stateFor(entry),dice=Math.min(state.wound||0,keywordValue(entry,'regenerer-x')),removed=Math.max(0,Math.min(dice,Number(draft.value)||0));exhaustCard(entry,'kw-regenerer-x',{wound:Math.max(0,(state.wound||0)-removed)});contextualEndDraft=null;reopen()});
-  dialog.querySelectorAll('[data-ca-latent]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='pouvoir-latent'),draft=contextualDraft(entry,item),step=button.dataset.caLatent;if(step==='start'){bumpTokens(entry,{suppression:1});draft.stage=1;reopen();return}if(step==='other'){exhaustCard(entry,'kw-pouvoir-latent');contextualEndDraft=null;reopen();return}draft.stage=step;reopen()});
-  dialog.querySelectorAll('[data-ca-latent-target]').forEach(button=>button.onclick=()=>{const target=entries.find(candidate=>candidate.id===button.dataset.caLatentTarget);if(target)bumpTokens(target,{suppression:2,immobilize:2});exhaustCard(entry,'kw-pouvoir-latent');contextualEndDraft=null;reopen()});
-  dialog.querySelectorAll('[data-ca-latent-heal]').forEach(button=>button.onclick=()=>{const [targetId,field]=button.dataset.caLatentHeal.split(':'),target=entries.find(candidate=>candidate.id===targetId);if(target)bumpTokens(target,{[field]:-1});exhaustCard(entry,'kw-pouvoir-latent');contextualEndDraft=null;reopen()});
-  dialog.querySelectorAll('[data-ca-force]').forEach(button=>button.onclick=()=>{const state=stateFor(entry);updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>card!==button.dataset.caForce),forceReadied:(state.forceReadied||0)+1});contextualEndDraft=null;reopen()});
-  dialog.querySelectorAll('[data-ca-cycle]').forEach(button=>button.onclick=()=>{const state=stateFor(entry),cycleSlugs=(entry.unit.upgrades||[]).filter(up=>cardTags(up.name).some(tag=>tag.keywordId==='cycle')).map(up=>slugOf(up.name));updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>!cycleSlugs.includes(card))});contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-regen]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='regenerer-x'),draft=contextualDraft(entry,item),state=stateFor(entry),dice=Math.min(state.wound||0,keywordValue(entry,'regenerer-x')),removed=Math.max(0,Math.min(dice,Number(draft.value)||0));runContextualResolution(entry,item.title,()=>exhaustCard(entry,'kw-regenerer-x',{wound:Math.max(0,(state.wound||0)-removed)}));contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-latent]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='pouvoir-latent'),draft=contextualDraft(entry,item),step=button.dataset.caLatent;if(step==='start'){draft.before=JSON.parse(JSON.stringify(unitStates));bumpTokens(entry,{suppression:1});draft.stage=1;reopen();return}if(step==='other'){exhaustCard(entry,'kw-pouvoir-latent');recordContextualResolution(entry,item.title,draft.before||JSON.parse(JSON.stringify(unitStates)));contextualEndDraft=null;reopen();return}draft.stage=step;reopen()});
+  dialog.querySelectorAll('[data-ca-latent-target]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='pouvoir-latent'),draft=contextualDraft(entry,item),target=entries.find(candidate=>candidate.id===button.dataset.caLatentTarget);if(target)bumpTokens(target,{suppression:2,immobilize:2});exhaustCard(entry,'kw-pouvoir-latent');recordContextualResolution(entry,item.title,draft.before||JSON.parse(JSON.stringify(unitStates)));contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-latent-heal]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='pouvoir-latent'),draft=contextualDraft(entry,item),[targetId,field]=button.dataset.caLatentHeal.split(':'),target=entries.find(candidate=>candidate.id===targetId);if(target)bumpTokens(target,{[field]:-1});exhaustCard(entry,'kw-pouvoir-latent');recordContextualResolution(entry,item.title,draft.before||JSON.parse(JSON.stringify(unitStates)));contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-force]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='maitre-de-la-force-x'),card=button.dataset.caForce;runContextualResolution(entry,item.title,()=>{const state=stateFor(entry);updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(value=>value!==card),forceReadied:(state.forceReadied||0)+1})});contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-cycle]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='cycle');runContextualResolution(entry,item.title,()=>{const state=stateFor(entry),cycleSlugs=(entry.unit.upgrades||[]).filter(up=>cardTags(up.name).some(tag=>tag.keywordId==='cycle')).map(up=>slugOf(up.name));updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>!cycleSlugs.includes(card))})});contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-undo]').forEach(button=>button.onclick=()=>{if(undoContextualResolution(entry)){contextualEndDraft=null;reopen()}});
   dialog.querySelector('[data-ca-finish]').onclick=()=>{closeContextualDialog(dialog);finishContextualActivation(entry,finish)};
   dialog.onclick=event=>{if(event.target===dialog)closeContextualDialog(dialog)}
 }
@@ -2454,3 +2482,37 @@ resolveScreen=function(){
   const next=old.cloneNode(true);old.replaceWith(next);
   next.onclick=()=>{if(stepIssue()){resolveScreen();return}openContextualEndDialog(attacker,()=>{saveAttackHistory();attackState=null;attackStep=0;attacker=null;defender=null;stage=1;stageWipe=true;pick('attacker')})}
 };
+
+// Assistance progressive : les rappels de la fiche et du moteur restent à leur
+// place, mais une synthèse compacte n'affiche que ceux qui sont utilisables à
+// l'écran courant. Une étape avec choix facultatifs est vérifiée une seule fois.
+function contextualNowItems(){
+  const buttons=[...root.querySelectorAll('.overview .activation-automation button:not([disabled])')].filter(button=>!button.matches('[data-kw-undo],[data-kw-reset],[data-ca-disable]'));
+  const seen=new Set;return buttons.map(button=>{const host=button.closest('.kw-action,.effect-choice')||button,title=(host.querySelector('b')||button.querySelector('b'))?.textContent?.trim()||button.textContent.trim(),text=(host.querySelector('small')||button.querySelector('small'))?.textContent?.trim()||'';return{title,text,button}}).filter(item=>item.title&&!seen.has(item.title)&&(seen.add(item.title),true)).slice(0,6)
+}
+function decorateContextualOverview(entry){
+  if(!contextualActivationEnabled())return;const items=contextualNowItems(),host=root.querySelector('.overview');if(!host||!items.length)return;
+  const strip=document.createElement('section');strip.className='contextual-activation-strip ca-now';strip.innerHTML=`<span class="ca-signal">${items.length}</span><span class="ca-copy"><strong>MAINTENANT · ${ghEsc(items.map(item=>item.title).join(' · '))}</strong><small>Seules les actions et réactions disponibles sur cet écran sont signalées.</small></span><button type="button" class="ca-open-now">Voir</button>`;
+  const endStrip=host.querySelector('.contextual-activation-strip:not(.ca-now)'),anchor=host.querySelector('.activation-automation,.activation-briefing');if(endStrip)endStrip.insertAdjacentElement('afterend',strip);else(anchor||host.firstElementChild)?.insertAdjacentElement('beforebegin',strip);
+  strip.querySelector('[data-ca-disable],.ca-open-now')?.addEventListener('click',()=>{const target=items[0].button;target?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});target?.focus({preventScroll:true})})
+}
+const overviewContextualNowBase=overview;
+overview=function(entry,role){overviewContextualNowBase(entry,role);if(role==='attack'&&!defeated(entry))decorateContextualOverview(entry)};
+
+function contextualStepItems(){
+  const center=root.querySelector('.resolve-center');if(!center)return[];const blocks=[...center.querySelectorAll(':scope > .automation-card,:scope > .situation-check,:scope > .token-card,:scope > .combat-warning,:scope > .cumbersome-checks')],seen=new Set;
+  return blocks.map(block=>{const title=(block.querySelector('strong,b')?.textContent||'Règle applicable').replace(/\s+/g,' ').trim(),text=(block.querySelector('small,p')?.textContent||'').replace(/\s+/g,' ').trim(),controls=[...block.querySelectorAll('input:not([disabled]),select:not([disabled]),button:not([disabled])')],pending=controls.some(control=>control.matches('input[type="checkbox"]')?!control.checked:control.matches('input[type="number"]')?false:true),mandatory=block.matches('.mandatory-check')&&!!block.querySelector('input:not(:checked)');return{title,text,pending,mandatory}}).filter(item=>item.title&&!seen.has(item.title)&&(seen.add(item.title),true)).slice(0,8)
+}
+function openContextualStepDialog(items,continueStep){
+  const dialog=document.createElement('dialog');dialog.className='ca-dialog ca-step-dialog';const pending=items.filter(item=>item.pending),mandatory=items.some(item=>item.mandatory);
+  dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ÉTAPE ${attackStep+1}</small><h2>${ghEsc(attackSteps[attackStep])}</h2><p>${pending.length} choix ou rappel${pending.length>1?'s':''} applicable${pending.length>1?'s':''} à cette étape. Vérifiez-les avant de continuer.</p></header><div class="ca-list">${items.map(item=>`<article class="ca-item ${item.mandatory?'blocking':''}"><i>${item.mandatory?'!':'✓'}</i><span class="ca-item-copy"><b>${ghEsc(item.title)}</b><small>${ghEsc(item.text)}</small></span></article>`).join('')}</div><footer><button type="button" class="secondary" data-ca-step-back>Revenir à l’étape</button><button type="button" class="primary" data-ca-step-continue ${mandatory?'disabled':''}>${mandatory?'Choix obligatoire à compléter':'Étape vérifiée · continuer'}</button></footer>`;
+  document.body.append(dialog);dialog.showModal();dialog.querySelector('[data-ca-step-back]').onclick=()=>closeContextualDialog(dialog);const next=dialog.querySelector('[data-ca-step-continue]');if(next)next.onclick=()=>{attackState.contextualReviewed=attackState.contextualReviewed||{};attackState.contextualReviewed[attackStep]=true;closeContextualDialog(dialog);continueStep()};dialog.onclick=event=>{if(event.target===dialog)closeContextualDialog(dialog)}
+}
+function decorateContextualAttackStep(){
+  if(!contextualActivationEnabled()||!attackState||attackStep===5)return;const items=contextualStepItems(),stepper=root.querySelector('.attack-stepper');if(!stepper||!items.length)return;
+  const pending=items.filter(item=>item.pending),strip=document.createElement('section');strip.className='contextual-step-strip';strip.innerHTML=`<span><b>ÉTAPE ${attackStep+1} · ${pending.length?pending.length+' POINT(S) À VÉRIFIER':'RÈGLES APPLIQUÉES'}</b><small>${ghEsc(items.map(item=>item.title).join(' · '))}</small></span><button type="button" class="secondary" data-ca-step-details>Détails</button>`;stepper.insertAdjacentElement('afterend',strip);
+  strip.querySelector('[data-ca-step-details]').onclick=()=>openContextualStepDialog(items,()=>{});
+  const old=$('#nextAttack');if(!old||!pending.length||attackState.contextualReviewed?.[attackStep])return;const original=old.onclick;old.onclick=()=>{if(stepIssue()){original();return}openContextualStepDialog(items,original)}
+}
+const resolveScreenContextualStepsBase=resolveScreen;
+resolveScreen=function(){resolveScreenContextualStepsBase();decorateContextualAttackStep()};

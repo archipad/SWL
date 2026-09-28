@@ -695,8 +695,18 @@ scenario('Fenêtre de fin d’activation : Inspiration, Régénérer, Pouvoir la
   await app.click('[data-ca-regen]')
   assert.equal(stateOf(app, 'p1:0').wound, 1, 'Régénérer retire les blessures depuis la fenêtre')
   assert.match(app.text(app.$('.ca-complete')), /TOUS LES EFFETS ONT ÉTÉ TRAITÉS/)
+  assert.match(app.text(app.$('.ca-journal')), /RÉGÉNÉRER/, 'la résolution apparaît dans le journal de l’activation')
+  await app.click('[data-ca-undo]')
+  assert.equal(stateOf(app, 'p1:0').wound, 3, 'Annuler restaure les blessures et rend l’effet disponible')
+  assert.ok(app.$('[data-ca-regen]'), 'Régénérer redevient disponible après annulation')
+  const regenAgain = app.$('[data-ca-regen-value]');regenAgain.value = '2';regenAgain.dispatchEvent(new app.window.Event('input', { bubbles: true }))
+  await app.click('[data-ca-regen]')
   await app.click('[data-ca-finish]')
   assert.deepEqual(trackerOf(app).activatedUnitIds, ['p1:0'])
+  app.window.eval('showRoundPhases()')
+  assert.match(app.text(app.$('.gh-assistant-journal')), /RÉGÉNÉRER/, 'le journal est également accessible depuis la page Partie')
+  await app.click('[data-gh-context-undo]')
+  assert.equal(stateOf(app, 'p1:0').wound, 3, 'la page Partie peut annuler la dernière résolution de l’Assistant')
   app.window.close()
 
   // Inspiration : sélection de la cible et retrait de Suppression dans la fenêtre.
@@ -751,6 +761,33 @@ scenario('Fenêtre de fin d’activation : Inspiration, Régénérer, Pouvoir la
   await app.click('[data-ca-cycle]')
   assert.ok(!stateOf(app, 'p1:0').exhaustedCards.includes('sm-9-dark-trooper'), 'la carte Cycle est redressée')
   assert.ok(app.$('.ca-complete'))
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Alertes par étape : une synthèse ne montre que les règles de l’écran courant et vérifie les choix facultatifs une seule fois', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Force Reflexes' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.assistant.unit-state.v1': { 'p1:0': { aim: 1 } },
+  })
+  await app.pickUnit('Stormtroopers')
+  assert.ok(app.$('.contextual-activation-strip.ca-now'), 'la fiche signale les actions disponibles maintenant')
+  assert.match(app.text(app.$('.contextual-activation-strip.ca-now')), /RÉFLEXES DE LA FORCE/)
+  await app.click('#next')
+  await app.pickUnit('Soldats Rebelles')
+  await app.click('[data-range="2"]')
+  await app.nextAttack()
+  assert.ok(app.$('.contextual-step-strip'), 'une synthèse contextuelle est insérée dans l’étape d’attaque')
+  await app.setValue('rollHit', 4)
+  const before = app.window.eval('attackStep')
+  await app.click('#nextAttack')
+  const review = app.$('.ca-step-dialog[open]')
+  if (review) {
+    assert.match(app.text(review), /ÉTAPE 2/)
+    await app.click('[data-ca-step-continue]:not([disabled])')
+    assert.equal(app.window.eval('attackStep'), before + 1, 'la vérification continue vers l’étape suivante')
+  }
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
@@ -902,6 +939,7 @@ scenario('À Bout Portant : attaque à portée 2, l’Esquive gagnée est annonc
   const defense = Number($('.defense-dice-pool') ? (text($('.defense-dice-pool')).match(/LANCER\s*(\d+)/) || [0, 0])[1] : 0)
   await setValue('defBlank', defense)
   await click('#nextAttack') // sans nextAttack() : il ferme les pop-up
+  if ($('[data-ca-step-continue]:not([disabled])')) await click('[data-ca-step-continue]:not([disabled])')
   await app.settle(150)
   const popupEl = app.document.querySelector('.rule-popup'); assert.ok(popupEl, 'un pop-up de fin d’attaque s’ouvre'); const popup = text(popupEl)
   assert.match(popup, /À Bout Portant/, 'le pop-up de fin d’attaque annonce l’Esquive : ' + popup)
@@ -1096,6 +1134,7 @@ scenario('Strangulation de la Force : réactivable (Maître de la Force) et rapp
   const numbers = strip.match(/\d+/g).map(Number)
   await setValue('defBlank', numbers[numbers.length - 2] + numbers[numbers.length - 1])
   await click('#nextAttack')
+  if ($('[data-ca-step-continue]:not([disabled])')) await click('[data-ca-step-continue]:not([disabled])')
   await app.settle(150)
   app.$$('dialog').forEach((dialog) => dialog.remove())
   const effects = text($('.recap-effects'))
@@ -1566,6 +1605,7 @@ scenario('Pions Viser : la dépense se saisit à l’étape des relances (comme 
   const defense = Number($('.defense-dice-pool') ? (text($('.defense-dice-pool')).match(/LANCER\s*(\d+)/) || [0, 0])[1] : 0)
   await setValue('defBlank', defense)
   await click('#nextAttack')
+  if ($('[data-ca-step-continue]:not([disabled])')) await click('[data-ca-step-continue]:not([disabled])')
   await app.settle(150)
   app.document.querySelectorAll('dialog, .rule-popup').forEach((element) => element.remove())
   assert.match(text($('.attack-recap')), /Viser/, 'le résumé mentionne les pions Viser dépensés')

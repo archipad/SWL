@@ -35,6 +35,14 @@
   text-transform: uppercase;
   letter-spacing: .06em;
 }
+.contextual-activation-strip.ca-now { border-left-color: #50d697; }
+.contextual-activation-strip.ca-now .ca-signal { color: #50d697; }
+.contextual-activation-strip .ca-open-now { margin-left: auto; min-height: 36px; padding: 6px 13px; border: 1px solid rgba(80, 214, 151, .5); background: rgba(30, 105, 72, .16); color: #dfffee; font-weight: 800; }
+.contextual-step-strip { display: flex; align-items: center; gap: 12px; margin: 9px 0 13px; padding: 9px 12px; border: 1px solid rgba(73, 199, 255, .34); background: rgba(6, 24, 35, .9); }
+.contextual-step-strip > span { min-width: 0; display: grid; gap: 3px; }
+.contextual-step-strip b { color: #75d6ff; font: 800 11px/1.1 Orbitron, sans-serif; letter-spacing: .06em; }
+.contextual-step-strip small { overflow: hidden; color: #b8c9d5; font-size: 12px; line-height: 1.15; text-overflow: ellipsis; white-space: nowrap; }
+.contextual-step-strip button { flex: 0 0 auto; margin-left: auto; min-height: 36px; }
 .ca-dialog {
   width: min(680px, calc(100vw - 32px));
   max-height: min(720px, calc(100dvh - 32px));
@@ -86,6 +94,17 @@
 .ca-dialog .ca-complete > span { display: grid; gap: 4px; }
 .ca-dialog .ca-complete b { font: 800 13px/1.2 Orbitron, sans-serif; }
 .ca-dialog .ca-complete small { color: #b7c7d1; }
+.ca-dialog .ca-journal { padding: 11px 13px; border: 1px solid rgba(132, 174, 198, .24); background: rgba(3, 11, 17, .58); }
+.ca-dialog .ca-journal summary { cursor: pointer; color: #75d6ff; font: 800 11px/1.2 Orbitron, sans-serif; letter-spacing: .05em; }
+.ca-dialog .ca-journal ol { display: grid; gap: 7px; margin: 10px 0; padding-left: 22px; }
+.ca-dialog .ca-journal li { color: #d9e8ef; }
+.ca-dialog .ca-journal li small { display: block; color: #9fb3bf; }
+.ca-dialog .ca-journal li.undone { opacity: .48; text-decoration: line-through; }
+.gh-assistant-journal { margin: 12px 0; padding: 13px 16px; border: 1px solid rgba(73, 199, 255, .3); background: rgba(5, 18, 27, .82); }
+.gh-assistant-journal summary { cursor: pointer; color: #75d6ff; font: 800 12px/1.2 Orbitron, sans-serif; }
+.gh-assistant-journal ol { display: grid; gap: 7px; margin: 11px 0; padding-left: 22px; }
+.gh-assistant-journal li span { display: block; color: #aebfca; font-size: 13px; }
+.gh-assistant-journal li.undone { opacity: .5; text-decoration: line-through; }
 .ca-dialog > footer {
   position: sticky;
   bottom: 0;
@@ -103,4 +122,13 @@
   .contextual-activation-strip .ca-disable::after { content: 'Masquer'; font-size: 11px; }
   .ca-dialog .ca-item { grid-template-columns: 30px minmax(0, 1fr); }
   .ca-dialog .ca-item-actions { grid-column: 1 / -1; justify-content: flex-end; }
+}
+@media (min-width: 760px) and (max-width: 1400px) and (orientation: landscape) {
+  .ca-dialog { width: min(920px, calc(100vw - 40px)); max-height: calc(100dvh - 24px); }
+  .ca-dialog > header { padding: 16px 20px 11px; }
+  .ca-dialog .ca-list { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 12px 20px; }
+  .ca-dialog .ca-item, .ca-dialog .ca-complete, .ca-dialog .ca-journal { grid-column: 1 / -1; }
+  .ca-dialog .ca-item-actions button, .ca-dialog > footer button, .contextual-step-strip button, .contextual-activation-strip button { min-height: 44px; }
+  .ca-dialog > footer { padding: 11px 20px 13px; }
+  .contextual-step-strip { position: sticky; top: 0; z-index: 5; }
 }
