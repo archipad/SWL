@@ -2335,8 +2335,11 @@ document.addEventListener('click',event=>{
 // Alertes contextuelles et fin d'activation assistée. Cette couche ne recalcule
 // aucune règle : elle pointe vers les automatismes existants, puis leur laisse
 // appliquer les effets au même état persistant que le moteur d'attaque.
-const contextualActivationKey='swl.assistant.contextual-activation.v1';
-const contextualActivationEnabled=()=>sessionStorage.getItem(contextualActivationKey)!=='off';
+// L'ancienne version permettait de masquer toute la couche dans sessionStorage.
+// Ce choix restait actif après rechargement et rendait les nouveaux bandeaux
+// invisibles sans aucun moyen évident de les réactiver. Les alertes font désormais
+// partie du parcours normal et l'ancien drapeau `off` est volontairement ignoré.
+const contextualActivationEnabled=()=>true;
 const contextualSkipKey=entry=>`swl.assistant.contextual-skip.${readGameEpoch()}.${currentRound()}.${entry.id}`;
 const contextualSkips=entry=>new Set(read(contextualSkipKey(entry),[]));
 const saveContextualSkips=(entry,skips)=>localStorage.setItem(contextualSkipKey(entry),JSON.stringify([...skips]));
@@ -2387,7 +2390,7 @@ function contextualEndItems(entry){
 function contextualStrip(entry){
   const items=contextualEndItems(entry);if(!items.length)return'';const blocking=items.some(item=>item.blocking),optional=items.filter(item=>!item.blocking).length;
   const message=blocking?'Déplacement obligatoire à confirmer avant la fin de l’activation.':optional?`${optional} effet${optional>1?'s':''} applicable${optional>1?'s':''} à vérifier avant de terminer.`:'Aucun effet de fin d’activation en attente.';
-  return `<section class="contextual-activation-strip ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span><button type="button" class="ca-disable" data-ca-disable title="Masquer les alertes contextuelles jusqu’au prochain rechargement">Masquer</button></section>`
+  return `<section class="contextual-activation-strip ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span></section>`
 }
 function closeContextualDialog(dialog){if(dialog?.open)dialog.close();dialog?.remove()}
 let contextualEndDraft=null;
@@ -2471,8 +2474,6 @@ overview=function(entry,role){
   if(role!=='attack'||defeated(entry)||!contextualActivationEnabled())return;
   const host=root.querySelector('.overview'),anchor=host?.querySelector('.activation-briefing,.activation-automation,.card-strip,.actions');
   const strip=contextualStrip(entry);if(strip&&host&&!host.querySelector('.contextual-activation-strip'))(anchor||host.firstElementChild)?.insertAdjacentHTML('beforebegin',strip);
-  const disable=root.querySelector('[data-ca-disable]');
-  if(disable)disable.onclick=()=>{sessionStorage.setItem(contextualActivationKey,'off');overview(entry,role)};
   const end=root.querySelector('[data-end-activation]');
   if(end&&!end.dataset.contextualBound){const finish=end.onclick;end.dataset.contextualBound='true';end.onclick=()=>openContextualEndDialog(entry,finish)}
 };

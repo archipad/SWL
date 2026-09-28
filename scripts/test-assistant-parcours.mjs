@@ -661,20 +661,22 @@ scenario('Fin d’attaque assistée : Speeder peut être confirmé depuis le ré
   app.window.close()
 })
 
-scenario('Alertes contextuelles : masquage temporaire sans modifier le moteur ni les préférences persistantes', async () => {
+scenario('Alertes contextuelles : un ancien masquage de session ne peut plus cacher les contrôles', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: '74-Z Speeder Bikes', upgrades: [] }] },
     'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
   })
   const { $, click, pickUnit } = app
+  app.window.sessionStorage.setItem('swl.assistant.contextual-activation.v1', 'off')
   await pickUnit('Speeder')
-  assert.ok($('.contextual-activation-strip'))
-  await click('[data-ca-disable]')
-  assert.ok(!$('.contextual-activation-strip'), 'le joueur peut masquer la couche pour la session en cours')
-  assert.equal(app.window.localStorage.getItem('swl.assistant.contextual-activation.v1'), null, 'le masquage ne change aucune préférence durable')
+  assert.ok($('.contextual-activation-strip'), 'le bandeau reste visible même si une ancienne version avait enregistré « off »')
+  assert.ok(!$('[data-ca-disable]'), 'le contrôle qui pouvait masquer toutes les alertes a été retiré')
   await click('[data-end-activation]')
+  assert.ok($('.ca-dialog[open]'), 'la fin d’activation assistée reste active malgré l’ancien réglage')
+  await click('[data-ca-mandatory]')
+  await click('[data-ca-finish]:not([disabled])')
   const tracker = JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1') || '{}')
-  assert.deepEqual(tracker.activatedUnitIds, ['p1:0'], 'la sortie historique reste intacte lorsque la couche est masquée')
+  assert.deepEqual(tracker.activatedUnitIds, ['p1:0'], 'la sortie historique reste intacte après le contrôle obligatoire de Speeder')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
