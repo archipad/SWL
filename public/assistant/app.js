@@ -2237,7 +2237,7 @@ function gameHubHtml(){
   const vp=color=>`<article class="gh-vp ${color}"><div><small><i class="gh-dot ${color}"></i>${color==='bleu'?'BLEU':'ROUGE'}${color===mine?' · MON CAMP':''}</small><strong>${ghEsc(ghLabel(tracker,color))}</strong></div><div class="gh-counter"><button type="button" data-gh-vp="${color}" data-delta="-1" aria-label="Retirer un point de victoire (${color})">−</button><b>${tracker['vp'+(color==='bleu'?'Bleu':'Rouge')]}</b><button type="button" data-gh-vp="${color}" data-delta="1" aria-label="Ajouter un point de victoire (${color})">+</button></div></article>`;
   const lastAction=readGameActions().find(entry=>!entry.undoneAt);
   const undo=`<button type="button" class="secondary gh-undo" data-gh-undo ${lastAction?'':'disabled'} title="${lastAction?ghEsc('Annuler : '+lastAction.label):'Aucune modification à annuler'}">↩ Annuler</button>`;
-  const assistantRows=contextualJournal().filter(item=>item.round===tracker.round).slice(0,8),assistantLast=assistantRows.find(item=>!item.undoneAt),assistantJournal=assistantRows.length?`<details class="gh-assistant-journal"><summary>JOURNAL DE L’ASSISTANT · ${assistantRows.filter(item=>!item.undoneAt).length} EFFET(S)</summary><ol>${assistantRows.map(item=>{const unit=entries.find(entry=>entry.id===item.entryId);return`<li class="${item.undoneAt?'undone':''}"><b>${ghEsc(item.label)}</b><span>${ghEsc(unit?entryName(unit):item.entryId)} · ${ghEsc(item.summary)}${item.undoneAt?' · annulé':''}</span></li>`}).join('')}</ol>${assistantLast?`<button type="button" class="secondary" data-gh-context-undo="${assistantLast.entryId}">↩ Annuler le dernier effet</button>`:''}</details>`:'';
+  const assistantRows=contextualJournalCurrent().filter(item=>item.round===tracker.round).slice(0,8),assistantLast=assistantRows.find(item=>!item.undoneAt),assistantJournal=assistantRows.length?`<details class="gh-assistant-journal"><summary>JOURNAL DE L’ASSISTANT · ${assistantRows.filter(item=>!item.undoneAt).length} EFFET(S)</summary><ol>${assistantRows.map(item=>{const unit=entries.find(entry=>entry.id===item.entryId);return`<li class="${item.undoneAt?'undone':''}"><b>${ghEsc(item.label)}</b><span>${ghEsc(unit?entryName(unit):item.entryId)} · ${ghEsc(item.summary)}${item.undoneAt?' · annulé':''}</span></li>`}).join('')}</ol>${assistantLast?`<button type="button" class="secondary" data-gh-context-undo="${assistantLast.entryId}">↩ Annuler le dernier effet</button>`:''}</details>`:'';
   return `<section class="gh-tracker" aria-label="Suivi de partie"><article class="gh-round"><small>ROUND</small><div class="gh-counter"><button type="button" data-gh-round="-1" ${tracker.round<=1?'disabled':''} aria-label="Round précédent">−</button><b>${tracker.round}<i> / ${MAX_ROUND}</i></b><button type="button" data-gh-round="1" ${tracker.round>=MAX_ROUND?'disabled':''} aria-label="Round suivant">+</button></div><div class="gh-round-actions"><button type="button" class="primary" data-gh-next ${tracker.round>=MAX_ROUND?'disabled':''}>Round suivant →</button>${undo}</div></article>${vp('bleu')}${vp('rouge')}</section>${assistantJournal}`+ghCommandHtml(tracker,side)
     +'<p class="gh-note gh-phone-note">📱 <a href="./phone.html">Ouvrir le compagnon téléphone</a> — round, score et unités restantes sur un second appareil, en lecture seule.</p>'
 }
@@ -2337,11 +2337,12 @@ document.addEventListener('click',event=>{
 // appliquer les effets au même état persistant que le moteur d'attaque.
 const contextualActivationKey='swl.assistant.contextual-activation.v1';
 const contextualActivationEnabled=()=>sessionStorage.getItem(contextualActivationKey)!=='off';
-const contextualSkipKey=entry=>`swl.assistant.contextual-skip.${currentRound()}.${entry.id}`;
+const contextualSkipKey=entry=>`swl.assistant.contextual-skip.${readGameEpoch()}.${currentRound()}.${entry.id}`;
 const contextualSkips=entry=>new Set(read(contextualSkipKey(entry),[]));
 const saveContextualSkips=(entry,skips)=>localStorage.setItem(contextualSkipKey(entry),JSON.stringify([...skips]));
 const contextualJournalKey='swl.assistant.contextual-journal.v1';
 const contextualJournal=()=>read(contextualJournalKey,[]);
+const contextualJournalCurrent=()=>contextualJournal().filter(item=>item.epoch===readGameEpoch());
 function saveContextualJournal(list){localStorage.setItem(contextualJournalKey,JSON.stringify(list.slice(0,40)))}
 function recordContextualResolution(entry,label,before){
   const initial=kwDiff(before,unitStates);if(!initial.length)return false;
@@ -2350,18 +2351,18 @@ function recordContextualResolution(entry,label,before){
   const diffs=kwDiff(before,unitStates),id=Date.now()+'-'+Math.random().toString(36).slice(2,7);
   kwUndoLog.push({id,entryId:entry.id,round:currentRound(),label,diffs,contextual:true});
   if(kwUndoLog.length>30)kwUndoLog.shift();kwUndoSave();
-  saveContextualJournal([{id,entryId:entry.id,round:currentRound(),at:new Date().toISOString(),label,summary},...contextualJournal()]);
+  saveContextualJournal([{id,entryId:entry.id,round:currentRound(),epoch:readGameEpoch(),at:new Date().toISOString(),label,summary},...contextualJournal()]);
   return true
 }
 function runContextualResolution(entry,label,apply,before=null){const snapshot=before||JSON.parse(JSON.stringify(unitStates));apply();recordContextualResolution(entry,label,snapshot)}
 function undoContextualResolution(entry){
-  const latest=contextualJournal().find(item=>item.entryId===entry.id&&item.round===currentRound()&&!item.undoneAt);if(!latest)return false;
+  const latest=contextualJournalCurrent().find(item=>item.entryId===entry.id&&item.round===currentRound()&&!item.undoneAt);if(!latest)return false;
   const at=kwUndoLog.findIndex(item=>item.id===latest.id);if(at<0)return false;
   const newer=kwUndoLog.splice(at+1),target=kwUndoLog[at];kwUndoLast(entry.id);kwUndoLog.push(...newer);kwUndoSave();
   saveContextualJournal(contextualJournal().map(item=>item.id===target.id?{...item,undoneAt:new Date().toISOString()}:item));return true
 }
 function contextualJournalHtml(entry){
-  const rows=contextualJournal().filter(item=>item.entryId===entry.id&&item.round===currentRound()).slice(0,5),last=rows.find(item=>!item.undoneAt);
+  const rows=contextualJournalCurrent().filter(item=>item.entryId===entry.id&&item.round===currentRound()).slice(0,5),last=rows.find(item=>!item.undoneAt);
   if(!rows.length)return'';
   return `<details class="ca-journal"><summary>JOURNAL DE L’ACTIVATION · ${rows.filter(item=>!item.undoneAt).length} EFFET(S)</summary><ol>${rows.map(item=>`<li class="${item.undoneAt?'undone':''}"><b>${ghEsc(item.label)}</b><small>${ghEsc(item.summary)}${item.undoneAt?' · annulé':''}</small></li>`).join('')}</ol>${last?`<button type="button" class="secondary" data-ca-undo>↩ Annuler : ${ghEsc(last.label)}</button>`:''}</details>`
 }
@@ -2390,6 +2391,7 @@ function contextualStrip(entry){
 }
 function closeContextualDialog(dialog){if(dialog?.open)dialog.close();dialog?.remove()}
 let contextualEndDraft=null;
+function abandonContextualDraft(){if(contextualEndDraft?.before){unitStates=JSON.parse(JSON.stringify(contextualEndDraft.before));persistUnitStates()}contextualEndDraft=null}
 function contextualDraft(entry,item){
   if(!contextualEndDraft||contextualEndDraft.entryId!==entry.id||contextualEndDraft.itemId!==item.id)contextualEndDraft={entryId:entry.id,itemId:item.id,stage:0,value:0,selected:[],before:null};
   return contextualEndDraft
@@ -2447,7 +2449,7 @@ function openContextualEndDialog(entry,finish,review=false){
   dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ${entryName(entry)}</small><h2>FIN D’ACTIVATION</h2><p>Seuls les effets applicables maintenant sont affichés. Les effets facultatifs peuvent être ignorés pour cette activation.</p></header><div class="ca-list">${rows}${contextualJournalHtml(entry)}</div><footer><button type="button" class="secondary" data-ca-cancel>${returnLabel}</button><button type="button" class="primary" data-ca-finish ${items.some(item=>item.blocking)?'disabled':''}>Terminer l’activation</button></footer>`;
   document.body.append(dialog);dialog.showModal();
   const reopen=()=>{closeContextualDialog(dialog);openContextualEndDialog(entry,finish,true)};
-  dialog.querySelector('[data-ca-cancel]').onclick=()=>closeContextualDialog(dialog);
+  dialog.querySelector('[data-ca-cancel]').onclick=()=>{abandonContextualDraft();closeContextualDialog(dialog)};
   dialog.querySelectorAll('[data-ca-mandatory]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.blocking);if(item?.source)runContextualResolution(entry,item.title,()=>applyCardKeywordAction(entry,item.source,0));contextualEndDraft=null;reopen()});
   dialog.querySelectorAll('[data-ca-ignore]').forEach(button=>button.onclick=()=>{const skips=contextualSkips(entry);skips.add(button.dataset.caIgnore);saveContextualSkips(entry,skips);contextualEndDraft=null;reopen()});
   dialog.querySelectorAll('[data-ca-target]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>CARD_KEYWORD_ACTIONS[candidate.id]?.pick),draft=contextualDraft(entry,item),def=CARD_KEYWORD_ACTIONS[item.id],max=def.pick.max(keywordValue(entry,item.id)),id=button.dataset.caTarget;draft.selected=draft.selected.includes(id)?draft.selected.filter(targetId=>targetId!==id):draft.selected.length<max?[...draft.selected,id]:draft.selected;reopen()});
@@ -2461,7 +2463,7 @@ function openContextualEndDialog(entry,finish,review=false){
   dialog.querySelectorAll('[data-ca-cycle]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='cycle');runContextualResolution(entry,item.title,()=>{const state=stateFor(entry),cycleSlugs=(entry.unit.upgrades||[]).filter(up=>cardTags(up.name).some(tag=>tag.keywordId==='cycle')).map(up=>slugOf(up.name));updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>!cycleSlugs.includes(card))})});contextualEndDraft=null;reopen()});
   dialog.querySelectorAll('[data-ca-undo]').forEach(button=>button.onclick=()=>{if(undoContextualResolution(entry)){contextualEndDraft=null;reopen()}});
   dialog.querySelector('[data-ca-finish]').onclick=()=>{closeContextualDialog(dialog);finishContextualActivation(entry,finish)};
-  dialog.onclick=event=>{if(event.target===dialog)closeContextualDialog(dialog)}
+  dialog.onclick=event=>{if(event.target===dialog){abandonContextualDraft();closeContextualDialog(dialog)}}
 }
 const overviewContextualActivationBase=overview;
 overview=function(entry,role){
@@ -2490,11 +2492,15 @@ function contextualNowItems(){
   const buttons=[...root.querySelectorAll('.overview .activation-automation button:not([disabled])')].filter(button=>!button.matches('[data-kw-undo],[data-kw-reset],[data-ca-disable]'));
   const seen=new Set;return buttons.map(button=>{const host=button.closest('.kw-action,.effect-choice')||button,title=(host.querySelector('b')||button.querySelector('b'))?.textContent?.trim()||button.textContent.trim(),text=(host.querySelector('small')||button.querySelector('small'))?.textContent?.trim()||'';return{title,text,button}}).filter(item=>item.title&&!seen.has(item.title)&&(seen.add(item.title),true)).slice(0,6)
 }
+function openContextualNowDialog(entry,items){
+  const dialog=document.createElement('dialog');dialog.className='ca-dialog ca-now-dialog';dialog.innerHTML=`<header><small>ACTIONS DISPONIBLES · ${ghEsc(entryName(entry))}</small><h2>QUE POUVEZ-VOUS FAIRE MAINTENANT ?</h2><p>Cette liste reprend uniquement les actions et réactions disponibles sur la fiche actuelle.</p></header><div class="ca-list">${items.map((item,index)=>`<article class="ca-item"><i>${index+1}</i><span class="ca-item-copy"><b>${ghEsc(item.title)}</b><small>${ghEsc(item.text)}</small></span><span class="ca-item-actions"><button type="button" class="primary" data-ca-now-go="${index}">Voir le contrôle</button></span></article>`).join('')}</div><footer><button type="button" class="secondary" data-ca-now-close>Fermer</button></footer>`;
+  document.body.append(dialog);dialog.showModal();const close=()=>closeContextualDialog(dialog);dialog.querySelector('[data-ca-now-close]').onclick=close;dialog.querySelectorAll('[data-ca-now-go]').forEach(button=>button.onclick=()=>{const target=items[Number(button.dataset.caNowGo)]?.button;close();if(!target)return;target.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});target.focus({preventScroll:true});pulseEl(target,'manual-focus')});dialog.onclick=event=>{if(event.target===dialog)close()}
+}
 function decorateContextualOverview(entry){
   if(!contextualActivationEnabled())return;const items=contextualNowItems(),host=root.querySelector('.overview');if(!host||!items.length)return;
   const strip=document.createElement('section');strip.className='contextual-activation-strip ca-now';strip.innerHTML=`<span class="ca-signal">${items.length}</span><span class="ca-copy"><strong>MAINTENANT · ${ghEsc(items.map(item=>item.title).join(' · '))}</strong><small>Seules les actions et réactions disponibles sur cet écran sont signalées.</small></span><button type="button" class="ca-open-now">Voir</button>`;
   const endStrip=host.querySelector('.contextual-activation-strip:not(.ca-now)'),anchor=host.querySelector('.activation-automation,.activation-briefing');if(endStrip)endStrip.insertAdjacentElement('afterend',strip);else(anchor||host.firstElementChild)?.insertAdjacentElement('beforebegin',strip);
-  strip.querySelector('[data-ca-disable],.ca-open-now')?.addEventListener('click',()=>{const target=items[0].button;target?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});target?.focus({preventScroll:true})})
+  strip.querySelector('.ca-open-now')?.addEventListener('click',()=>openContextualNowDialog(entry,items))
 }
 const overviewContextualNowBase=overview;
 overview=function(entry,role){overviewContextualNowBase(entry,role);if(role==='attack'&&!defeated(entry))decorateContextualOverview(entry)};
@@ -2503,15 +2509,15 @@ function contextualStepItems(){
   const center=root.querySelector('.resolve-center');if(!center)return[];const blocks=[...center.querySelectorAll(':scope > .automation-card,:scope > .situation-check,:scope > .token-card,:scope > .combat-warning,:scope > .cumbersome-checks')],seen=new Set;
   return blocks.map(block=>{const title=(block.querySelector('strong,b')?.textContent||'Règle applicable').replace(/\s+/g,' ').trim(),text=(block.querySelector('small,p')?.textContent||'').replace(/\s+/g,' ').trim(),controls=[...block.querySelectorAll('input:not([disabled]),select:not([disabled]),button:not([disabled])')],pending=controls.some(control=>control.matches('input[type="checkbox"]')?!control.checked:control.matches('input[type="number"]')?false:true),mandatory=block.matches('.mandatory-check')&&!!block.querySelector('input:not(:checked)');return{title,text,pending,mandatory}}).filter(item=>item.title&&!seen.has(item.title)&&(seen.add(item.title),true)).slice(0,8)
 }
-function openContextualStepDialog(items,continueStep){
+function openContextualStepDialog(items,continueStep=null){
   const dialog=document.createElement('dialog');dialog.className='ca-dialog ca-step-dialog';const pending=items.filter(item=>item.pending),mandatory=items.some(item=>item.mandatory);
-  dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ÉTAPE ${attackStep+1}</small><h2>${ghEsc(attackSteps[attackStep])}</h2><p>${pending.length} choix ou rappel${pending.length>1?'s':''} applicable${pending.length>1?'s':''} à cette étape. Vérifiez-les avant de continuer.</p></header><div class="ca-list">${items.map(item=>`<article class="ca-item ${item.mandatory?'blocking':''}"><i>${item.mandatory?'!':'✓'}</i><span class="ca-item-copy"><b>${ghEsc(item.title)}</b><small>${ghEsc(item.text)}</small></span></article>`).join('')}</div><footer><button type="button" class="secondary" data-ca-step-back>Revenir à l’étape</button><button type="button" class="primary" data-ca-step-continue ${mandatory?'disabled':''}>${mandatory?'Choix obligatoire à compléter':'Étape vérifiée · continuer'}</button></footer>`;
-  document.body.append(dialog);dialog.showModal();dialog.querySelector('[data-ca-step-back]').onclick=()=>closeContextualDialog(dialog);const next=dialog.querySelector('[data-ca-step-continue]');if(next)next.onclick=()=>{attackState.contextualReviewed=attackState.contextualReviewed||{};attackState.contextualReviewed[attackStep]=true;closeContextualDialog(dialog);continueStep()};dialog.onclick=event=>{if(event.target===dialog)closeContextualDialog(dialog)}
+  dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ÉTAPE ${attackStep+1}</small><h2>${ghEsc(attackSteps[attackStep])}</h2><p>${pending.length} choix ou rappel${pending.length>1?'s':''} applicable${pending.length>1?'s':''} à cette étape. Vérifiez-les avant de continuer.</p></header><div class="ca-list">${items.map(item=>`<article class="ca-item ${item.mandatory?'blocking':''}"><i>${item.mandatory?'!':'✓'}</i><span class="ca-item-copy"><b>${ghEsc(item.title)}</b><small>${ghEsc(item.text)}</small></span></article>`).join('')}</div><footer><button type="button" class="secondary" data-ca-step-back>Revenir à l’étape</button><button type="button" class="primary" data-ca-step-continue ${mandatory?'disabled':''}>${mandatory?'Choix obligatoire à compléter':continueStep?'Étape vérifiée · continuer':'Marquer comme vérifiée'}</button></footer>`;
+  document.body.append(dialog);dialog.showModal();dialog.querySelector('[data-ca-step-back]').onclick=()=>closeContextualDialog(dialog);const next=dialog.querySelector('[data-ca-step-continue]');if(next)next.onclick=()=>{attackState.contextualReviewed=attackState.contextualReviewed||{};attackState.contextualReviewed[attackStep]=true;closeContextualDialog(dialog);if(continueStep)continueStep()};dialog.onclick=event=>{if(event.target===dialog)closeContextualDialog(dialog)}
 }
 function decorateContextualAttackStep(){
   if(!contextualActivationEnabled()||!attackState||attackStep===5)return;const items=contextualStepItems(),stepper=root.querySelector('.attack-stepper');if(!stepper||!items.length)return;
   const pending=items.filter(item=>item.pending),strip=document.createElement('section');strip.className='contextual-step-strip';strip.innerHTML=`<span><b>ÉTAPE ${attackStep+1} · ${pending.length?pending.length+' POINT(S) À VÉRIFIER':'RÈGLES APPLIQUÉES'}</b><small>${ghEsc(items.map(item=>item.title).join(' · '))}</small></span><button type="button" class="secondary" data-ca-step-details>Détails</button>`;stepper.insertAdjacentElement('afterend',strip);
-  strip.querySelector('[data-ca-step-details]').onclick=()=>openContextualStepDialog(items,()=>{});
+  strip.querySelector('[data-ca-step-details]').onclick=()=>openContextualStepDialog(items);
   const old=$('#nextAttack');if(!old||!pending.length||attackState.contextualReviewed?.[attackStep])return;const original=old.onclick;old.onclick=()=>{if(stepIssue()){original();return}openContextualStepDialog(items,original)}
 }
 const resolveScreenContextualStepsBase=resolveScreen;
