@@ -635,7 +635,7 @@ scenario('Fin d’activation assistée : un déplacement obligatoire bloque la s
   assert.ok($('.ca-dialog[open]'), 'le contrôle s’ouvre avant de marquer l’unité comme jouée')
   assert.ok($('[data-ca-finish]').disabled, 'la fin d’activation reste bloquée tant que le déplacement n’est pas confirmé')
   assert.deepEqual(JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1') || '{}').activatedUnitIds || [], [], 'l’unité n’est pas marquée comme jouée trop tôt')
-  await click('[data-ca-resolve="mandatory-move"]')
+  await click('[data-ca-mandatory]')
   await settle(260)
   const state = JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}')['p1:0']
   assert.equal(state.mandatoryMoveDone, true, 'le bouton du contrôle déclenche le même automatisme Speeder que la fiche')
@@ -675,6 +675,82 @@ scenario('Alertes contextuelles : masquage temporaire sans modifier le moteur ni
   await click('[data-end-activation]')
   const tracker = JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1') || '{}')
   assert.deepEqual(tracker.activatedUnitIds, ['p1:0'], 'la sortie historique reste intacte lorsque la couche est masquée')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Fenêtre de fin d’activation : Inspiration, Régénérer, Pouvoir latent, Maître de la Force et Cycle se résolvent sans changer d’écran', async () => {
+  const stateOf = (app, id) => JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}')[id] || {}
+  const trackerOf = (app) => JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1') || '{}')
+
+  // Régénérer : saisie du jet puis confirmation explicite de fin d’activation.
+  let app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Bossk Terror of Trandosha', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.assistant.unit-state.v1': { 'p1:0': { wound: 3 } },
+  })
+  await app.pickUnit('Bossk')
+  await app.click('[data-end-activation]')
+  const regenInput = app.$('[data-ca-regen-value]');regenInput.value = '2';regenInput.dispatchEvent(new app.window.Event('input', { bubbles: true }))
+  await app.click('[data-ca-regen]')
+  assert.equal(stateOf(app, 'p1:0').wound, 1, 'Régénérer retire les blessures depuis la fenêtre')
+  assert.match(app.text(app.$('.ca-complete')), /TOUS LES EFFETS ONT ÉTÉ TRAITÉS/)
+  await app.click('[data-ca-finish]')
+  assert.deepEqual(trackerOf(app).activatedUnitIds, ['p1:0'])
+  app.window.close()
+
+  // Inspiration : sélection de la cible et retrait de Suppression dans la fenêtre.
+  app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'General Veers', upgrades: [] }, { name: 'Stormtroopers', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.assistant.unit-state.v1': { 'p1:1': { suppression: 1 } },
+  })
+  await app.pickUnit('Veers')
+  await app.click('[data-end-activation]')
+  await app.click('[data-ca-target="p1:1"]')
+  await app.click('[data-ca-card="inspiration-x"]')
+  assert.equal(stateOf(app, 'p1:1').suppression, 0, 'Inspiration retire la Suppression de la cible choisie')
+  assert.ok(app.$('.ca-complete'))
+  app.window.close()
+
+  // Pouvoir latent : le résultat « autre » consomme l’effet après avoir gagné la Suppression.
+  app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Grogu', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+  })
+  await app.pickUnit('Grogu')
+  await app.click('[data-end-activation]')
+  await app.click('[data-ca-latent="start"]')
+  assert.equal(stateOf(app, 'p1:0').suppression, 1, 'Pouvoir latent ajoute la Suppression')
+  await app.click('[data-ca-latent="other"]')
+  assert.ok(stateOf(app, 'p1:0').exhaustedCards.includes('kw-pouvoir-latent'))
+  assert.ok(app.$('.ca-complete'))
+  app.window.close()
+
+  // Maître de la Force : la carte inclinée est redressée dans la fenêtre.
+  app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Darth Vader Dark Lord of the Sith', upgrades: [{ name: 'Force Reflexes' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.assistant.unit-state.v1': { 'p1:0': { exhaustedCards: ['force-reflexes'] } },
+  })
+  await app.pickUnit('Dark Vador')
+  await app.click('[data-end-activation]')
+  await app.click('[data-ca-force="force-reflexes"]')
+  assert.ok(!stateOf(app, 'p1:0').exhaustedCards.includes('force-reflexes'), 'la carte Force est redressée')
+  assert.ok(app.$('.ca-complete'))
+  app.window.close()
+
+  // Cycle : toutes les cartes Cycle inclinées de l’unité sont redressées.
+  app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Dark Troopers', upgrades: [{ name: 'SM-9 Dark Trooper' }] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl.assistant.unit-state.v1': { 'p1:0': { exhaustedCards: ['sm-9-dark-trooper'] } },
+  })
+  await app.pickUnit('Dark Troopers')
+  await app.click('[data-end-activation]')
+  await app.click('[data-ca-cycle]')
+  assert.ok(!stateOf(app, 'p1:0').exhaustedCards.includes('sm-9-dark-trooper'), 'la carte Cycle est redressée')
+  assert.ok(app.$('.ca-complete'))
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })

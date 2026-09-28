@@ -2362,6 +2362,37 @@ function contextualStrip(entry){
   return `<section class="contextual-activation-strip ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span><button type="button" class="ca-disable" data-ca-disable title="Masquer les alertes contextuelles jusqu’au prochain rechargement">Masquer</button></section>`
 }
 function closeContextualDialog(dialog){if(dialog?.open)dialog.close();dialog?.remove()}
+let contextualEndDraft=null;
+function contextualDraft(entry,item){
+  if(!contextualEndDraft||contextualEndDraft.entryId!==entry.id||contextualEndDraft.itemId!==item.id)contextualEndDraft={entryId:entry.id,itemId:item.id,stage:0,value:0,selected:[]};
+  return contextualEndDraft
+}
+function contextualControlsHtml(entry,item){
+  const state=stateFor(entry),draft=contextualDraft(entry,item);
+  if(item.blocking)return'<button type="button" class="primary" data-ca-mandatory>Marquer comme effectué</button>';
+  if(item.id==='regenerer-x'){
+    const dice=Math.min(state.wound||0,keywordValue(entry,'regenerer-x'));
+    return `<label class="ca-field">Résultats BLOC ou ADR-DEF (0 à ${dice})<input type="number" min="0" max="${dice}" value="${draft.value||0}" data-ca-regen-value></label><button type="button" class="primary" data-ca-regen>Appliquer</button><button type="button" class="secondary" data-ca-ignore="${item.id}">Ignorer</button>`
+  }
+  if(item.id==='pouvoir-latent'){
+    if(draft.stage===0)return'<button type="button" class="primary" data-ca-latent="start">Gagner 1 Suppression et lancer le dé</button><button type="button" class="secondary" data-ca-ignore="pouvoir-latent">Ignorer</button>';
+    if(draft.stage===1)return'<button type="button" class="primary" data-ca-latent="surge">ADR-DEF</button><button type="button" class="primary" data-ca-latent="blank">Vierge</button><button type="button" class="secondary" data-ca-latent="other">Autre résultat</button>';
+    if(draft.stage==='surge'){const targets=entries.filter(candidate=>candidate.army!==entry.army&&!defeated(candidate));return targets.map(target=>`<button type="button" class="primary" data-ca-latent-target="${target.id}">${entryName(target)} · +2 Suppression et Immobilisation</button>`).join('')||'<button type="button" class="secondary" data-ca-latent="other">Aucune cible éligible · terminer l’effet</button>'}
+    const allies=entries.filter(candidate=>candidate.army===entry.army&&!defeated(candidate)&&!isVehicle(candidate));
+    return allies.map(target=>`<button type="button" class="primary" data-ca-latent-heal="${target.id}:wound">${entryName(target)} · −1 Blessure</button><button type="button" class="secondary" data-ca-latent-heal="${target.id}:poison">${entryName(target)} · −1 Poison</button>`).join('')||'<button type="button" class="secondary" data-ca-latent="other">Aucune cible éligible · terminer l’effet</button>'
+  }
+  if(item.id==='maitre-de-la-force-x'){
+    const x=keywordValue(entry,'maitre-de-la-force-x'),cards=(state.exhaustedCards||[]).filter(card=>!card.startsWith('kw-')&&(entry.unit.upgrades||[]).some(up=>slugOf(up.name)===card));
+    return cards.map(card=>{const up=(entry.unit.upgrades||[]).find(candidate=>slugOf(candidate.name)===card);return `<button type="button" class="primary" data-ca-force="${card}" ${(state.forceReadied||0)>=x?'disabled':''}>Redresser ${displayName(up?.name||card)}</button>`}).join('')+'<button type="button" class="secondary" data-ca-ignore="maitre-de-la-force-x">Terminer sans autre carte</button>'
+  }
+  if(item.id==='cycle')return'<button type="button" class="primary" data-ca-cycle>Redresser les cartes Cycle</button><button type="button" class="secondary" data-ca-ignore="cycle">Ignorer</button>';
+  const def=CARD_KEYWORD_ACTIONS[item.id];
+  if(def?.pick){
+    const candidates=kwPickCandidates(entry,def),max=def.pick.max(keywordValue(entry,item.id)),selected=draft.selected;
+    return `<span class="ca-targets">${candidates.map(target=>`<button type="button" class="secondary ${selected.includes(target.id)?'on':''}" data-ca-target="${target.id}">${selected.includes(target.id)?'✓ ':''}${entryName(target)}</button>`).join('')}</span><button type="button" class="primary" data-ca-card="${item.id}" ${selected.length?'':'disabled'}>Appliquer (${selected.length}/${max})</button><button type="button" class="secondary" data-ca-ignore="${item.id}">Ignorer</button>`
+  }
+  return `<button type="button" class="primary" data-ca-card="${item.id}">Appliquer</button><button type="button" class="secondary" data-ca-ignore="${item.id}">Ignorer</button>`
+}
 function focusContextualControl(entry,item,dialog){
   closeContextualDialog(dialog);
   const control=root.querySelector(item.selector);
@@ -2377,19 +2408,30 @@ function focusContextualControl(entry,item,dialog){
 }
 function finishContextualActivation(entry,finish){
   localStorage.removeItem(contextualSkipKey(entry));
+  contextualEndDraft=null;
   finish()
 }
-function openContextualEndDialog(entry,finish){
+function openContextualEndDialog(entry,finish,review=false){
   const items=contextualEndItems(entry);
-  if(!items.length){finishContextualActivation(entry,finish);return}
+  if(!items.length&&!review){finishContextualActivation(entry,finish);return}
   const dialog=document.createElement('dialog');dialog.className='ca-dialog';
-  const rows=items.map(item=>`<article class="ca-item ${item.blocking?'blocking':''}" data-ca-item="${item.id}"><i>${item.blocking?'!':'✓'}</i><span class="ca-item-copy"><b>${item.title}</b><small>${item.text}</small></span><span class="ca-item-actions"><button type="button" class="primary" data-ca-resolve="${item.id}">${item.blocking?'Marquer comme effectué':'Résoudre'}</button>${item.blocking?'':`<button type="button" class="secondary" data-ca-ignore="${item.id}">Ignorer</button>`}</span></article>`).join('');
+  const rows=items.length?items.map(item=>`<article class="ca-item ${item.blocking?'blocking':''}" data-ca-item="${item.id}"><i>${item.blocking?'!':'✓'}</i><span class="ca-item-copy"><b>${item.title}</b><small>${item.text}</small></span><span class="ca-item-actions">${contextualControlsHtml(entry,item)}</span></article>`).join(''):'<article class="ca-complete"><i>✓</i><span><b>TOUS LES EFFETS ONT ÉTÉ TRAITÉS</b><small>L’activation peut maintenant être terminée.</small></span></article>';
   const returnLabel=attackState&&attackStep===5?'Revenir au résumé':'Revenir à la fiche';
   dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ${entryName(entry)}</small><h2>FIN D’ACTIVATION</h2><p>Seuls les effets applicables maintenant sont affichés. Les effets facultatifs peuvent être ignorés pour cette activation.</p></header><div class="ca-list">${rows}</div><footer><button type="button" class="secondary" data-ca-cancel>${returnLabel}</button><button type="button" class="primary" data-ca-finish ${items.some(item=>item.blocking)?'disabled':''}>Terminer l’activation</button></footer>`;
   document.body.append(dialog);dialog.showModal();
+  const reopen=()=>{closeContextualDialog(dialog);openContextualEndDialog(entry,finish,true)};
   dialog.querySelector('[data-ca-cancel]').onclick=()=>closeContextualDialog(dialog);
-  dialog.querySelectorAll('[data-ca-resolve]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id===button.dataset.caResolve);if(item)focusContextualControl(entry,item,dialog)});
-  dialog.querySelectorAll('[data-ca-ignore]').forEach(button=>button.onclick=()=>{const skips=contextualSkips(entry);skips.add(button.dataset.caIgnore);saveContextualSkips(entry,skips);closeContextualDialog(dialog);openContextualEndDialog(entry,finish)});
+  dialog.querySelectorAll('[data-ca-mandatory]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.blocking);if(item?.source)applyCardKeywordAction(entry,item.source,0);contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-ignore]').forEach(button=>button.onclick=()=>{const skips=contextualSkips(entry);skips.add(button.dataset.caIgnore);saveContextualSkips(entry,skips);contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-target]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>CARD_KEYWORD_ACTIONS[candidate.id]?.pick),draft=contextualDraft(entry,item),def=CARD_KEYWORD_ACTIONS[item.id],max=def.pick.max(keywordValue(entry,item.id)),id=button.dataset.caTarget;draft.selected=draft.selected.includes(id)?draft.selected.filter(targetId=>targetId!==id):draft.selected.length<max?[...draft.selected,id]:draft.selected;reopen()});
+  dialog.querySelectorAll('[data-ca-card]').forEach(button=>button.onclick=()=>{const id=button.dataset.caCard,draft=contextualDraft(entry,items.find(item=>item.id===id));kwActionPick={entryId:entry.id,id,selected:[...draft.selected]};applyCardKeywordAction(entry,id,0);kwActionPick=null;contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-regen-value]').forEach(input=>input.oninput=()=>{const item=items.find(candidate=>candidate.id==='regenerer-x');contextualDraft(entry,item).value=Number(input.value)||0});
+  dialog.querySelectorAll('[data-ca-regen]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='regenerer-x'),draft=contextualDraft(entry,item),state=stateFor(entry),dice=Math.min(state.wound||0,keywordValue(entry,'regenerer-x')),removed=Math.max(0,Math.min(dice,Number(draft.value)||0));exhaustCard(entry,'kw-regenerer-x',{wound:Math.max(0,(state.wound||0)-removed)});contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-latent]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id==='pouvoir-latent'),draft=contextualDraft(entry,item),step=button.dataset.caLatent;if(step==='start'){bumpTokens(entry,{suppression:1});draft.stage=1;reopen();return}if(step==='other'){exhaustCard(entry,'kw-pouvoir-latent');contextualEndDraft=null;reopen();return}draft.stage=step;reopen()});
+  dialog.querySelectorAll('[data-ca-latent-target]').forEach(button=>button.onclick=()=>{const target=entries.find(candidate=>candidate.id===button.dataset.caLatentTarget);if(target)bumpTokens(target,{suppression:2,immobilize:2});exhaustCard(entry,'kw-pouvoir-latent');contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-latent-heal]').forEach(button=>button.onclick=()=>{const [targetId,field]=button.dataset.caLatentHeal.split(':'),target=entries.find(candidate=>candidate.id===targetId);if(target)bumpTokens(target,{[field]:-1});exhaustCard(entry,'kw-pouvoir-latent');contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-force]').forEach(button=>button.onclick=()=>{const state=stateFor(entry);updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>card!==button.dataset.caForce),forceReadied:(state.forceReadied||0)+1});contextualEndDraft=null;reopen()});
+  dialog.querySelectorAll('[data-ca-cycle]').forEach(button=>button.onclick=()=>{const state=stateFor(entry),cycleSlugs=(entry.unit.upgrades||[]).filter(up=>cardTags(up.name).some(tag=>tag.keywordId==='cycle')).map(up=>slugOf(up.name));updateUnitState(entry,{exhaustedCards:(state.exhaustedCards||[]).filter(card=>!cycleSlugs.includes(card))});contextualEndDraft=null;reopen()});
   dialog.querySelector('[data-ca-finish]').onclick=()=>{closeContextualDialog(dialog);finishContextualActivation(entry,finish)};
   dialog.onclick=event=>{if(event.target===dialog)closeContextualDialog(dialog)}
 }
