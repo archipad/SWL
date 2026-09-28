@@ -29,7 +29,7 @@ scenario('Attaque complète à distance : sélection → portée → armes → d
   assert.match(text($('.models-chip')), /6\s*figurines/, 'effectif = 4 de base + 1 arme lourde + 1 spécialiste')
   assert.equal($$('.token-mini').length, 3, 'Viser, Esquive, Adrénaline')
   assert.equal($$('.activation-briefing details.brief-section').length, 3, 'trois sections de briefing repliables')
-  assert.equal($$('.activation-briefing details.brief-section[open]').length, 2, 'les effets de carte sont repliés par défaut')
+  assert.equal($$('.activation-briefing details.brief-section[open]').length, 1, 'mode rapide (par défaut) : seule Activation & Déplacement reste ouverte, Attaque et effets de carte repliés')
   await click('[data-state-field="aim"][data-delta="1"]')
   assert.match(text($$('.token-mini')[0]), /Viser\s*−\s*1\s*\+/, 'un pion Viser ajouté depuis la fiche')
   await click('#next')
