@@ -108,7 +108,7 @@ body:has(.overview) .overview .unit-state-editor:not(.defeated) > header strong 
   outline-offset: 4px;
   background: linear-gradient(135deg, rgba(255, 181, 75, .24), rgba(8, 18, 27, .98)) !important;
   box-shadow: 0 0 0 5px rgba(255, 208, 91, .13), 0 0 32px rgba(255, 181, 75, .72) !important;
-  animation: contextualControlFlash 900ms ease-out 2;
+  animation: contextualControlFlash 1100ms ease-out 3;
 }
 .overview .contextual-control-focus::after {
   content: "ICI · ACTION ATTENDUE";

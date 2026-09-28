@@ -801,6 +801,21 @@ scenario('Alertes par étape : une synthèse ne montre que les règles de l’é
   }
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
+
+  const rebel = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Luke Skywalker Hero of the Rebellion', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+  })
+  await rebel.pickUnit('Luke Skywalker')
+  assert.ok(rebel.$('.contextual-activation-strip.ca-now'), 'Luke affiche aussi le bandeau grâce à ses capacités d’activation')
+  assert.match(rebel.text(rebel.$('.contextual-activation-strip.ca-now')), /SAUT/, 'le bandeau rebelle remonte Saut depuis le briefing')
+  await rebel.click('.ca-open-now')
+  assert.match(rebel.text(rebel.$('.ca-now-dialog[open]')), /Voir le rappel/, 'une capacité sans automatisme est présentée comme un rappel')
+  const reminderButton = rebel.$$('[data-ca-now-go]').find(button => /Voir le rappel/.test(rebel.text(button)))
+  await rebel.click(reminderButton)
+  assert.ok(rebel.$('.activation-briefing .contextual-control-focus'), 'Voir le rappel met en avant la règle correspondante')
+  assert.equal(rebel.errors.length, 0, rebel.errors.join(' | '))
+  rebel.window.close()
 })
 
 /* ------------------------------------------------------------------ */
