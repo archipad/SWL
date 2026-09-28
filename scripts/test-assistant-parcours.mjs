@@ -623,6 +623,49 @@ scenario('Lots 4-5 : Ordre direct (offre d’ordre), Marche forcée (vitesse + S
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Fin d’activation assistée : un déplacement obligatoire bloque la sortie puis réutilise l’automatisme existant', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: '74-Z Speeder Bikes', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, text, click, pickUnit, settle } = app
+  await pickUnit('Speeder')
+  assert.match(text($('.contextual-activation-strip')), /ACTION OBLIGATOIRE.*Déplacement obligatoire/i, 'la fiche ne montre que l’alerte applicable')
+  await click('[data-end-activation]')
+  assert.ok($('.ca-dialog[open]'), 'le contrôle s’ouvre avant de marquer l’unité comme jouée')
+  assert.ok($('[data-ca-finish]').disabled, 'la fin d’activation reste bloquée tant que le déplacement n’est pas confirmé')
+  assert.deepEqual(JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1') || '{}').activatedUnitIds || [], [], 'l’unité n’est pas marquée comme jouée trop tôt')
+  await click('[data-ca-resolve="mandatory-move"]')
+  await settle(260)
+  const state = JSON.parse(app.window.localStorage.getItem('swl.assistant.unit-state.v1') || '{}')['p1:0']
+  assert.equal(state.mandatoryMoveDone, true, 'le bouton du contrôle déclenche le même automatisme Speeder que la fiche')
+  await click('[data-end-activation]')
+  const tracker = JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1') || '{}')
+  assert.deepEqual(tracker.activatedUnitIds, ['p1:0'], 'une fois la règle satisfaite, la sortie habituelle marque l’unité comme jouée')
+  assert.ok($('.unit-picker-grid'), 'retour à la sélection après la fin d’activation')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Alertes contextuelles : masquage temporaire sans modifier le moteur ni les préférences persistantes', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: '74-Z Speeder Bikes', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+  })
+  const { $, click, pickUnit } = app
+  await pickUnit('Speeder')
+  assert.ok($('.contextual-activation-strip'))
+  await click('[data-ca-disable]')
+  assert.ok(!$('.contextual-activation-strip'), 'le joueur peut masquer la couche pour la session en cours')
+  assert.equal(app.window.localStorage.getItem('swl.assistant.contextual-activation.v1'), null, 'le masquage ne change aucune préférence durable')
+  await click('[data-end-activation]')
+  const tracker = JSON.parse(app.window.localStorage.getItem('swl.game-tracker.v1') || '{}')
+  assert.deepEqual(tracker.activatedUnitIds, ['p1:0'], 'la sortie historique reste intacte lorsque la couche est masquée')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
 scenario('Lot 6 : Autonome (pion choisi), Impitoyable (blessure + action offerte), Réparation X (soigne un allié et charge la carte)', async () => {
   const stateOf = (app, name) => JSON.parse(app.window.eval('JSON.stringify(stateFor(entries.find(e=>e.unit.name===' + JSON.stringify(name) + ')))'))
   const enemy = { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] }

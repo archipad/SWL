@@ -2329,3 +2329,79 @@ document.addEventListener('click',event=>{
   if(!control)return;
   resetViewportAfterNavigation();
 });
+
+// Alertes contextuelles et fin d'activation assistée. Cette couche ne recalcule
+// aucune règle : elle pointe vers les automatismes existants, puis leur laisse
+// appliquer les effets au même état persistant que le moteur d'attaque.
+const contextualActivationKey='swl.assistant.contextual-activation.v1';
+const contextualActivationEnabled=()=>sessionStorage.getItem(contextualActivationKey)!=='off';
+const contextualSkipKey=entry=>`swl.assistant.contextual-skip.${currentRound()}.${entry.id}`;
+const contextualSkips=entry=>new Set(read(contextualSkipKey(entry),[]));
+const saveContextualSkips=(entry,skips)=>localStorage.setItem(contextualSkipKey(entry),JSON.stringify([...skips]));
+function contextualEndItems(entry){
+  const state=stateFor(entry),items=[],skips=contextualSkips(entry);
+  const mandatoryId=['mobile','speeder-x','deplacement-obligatoire'].find(id=>keywordValue(entry,id));
+  if(mandatoryId&&!state.mandatoryMoveDone){const def=CARD_KEYWORD_ACTIONS[mandatoryId];items.push({id:'mandatory-move',source:mandatoryId,blocking:true,title:def?.title||'DÉPLACEMENT OBLIGATOIRE',text:'Le déplacement obligatoire doit être effectué avant de terminer l’activation.',selector:`[data-card-action="${mandatoryId}"]`})}
+  for(const [id,def] of Object.entries(CARD_KEYWORD_ACTIONS)){
+    if(def.kind!=='end'||!keywordValue(entry,id)||exhausted(state,'kw-'+id)||skips.has(id))continue;
+    if(def.pick&&!kwPickCandidates(entry,def).length)continue;
+    items.push({id,blocking:false,title:def.title,text:typeof def.text==='function'?def.text(keywordValue(entry,id)):def.text,selector:`[data-card-action="${id}"]`})
+  }
+  const regen=keywordValue(entry,'regenerer-x');
+  if(regen&&(state.wound||0)>0&&!exhausted(state,'kw-regenerer-x')&&!skips.has('regenerer-x'))items.push({id:'regenerer-x',title:`RÉGÉNÉRER ${regen}`,text:`Lancez jusqu’à ${Math.min(state.wound||0,regen)} dé(s) de défense pour retirer des Blessures.`,selector:'[data-kw2-open="regen"]'});
+  if(keywordValue(entry,'pouvoir-latent')&&!exhausted(state,'kw-pouvoir-latent')&&!skips.has('pouvoir-latent'))items.push({id:'pouvoir-latent',title:'POUVOIR LATENT',text:'Vous pouvez gagner 1 Suppression et résoudre le dé rouge de Pouvoir latent.',selector:'[data-kw2-open="latent"]'});
+  const forceX=keywordValue(entry,'maitre-de-la-force-x'),forceCards=(state.exhaustedCards||[]).filter(card=>!card.startsWith('kw-')&&(entry.unit.upgrades||[]).some(up=>slugOf(up.name)===card));
+  if(forceX&&forceCards.length&&(state.forceReadied||0)<forceX&&!skips.has('maitre-de-la-force-x'))items.push({id:'maitre-de-la-force-x',title:`MAÎTRE DE LA FORCE ${forceX}`,text:`${forceCards.length} carte(s) Force inclinée(s) peuvent être redressées.`,selector:'[data-kw2-ready]'});
+  const cycleCards=(entry.unit.upgrades||[]).filter(up=>cardTags(up.name).some(tag=>tag.keywordId==='cycle')&&(state.exhaustedCards||[]).includes(slugOf(up.name)));
+  if(cycleCards.length&&!skips.has('cycle'))items.push({id:'cycle',title:'CYCLE',text:`${cycleCards.length} carte(s) Cycle inclinée(s) peuvent être redressées.`,selector:'[data-kw2-cycle]'});
+  return items
+}
+function contextualStrip(entry){
+  const items=contextualEndItems(entry);if(!items.length)return'';const blocking=items.some(item=>item.blocking),optional=items.filter(item=>!item.blocking).length;
+  const message=blocking?'Déplacement obligatoire à confirmer avant la fin de l’activation.':optional?`${optional} effet${optional>1?'s':''} applicable${optional>1?'s':''} à vérifier avant de terminer.`:'Aucun effet de fin d’activation en attente.';
+  return `<section class="contextual-activation-strip ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span><button type="button" class="ca-disable" data-ca-disable title="Masquer les alertes contextuelles jusqu’au prochain rechargement">Masquer</button></section>`
+}
+function closeContextualDialog(dialog){if(dialog?.open)dialog.close();dialog?.remove()}
+function focusContextualControl(entry,item,dialog){
+  closeContextualDialog(dialog);
+  const control=root.querySelector(item.selector);
+  if(!control)return;
+  control.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>{control.focus({preventScroll:true});control.click()},180)
+}
+function finishContextualActivation(entry,finish){
+  localStorage.removeItem(contextualSkipKey(entry));
+  finish()
+}
+function openContextualEndDialog(entry,finish){
+  const items=contextualEndItems(entry);
+  if(!items.length){finishContextualActivation(entry,finish);return}
+  const dialog=document.createElement('dialog');dialog.className='ca-dialog';
+  const rows=items.map(item=>`<article class="ca-item ${item.blocking?'blocking':''}" data-ca-item="${item.id}"><i>${item.blocking?'!':'✓'}</i><span class="ca-item-copy"><b>${item.title}</b><small>${item.text}</small></span><span class="ca-item-actions"><button type="button" class="primary" data-ca-resolve="${item.id}">${item.blocking?'Marquer comme effectué':'Résoudre'}</button>${item.blocking?'':`<button type="button" class="secondary" data-ca-ignore="${item.id}">Ignorer</button>`}</span></article>`).join('');
+  dialog.innerHTML=`<header><small>CONTRÔLE RAPIDE · ${entryName(entry)}</small><h2>FIN D’ACTIVATION</h2><p>Seuls les effets applicables maintenant sont affichés. Les effets facultatifs peuvent être ignorés pour cette activation.</p></header><div class="ca-list">${rows}</div><footer><button type="button" class="secondary" data-ca-cancel>Revenir à la fiche</button><button type="button" class="primary" data-ca-finish ${items.some(item=>item.blocking)?'disabled':''}>Terminer l’activation</button></footer>`;
+  document.body.append(dialog);dialog.showModal();
+  dialog.querySelector('[data-ca-cancel]').onclick=()=>closeContextualDialog(dialog);
+  dialog.querySelectorAll('[data-ca-resolve]').forEach(button=>button.onclick=()=>{const item=items.find(candidate=>candidate.id===button.dataset.caResolve);if(item)focusContextualControl(entry,item,dialog)});
+  dialog.querySelectorAll('[data-ca-ignore]').forEach(button=>button.onclick=()=>{const skips=contextualSkips(entry);skips.add(button.dataset.caIgnore);saveContextualSkips(entry,skips);closeContextualDialog(dialog);openContextualEndDialog(entry,finish)});
+  dialog.querySelector('[data-ca-finish]').onclick=()=>{closeContextualDialog(dialog);finishContextualActivation(entry,finish)};
+  dialog.onclick=event=>{if(event.target===dialog)closeContextualDialog(dialog)}
+}
+const overviewContextualActivationBase=overview;
+overview=function(entry,role){
+  overviewContextualActivationBase(entry,role);
+  if(role!=='attack'||defeated(entry)||!contextualActivationEnabled())return;
+  const host=root.querySelector('.overview'),anchor=host?.querySelector('.activation-briefing,.activation-automation,.card-strip,.actions');
+  const strip=contextualStrip(entry);if(strip&&host&&!host.querySelector('.contextual-activation-strip'))(anchor||host.firstElementChild)?.insertAdjacentHTML('beforebegin',strip);
+  const disable=root.querySelector('[data-ca-disable]');
+  if(disable)disable.onclick=()=>{sessionStorage.setItem(contextualActivationKey,'off');overview(entry,role)};
+  const end=root.querySelector('[data-end-activation]');
+  if(end&&!end.dataset.contextualBound){const finish=end.onclick;end.dataset.contextualBound='true';end.onclick=()=>openContextualEndDialog(entry,finish)}
+};
+const resolveScreenContextualActivationBase=resolveScreen;
+resolveScreen=function(){
+  resolveScreenContextualActivationBase();
+  if(!contextualActivationEnabled()||attackStep!==5||!attacker||attackState?.freeAttack)return;
+  const pending=contextualEndItems(attacker),old=$('#nextAttack');if(!pending.length||!old)return;
+  const next=old.cloneNode(true);old.replaceWith(next);
+  next.onclick=()=>{if(stepIssue()){resolveScreen();return}openContextualEndDialog(attacker,()=>{saveAttackHistory();attackState=null;attackStep=0;attacker=null;defender=null;stage=1;stageWipe=true;pick('attacker')})}
+};
