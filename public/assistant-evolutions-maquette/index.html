@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Maquette · Assistant en jeu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@600;700&display=swap">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">◆</span><div><strong>LEGION COMPAGNON</strong><small>LABORATOIRE · ASSISTANT EN JEU</small></div></div>
+      <nav class="tabs" aria-label="Vues de la maquette">
+        <button class="active" data-view="dock"><b>01</b><span>Barre rapide</span></button>
+        <button data-view="table"><b>02</b><span>Table de jeu</span></button>
+        <button data-view="physical"><b>03</b><span>Limites physiques</span></button>
+        <button data-view="audit"><b>04</b><span>Plan d’audit</span></button>
+      </nav>
+      <div class="round"><small>ROUND</small><strong>2</strong></div>
+    </header>
+
+    <main>
+      <section class="view active" id="dock">
+        <div class="view-heading"><div><small>PROPOSITION 01 · FICHE D’UNITÉ</small><h1>UNE BARRE QUI RESTE À PORTÉE DE MAIN</h1><p>Les quatre informations utiles pendant l’activation restent visibles au bas de l’iPad.</p></div><span class="status-pill">MAQUETTE INTERACTIVE</span></div>
+        <div class="unit-screen">
+          <aside class="unit-card">
+            <small>COMMANDANT · UNITÉ ACTIVE</small><h2>LUKE SKYWALKER</h2>
+            <img src="../codex/portraits/catalog-luke-heros-de-la-rebellion.webp" alt="Luke Skywalker">
+            <div class="unit-vitals"><span><b>6/6</b> PV</span><span><b>1/1</b> figurine</span><span><b>0</b> suppression</span></div>
+          </aside>
+          <div class="unit-content">
+            <section class="context-card"><i>1</i><div><small>FIN D’ACTIVATION</small><b>INSPIRATION 2</b><p>Une unité alliée avec une Suppression peut être aidée.</p></div><button data-demo="physical">Vérifier</button></section>
+            <section class="panel"><header><small>AUTOMATISMES D’ACTIVATION</small><strong>Actions disponibles</strong></header><div class="two"><article><em>ACTION GRATUITE</em><b>POINTE DE VITESSE</b><p>Vitesse maximale 3 pour ce round.</p></article><article><em>RÉACTION</em><b>DANS LA MÊLÉE</b><p>Gagnez 1 Adrénaline au contact.</p></article></div></section>
+            <section class="panel briefing"><header><small>BRIEFING TACTIQUE</small><strong>Activation & déplacement</strong></header><div class="two"><article><b>SAUT 1</b><p>Déplacement normal en ignorant certains terrains et figurines.</p></article><article><b>CHARGE</b><p>Après un déplacement au contact, attaque de mêlée gratuite.</p></article></div></section>
+          </div>
+
+          <section class="quick-dock" aria-label="Barre d’activation persistante">
+            <div class="expected"><span class="pulse">!</span><div><small>ACTION ATTENDUE MAINTENANT</small><strong id="expectedAction">INSPIRATION 2 · 1 CIBLE POSSIBLE</strong><p id="expectedHint">Vérifier la portée physique avant d’appliquer l’effet.</p></div><button id="inspectExpected">VOIR</button></div>
+            <div class="quick-tokens">
+              <button data-token="aim"><span>◎</span><small>VISER</small><b id="aimValue">0</b></button>
+              <button data-token="dodge"><span>◒</span><small>ESQUIVE</small><b id="dodgeValue">1</b></button>
+              <button data-token="surge"><span>◆</span><small>ADRÉNALINE</small><b id="surgeValue">0</b></button>
+              <button data-token="suppression"><span>!</span><small>SUPPRESSION</small><b id="suppressionValue">0</b></button>
+            </div>
+            <button class="attack-button" id="dockAttack"><span>⌖</span><small>ACTION PRINCIPALE</small><strong>ATTAQUER</strong></button>
+            <button class="finish-button" id="dockFinish"><span>✓</span><small>QUITTER LA FICHE</small><strong>TERMINER</strong></button>
+          </section>
+        </div>
+        <div class="notes-row"><span><b>Persistante</b> même après défilement</span><span><b>4 zones</b> seulement</span><span><b>44 px minimum</b> pour les commandes tactiles</span><span><b>État partagé</b> avec le suivi de partie</span></div>
+      </section>
+
+      <section class="view" id="table">
+        <div class="view-heading"><div><small>PROPOSITION 02 · TABLE DE JEU</small><h1>TOUTE LA PARTIE SUR UN SEUL ÉCRAN</h1><p>Scores, unités et actions directes, sans repasser par l’écran de sélection.</p></div><span class="status-pill">IPAD PAYSAGE</span></div>
+        <div class="table-screen">
+          <header class="scorebar"><div class="score rebel"><small>JOUEUR 1 · SIMON</small><strong>ALLIANCE REBELLE</strong><b>3</b></div><div class="mission"><small>ROUND 2 / 5</small><b>PERCÉE</b><span>7 unités encore à jouer</span></div><div class="score empire"><b>2</b><strong>EMPIRE GALACTIQUE</strong><small>JOUEUR 2 · ANTOINE</small></div></header>
+          <div class="armies">
+            <section class="army rebel-army"><header><span>◉</span><div><small>ARMÉE BLEUE</small><b>UNITÉS EN COMBAT</b></div><em>4 PRÊTES</em></header><div id="rebelRows"></div></section>
+            <section class="army imperial-army"><header><span>✹</span><div><small>ARMÉE ROUGE</small><b>UNITÉS EN COMBAT</b></div><em>3 PRÊTES</em></header><div id="imperialRows"></div></section>
+          </div>
+          <footer class="table-actions"><div id="tableSelection"><small>UNITÉ SÉLECTIONNÉE</small><strong>LUKE SKYWALKER</strong><span>6/6 PV · 0 Suppression · prête à jouer</span></div><button>FICHE RAPIDE</button><button class="primary">ATTAQUER →</button></footer>
+        </div>
+      </section>
+
+      <section class="view" id="physical">
+        <div class="view-heading"><div><small>PROPOSITION 03 · INFORMATIONS NON DÉTECTABLES</small><h1>L’APPLICATION DEMANDE, LE JOUEUR CONFIRME</h1><p>Une question courte apparaît uniquement lorsqu’une règle dépend de la table physique.</p></div><span class="status-pill amber">VALIDATION HUMAINE</span></div>
+        <div class="physical-layout">
+          <section class="physical-dialog">
+            <header><small>CONTRÔLE PHYSIQUE · INSPIRATION 2</small><h2>LES WOOKIES SONT-ILS À PORTÉE 2 DE LUKE ?</h2><p>L’application sait qu’ils ont 1 Suppression. Elle ne peut pas mesurer leur position sur la table.</p></header>
+            <div class="candidate"><img src="../codex/portraits/catalog-guerriers-wookies-combattants.webp" alt="Guerriers Wookies"><div><small>CIBLE POTENTIELLE</small><strong>GUERRIERS WOOKIES</strong><span><b>!</b> 1 Suppression · autre unité alliée</span></div><em>ÉLIGIBLE SI PORTÉE ≤ 2</em></div>
+            <div class="answer-grid"><button data-physical-answer="yes"><b>✓ OUI</b><span>Appliquer Inspiration</span></button><button data-physical-answer="no"><b>× NON</b><span>Masquer cette cible</span></button><button data-physical-answer="unknown"><b>? INCERTAIN</b><span>Afficher la règle de mesure</span></button></div>
+            <div class="physical-result" id="physicalResult"><span>?</span><p><b>EN ATTENTE DE CONFIRMATION</b> Aucun effet n’est appliqué automatiquement.</p></div>
+          </section>
+          <aside class="evolution-list">
+            <header><small>ÉVOLUTIONS PRÉVUES</small><h2>6 CONTRÔLES COURTS</h2></header>
+            <ol>
+              <li><b>PORTÉE</b><span>Confirmer qu’une cible se trouve dans la plage demandée.</span></li>
+              <li><b>LIGNE DE VUE</b><span>Oui / Non / Partielle, avec rappel de la règle concernée.</span></li>
+              <li><b>CONTACT & ENGAGEMENT</b><span>Confirmer le corps-à-corps, le contact de socle ou la cohésion.</span></li>
+              <li><b>TERRAIN & COUVERT</b><span>Demander uniquement le type de couvert ou de terrain nécessaire.</span></li>
+              <li><b>ZONE & OBJECTIF</b><span>Confirmer la proximité d’un objectif ou d’une zone de déploiement.</span></li>
+              <li><b>MÉMOIRE TEMPORAIRE</b><span>Conserver la réponse pendant l’action, puis l’oublier pour éviter un état faux.</span></li>
+            </ol>
+            <div class="safety-rule"><b>PRINCIPE DE SÉCURITÉ</b><p>En cas d’incertitude, le moteur n’applique rien et explique exactement ce qu’il faut vérifier sur la table.</p></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="audit">
+        <div class="view-heading"><div><small>POINTS 1 & 6 · MISE EN PLACE POSSIBLE</small><h1>UN AUDIT AUTOMATISÉ À DEUX NIVEAUX</h1><p>La logique et l’affichage sont contrôlés séparément, puis réunis dans un rapport exploitable.</p></div><span class="status-pill green">RÉALISABLE</span></div>
+        <div class="audit-grid">
+          <section class="audit-card"><header><span>01</span><div><small>AUDIT FONCTIONNEL</small><h2>RÈGLES CONTEXTUELLES</h2></div></header><ul><li><b>199</b><span>mots-clés parcourus</span></li><li><b>304</b><span>cartes vérifiées</span></li><li><b>6</b><span>moments de jeu testés</span></li><li><b>0</b><span>effet silencieux accepté</span></li></ul><div class="audit-flow"><span>Donnée</span><i>→</i><span>Condition</span><i>→</i><span>Contrôle</span><i>→</i><span>État</span><i>→</i><span>Annulation</span></div><p>Chaque règle obtient un scénario positif, négatif et une vérification de persistance.</p></section>
+          <section class="audit-card"><header><span>06</span><div><small>AUDIT VISUEL</small><h2>TOUTES LES FICHES</h2></div></header><ul><li><b>301</b><span>cartes capturées</span></li><li><b>3</b><span>formats iPad paysage</span></li><li><b>5</b><span>défauts recherchés</span></li><li><b>1</b><span>rapport illustré</span></li></ul><div class="defect-tags"><span>Texte coupé</span><span>Bouton masqué</span><span>Débordement</span><span>Panneau vide</span><span>Portrait mal cadré</span></div><p>Les captures sont comparées à des seuils de taille, contraste et visibilité des actions.</p></section>
+          <section class="audit-plan"><header><small>ORDRE RECOMMANDÉ</small><h2>MISE EN PLACE EN 3 LOTS</h2></header><div><b>LOT A</b><span>Matrice complète des règles et cas limites.</span><em>Fiabilité</em></div><div><b>LOT B</b><span>Captures automatiques de toutes les fiches en paysage.</span><em>Lisibilité</em></div><div><b>LOT C</b><span>Rapport de non-régression exécuté avant chaque publication.</span><em>Durabilité</em></div><footer>Ces audits peuvent être ajoutés sans modifier le comportement visible de l’Assistant.</footer></section>
+        </div>
+      </section>
+    </main>
+    <div class="toast" id="toast"></div>
+  </div>
+  <script src="./mockup.js"></script>
+</body>
+</html>
