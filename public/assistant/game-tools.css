@@ -1,10 +1,12 @@
 /* Barre d'activation et Table de jeu — optimisées pour les tablettes en paysage. */
 body.has-activation-dock #app { padding-bottom: 104px; }
-.activation-quick-dock { position:fixed; z-index:80; left:max(14px,env(safe-area-inset-left)); right:max(14px,env(safe-area-inset-right)); bottom:max(10px,env(safe-area-inset-bottom)); display:grid; grid-template-columns:minmax(220px,1fr) auto auto auto; align-items:center; gap:10px; padding:10px 12px; border:1px solid color-mix(in srgb,var(--accent,#49c7ff) 70%,#fff); background:rgba(3,13,21,.96); box-shadow:0 0 28px rgba(0,0,0,.72),inset 0 0 24px color-mix(in srgb,var(--accent,#49c7ff) 8%,transparent); backdrop-filter:blur(12px); }
-.aqd-now { min-width:0; display:grid; gap:3px; }
+.activation-quick-dock { position:fixed; z-index:80; left:max(14px,env(safe-area-inset-left)); right:max(14px,env(safe-area-inset-right)); bottom:max(10px,env(safe-area-inset-bottom)); display:grid; grid-template-columns:minmax(220px,1fr) auto auto auto; align-items:center; gap:10px; padding:10px 12px; border:1px solid #54dca0; background:rgba(3,13,21,.97); box-shadow:0 0 30px rgba(84,220,160,.22),0 0 28px rgba(0,0,0,.72),inset 0 0 28px rgba(84,220,160,.07); backdrop-filter:blur(12px); }
+.aqd-now { min-width:0; display:grid; grid-template-columns:36px minmax(0,1fr); align-items:center; gap:9px; padding:5px 8px; border-left:3px solid #54dca0; background:rgba(35,121,83,.1); }
+.aqd-now>span { min-width:0; display:grid; gap:3px; }
 .aqd-now small,.aqd-token small { color:#8ea8b8; font:700 10px/1.1 "Share Tech Mono",monospace; letter-spacing:.1em; }
 .aqd-now b { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:800 13px/1.2 Orbitron,sans-serif; }
 .aqd-now button { justify-self:start; padding:0; min-height:0; border:0; background:none; color:var(--accent,#49c7ff); }
+.aqd-pulse { display:grid; width:31px; height:31px; place-items:center; border:1px solid #54dca0; color:#7ff0bd; font:800 15px/1 Orbitron,sans-serif; font-style:normal; box-shadow:0 0 14px rgba(84,220,160,.45); animation:aqdGlow 1.8s ease-in-out infinite; }
 .aqd-tokens { display:flex; gap:6px; }
 .aqd-token { display:grid; grid-template-columns:auto 27px; align-items:center; gap:3px; padding:5px 7px; border:1px solid rgba(130,177,204,.28); background:#081722; }
 .aqd-token b { text-align:center; font:800 16px/1 Orbitron,sans-serif; }
@@ -52,6 +54,39 @@ body.has-activation-dock #app { padding-bottom: 104px; }
 .physical-check-actions { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; }
 .physical-check.confirmed { border-color:rgba(80,214,151,.5); background:rgba(25,92,64,.16); }
 
+/* Fiche compacte : portrait à gauche, tout le travail au centre. L'ancien
+   troisième rail devient un panneau horizontal de santé et d'état. */
+@media (min-width:1000px) {
+  body:has(.overview.attack) .overview { grid-template-columns:var(--rx-side) minmax(0,1fr) !important; grid-template-rows:auto !important; }
+  body:has(.overview.attack) .overview>.cx-ov-title { grid-column:2 !important;grid-row:1 !important; }
+  body:has(.overview.attack) .overview>.ov-col>.hero { grid-column:1 !important;grid-row:1 / span 8 !important; }
+  body:has(.overview.attack) .overview>.ov-col>.contextual-activation-stack { grid-column:2 !important;grid-row:2 !important; }
+  body:has(.overview.attack) .overview>.ov-col>.card-strip { grid-column:2 !important;grid-row:3 !important; }
+  body:has(.overview.attack) .overview>.ov-col>.unit-state-editor { grid-column:2 !important;grid-row:4 !important; }
+  body:has(.overview.attack) .overview>.ov-col>.post-rally-panel { grid-column:2 !important;grid-row:5 !important; }
+  body:has(.overview.attack) .overview>.ov-col>.activation-automation { grid-column:2 !important;grid-row:6 !important; }
+  body:has(.overview.attack) .overview>.ov-col>.activation-briefing { grid-column:2 !important;grid-row:7 !important; }
+  body:has(.overview.attack) .actions { grid-template-columns:var(--rx-side) minmax(0,1fr) !important; }
+  body:has(.overview.attack) .actions #back { grid-column:1 !important; }
+  body:has(.overview.attack) .actions>#next { grid-column:2 !important;justify-self:end;min-width:240px; }
+  body:has(.overview.attack) .actions>button:not(#back):not(#next) { display:none; }
+}
+body:has(.overview.attack) .unit-state-editor { display:grid !important;grid-template-columns:minmax(280px,1.2fr) minmax(210px,.8fr) auto !important;align-items:center;gap:8px;padding:9px 11px !important; }
+body:has(.overview.attack) .unit-state-editor>header { grid-column:1/-1;padding:0 2px 4px !important; }
+body:has(.overview.attack) .unit-state-editor>.unit-health-editor { grid-column:1;display:grid;grid-template-columns:minmax(140px,1fr) auto!important;padding:0!important; }
+body:has(.overview.attack) .unit-state-editor>.unit-tokens { display:none!important; }
+body:has(.overview.attack) .unit-state-editor>.unit-core-controls { grid-column:2;display:grid!important;grid-template-columns:1fr!important;padding:0!important; }
+body:has(.overview.attack) .unit-state-editor>.unit-core-controls>.state-counter { display:none!important; }
+body:has(.overview.attack) .unit-state-editor>.persistent-tokens,
+body:has(.overview.attack) .unit-state-editor>.card-lifecycle { grid-column:1/-1; }
+body:has(.overview.attack) .unit-state-editor>.state-reset { grid-column:3;grid-row:2;margin:0!important;align-self:center!important;white-space:nowrap; }
+.activation-fold { border:0; }
+.activation-fold>summary { display:flex;justify-content:space-between;align-items:center;min-height:46px;padding:10px 13px;cursor:pointer;border-top:1px solid rgba(125,173,200,.22);color:#d9e9f1;font-weight:800; }
+.activation-fold>summary em { display:grid;min-width:27px;height:27px;place-items:center;border:1px solid var(--accent,#49c7ff);border-radius:50%;color:var(--accent,#49c7ff);font-style:normal; }
+.card-life.integrated { border-color:rgba(84,220,160,.35); }
+.card-life.integrated small { color:#7fe5b7; }
+@keyframes aqdGlow { 0%,100%{filter:brightness(1);box-shadow:0 0 8px rgba(84,220,160,.35)} 50%{filter:brightness(1.35);box-shadow:0 0 24px rgba(84,220,160,.9)} }
+
 @media (max-width:1050px) and (orientation:landscape) {
   .tg-unit { grid-template-columns:52px minmax(95px,1fr) auto auto auto auto; gap:5px; }
   .tg-unit img { width:52px;height:50px; }
@@ -67,3 +102,4 @@ body.has-activation-dock #app { padding-bottom: 104px; }
   .activation-quick-dock { left:5px;right:5px;bottom:5px;grid-template-columns:1fr 1fr; }
   .aqd-now,.aqd-tokens { grid-column:1/-1; }
 }
+@media (prefers-reduced-motion:reduce){.aqd-pulse{animation:none}}
