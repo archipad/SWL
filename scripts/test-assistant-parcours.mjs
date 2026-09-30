@@ -820,7 +820,7 @@ scenario('Alertes par étape : une synthèse ne montre que les règles de l’é
   await rebel.pickUnit('Luke Skywalker')
   const stack = rebel.$('.contextual-activation-stack')
   assert.ok(stack, 'les alertes contextuelles sont regroupées dans un seul bloc en haut de la fiche')
-  assert.equal(stack.parentElement.firstElementChild, stack, 'le bloc contextuel précède les cartes, automatismes et briefing')
+  assert.ok(stack.previousElementSibling?.classList.contains('card-strip'), 'le bloc contextuel suit immédiatement les cartes placées sous le nom de l’unité')
   assert.equal(stack.querySelectorAll(':scope > .contextual-activation-strip').length, 2, 'fin d’activation et actions immédiates sont côte à côte dans le même bloc')
   assert.match(rebel.text(rebel.$('.activation-briefing')), /DÉPLACEMENT\s+Saut 1/i, 'un espace sépare la phase Déplacement du mot-clé Saut')
   assert.match(rebel.text(rebel.$('.activation-briefing')), /FIN D.ACTIVATION\s+Inspiration 2/i, 'un espace sépare la phase Fin d’activation du mot-clé Inspiration')
