@@ -3906,7 +3906,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/rebel-veterans.jpg",
-      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "verifiedAt": "2026-09-30T19:32:59.333Z",
       "visualHash": "5c0c68ff4281304689e7ee4d4ba3929fe2ba0b253edbbc09d14c1e250955375d"
     }
   },
@@ -8744,6 +8744,37 @@
       "visualPath": "/SWL/cards/vigilance.jpg",
       "verifiedAt": "2026-09-30T18:39:01.888Z",
       "visualHash": "c1d9b37b1027e1b582d068cbee840736abdec806b529b5aabe30204f212154e4"
+    }
+  },
+  "fleet trooper": {
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "noKeywordsConfirmed": true,
+      "visualPath": "/SWL/cards/fleet-trooper.jpg",
+      "verifiedAt": "2026-09-30T19:32:59.333Z",
+      "visualHash": "3bf275764a247bff5de23d817ccb282fd9d8cb86433877fce802d9d7f56c142c"
     }
   }
 }
