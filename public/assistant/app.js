@@ -2570,10 +2570,23 @@ function activationQuickDock(entry){
   dock.querySelector('[data-aqd-attack]').onclick=()=>root.querySelector('#next')?.click();
   dock.querySelector('[data-aqd-finish]').onclick=()=>root.querySelector('[data-end-activation]')?.click()
 }
+function arrangeCompactUnitSheet(){
+  const sheet=root.querySelector('.overview.attack');if(!sheet)return;
+  const hero=sheet.querySelector('.hero'),state=sheet.querySelector('.unit-state-editor');
+  if(hero&&state&&!hero.contains(state))hero.append(state);
+  const lifecycle=state?.querySelector('.card-lifecycle'),automations=[...sheet.querySelectorAll('.activation-automation')],lastAutomation=automations.at(-1),briefing=sheet.querySelector('.activation-briefing'),right=sheet.querySelector('.ov-right');
+  if(lifecycle){
+    lifecycle.classList.add('card-lifecycle-central');
+    if(lastAutomation)lastAutomation.insertAdjacentElement('afterend',lifecycle);
+    else if(briefing)briefing.insertAdjacentElement('beforebegin',lifecycle);
+    else right?.append(lifecycle)
+  }
+}
 const overviewQuickDockBase=overview;
 overview=function(entry,role){
   overviewQuickDockBase(entry,role);
   if(role==='attack'){
+    arrangeCompactUnitSheet();
     root.querySelectorAll('.activation-briefing details.brief-section,.card-lifecycle,.persistent-tokens').forEach(details=>details.open=false);
     const automation=root.querySelector('.activation-automation');
     if(automation&&!automation.querySelector('.activation-fold')){const controls=[...automation.children].filter(child=>!child.matches('header')),fold=document.createElement('details');fold.className='activation-fold';fold.innerHTML=`<summary>Afficher les actions et automatismes <em>${automation.querySelectorAll('button:not([disabled])').length}</em></summary>`;fold.append(...controls);automation.append(fold)}

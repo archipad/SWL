@@ -12,6 +12,7 @@ assert.ok(app.$('.activation-quick-dock'), 'la barre rapide apparaît sur la fic
 assert.ok(app.$('[data-aqd-attack]') && app.$('[data-aqd-finish]'), 'attaquer et terminer sont accessibles')
 assert.match(app.text(app.$('.aqd-tokens')), /VISER.*ESQUIVE.*SUPPR/, 'les pions principaux sont regroupés')
 assert.match(app.text(app.$('.aqd-tokens')), /ADRÉN/, 'le pion Adrénaline est lui aussi disponible dans la barre')
+assert.ok(app.$('.hero .unit-state-editor'), 'blessures, élimination et pions persistants sont regroupés sous le portrait')
 assert.equal(app.$$('.activation-briefing details[open]').length, 0, 'tous les groupes de mots-clés sont repliés par défaut')
 assert.ok(app.$('.activation-fold') && !app.$('.activation-fold').open, 'les automatismes restent accessibles dans un volet replié')
 await app.click('[data-end-activation]')
@@ -42,6 +43,7 @@ const boba = await openAssistant({
   'swl.list.p2.v1': { listName: 'Rébellion', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
 })
 await boba.pickUnit('Boba Fett')
+assert.ok(boba.$('.card-lifecycle-central') && !boba.$('.unit-state-editor .card-lifecycle'), 'l’état des améliorations est centralisé sous les automatismes')
 assert.ok(boba.$('[data-activation-source="pool"]'), 'le mode d’activation est demandé sur la fiche de Boba Fett')
 await boba.click('[data-activation-source="pool"]')
 assert.ok(boba.$('[data-unit-effect="transponder-aim"]'), 'le Transpondeur est proposé dans les automatismes quand il est applicable')
