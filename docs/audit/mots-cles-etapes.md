@@ -92,7 +92,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Détachement : Nom/Type d'Unité | Composition d'armée | composition | 5 |
 | Équipe | Composition d'armée | composition | 4 |
 | Équipe avec Arme Lourde | Composition d'armée | composition | 2 |
-| Mercenaire : Faction | Composition d'armée | composition | 18 |
+| Mercenaire : Faction | Composition d'armée | composition | 16 |
 | Paquetage | Composition d'armée | composition | 0 |
 | Programmé | Composition d'armée | composition | 1 |
 | Riposte Graduée X | Composition d'armée | composition | 1 |
@@ -205,7 +205,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Pions Graffiti | Rallier · récupérer | rappel | 0 |
 | Recharger X | Rallier · récupérer | auto | 3 |
 | Reconfiguration | Rallier · récupérer | auto | 4 |
-| Aide : Affiliation/Type d'Unité | Réactions | auto | 1 |
+| Aide : Affiliation/Type d'Unité | Réactions | auto | 2 |
 | Impitoyable | Réactions | auto | 1 |
 | Sentinelle | Réactions | auto | 6 |
 | Travail d'Équipe : Nom d'Unité | Réactions | auto | 2 |

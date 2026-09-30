@@ -199,6 +199,12 @@
   // Panneau d'explication en langage courant : ce qui a été prérempli, ce qui est à vérifier, et un récapitulatif à comparer au visuel.
   const surgeLabel={none:'aucune',hit:'touche',crit:'critique',block:'blocage'}
   const diceText=dice=>dice==='variable'?'réserve variable':((dice||[]).filter(d=>d.count>0).map(d=>d.count+' '+d.color).join(' + ')||'aucun dé')
+  // Même pool de dés, ordre différent entre la carte (appli) et Legion HQ (ex. « 2 rouge + 1 noir » vs
+  // « 1 noir + 2 rouge ») : sans ce tri commun, le texte affiché diffère et la ligne se signale comme
+  // un écart alors qu'il n'y en a aucun — hqDiffItems() compare déjà les pools triés, la fiche devait
+  // faire pareil (repéré le 30/09/2026 sur Din Djarin).
+  const DICE_ORDER={rouge:0,noir:1,blanc:2}
+  const sortDiceForCompare=dice=>Array.isArray(dice)?[...dice].sort((a,b)=>(DICE_ORDER[a.color]??9)-(DICE_ORDER[b.color]??9)):dice
   function sourcesPanel(card,d){
     const p=weaponProfiles[card],cc=crosscheckFor(card),conflict=conflictFor(card),f=d.fullCard
     const notes=[]
@@ -331,7 +337,7 @@
     const published=weaponProfiles[card]?.weapons||[],pairs=pairHqWeapons(card,d);
     return (d.weapons||[]).map(w=>{
       const pub=published[w.index],hqw=pairs[w.index],own=(w.keywords||[]);
-      const pubRange=pub?hqRangeText(pub.range||''):'—',hqRange=hqw?hqRangeText(hqw.range):null,pubDice=pub?diceText(pub.dice):'—',hqDiceTxt=hqw?diceText(hqDiceList(hqw.dice)):null;
+      const pubRange=pub?hqRangeText(pub.range||''):'—',hqRange=hqw?hqRangeText(hqw.range):null,pubDice=pub?diceText(sortDiceForCompare(pub.dice)):'—',hqDiceTxt=hqw?diceText(sortDiceForCompare(hqDiceList(hqw.dice))):null;
       const dice=w.dice==='variable'?'<p>Réserve variable : contrôlez la règle imprimée.</p>':'<div class="cert-dice-row">'+['rouge','noir','blanc'].map(color=>'<div class="cert-die-control"><span class="dice-badge dice-badge-'+color+'"><span>'+dieCount(w,color)+'</span></span><div><button data-cert-die="'+w.index+':'+color+'" data-delta="-1">−</button><b>'+dieCount(w,color)+'</b><button data-cert-die="'+w.index+':'+color+'" data-delta="1">+</button></div></div>').join('')+'</div>';
       const applyPred=apply=>apply.t==='weapon'&&apply.name===w.name;
       return '<article class="cert-weapon cf-weapon '+(w.queued?'certified':'')+'"><header><strong>'+escapeHtml(w.name)+'</strong><span>'+(w.verified?'✓ déjà certifiée':'⚠ à vérifier')+'</span></header>'

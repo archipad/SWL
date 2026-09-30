@@ -687,10 +687,47 @@
             "count": 4
           }
         ],
-        "range": "1-4"
+        "range": "1-4",
+        "keywordIds": [
+          "critique-x"
+        ],
+        "keywordValues": {
+          "critique-x": 2
+        }
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "critique-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/cm-o93-trooper.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "9ed4c45b446659f59817426ab4ce7c38d365cd1ef80f451ee619bf625d9d3768"
+    }
   },
   "cassian andor operative": {
     "weapons": [
@@ -1148,10 +1185,47 @@
             "count": 2
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": [
+          "deflagration",
+          "fixe"
+        ]
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "fixe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/dw-3-concussion-grenade-launcher.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "4df7d9d73b990b712ca41d01ee48b3b4fb800bb82af4d00191958c47a8bb5d86"
+    }
   },
   "darth vader dark lord of the sith": {
     "weapons": [
@@ -2094,10 +2168,44 @@
             "count": 4
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": [
+          "fixe"
+        ]
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "fixe",
+          "detail": "Arrière"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/ax-108-ground-buzzer.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "1491e04c048538933ed31e5bb326b655dff62877685a610cb0e074a6c724591b"
+    }
   },
   "t 47 airspeeder": {
     "weapons": [
@@ -2114,14 +2222,79 @@
             "count": 3
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "impact-x",
+          "fixe"
+        ],
+        "keywordValues": {
+          "impact-x": 3
+        }
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 7,
       "courage": null,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "heavy",
+      "unitType": "Véhicule à répulseurs",
+      "speed": "3",
+      "speedFromHq": true,
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "armure-x",
+          "value": 3
+        },
+        {
+          "keywordId": "arsenal-x",
+          "value": 2
+        },
+        {
+          "keywordId": "couvert-x",
+          "value": 1
+        },
+        {
+          "keywordId": "immunite-deflagration"
+        },
+        {
+          "keywordId": "immunite-corps-a-corps"
+        },
+        {
+          "keywordId": "immunite-armes-portee-1"
+        },
+        {
+          "keywordId": "speeder-x",
+          "value": 2
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 3
+        },
+        {
+          "keywordId": "fixe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/t-47-airspeeder.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "1ced06130bc18ecda0d39ac606f3162bf32a1c4112246e5cce97276446faa039"
     }
   },
   "at rt flamethrower": {
@@ -3679,7 +3852,8 @@
             "count": 1
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -3690,14 +3864,50 @@
             "count": 1
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": []
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 1,
       "courage": 1,
-      "baseModels": 4
+      "baseModels": 4,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "corps",
+      "unitType": "Soldat",
+      "speed": "1",
+      "speedFromHq": true,
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "coordination"
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "position-preparee"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/rebel-veterans.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "5c0c68ff4281304689e7ee4d4ba3929fe2ba0b253edbbc09d14c1e250955375d"
     }
   },
   "saber throw": {
@@ -5877,8 +6087,61 @@
     }
   },
   "hh 12 stormtrooper": {
-    "weapons": [],
-    "addedModels": 1
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Lance-roquettes HH-12",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "2-4",
+        "keywordIds": [
+          "encombrant",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 3
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "encombrant"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 3
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/hh-12-stormtrooper.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "e43b01bdb4a788c51409c09efc1877baa8d7b3b41b1b12a66a9d696b5c2cc12f"
+    }
   },
   "hotshot pilot": {
     "weapons": [],
@@ -6338,12 +6601,117 @@
     }
   },
   "t 7 ion snowtrooper": {
-    "weapons": [],
-    "addedModels": 1
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil T-7 à Ions",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "critique-x",
+          "impact-x",
+          "ion-x"
+        ],
+        "keywordValues": {
+          "critique-x": 1,
+          "impact-x": 1,
+          "ion-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "ion-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/t-7-ion-snowtrooper.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "c63739d08acc990f10f9fa445f4e15b1da5fec7950ed1d4493c191adea0a5294"
+    }
   },
   "z 6 trooper": {
-    "weapons": [],
-    "addedModels": 1
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster Rotatif Z-6",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 6
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "noKeywordsConfirmed": true,
+      "visualPath": "/SWL/cards/z-6-trooper.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "e0b79820be0818184559f71f1d187e098311e3494a1087df1801a2ad199f868c"
+    }
   },
   "fragmentation grenades": {
     "weapons": [
@@ -6372,10 +6740,47 @@
             "count": 1
           }
         ],
-        "range": "melee-1"
+        "range": "melee-1",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 4
+        }
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 4
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/impact-grenades.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "c1450fa9d312c676e5284eb885dd0f7cda38515fe1b51c1fb666c087585334b7"
+    }
   },
   "targeting scopes": {
     "weapons": [],
@@ -6435,7 +6840,34 @@
   },
   "stormtrooper specialist": {
     "weapons": [],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "exhaust",
+      "keywordsReviewed": true,
+      "noKeywordsConfirmed": true,
+      "visualPath": "/SWL/cards/stormtrooper-specialist.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "91dcb46a2b9dce81f545fc0263d2cd7606829ebb3437ad043da26d7495111491"
+    }
   },
   "stormtrooper sharpshooter": {
     "weapons": [],
@@ -7734,6 +8166,584 @@
       "visualPath": "/SWL/cards/kallus-the-operative.jpg",
       "verifiedAt": "2026-09-21T23:26:58.823Z",
       "visualHash": "cd71eb31866ad5614c8a9bd9394dee368f069eec54cebfd3b563c6286aed8489"
+    }
+  },
+  "black sun vigo": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blaster Double de Vigo",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 2,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "Soldat",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "intrepide"
+        },
+        {
+          "keywordId": "autonome"
+        },
+        {
+          "keywordId": "aide"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/black-sun-vigo.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "305984f933014fa2ba3250195fd8e3a40958da41846132525f4c7db9c93e9b55"
+    }
+  },
+  "black sun enforcers": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Combat Rapproché",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Blaster Double",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "corps",
+      "unitType": "Soldat",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "intrepide"
+        },
+        {
+          "keywordId": "autonome"
+        },
+        {
+          "keywordId": "precis-x",
+          "value": 1
+        },
+        {
+          "keywordId": "instinct-de-survie"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/black-sun-enforcers.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "ec955598ed77f7f4372584d7e65b7e8bdc19aea5effa675db48351e1779241ec"
+    }
+  },
+  "gar saxon militant commando": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Pistolet Blaster de Gar",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "Soldat",
+      "speed": "3",
+      "speedFromHq": true,
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "allies-de-circonstance"
+        },
+        {
+          "keywordId": "contrainte"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [
+        "mercenaire"
+      ],
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/gar-saxon-militant-commando.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "75952e42c2a3d72f31254851d043727ec5d0519a71aaaf7d9f097c2a735d33a4"
+    }
+  },
+  "maul a rival": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Sabre Laser de Maul",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          },
+          {
+            "color": "blanc",
+            "count": 4
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "impact-x",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2,
+          "perforant-x": 2
+        }
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 1
+        },
+        {
+          "keywordId": "allies-de-circonstance"
+        },
+        {
+          "keywordId": "deflexion"
+        },
+        {
+          "keywordId": "immunite-perforant"
+        },
+        {
+          "keywordId": "maitrise-du-juyo"
+        },
+        {
+          "keywordId": "blessure-x",
+          "value": 1
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [
+        "mercenaire"
+      ],
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/maul-a-rival.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "2f235547259f3950a1a23f73d1a241753ba54cfc137f3e0967726856a2c7263e"
+    }
+  },
+  "bossk terror of trandosha": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Frénésie",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "index": 1,
+        "name": "Lance-Grenades",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 4
+          }
+        ],
+        "range": "2-4",
+        "keywordIds": [
+          "perforant-x",
+          "suppressif"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 7,
+      "courage": 2,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "crit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "prime"
+        },
+        {
+          "keywordId": "enrage-x",
+          "value": 3
+        },
+        {
+          "keywordId": "regenerer-x",
+          "value": 3
+        },
+        {
+          "keywordId": "ascension"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "suppressif"
+        },
+        {
+          "keywordId": "autonome",
+          "value": 2,
+          "detail": "Adrénaline 2"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "confirmedRemovals": [],
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/bossk-terror-of-trandosha.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "e6c501ccca11a802bdd8e923f057af73eda6b40b1e6668d384803f898694eaea"
+    }
+  },
+  "boba fett daimyo of mos espa": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Bâton Gaderffii",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Carabine Blaster EE-3",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "saut-x",
+          "value": 1
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "arsenal-x",
+          "value": 2
+        },
+        {
+          "keywordId": "sentinelle"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "detail": "En Attente 1"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/boba-fett-daimyo-of-mos-espa.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "b47effe7917832f7322b238587cfaa7ecf55b7f537f1b3b4e5c680697e6035cb"
+    }
+  },
+  "vigilance": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "noKeywordsConfirmed": true,
+      "visualPath": "/SWL/cards/vigilance.jpg",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "visualHash": "c1d9b37b1027e1b582d068cbee840736abdec806b529b5aabe30204f212154e4"
     }
   }
 }

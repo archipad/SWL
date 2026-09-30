@@ -321,7 +321,8 @@ scenario('Certification : tout ce qui n’est pas certifié à 100 % est listé,
   await click('#certification')
   const total = app.window.swlCertification.cards().filter((card) => app.window.swlCertification.pendingFor(card) > 0).length
   assert.ok(total > 100, 'toutes les cartes sans certification complète sont listées sous « Toutes » : ' + total)
-  assert.ok(Number(text($('#certificationCount'))) < total, 'le bandeau ne compte que les cartes de vos listes : ' + text($('#certificationCount')))
+  const badgeText = text($('#certificationCount'))
+  assert.ok(badgeText === '✓' || Number(badgeText) < total, 'le bandeau ne compte que les cartes de vos listes (« ✓ » si tout est déjà certifié) : ' + badgeText)
   assert.ok($$('[data-cert-filter]').length === 5, 'filtres : toutes, mes listes, écarts, jamais certifiées, à confirmer (relecture IA)')
   await click('[data-cert-filter="gaps"]')
   const gaps = $$('.cert-list button[data-cert-card]')
@@ -1274,7 +1275,11 @@ scenario('Certification : liste groupée (mes listes, écarts, reste) et défil�
   const { $, $$, text, click } = app
   await click('#certification')
   const groups = $$('.cert-group').map((heading) => text(heading))
-  assert.ok(groups.length >= 2 && /Dans vos listes/.test(groups[0]), 'la liste est groupée, vos listes d’abord : ' + groups.join(' | '))
+  // Si les listes de démonstration sont entièrement certifiées (lot de certification récent), le
+  // groupe « Dans vos listes » n'a plus de raison d'exister : on ne l'exige que s'il reste
+  // effectivement des cartes de vos listes à certifier.
+  const hasOwnListPending = app.window.swlCertification.cards().some((card) => app.window.swlCertification.isInArmy(card) && app.window.swlCertification.pendingFor(card) > 0)
+  assert.ok(groups.length >= (hasOwnListPending ? 2 : 1) && (!hasOwnListPending || /Dans vos listes/.test(groups[0])), 'la liste est groupée, vos listes d’abord : ' + groups.join(' | '))
   const start = $('#startReview')
   assert.ok(start && !start.disabled, 'le défilé rapide est proposé')
   await click(start)
@@ -1823,9 +1828,21 @@ scenario('Erratum : une copie locale ancienne (étiquettes, brouillon) ne ressus
 })
 
 scenario('Certification limitée à vos listes : filtre par défaut, compteur du bandeau, confirmation groupée des cartes concordantes', async () => {
+  // La carte encore à certifier est choisie dynamiquement plutôt que fixée par son nom : une
+  // certification menée entre-temps peut rendre n'importe quel nom de carte fixe totalement certifié,
+  // ce qui viderait le périmètre « vos listes » de ce scénario sans rapport avec ce qu'il teste
+  // (30/09/2026, repéré après le lot de certification Gar Saxon/Maul/Bossk).
+  const probe = await openAssistant()
+  const pendingKey = probe.window.swlCertification.cards().find((card) => probe.window.swlCertification.pendingFor(card) > 0)
+  assert.ok(pendingKey, 'au moins une carte du catalogue reste à certifier (fixture du test)')
+  probe.window.close()
+
   const app = await openAssistant({
     'swl.cert-filter.v1': null,
-    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'DLT-19 Stormtrooper' }, { name: 'Impact Grenades' }] }] },
+    // La clé catalogue (déjà normalisée) est utilisée telle quelle comme nom : cardKey() lui est
+    // idempotent, contrairement à displayName(clé) qui peut retomber sur une clé différente une fois
+    // re-normalisé (ex. « Droïde Médical 2-1B » → « droide medical 2 1b » ≠ « 2 1b medical droid »).
+    'swl.list.p1.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: pendingKey }] }] },
     'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
   })
   const { $, $$, text, click } = app
