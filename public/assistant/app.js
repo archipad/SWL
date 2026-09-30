@@ -2511,6 +2511,8 @@ resolveScreen=function(){
 // Assistance progressive : les rappels de la fiche et du moteur restent à leur
 // place, mais une synthèse compacte n'affiche que ceux qui sont utilisables à
 // l'écran courant. Une étape avec choix facultatifs est vérifiée une seule fois.
+let contextualControlSelection=null;
+function contextualControlKey(item){return `${item?.kind||'control'}:${norm(item?.title||'')}`}
 function contextualNowItems(){
   const buttons=[...root.querySelectorAll('.overview .activation-automation button:not([disabled])')].filter(button=>{
     if(button.matches('[data-kw-undo],[data-kw-reset],[data-ca-disable],[data-kw2-open="regen"],[data-kw2-open="latent"],[data-kw2-ready],[data-kw2-cycle]'))return false;
@@ -2526,10 +2528,11 @@ function contextualNowItems(){
 }
 function openContextualNowDialog(entry,items){
   const dialog=document.createElement('dialog');dialog.className='ca-dialog ca-now-dialog';dialog.innerHTML=`<header><small>ACTIONS ET RAPPELS · ${ghEsc(entryName(entry))}</small><h2>QUE POUVEZ-VOUS FAIRE MAINTENANT ?</h2><p>Cette liste reprend les actions, réactions et capacités de déplacement utiles pendant cette activation.</p></header><div class="ca-list">${items.map((item,index)=>`<article class="ca-item"><i>${index+1}</i><span class="ca-item-copy"><b>${ghEsc(item.title)}</b><small>${ghEsc(item.text)}</small></span><span class="ca-item-actions"><button type="button" class="primary" data-ca-now-go="${index}">${item.kind==='reminder'?'Voir le rappel':'Voir le contrôle'}</button></span></article>`).join('')}</div><footer><button type="button" class="secondary" data-ca-now-close>Fermer</button></footer>`;
-  document.body.append(dialog);dialog.showModal();const close=()=>closeContextualDialog(dialog);dialog.querySelector('[data-ca-now-close]').onclick=close;dialog.querySelectorAll('[data-ca-now-go]').forEach(button=>button.onclick=()=>{const target=items[Number(button.dataset.caNowGo)]?.button;close();if(!target)return;target.closest('.activation-fold')?.setAttribute('open','');const focusTarget=target.closest('.kw-action,.effect-choice')||target;root.querySelectorAll('.contextual-control-focus').forEach(element=>element.classList.remove('contextual-control-focus'));focusTarget.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});if(!target.matches('button,input,select,a,[tabindex]'))target.tabIndex=-1;target.focus({preventScroll:true});pulseEl(focusTarget,'contextual-control-focus')});dialog.onclick=event=>{if(event.target===dialog)close()}
+  document.body.append(dialog);dialog.showModal();const close=()=>closeContextualDialog(dialog);dialog.querySelector('[data-ca-now-close]').onclick=close;dialog.querySelectorAll('[data-ca-now-go]').forEach(button=>button.onclick=()=>{const item=items[Number(button.dataset.caNowGo)],target=item?.button;close();if(!target)return;contextualControlSelection={entryId:entry.id,key:contextualControlKey(item)};target.closest('.activation-fold')?.setAttribute('open','');const focusTarget=target.closest('.kw-action,.effect-choice')||target;root.querySelectorAll('.contextual-control-focus,.contextual-control-selected').forEach(element=>element.classList.remove('contextual-control-focus','contextual-control-selected'));focusTarget.classList.add('contextual-control-frame','contextual-control-selected');focusTarget.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});if(!target.matches('button,input,select,a,[tabindex]'))target.tabIndex=-1;target.focus({preventScroll:true});pulseEl(focusTarget,'contextual-control-focus')});dialog.onclick=event=>{if(event.target===dialog)close()}
 }
 function decorateContextualOverview(entry){
   if(!contextualActivationEnabled())return;const items=contextualNowItems(),host=root.querySelector('.overview');if(!host||!items.length)return;
+  items.forEach(item=>{const frame=item.button.closest('.kw-action,.effect-choice')||item.button,key=contextualControlKey(item),selected=contextualControlSelection?.entryId===entry.id&&contextualControlSelection.key===key;frame.classList.add('contextual-control-frame');frame.dataset.contextualControlKey=key;frame.classList.toggle('contextual-control-selected',selected);if(selected)frame.closest('.activation-fold')?.setAttribute('open','')});
   const primary=items[0],remaining=Math.max(0,items.length-1),strip=document.createElement('section');strip.className='contextual-activation-strip ca-now';strip.innerHTML=`<span class="ca-signal">${items.length}</span><span class="ca-copy"><small>À FAIRE MAINTENANT</small><strong>${ghEsc(primary.title)}</strong><em>${remaining?`${remaining} autre${remaining>1?'s':''} action${remaining>1?'s':''} ou rappel${remaining>1?'s':''} disponible${remaining>1?'s':''}`:(primary.text||'Action disponible pendant cette activation.')}</em></span><button type="button" class="ca-open-now"><span class="ca-view-icon" aria-hidden="true">◉</span><span>Voir l’action</span></button>`;
   contextualOverviewStack(host)?.append(strip);
   strip.querySelector('.ca-open-now')?.addEventListener('click',()=>openContextualNowDialog(entry,items))
@@ -2599,6 +2602,7 @@ overview=function(entry,role){
   if(role==='attack'){
     arrangeCompactUnitSheet();
     root.querySelectorAll('.activation-briefing details.brief-section,.card-lifecycle,.persistent-tokens').forEach(details=>details.open=false);
+    root.querySelector('.contextual-control-selected')?.closest('.activation-fold')?.setAttribute('open','');
     activationQuickDock(entry)
   }else clearActivationQuickDock()
 };

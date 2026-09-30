@@ -106,28 +106,50 @@ body:has(.overview) .overview .unit-state-editor:not(.defeated) > header strong 
   body:has(.overview) .overview:not(.defense) .card-strip .upgrade-card-visual small { line-height: 34px; }
 }
 
-/* Le contrôle choisi reste impossible à manquer après « Voir le contrôle ». */
+/* Chaque contrôle reste repérable. Le contrôle demandé conserve sa sélection,
+   y compris lorsque la synchronisation reconstruit la fiche. */
+.overview .contextual-control-frame {
+  position: relative;
+  border: 1px solid rgba(143, 163, 176, .34) !important;
+  background: linear-gradient(135deg, rgba(132, 151, 162, .08), rgba(8, 18, 27, .95)) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025) !important;
+  filter: saturate(.55);
+  opacity: .78;
+  transition: border-color 180ms ease, box-shadow 180ms ease, filter 180ms ease, opacity 180ms ease;
+}
+.overview .contextual-control-frame:hover,
+.overview .contextual-control-frame:focus-within {
+  border-color: rgba(131, 204, 230, .62) !important;
+  filter: saturate(.82);
+  opacity: .94;
+}
+.overview .contextual-control-selected,
 .overview .contextual-control-focus {
   position: relative;
   z-index: 4;
-  border-color: #ffd05b !important;
-  outline: 3px solid #ffd05b;
-  outline-offset: 4px;
-  background: linear-gradient(135deg, rgba(255, 181, 75, .24), rgba(8, 18, 27, .98)) !important;
-  box-shadow: 0 0 0 5px rgba(255, 208, 91, .13), 0 0 32px rgba(255, 181, 75, .72) !important;
+  border-color: #61e5a7 !important;
+  outline: 2px solid rgba(97, 229, 167, .84);
+  outline-offset: 3px;
+  background: linear-gradient(135deg, rgba(51, 166, 112, .24), rgba(8, 18, 27, .98)) !important;
+  box-shadow: 0 0 0 5px rgba(97, 229, 167, .1), 0 0 30px rgba(69, 211, 145, .48) !important;
+  filter: none;
+  opacity: 1;
+}
+.overview .contextual-control-focus {
   animation: contextualControlFlash 1100ms ease-out 3;
 }
+.overview .contextual-control-selected::after,
 .overview .contextual-control-focus::after {
-  content: "ICI · ACTION ATTENDUE";
+  content: "CONTRÔLE SÉLECTIONNÉ";
   position: absolute;
   z-index: 5;
   top: -13px;
   right: 10px;
   padding: 3px 8px;
-  border: 1px solid #ffd05b;
+  border: 1px solid #61e5a7;
   border-radius: 4px;
-  background: #181106;
-  color: #ffe7a8;
+  background: #071b14;
+  color: #b8ffdc;
   font: 800 10px/1.2 Orbitron, sans-serif;
   letter-spacing: .08em;
   pointer-events: none;
