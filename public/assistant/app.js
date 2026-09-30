@@ -2393,7 +2393,7 @@ function contextualEndItems(entry){
 function contextualStrip(entry){
   const items=contextualEndItems(entry);if(!items.length)return'';const blocking=items.some(item=>item.blocking),optional=items.filter(item=>!item.blocking).length;
   const message=blocking?'Déplacement obligatoire à confirmer avant la fin de l’activation.':optional?`${optional} effet${optional>1?'s':''} applicable${optional>1?'s':''} à vérifier avant de terminer.`:'Aucun effet de fin d’activation en attente.';
-  return `<section class="contextual-activation-strip ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span><button type="button" class="ca-open-end" data-ca-review-end>Voir</button></section>`
+  return `<section class="contextual-activation-strip ca-end ${blocking?'is-blocking':''}" aria-label="Alertes de cette activation"><span class="ca-signal">${blocking?'!':items.length}</span><span class="ca-copy"><strong>${blocking?'ACTION OBLIGATOIRE':'FIN D’ACTIVATION'}</strong><small>${message}</small></span><button type="button" class="ca-open-end" data-ca-review-end><span class="ca-view-icon" aria-hidden="true">◉</span><span>Voir le contrôle</span></button></section>`
 }
 function contextualOverviewStack(host){
   const column=host?.querySelector('.ov-right')||host;if(!column)return null;
@@ -2530,7 +2530,7 @@ function openContextualNowDialog(entry,items){
 }
 function decorateContextualOverview(entry){
   if(!contextualActivationEnabled())return;const items=contextualNowItems(),host=root.querySelector('.overview');if(!host||!items.length)return;
-  const strip=document.createElement('section');strip.className='contextual-activation-strip ca-now';strip.innerHTML=`<span class="ca-signal">${items.length}</span><span class="ca-copy"><strong>MAINTENANT · ${ghEsc(items.map(item=>item.title).join(' · '))}</strong><small>Actions, réactions et capacités utiles pendant cette activation.</small></span><button type="button" class="ca-open-now">Voir</button>`;
+  const primary=items[0],remaining=Math.max(0,items.length-1),strip=document.createElement('section');strip.className='contextual-activation-strip ca-now';strip.innerHTML=`<span class="ca-signal">${items.length}</span><span class="ca-copy"><small>À FAIRE MAINTENANT</small><strong>${ghEsc(primary.title)}</strong><em>${remaining?`${remaining} autre${remaining>1?'s':''} action${remaining>1?'s':''} ou rappel${remaining>1?'s':''} disponible${remaining>1?'s':''}`:(primary.text||'Action disponible pendant cette activation.')}</em></span><button type="button" class="ca-open-now"><span class="ca-view-icon" aria-hidden="true">◉</span><span>Voir l’action</span></button>`;
   contextualOverviewStack(host)?.append(strip);
   strip.querySelector('.ca-open-now')?.addEventListener('click',()=>openContextualNowDialog(entry,items))
 }
@@ -2572,12 +2572,23 @@ function activationQuickDock(entry){
 }
 function arrangeCompactUnitSheet(){
   const sheet=root.querySelector('.overview.attack');if(!sheet)return;
+  const right=sheet.querySelector('.ov-right'),title=sheet.querySelector('.cx-ov-title'),cards=sheet.querySelector('.card-strip');
+  if(right&&title&&!right.contains(title))right.prepend(title);
+  if(right&&cards&&!right.contains(cards))(title&&right.contains(title)?title:right.firstElementChild)?.insertAdjacentElement('afterend',cards);
   const hero=sheet.querySelector('.hero'),state=sheet.querySelector('.unit-state-editor');
   if(hero&&state&&!hero.contains(state))hero.append(state);
-  const lifecycle=state?.querySelector('.card-lifecycle'),automations=[...sheet.querySelectorAll('.activation-automation')],lastAutomation=automations.at(-1),briefing=sheet.querySelector('.activation-briefing'),right=sheet.querySelector('.ov-right');
+  const automations=right?[...right.children].filter(child=>child.matches('.activation-automation')):[],briefing=sheet.querySelector('.activation-briefing');
+  let hub=null;
+  if(automations.length){
+    const actionable=automations.reduce((total,section)=>total+section.querySelectorAll('button:not([disabled]):not([data-kw-undo]):not([data-kw-reset])').length,0),first=automations[0];
+    hub=document.createElement('section');hub.className='activation-automation automation-hub';hub.innerHTML=`<header><strong>ACTIONS ET AUTOMATISMES</strong><small>Ouvrez uniquement si vous souhaitez consulter ou appliquer une capacité.</small></header><details class="activation-fold"><summary>Afficher les actions disponibles <em>${actionable}</em></summary><div class="automation-hub-body"></div></details>`;
+    first.insertAdjacentElement('beforebegin',hub);const body=hub.querySelector('.automation-hub-body');
+    automations.forEach(section=>{section.classList.add('automation-group');body.append(section)})
+  }
+  const lifecycle=state?.querySelector('.card-lifecycle');
   if(lifecycle){
     lifecycle.classList.add('card-lifecycle-central');
-    if(lastAutomation)lastAutomation.insertAdjacentElement('afterend',lifecycle);
+    if(hub)hub.insertAdjacentElement('afterend',lifecycle);
     else if(briefing)briefing.insertAdjacentElement('beforebegin',lifecycle);
     else right?.append(lifecycle)
   }
@@ -2588,8 +2599,6 @@ overview=function(entry,role){
   if(role==='attack'){
     arrangeCompactUnitSheet();
     root.querySelectorAll('.activation-briefing details.brief-section,.card-lifecycle,.persistent-tokens').forEach(details=>details.open=false);
-    const automation=root.querySelector('.activation-automation');
-    if(automation&&!automation.querySelector('.activation-fold')){const controls=[...automation.children].filter(child=>!child.matches('header')),fold=document.createElement('details');fold.className='activation-fold';fold.innerHTML=`<summary>Afficher les actions et automatismes <em>${automation.querySelectorAll('button:not([disabled])').length}</em></summary>`;fold.append(...controls);automation.append(fold)}
     activationQuickDock(entry)
   }else clearActivationQuickDock()
 };
