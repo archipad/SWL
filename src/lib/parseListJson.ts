@@ -99,7 +99,9 @@ export function parseArmyListJson(input: string): ParsedList | null {
     units,
     unparsedLines: [],
     listName: data.listname,
-    commandCards: data.commandCards?.length ? data.commandCards : undefined,
+    // Une main de Commandement ne contient jamais deux fois la même carte : certains exports
+    // répètent la liste (constaté le 01/10/2026 : 7 cartes dupliquées 4 fois, 28 au total).
+    commandCards: data.commandCards?.length ? [...new Set(data.commandCards)] : undefined,
     contingencies: data.contingencies?.length ? data.contingencies : undefined,
     battleForce: data.battleForce ?? undefined,
   };

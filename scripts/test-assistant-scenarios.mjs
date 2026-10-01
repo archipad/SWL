@@ -67,7 +67,7 @@ const lethalDefense = engine.applyDefense({ hit: 2, crit: 1 }, { block: 2, surge
 assert.deepEqual({ ...lethalDefense }, { converted: 2, pierceUsed: 1, blocks: 1, wounds: 2 })
 
 // Parcours 6 : Bélier ne convertit que les résultats disponibles et seulement si sa condition est remplie.
-assert.deepEqual({ ...engine.applyRam({ hit: 1, crit: 0, unusedSurge: 2 }, 3, true) }, { hit: 0, crit: 3, unusedSurge: 0, ramUsed: 3 })
-assert.deepEqual({ ...engine.applyRam({ hit: 1, crit: 0, unusedSurge: 2 }, 3, false) }, { hit: 1, crit: 0, unusedSurge: 2, ramUsed: 0 })
+assert.deepEqual({ ...engine.applyRam({ hit: 1, crit: 0, unusedSurge: 2 }, 3, true) }, { hit: 0, crit: 3, unusedSurge: 0, ramUsed: 3, ramBlankConverted: 0 })
+assert.deepEqual({ ...engine.applyRam({ hit: 1, crit: 0, unusedSurge: 2 }, 3, false) }, { hit: 1, crit: 0, unusedSurge: 2, ramUsed: 0, ramBlankConverted: 0 })
 
 console.log('Assistant scenarios: parcours attaque, moral, ralliement et multi-PV OK')

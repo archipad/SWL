@@ -229,13 +229,20 @@ try {
             if (unitHasThresholdKeyword(unit) || unitHasThresholdKeyword(target)) {
               for (const diceMode of ['max-attack', 'max-both']) {
                 if (variantsRun >= maxVariants) { say('warning', 'limite', `Plafond de ${maxVariants} variantes de dés atteint (relancez avec --max-variants pour aller plus loin)`); break }
-                if (!(await openAttackScreen(round, attackerSide, unit, defenderSide, target, true))) continue
+                // Les variantes infligent de vraies blessures maximales : sans remise en état, elles
+                // achevaient l'armée adverse dès le round 1 (puis la nôtre au retour) et toutes les
+                // attaques suivantes échouaient faute de cible ou d'attaquant. On restaure donc l'état
+                // des unités après chaque variante (constaté le 01/10/2026 sur deux listes de 1000 pts).
+                const statesBefore = evalStr('JSON.stringify(unitStates)')
+                const restoreStates = () => evalStr(`unitStates=${statesBefore};localStorage.setItem(unitStateKey,JSON.stringify(unitStates))`)
+                if (!(await openAttackScreen(round, attackerSide, unit, defenderSide, target, true))) { restoreStates(); continue }
                 const errorsBefore2 = app.errors.length
                 const variant = await autoResolveAttack(app, { weaponKey: weapon.key, diceMode })
                 variantsRun += 1
                 const newErrors2 = app.errors.slice(errorsBefore2)
                 if (newErrors2.length) { variantsWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} [${diceMode}] : ${newErrors2.join(' | ')}`) }
                 if (!variant.finished) { variantsBlocked += 1; say('error', 'blocage', `round ${round} : ${unit.name} (${weapon.name}) → ${target.name} [${diceMode}] : ${variant.stuck}`) }
+                restoreStates()
                 await resetToPicker()
               }
             }

@@ -444,6 +444,31 @@ scenario('Mots-clés sans valeur (Insensible, Agile, Profil bas, Blocage) : pris
 })
 
 /* ------------------------------------------------------------------ */
+scenario('Duels réels (audit du 01/10/2026) : Insensible, Bélier sur vierges, pions Adrénaline de défense face à Perforant, Déflexion, Blocage', async () => {
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Luke Skywalker Hero of the Rebellion', upgrades: [] }, { name: 'Tauntaun Riders', upgrades: [] }] },
+    'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Darth Vader Dark Lord of the Sith', upgrades: [] }, { name: 'Boba Fett Infamous Bounty Hunter', upgrades: [] }, { name: 'Stormtroopers', upgrades: [] }] },
+  })
+  const duel = (att, def, card, idx, range, state) => JSON.parse(app.window.eval(`attacker=entries.find(e=>e.unit.name===${JSON.stringify(att)});defender=entries.find(e=>e.unit.name===${JSON.stringify(def)});initAttack();attackState.range=${JSON.stringify(range)};attackState.selected={[norm(${JSON.stringify(card)})+':'+${idx}]:true};Object.assign(attackState,${JSON.stringify(state)});(()=>{const atk=attackResults(),d=defenseResult();return JSON.stringify({crit:atk.crit,ram:atk.ramUsed||0,pierceUsed:d.result.pierceUsed,blocks:d.result.blocks,wounds:d.result.wounds,deflexionWounds:d.deflexionWounds,defSurge:d.defenseSurge})})()`))
+  const L = 'Luke Skywalker Hero of the Rebellion', V = 'Darth Vader Dark Lord of the Sith'
+  // Insensible : Perforant 1 devrait annuler 1 blocage, il en annule un de moins (0).
+  const impervious = duel(L, 'Boba Fett Infamous Bounty Hunter', L, 0, 'melee', { roll: { hit: 3, crit: 0, surge: 0, blank: 2 }, defense: { block: 2, surge: 0, blank: 1 } })
+  assert.deepEqual([impervious.pierceUsed, impervious.blocks, impervious.wounds], [0, 2, 1], 'Insensible de Boba : ' + JSON.stringify(impervious))
+  // Bélier 1 : un jet entièrement vierge donne quand même 1 critique (« X résultats », vierges comprises).
+  const ram = duel('Tauntaun Riders', 'Stormtroopers', 'Tauntaun Riders', 0, 'melee', { roll: { hit: 0, crit: 0, surge: 0, blank: 3 }, ramEligible: true })
+  assert.deepEqual([ram.crit, ram.ram], [1, 1], 'Bélier sur un jet vierge : ' + JSON.stringify(ram))
+  // Pion Adrénaline de défense : le blocage obtenu est converti AVANT Perforant, qui peut donc l'annuler.
+  const token = duel(V, 'Stormtroopers', V, 0, 'melee', { roll: { hit: 3, crit: 0, surge: 0, blank: 3 }, defense: { block: 1, surge: 1, blank: 1 }, defenseSurgesSpent: 1, availableDefenseSurges: 1 })
+  assert.deepEqual([token.pierceUsed, token.blocks, token.wounds], [2, 0, 3], 'Perforant 3 annule aussi le blocage du pion Adrénaline : ' + JSON.stringify(token))
+  // Déflexion de Vador à distance (et Immunité : Perforant) ; Blocage de Luke au corps-à-corps après une Esquive.
+  const deflect = duel(L, V, L, 1, 2, { roll: { hit: 2, crit: 0, surge: 0, blank: 2 }, defense: { block: 1, surge: 2, blank: 0 } })
+  assert.deepEqual([deflect.blocks, deflect.wounds, deflect.deflexionWounds], [3, 0, 1], 'Déflexion : ' + JSON.stringify(deflect))
+  const block = duel(V, L, V, 0, 'melee', { roll: { hit: 4, crit: 1, surge: 0, blank: 1 }, dodges: 1, defense: { block: 2, surge: 1, blank: 1 } })
+  assert.deepEqual([block.defSurge, block.pierceUsed, block.blocks, block.wounds], ['block', 0, 3, 1], 'Blocage + Immunité : Perforant de Luke : ' + JSON.stringify(block))
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+})
+
+/* ------------------------------------------------------------------ */
 scenario('Mots-clés d’unité : pastille d’étape dans le Briefing, boutons d’application (Preste à chaque déplacement, Fiable une fois par round)', async () => {
   const app = await openAssistant({
     'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },

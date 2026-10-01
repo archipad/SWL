@@ -168,13 +168,19 @@
     return { hit: hitPool - htc, crit: Math.max(0, Number(crit) || 0) + htc, blank: availableBlank - bth };
   }
 
-  function applyRam(results, ramX, eligible) {
+  // Bélier X change « X résultats » en [CRITIQUE] : n'importe quelle face, vierges comprises. On
+  // convertit d'abord ce qui ne compte pas encore (adrénalines non converties, puis vierges), et
+  // seulement ensuite des touches -- sans les vierges, un jet entièrement vierge ne donnait aucun
+  // critique alors que la règle en accorde X.
+  function applyRam(results, ramX, eligible, blanks = 0) {
     const availableSurges = Math.max(0, Number(results.unusedSurge) || 0);
+    const availableBlanks = Math.max(0, Number(blanks) || 0);
     const availableHits = Math.max(0, Number(results.hit) || 0);
-    const converted = eligible ? clamp(ramX, 0, availableSurges + availableHits) : 0;
+    const converted = eligible ? clamp(ramX, 0, availableSurges + availableBlanks + availableHits) : 0;
     const surgeConverted = Math.min(converted, availableSurges);
-    const hitConverted = converted - surgeConverted;
-    return { ...results, hit: availableHits - hitConverted, crit: Math.max(0, Number(results.crit) || 0) + converted, unusedSurge: availableSurges - surgeConverted, ramUsed: converted };
+    const blankConverted = Math.min(converted - surgeConverted, availableBlanks);
+    const hitConverted = converted - surgeConverted - blankConverted;
+    return { ...results, hit: availableHits - hitConverted, crit: Math.max(0, Number(results.crit) || 0) + converted, unusedSurge: availableSurges - surgeConverted, ramUsed: converted, ramBlankConverted: blankConverted };
   }
 
   function applyShields(results, options) {
@@ -242,7 +248,11 @@
   function applyDefense(results, defense, options) {
     const converted = Math.max(0, Number(defense.block) || 0) +
       (options.defenseSurge === 'block' ? Math.max(0, Number(defense.surge) || 0) : 0);
-    const pierceUsed = options.pierceImmune ? 0 : Math.min(converted, Math.max(0, Number(options.pierceX) || 0));
+    // Insensible : « quand Perforant X devrait annuler 1 ou plusieurs [BLOC], annulez-en un de
+    // moins » -- on retire 1 au nombre de blocages réellement annulés, pas à la valeur de Perforant
+    // (Perforant 3 contre 1 seul blocage : 0 annulé, et non 1).
+    const wouldCancel = options.pierceImmune ? 0 : Math.min(converted, Math.max(0, Number(options.pierceX) || 0));
+    const pierceUsed = options.impervious ? Math.max(0, wouldCancel - 1) : wouldCancel;
     const blocks = Math.max(0, converted - pierceUsed);
     return { converted, pierceUsed, blocks, wounds: Math.max(0, results.hit + results.crit - blocks) };
   }

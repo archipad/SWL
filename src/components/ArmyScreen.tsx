@@ -56,7 +56,7 @@ export function ArmyScreen({
           {(list.commandCards?.length || list.contingencies?.length || list.battleForce) && (
             <p className="army-points">
               {list.battleForce ? `Force de combat : ${list.battleForce}. ` : ''}
-              {list.commandCards?.length ? `Commandement : ${list.commandCards.join(', ')}. ` : ''}
+              {list.commandCards?.length ? `Commandement : ${[...new Set(list.commandCards)].join(', ')}. ` : ''}
               {list.contingencies?.length ? `Contingences : ${list.contingencies.join(', ')}.` : ''}
             </p>
           )}

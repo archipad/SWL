@@ -177,9 +177,19 @@ const immuneDefense = engine.applyDefense(
 assert.deepEqual({ ...immuneDefense }, { converted: 2, pierceUsed: 0, blocks: 2, wounds: 1 })
 
 const ramApplied = engine.applyRam({ hit: 2, crit: 1, unusedSurge: 1 }, 2, true)
-assert.deepEqual({ ...ramApplied }, { hit: 1, crit: 3, unusedSurge: 0, ramUsed: 2 })
+assert.deepEqual({ ...ramApplied }, { hit: 1, crit: 3, unusedSurge: 0, ramUsed: 2, ramBlankConverted: 0 })
 const ramUnavailable = engine.applyRam({ hit: 2, crit: 1, unusedSurge: 1 }, 2, false)
-assert.deepEqual({ ...ramUnavailable }, { hit: 2, crit: 1, unusedSurge: 1, ramUsed: 0 })
+assert.deepEqual({ ...ramUnavailable }, { hit: 2, crit: 1, unusedSurge: 1, ramUsed: 0, ramBlankConverted: 0 })
+
+// Bélier X change « X résultats » : les vierges comptent (jet entièrement vierge -> X critiques),
+// et passent avant les touches (convertir une vierge rapporte plus que convertir une touche).
+assert.deepEqual({ ...engine.applyRam({ hit: 0, crit: 0, unusedSurge: 0 }, 1, true, 3) }, { hit: 0, crit: 1, unusedSurge: 0, ramUsed: 1, ramBlankConverted: 1 })
+assert.deepEqual({ ...engine.applyRam({ hit: 2, crit: 0, unusedSurge: 1 }, 3, true, 1) }, { hit: 1, crit: 3, unusedSurge: 0, ramUsed: 3, ramBlankConverted: 1 })
+
+// Insensible : un blocage de MOINS annulé par Perforant, pas Perforant réduit de 1.
+assert.deepEqual({ ...engine.applyDefense({ hit: 2, crit: 0 }, { block: 1, surge: 0 }, { defenseSurge: null, pierceX: 3, impervious: true }) }, { converted: 1, pierceUsed: 0, blocks: 1, wounds: 1 })
+assert.deepEqual({ ...engine.applyDefense({ hit: 3, crit: 0 }, { block: 3, surge: 0 }, { defenseSurge: null, pierceX: 2, impervious: true }) }, { converted: 3, pierceUsed: 1, blocks: 2, wounds: 1 })
+assert.deepEqual({ ...engine.applyDefense({ hit: 3, crit: 0 }, { block: 3, surge: 0 }, { defenseSurge: null, pierceX: 2, impervious: true, pierceImmune: true }) }, { converted: 3, pierceUsed: 0, blocks: 3, wounds: 0 })
 
 // Scénario complet : conversion -> couvert/esquive -> Impact/Armure -> défense/Perforant.
 const combinedConverted = engine.convertAttack({ hit: 3, crit: 1, surge: 2, blank: 0 }, 'hit', 1)
