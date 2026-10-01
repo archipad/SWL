@@ -2582,20 +2582,38 @@ function arrangeCompactUnitSheet(){
   const hero=sheet.querySelector('.hero'),state=sheet.querySelector('.unit-state-editor');
   if(hero&&state&&!hero.contains(state))hero.append(state);
   const automations=right?[...right.children].filter(child=>child.matches('.activation-automation')):[],briefing=sheet.querySelector('.activation-briefing');
-  let hub=null;
-  if(automations.length){
-    const actionable=automations.reduce((total,section)=>total+section.querySelectorAll('button:not([disabled]):not([data-kw-undo]):not([data-kw-reset])').length,0),first=automations[0];
-    hub=document.createElement('section');hub.className='activation-automation automation-hub';hub.innerHTML=`<header><strong>ACTIONS ET AUTOMATISMES</strong><small>Ouvrez uniquement si vous souhaitez consulter ou appliquer une capacité.</small></header><details class="activation-fold"><summary>Afficher les actions disponibles <em>${actionable}</em></summary><div class="automation-hub-body"></div></details>`;
-    first.insertAdjacentElement('beforebegin',hub);const body=hub.querySelector('.automation-hub-body');
-    automations.forEach(section=>{section.classList.add('automation-group');body.append(section)})
-  }
+  // Un seul cadre, TOUJOURS déplié (01/10/2026) : il était replié et se refermait à chaque
+  // re-rendu de la fiche (après chaque action appliquée). Les améliorations y sont fusionnées, un
+  // effet par ligne ; un effet ou une amélioration déjà utilisé passe en vert et se réactive par la
+  // seule icône ↩ (libellé conservé pour les lecteurs d'écran).
   const lifecycle=state?.querySelector('.card-lifecycle');
-  if(lifecycle){
-    lifecycle.classList.add('card-lifecycle-central');
-    if(hub)hub.insertAdjacentElement('afterend',lifecycle);
-    else if(briefing)briefing.insertAdjacentElement('beforebegin',lifecycle);
-    else right?.append(lifecycle)
+  let hub=null;
+  if(automations.length||lifecycle){
+    hub=document.createElement('section');hub.className='activation-automation automation-hub';
+    hub.innerHTML='<header><strong>ACTIONS, EFFETS ET AMÉLIORATIONS</strong><small>En vert : déjà utilisé. L’icône ↩ le réactive.</small></header><div class="automation-hub-body"></div>';
+    if(automations[0])automations[0].insertAdjacentElement('beforebegin',hub);else if(briefing)briefing.insertAdjacentElement('beforebegin',hub);else right?.append(hub);
+    const body=hub.querySelector('.automation-hub-body');
+    automations.forEach(section=>{section.classList.add('automation-group');body.append(section)});
+    if(lifecycle){
+      const group=document.createElement('section');group.className='activation-automation automation-group card-lifecycle card-lifecycle-central';
+      group.innerHTML='<header><strong>AMÉLIORATIONS</strong><small>Carte inclinée (↱) : redressée à la Phase Finale. Carte ✖ : supprimée de la partie.</small></header><div class="card-life-rows"></div>';
+      group.querySelector('.card-life-rows').append(...lifecycle.querySelectorAll(':scope > .card-life'));
+      lifecycle.remove();body.append(group)
+    }
+    markUsedAutomations(hub)
   }
+}
+function markUsedAutomations(hub){
+  const iconOnly=(button,label)=>{button.classList.add('reactivate-icon');button.title=label;button.setAttribute('aria-label',label);button.innerHTML='<span aria-hidden="true">↩</span><span class="sr-only">'+label+'</span>'};
+  hub.querySelectorAll('.kw-reset').forEach(reset=>{
+    const host=reset.previousElementSibling;if(!host)return;
+    const row=document.createElement('div');row.className='effect-row is-used';host.insertAdjacentElement('beforebegin',row);row.append(host,reset);
+    iconOnly(reset,'Réactiver '+(host.querySelector('b')?.textContent||'cet effet').trim().toLowerCase())
+  });
+  hub.querySelectorAll('.card-life').forEach(row=>{
+    const used=row.classList.contains('gone')||row.classList.contains('tilted');row.classList.toggle('is-used',used);
+    row.querySelectorAll('[data-card-life^="tilt:"][aria-pressed="true"],[data-card-life^="gone:"][aria-pressed="true"]').forEach(button=>iconOnly(button,button.textContent.trim()))
+  })
 }
 const overviewQuickDockBase=overview;
 overview=function(entry,role){

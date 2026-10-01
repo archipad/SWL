@@ -820,7 +820,7 @@ scenario('Alertes par étape : une synthèse ne montre que les règles de l’é
   assert.ok(app.$('.contextual-control-selected'), 'le contrôle choisi conserve un état sélectionné stable')
   app.window.eval("overview(entries.find(e=>e.unit.name==='Stormtroopers'),'attack')")
   assert.ok(app.$('.contextual-control-selected'), 'le contrôle choisi reste sélectionné après reconstruction de la fiche')
-  assert.ok(app.$('.contextual-control-selected')?.closest('.activation-fold')?.open, 'le panneau du contrôle choisi reste ouvert après synchronisation')
+  assert.ok(app.$('.contextual-control-selected')?.closest('.automation-hub') && !app.$('.automation-hub details'), 'le contrôle choisi reste visible : le cadre des actions est toujours déplié')
   await app.click('#next')
   await app.pickUnit('Soldats Rebelles')
   await app.click('[data-range="2"]')

@@ -15,7 +15,7 @@ assert.match(app.text(app.$('.aqd-tokens')), /ADRÉN/, 'le pion Adrénaline est 
 assert.ok(app.$('.hero .unit-state-editor'), 'blessures, élimination et pions persistants sont regroupés sous le portrait')
 assert.ok(app.$('.ov-right > .cx-ov-title + .card-strip'), 'les cartes suivent immédiatement le nom dans la colonne centrale')
 assert.equal(app.$$('.activation-briefing details[open]').length, 0, 'tous les groupes de mots-clés sont repliés par défaut')
-assert.ok(app.$('.activation-fold') && !app.$('.activation-fold').open, 'les automatismes restent accessibles dans un volet replié')
+assert.ok(app.$('.automation-hub-body') && !app.$('.automation-hub details'), 'les actions disponibles sont toujours déployées (plus de volet qui se replie)')
 assert.equal(app.$$('.automation-hub').length, 1, 'tous les automatismes sont réunis dans un seul volet')
 assert.equal(app.$$('.overview > .ov-col > .activation-automation').length, 1, 'aucun panneau d’automatisme concurrent ne reste ouvert dans la colonne centrale')
 assert.match(app.text(app.$('.ca-open-now')), /Voir l’action/i, 'le raccourci principal décrit clairement son action')
@@ -47,7 +47,7 @@ const boba = await openAssistant({
   'swl.list.p2.v1': { listName: 'Rébellion', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
 })
 await boba.pickUnit('Boba Fett')
-assert.ok(boba.$('.card-lifecycle-central') && !boba.$('.unit-state-editor .card-lifecycle'), 'l’état des améliorations est centralisé sous les automatismes')
+assert.ok(boba.$('.automation-hub .card-lifecycle') && !boba.$('.unit-state-editor .card-lifecycle'), 'les améliorations sont fusionnées dans le cadre des actions')
 assert.ok(boba.$('[data-activation-source="pool"]'), 'le mode d’activation est demandé sur la fiche de Boba Fett')
 await boba.click('[data-activation-source="pool"]')
 assert.ok(boba.$('[data-unit-effect="transponder-aim"]'), 'le Transpondeur est proposé dans les automatismes quand il est applicable')
@@ -59,3 +59,23 @@ assert.ok(!boba.$('[data-card-life="gone:emergency-transponder"]'),'aucun second
 assert.equal(boba.errors.length,0,boba.errors.join(' | '))
 boba.window.close()
 console.log('Assistant Table de jeu, barre rapide et contrôles physiques : OK')
+
+// Effet utilisé : ligne verte et réactivation par la seule icône ↩ (01/10/2026).
+const luke = await openAssistant({
+  'swl.list.p1.v1': { listName: 'Rébellion', faction: 'Rebelles', units: [{ name: 'Luke Skywalker Hero of the Rebellion', upgrades: [{ name: 'Burst of Speed' }, { name: 'Vigilance' }] }] },
+  'swl.list.p2.v1': { listName: 'Empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+})
+await luke.pickUnit('Luke')
+await luke.click('[data-unit-effect="burst-of-speed"]')
+luke.dismissDialogs()
+assert.ok(luke.$('.automation-hub-body') && !luke.$('.automation-hub details'), 'le cadre reste déplié après avoir appliqué un effet')
+const usedRow = luke.$('[data-unit-effect="burst-of-speed"]').closest('.effect-row')
+assert.ok(usedRow?.classList.contains('is-used'), 'l’effet utilisé est signalé (ligne verte)')
+const reactivate = usedRow.querySelector('.reactivate-icon')
+assert.equal(reactivate.querySelector('[aria-hidden]').textContent, '↩', 'la réactivation se fait par la seule icône')
+assert.ok(reactivate.getAttribute('aria-label'), 'l’icône garde un libellé accessible')
+assert.ok(luke.$('.automation-hub .card-life.is-used'), 'l’amélioration supprimée est aussi signalée en vert dans le même cadre')
+await luke.click(reactivate)
+assert.ok(!luke.$('[data-unit-effect="burst-of-speed"]').disabled, 'l’icône ↩ rend l’effet de nouveau disponible')
+assert.equal(luke.errors.length, 0, luke.errors.join(' | '))
+luke.window.close()

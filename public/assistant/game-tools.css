@@ -151,3 +151,29 @@ body.has-activation-dock #swlUpdateBanner { left:auto!important;right:14px!impor
   .aqd-now,.aqd-tokens { grid-column:1/-1; }
 }
 @media (prefers-reduced-motion:reduce){.aqd-pulse,.contextual-activation-strip.ca-now .ca-open-now{animation:none}}
+
+/* Cadre « Actions, effets et améliorations » toujours déplié (01/10/2026) : un effet par ligne,
+   vert quand l'effet ou l'amélioration est déjà utilisé, réactivation par la seule icône ↩. */
+.sr-only { position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0; }
+.automation-hub>header { padding:11px 12px 9px;border-bottom:1px solid rgba(255,181,75,.28); }
+.automation-hub .automation-group>div { grid-template-columns:minmax(0,1fr)!important;gap:7px; }
+.automation-hub .automation-group>div>button,
+.automation-hub .automation-group .kw-action>button,
+.automation-hub .effect-row>button:not(.reactivate-icon) { width:100%;min-height:48px;text-align:left; }
+.automation-hub .effect-row { display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:7px;align-items:stretch; }
+.automation-hub .effect-row>.kw-action { min-width:0; }
+.automation-hub .reactivate-icon { display:grid!important;place-items:center;width:48px;min-width:48px;min-height:48px!important;padding:0!important;border:1px solid rgba(84,220,160,.6)!important;border-radius:8px;background:rgba(32,110,76,.28)!important;color:#8ff0c2!important;font-size:20px;line-height:1; }
+.automation-hub .reactivate-icon:hover,.automation-hub .reactivate-icon:focus-visible { background:rgba(45,157,106,.45)!important;color:#effff7!important; }
+.automation-hub .effect-row.is-used>button:not(.reactivate-icon),
+.automation-hub .effect-row.is-used>.kw-action>button { opacity:1!important;border-color:rgba(84,220,160,.75)!important;background:linear-gradient(90deg,rgba(35,121,83,.42),rgba(8,32,26,.88))!important;color:#dfffee!important; }
+.automation-hub .effect-row.is-used b { color:#7fe5b7!important; }
+.automation-hub .effect-row.is-used b::before { content:"✓ ";color:#50d697; }
+.automation-hub .card-life-rows { display:grid;grid-template-columns:minmax(0,1fr);gap:7px; }
+.automation-hub .card-life { grid-template-columns:minmax(0,1fr) auto auto;min-height:48px;padding:7px 9px;border:1px solid rgba(255,180,94,.28);border-radius:8px;background:rgba(255,180,94,.04);opacity:1; }
+.automation-hub .card-life>button:not(.reactivate-icon) { min-height:44px; }
+.automation-hub .card-life.is-used { border-color:rgba(84,220,160,.75);background:linear-gradient(90deg,rgba(35,121,83,.42),rgba(8,32,26,.88)); }
+.automation-hub .card-life.is-used>span { color:#dfffee;text-decoration:none;opacity:1; }
+.automation-hub .card-life.is-used>span::before { content:"✓ ";color:#50d697;font-weight:800; }
+.automation-hub .card-life.is-used small { color:#8fdcb6; }
+.automation-hub>.automation-hub-body { grid-template-columns:minmax(0,1fr)!important; }
+.automation-hub .automation-group.card-lifecycle { display:block;margin:0!important;padding:0!important;border:0!important;border-top:1px solid rgba(255,181,75,.22)!important;border-radius:0!important;background:transparent!important; }
