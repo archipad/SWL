@@ -1090,7 +1090,9 @@ scenario('Cartes d’amélioration : ✖ (Pointe de Vitesse) supprimée pour tou
   assert.match(text(burst()), /supprime la carte/, 'Pointe de Vitesse annonce l’usage unique : ' + text(burst()))
   await click(burst()); await click($('[data-unit-effect="force-reflexes"]'))
   assert.ok(burst().disabled && reflexes().disabled, 'les deux sont appliquées')
-  assert.match(text($('.card-lifecycle')), /Supprimée/, 'le panneau des cartes indique Pointe de Vitesse supprimée')
+  assert.ok(burst().closest('.effect-row')?.classList.contains('is-used'), 'Pointe de Vitesse supprimée : sa ligne d’action passe en vert')
+  assert.equal(burst().querySelector('b').dataset.cardUse, '✖', 'l’icône ✖ (carte supprimée) est à droite du titre de l’action')
+  assert.ok(!$$('.card-life').some((row) => /Pointe de Vitesse/.test(text(row))), 'pas de doublon de Pointe de Vitesse dans un groupe Améliorations')
   assert.ok($$('.card-gone').length >= 1, 'le visuel de la carte supprimée est grisé')
   // Round suivant : la carte ↱ se redresse, la carte ✖ ne revient pas.
   app.window.localStorage.setItem('swl.game-tracker.v1', JSON.stringify({ round: 2, activatedUnitIds: [] }))
@@ -1099,7 +1101,7 @@ scenario('Cartes d’amélioration : ✖ (Pointe de Vitesse) supprimée pour tou
   assert.ok(burst().disabled, 'Pointe de Vitesse reste supprimée au round 2')
   assert.ok(!reflexes().disabled, 'Réflexes de la Force est redressée au round 2')
   // Correction d’une erreur : Restaurer.
-  await click($$('[data-card-life^="gone:"]').find((button) => /restaurer/i.test(text(button))))
+  await click('[data-kw-reset="burst-of-speed"]')
   assert.ok(!burst().disabled, 'Restaurer rend la carte de nouveau utilisable')
   // Aide contextuelle.
   assert.ok($('#helpFab') && !$('#helpFab').hidden, 'le bouton d’aide est visible')

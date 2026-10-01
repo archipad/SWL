@@ -155,7 +155,6 @@ body.has-activation-dock #swlUpdateBanner { left:auto!important;right:14px!impor
 /* Cadre « Actions, effets et améliorations » toujours déplié (01/10/2026) : un effet par ligne,
    vert quand l'effet ou l'amélioration est déjà utilisé, réactivation par la seule icône ↩. */
 .sr-only { position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0; }
-.automation-hub>header { padding:11px 12px 9px;border-bottom:1px solid rgba(255,181,75,.28); }
 .automation-hub .automation-group>div { grid-template-columns:minmax(0,1fr)!important;gap:7px; }
 .automation-hub .automation-group>div>button,
 .automation-hub .automation-group .kw-action>button,
@@ -177,3 +176,6 @@ body.has-activation-dock #swlUpdateBanner { left:auto!important;right:14px!impor
 .automation-hub .card-life.is-used small { color:#8fdcb6; }
 .automation-hub>.automation-hub-body { grid-template-columns:minmax(0,1fr)!important; }
 .automation-hub .automation-group.card-lifecycle { display:block;margin:0!important;padding:0!important;border:0!important;border-top:1px solid rgba(255,181,75,.22)!important;border-radius:0!important;background:transparent!important; }
+/* Icône d'utilisation de la carte d'amélioration à droite du titre de l'action (↱ incliner, ✖ supprimer). */
+.automation-hub .has-card-use::after { content:attr(data-card-use);display:inline-grid;place-items:center;min-width:22px;height:20px;margin-left:8px;padding:0 5px;vertical-align:middle;border:1px solid rgba(255,190,103,.7);border-radius:5px;background:rgba(255,180,94,.14);color:#ffd59b;font:800 12px/1 "Share Tech Mono",monospace;letter-spacing:0; }
+.automation-hub .is-used .has-card-use::after { border-color:rgba(84,220,160,.75);background:rgba(32,110,76,.3);color:#8ff0c2; }

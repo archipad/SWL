@@ -2574,7 +2574,7 @@ function activationQuickDock(entry){
   dock.querySelector('[data-aqd-attack]').onclick=()=>root.querySelector('#next')?.click();
   dock.querySelector('[data-aqd-finish]').onclick=()=>root.querySelector('[data-end-activation]')?.click()
 }
-function arrangeCompactUnitSheet(){
+function arrangeCompactUnitSheet(entry){
   const sheet=root.querySelector('.overview.attack');if(!sheet)return;
   const right=sheet.querySelector('.ov-right'),title=sheet.querySelector('.cx-ov-title'),cards=sheet.querySelector('.card-strip');
   if(right&&title&&!right.contains(title))right.prepend(title);
@@ -2590,25 +2590,59 @@ function arrangeCompactUnitSheet(){
   let hub=null;
   if(automations.length||lifecycle){
     hub=document.createElement('section');hub.className='activation-automation automation-hub';
-    hub.innerHTML='<header><strong>ACTIONS, EFFETS ET AMÉLIORATIONS</strong><small>En vert : déjà utilisé. L’icône ↩ le réactive.</small></header><div class="automation-hub-body"></div>';
+    hub.innerHTML='<div class="automation-hub-body"></div>';
     if(automations[0])automations[0].insertAdjacentElement('beforebegin',hub);else if(briefing)briefing.insertAdjacentElement('beforebegin',hub);else right?.append(hub);
     const body=hub.querySelector('.automation-hub-body');
     automations.forEach(section=>{section.classList.add('automation-group');body.append(section)});
+    const ups=entry?.unit?.upgrades||[],represented=markUpgradeSources(hub,ups);
     if(lifecycle){
-      const group=document.createElement('section');group.className='activation-automation automation-group card-lifecycle card-lifecycle-central';
-      group.innerHTML='<header><strong>AMÉLIORATIONS</strong><small>Carte inclinée (↱) : redressée à la Phase Finale. Carte ✖ : supprimée de la partie.</small></header><div class="card-life-rows"></div>';
-      group.querySelector('.card-life-rows').append(...lifecycle.querySelectorAll(':scope > .card-life'));
-      lifecycle.remove();body.append(group)
+      // Le groupe « Améliorations » ne garde que ce qui n'apparaît nulle part ailleurs : une carte
+      // déjà pilotée par un bouton d'action (Pointe de Vitesse, Vigilance…) s'y retrouvait en double,
+      // et une carte permanente sans bouton n'apprenait rien de plus que la bande de cartes.
+      const rows=[...lifecycle.querySelectorAll(':scope > .card-life')].filter((row,index)=>{
+        const up=ups[index];if(!up||represented.has(cardKey(up.name))||!row.querySelector('button'))return false;
+        const span=row.querySelector(':scope > span'),text=span?.firstChild;if(text?.nodeType===3){const title=document.createElement('b');title.className='card-life-title';title.textContent=text.textContent;text.replaceWith(title)}addCardUseIcon(span?.querySelector('.card-life-title'),up.name);return true
+      });
+      if(rows.length){
+        const group=document.createElement('section');group.className='activation-automation automation-group card-lifecycle card-lifecycle-central';
+        group.innerHTML='<header><strong>AMÉLIORATIONS</strong><small>Cartes sans bouton d’action ci-dessus. ↱ : s’incline, redressée à la Phase Finale. ✖ : supprimée de la partie.</small></header><div class="card-life-rows"></div>';
+        group.querySelector('.card-life-rows').append(...rows);body.append(group)
+      }
+      lifecycle.remove()
     }
-    markUsedAutomations(hub)
+    markUsedAutomations(hub);
+    if(!body.children.length)hub.remove()
   }
+}
+// Icône d'utilisation de la carte d'amélioration (↱ s'incline, ✖ se supprime), placée à droite du
+// titre de l'action qui en découle pour la repérer d'un coup d'œil.
+const CARD_USE_ICON={exhaust:['↱','La carte s’incline : redressée à la Phase Finale'],discard:['✖','La carte est supprimée de la partie'],both:['↱ ✖','La carte s’incline pour un effet, ou se supprime pour l’autre']};
+function addCardUseIcon(title,cardName){
+  // Pseudo-élément (data-card-use) plutôt qu'un nœud texte : le titre de l'action est relu par la
+  // barre rapide et le bandeau « À faire maintenant », qui afficheraient sinon « POINTE DE VITESSE✖ ».
+  const icon=CARD_USE_ICON[cardUseFor(cardName)];if(!title||!icon)return;
+  title.classList.add('has-card-use');title.dataset.cardUse=icon[0];title.title=displayName(cardName)+' · '+icon[1]
+}
+function automationSourceCard(item,ups){
+  const control=item.matches('button')?item:item.querySelector(':scope > button')||item,effectSlug=UNIT_EFFECT_CARD[control.dataset.unitEffect],def=CARD_KEYWORD_ACTIONS[control.dataset.cardAction],keys=def?.card?[].concat(def.card):[],title=norm(item.querySelector('b')?.textContent||'');
+  return ups.find(up=>(effectSlug&&(slugOf(up.name)===effectSlug||slugOf(cardKey(up.name))===effectSlug))||keys.includes(cardKey(up.name)))
+    ||ups.find(up=>{const name=norm(displayName(up.name));return name.length>3&&title.includes(name)})
+}
+function markUpgradeSources(hub,ups){
+  const represented=new Set();if(!ups.length)return represented;
+  hub.querySelectorAll('.automation-group:not(.card-lifecycle) > div > *').forEach(item=>{
+    const title=item.matches('button')?item.querySelector(':scope > b'):item.querySelector(':scope > b,:scope > button > b');if(!title)return;
+    const up=automationSourceCard(item,ups);if(!up)return;
+    represented.add(cardKey(up.name));item.dataset.sourceCard=cardKey(up.name);addCardUseIcon(title,up.name)
+  });
+  return represented
 }
 function markUsedAutomations(hub){
   const iconOnly=(button,label)=>{button.classList.add('reactivate-icon');button.title=label;button.setAttribute('aria-label',label);button.innerHTML='<span aria-hidden="true">↩</span><span class="sr-only">'+label+'</span>'};
   hub.querySelectorAll('.kw-reset').forEach(reset=>{
     const host=reset.previousElementSibling;if(!host)return;
     const row=document.createElement('div');row.className='effect-row is-used';host.insertAdjacentElement('beforebegin',row);row.append(host,reset);
-    iconOnly(reset,'Réactiver '+(host.querySelector('b')?.textContent||'cet effet').trim().toLowerCase())
+    const title=[...(host.querySelector('b')?.childNodes||[])].filter(node=>!node.classList?.contains('card-use-icon')).map(node=>node.textContent).join('').trim();iconOnly(reset,'Réactiver '+(title||'cet effet').toLowerCase())
   });
   hub.querySelectorAll('.card-life').forEach(row=>{
     const used=row.classList.contains('gone')||row.classList.contains('tilted');row.classList.toggle('is-used',used);
@@ -2619,7 +2653,7 @@ const overviewQuickDockBase=overview;
 overview=function(entry,role){
   overviewQuickDockBase(entry,role);
   if(role==='attack'){
-    arrangeCompactUnitSheet();
+    arrangeCompactUnitSheet(entry);
     root.querySelectorAll('.activation-briefing details.brief-section,.card-lifecycle,.persistent-tokens').forEach(details=>details.open=false);
     root.querySelector('.contextual-control-selected')?.closest('.activation-fold')?.setAttribute('open','');
     activationQuickDock(entry)
