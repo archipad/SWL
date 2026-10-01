@@ -81,3 +81,15 @@ await luke.click(reactivate)
 assert.ok(!luke.$('[data-unit-effect="burst-of-speed"]').disabled, 'l’icône ↩ rend l’effet de nouveau disponible')
 assert.equal(luke.errors.length, 0, luke.errors.join(' | '))
 luke.window.close()
+
+// Auto-diagnostic du site (?selfaudit=1, lancé depuis l'écran d'import) : il tournait en boucle sur
+// chaque attaque depuis les synthèses d'étape à confirmer (01/10/2026). Il doit aller au bout, OK.
+const audit = await openAssistant({
+  'swl.list.p1.v1': { listName: 'Rébellion', faction: 'Rebelles', units: [{ name: 'Luke Skywalker Hero of the Rebellion', upgrades: [] }] },
+  'swl.list.p2.v1': { listName: 'Empire', faction: 'Empire', units: [{ name: 'Scout Troopers Strike Team', upgrades: [] }] },
+}, { query: '?selfaudit=1&variants=1' })
+const auditResult = await new Promise((resolve) => { const started = Date.now(); const timer = setInterval(() => { const done = audit.$('.self-audit-ok,.self-audit-fail'); if (done || Date.now() - started > 240000) { clearInterval(timer); resolve(done) } }, 500) })
+assert.ok(auditResult, 'l’auto-diagnostic se termine')
+assert.ok(auditResult.classList.contains('self-audit-ok'), 'l’auto-diagnostic se termine sans blocage : ' + audit.text(audit.$('#selfAuditLog')).slice(-600))
+assert.match(audit.text(audit.$('#selfAuditLog')), /[1-9]\d* variante\(s\) à jet non nul rejouée\(s\), 0 blocage/, 'les variantes à dégâts réels sont rejouées')
+audit.window.close()

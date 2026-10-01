@@ -27,12 +27,12 @@ class LocalScriptsOnly extends ResourceLoader {
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 /** Charge l'Assistant dans jsdom, avec un stockage local pré-rempli (listes, états d'unités). */
-export async function openAssistant(storage = {}) {
+export async function openAssistant(storage = {}, { query = '' } = {}) {
   const errors = []
   const virtualConsole = new VirtualConsole()
   virtualConsole.on('jsdomError', (error) => errors.push(String(error.message || error)))
   const dom = new JSDOM(fs.readFileSync(path.join(assistantDir, 'index.html'), 'utf8'), {
-    url: indexUrl,
+    url: indexUrl + query,
     runScripts: 'dangerously',
     resources: new LocalScriptsOnly(),
     pretendToBeVisual: true,

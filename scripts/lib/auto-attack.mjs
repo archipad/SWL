@@ -120,6 +120,11 @@ export async function autoResolveAttack(app, opts = {}) {
     }
     if (/Contrôle de ciblage : répondez/.test(issue)) { const no = app.$$('[data-target-ask$=":no"]')[0]; if (no) { await app.click(no); continue } }
     if (/Répondez Oui ou Non/.test(issue)) {
+      // Jet vierge : Bélier convertit aussi les vierges en critiques (règle « X résultats ») -- y
+      // répondre OUI infligerait de vraies blessures et achèverait des unités au fil des rounds,
+      // contrairement à la promesse « 0 blessure » de ce mode. Les variantes le gardent à OUI.
+      const ramNo = diceMode === 'blank' && /Bélier/.test(issue) && app.$('[data-condition="ramEligible"][data-value="false"]:not(.on)')
+      if (ramNo) { await app.click(ramNo); continue }
       const pending = app.$$('[data-condition][data-value="true"]').find((button) => !button.classList.contains('on'))
       if (pending) { await app.click(pending); continue }
     }

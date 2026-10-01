@@ -44,7 +44,10 @@
     await settle()
   }
   const dismissDialogs = () => $$('dialog').forEach((dialog) => dialog.remove())
-  const nextAttack = async () => { await click('#nextAttack'); dismissDialogs(); await settle(60) }
+  // Comme scripts/lib/assistant-harness.mjs : depuis les alertes par étape, « Étape suivante » peut
+  // d'abord afficher une synthèse à confirmer (data-ca-step-continue) -- sans ce second clic, chaque
+  // attaque tournait en boucle sur la même étape (« trop d’itérations », constaté le 01/10/2026).
+  const nextAttack = async () => { await click('#nextAttack'); const contextualContinue = $('[data-ca-step-continue]:not([disabled])'); if (contextualContinue) await click(contextualContinue); dismissDialogs(); await settle(60) }
   const setValue = async (id, value) => {
     const input = document.getElementById(id)
     if (!input) throw new Error('champ introuvable : #' + id)
@@ -143,6 +146,8 @@
         return { finished: false, stuck: 'cible interdite par une règle sans bouton de déblocage : ' + issue, cardFxUsed }
       }
       if (/Contrôle de ciblage : répondez/.test(issue)) { const no = $$('[data-target-ask$=":no"]')[0]; if (no) { await click(no); continue } }
+      // Jet vierge : Bélier convertirait aussi les vierges en critiques (vraies blessures) -- NON ici, comme scripts/lib/auto-attack.mjs.
+      if (/Répondez Oui ou Non/.test(issue) && diceMode === 'blank' && /Bélier/.test(issue)) { const no = $$('[data-condition="ramEligible"][data-value="false"]:not(.on)')[0]; if (no) { await click(no); continue } }
       if (/Répondez Oui ou Non/.test(issue)) { const pending = $$('[data-condition][data-value="true"]').find((button) => !button.classList.contains('on')); if (pending) { await click(pending); continue } }
       if (/Sabre Lancé/.test(issue)) { const cancel = $('[data-card-fx-undo]'); if (cancel) { await click(cancel); continue } return { finished: false, stuck: 'Sabre Lancé : saisie de dés spécifique non pilotée par cet audit', cardFxUsed } }
       if (/jet saisi contient|réserve en contient/.test(issue)) {
@@ -258,14 +263,18 @@
               //     seule ('max-attack') puis côté défense aussi ('max-both'). ---
               if (variantsEnabled && (entryHasThresholdKeyword(entry) || entryHasThresholdKeyword(target))) {
                 for (const diceMode of ['max-attack', 'max-both']) {
+                  // Les variantes infligent de vraies blessures : l'état des unités est restauré après chacune (comme scripts/audit-list-playthrough.mjs).
+                  const statesBefore = JSON.stringify(unitStates)
+                  const restoreStates = () => { unitStates = JSON.parse(statesBefore); localStorage.setItem(unitStateKey, JSON.stringify(unitStates)) }
                   const opened = await openAttackScreen()
-                  if (!opened) { await resetToPicker(); continue }
+                  if (!opened) { restoreStates(); await resetToPicker(); continue }
                   const errorsBefore2 = errors.length
                   const variant = await autoResolveAttack({ weaponKey: weapon.key, diceMode })
                   variantsRun += 1
                   const newErrors2 = errors.slice(errorsBefore2)
                   if (newErrors2.length) { variantsWithNewErrors += 1; say('error', 'erreur', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} [${diceMode}] : ${newErrors2.join(' | ')}`) }
                   if (!variant.finished) { variantsBlocked += 1; say('error', 'blocage', `round ${round} : ${entry.unit.name} (${weapon.name}) → ${target.unit.name} [${diceMode}] : ${variant.stuck}`) }
+                  restoreStates()
                   await resetToPicker()
                 }
               }
@@ -288,10 +297,14 @@
         await click($(`.unit-tile[data-id="${entry.id}"]`))
         dismissDialogs()
         if (!$('.overview')) { await resetToPicker(); continue }
-        for (let guard = 0; guard < 15; guard += 1) {
+        // Boutons du cadre d'actions (effets d'activation, actions de mots-clés/cartes), chacun une fois -- comme scripts/audit-list-playthrough.mjs.
+        const clicked = new Set()
+        for (let guard = 0; guard < 25; guard += 1) {
           const button = $$('[data-kw-apply-action]:not([disabled])')[0] || $$('[data-card-fx]:not([disabled])')[0]
+            || $$('.automation-hub [data-unit-effect]:not([disabled]),.automation-hub [data-card-action]:not([disabled])').find((candidate) => !clicked.has(candidate.dataset.unitEffect || candidate.dataset.cardAction))
           if (!button) break
-          const label = button.dataset.kwApplyAction || button.dataset.cardFx
+          const label = button.dataset.kwApplyAction || button.dataset.cardFx || button.dataset.unitEffect || button.dataset.cardAction
+          if (button.dataset.unitEffect || button.dataset.cardAction) clicked.add(label)
           const errorsBefore = errors.length
           await click(button)
           actionsRun += 1

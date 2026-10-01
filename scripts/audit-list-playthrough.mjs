@@ -262,10 +262,17 @@ try {
     for (const unit of uniqueUnits(side.list)) {
       if (!(await clickTileById(entryIdFor(side.id, unit.name), unit.name))) continue
       if (!app.$('.overview')) { await resetToPicker(); continue }
-      for (let guard = 0; guard < 15; guard += 1) {
+      // Boutons du cadre d'actions de la fiche (effets d'activation, actions de mots-clés/cartes) :
+      // chacun est cliqué une fois -- les anciens sélecteurs seuls ne trouvaient plus rien depuis la
+      // refonte de la fiche (« 0 action(s) de fiche exercée(s) », constaté le 01/10/2026).
+      const clicked = new Set()
+      for (let guard = 0; guard < 25; guard += 1) {
         const button = app.$$('[data-kw-apply-action]:not([disabled])')[0] || app.$$('[data-card-fx]:not([disabled])')[0]
+          || app.$$('.automation-hub [data-unit-effect]:not([disabled]),.automation-hub [data-card-action]:not([disabled])').find((candidate) => !clicked.has(candidate.dataset.unitEffect || candidate.dataset.cardAction))
         if (!button) break
-        const label = button.dataset.kwApplyAction || button.dataset.cardFx
+        const label = button.dataset.kwApplyAction || button.dataset.cardFx || button.dataset.unitEffect || button.dataset.cardAction
+        if (button.dataset.unitEffect || button.dataset.cardAction) clicked.add(label)
+        if (process.env.AUDIT_DEBUG) console.log("   ", unit.name, "→", label)
         const errorsBefore = app.errors.length
         await app.click(button)
         actionsRun += 1
