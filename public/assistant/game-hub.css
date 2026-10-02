@@ -139,3 +139,5 @@
 @media (max-width: 620px) { .topbar-status .rs-left { max-width: 9.5em; white-space: normal; line-height: 1.05; font-size: .8rem; } }
 #siteHome::before, #phoneCompanion::before { width: 24px; height: 24px; }
 .topbar #roundPhases, .topbar .tracker-shortcut { font-size: .95rem !important; min-height: 44px; padding-block: 6px; }
+/* Carte générique sans visuel fourni (Embuscade, Poussée, Assaut) : le nom tient lieu d'image, au même format. */
+.gh-card-pick .gh-card-noimage { display:grid;place-items:center;width:100%;aspect-ratio:363/520;padding:10px;box-sizing:border-box;border:1px dashed rgba(127,224,255,.45);border-radius:4px;background:rgba(0,0,0,.4);color:#d9f4ff;font:800 14px/1.2 Orbitron,sans-serif;text-align:center; }

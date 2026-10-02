@@ -56,7 +56,19 @@ try {
 
   assert.equal(commandCardById('ordres-permanents')?.pip, 4)
 
-  console.log(`Cartes de Commandement OK : ${COMMAND_CARDS.length} cartes (${rebel.length} Alliance Rebelle, ${empire.length} Empire Galactique, 1 générique), règle de suite vérifiée.`)
+  // Mains réelles importées depuis Tabletop Admiral (02/10/2026) : elles doivent pouvoir être
+  // construites. Maître du Mal était saisi à 2 PIP (3 sur le visuel) et Ambush/Push manquaient, ce
+  // qui rendait les deux suites impossibles à compléter. scripts/tools/check-command-pips.py
+  // recompte les PIP sur les visuels.
+  const generic = COMMAND_CARDS.filter((c) => c.faction === 'generique')
+  assert.deepEqual(generic.map((c) => `${c.id}:${c.pip}`).sort(), ['assaut:3', 'embuscade:1', 'ordres-permanents:4', 'poussee:2'])
+  const empireHand = ['ordres-permanents', 'tirs-coordonnes', 'maitre-du-mal', 'impitoyable', 'embuscade', 'la-peur-et-les-hommes-morts', 'nouvelle-technique-de-motivation']
+  const rebelHand = ['ordres-permanents', 'sabotage-des-communications', 'fils-de-skywalker', 'poussee', 'mon-alliee-est-la-force', 'tirs-de-couverture', 'le-retour-du-jedi']
+  assert.ok(suiteIsComplete(empireHand), 'la main Empire (Vador) se construit : ' + JSON.stringify(suitePipCounts(empireHand)))
+  assert.ok(suiteIsComplete(rebelHand), 'la main Rebelle (Luke) se construit : ' + JSON.stringify(suitePipCounts(rebelHand)))
+  for (const [id, pip] of Object.entries({ 'maitre-du-mal': 3, 'les-tenebres-nous-envahissent': 3, 'je-me-fiche-de-vos-inquietudes': 3, 'tu-caches-mal-ta-peur': 3, 'inattendu-mais-bienvenu': 2, 'un-as-dans-la-manche': 1 })) assert.equal(commandCardById(id)?.pip, pip, `${id} : ${pip} PIP sur le visuel`)
+
+  console.log(`Cartes de Commandement OK : ${COMMAND_CARDS.length} cartes (${rebel.length} Alliance Rebelle, ${empire.length} Empire Galactique, ${generic.length} génériques), règle de suite vérifiée.`)
 } finally {
   await vite.close()
 }

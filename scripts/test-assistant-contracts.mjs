@@ -628,7 +628,7 @@ const tsIds = [...commandCardsTs.matchAll(/^\s*id: '([a-z0-9-]+)'/gm)].map((matc
 const jsIds = [...commandCardsJs.matchAll(/"id":"([a-z0-9-]+)"/g)].map((match) => match[1])
 assert.ok(tsIds.length > 40, 'src/data/commandCards.ts doit exposer les cartes de Commandement')
 assert.deepEqual(jsIds, tsIds, 'public/assistant/command-cards.js doit rester synchronisé avec src/data/commandCards.ts (relancer scripts/generate-assistant-command-cards.cjs)')
-assert.match(index, /command-cards\.js\?v=1/, 'index.html doit charger command-cards.js avant app.js')
+assert.match(index, /command-cards\.js\?v=2/, 'index.html doit charger command-cards.js avant app.js')
 assert.match(app, /const trackerKey='swl\.game-tracker\.v1'/, 'La page Partie doit lire et écrire le même suivi que l’appli principale')
 
 // Couverture visuelle complète : le registre couvre toutes les illustrations

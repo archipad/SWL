@@ -37,6 +37,20 @@ export const COMMAND_CARDS: CommandCard[] = [
     id: 'ordres-permanents', name: 'Ordres Permanents', pip: 4, faction: 'generique',
     requirement: 'Toujours disponible (carte generique du livret de regles)', image: `${BASE}ordres-permanents.jpg`,
   },
+  // Cartes génériques du livret de règles (sans visuel fourni) : Ambush, Push et Assault figurent
+  // dans les exports Tabletop Admiral et complètent une main de 7 cartes (ajoutées le 02/10/2026).
+  {
+    id: 'embuscade', name: 'Embuscade', pip: 1, faction: 'generique',
+    requirement: 'Carte générique (Ambush) : toutes factions',
+  },
+  {
+    id: 'poussee', name: 'Poussée', pip: 2, faction: 'generique',
+    requirement: 'Carte générique (Push) : toutes factions',
+  },
+  {
+    id: 'assaut', name: 'Assaut', pip: 3, faction: 'generique',
+    requirement: 'Carte générique (Assault) : toutes factions',
+  },
   {
     id: 'sabotage-des-communications', name: 'Sabotage des Communications', pip: 1, faction: 'rebelles',
     requirement: 'Alliance Rebelle', image: `${BASE}sabotage-des-communications.jpg`,
@@ -198,7 +212,7 @@ export const COMMAND_CARDS: CommandCard[] = [
     requirement: 'Lando Calrissian', image: `${BASE}spike-corellien.jpg`,
   },
   {
-    id: 'un-as-dans-la-manche', name: 'Un As dans la Manche', pip: 2, faction: 'rebelles',
+    id: 'un-as-dans-la-manche', name: 'Un As dans la Manche', pip: 1, faction: 'rebelles',
     requirement: 'Lando Calrissian', image: `${BASE}un-as-dans-la-manche.jpg`,
   },
   {
@@ -222,15 +236,15 @@ export const COMMAND_CARDS: CommandCard[] = [
     requirement: 'La Septième Sœur', image: `${BASE}viens-donc-le-prouver.jpg`,
   },
   {
-    id: 'tu-caches-mal-ta-peur', name: 'Tu Caches Mal ta Peur', pip: 2, faction: 'empire',
+    id: 'tu-caches-mal-ta-peur', name: 'Tu Caches Mal ta Peur', pip: 3, faction: 'empire',
     requirement: 'La Septième Sœur', image: `${BASE}tu-caches-mal-ta-peur.jpg`,
   },
   {
-    id: 'inattendu-mais-bienvenu', name: 'Inattendu, Mais Bienvenu !', pip: 3, faction: 'empire',
+    id: 'inattendu-mais-bienvenu', name: 'Inattendu, Mais Bienvenu !', pip: 2, faction: 'empire',
     requirement: 'La Septième Sœur', image: `${BASE}inattendu-mais-bienvenu.jpg`,
   },
   {
-    id: 'je-me-fiche-de-vos-inquietudes', name: 'Je me Fiche de vos Inquiétudes', pip: 1, faction: 'empire',
+    id: 'je-me-fiche-de-vos-inquietudes', name: 'Je me Fiche de vos Inquiétudes', pip: 3, faction: 'empire',
     requirement: 'Le Cinquième Frère', image: `${BASE}je-me-fiche-de-vos-inquietudes.jpg`,
   },
   {
@@ -290,11 +304,11 @@ export const COMMAND_CARDS: CommandCard[] = [
     requirement: 'Dark Vador', image: `${BASE}la-peur-et-les-hommes-morts.jpg`,
   },
   {
-    id: 'les-tenebres-nous-envahissent', name: 'Les Ténèbres nous Envahissent', pip: 1, faction: 'empire',
+    id: 'les-tenebres-nous-envahissent', name: 'Les Ténèbres nous Envahissent', pip: 3, faction: 'empire',
     requirement: 'Dark Vador', image: `${BASE}les-tenebres-nous-envahissent.jpg`,
   },
   {
-    id: 'maitre-du-mal', name: 'Maître du Mal', pip: 2, faction: 'empire',
+    id: 'maitre-du-mal', name: 'Maître du Mal', pip: 3, faction: 'empire',
     requirement: 'Dark Vador', image: `${BASE}maitre-du-mal.jpg`,
   },
   {
