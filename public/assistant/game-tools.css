@@ -179,3 +179,14 @@ body.has-activation-dock #swlUpdateBanner { left:auto!important;right:14px!impor
 /* Icône d'utilisation de la carte d'amélioration à droite du titre de l'action (↱ incliner, ✖ supprimer). */
 .automation-hub .has-card-use::after { content:attr(data-card-use);display:inline-grid;place-items:center;min-width:22px;height:20px;margin-left:8px;padding:0 5px;vertical-align:middle;border:1px solid rgba(255,190,103,.7);border-radius:5px;background:rgba(255,180,94,.14);color:#ffd59b;font:800 12px/1 "Share Tech Mono",monospace;letter-spacing:0; }
 .automation-hub .is-used .has-card-use::after { border-color:rgba(84,220,160,.75);background:rgba(32,110,76,.3);color:#8ff0c2; }
+
+/* Bouton « ← Unités » de la barre rapide (03/10/2026) : retour à la liste des unités, à côté
+   d'Attaquer et Terminer l'activation. */
+.activation-quick-dock { grid-template-columns:minmax(220px,1fr) auto auto auto auto; }
+.activation-quick-dock .aqd-back { white-space:nowrap; }
+@media (max-width:1050px) and (orientation:landscape) {
+  .activation-quick-dock { grid-template-columns:minmax(170px,1fr) auto auto auto; }
+}
+@media (max-width:760px) {
+  .activation-quick-dock { grid-template-columns:auto 1fr 1fr; }
+}

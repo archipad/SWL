@@ -93,3 +93,30 @@ assert.ok(auditResult, 'l’auto-diagnostic se termine')
 assert.ok(auditResult.classList.contains('self-audit-ok'), 'l’auto-diagnostic se termine sans blocage : ' + audit.text(audit.$('#selfAuditLog')).slice(-600))
 assert.match(audit.text(audit.$('#selfAuditLog')), /[1-9]\d* variante\(s\) à jet non nul rejouée\(s\), 0 blocage/, 'les variantes à dégâts réels sont rejouées')
 audit.window.close()
+
+// Volet déplié par le joueur : il reste ouvert quand la synchro (toutes les 5 s) redessine la fiche,
+// et la barre rapide propose un retour à la liste des unités (03/10/2026).
+const folds = await openAssistant({
+  'swl.list.p1.v1': { listName: 'Rébellion', faction: 'Rebelles', units: [{ name: 'Luke Skywalker Hero of the Rebellion', upgrades: [] }, { name: 'Rebel Troopers', upgrades: [] }] },
+  'swl.list.p2.v1': { listName: 'Empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+})
+await folds.pickUnit('Luke')
+const firstFold = () => folds.$('.activation-briefing details.brief-section')
+assert.ok(firstFold() && !firstFold().open, 'les volets du Briefing sont repliés par défaut')
+const foldTitle = folds.text(firstFold().querySelector('summary small'))
+await folds.click(firstFold().querySelector('summary'))
+assert.ok(firstFold().open, 'le volet se déplie au toucher')
+folds.window.eval("overview(entries.find(e=>e.unit.name==='Luke Skywalker Hero of the Rebellion'),'attack')")
+await folds.settle()
+const reopened = folds.$$('.activation-briefing details.brief-section').find((details) => folds.text(details.querySelector('summary small')) === foldTitle)
+assert.ok(reopened?.open, 'le volet déplié reste ouvert après la reconstruction de la fiche (synchro)')
+await folds.click(reopened.querySelector('summary'))
+folds.window.eval("overview(entries.find(e=>e.unit.name==='Luke Skywalker Hero of the Rebellion'),'attack')")
+await folds.settle()
+assert.ok(!folds.$$('.activation-briefing details.brief-section').find((details) => folds.text(details.querySelector('summary small')) === foldTitle)?.open, 'un volet replié par le joueur reste replié')
+const back = folds.$('[data-aqd-back]')
+assert.ok(back, 'la barre rapide propose un bouton de retour')
+await folds.click(back)
+assert.ok(folds.$('.unit-tile') && !folds.$('.overview.attack'), 'le bouton de retour ramène à la liste des unités')
+assert.equal(folds.errors.length, 0, folds.errors.join(' | '))
+folds.window.close()

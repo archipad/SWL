@@ -2567,10 +2567,11 @@ function activationQuickDock(entry){
   const state=stateFor(entry),endItems=contextualEndItems(entry),nowItems=contextualNowItems(),expected=endItems[0]||nowItems[0],dock=document.createElement('aside');
   dock.className='activation-quick-dock';dock.setAttribute('aria-label','Commandes rapides de l’activation');
   const tokens=[['aim','VISER'],['dodge','ESQUIVE'],['surge','ADRÉN.'],['suppression','SUPPR.']];
-  dock.innerHTML=`<span class="aqd-now"><i class="aqd-pulse" aria-hidden="true">${endItems.length?'!':'✓'}</i><span><small>ACTION ATTENDUE MAINTENANT</small><b>${ghEsc(expected?.title||'Aucune action spéciale')}</b>${expected?'<button type="button" data-aqd-see>Voir le contrôle</button>':''}</span></span><span class="aqd-tokens">${tokens.map(([field,label])=>`<span class="aqd-token"><small>${label}</small><b>${Number(state[field])||0}</b><button type="button" class="secondary" data-aqd-token="${field}">− / +</button></span>`).join('')}</span><button type="button" class="secondary" data-aqd-attack>Attaquer</button><button type="button" class="primary" data-aqd-finish>Terminer l’activation</button>`;
+  dock.innerHTML=`<span class="aqd-now"><i class="aqd-pulse" aria-hidden="true">${endItems.length?'!':'✓'}</i><span><small>ACTION ATTENDUE MAINTENANT</small><b>${ghEsc(expected?.title||'Aucune action spéciale')}</b>${expected?'<button type="button" data-aqd-see>Voir le contrôle</button>':''}</span></span><span class="aqd-tokens">${tokens.map(([field,label])=>`<span class="aqd-token"><small>${label}</small><b>${Number(state[field])||0}</b><button type="button" class="secondary" data-aqd-token="${field}">− / +</button></span>`).join('')}</span><button type="button" class="secondary aqd-back" data-aqd-back aria-label="Retour à la liste des unités" title="Retour à la liste des unités">← Unités</button><button type="button" class="secondary" data-aqd-attack>Attaquer</button><button type="button" class="primary" data-aqd-finish>Terminer l’activation</button>`;
   document.body.append(dock);document.body.classList.add('has-activation-dock');
   dock.querySelector('[data-aqd-see]')?.addEventListener('click',()=>{const button=endItems.length?root.querySelector('.ca-open-end'):root.querySelector('.ca-open-now');button?.click()});
   dock.querySelectorAll('[data-aqd-token]').forEach(button=>button.onclick=()=>{const field=button.dataset.aqdToken,current=Number(stateFor(entry)[field])||0,label={aim:'VISER',dodge:'ESQUIVE',surge:'ADRÉNALINE',suppression:'SUPPRESSION'}[field]||field.toUpperCase(),dialog=document.createElement('dialog');dialog.className='ca-dialog';dialog.innerHTML=`<header><small>${ghEsc(entryName(entry))}</small><h2>${label}</h2></header><div class="ca-list"><div class="state-counter"><button type="button" data-value="${Math.max(0,current-1)}">−</button><strong>${current}</strong><button type="button" data-value="${current+1}">+</button></div></div><footer><button type="button" class="secondary" data-close>Fermer</button></footer>`;document.body.append(dialog);dialog.showModal();dialog.querySelectorAll('[data-value]').forEach(control=>control.onclick=()=>{updateUnitState(entry,{[field]:Number(control.dataset.value)});closeContextualDialog(dialog);overview(entry,'attack')});dialog.querySelector('[data-close]').onclick=()=>closeContextualDialog(dialog)});
+  dock.querySelector('[data-aqd-back]').onclick=()=>root.querySelector('#back')?.click();
   dock.querySelector('[data-aqd-attack]').onclick=()=>root.querySelector('#next')?.click();
   dock.querySelector('[data-aqd-finish]').onclick=()=>root.querySelector('[data-end-activation]')?.click()
 }
@@ -2649,15 +2650,24 @@ function markUsedAutomations(hub){
     row.querySelectorAll('[data-card-life^="tilt:"][aria-pressed="true"],[data-card-life^="gone:"][aria-pressed="true"]').forEach(button=>iconOnly(button,button.textContent.trim()))
   })
 }
+// Volets de la fiche (mots-clés du Briefing, pions persistants…) dépliés ou repliés par le joueur :
+// mémorisés par unité et rétablis à chaque reconstruction de la fiche. La synchro des états (toutes
+// les 5 s) redessine la fiche, ce qui repliait le volet ouvert au bout de quelques secondes (03/10/2026).
+const sheetFoldMemory=new Map();let sheetFoldScope='';
+const sheetFoldKey=details=>{const summary=details.querySelector(':scope > summary');if(!summary)return'';return((summary.querySelector('small,strong')||summary).textContent||'').replace(/\d+/g,'').replace(/\s+/g,' ').trim()};
+root.addEventListener('click',event=>{const details=event.target.closest?.('summary')?.parentElement;if(!details||details.tagName!=='DETAILS'||!sheetFoldScope||!details.closest('.overview'))return;setTimeout(()=>{const key=sheetFoldKey(details);if(!key)return;const memory=sheetFoldMemory.get(sheetFoldScope)||new Map();memory.set(key,details.open);sheetFoldMemory.set(sheetFoldScope,memory)},0)});
+function restoreSheetFolds(){const memory=sheetFoldMemory.get(sheetFoldScope);if(!memory)return;root.querySelectorAll('.overview details').forEach(details=>{const key=sheetFoldKey(details);if(memory.has(key))details.open=memory.get(key)})}
 const overviewQuickDockBase=overview;
 overview=function(entry,role){
   overviewQuickDockBase(entry,role);
+  sheetFoldScope=entry?(role+':'+entry.id):'';
   if(role==='attack'){
     arrangeCompactUnitSheet(entry);
     root.querySelectorAll('.activation-briefing details.brief-section,.card-lifecycle,.persistent-tokens').forEach(details=>details.open=false);
     root.querySelector('.contextual-control-selected')?.closest('.activation-fold')?.setAttribute('open','');
+    restoreSheetFolds();
     activationQuickDock(entry)
-  }else clearActivationQuickDock()
+  }else{restoreSheetFolds();clearActivationQuickDock()}
 };
 new MutationObserver(()=>{if(!root.querySelector('.overview.attack'))clearActivationQuickDock()}).observe(root,{childList:true});
 
