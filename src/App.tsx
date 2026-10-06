@@ -16,11 +16,12 @@ const GameTrackerScreen = lazy(() => import('./components/GameTrackerScreen').th
 const CommandCardsScreen = lazy(() => import('./components/CommandCardsScreen').then((module) => ({ default: module.CommandCardsScreen })));
 const LibraryScreen = lazy(() => import('./components/LibraryScreen').then((module) => ({ default: module.LibraryScreen })));
 const CheatSheetScreen = lazy(() => import('./components/CheatSheetScreen').then((module) => ({ default: module.CheatSheetScreen })));
+const CardBrowserScreen = lazy(() => import('./components/CardBrowserScreen').then((module) => ({ default: module.CardBrowserScreen })));
 const PrintCardsScreen = lazy(() => import('./components/PrintCardsScreen').then((module) => ({ default: module.PrintCardsScreen })));
 
 type ThemeId = 'imperial' | 'rebel';
 type ThemePref = 'auto' | ThemeId;
-type Page = 'setup' | 'army' | 'game' | 'commands' | 'library' | 'cheatsheet' | 'print-cards';
+type Page = 'setup' | 'army' | 'game' | 'commands' | 'library' | 'cards' | 'cheatsheet' | 'print-cards';
 type PlayerId = 'p1' | 'p2';
 
 const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
@@ -37,20 +38,21 @@ const NAV_IGNITE_MS = 460;
    - Gestion Armée : listes, armées, impression des cartes ;
    - Partie : suivi de partie, cartes de Commandement, pense-bête, et le
      raccourci vers l'Assistant d'unité (page autonome, lien externe) ;
-   - Glossaire : bibliothèque des mots-clés. */
+   - Glossaire : consultation de toutes les cartes et bibliothèque des mots-clés. */
 const PAGE_META: Record<Page, { label: string; icon: CxIconName }> = {
   setup: { label: 'Listes', icon: 'army' },
   army: { label: 'Armées', icon: 'units' },
   game: { label: 'Suivi de partie', icon: 'mission' },
   commands: { label: 'Cartes de Commandement', icon: 'strategy' },
   library: { label: 'Glossaire complet', icon: 'rules' },
+  cards: { label: 'Consultation des cartes', icon: 'search' },
   cheatsheet: { label: 'Pense-bête', icon: 'info' },
   'print-cards': { label: 'Imprimer des cartes', icon: 'dice' },
 };
 const SECTIONS: { id: string; label: string; icon: CxIconName; pages: Page[] }[] = [
   { id: 'armees', label: 'Gestion Armée', icon: 'army', pages: ['setup', 'army', 'print-cards'] },
   { id: 'partie', label: 'Partie', icon: 'mission', pages: ['game', 'commands', 'cheatsheet'] },
-  { id: 'glossaire', label: 'Glossaire', icon: 'search', pages: ['library'] },
+  { id: 'glossaire', label: 'Glossaire', icon: 'search', pages: ['cards', 'library'] },
 ];
 const NEEDS_LISTS: Page[] = ['army', 'game', 'commands'];
 
@@ -78,6 +80,7 @@ export default function App() {
       '#suivi-partie': 'game',
       '#commandement': 'commands',
       '#glossaire': 'library',
+      '#cartes': 'cards',
       '#pense-bete': 'cheatsheet',
       '#imprimer': 'print-cards',
     };
@@ -166,6 +169,8 @@ export default function App() {
     content = <CheatSheetScreen />;
   } else if (page === 'print-cards') {
     content = <PrintCardsScreen />;
+  } else if (page === 'cards') {
+    content = <CardBrowserScreen tagLibrary={tagLibrary} keywords={keywords} />;
   } else if (page === 'library') {
     content = (
       <LibraryScreen
