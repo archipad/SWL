@@ -108,6 +108,12 @@ for(const card of newCards){
     if(!Number.isInteger(baseModels)||baseModels<1||baseModels>30)throw new Error(`Nombre de figurines invalide pour ${card.key}`)
   }
   if(card.addedModels!==undefined&&(!Number.isInteger(card.addedModels)||card.addedModels<0||card.addedModels>30))throw new Error(`Figurines ajoutées invalides pour ${card.key}`)
+  if(card.translationProof){
+    const proof=card.translationProof
+    if(proof.schemaVersion!==1||typeof proof.englishTitle!=='string'||!proof.englishTitle.trim()||typeof proof.frenchText!=='string'||!proof.frenchText.trim())throw new Error(`Preuve de traduction invalide pour ${card.key}`)
+    if(proof.sourceUrl&&(!/^https:\/\//.test(proof.sourceUrl)||proof.sourceUrl.length>500))throw new Error(`Source anglaise invalide pour ${card.key}`)
+    if(typeof proof.glossaryVersion!=='string'||typeof proof.verifiedAt!=='string')throw new Error(`Traçabilité de traduction manquante pour ${card.key}`)
+  }
   if(!card.imageMarker||!/^IMG-\d+$/.test(card.imageMarker))throw new Error(`Repère d'image manquant ou invalide pour ${card.key}`)
   // Le visuel est collé dans le corps de l'issue juste après une ligne
   // contenant son repère (ex. « IMG-1 ») -- voir la marche à suivre
@@ -155,6 +161,7 @@ if(newCards.length){
       ...(card.unitStats?{unitStats:card.unitStats}:{}),
       ...(card.addedModels!==undefined?{addedModels:card.addedModels}:{}),
       ...(card.addedModelWounds!==undefined?{addedModelWounds:card.addedModelWounds}:{}),
+      ...(card.translationProof?{translationProof:card.translationProof}:{}),
       verificationSource:'Certification visuelle centralisée GitHub (nouvelle carte)',
       addedAt:new Date().toISOString().slice(0,10),
     }

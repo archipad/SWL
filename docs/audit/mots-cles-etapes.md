@@ -22,7 +22,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Opérationnel X | Actions de carte | auto | 1 |
 | Pions Bane (Cad Bane) | Actions de carte | auto | 0 |
 | Réparation X : Capacité Y | Actions de carte | auto | 4 |
-| Stratège X | Actions de carte | auto | 0 |
+| Stratège X | Actions de carte | auto | 1 |
 | Tirer les Ficelles | Actions de carte | auto | 0 |
 | Traiter X : Capacité Y | Actions de carte | auto | 2 |
 | Vivacité d'Esprit | Actions de carte | auto | 1 |
@@ -46,10 +46,10 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Débordement | Attaque | moteur (automatique) | 3 |
 | Déflagration | Attaque | moteur (automatique) | 20 |
 | Dispersion | Attaque | moteur (automatique) | 2 |
-| Duelliste | Attaque | moteur (automatique) | 3 |
+| Duelliste | Attaque | moteur (automatique) | 4 |
 | Encombrant | Attaque | moteur (automatique) | 5 |
 | Équipe Sniper | Attaque | moteur (assisté) | 2 |
-| Exemplaire | Attaque | moteur (assisté) | 3 |
+| Exemplaire | Attaque | moteur (assisté) | 4 |
 | Explosion X : Type de Charge | Attaque | moteur (assisté) | 0 |
 | Fixe : Avant/Arrière/Flancs | Attaque | moteur (automatique) | 25 |
 | Haute Vélocité | Attaque | moteur (automatique) | 8 |
@@ -143,7 +143,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Speeder X | Déplacement | auto | 4 |
 | Stationnaire | Déplacement | regle | 1 |
 | Sustentation : Terrestre/Aérienne X | Déplacement | regle | 2 |
-| Tacticien X | Déplacement | auto | 8 |
+| Tacticien X | Déplacement | auto | 9 |
 | Véhicule Grimpant | Déplacement | regle | 2 |
 | Alourdi | Effets permanents | regle | 0 |
 | Chef | Effets permanents | rappel | 12 |
@@ -190,9 +190,9 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Inarrêtable | Phase de Commandement | auto | 1 |
 | Interrogatoire | Phase de Commandement | auto | 2 |
 | Longueur d'Avance | Phase de Commandement | auto | 1 |
-| Malin | Phase de Commandement | auto | 1 |
+| Malin | Phase de Commandement | auto | 2 |
 | Mission Secrète | Phase de Commandement | auto | 2 |
-| Ordre Direct : Nom/Type d'Unité | Phase de Commandement | auto | 2 |
+| Ordre Direct : Nom/Type d'Unité | Phase de Commandement | auto | 3 |
 | Générateur X | Phase Finale | auto | 0 |
 | Permanent | Phase Finale | rappel | 0 |
 | Renforts | Phase Finale | auto | 1 |

@@ -80,5 +80,6 @@ window.SWL_CODEX_PORTRAITS={
   "wookiee warriors kashyyyk resistance": "catalog-guerriers-wookies-resistance.webp",
   "mandalorian resistance": "catalog-resistance-mandalorienne.webp",
   "grogu": "../cards/grogu.jpg",
-  "omega": "../cards/omega.jpg"
+  "omega": "../cards/omega.jpg",
+  "grand admiral thrawn imperial high command": "../cards/grand-admiral-thrawn-fr-community.png"
 };

@@ -1,0 +1,890 @@
+{
+  "schemaVersion": 1,
+  "source": "Index de traduction Star Wars Légion V2.6.xlsx",
+  "updatedAt": "2026-05-08",
+  "gameTerms": {
+    "ACTIONS": "ACTIONS",
+    "ACTIVATION PHASE": "PHASE D'ACTIVATION",
+    "ADVANTAGE CARDS": "CARTES AVANTAGE",
+    "AFFILIATIONS": "AFFILIATIONS",
+    "AIM": "VISER",
+    "AREA RANGE": "EFFET DE ZONE",
+    "AREA TERRAIN": "TERRAIN EN ZONE",
+    "ASSET TOKENS": "PIONS ATOUT",
+    "ATTACK": "ATTAQUER",
+    "ATTACK POOL": "RÉSERVE D'ATTAQUE",
+    "BACK UP": "PRÊTER MAIN FORTE",
+    "BARRICADES": "BARRICADES",
+    "BASE CONTACT": "SOCLES AU CONTACT",
+    "BASES": "SOCLES",
+    "BATTLE CARDS": "CARTES BATAILLE",
+    "BATTLE FORCES": "FORCES ARMÉES",
+    "BATTLEFIELD": "CHAMP DE BATAILLE",
+    "BLOCKED (LINE OF SIGHT)": "BLOQUÉE (LIGNE DE VUE)",
+    "BUILD AN ARMY": "CRÉER SON ARMÉE",
+    "BUILDING A BATTLE DECK": "CRÉER SON PAQUET BATAILLE",
+    "BUILDING A COMMAND HAND": "CRÉER SA MAIN DE COMMANDEMENT",
+    "BUILDING A MISSION": "PRÉPARER LA MISSION",
+    "CARD ACTIONS": "ACTIONS DE CARTE",
+    "CARDS EFFECTS": "EFFETS DE CARTE",
+    "CHARGE TOKENS": "PIONS CHARGE",
+    "CLAIM": "REVENDIQUER",
+    "CLIMBING": "GRIMPER",
+    "CLONE TROOPER": "SOLDAT CLONE",
+    "COHESION": "COHÉSION",
+    "COMMAND CARDS": "CARTES DE COMMANDEMENT",
+    "COMMAND PHASE": "PHASE DE COMMANDEMENT",
+    "COMMANDER": "COMMANDANT",
+    "COMPLETELY WITHIN (RANGE)": "INTÉGRALEMENT À (PORTÉE)",
+    "COMPULSORY MOVE": "DÉPLACEMENT OBLIGATOIRE",
+    "CORPS": "TROUPIERS",
+    "COURAGE": "COURAGE",
+    "COVER": "COUVERT",
+    "CREATE THE PASS POOL": "CONSTITUER LA RÉSERVE PASSER",
+    "CREATURE TROOPER": "SOLDAT CRÉATURE",
+    "DAMAGE": "ENDOMMAGÉ",
+    "DEFEATED": "VAINCU",
+    "DEPLOY IN PREPARED POSITION": "SE DÉPLOYER SUR LES POSITIONS PRÉPARÉES",
+    "DEPLOYING UNITS": "DÉPLOYER DES UNITÉS",
+    "DETERMINE BLUE PLAYER": "DÉTERMINER LE JOUEUR BLEU",
+    "DETONATE": "EXPLOSER",
+    "DICE": "DÉS",
+    "DICFFICULT TERRAIN": "TERRAIN DIFFICILE",
+    "DODGE": "ESQUIVER",
+    "DROID TROOPER": "SOLDAT DROÏDE",
+    "DROP": "DÉPOSER",
+    "DUAL SIDED UPGRADE CARDS": "CARTES AMÉLIORATION À DOUBLE FACE",
+    "EMPLACEMENT TROOPER": "SOLDAT EN POSITION",
+    "END PHASE": "PHASE FINALE",
+    "ENGAGED": "ENGAGÉ",
+    "EXHAUST": "INCLINER",
+    "EXPEND": "ÉPUISER",
+    "FACTIONS": "FACTIONS",
+    "FITTING ON TERRAIN": "PLACEMENT SUR LES ÉLÉMENTS DE TERRAIN",
+    "FREE CARD ACTIONS": "ACTIONS DE CARTE GRATUITES",
+    "FRIENDLY/ENEMY": "ALLIÉ/ENNEMI",
+    "GAME EFFECTS": "EFFETS DE JEU",
+    "GENERIC TOKENS": "N/A",
+    "GOLDEN RULE OF TERRAIN": "LA RÈGLE D'OR DES TERRAINS",
+    "GROUND VEHICLES": "VÉHICULES TERRESTRES",
+    "HEAVY": "LOURD",
+    "HEAVY DROID TROOPER": "N/A",
+    "HEAVY TROOPER": "N/A",
+    "IMMOBILIZE TOKENS": "PIONS IMMOBILISATION",
+    "IMPASSABLE TERRAIN": "TERRAIN INFRANCHISSABLE",
+    "ION TOKENS": "PIONS IONIQUE",
+    "ISSUE ORDERS": "DONNER DES ORDRES",
+    "KEYWORDS": "MOTS-CLÉS",
+    "LEAVING THE BATTLEFIELD": "QUITTER LE CHAMP DE BATAILLE",
+    "LIMITED CARDS": "CARTES LIMITÉES",
+    "LINE OF SIGHT": "LIGNE DE VUE",
+    "MAP CARDS": "CARTES DEPLOIEMENT",
+    "MEASUREMENT": "MESURES",
+    "MELEE": "CORPS-À-CORPS",
+    "MELEE WEAPON": "ARME DE CORPS-À-CORPS",
+    "MERCENARIES": "MERCENAIRES",
+    "MOVEMENT": "DÉPLACEMENT",
+    "MOVEMENT TOOLS": "GABARITS DE DÉPLACEMENT",
+    "Mot-clés supprimés:": "ARMOR",
+    "NOT WITHIN (RANGE)": "AU-DELÀ (PORTÉE)",
+    "NOTCHED BASES": "SOCLES À ENCOCHE",
+    "OBJECTIVE CARDS": "CARTES OBJECTIF",
+    "OBJECTIVE TOKENS": "PIONS OBJECTIF",
+    "OBJECTS": "OBJETS",
+    "OBSCURED MINIATURE": "FIGURINE PROTÉGÉE",
+    "OBSERVATION TOKENS": "PIONS SURVEILLANCE",
+    "OBSTACLE TERRAIN": "TERRAIN OBSTRUCTIF",
+    "OPEN TERRAIN": "TERRAIN DÉCOUVERT",
+    "OPERATIVE": "AGENT",
+    "ORDER POOL": "RÉSERVE D'ORDRES",
+    "OVERLAPPING OBJECTS": "CHEVAUCHEMENT",
+    "PANIC/PANICKED": "PANIQUE",
+    "PASS": "PASSER",
+    "PIVOT": "PIVOTER",
+    "POI": "POI",
+    "POISON TOKENS": "PIONS POISON",
+    "PRIORITY": "PRIORITÉ",
+    "PROMOTE": "PROMOUVOIR",
+    "RALLYING": "SE RALLIER",
+    "RANGE": "PORTÉE",
+    "RANGED WEAPON": "ARME À DISTANCE",
+    "RANKS": "RANGS",
+    "READY": "REDRESSER",
+    "RECOVER": "RÉCUPERER",
+    "REPULSOR VEHICLES": "VÉHICULES À RÉPULSEURS",
+    "RESILIENCY": "RÉSISTANCE",
+    "RESTORE": "RESTAURATION",
+    "REVERSE": "RECULER",
+    "ROUND": "ROUND",
+    "ROUND COUNTER": "PION ROUND",
+    "RULES PRIORITY": "HIÉRARCHIE DES RÈGLES",
+    "SCATTER TERRAIN": "TERRAIN ÉPARS",
+    "SECONDARY OBJECTIVE CARDS": "CARTES OBJECTIF SECONDAIRE",
+    "SECRET INFORMATIONS": "INFORMATIONS SECRÈTES",
+    "SETUP": "MISE EN PLACE",
+    "SHIELD TOKENS": "PIONS BOUCLIER",
+    "SMOKE TOKENS": "PIONS FUMÉE",
+    "SPECIAL FORCES": "FORCES SPÉCIALES",
+    "SPEED": "VITESSE",
+    "STANDARD MOVE": "DÉPLACEMENT NORMAL",
+    "STANDBY": "ATTENDRE",
+    "STRAFE": "DÉRAPER",
+    "SUPPORT": "SOUTIEN",
+    "SUPPRESSION": "SUPPRESSION",
+    "SURGE TOKENS": "PIONS ADRÉNALINE",
+    "TERRAIN": "TERRAIN",
+    "TERRAIN HEIGHT": "HAUTEUR DU TERRAIN",
+    "TIMING": "TIMING",
+    "TOKENS": "PIONS",
+    "TROOPERS": "SOLDAT",
+    "UNDEPLOYED UNITS": "UNITÉS NON DÉPLOYÉES",
+    "UNIQUE CARDS": "CARTES UNIQUES",
+    "UNIT CARDS": "CARTES D'UNITÉ",
+    "UNIT LEADER": "CHEF D'UNITÉ",
+    "UPGRADE CARDS": "CARTES AMÉLIORATION",
+    "UPGRADE/DOWNGRADE DICE": "AMÉLIORER/DÉGRADER DES DÉS",
+    "VEHICLE DAMAGE TOKENS": "PIONS DÉGÂT DE VÉHICULE",
+    "VEHICLES": "VÉHICULES",
+    "WEAPONS": "ARMES",
+    "WINNING THE GAME": "GAGNER LA PARTIE",
+    "WITHDRAW": "SE REPLIER",
+    "WITHIN (RANGE)": "À (PORTÉE)",
+    "WOOKIEE TROOPER": "SOLDAT WOOKIE",
+    "WOUND THRESHOLD": "SEUIL DE BLESSURE",
+    "WOUNDS": "BLESSURES"
+  },
+  "keywords": {
+    "ADVANCE TARGETING: UNIT TYPE X": {
+      "fr": "CIBLAGE AVANCÉ: TYPE D'UNITÉ X",
+      "type": "U"
+    },
+    "AGILE X": {
+      "fr": "PRESTE X",
+      "type": "U"
+    },
+    "AI: ACTION": {
+      "fr": "IA: ACTION",
+      "type": "U"
+    },
+    "AID: AFFILIATION": {
+      "fr": "AIDE: AFFILIATION",
+      "type": "U"
+    },
+    "ALLIES OF CONVENIENCE": {
+      "fr": "ALLIÉS DE CIRCONSTANCE",
+      "type": "U"
+    },
+    "ANTI-MATERIEL X": {
+      "fr": "ANTI-MATÉRIEL X",
+      "type": "W"
+    },
+    "ANTI-PERSONNEL X": {
+      "fr": "ANTI-PERSONNEL X",
+      "type": "W"
+    },
+    "AREA WEAPON": {
+      "fr": "ARME À EFFET DE ZONE",
+      "type": "W"
+    },
+    "ARM X: CHARGE TYPE": {
+      "fr": "ARMER X: TYPE DE CHARGE",
+      "type": "W"
+    },
+    "ARMOR X": {
+      "fr": "ARMURE X",
+      "type": "U"
+    },
+    "ARSENAL X": {
+      "fr": "ARSENAL X",
+      "type": "U"
+    },
+    "ASSAULT X": {
+      "fr": "N/A",
+      "type": "W"
+    },
+    "ASSOCIATE: UNIT NAME": {
+      "fr": "ASSOCIÉ: NOM D'UNITÉ",
+      "type": "U"
+    },
+    "ATARU MASTERY": {
+      "fr": "MAÎTRISE DE L'ATARU",
+      "type": "U"
+    },
+    "ATTACK RUN": {
+      "fr": "ATTAQUE IMPÉTUEUSE",
+      "type": "U"
+    },
+    "BANE TOKENS": {
+      "fr": "PIONS BANE",
+      "type": "C"
+    },
+    "BARRAGE": {
+      "fr": "BARRAGE",
+      "type": "U"
+    },
+    "BEAM X": {
+      "fr": "RAYONS X",
+      "type": "W"
+    },
+    "BLAST": {
+      "fr": "DÉFLAGRATION",
+      "type": "W"
+    },
+    "BLOCK": {
+      "fr": "BLOCAGE",
+      "type": "U"
+    },
+    "BOLSTER X": {
+      "fr": "ASSISTANCE X",
+      "type": "U"
+    },
+    "BOUNTY": {
+      "fr": "PRIME",
+      "type": "U"
+    },
+    "CACHE": {
+      "fr": "CACHE",
+      "type": "U"
+    },
+    "CALCULATE ODDS": {
+      "fr": "CALCUL DE PROBABILITÉS",
+      "type": "U"
+    },
+    "CHARGE": {
+      "fr": "CHARGE",
+      "type": "U"
+    },
+    "CLIMBING VEHICLE": {
+      "fr": "VÉHICULE GRIMPANT",
+      "type": "U"
+    },
+    "COMMAND VEHICLE X": {
+      "fr": "PILOTAGE DE VÉHICULE X",
+      "type": "U"
+    },
+    "COMPEL: RANK/UNIT TYPE": {
+      "fr": "CONTRAINTE: RANG/TYPE D'UNITÉ",
+      "type": "U"
+    },
+    "COMPLETE THE MISSION": {
+      "fr": "ACCOMPLIR LA MISSION",
+      "type": "U"
+    },
+    "COORDINATE: UNIT NAME/TYPE": {
+      "fr": "COORDINATION: NOM D'UNITÉ/TYPE",
+      "type": "U"
+    },
+    "COUNTERPART": {
+      "fr": "ALTER EGO",
+      "type": "U"
+    },
+    "COVER X": {
+      "fr": "COUVERT X",
+      "type": "U"
+    },
+    "CRITICAL X": {
+      "fr": "CRITIQUE X",
+      "type": "W"
+    },
+    "CUMBERSOME": {
+      "fr": "ENCOMBRANT",
+      "type": "W"
+    },
+    "CUNNING": {
+      "fr": "MALIN",
+      "type": "U"
+    },
+    "CYCLE": {
+      "fr": "CYCLE",
+      "type": "Up"
+    },
+    "DANGER SENSE X": {
+      "fr": "INTUITION DU DANGER X",
+      "type": "U"
+    },
+    "DAUNTLESS": {
+      "fr": "INTRÉPIDE",
+      "type": "U"
+    },
+    "DEATH FROM ABOVE": {
+      "fr": "LA MORT VENUE DU CIEL",
+      "type": "U"
+    },
+    "DEFEND X": {
+      "fr": "DÉFENSE X",
+      "type": "U"
+    },
+    "DEFLECT": {
+      "fr": "DÉFLEXION",
+      "type": "U"
+    },
+    "DEMORALIZE X": {
+      "fr": "DÉMORALISER X",
+      "type": "U"
+    },
+    "DETACHMENT: UNIT NAME/TYPE": {
+      "fr": "DÉTACHEMENT: NOM/TYPE D'UNITÉ",
+      "type": "U"
+    },
+    "DETONATE X: CHARGE TYPE": {
+      "fr": "EXPLOSION X: TYPE DE CHARGE",
+      "type": "W"
+    },
+    "DIRECT: UNIT NAME/UNIT TYPE": {
+      "fr": "ORDRE DIRECT: NOM/TYPE D'UNITÉ",
+      "type": "U"
+    },
+    "DISCIPLINED X": {
+      "fr": "DISCIPLINÉ X",
+      "type": "U"
+    },
+    "DISENGAGE": {
+      "fr": "RETRAIT",
+      "type": "U"
+    },
+    "DISTRACT": {
+      "fr": "DISTRAIRE",
+      "type": "U"
+    },
+    "DIVINE INFLUENCE": {
+      "fr": "INFLUENCE DIVINE",
+      "type": "U"
+    },
+    "DIVULGE": {
+      "fr": "DIVULGATION",
+      "type": "C"
+    },
+    "DJEM SO MASTERY": {
+      "fr": "MAÎTRISE DU DJEM SO",
+      "type": "U"
+    },
+    "DUELIST": {
+      "fr": "DUELLISTE",
+      "type": "U"
+    },
+    "ENRAGE X": {
+      "fr": "ENRAGÉ X",
+      "type": "U"
+    },
+    "ENTOURAGE: UNIT NAME": {
+      "fr": "ENTOURAGE: NOM DE L'UNITÉ",
+      "type": "U"
+    },
+    "EQUIP": {
+      "fr": "ÉQUIPE",
+      "type": "U"
+    },
+    "EXEMPLAR": {
+      "fr": "EXEMPLAIRE",
+      "type": "U"
+    },
+    "EXPERT CLIMBER": {
+      "fr": "GRIMPEUR EXPERIMENTÉ",
+      "type": "U"
+    },
+    "EYES ON THE PRIZE: KEYWORD": {
+      "fr": "N/A",
+      "type": "U"
+    },
+    "FIELD COMMANDER": {
+      "fr": "COMMANDANT DES OPÉRATIONS",
+      "type": "U"
+    },
+    "FIRE SUPPORT": {
+      "fr": "TIR DE SOUTIEN",
+      "type": "U"
+    },
+    "FIXED: FRONT/SIDES/REAR": {
+      "fr": "FIXE: AVANT/ARRIÈRE",
+      "type": "W"
+    },
+    "FLEXIBLE RESPONSE X": {
+      "fr": "RIPOSTE GRADUÉE X",
+      "type": "U"
+    },
+    "FULL PIVOT": {
+      "fr": "PIVOT COMPLET",
+      "type": "U"
+    },
+    "GENERATOR X": {
+      "fr": "GÉNÉRATEUR X",
+      "type": "U"
+    },
+    "GRAFFITI TOKEN": {
+      "fr": "PION GRAFFITI",
+      "type": "C"
+    },
+    "GUARDIAN X": {
+      "fr": "GARDIEN X",
+      "type": "U"
+    },
+    "GUIDANCE: UNIT TYPE": {
+      "fr": "CONSEILS: TYPE D'UNITÉ",
+      "type": "U"
+    },
+    "GUNSLINGER": {
+      "fr": "PISTOLERO",
+      "type": "U"
+    },
+    "HEAVY WEAPON TEAM": {
+      "fr": "ÉQUIPE AVEC ARME LOURDE",
+      "type": "U"
+    },
+    "HIGH VELOCITY": {
+      "fr": "HAUTE VÉLOCITÉ",
+      "type": "W"
+    },
+    "HOLD THE LINE": {
+      "fr": "TENIR BON",
+      "type": "U"
+    },
+    "HOVER: GROUND/AIR X": {
+      "fr": "SUSTENTATION: TERRESTRE/AÉRIENNE X",
+      "type": "U"
+    },
+    "HUNTED": {
+      "fr": "TRAQUÉ",
+      "type": "U"
+    },
+    "I'M PART OF THE SQUAD TOO": {
+      "fr": "JE FAIS AUSSI PARTIE DE L'ÉQUIPE",
+      "type": "U"
+    },
+    "IMMOBILIZE X": {
+      "fr": "IMMOBILISER X",
+      "type": "W"
+    },
+    "IMMUNE: BLAST": {
+      "fr": "IMMUNITÉ: DÉFLAGRATION",
+      "type": "U"
+    },
+    "IMMUNE: DEFLECT": {
+      "fr": "IMMUNITÉ: DÉFLEXION",
+      "type": "W"
+    },
+    "IMMUNE: ENEMY EFFECTS": {
+      "fr": "IMMUNITÉ: EFFETS ENNEMIS",
+      "type": "U"
+    },
+    "IMMUNE: MELEE": {
+      "fr": "IMMUNITÉ: CORPS-À-CORPS",
+      "type": "U"
+    },
+    "IMMUNE: MELEE PIERCE": {
+      "fr": "IMMUNITÉ: PERFORANT CORPS-À-CORPS",
+      "type": "U"
+    },
+    "IMMUNE: PIERCE": {
+      "fr": "IMMUNITÉ: PERFORANT",
+      "type": "U"
+    },
+    "IMMUNE: RANGE 1 WEAPONS": {
+      "fr": "IMMUNITÉ: ARMES À PORTÉE 1",
+      "type": "U"
+    },
+    "IMPACT X": {
+      "fr": "IMPACT X",
+      "type": "W"
+    },
+    "IMPERVIOUS": {
+      "fr": "INSENSIBLE",
+      "type": "U"
+    },
+    "INCOGNITO": {
+      "fr": "INCOGNITO",
+      "type": "U"
+    },
+    "INCONSPICUOUS": {
+      "fr": "DISCRET",
+      "type": "U"
+    },
+    "INDEPENDENT: TOKEN X/ACTION": {
+      "fr": "AUTONOME",
+      "type": "U"
+    },
+    "INDOMITABLE": {
+      "fr": "INDOMPTABLE",
+      "type": "U"
+    },
+    "INFILTRATE": {
+      "fr": "INFILTRATION",
+      "type": "U"
+    },
+    "INSPIRE X": {
+      "fr": "INSPIRATION X",
+      "type": "U"
+    },
+    "INTERROGATE": {
+      "fr": "INTERROGATOIRE",
+      "type": "U"
+    },
+    "ION X": {
+      "fr": "ION X",
+      "type": "W"
+    },
+    "JAR'KAI MASTERY": {
+      "fr": "MAÎTRISE DU JAR'KAI",
+      "type": "U"
+    },
+    "JEDI HUNTER": {
+      "fr": "CHASSEUR DE JEDI",
+      "type": "U"
+    },
+    "JUMP X": {
+      "fr": "SAUT X",
+      "type": "U"
+    },
+    "JUYO MASTERY": {
+      "fr": "MAÎTRISE DU JUYO",
+      "type": "U"
+    },
+    "LATENT POWER": {
+      "fr": "POUVOIR LATENT",
+      "type": "U"
+    },
+    "LEADER": {
+      "fr": "CHEF",
+      "type": "Up"
+    },
+    "LETHAL X": {
+      "fr": "LÉTAL X",
+      "type": "W"
+    },
+    "LONG SHOT X": {
+      "fr": "LONGUE DISTANCE X",
+      "type": "W"
+    },
+    "LOW PROFILE": {
+      "fr": "PROFIL BAS",
+      "type": "U"
+    },
+    "MAKASHI MASTERY": {
+      "fr": "MAÎTRISE DU MAKASHI",
+      "type": "U"
+    },
+    "MARKSMAN": {
+      "fr": "TIREUR EMBUSQUÉ",
+      "type": "U"
+    },
+    "MASTER OF THE FORCE X": {
+      "fr": "MAÎTRE DE LA FORCE X",
+      "type": "U"
+    },
+    "MASTER STORYTELLER": {
+      "fr": "MAÎTRE CONTEUR",
+      "type": "U"
+    },
+    "MECHANIZED INFANTRY": {
+      "fr": "N/A",
+      "type": "U"
+    },
+    "MERCENARY: FACTION": {
+      "fr": "MERCENAIRE: FACTION",
+      "type": "U"
+    },
+    "MOBILE": {
+      "fr": "MOBILE",
+      "type": "U"
+    },
+    "MY MOOD IS BASED ON PROFIT": {
+      "fr": "JE SENS LE PROFIT",
+      "type": "U"
+    },
+    "NIMBLE": {
+      "fr": "AGILE",
+      "type": "U"
+    },
+    "NONCOMBATANT": {
+      "fr": "NON-COMBATTANT",
+      "type": "Up"
+    },
+    "OBSERVE X": {
+      "fr": "SURVEILLANCE X",
+      "type": "U"
+    },
+    "ON STEP AHEAD": {
+      "fr": "LONGUEUR D'AVANCE",
+      "type": "U"
+    },
+    "OUTMANEUVER": {
+      "fr": "MANŒUVRE IMPROBABLE",
+      "type": "U"
+    },
+    "OVERRUN X": {
+      "fr": "BORDÉE X",
+      "type": "W"
+    },
+    "OVERWHELM": {
+      "fr": "N/A",
+      "type": "W"
+    },
+    "OVVERRIDE": {
+      "fr": "SURCHARGE",
+      "type": "U"
+    },
+    "PERMANENT": {
+      "fr": "PERMANENT",
+      "type": "C"
+    },
+    "PIERCE X": {
+      "fr": "PERFORANT X",
+      "type": "W"
+    },
+    "PLODDING": {
+      "fr": "MOBILITÉ DIFFICILE",
+      "type": "U"
+    },
+    "POISON X": {
+      "fr": "POISON X",
+      "type": "W"
+    },
+    "PRECISE X": {
+      "fr": "PRÉCIS X",
+      "type": "U"
+    },
+    "PREPARED POSITION": {
+      "fr": "POSITION PREPARÉE",
+      "type": "U"
+    },
+    "PRIMITIVE": {
+      "fr": "PRIMITIF",
+      "type": "W"
+    },
+    "PROGRAMMED": {
+      "fr": "PROGRAMMÉ",
+      "type": "U"
+    },
+    "PULLING THE STRINGS": {
+      "fr": "TIRER LES FICELLES",
+      "type": "U"
+    },
+    "QUICK THINKING": {
+      "fr": "VIVACITÉ D'ESPRIT",
+      "type": "U"
+    },
+    "RAM X": {
+      "fr": "BÉLIER X",
+      "type": "W"
+    },
+    "READY X": {
+      "fr": "OPÉRATIONNEL X",
+      "type": "U"
+    },
+    "RECHARGE X": {
+      "fr": "RECHARGER X",
+      "type": "U"
+    },
+    "RECONFIGURE": {
+      "fr": "RECONFIGURATION",
+      "type": "Up"
+    },
+    "REGENERATE X": {
+      "fr": "RÉGÉNERER X",
+      "type": "U"
+    },
+    "REINFORCEMENTS": {
+      "fr": "RENFORTS",
+      "type": "U"
+    },
+    "RELENTLESS": {
+      "fr": "IMPLACABLE",
+      "type": "U"
+    },
+    "RELIABLE X": {
+      "fr": "FIABLE X",
+      "type": "U"
+    },
+    "REPAIR X: CAPACITY Y": {
+      "fr": "RÉPARATION X: CAPACITÉ Y",
+      "type": "Up"
+    },
+    "REPOSITION": {
+      "fr": "REDÉPLOIEMENT",
+      "type": "U"
+    },
+    "RETINUE UNIT/UNIT TYPE": {
+      "fr": "ESCORTE NOM/TYPE D'UNITÉ",
+      "type": "U"
+    },
+    "RUTHLESS": {
+      "fr": "IMPITOYABLE",
+      "type": "U"
+    },
+    "SCALE": {
+      "fr": "ASCENSION",
+      "type": "U"
+    },
+    "SCATTER": {
+      "fr": "DISPERSION",
+      "type": "W"
+    },
+    "SCOUT X": {
+      "fr": "ÉCLAIREUR X",
+      "type": "U"
+    },
+    "SCOUTING PARTY X": {
+      "fr": "ÉQUIPE D'ECLAIREURS X",
+      "type": "U"
+    },
+    "SECRET MISSION": {
+      "fr": "MISSION SECRÈTE",
+      "type": "U"
+    },
+    "SELF-DESTRUCT X": {
+      "fr": "AUTODESTRUCTION X",
+      "type": "U"
+    },
+    "SELF-PRESERVATION": {
+      "fr": "INSTINCT DE SURVIE",
+      "type": "U"
+    },
+    "SENTINEL": {
+      "fr": "SENTINELLE",
+      "type": "U"
+    },
+    "SHARPSHOOTER X": {
+      "fr": "TIREUR D'ÉLITE X",
+      "type": "U"
+    },
+    "SHIELDED X": {
+      "fr": "BOUCLIER X",
+      "type": "U"
+    },
+    "SHIEN MASTERY": {
+      "fr": "MAÎTRISE DU SHIEN",
+      "type": "U"
+    },
+    "SIDEARM: MELEE/RANGED": {
+      "fr": "ARME DE POING: CORPS-À-CORPS/À DISTANCE",
+      "type": "Up"
+    },
+    "SMALL": {
+      "fr": "PETIT",
+      "type": "Up"
+    },
+    "SMOKE X": {
+      "fr": "FUMÉE X",
+      "type": "U"
+    },
+    "SNIPER TEAM": {
+      "fr": "N/A",
+      "type": "W"
+    },
+    "SORESU MASTERY": {
+      "fr": "MAÎTRISE DU SORESU",
+      "type": "U"
+    },
+    "SPECIAL ISSUE: BATTLE FORCE": {
+      "fr": "SPÉCIFICITÉ: FORCE ARMÉE",
+      "type": "U"
+    },
+    "SPEEDER X": {
+      "fr": "SPEEDER X",
+      "type": "U"
+    },
+    "SPOTTER X": {
+      "fr": "OBSERVATEUR X",
+      "type": "U"
+    },
+    "SPRAY": {
+      "fr": "SOUFFLE",
+      "type": "W"
+    },
+    "SPUR": {
+      "fr": "MARCHE FORCÉE",
+      "type": "U"
+    },
+    "STATIONARY": {
+      "fr": "STATIONNAIRE",
+      "type": "U"
+    },
+    "STEADY": {
+      "fr": "AGUERRI",
+      "type": "U"
+    },
+    "STRATEGIZE X": {
+      "fr": "STRATÈGE X",
+      "type": "U"
+    },
+    "SUPPRESSIVE": {
+      "fr": "SUPPRESSIF",
+      "type": "W"
+    },
+    "SWASHBUCKLER": {
+      "fr": "MATAMORE",
+      "type": "U"
+    },
+    "TACTICAL X": {
+      "fr": "TACTICIEN X",
+      "type": "U"
+    },
+    "TAKE COVER X": {
+      "fr": "METTRE À COUVERT X",
+      "type": "U"
+    },
+    "TARGET X": {
+      "fr": "CIBLE X",
+      "type": "U"
+    },
+    "TEAMWORK: UNIT NAME": {
+      "fr": "TRAVAIL D'ÉQUIPE: NOM D'UNITÉ",
+      "type": "U"
+    },
+    "TEMPTED": {
+      "fr": "TENTATION",
+      "type": "U"
+    },
+    "TOW CABLE": {
+      "fr": "CÂBLE DE REMORQUAGE",
+      "type": "W"
+    },
+    "TRANSPORT": {
+      "fr": "TRANSPORT",
+      "type": "U"
+    },
+    "TREAT X: CAPACITY Y": {
+      "fr": "TRAITER X: CAPACITÉ Y",
+      "type": "Up"
+    },
+    "UNCANNY LUCK X": {
+      "fr": "COUP DE CHANCE X",
+      "type": "U"
+    },
+    "UNCONCERNED": {
+      "fr": "INDIFFÉRENT",
+      "type": "U"
+    },
+    "UNHINDERED": {
+      "fr": "SANS ENTRAVE",
+      "type": "U"
+    },
+    "UNSTOPPABLE": {
+      "fr": "INARRÊTABLE",
+      "type": "U"
+    },
+    "VERSATILE": {
+      "fr": "POLYVALENT",
+      "type": "W"
+    },
+    "WE'RE NOT REGS": {
+      "fr": "ON EST PAS DES REGS",
+      "type": "U"
+    },
+    "WEAK POINT X: FRONT/REAR/SIDES": {
+      "fr": "POINT FAIBLE X: AVANT/ARRIÈRE/FLANCS",
+      "type": "U"
+    },
+    "WEIGHED DOWN": {
+      "fr": "ALOURDISSEMENT",
+      "type": "U"
+    },
+    "WHEEL MODE": {
+      "fr": "MODE ROUE",
+      "type": "U"
+    },
+    "WOUND X": {
+      "fr": "BLESSURE X",
+      "type": "U"
+    }
+  }
+}

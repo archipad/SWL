@@ -13,6 +13,10 @@
   // Contient un objet File (photo) : ne peut pas être conservé en JSON, donc
   // perdu si l'onglet est rechargé avant l'envoi du lot -- volontaire.
   let newCardDrafts={},unknownScreen=null
+  const translationStorageKey='swl-card-translation-workshop-v1'
+  let translationDrafts={}
+  try{translationDrafts=JSON.parse(localStorage.getItem(translationStorageKey)||'{}')||{}}catch{translationDrafts={}}
+  const saveTranslationDrafts=()=>localStorage.setItem(translationStorageKey,JSON.stringify(Object.fromEntries(Object.entries(translationDrafts).map(([key,d])=>[key,{englishTitle:d.englishTitle,frenchTitle:d.frenchTitle,sourceUrl:d.sourceUrl,englishText:d.englishText,frenchText:d.frenchText,matchedTerms:d.matchedTerms,visualConfirmed:d.visualConfirmed,translationConfirmed:d.translationConfirmed}]))))
   const catalogKeys=()=>new Set([...Object.keys(weaponProfiles),...Object.keys(window.SWL_REFERENCE?.images||{})])
   function unknownCardEntries(){
     const known=catalogKeys(),seen=new Set(),list=[]
@@ -20,7 +24,7 @@
     for(const entry of entries){consider(entry.unit.name);(entry.unit.upgrades||[]).forEach(u=>consider(u.name))}
     return list
   }
-  const unknownStatus=key=>aliasDrafts[key]?`= ${displayName(aliasDrafts[key])}`:newCardDrafts[key]?.ready?'Nouvelle carte prête':newCardDrafts[key]?'Brouillon en cours':null
+  const unknownStatus=key=>aliasDrafts[key]?`= ${displayName(aliasDrafts[key])}`:newCardDrafts[key]?.ready?'Nouvelle carte prête':newCardDrafts[key]?'Brouillon en cours':translationDrafts[key]?.frenchText?'Traduction FR à finaliser':translationDrafts[key]?'Source anglaise en cours':null
   const unknownBatchCount=()=>Object.keys(aliasDrafts).length+Object.values(newCardDrafts).filter(d=>d.ready).length
   // Cartes retirées du jeu (erratum 17/06/2026) : plus à certifier.
   const removedCards=window.SWL_REFERENCE?.removedCards||{};
@@ -285,13 +289,56 @@
     if(!items.length)return ''
     return `<section class="cert-status-section unknown"><header><h2>Cartes inconnues du catalogue</h2><b>${items.length} carte(s)</b></header><p class="cert-help">Ni visuel ni dés enregistrés pour ces cartes importées -- le contrôle ci-dessus ne peut rien vous proposer tant qu'elles ne sont pas raccordées.</p><div class="cert-list">${items.map(({key,label})=>{const status=unknownStatus(key);return `<button type="button" data-unknown-card="${encodeURIComponent(key)}" data-unknown-label="${encodeURIComponent(label)}" class="${status?'controlled-card':''}"><span><strong>${displayName(label)}</strong><small>${status||'Non traité'}</small></span><b>›</b></button>`}).join('')}</div></section>`
   }
+  const translationGlossary=()=>window.SWL_TRANSLATION_GLOSSARY||{gameTerms:{},keywords:{}}
+  const translationEntries=()=>[
+    ...Object.entries(translationGlossary().keywords||{}).map(([en,value])=>[en,value.fr]),
+    ...Object.entries(translationGlossary().gameTerms||{}),
+  ].filter(([,fr])=>fr).sort((a,b)=>b[0].length-a[0].length)
+  function translateWithGlossary(source){
+    let output=String(source||''),matched=0
+    for(const [english,french] of translationEntries()){
+      const escaped=english.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/ X$/,'(?: \\d+)?')
+      const regex=new RegExp(`\\b${escaped}\\b`,'gi')
+      if(regex.test(output)){matched++;output=output.replace(regex,match=>{const value=match.match(/\d+$/)?.[0];return value?french.replace(/ X$/,` ${value}`):french})}
+    }
+    return{output,matched}
+  }
+  function similarity(left,right){
+    const a=new Set(norm(left).split(' ').filter(Boolean)),b=new Set(norm(right).split(' ').filter(Boolean));if(!a.size||!b.size)return 0
+    let common=0;for(const word of a)if(b.has(word))common++
+    return common/Math.max(a.size,b.size)
+  }
+  const aliasSuggestions=label=>Object.keys(weaponProfiles).map(key=>({key,score:Math.max(similarity(label,key),similarity(label,displayName(key)))})).filter(item=>item.score>=.45).sort((a,b)=>b.score-a.score).slice(0,5)
+  function translationDraftFor(card,label){
+    if(!translationDrafts[card])translationDrafts[card]={englishTitle:label,frenchTitle:'',sourceUrl:'',englishText:'',frenchText:'',matchedTerms:0,visualConfirmed:false,translationConfirmed:false}
+    return translationDrafts[card]
+  }
   function unknownChooser(card,label){
+    const suggestions=aliasSuggestions(label)
     const staged=aliasDrafts[card]?`Alias vers « ${displayName(aliasDrafts[card])} »`:newCardDrafts[card]?.ready?'Nouvelle carte prête à envoyer':newCardDrafts[card]?'Brouillon de nouvelle carte en cours':null
-    return `<section class="cert-detail"><header><div><small>CARTE INCONNUE</small><h2>${displayName(label)}</h2></div><button class="secondary" id="backUnknown">Retour à la liste</button></header><div class="cert-card-layout"><div class="cert-fields">${staged?`<p class="notice">${staged}</p>`:''}<button class="primary" data-unknown-action="pick">C'est la même carte que…</button><button class="primary" data-unknown-action="new">C'est une nouvelle carte</button>${staged?'<button class="secondary" data-unknown-action="clear">Retirer du lot</button>':''}<p class="cert-help">« Même carte » : cette carte a déjà ses dés/PV certifiés sous un autre nom (ex. le titre complet exporté par Tabletop Admiral). « Nouvelle carte » : elle n'a encore jamais été saisie, y compris son visuel.</p></div></div></section>`
+    return `<section class="cert-detail"><header><div><small>CARTE INCONNUE</small><h2>${displayName(label)}</h2></div><button class="secondary" id="backUnknown">Retour à la liste</button></header><div class="cert-card-layout"><div class="cert-fields">${staged?`<p class="notice">${staged}</p>`:''}${suggestions.length?`<div class="translation-match"><strong>Correspondance possible détectée</strong>${suggestions.map(item=>`<button type="button" data-alias-pick="${encodeURIComponent(item.key)}"><span>${displayName(item.key)}</span><b>${Math.round(item.score*100)} %</b></button>`).join('')}<small>Validez uniquement après comparaison visuelle : aucun rapprochement automatique n'est publié.</small></div>`:''}<button class="primary" data-unknown-action="pick">C'est la même carte que…</button><button class="primary" data-unknown-action="translate">Créer sa version française</button><button class="primary" data-unknown-action="new">C'est une nouvelle carte</button>${staged?'<button class="secondary" data-unknown-action="clear">Retirer du lot</button>':''}<p class="cert-help">« Même carte » : cette carte a déjà ses dés/PV certifiés sous un autre nom (ex. le titre complet exporté par Tabletop Admiral). « Version française » : la carte n'existe qu'en anglais ; l’atelier prépare une fiche française communautaire à partir du visuel anglais. « Nouvelle carte » : elle n'a encore jamais été saisie, y compris son visuel.</p><p class="cert-help">L’atelier conserve trois états distincts : carte inconnue, source anglaise identifiée, puis carte française certifiée. Une traduction ne devient jamais une donnée moteur sans votre validation.</p></div></div></section>`
   }
   function aliasPicker(card,label,query){
     const q=norm(query||''),matches=Object.keys(weaponProfiles).filter(key=>!q||norm(displayName(key)).includes(q)||key.includes(q)).slice(0,40)
     return `<section class="cert-detail"><header><div><small>MÊME CARTE QUE…</small><h2>${displayName(label)}</h2></div><button class="secondary" id="backUnknownChoose">Retour</button></header><div class="cert-card-layout"><div class="cert-fields"><input id="aliasSearch" type="search" placeholder="Rechercher une carte déjà connue…" value="${(query||'').replace(/"/g,'&quot;')}"><div class="cert-list">${matches.map(key=>`<button type="button" data-alias-pick="${encodeURIComponent(key)}"><img src="${imageFor(key)}" alt=""><span><strong>${displayName(key)}</strong></span></button>`).join('')||'<p class="notice">Aucune carte ne correspond.</p>'}</div></div></div></section>`
+  }
+  function translationWorkshop(card,label){
+    const d=translationDraftFor(card,label),glossary=translationGlossary()
+    return `<section class="cert-detail translation-workshop"><header><div><small>ATELIER DE TRADUCTION FR</small><h2>${escapeHtml(d.englishTitle||label)}</h2></div><button class="secondary" id="backUnknownChoose">Retour</button></header><div class="translation-workflow"><ol><li class="done">Détectée dans la liste Tabletop Admiral</li><li class="${d.sourceUrl||d.imagePreviewUrl?'done':''}">Source anglaise identifiée</li><li class="${d.frenchText?'done':''}">Traduction française préparée</li><li>Certification moteur et publication</li></ol><p class="cert-help">Dictionnaire chargé : ${Object.keys(glossary.keywords||{}).length} mots-clés et ${Object.keys(glossary.gameTerms||{}).length} termes · index ${escapeHtml(glossary.updatedAt||'sans date')}.</p><div class="translation-columns"><div><label>Titre anglais détecté<input id="translationEnglishTitle" value="${escapeHtml(d.englishTitle||label)}"></label><label>Adresse de la source officielle ou communautaire<input id="translationSourceUrl" type="url" placeholder="https://…" value="${escapeHtml(d.sourceUrl)}"></label><label>Visuel anglais HD<input id="translationImage" type="file" accept="image/*"></label>${d.imagePreviewUrl?`<img class="translation-preview" src="${d.imagePreviewUrl}" alt="Carte anglaise à traduire">`:''}<label>Texte anglais de la carte<textarea id="translationEnglishText" rows="12" placeholder="Recopiez les mots-clés et le texte imprimé…">${escapeHtml(d.englishText)}</textarea></label><button class="secondary" id="autoTranslateCard">Appliquer l’index EN → FR</button></div><div><label>Titre français<input id="translationFrenchTitle" value="${escapeHtml(d.frenchTitle)}" placeholder="Titre français à valider"></label><label>Texte français à contrôler<textarea id="translationFrenchText" rows="16" placeholder="La traduction proposée reste entièrement modifiable.">${escapeHtml(d.frenchText)}</textarea></label><p class="translation-score"><strong>${d.matchedTerms||0}</strong> terme(s) reconnu(s) par le dictionnaire. Les phrases libres doivent être relues humainement.</p><label class="no-courage-choice"><input id="translationVisualConfirmed" type="checkbox" ${d.visualConfirmed?'checked':''}> J’ai vérifié que le visuel anglais correspond exactement à la carte importée.</label><label class="no-courage-choice"><input id="translationTextConfirmed" type="checkbox" ${d.translationConfirmed?'checked':''}> J’ai relu le français et les mots-clés avec l’index V2.6.</label><button class="primary" id="prepareFrenchCard">Créer la fiche FR puis certifier les données moteur</button><p class="cert-help">La fiche produite est clairement marquée « traduction communautaire ». Elle associe le visuel anglais de référence et votre transcription française, sans prétendre être un visuel officiel.</p></div></div></div></section>`
+  }
+  async function createFrenchReferenceFile(d){
+    const bitmap=await createImageBitmap(d.imageFile),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d'),width=1600,height=1000
+    canvas.width=width;canvas.height=height
+    ctx.fillStyle='#07121c';ctx.fillRect(0,0,width,height);ctx.strokeStyle='#62cfff';ctx.lineWidth=4;ctx.strokeRect(18,18,width-36,height-36)
+    const maxW=700,maxH=890,scale=Math.min(maxW/bitmap.width,maxH/bitmap.height),iw=bitmap.width*scale,ih=bitmap.height*scale
+    ctx.fillStyle='#020609';ctx.fillRect(45,55,720,890);ctx.drawImage(bitmap,45+(720-iw)/2,55+(890-ih)/2,iw,ih)
+    ctx.fillStyle='#ff9418';ctx.fillRect(800,55,8,890);ctx.fillStyle='#fff';ctx.font='700 38px Arial';ctx.fillText(String(d.frenchTitle).toUpperCase(),840,105)
+    ctx.fillStyle='#66cff7';ctx.font='700 20px Arial';ctx.fillText(String(d.englishTitle).toUpperCase(),840,140)
+    ctx.fillStyle='#dcecf7';ctx.font='24px Arial';const paragraphs=String(d.frenchText).split(/\r?\n/);let y=195
+    for(const paragraph of paragraphs){const words=paragraph.split(/\s+/),lines=[];let line='';for(const word of words){const next=line?`${line} ${word}`:word;if(ctx.measureText(next).width>700&&line){lines.push(line);line=word}else line=next}if(line)lines.push(line);if(!lines.length)lines.push('');for(const current of lines){ctx.fillText(current,840,y);y+=34;if(y>860)break}y+=12;if(y>860)break}
+    ctx.fillStyle='#ffb154';ctx.font='700 17px Arial';ctx.fillText('TRADUCTION COMMUNAUTAIRE — NON OFFICIELLE',840,915)
+    ctx.fillStyle='#7894a8';ctx.font='15px Arial';ctx.fillText(`Index FR ${translationGlossary().updatedAt||''}`,840,940)
+    const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/png',.94));return new File([blob],`${cardKey(d.englishTitle).replace(/ /g,'-')}-fr-community.png`,{type:'image/png'})
   }
   function ensureNewCardDraft(card,label){
     if(!newCardDrafts[card])newCardDrafts[card]={nameFr:label,kind:'unit',weapons:[],defenseColor:null,unitStats:{woundsPerModel:1,courage:1,baseModels:1},addedModels:0,addedModelWounds:1,keywords:[],keywordQuery:'',keywordPendingId:null,keywordPendingValue:'',imageFile:null,imagePreviewUrl:null,ready:false}
@@ -407,7 +454,7 @@
   }
   function render(){
     stage=1;document.body.classList.add('certification-open');
-    root.innerHTML=unknownScreen?(unknownScreen.mode==='choose'?unknownChooser(unknownScreen.card,unknownScreen.label):unknownScreen.mode==='pick'?aliasPicker(unknownScreen.card,unknownScreen.label,unknownScreen.query):newCardForm(unknownScreen.card,unknownScreen.label)):selectedCard?editor(selectedCard):reviewMode?reviewScreen():list();
+    root.innerHTML=unknownScreen?(unknownScreen.mode==='choose'?unknownChooser(unknownScreen.card,unknownScreen.label):unknownScreen.mode==='pick'?aliasPicker(unknownScreen.card,unknownScreen.label,unknownScreen.query):unknownScreen.mode==='translate'?translationWorkshop(unknownScreen.card,unknownScreen.label):newCardForm(unknownScreen.card,unknownScreen.label)):selectedCard?editor(selectedCard):reviewMode?reviewScreen():list();
     root.querySelectorAll('.cert-card-visual img').forEach(img=>img.onclick=()=>openCardZoom(img.currentSrc||img.src,img.alt));
     root.querySelectorAll('#closeCertification').forEach(b=>b.onclick=close);
     root.querySelectorAll('#backCertification,#backToBatch').forEach(b=>b.onclick=()=>{selectedCard=null;render()});
@@ -470,9 +517,19 @@
     root.querySelectorAll('[data-unknown-card]').forEach(b=>b.onclick=()=>{unknownScreen={mode:'choose',card:decodeURIComponent(b.dataset.unknownCard),label:decodeURIComponent(b.dataset.unknownLabel)};render()});
     const backUnknown=$('#backUnknown');if(backUnknown)backUnknown.onclick=()=>{unknownScreen=null;render()};
     const backUnknownChoose=$('#backUnknownChoose');if(backUnknownChoose)backUnknownChoose.onclick=()=>{unknownScreen={mode:'choose',card:unknownScreen.card,label:unknownScreen.label};render()};
-    root.querySelectorAll('[data-unknown-action]').forEach(b=>b.onclick=()=>{const {card,label}=unknownScreen,action=b.dataset.unknownAction;if(action==='pick')unknownScreen={mode:'pick',card,label,query:''};else if(action==='new')unknownScreen={mode:'new',card,label};else if(action==='clear'){delete aliasDrafts[card];saveAliasDrafts();delete newCardDrafts[card];unknownScreen=null}render()});
+    root.querySelectorAll('[data-unknown-action]').forEach(b=>b.onclick=()=>{const {card,label}=unknownScreen,action=b.dataset.unknownAction;if(action==='pick')unknownScreen={mode:'pick',card,label,query:''};else if(action==='translate')unknownScreen={mode:'translate',card,label};else if(action==='new')unknownScreen={mode:'new',card,label};else if(action==='clear'){delete aliasDrafts[card];saveAliasDrafts();delete newCardDrafts[card];delete translationDrafts[card];saveTranslationDrafts();unknownScreen=null}render()});
     const aliasSearch=$('#aliasSearch');if(aliasSearch)aliasSearch.oninput=()=>{unknownScreen={...unknownScreen,query:aliasSearch.value};render();const input=$('#aliasSearch');if(input){input.focus();input.setSelectionRange(input.value.length,input.value.length)}};
     root.querySelectorAll('[data-alias-pick]').forEach(b=>b.onclick=()=>{aliasDrafts[unknownScreen.card]=decodeURIComponent(b.dataset.aliasPick);saveAliasDrafts();unknownScreen=null;render()});
+    const translationEnglishTitle=$('#translationEnglishTitle');if(translationEnglishTitle)translationEnglishTitle.onchange=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label);d.englishTitle=translationEnglishTitle.value;saveTranslationDrafts()};
+    const translationSourceUrl=$('#translationSourceUrl');if(translationSourceUrl)translationSourceUrl.onchange=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label);d.sourceUrl=translationSourceUrl.value;saveTranslationDrafts()};
+    const translationEnglishText=$('#translationEnglishText');if(translationEnglishText)translationEnglishText.onchange=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label);d.englishText=translationEnglishText.value;saveTranslationDrafts()};
+    const translationFrenchTitle=$('#translationFrenchTitle');if(translationFrenchTitle)translationFrenchTitle.onchange=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label);d.frenchTitle=translationFrenchTitle.value;saveTranslationDrafts()};
+    const translationFrenchText=$('#translationFrenchText');if(translationFrenchText)translationFrenchText.onchange=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label);d.frenchText=translationFrenchText.value;saveTranslationDrafts()};
+    const translationVisualConfirmed=$('#translationVisualConfirmed');if(translationVisualConfirmed)translationVisualConfirmed.onchange=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label);d.visualConfirmed=translationVisualConfirmed.checked;saveTranslationDrafts()};
+    const translationTextConfirmed=$('#translationTextConfirmed');if(translationTextConfirmed)translationTextConfirmed.onchange=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label);d.translationConfirmed=translationTextConfirmed.checked;saveTranslationDrafts()};
+    const translationImage=$('#translationImage');if(translationImage)translationImage.onchange=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label),file=translationImage.files?.[0];if(!file)return;d.imageFile=file;if(d.imagePreviewUrl)URL.revokeObjectURL(d.imagePreviewUrl);d.imagePreviewUrl=URL.createObjectURL(file);render()};
+    const autoTranslateCard=$('#autoTranslateCard');if(autoTranslateCard)autoTranslateCard.onclick=()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label),translated=translateWithGlossary($('#translationEnglishText')?.value||d.englishText);d.englishText=$('#translationEnglishText')?.value||d.englishText;d.frenchText=translated.output;d.matchedTerms=translated.matched;saveTranslationDrafts();render()};
+    const prepareFrenchCard=$('#prepareFrenchCard');if(prepareFrenchCard)prepareFrenchCard.onclick=async()=>{const d=translationDraftFor(unknownScreen.card,unknownScreen.label);d.englishTitle=$('#translationEnglishTitle')?.value||d.englishTitle;d.sourceUrl=$('#translationSourceUrl')?.value||d.sourceUrl;d.englishText=$('#translationEnglishText')?.value||d.englishText;d.frenchTitle=$('#translationFrenchTitle')?.value||d.frenchTitle;d.frenchText=$('#translationFrenchText')?.value||d.frenchText;d.visualConfirmed=!!$('#translationVisualConfirmed')?.checked;d.translationConfirmed=!!$('#translationTextConfirmed')?.checked;if(!d.imageFile){alert('Ajoutez le visuel anglais HD de la carte.');return}if(!d.frenchTitle.trim()||!d.frenchText.trim()){alert('Le titre et le texte français sont obligatoires.');return}if(!d.visualConfirmed||!d.translationConfirmed){alert('Les deux contrôles humains sont obligatoires avant de créer la fiche FR.');return}prepareFrenchCard.disabled=true;prepareFrenchCard.textContent='Création de la fiche FR…';const file=await createFrenchReferenceFile(d),target=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);target.nameFr=d.frenchTitle;target.imageFile=file;if(target.imagePreviewUrl)URL.revokeObjectURL(target.imagePreviewUrl);target.imagePreviewUrl=URL.createObjectURL(file);target.translationProof={schemaVersion:1,englishTitle:d.englishTitle,sourceUrl:d.sourceUrl,englishText:d.englishText,frenchText:d.frenchText,glossaryVersion:translationGlossary().updatedAt||'',verifiedAt:new Date().toISOString()};target.ready=false;saveTranslationDrafts();unknownScreen={mode:'new',card:unknownScreen.card,label:unknownScreen.label};render()};
     const newCardNameFr=$('#newCardNameFr');if(newCardNameFr)newCardNameFr.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.nameFr=newCardNameFr.value;d.ready=false};
     const newCardKind=$('#newCardKind');if(newCardKind)newCardKind.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.kind=newCardKind.value;d.ready=false;render()};
     const newCardNoCourage=$('#newCardNoCourage');if(newCardNoCourage)newCardNoCourage.onchange=()=>{const d=ensureNewCardDraft(unknownScreen.card,unknownScreen.label);d.unitStats.courage=newCardNoCourage.checked?null:1;d.ready=false;render()};
@@ -504,6 +561,7 @@
       ...(d.kind==='unit'?{unitStats:d.unitStats}:{}),
       ...(d.kind==='upgrade-models'?{addedModels:d.addedModels,addedModelWounds:d.addedModelWounds}:{}),
       ...(d.keywords.length?{keywords:d.keywords}:{}),
+      ...(d.translationProof?{translationProof:d.translationProof}:{}),
       imageMarker:`IMG-${index+1}`,imageFile:d.imageFile,
     }));
     if(!cards.length&&!aliasList.length&&!newCardList.length){alert('Ajoutez au moins une correction, un alias ou une nouvelle carte au lot.');return}

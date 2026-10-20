@@ -1979,5 +1979,69 @@
     "addedModelWounds": 1,
     "note": "Soldats de la Flotte uniquement — ajoute 1 figurine de Soldat de la Flotte (aucune arme, aucun mot-clé).",
     "addedAt": "2026-09-20"
+  },
+  "grand admiral thrawn imperial high command": {
+    "nameFr": "Grand Amiral Thrawn, Haut Commandement Impérial",
+    "image": "grand-admiral-thrawn-fr-community.png",
+    "weapons": [
+      {
+        "name": "Arts Martiaux Chiss",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "range": "melee"
+      },
+      {
+        "name": "Blaster de Thrawn",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "1-2"
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "stratege-x",
+        "value": 2
+      },
+      {
+        "keywordId": "malin"
+      },
+      {
+        "keywordId": "ordre-direct"
+      },
+      {
+        "keywordId": "duelliste"
+      },
+      {
+        "keywordId": "exemplaire"
+      },
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Grand Admiral Thrawn Imperial High Command",
+      "sourceUrl": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/03/SWQ42_UnitCard_3_Front.png",
+      "englishText": "Strategize 2; Cunning; Direct: Imperial unit; Duelist; Exemplar: One Step Ahead; Tactical 1; Chiss Martial Arts; Thrawn's Blaster",
+      "frenchText": "Stratège 2 ; Malin ; Ordre Direct : unité impériale ; Duelliste ; Exemplaire : Un Coup d’Avance ; Tacticien 1 ; Arts Martiaux Chiss ; Blaster de Thrawn",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-20T00:00:00.000Z"
+    },
+    "verificationSource": "Carte anglaise HD officielle AMG SWQ42 ; traduction communautaire relue avec l’index Star Wars Légion V2.6."
   }
 }

@@ -41,6 +41,16 @@ export interface CustomCardEntry {
   /** Mots-clés portés par cette carte précise (fusionnés dans SEED_CARD_TAGS, cardTags.ts). */
   keywords?: { keywordId: string; value?: number }[];
   verificationSource?: string;
+  /** Traçabilité d'une fiche française communautaire créée depuis le visuel anglais. */
+  translationProof?: {
+    schemaVersion: 1;
+    englishTitle: string;
+    sourceUrl?: string;
+    englishText: string;
+    frenchText: string;
+    glossaryVersion: string;
+    verifiedAt: string;
+  };
   /** Date ISO de l'ajout, pour l'historique — informatif uniquement. */
   addedAt?: string;
 }
