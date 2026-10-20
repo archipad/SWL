@@ -12,6 +12,16 @@ export interface CustomCardWeapon {
 export interface CustomCardEntry {
   /** Titre français tel qu'imprimé sur la carte. */
   nameFr: string;
+  /** Famille de carte pour distinguer unité, amélioration et commandement. */
+  cardType?: 'unit' | 'upgrade' | 'command';
+  /** Unité uniquement : rang et vitesse certifiés sur la carte. */
+  rank?: 'commandant' | 'operative' | 'corps' | 'special' | 'support' | 'heavy';
+  speed?: 1 | 2 | 3;
+  /** Carte Commandement / Contingence uniquement (jamais de PV, d'effectif ni de dé de défense). */
+  commandKind?: 'command' | 'contingency';
+  pips?: 1 | 2 | 3 | 4;
+  cardText?: string;
+  triggers?: string[];
   /** Nom de fichier dans public/cards/ (pas de chemin). */
   image?: string;
   weapons?: CustomCardWeapon[];

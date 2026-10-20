@@ -1,4 +1,5 @@
 import type { KeywordDef } from '../types';
+import { CUSTOM_KEYWORDS } from './customKeywords';
 
 /**
  * Glossaire officiel des mots-clés de Star Wars: Legion (2e édition), tel
@@ -339,7 +340,7 @@ const KEYWORD_DISPLAY_SECTIONS: Record<string, KeywordDef['displaySections']> = 
   'les-mandaloriens-sont-plus-forts-ensemble': ['attaque', 'défense'],
 };
 
-export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS].map((keyword) => ({
+export const SEED_KEYWORDS: KeywordDef[] = [...UNIT_KEYWORDS, ...WEAPON_KEYWORDS, ...CARD_KEYWORDS, ...CUSTOM_KEYWORDS].map((keyword) => ({
   ...keyword,
   impact: ACTIVATION_KEYWORDS.has(keyword.id) ? 'autre' : keyword.impact,
   displaySections: KEYWORD_DISPLAY_SECTIONS[keyword.id],

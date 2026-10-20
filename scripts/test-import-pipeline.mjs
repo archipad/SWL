@@ -21,6 +21,23 @@ try {
   assert.deepEqual(imported.units[0].upgrades.map((upgrade) => upgrade.key), ['z 6 trooper', 'rebel trooper', 'fragmentation grenades', 'prepared supplies', 'prepared supplies-2']);
   const reimported = importArmyList(JSON.stringify({ ...tabletopAdmiral, units: [{ ...tabletopAdmiral.units[0], upgrades: ['Impact Grenades'] }, tabletopAdmiral.units[1]] }));
   assert.deepEqual(reimported.units.map((unit) => unit.key), imported.units.map((unit) => unit.key));
+  // Certification universelle : cartes de Commandement et contingences auditées à part, sans PV ni effectif.
+  const commandAuditList = importArmyList(JSON.stringify({
+    armyFaction: 'rebel',
+    units: [{ name: 'Rebel Troopers', upgrades: [] }],
+    commandCards: ['Command Card Missing From Catalog', 'Ambush'],
+    contingencies: ['Contingency Missing From Catalog'],
+  }));
+  const commandAudit = auditImportedList(commandAuditList);
+  const commandSection = commandAudit.units.find((unit) => unit.kind === 'commands');
+  assert.equal(commandSection?.name, 'Cartes de Commandement', 'Les cartes de commandement doivent être regroupées');
+  assert.equal(commandSection?.cards, 3, 'Les cartes de commandement et contingences doivent être auditées');
+  assert.equal(commandSection?.issues.length, 4, 'Chaque carte inconnue doit demander son visuel et sa traduction');
+  assert.ok(!commandSection?.issues.some((issue) => issue.card === 'Ambush'), 'Une carte du paquet de Commandement du site (Embuscade) ne doit pas être signalée');
+  assert.ok(commandSection?.issues.every((issue) => issue.kind === 'visual' || issue.kind === 'translation'), 'Une carte de commandement ne doit jamais demander PV, effectif ni dés');
+  assert.ok(!('models' in commandSection) && !('maxWounds' in commandSection), 'Le groupe Commandement ne doit porter ni effectif ni PV');
+  assert.equal(commandAudit.catalogCards, 2, 'Les cartes de commandement inconnues doivent rejoindre le catalogue à certifier');
+  assert.equal(commandAudit.certificationIssues.filter((issue) => issue.unit === 'Cartes de Commandement').length, 0, 'Une carte de commandement ne doit pas demander de certification moteur');
   // L'appli ne suit plus les PV/effectif (choix produit) : seul le profil de
   // moral (courage/immunité à la suppression) reste calculé depuis les
   // certifications, voir src/lib/unitModels.ts.

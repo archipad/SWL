@@ -1987,9 +1987,20 @@ scenario('Certification : carte inconnue du catalogue -- alias vers une carte co
 
   await setInputValue('[data-weapon-field="0:name"]', 'Fusil de test')
   await setInputValue('[data-weapon-field="0:range"]', '1-2')
+  // Certification universelle : une carte Unité exige aussi son rang, sa vitesse et la confirmation des mots-clés visibles.
   lastAlert = null
   await click('#confirmNewCard')
-  assert.equal(lastAlert, null, 'plus aucune alerte une fois le nom, la photo, la défense et l’arme renseignés : ' + lastAlert)
+  assert.match(lastAlert || '', /rang.*vitesse.*mots-clés/i, 'carte Unité : rang, vitesse et mots-clés doivent être exigés')
+  assert.match(text($('#newCardMissing')), /rang/, 'les contrôles manquants doivent être affichés sur la fiche')
+  await setInputValue('[data-newcard-field="rank"]', 'corps')
+  await setInputValue('[data-newcard-field="speed"]', '2')
+  const keywordsConfirmed = $('#keywordsConfirmed')
+  keywordsConfirmed.checked = true
+  keywordsConfirmed.dispatchEvent(new app.window.Event('change', { bubbles: true }))
+  await settle()
+  lastAlert = null
+  await click('#confirmNewCard')
+  assert.equal(lastAlert, null, 'plus aucune alerte une fois le nom, la photo, la défense, l’arme, le rang, la vitesse et les mots-clés renseignés : ' + lastAlert)
   assert.ok(app.window.swlCertification.batchCount() >= 1, 'la nouvelle carte prête doit compter dans le lot à envoyer')
 
   await click('[data-unknown-card]')

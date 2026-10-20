@@ -7,14 +7,15 @@ const payloadPath=process.argv[2]
 const issueBodyPath=process.argv[3]
 if(!payloadPath)throw new Error('Fichier de certification manquant')
 const payload=JSON.parse(fs.readFileSync(payloadPath,'utf8'))
-if(![1,2,3,4,5].includes(payload.version))throw new Error('Certification invalide')
+if(![1,2,3,4,5,6].includes(payload.version))throw new Error('Certification invalide')
 if(payload.branch!=='claude/star-wars-legion-app-49rc3z')throw new Error('Branche de certification invalide')
 const validColors=new Set(['rouge','noir','blanc'])
 const keyPattern=/^[a-z0-9]+( [a-z0-9]+)*$/
 const cards=payload.version===1?[{card:payload.card,weapons:payload.weapons||[],...(payload.defenseColor?{defenseColor:payload.defenseColor}:{})}]:payload.cards||[]
 const aliases=payload.aliases||[]
 const newCards=payload.newCards||[]
-if(!cards.length&&!aliases.length&&!newCards.length)throw new Error('Lot de certification vide')
+const newKeywords=payload.newKeywords||[]
+if(!cards.length&&!aliases.length&&!newCards.length&&!newKeywords.length)throw new Error('Lot de certification vide')
 
 // Référentiel actuel (DICE_PROFILES/CARD_IMAGES déjà fusionnés avec
 // customCards.json) chargé via Vite SSR, comme generate-assistant-reference.mjs
@@ -34,6 +35,22 @@ try {
 }
 const knownCard = (key) => Boolean(diceModule.DICE_PROFILES[key] || imageModule.CARD_IMAGES[key])
 const knownKeywordIds = new Set(keywordModule.SEED_KEYWORDS.map((k) => k.id))
+const keywordIdPattern=/^[a-z0-9]+(?:-[a-z0-9]+)*$/
+const keywordCategories=new Set(['unité','arme','carte','autre'])
+const keywordImpacts=new Set(['attaque','défense','autre'])
+const keywordTriggers=new Set(['setup','command','activation','movement','attack','defense','end-round','passive'])
+const keywordAutomations=new Set(['automatic','required-question','informative'])
+for(const keyword of newKeywords){
+  if(typeof keyword.id!=='string'||!keywordIdPattern.test(keyword.id))throw new Error(`Identifiant de mot-clé invalide : ${keyword.id}`)
+  if(knownKeywordIds.has(keyword.id))throw new Error(`Le mot-clé « ${keyword.id} » existe déjà`)
+  if(typeof keyword.englishName!=='string'||!keyword.englishName.trim()||typeof keyword.name!=='string'||!keyword.name.trim())throw new Error(`Traduction de mot-clé manquante : ${keyword.id}`)
+  if(typeof keyword.definition!=='string'||!keyword.definition.trim()||typeof keyword.shortDefinition!=='string'||!keyword.shortDefinition.trim())throw new Error(`Définition de mot-clé manquante : ${keyword.id}`)
+  if(!keywordCategories.has(keyword.category)||!keywordImpacts.has(keyword.impact)||!keywordTriggers.has(keyword.trigger)||!keywordAutomations.has(keyword.automation))throw new Error(`Classement de mot-clé invalide : ${keyword.id}`)
+  if(typeof keyword.hasValue!=='boolean'||typeof keyword.rulesVersion!=='string'||!keyword.rulesVersion.trim()||typeof keyword.verifiedAt!=='string')throw new Error(`Certification de mot-clé incomplète : ${keyword.id}`)
+  if(typeof keyword.sourceUrl!=='string'||!/^https:\/\//.test(keyword.sourceUrl)||keyword.sourceUrl.length>500)throw new Error(`Source de mot-clé invalide : ${keyword.id}`)
+  if(payload.version>=6&&['translation','definition','behavior','source'].some(check=>keyword.checks?.[check]!==true))throw new Error(`Validation humaine incomplète pour le mot-clé ${keyword.id} (traduction, définition, comportement et source)`)
+  knownKeywordIds.add(keyword.id)
+}
 const visualHashFor=card=>{const mapped=imageModule.CARD_IMAGES[card];if(!mapped)throw new Error(`Visuel catalogue introuvable pour ${card}`);const path=resolve(process.cwd(),'public','cards',basename(mapped));return createHash('sha256').update(fs.readFileSync(path)).digest('hex')}
 
 for(const card of cards){
@@ -108,6 +125,23 @@ for(const card of newCards){
     if(!Number.isInteger(baseModels)||baseModels<1||baseModels>30)throw new Error(`Nombre de figurines invalide pour ${card.key}`)
   }
   if(card.addedModels!==undefined&&(!Number.isInteger(card.addedModels)||card.addedModels<0||card.addedModels>30))throw new Error(`Figurines ajoutées invalides pour ${card.key}`)
+  // Certification universelle (schéma 6) : chaque famille de carte n'accepte que les données réellement imprimées sur elle.
+  if(payload.version>=6||card.cardType!==undefined){
+    if(!['unit','upgrade','command'].includes(card.cardType))throw new Error(`Type de carte invalide pour ${card.key}`)
+    if(card.cardType==='unit'){
+      if(!card.unitStats||!card.defenseColor)throw new Error(`Caractéristiques ou dé de défense manquants pour l'unité ${card.key}`)
+      if(!['commandant','operative','corps','special','support','heavy'].includes(card.rank))throw new Error(`Rang invalide pour l'unité ${card.key}`)
+      if(![1,2,3].includes(card.speed))throw new Error(`Vitesse invalide pour l'unité ${card.key} (1, 2 ou 3)`)
+      if(!(card.weapons||[]).length)throw new Error(`Aucune arme saisie pour l'unité ${card.key}`)
+    }else if(card.unitStats||card.defenseColor||card.rank!==undefined||card.speed!==undefined)throw new Error(`Caractéristiques d'unité interdites sur ${card.key}`)
+    if(card.cardType==='command'){
+      if((card.weapons||[]).length||card.addedModels!==undefined||card.addedModelWounds!==undefined)throw new Error(`Une carte de commandement ne porte ni arme, ni PV, ni effectif : ${card.key}`)
+      if(!['command','contingency'].includes(card.commandKind))throw new Error(`Usage invalide pour ${card.key} (commandement ou contingence)`)
+      if(![1,2,3,4].includes(card.pips))throw new Error(`Pips invalides pour ${card.key}`)
+      if(typeof card.cardText!=='string'||!card.cardText.trim())throw new Error(`Texte français manquant pour ${card.key}`)
+      if(!Array.isArray(card.triggers)||!card.triggers.length||card.triggers.some(trigger=>!keywordTriggers.has(trigger)))throw new Error(`Déclenchements invalides pour ${card.key}`)
+    }else if(card.commandKind!==undefined||card.pips!==undefined||card.cardText!==undefined||card.triggers!==undefined)throw new Error(`Données de commandement interdites sur ${card.key}`)
+  }
   if(card.translationProof){
     const proof=card.translationProof
     if(proof.schemaVersion!==1||typeof proof.englishTitle!=='string'||!proof.englishTitle.trim()||typeof proof.frenchText!=='string'||!proof.frenchText.trim())throw new Error(`Preuve de traduction invalide pour ${card.key}`)
@@ -122,6 +156,13 @@ for(const card of newCards){
   const match=issueBody.match(markerLine)
   if(!match)throw new Error(`Visuel introuvable dans l'issue pour ${card.key} (repère ${card.imageMarker}) -- collez la photo juste après la ligne ${card.imageMarker}`)
   card._imageUrl=match[1]
+}
+
+if(newKeywords.length){
+  const customKeywordsPath=new URL('../src/data/customKeywords.json',import.meta.url)
+  const customKeywordDb=JSON.parse(fs.readFileSync(customKeywordsPath,'utf8'))
+  for(const keyword of newKeywords)customKeywordDb[keyword.id]=keyword
+  fs.writeFileSync(customKeywordsPath,`${JSON.stringify(customKeywordDb,null,2)}\n`)
 }
 
 const databasePath=new URL('../src/data/diceCertifications.json',import.meta.url)
@@ -154,6 +195,9 @@ if(newCards.length){
     fs.writeFileSync(new URL(fileName,cardsDir),Buffer.from(await response.arrayBuffer()))
     customDb[card.key]={
       nameFr:card.nameFr,
+      ...(card.cardType?{cardType:card.cardType}:{}),
+      ...(card.cardType==='unit'?{rank:card.rank,speed:card.speed}:{}),
+      ...(card.cardType==='command'?{commandKind:card.commandKind,pips:card.pips,cardText:card.cardText,triggers:card.triggers}:{}),
       image:fileName,
       weapons:(card.weapons||[]).map(weaponFields),
       ...(card.keywords?.length?{keywords:card.keywords}:{}),
@@ -194,4 +238,4 @@ const versionedIndex=assistantIndex.replace(
 )
 if(versionedIndex===assistantIndex)throw new Error('Version du référentiel Assistant introuvable')
 fs.writeFileSync(assistantIndexPath,versionedIndex)
-console.log(`Certifications appliquées : ${cards.length} carte(s), ${aliases.length} alias, ${newCards.length} nouvelle(s) carte(s)`)
+console.log(`Certifications appliquées : ${cards.length} carte(s), ${aliases.length} alias, ${newCards.length} nouvelle(s) carte(s), ${newKeywords.length} nouveau(x) mot(s)-clé(s)`)

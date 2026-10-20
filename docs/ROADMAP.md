@@ -413,6 +413,7 @@
 ## Robustesse des données
 
 - [x] Ajouter l’atelier EN → FR pour les cartes Tabletop Admiral inconnues : suggestions d’alias, dictionnaire V2.6, source traçable, double validation humaine, fiche communautaire et envoi dans le lot GitHub.
+- [x] Étendre l’atelier aux cartes Unité, Amélioration et Commandement, avec certification bloquante des nouveaux mots-clés (traduction, définition, rappel court, déclenchement, traitement moteur, source et version).
 - [ ] Ajouter une récupération assistée des visuels anglais depuis les sources autorisées ; l’utilisateur fournit encore le fichier HD lorsque le navigateur bloque le téléchargement direct.
 - [ ] Ajouter un éditeur graphique avancé permettant de replacer précisément chaque zone de texte sur le gabarit original ; la première version génère une fiche bilingue fiable plutôt qu’une imitation du visuel officiel.
 - [x] Ajouter un jeu de fixtures Tabletop Admiral Empire et Rebelles plus large.

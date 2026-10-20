@@ -299,7 +299,8 @@ export const DICE_PROFILES: Record<string, CardDiceProfile> = {
   // Cartes ajoutées depuis l'écran « Nouvelle carte » de l'assistant (voir
   // src/data/customCards.ts) — déjà certifiées à l'ajout, pas en attente.
   ...Object.fromEntries(
-    Object.entries(CUSTOM_CARDS).map(([key, card]) => [
+    // Une carte Commandement / Contingence n'a ni arme ni défense : elle reste hors du moteur d'attaque.
+    Object.entries(CUSTOM_CARDS).filter(([, card]) => card.cardType !== 'command').map(([key, card]) => [
       key,
       {
         weapons: (card.weapons ?? []).map((weapon) => ({

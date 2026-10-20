@@ -2,6 +2,7 @@ import certifications from '../data/diceCertifications.json';
 import errata from '../data/errata.json';
 import { CARD_IMAGES } from '../data/cardImages';
 import { CARD_NAMES_FR } from '../data/cardNamesFr';
+import { COMMAND_CARDS } from '../data/commandCards';
 import { DICE_PROFILES } from '../data/diceProfiles';
 import { canonicalCardKey } from './cardNames';
 import type { ParsedList } from '../types';
@@ -14,7 +15,7 @@ export type ImportIssueKind = 'visual' | 'translation' | 'unit-stats' | 'dice';
 export type ImportIssueScope = 'certification' | 'catalog';
 export type ImportIssueResolution = 'unknown-card' | 'visual-unmapped' | 'translation-unmapped' | 'engine-certification';
 export interface ImportIssue { card: string; unit: string; kind: ImportIssueKind; scope: ImportIssueScope; resolution: ImportIssueResolution; message: string }
-export interface ImportUnitAudit { name: string; issues: ImportIssue[] }
+export interface ImportUnitAudit { name: string; issues: ImportIssue[]; kind?: 'unit' | 'commands'; cards?: number }
 export interface ImportAudit {
   cards: number;
   readyCards: number;
@@ -28,6 +29,14 @@ export interface ImportAudit {
   complete: boolean;
 }
 
+// Cartes de Commandement déjà présentes dans le paquet du site (src/data/commandCards.ts) : reconnues par
+// identifiant, nom français ou nom anglais cité entre parenthèses (« Carte générique (Ambush) »).
+const COMMAND_CATALOG_KEYS = new Set(COMMAND_CARDS.flatMap((card) => [
+  card.id.replace(/-/g, ' '),
+  canonicalCardKey(card.name),
+  ...[...card.requirement.matchAll(/\(([^)]+)\)/g)].map((match) => canonicalCardKey(match[1])),
+]));
+export const isKnownCommandCard = (name: string) => { const key = canonicalCardKey(name); return COMMAND_CATALOG_KEYS.has(key) || Boolean(CARD_IMAGES[key] && CARD_NAMES_FR[key]); };
 const uniqueCards = (issues: ImportIssue[]) => new Set(issues.map((issue) => canonicalCardKey(issue.card))).size;
 
 function weaponIsCertified(
@@ -76,6 +85,21 @@ export function auditImportedList(list: ParsedList): ImportAudit {
     allIssues.push(...unitIssues);
     return { name: unit.name, issues: unitIssues };
   });
+  // Cartes de Commandement et contingences : seuls le visuel et la traduction sont exigés -- jamais de PV, d'effectif ni de dés.
+  const commandCards = [...new Set([...(list.commandCards ?? []), ...(list.contingencies ?? [])])];
+  if (commandCards.length) {
+    const commandIssues: ImportIssue[] = [];
+    for (const name of commandCards) {
+      cards += 1;
+      if (isKnownCommandCard(name)) { readyCards += 1; continue; }
+      const key = canonicalCardKey(name);
+      const unknownCard = !CARD_IMAGES[key] && !CARD_NAMES_FR[key];
+      if (!CARD_IMAGES[key]) commandIssues.push({ card: name, unit: 'Cartes de Commandement', kind: 'visual', scope: 'catalog', resolution: unknownCard ? 'unknown-card' : 'visual-unmapped', message: unknownCard ? 'Visuel non raccordé au catalogue : carte réellement inconnue' : 'Carte connue, mais visuel non raccordé' });
+      if (!CARD_NAMES_FR[key]) commandIssues.push({ card: name, unit: 'Cartes de Commandement', kind: 'translation', scope: 'catalog', resolution: unknownCard ? 'unknown-card' : 'translation-unmapped', message: unknownCard ? 'Traduction indisponible tant que la carte n’est pas raccordée' : 'Nom français non raccordé au catalogue' });
+    }
+    allIssues.push(...commandIssues);
+    units.push({ name: 'Cartes de Commandement', issues: commandIssues, kind: 'commands', cards: commandCards.length });
+  }
   const certificationIssues = allIssues.filter((issue) => issue.scope === 'certification');
   const catalogIssues = allIssues.filter((issue) => issue.scope === 'catalog');
   return {
