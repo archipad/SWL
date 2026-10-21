@@ -10,7 +10,8 @@
    en page ni de mesures de pixels) ; on teste donc la structure du DOM, les
    classes d'état, les textes et la logique — pas le rendu visuel. */
 import assert from 'node:assert/strict'
-import { openAssistant } from './lib/assistant-harness.mjs'
+import fs from 'node:fs'
+import { ONLINE_BASE_URL, openAssistant } from './lib/assistant-harness.mjs'
 
 let passed = 0
 const scenarios = []
@@ -2373,6 +2374,229 @@ scenario('Sélection des unités (25/09/2026) : rang + icône en tête, figurine
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
 })
+
+/* ------------------------------------------------------------------ */
+scenario('Certification automatique β (21/10/2026) : file de préparation des listes, visuels EN/FR, validation finale, ancien lot intact', async () => {
+  const historicBatch = { 'stormtroopers': { weapons: [{ index: 0, name: 'Fusil Blaster E-11', queued: true, dice: [{ color: 'blanc', count: 1 }] }] } }
+  const historicAliases = { 'carte de test': 'stormtroopers' }
+  // Rejoué à l'origine du site publié : l'inventaire personnel n'y est jamais chargé, le parcours est identique en local et en CI.
+  const app = await openAssistant({
+    'swl.list.p1.v1': { listName: 'Test bêta', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Underworld Connections' }] }, { name: 'Imaginary Beta Unit', upgrades: [] }], commandCards: ['Ambush', 'Imaginary Beta Command'], contingencies: ['Imaginary Beta Contingency'] },
+    'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
+    'swl-dice-certification-batch-v1': historicBatch,
+    'swl-unknown-card-aliases-v1': historicAliases,
+  }, { base: ONLINE_BASE_URL })
+  const { $, $$, text, click, settle } = app
+  const row0 = () => $('[data-auto-card]')
+  const storage = app.window.localStorage
+  const snapshot = () => Object.fromEntries(Object.keys(storage).filter((key) => key !== 'swl-auto-certification-beta-v1').sort().map((key) => [key, storage.getItem(key)]))
+  const before = snapshot()
+  const historicCountBefore = app.window.swlCertification.batchCount()
+
+  assert.ok($('#certificationAuto') && $('#certification') && $('#certificationAuto') !== $('#certification'), 'le bouton de la bêta doit rester distinct de la certification historique')
+  await click('#certificationAuto')
+  for (let i = 0; i < 80 && !$('.auto-cert-list'); i += 1) await settle(50)
+  assert.ok($('.auto-cert-list'), 'la file de la bêta doit apparaître une fois le catalogue chargé à la demande')
+  assert.ok(app.window.document.body.classList.contains('certification-auto-open'), 'la bêta est un écran secondaire protégé de la synchronisation')
+  assert.ok(!app.window.SWL_AUTO_CERTIFICATION_PERSONAL, 'en ligne, l’inventaire des visuels AMG personnels n’est jamais chargé')
+  // Les visuels anglais AMG sont réservés à l'usage personnel (jamais publiés) : l'inventaire est complété en mémoire pour rejouer
+  // le parcours de validation ; jsdom ne charge de toute façon aucune image.
+  const localAssets = app.window.SWL_AUTO_CERTIFICATION_ASSETS.assets
+  for (const [key, file] of [['unit:5', 'unit-5-stormtroopers'], ['unit:6', 'unit-6-rebel-troopers'], ['upgrade:2429', 'upgrade-2429-underworld-connections']]) {
+    const [kind, sourceId] = key.split(':')
+    localAssets[`${key}:en`] ||= { kind, sourceId, lang: 'en', file: `auto-certification/en/${file}.jpg`, sourceType: 'amg-official', publication: 'usage-personnel', sourceUrl: 'https://cdn.svc.asmodee.net/production-amgcom/uploads/test.pdf#page=1', retrievedAt: '2026-10-21T00:00:00.000Z', sha256: '0'.repeat(64) }
+  }
+  await click(row0())
+  await click('#backAutoCertification')
+
+  // File : uniquement les cartes des listes importées, des quatre familles.
+  const row = (key) => $$('[data-auto-card]').find((button) => decodeURIComponent(button.dataset.autoCard) === key)
+  const listed = $$('[data-auto-card]').map((button) => decodeURIComponent(button.dataset.autoCard))
+  assert.deepEqual([...listed].sort(), ['ambush', 'imaginary beta command', 'imaginary beta contingency', 'imaginary beta unit', 'rebel troopers', 'stormtroopers', 'underworld connections'], 'la file contient exactement les cartes des listes (unités, améliorations, commandements, contingences)')
+  assert.match(text(row('underworld connections')), /Amélioration · Contacts dans la Pègre/, 'Underworld Connections est rattachée à Contacts dans la Pègre')
+  assert.match(text(row('underworld connections')), /✓ Métadonnées.*✓ EN.*✓ FR.*✓ Traduction.*✓ Mots-clés connus.*✓ Prête/, 'les six états sont affichés et indépendants')
+  assert.match(text(row('ambush')), /Commandement.*✓ Métadonnées.*✗ EN.*✗ FR.*✗ Prête/, 'une carte sans visuel reste à préparer')
+  assert.match(row('ambush').innerHTML, /Visuel anglais non disponible en ligne/, 'en ligne, l’absence de visuel anglais est annoncée comme telle')
+  assert.match(text(row('imaginary beta contingency')), /Contingence.*✗ Métadonnées/, 'une contingence inconnue est signalée sans métadonnées')
+  const sections = $$('.auto-cert-page h2').map(text)
+  assert.deepEqual(sections, ['Prêtes pour validation humaine', 'À préparer'], 'la file sépare les cartes prêtes de celles à préparer')
+
+  const onlyLocalImages = () => $$('.auto-cert-page img').every((img) => /^\.\.\/(cards|commandcards)\//.test(img.getAttribute('src')))
+  const open = async (key) => { if ($('#backAutoCertification')) await click('#backAutoCertification'); await click(row(key)) }
+
+  // Non-régression : une URL externe seule ne suffit JAMAIS à déverrouiller la certification.
+  const catalog = app.window.SWL_AUTO_CERTIFICATION_SOURCE.cards
+  const ambush = catalog.find((card) => card.kind === 'command' && card.englishName === 'Ambush')
+  Object.assign(ambush, { englishImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/en.webp', frenchImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/fr.jpg', image_url: 'https://d26oqf9i6fvic.cloudfront.net/commands-new/resized/7.webp', imageUrl: 'https://cdn.svc.asmodee.net/x.png' })
+  await open('ambush')
+  assert.ok(!$$('.auto-cert-page img').length, 'une adresse distante n’est jamais affichée ni considérée comme un visuel')
+  assert.ok($('#validateAutoCard').disabled && $('#autoVisualCheck').disabled, 'une adresse distante ne déverrouille jamais la certification')
+  const inventory = app.window.SWL_AUTO_CERTIFICATION_ASSETS.assets
+  const englishAsset = inventory['upgrade:2429:en']
+  delete inventory['upgrade:2429:en']
+  Object.assign(catalog.find((card) => card.kind === 'upgrade' && card.sourceId === '2429'), { englishImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/uw.webp' })
+  await open('underworld connections')
+  assert.ok(!$('[data-auto-visual="en"]') && onlyLocalImages(), 'sans fichier, le visuel anglais reste absent malgré l’URL distante')
+  assert.match(text($('.auto-cert-compare')), /Visuel anglais non disponible en ligne : validation impossible/, 'en ligne, la carte sans visuel anglais l’annonce et n’est pas validable')
+  assert.ok($('#validateAutoCard').disabled, 'sans visuel anglais, la validation reste bloquée')
+  inventory['upgrade:2429:en'] = englishAsset
+
+  // Validation finale : comparer, confirmer ou corriger le nom français, confirmer les traductions.
+  await open('underworld connections')
+  assert.equal($('[data-auto-visual="en"]')?.getAttribute('src'), '../cards/auto-certification/en/upgrade-2429-underworld-connections.jpg', 'le visuel anglais officiel est lu depuis le dépôt')
+  assert.equal($('[data-auto-visual="fr"]')?.getAttribute('src'), '../cards/underworld-contacts.jpg', 'le visuel français local est raccordé par l’alias explicite')
+  assert.ok(onlyLocalImages(), 'seuls des visuels du dépôt sont affichés')
+  assert.equal($('#autoFrenchName').value, 'Contacts dans la Pègre', 'le nom français est proposé')
+  assert.match(text($('.auto-cert-data')), /Allies of Convenience → ALLIÉS DE CIRCONSTANCE/, 'la traduction du mot-clé est proposée par le glossaire')
+  assert.match(text($('.auto-cert-definitions')), /Allies of Convenience — ALLIÉS DE CIRCONSTANCE\s*\S/, 'la définition du mot-clé est affichée avec sa traduction')
+  assert.match(text($('.auto-cert-data')), /Coût\s*5(?!\d)/, 'le coût de 5 points est rappelé')
+  assert.ok($('#autoVisualCheck').disabled && $('#validateAutoCard').disabled, 'tant que les visuels ne sont pas affichés, contrôle visuel et validation restent bloqués')
+  // jsdom ne télécharge aucune image : on simule l'affichage effectif des deux visuels après chaque rendu.
+  const showVisuals = async () => {
+    for (const img of $$('[data-auto-visual]')) {
+      Object.defineProperty(img, 'complete', { value: true, configurable: true })
+      Object.defineProperty(img, 'naturalWidth', { value: 600, configurable: true })
+      img.dispatchEvent(new app.window.Event('load'))
+    }
+    await settle()
+  }
+  const tick = async (id) => { const box = app.window.document.getElementById(id); box.checked = true; box.dispatchEvent(new app.window.Event('change', { bubbles: true })); await settle(); await showVisuals() }
+  await showVisuals()
+  assert.ok(!$('#autoVisualCheck').disabled, 'le contrôle visuel se débloque une fois les deux visuels affichés')
+  $('[data-auto-visual="fr"]').dispatchEvent(new app.window.Event('error'))
+  await settle()
+  assert.ok($('#autoVisualCheck').disabled && /Visuel illisible/.test(text($('.auto-cert-compare'))), 'un visuel illisible bloque la validation')
+  await open('underworld connections')
+  await showVisuals()
+  await tick('autoVisualCheck')
+  const name = $('#autoFrenchName')
+  name.value = 'Contacts dans la Pègre'
+  name.dispatchEvent(new app.window.Event('change', { bubbles: true }))
+  await settle()
+  await showVisuals()
+  await tick('autoFrenchNameCheck')
+  assert.ok($('#validateAutoCard').disabled, 'les traductions doivent aussi être confirmées')
+  await tick('autoTranslationCheck')
+  assert.ok(!$('#validateAutoCard').disabled, 'les contrôles du validateur débloquent la validation')
+  await click('#validateAutoCard')
+  const beta = JSON.parse(storage.getItem('swl-auto-certification-beta-v1'))
+  assert.equal(beta['underworld connections'].status, 'validated', 'la validation est conservée dans le seul stockage bêta')
+  assert.equal(beta['underworld connections'].frenchName, 'Contacts dans la Pègre', 'le nom français validé est conservé')
+  const frenchHash = app.window.SWL_AUTO_CERTIFICATION_ASSETS.hashes['cards/underworld-contacts.jpg']
+  assert.deepEqual([beta['underworld connections'].englishSha256, beta['underworld connections'].frenchSha256], ['0'.repeat(64), frenchHash], 'la validation retient les empreintes SHA-256 des deux visuels comparés')
+  assert.ok(!row('underworld connections') && /Déjà validées \(1\)/.test(text($('.auto-cert-done'))), 'une carte validée n’est plus retraitée')
+  assert.match($('#autoPublishValidations').value, /"upgrade:2429"[\s\S]*"frenchName": "Contacts dans la Pègre"/, 'la validation locale est proposée à la publication pour tous les appareils')
+
+  // Invalidation par SHA-256 : si le visuel français change, la validation tombe et la carte revient dans la file.
+  app.window.SWL_AUTO_CERTIFICATION_ASSETS.hashes['cards/underworld-contacts.jpg'] = 'f'.repeat(64)
+  await click('#closeAutoCertification')
+  await click('#certificationAuto')
+  for (let i = 0; i < 40 && !$('.auto-cert-list'); i += 1) await settle(50)
+  assert.ok(row('underworld connections') && /validation invalidée/.test(text(row('underworld connections'))), 'une empreinte modifiée invalide la validation')
+  app.window.SWL_AUTO_CERTIFICATION_ASSETS.hashes['cards/underworld-contacts.jpg'] = frenchHash
+
+  assert.deepEqual(snapshot(), before, 'aucune autre donnée locale (ancien lot, alias, listes) ne doit être modifiée par la bêta')
+  assert.deepEqual(JSON.parse(storage.getItem('swl-dice-certification-batch-v1')), historicBatch, 'l’ancien lot de certification reste intact')
+  assert.deepEqual(JSON.parse(storage.getItem('swl-unknown-card-aliases-v1')), historicAliases, 'les alias historiques restent intacts')
+  assert.equal(app.window.swlCertification.batchCount(), historicCountBefore, 'le compteur du lot historique ne doit pas bouger')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+/* ------------------------------------------------------------------ */
+// Listes réelles du 21/10/2026 (Empire « Moff G. » et Rebelles « Simon 3 »), réduites aux cartes des quatre variantes tranchées.
+const variantLists = {
+  'swl.list.p1.v1': { listName: 'Antoine - Empire Moff G.', faction: 'Empire Galactique', units: [{ name: 'Mandalorian Hunter', upgrades: [{ name: 'Battlemaster' }, { name: 'GALAAR-90 Sniper Rifle (Armament)' }] }], commandCards: ['Ambush'] },
+  'swl.list.p2.v1': { listName: 'Rebelle - Simon 3', faction: 'Alliance Rebelle', units: [{ name: 'Rebel Agent Defender of Democracy', upgrades: [{ name: 'Combat Armor (Rebel)' }] }, { name: 'AT-RT', upgrades: [{ name: 'AT-RT Flamethrower' }] }, { name: 'Rebel Commandos Strike Team', upgrades: [{ name: 'DH-447 Sniper' }] }], commandCards: ['Standing Orders'] },
+}
+const openBeta = async (storage, options) => {
+  const app = await openAssistant(storage, options)
+  await app.click('#certificationAuto')
+  for (let i = 0; i < 80 && !app.$('.auto-cert-list'); i += 1) await app.settle(50)
+  assert.ok(app.$('.auto-cert-list'), 'la file de la bêta apparaît')
+  return app
+}
+const betaRow = (app, key) => app.$$('[data-auto-card]').find((button) => decodeURIComponent(button.dataset.autoCard) === key)
+
+scenario('Certification automatique β : les quatre variantes tranchées viennent du dépôt (tout appareil, nouvel import identique), surcharge locale temporaire', async () => {
+  // Appareil neuf (aucun stockage bêta), site publié : les décisions versionnées s'appliquent sans aucun choix local.
+  const app = await openBeta(variantLists, { base: ONLINE_BASE_URL })
+  const { $, $$, text, click } = app
+  const expected = { 'galaar 90 sniper rifle armament': '22654', 'combat armor rebel': '20282', 'at rt': '1', 'rebel commandos strike team': '25979' }
+  for (const [key, sourceId] of Object.entries(expected)) {
+    const row = betaRow(app, key)
+    assert.ok(row, `${key} figure dans la file`)
+    assert.match(row.innerHTML, new RegExp(`n° ${sourceId} \\(décision certifiée\\)`), `${key} : variante n° ${sourceId} appliquée depuis le dépôt`)
+    assert.doesNotMatch(row.innerHTML, /cartes possibles/, `${key} : plus aucune ambiguïté`)
+  }
+  assert.match(text($('.auto-cert-banner')), /4 carte\(s\) à variantes Tabletop Admiral \(0 sans variante retenue\)/, 'le compteur ne signale plus aucune variante à choisir')
+  assert.equal(app.window.localStorage.getItem('swl-auto-certification-beta-v1'), null, 'aucune décision n’est écrite dans le stockage local : elles viennent du dépôt')
+
+  // Comparaison : décision certifiée affichée ; une surcharge locale reste temporaire et réversible.
+  await click('#openAutoVariants')
+  const caseOf = (pattern) => $$('.auto-cert-variant-case').find((section) => pattern.test(text(section.querySelector('h2'))))
+  assert.equal($$('.auto-cert-variant-case').length, 4, 'les quatre cas restent consultables côte à côte')
+  assert.match(text(caseOf(/^AT-RT/)), /Décision certifiée du dépôt \(2026-10-21\) : n° 1/, 'la décision du dépôt est affichée avec sa date')
+  assert.ok(!$$('.auto-cert-page img').some((img) => /auto-certification\/en\//.test(img.getAttribute('src'))), 'en ligne, aucun visuel AMG personnel n’est demandé')
+  assert.match(text(caseOf(/^AT-RT/)), /Visuel anglais non disponible en ligne \(AMG, usage personnel\)/, 'le visuel AMG personnel est annoncé indisponible en ligne')
+  await click(caseOf(/^AT-RT/).querySelector('[data-variant-hold]'))
+  assert.match(text(caseOf(/^AT-RT/)), /Laissée à contrôler sur cet appareil.*surcharge locale temporaire/, 'le choix local surcharge temporairement la décision commune')
+  await click('#backAutoCertification')
+  assert.match(betaRow(app, 'at rt').innerHTML, /2 cartes possibles/, 'la surcharge locale remet la carte à contrôler sur cet appareil seulement')
+  await click('#openAutoVariants')
+  await click(caseOf(/^AT-RT/).querySelector('[data-variant-reset]'))
+  await click('#backAutoCertification')
+  assert.match(betaRow(app, 'at rt').innerHTML, /n° 1 \(décision certifiée\)/, 'on revient à la décision du dépôt')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+
+  // Nouvel import identique : mêmes noms, mêmes décisions, toujours sans stockage local.
+  const again = await openBeta(variantLists, { base: ONLINE_BASE_URL })
+  for (const [key, sourceId] of Object.entries(expected)) assert.match(betaRow(again, key).innerHTML, new RegExp(`n° ${sourceId} \\(décision certifiée\\)`), `réimport : ${key} → n° ${sourceId}`)
+  again.window.close()
+
+  // Contrainte de faction : un AT-RT dans une liste de la République reste ambigu (n° 1 = Rebelles seulement).
+  const republic = await openBeta({ 'swl.list.p1.v1': { listName: 'République', faction: 'Galactic Republic', units: [{ name: 'AT-RT', upgrades: [] }], commandCards: [] }, 'swl.list.p2.v1': { listName: 'Vide', faction: 'Empire', units: [], commandCards: [] } }, { base: ONLINE_BASE_URL })
+  assert.match(betaRow(republic, 'at rt').innerHTML, /2 cartes possibles : choix humain/, 'la décision rebelle ne s’applique pas à une liste de la République')
+  republic.window.close()
+})
+
+scenario('Certification automatique β : validations publiées synchronisées entre appareils et invalidées si une empreinte SHA-256 change', async () => {
+  const app = await openBeta(variantLists, { base: ONLINE_BASE_URL })
+  const { $, text, click, settle } = app
+  const assets = app.window.SWL_AUTO_CERTIFICATION_ASSETS
+  // Validation publiée dans le dépôt pour le Strike Team : empreinte AMG (connue sans chemin) + empreinte du visuel français publié.
+  const english = assets.personalHashes['unit:25979:en'], french = assets.hashes['cards/rebel-commandos-strike-team.jpg']
+  assert.ok(english && french, 'les empreintes nécessaires sont publiées (jamais le chemin du visuel personnel)')
+  assets.decisions.validations['unit:25979'] = { listName: 'Rebel Commandos Strike Team', frenchName: 'Commandos Rebelles, Groupe de Combat', englishSha256: english, frenchSha256: french, validatedAt: '2026-10-21T00:00:00.000Z' }
+  await click('#closeAutoCertification')
+  await click('#certificationAuto')
+  for (let i = 0; i < 40 && !$('.auto-cert-list'); i += 1) await settle(50)
+  assert.ok(!betaRow(app, 'rebel commandos strike team'), 'la validation publiée retire la carte de la file sur un appareil neuf')
+  assert.match(text($('.auto-cert-done')), /Rebel Commandos Strike Team.*validation publiée, tous appareils/, 'la validation publiée est reconnue comme telle')
+  assets.decisions.validations['unit:25979'].frenchSha256 = 'e'.repeat(64)
+  await click('#closeAutoCertification')
+  await click('#certificationAuto')
+  for (let i = 0; i < 40 && !$('.auto-cert-list'); i += 1) await settle(50)
+  assert.match(text(betaRow(app, 'rebel commandos strike team')), /validation invalidée/, 'une empreinte différente invalide la validation publiée')
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
+scenario('Certification automatique β en local (localhost) : visuels AMG personnels utilisables, sans changer l’inventaire publié', async () => {
+  const app = await openBeta(variantLists)
+  const { $, text } = app
+  const personalFile = fs.existsSync(new URL('../public/assistant/auto-certification-personal.js', import.meta.url))
+  assert.equal(!!app.window.SWL_AUTO_CERTIFICATION_PERSONAL, personalFile, 'en local, l’inventaire personnel est chargé seulement s’il existe sur ce poste')
+  assert.ok(!Object.values(app.window.SWL_AUTO_CERTIFICATION_ASSETS.assets).some((asset) => asset.publication === 'usage-personnel'), 'l’inventaire publié ne contient aucun visuel personnel')
+  if (personalFile) {
+    assert.match(betaRow(app, 'at rt').innerHTML, /✓ EN/, 'en local, le visuel AMG personnel de l’AT-RT est utilisable')
+    assert.match(text($('.auto-cert-banner')), /AMG à usage personnel chargés sur ce poste \(jamais publiés\)/, 'la couverture locale est distinguée de la couverture en ligne')
+  }
+  assert.equal(app.errors.length, 0, app.errors.join(' | '))
+  app.window.close()
+})
+
 
 /* ------------------------------------------------------------------ */
 async function run() {

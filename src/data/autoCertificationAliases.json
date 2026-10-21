@@ -1,0 +1,237 @@
+{
+  "_meta": {
+    "description": "Table explicite des rapprochements de la certification automatique β, utilisée quand la correspondance automatique (nom anglais, nom français, titre, glossaire) n'est pas certaine. Elle ne modifie ni les alias ni les certifications historiques. « confirmed » : sens, nombre de pips et série de cartes concordants, rapprochement utilisé directement. « proposed » : rapprochement plausible mais incertain, affiché comme proposition et soumis à confirmation humaine.",
+    "cles": "cards : « kind:sourceId » Tabletop Admiral → clé de carte SWL (public/cards). commands : identifiant Tabletop Admiral → identifiant de public/commandcards.",
+    "printedTitles": "Titre imprimé sur la carte anglaise officielle quand il diffère du nom Tabletop Admiral (vérifié à l'œil sur le PDF AMG) ; sert uniquement à identifier la carte lors de l'extraction.",
+    "keywordTranslations": "Traductions de mots-clés absentes de l'index V2.6 (marquées « N/A ») : terme imprimé sur la carte française et présent dans le glossaire certifié SWL."
+  },
+  "cards": {
+    "upgrade:2429": {
+      "localKey": "underworld contacts",
+      "status": "confirmed",
+      "englishName": "Underworld Connections",
+      "frenchName": "Contacts dans la Pègre",
+      "evidence": "Même nom français, coût 5 et mot-clé Alliés de Circonstance ; la carte SWL est enregistrée par erreur sous le nom anglais « Underworld Contacts »."
+    },
+    "unit:6180": {
+      "localKey": "dark trooper squad",
+      "status": "confirmed",
+      "englishName": "Imperial Dark Troopers",
+      "frenchName": "Dark Troopers Impériaux",
+      "evidence": "Comparaison visuelle EN (PDF AMG) / FR (public/cards/dark-trooper-squad.jpg) : même illustration, Armure 3, 2 PV, Poing Écrasant et Blaster E-11D ; Tabletop Admiral ne donne pas de nom français."
+    },
+    "upgrade:6318": {
+      "localKey": "xs iv dark trooper",
+      "status": "confirmed",
+      "englishName": "XS-IV Assault Cannon",
+      "frenchName": "Dark Trooper avec Canon d'Assaut XS-IV",
+      "evidence": "Comparaison visuelle EN « XS-IV Assault Cannon Dark Trooper » / FR (public/cards/xs-iv-dark-trooper.jpg) : coût 55, Canon d'Assaut XS-IV 1-3, Critique 1."
+    }
+  },
+  "commands": {
+    "8": {
+      "localId": "ordres-permanents",
+      "status": "confirmed",
+      "englishName": "Standing Orders",
+      "evidence": "Carte générique du livret de règles, 4 pips."
+    },
+    "19316": {
+      "localId": "ordres-permanents",
+      "status": "proposed",
+      "englishName": "Standing Orders",
+      "evidence": "Doublon Tabletop Admiral de « Standing Orders » (4 pips) : version distincte possible."
+    },
+    "6508": {
+      "localId": "je-ne-suis-plus-une-jedi",
+      "status": "confirmed",
+      "englishName": "I am no Jedi",
+      "evidence": "Ahsoka Tano Fulcrum, 1 pip, série 6508-6511."
+    },
+    "6509": {
+      "localId": "reunion-de-famille",
+      "status": "confirmed",
+      "englishName": "Family Reunion",
+      "evidence": "Ahsoka Tano Fulcrum, 2 pips, série 6508-6511."
+    },
+    "6510": {
+      "localId": "protectrice-veloce",
+      "status": "confirmed",
+      "englishName": "Swift Protector",
+      "evidence": "Ahsoka Tano Fulcrum, 2 pips, série 6508-6511."
+    },
+    "6511": {
+      "localId": "un-nouveau-depart",
+      "status": "confirmed",
+      "englishName": "A New Beginning",
+      "evidence": "Ahsoka Tano Fulcrum, 3 pips, série 6508-6511."
+    },
+    "41": {
+      "localId": "heritage-de-mandalore",
+      "status": "confirmed",
+      "englishName": "Legacy of Mandalore",
+      "evidence": "3 pips ; nom français Tabletop Admiral « L'Héritage de Mandalore »."
+    },
+    "7330": {
+      "localId": "une-belle-amitie",
+      "status": "confirmed",
+      "englishName": "A Beautiful Friendship",
+      "evidence": "Traduction littérale, 2 pips."
+    },
+    "6": {
+      "localId": "mon-alliee-est-la-force",
+      "status": "confirmed",
+      "englishName": "My Ally Is the Force",
+      "evidence": "Luke Skywalker, 2 pips ; nom français Tabletop Admiral « Mon Allié est la Force »."
+    },
+    "16620": {
+      "localId": "les-rebellions-sont-baties-sur-l-espoir",
+      "status": "confirmed",
+      "englishName": "Rebellions Are Built on Hope",
+      "evidence": "Jyn Erso, 3 pips, traduction littérale."
+    },
+    "16618": {
+      "localId": "spike-corellien",
+      "status": "confirmed",
+      "englishName": "Corellian Spike",
+      "evidence": "Lando Calrissian, 1 pip, série 16618-16624."
+    },
+    "16624": {
+      "localId": "main-de-l-idiot",
+      "status": "confirmed",
+      "englishName": "Idiot's Array",
+      "evidence": "Lando Calrissian, 3 pips, série 16618-16624 (main gagnante du sabacc)."
+    },
+    "9457": {
+      "localId": "tu-voudrais-m-interroger",
+      "status": "confirmed",
+      "englishName": "You Would Question Me?",
+      "evidence": "Le Cinquième Frère, 2 pips, série des Inquisiteurs 9457-9461."
+    },
+    "9458": {
+      "localId": "je-me-fiche-de-vos-inquietudes",
+      "status": "confirmed",
+      "englishName": "I Care Not for your Struggles",
+      "evidence": "Le Cinquième Frère, 3 pips, série des Inquisiteurs 9457-9461."
+    },
+    "9459": {
+      "localId": "viens-donc-le-prouver",
+      "status": "confirmed",
+      "englishName": "Come and Prove It",
+      "evidence": "La Septième Sœur, 1 pip, série des Inquisiteurs 9457-9461."
+    },
+    "9460": {
+      "localId": "inattendu-mais-bienvenu",
+      "status": "confirmed",
+      "englishName": "Unexpected, but not Unwelcome",
+      "evidence": "La Septième Sœur, 2 pips, série des Inquisiteurs 9457-9461."
+    },
+    "9461": {
+      "localId": "tu-caches-mal-ta-peur",
+      "status": "proposed",
+      "englishName": "You Hide Your Fear Well",
+      "evidence": "La Septième Sœur, 3 pips, même série, mais sens opposé (« Well » / « Mal ») : à vérifier sur la carte."
+    },
+    "4122": {
+      "localId": "mourir-de-ma-main",
+      "status": "confirmed",
+      "englishName": "Die at My Hand",
+      "evidence": "Moff Gideon, 1 pip, série 4120-4122."
+    },
+    "4121": {
+      "localId": "vous-avez-ce-que-je-veux",
+      "status": "confirmed",
+      "englishName": "You Have Something I Want",
+      "evidence": "Moff Gideon, 2 pips, série 4120-4122."
+    },
+    "4120": {
+      "localId": "instant-de-reflexion",
+      "status": "confirmed",
+      "englishName": "Moment of Consideration",
+      "evidence": "Moff Gideon, 3 pips, série 4120-4122."
+    },
+    "15": {
+      "localId": "manoeuvres-d-evasion",
+      "status": "confirmed",
+      "englishName": "Evasive Maneuvers",
+      "evidence": "Directeur Orson Krennic, 2 pips ; nom français Tabletop Admiral « Manœvres d'Évasion » (coquille)."
+    },
+    "1": {
+      "localId": "nouvelle-technique-de-motivation",
+      "status": "confirmed",
+      "englishName": "New Ways to Motivate Them",
+      "evidence": "Dark Vador, 2 pips ; nom français Tabletop Admiral « Nouvelles Techniques de Motivation »."
+    },
+    "61": {
+      "localId": "la-peur-et-les-hommes-morts",
+      "status": "confirmed",
+      "englishName": "Fear and Dead Men",
+      "evidence": "Dark Vador, 2 pips ; nom français Tabletop Admiral « La Peur et les Cadavres »."
+    },
+    "2276": {
+      "localId": "tir-de-barrage-accablant",
+      "status": "confirmed",
+      "englishName": "Overwhelming Barrage",
+      "evidence": "Force Blizzard, 2 pips ; nom français Tabletop Admiral « Déluge Accablant »."
+    },
+    "8112": {
+      "localId": "chassez-les",
+      "status": "confirmed",
+      "englishName": "Drive Them Out",
+      "evidence": "Force Tempest, 1 pip, série 8112-8114."
+    },
+    "8113": {
+      "localId": "besoin-de-renforts",
+      "status": "confirmed",
+      "englishName": "We Need Reinforcements",
+      "evidence": "Force Tempest, 2 pips, série 8112-8114."
+    },
+    "8114": {
+      "localId": "prets-a-riposter",
+      "status": "proposed",
+      "englishName": "Constantly Alert",
+      "evidence": "Force Tempest, 3 pips, série 8112-8114, mais sens différent (« Constamment en alerte » / « Prêts à riposter ») : à vérifier."
+    },
+    "8115": {
+      "localId": "artillerie-infanterie",
+      "status": "confirmed",
+      "englishName": "Gunner, Infantry!",
+      "evidence": "Major Marquand, 1 pip, série 8115-8117."
+    },
+    "8116": {
+      "localId": "escadron-avec-moi",
+      "status": "confirmed",
+      "englishName": "Squadron, on me",
+      "evidence": "Major Marquand, 2 pips, série 8115-8117."
+    },
+    "8117": {
+      "localId": "cavalerie-blindee",
+      "status": "confirmed",
+      "englishName": "Armored Cavalry",
+      "evidence": "Major Marquand, 3 pips, série 8115-8117."
+    }
+  },
+  "printedTitles": {
+    "upgrade:6318": {
+      "title": "XS-IV Assault Cannon Dark Trooper",
+      "evidence": "DOC51_GalacticEmpire_Upgrades.pdf p. 6 : titre sur deux lignes, coût 55, « Imperial Dark Troopers Only »."
+    },
+    "upgrade:21": {
+      "title": "T-7 Ion Rifle Snowtrooper",
+      "evidence": "Titre imprimé lu sur DOC51_GalacticEmpire_Upgrades.pdf ; Tabletop Admiral : « T-7 Ion Snowtrooper »."
+    }
+  },
+  "keywordTranslations": {
+    "Assault X": {
+      "fr": "ASSAUT X",
+      "evidence": "Carte française « Saboteur avec Charge à Protons » (« Assaut 1 ») ; mot-clé SWL assaut-x."
+    },
+    "Overwhelm": {
+      "fr": "DÉBORDEMENT",
+      "evidence": "Carte française « Sniper avec DH-447 » (« Débordement ») ; mot-clé SWL debordement."
+    },
+    "Sniper Team": {
+      "fr": "ÉQUIPE SNIPER",
+      "evidence": "Carte française « Sniper avec DH-447 » (« Équipe Sniper ») ; mot-clé SWL equipe-sniper."
+    }
+  }
+}

@@ -28,6 +28,7 @@ const OLD_SINGLE_LIST_KEY = 'swl.current-list.v1';
 const ASSISTANT_URL = 'https://archipad.github.io/SWL/assistant/';
 const ASSISTANT_READINESS_URL = `${ASSISTANT_URL}?open=readiness`;
 const ASSISTANT_CERTIFICATION_URL = `${ASSISTANT_URL}?open=certification`;
+const ASSISTANT_AUTO_CERTIFICATION_URL = `${ASSISTANT_URL}?open=certification-auto`;
 /* Durée de l'animation .nav-ignite (voir index.css) : le clic sur Assistant
    d'unité doit la laisser jouer avant de quitter la SPA, sinon la
    navigation coupe l'animation avant qu'elle soit visible. */
@@ -342,6 +343,7 @@ export default function App() {
                     <>
                       <li><a className="cx-menu-item cx-menu-item-external cx-menu-subaction" href={ASSISTANT_READINESS_URL}><CxIcon name="info" /><span>Tester mes listes</span></a></li>
                       <li><a className="cx-menu-item cx-menu-item-external cx-menu-subaction" href={ASSISTANT_CERTIFICATION_URL}><CxIcon name="rules" /><span>Cartes certifiées</span></a></li>
+                      <li><a className="cx-menu-item cx-menu-item-external cx-menu-subaction" href={ASSISTANT_AUTO_CERTIFICATION_URL}><CxIcon name="rules" /><span>Certification automatique β</span></a></li>
                     </>
                   )}
                   </Fragment>

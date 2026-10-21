@@ -1,0 +1,99 @@
+{
+  "_meta": {
+    "description": "Liste blanche des sources de visuels autorisées pour la certification automatique β (étapes 3 et 4 du résolveur, après public/cards et les PDF français). Une source n'est utilisée que si elle est explicitement autorisée (authorizedBy, authorizedAt) et testée (testedAt). Chaque URL est exacte : aucune adresse n'est devinée. Tabletop Admiral (tabletopadmiral.com, res.cloudinary.com, d26oqf9i6fvic.cloudfront.net) est refusé : il ne fournit que des métadonnées.",
+    "pdfs": "PDF officiels de cartes : chaque carte est une image intégrée, extraite telle quelle puis identifiée par OCR de son titre (scripts/fetch-auto-certification-assets.mjs). Liste relevée sur https://www.atomicmassgames.com/swlegiondocs/. « cardKinds » : PDF mêlant plusieurs types de cartes (une passe par type) ; « rotateUnits » : cartes Unité dessinées de côté dans le PDF.",
+    "cards": "Visuel isolé : URL exacte d'une image pour une carte Tabletop Admiral donnée (kind, sourceId, lang)."
+  },
+  "sources": [
+    {
+      "id": "amg-legion-card-pdfs",
+      "sourceType": "amg-official",
+      "authorizedBy": "Utilisateur — consigne du 21/10/2026 : « Utilise en priorité les ressources officielles AMG/Asmodee sur cdn.svc.asmodee.net »",
+      "authorizedAt": "2026-10-21",
+      "testedAt": "2026-10-21",
+      "hosts": [
+        "cdn.svc.asmodee.net"
+      ],
+      "notice": "Mention des PDF AMG : « Permission granted to print or photocopy for personal use only. »",
+      "pdfs": [
+        {
+          "lang": "en",
+          "cardKind": "unit",
+          "faction": "Empire",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticEmpire_Units.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "upgrade",
+          "faction": "Empire",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticEmpire_Upgrades.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "command",
+          "faction": "Empire",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_GalacticEmpire_Commands.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "unit",
+          "faction": "Rebels",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_RebelAlliance_Units.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "upgrade",
+          "faction": "Rebels",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_RebelAlliance_Upgrades.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "command",
+          "faction": "Rebels",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_RebelAlliance_Commands.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "upgrade",
+          "faction": "Generic",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_Generic_Upgrades.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "unit",
+          "faction": "Mercenary",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_Mercenary_Units.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "upgrade",
+          "faction": "Mercenary",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2025/04/DOC13_Mercenary_Upgrades.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "command",
+          "faction": "Mercenary",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/05/DOC51_Mercenary_Commands_05-01_Update.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKind": "upgrade",
+          "faction": "Generic",
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_UpgradeCards.pdf"
+        },
+        {
+          "lang": "en",
+          "cardKinds": [
+            "unit",
+            "upgrade",
+            "command"
+          ],
+          "faction": "Mandalorian",
+          "rotateUnits": -90,
+          "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/07/DOC56_Mandalorian_BattleForceCards-3.pdf"
+        }
+      ]
+    }
+  ]
+}

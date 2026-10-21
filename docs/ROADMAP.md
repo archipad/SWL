@@ -423,6 +423,20 @@
 - [x] Distinguer dans chaque import les cartes inconnues, visuels non raccordés, traductions et certifications moteur.
 - [x] Protéger le parcours import → audit → effectif → attaque → blessures par un test utilisateur transversal.
 
+## Certification automatique parallèle (bêta)
+
+- [x] Ajouter un laboratoire séparé qui ne modifie pas la certification historique (stockage `swl-auto-certification-beta-v1`, aucun lot GitHub).
+- [x] Importer automatiquement les métadonnées publiques Tabletop Admiral (noms et titres EN/FR, coûts, statistiques, mots-clés) ; aucune de ses images n’est utilisée.
+- [x] Résoudre les visuels uniquement depuis le dépôt (public/cards, PDF français, ressources AMG ou sources autorisées copiées avec SHA-256).
+- [x] Comparer côte à côte les visuels anglais et français locaux, avec l’état de chaque étape (métadonnées, EN, FR, épreuve, prêt).
+- [x] Récupérer les visuels anglais depuis les PDF officiels AMG (extraction carte par carte, identification OCR stricte) pour les cartes des listes : 19 visuels pour les listes d’essai.
+- [ ] Étendre la récupération des visuels anglais aux listes réellement importées et aux cartes de commandement génériques (Ambush, Push, Assault absentes des PDF de faction).
+- [x] Extraire des PDF français les 44 cartes non encore découpées (37 identifiées, 7 à contrôler) et relier les cartes de Commandement (table explicite d’alias, noms français Tabletop Admiral).
+- [x] File de préparation limitée aux cartes des listes importées et validation humaine réduite (comparaison EN/FR, nom français, traductions, mots-clés nouveaux).
+- [x] Limiter la validation humaine aux visuels et aux traductions nouvelles.
+- [ ] Générer une épreuve graphique française lorsqu’aucun visuel français n’est fourni par la source.
+- [ ] Transformer une validation bêta en lot GitHub uniquement après plusieurs essais concluants.
+
 ## Suivi de partie
 
 - [x] Afficher clairement ralliement, démoralisation, panique et immunités.

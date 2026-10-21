@@ -1,0 +1,82 @@
+name: Actualiser le catalogue de certification automatique
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+
+permissions:
+  contents: write
+  actions: write
+
+# Une seule actualisation à la fois ; une exécution en cours n'est jamais interrompue.
+concurrency:
+  group: refresh-auto-certification
+  cancel-in-progress: false
+
+env:
+  TARGET_BRANCH: claude/star-wars-legion-app-49rc3z
+  SOURCE_FILE: public/assistant/auto-certification-source.js
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TARGET_BRANCH }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Le générateur refuse une source tronquée et ne réécrit le fichier que si les données ont réellement changé.
+      - run: npm run refresh:auto-certification
+      - name: Contrôler que seul le catalogue automatique a changé
+        id: changes
+        shell: bash
+        run: |
+          changed="$(git status --porcelain)"
+          if [ -z "$changed" ]; then
+            echo "Catalogue déjà à jour."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$changed" != " M $SOURCE_FILE" ]; then
+            echo "::error::L'actualisation a modifié d'autres fichiers que $SOURCE_FILE : publication refusée."
+            echo "$changed"
+            exit 1
+          fi
+          echo "publish=true" >> "$GITHUB_OUTPUT"
+      - name: Vérifier le référentiel généré
+        if: steps.changes.outputs.publish == 'true'
+        run: npm run test:assistant-contracts
+      - name: Publier sans jamais écraser la branche distante
+        if: steps.changes.outputs.publish == 'true'
+        shell: bash
+        run: |
+          base="$(git rev-parse HEAD)"
+          git fetch --no-tags origin "$TARGET_BRANCH"
+          if [ "$(git rev-parse FETCH_HEAD)" != "$base" ]; then
+            echo "::error::La branche $TARGET_BRANCH a évolué pendant l'actualisation : aucune publication forcée. La prochaine exécution repartira de la nouvelle version."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$SOURCE_FILE"
+          git commit -m "Actualise les sources de certification automatique"
+          # Avance rapide uniquement (jamais --force) : un refus du serveur fait échouer l'action proprement.
+          git push origin "HEAD:refs/heads/$TARGET_BRANCH"
+      - name: Déclencher le déploiement
+        if: steps.changes.outputs.publish == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Un push effectué avec le jeton automatique ne redéclenche pas les autres workflows :
+            // le déploiement GitHub Pages est donc demandé explicitement (même principe que la certification).
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy-pages.yml',
+              ref: process.env.TARGET_BRANCH,
+            })

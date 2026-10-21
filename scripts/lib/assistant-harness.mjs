@@ -14,11 +14,18 @@ const assistantDir = path.resolve(here, '../../public/assistant')
 const baseUrl = 'http://localhost/SWL/assistant/'
 const indexUrl = `${baseUrl}index.html`
 
+// Origine du site publié : la bêta n'y demande jamais l'inventaire des visuels AMG « usage personnel » (local uniquement).
+export const ONLINE_BASE_URL = 'https://archipad.github.io/SWL/assistant/'
+
 class LocalScriptsOnly extends ResourceLoader {
+  constructor(base) { super(); this.base = base }
   fetch(url) {
     // Uniquement les scripts de l'Assistant, lus sur disque : ni polices Google, ni feuilles de style, ni images.
-    if (url.startsWith(baseUrl) && new URL(url).pathname.endsWith('.js')) {
-      return Promise.resolve(fs.readFileSync(path.join(assistantDir, path.basename(new URL(url).pathname))))
+    if (url.startsWith(this.base) && new URL(url).pathname.endsWith('.js')) {
+      const file = path.join(assistantDir, path.basename(new URL(url).pathname))
+      // Inventaire personnel absent (CI, copie publiée) : script vide, comme une page qui ne trouve aucun visuel personnel.
+      if (path.basename(file) === 'auto-certification-personal.js' && !fs.existsSync(file)) return Promise.resolve(Buffer.from(''))
+      return Promise.resolve(fs.readFileSync(file))
     }
     return Promise.resolve(Buffer.from(''))
   }
@@ -27,14 +34,14 @@ class LocalScriptsOnly extends ResourceLoader {
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 /** Charge l'Assistant dans jsdom, avec un stockage local pré-rempli (listes, états d'unités). */
-export async function openAssistant(storage = {}, { query = '' } = {}) {
+export async function openAssistant(storage = {}, { query = '', base = baseUrl } = {}) {
   const errors = []
   const virtualConsole = new VirtualConsole()
   virtualConsole.on('jsdomError', (error) => errors.push(String(error.message || error)))
   const dom = new JSDOM(fs.readFileSync(path.join(assistantDir, 'index.html'), 'utf8'), {
-    url: indexUrl + query,
+    url: `${base}index.html${query}`,
     runScripts: 'dangerously',
-    resources: new LocalScriptsOnly(),
+    resources: new LocalScriptsOnly(base),
     pretendToBeVisual: true,
     virtualConsole,
     beforeParse(window) {
@@ -103,7 +110,7 @@ export async function openPhone(storage = {}) {
   const dom = new JSDOM(fs.readFileSync(path.join(assistantDir, 'phone.html'), 'utf8'), {
     url: `${baseUrl}phone.html`,
     runScripts: 'dangerously',
-    resources: new LocalScriptsOnly(),
+    resources: new LocalScriptsOnly(baseUrl),
     pretendToBeVisual: true,
     virtualConsole,
     beforeParse(window) {

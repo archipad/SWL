@@ -1,0 +1,186 @@
+{
+  "_meta": {
+    "description": "Comparaison des variantes Tabletop Admiral ambiguës des listes réelles (certification automatique β). Analyse en lecture seule : aucun choix n'est enregistré ici ; la décision se prend dans la bêta et reste dans swl-auto-certification-beta-v1.",
+    "sources": "API Tabletop Admiral /api/units et /api/upgrades (métadonnées, sans images), référentiel modulaire actuel nowforwrath.github.io/legion.json, visuels locaux du dépôt, PDF officiels AMG (usage personnel), historique legionhq et données moteur SWL (lecture seule).",
+    "analysedAt": "2026-10-21",
+    "weaponsNote": "Tabletop Admiral ne fournit ni armes, ni dés, ni portées (weapon1-3 vides) : ces données ne sont données que lorsqu'un visuel local les montre."
+  },
+  "cases": [
+    {
+      "id": "galaar-90",
+      "listName": "GALAAR-90 Sniper Rifle (Armament)",
+      "kind": "upgrade",
+      "duplication": "Deux cartes distinctes et actuelles portent le même nom : une arme lourde (figurine supplémentaire) pour les escouades mandaloriennes et un Armement pour le Mandalorian Leader / Hunter. Tabletop Admiral les distingue par son nom d'export « GALAAR-90 Sniper Rifle (Armament) », que la bêta ne lit pas encore : seul le nom court est comparé, d'où l'ambiguïté.",
+      "recommendation": {
+        "sourceId": "22654",
+        "reason": "La liste écrit « (Armament) », ce qui correspond exactement au nom d'export du n° 22654. Cette carte est réservée au Mandalorian Hunter, l'unité qui la porte dans votre liste, alors que le n° 22419 n'est pas autorisé sur cette unité."
+      },
+      "candidates": [
+        {
+          "sourceId": "22419",
+          "kind": "upgrade",
+          "name": "GALAAR-90 Sniper Rifle",
+          "subtitle": null,
+          "exportName": "— (aucun nom d'export distinct)",
+          "points": "35",
+          "typeRank": "Arme lourde (Heavy Weapon)",
+          "stats": "Non fournies par Tabletop Admiral ; aucun visuel local.",
+          "weapons": "Non fournies par Tabletop Admiral ; aucun visuel local.",
+          "keywords": ["Lethal X"],
+          "restrictedTo": ["Clan Kryze Veterans", "Clan Wren Veterans", "Mandalorian Warriors Fire Support", "Super Commandos", "Mandalorian Super Commandos"],
+          "rules": "Présente dans le référentiel modulaire actuel (revamp ✓, classic ✓). Aucune date de règles connue.",
+          "visuals": []
+        },
+        {
+          "sourceId": "22654",
+          "kind": "upgrade",
+          "name": "GALAAR-90 Sniper Rifle",
+          "subtitle": null,
+          "exportName": "GALAAR-90 Sniper Rifle (Armament)",
+          "points": "5",
+          "typeRank": "Armement (Armament)",
+          "stats": "Non fournies par Tabletop Admiral ; aucun visuel local. L'unité gagne Sharpshooter (d'après Tabletop Admiral).",
+          "weapons": "Non fournies par Tabletop Admiral ; aucun visuel local.",
+          "keywords": ["Sharpshooter", "High Velocity", "Pierce X"],
+          "restrictedTo": ["Mandalorian Leader", "Mandalorian Hunter"],
+          "rules": "Présente dans le référentiel modulaire actuel (revamp ✓, classic ✓). Aucune date de règles connue.",
+          "visuals": []
+        }
+      ]
+    },
+    {
+      "id": "combat-armor",
+      "listName": "Combat Armor (Rebel)",
+      "kind": "upgrade",
+      "duplication": "Deux cartes distinctes et actuelles, une par faction : Empire (Imperial Agent / Officer) et Rebelles (Rebel Agent / Officer). Même nom, même coût et même type ; Tabletop Admiral les distingue par son nom d'export « Combat Armor (Empire) » / « Combat Armor (Rebel) ».",
+      "recommendation": {
+        "sourceId": "20282",
+        "reason": "La liste écrit « (Rebel) », ce qui correspond au nom d'export du n° 20282. Cette carte est réservée au Rebel Agent Defender of Democracy, l'unité qui la porte dans votre liste. La carte de l'Empire (n° 20272) n'est pas autorisée sur cette unité."
+      },
+      "candidates": [
+        {
+          "sourceId": "20272",
+          "kind": "upgrade",
+          "name": "Combat Armor",
+          "subtitle": null,
+          "exportName": "Combat Armor (Empire)",
+          "points": "15",
+          "typeRank": "Armure (Armor)",
+          "stats": "Effet non fourni par Tabletop Admiral ; aucun visuel local.",
+          "weapons": "Aucune arme (carte d'Armure).",
+          "keywords": [],
+          "restrictedTo": ["Imperial Agent Bringing Order to the Galaxy", "Imperial Officer Ruthless Efficiency"],
+          "rules": "Présente dans le référentiel modulaire actuel (revamp ✓, classic ✓). Aucune date de règles connue.",
+          "visuals": []
+        },
+        {
+          "sourceId": "20282",
+          "kind": "upgrade",
+          "name": "Combat Armor",
+          "subtitle": null,
+          "exportName": "Combat Armor (Rebel)",
+          "points": "15 (imprimé 15 sur le visuel)",
+          "typeRank": "Armure (Armor)",
+          "stats": "Visuel : « Rebel Agent or Rebel Officer Only. » La défense de l'unité devient rouge au lieu de blanche, et l'unité perd sa conversion de défense en bloc.",
+          "weapons": "Aucune arme (carte d'Armure).",
+          "keywords": [],
+          "restrictedTo": ["Rebel Officer Fighting for Freedom", "Rebel Agent Defender of Democracy"],
+          "rules": "Présente dans le référentiel modulaire actuel. Certification historique SWL : règles « AMG 2026-06-17 ».",
+          "visuals": [
+            { "lang": "en", "src": "../cards/combat-armor-rebel.webp", "sha256": "32d921e4459aa0f60015b6666e6e99d5bbcf756cafad7be7b27b1801c9f623cd", "origin": "public/cards/combat-armor-rebel.webp (visuel historique SWL)", "note": "Carte anglaise de la communauté (mention « legion.takras.net », v1.0), pas un visuel AMG officiel." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "at-rt",
+      "listName": "AT-RT",
+      "kind": "unit",
+      "duplication": "Deux cartes distinctes et actuelles, une par faction : Rebelles (n° 1) et République galactique (n° 70, aussi jouable en 501st Legion et 212th Attack Battalion). Elles ont le même nom, mais leurs mots-clés diffèrent (Critical X sur celle de la République) et leurs coûts aussi.",
+      "recommendation": {
+        "sourceId": "1",
+        "reason": "Votre liste est rebelle et le n° 1 est la seule carte AT-RT de cette faction ; le n° 70 n'est pas jouable chez les Rebelles. Le visuel officiel AMG (logo rebelle) et le visuel français SWL correspondent au n° 1. Le coût n'a pas servi à départager."
+      },
+      "candidates": [
+        {
+          "sourceId": "1",
+          "kind": "unit",
+          "name": "AT-RT",
+          "subtitle": "Nom français : TL-TT",
+          "exportName": "—",
+          "points": "55 (base Tabletop Admiral) / 54 (référentiel modulaire actuel)",
+          "typeRank": "Véhicule terrestre · Soutien · faction Rebels",
+          "stats": "Visuels : 1 figurine, 6 PV, résilience 4, défense blanche, conversion de défense en bloc. Vitesse Tabletop Admiral : 2 (non fiable).",
+          "weapons": "Grappling Claws : corps à corps, 3 rouges, Impact 1 · A300 Blaster Rifle : portée 1-3, 2 blancs (visuels EN et FR).",
+          "keywords": ["Armor 2", "Climbing Vehicle", "Expert Climber", "Scout 1", "Impact X (arme)"],
+          "restrictedTo": [],
+          "rules": "Présente dans le référentiel modulaire actuel (revamp ✓, classic ✓). PDF AMG « DOC51_RebelAlliance_Units » publié en 04/2026. Historique legionhq : changement du 19 juillet 2024 (défense rouge, armure 2). Il contredit le visuel AMG, qui montre une défense blanche ; cet écart est déjà signalé par le contrôle croisé SWL.",
+          "visuals": [
+            { "lang": "en", "src": "../cards/auto-certification/en/unit-1-at-rt.jpg", "sha256": "21a3f798e12c0b78912cce1e258c921b45956c2949e4f348ec64fe9f021d3048", "origin": "PDF AMG DOC51_RebelAlliance_Units, page 6, carte 5", "publication": "usage-personnel", "note": "Identifié à l'œil (titre non lu par l'OCR)." },
+            { "lang": "fr", "src": "../cards/tl-tt.jpg", "sha256": "267ae0f978c1b605f6b48bc9fbc551eb4414047840d431da6e0a9371626b77ba", "origin": "public/cards/tl-tt.jpg (visuel historique SWL)" }
+          ]
+        },
+        {
+          "sourceId": "70",
+          "kind": "unit",
+          "name": "AT-RT",
+          "subtitle": "Nom français : TL-TT",
+          "exportName": "—",
+          "points": "60",
+          "typeRank": "Véhicule terrestre · Soutien · faction Galactic Republic (aussi 501st Legion, 212th Attack Battalion)",
+          "stats": "Tabletop Admiral : 6 PV, résilience 4, vitesse 2 (non fiable). Pas de visuel local.",
+          "weapons": "Non fournies par Tabletop Admiral ; aucun visuel local.",
+          "keywords": ["Climbing Vehicle", "Expert Climber", "Scout X", "Armor [X]", "Impact X", "Critical X"],
+          "restrictedTo": [],
+          "rules": "Présente dans le référentiel modulaire actuel (revamp ✓, classic ✓). Coût initial 65, puis 60 (baisse du 27 octobre 2021 selon legionhq).",
+          "visuals": []
+        }
+      ]
+    },
+    {
+      "id": "strike-team",
+      "listName": "Rebel Commandos Strike Team",
+      "kind": "unit",
+      "duplication": "C'est la même carte dans deux versions de règles. Le n° 14 est l'ancienne Strike Team (Forces spéciales, Sharpshooter, Scout). Le n° 25979 est la version actuelle (Détachement de Rebel Commandos, Soutien, Incognito, Position préparée). Tabletop Admiral garde l'ancienne entrée (classic ✓, revamp ✗), qui est absente de son référentiel modulaire actuel ; les deux ont le même nom d'export.",
+      "recommendation": {
+        "sourceId": "25979",
+        "reason": "Le n° 14 est obsolète : changement du 21 avril 2026 (Forces spéciales → Soutien, Scout et Sharpshooter remplacés par Incognito et Position préparée). Le visuel officiel AMG et le visuel français SWL montrent tous deux la version n° 25979. Votre liste contient bien des Rebel Commandos, que ce Détachement exige, et le DH-447 Sniper occupe l'emplacement d'arme lourde obligatoire."
+      },
+      "candidates": [
+        {
+          "sourceId": "14",
+          "kind": "unit",
+          "name": "Rebel Commandos",
+          "subtitle": "Strike Team (FR : Commandos Rebelles — Groupe de Combat)",
+          "exportName": "Rebel Commandos Strike Team",
+          "points": "20",
+          "typeRank": "Soldat · Forces spéciales · Rebels",
+          "stats": "Tabletop Admiral : 1 PV, courage 2, vitesse 2 (non fiable). Pas de visuel local de cette version.",
+          "weapons": "Non fournies par Tabletop Admiral ; aucun visuel local de cette version.",
+          "keywords": ["Heavy Weapon Team", "Sharpshooter", "Scout X", "Low Profile"],
+          "restrictedTo": [],
+          "rules": "Ancienne version : revamp ✗, classic ✓, absente du référentiel modulaire actuel. Coût 16 → 20 le 12 septembre 2019 (legionhq).",
+          "visuals": []
+        },
+        {
+          "sourceId": "25979",
+          "kind": "unit",
+          "name": "Rebel Commandos",
+          "subtitle": "Strike Team (FR : Commandos Rebelles — Groupe de Combat)",
+          "exportName": "Rebel Commandos Strike Team",
+          "points": "20",
+          "typeRank": "Soldat · Soutien (Détachement de Rebel Commandos) · Rebels",
+          "stats": "Visuels : 1 figurine, 1 PV, courage 2, défense blanche, conversion de défense en bloc. Vitesse Tabletop Admiral : 2 (non fiable).",
+          "weapons": "Unarmed : corps à corps, 1 noir · A280 Blaster Rifle : portée 1-3, 1 noir (visuels EN et FR).",
+          "keywords": ["Detachment: Rebel Commandos", "Heavy Weapon Team", "Incognito", "Low Profile", "Prepared Position"],
+          "restrictedTo": [],
+          "rules": "Version actuelle : revamp ✓, classic ✗, présente dans le référentiel modulaire actuel (une par Rebel Commandos). Changement du 21 avril 2026 (legionhq). PDF AMG publié en 04/2026.",
+          "visuals": [
+            { "lang": "en", "src": "../cards/auto-certification/en/unit-25979-rebel-commandos-strike-team.jpg", "sha256": "0d9b8d467d42ff1e44579bf3aa2db644d54c1127d2fb938fb437e2bd6de71db2", "origin": "PDF AMG DOC51_RebelAlliance_Units, page 4, carte 2", "publication": "usage-personnel", "note": "Titre lu par OCR : « REBEL COMMANDOS STRIKE TEAM » (score 1,00)." },
+            { "lang": "fr", "src": "../cards/rebel-commandos-strike-team.jpg", "sha256": "1e62b4c30b5968c4e276506811f0e1ef377d5e91cf2e1d4e25515872afdf2965", "origin": "public/cards/rebel-commandos-strike-team.jpg (visuel historique SWL)" }
+          ]
+        }
+      ]
+    }
+  ]
+}

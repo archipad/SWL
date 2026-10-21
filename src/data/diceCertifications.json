@@ -273,6 +273,13 @@
       "crosscheckSignature": "de3c66f379",
       "visualPath": "/SWL/cards/tl-tt.jpg",
       "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "provenance": {
+        "frenchVisual": "public/cards/tl-tt.jpg",
+        "englishVisual": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_RebelAlliance_Units.pdf#page=6",
+        "note": "Défense blanche confirmée (aucune valeur modifiée) : visuel officiel AMG d’avril 2026 (logo rebelle, défense blanche, Armure 2, A300 2 blancs) et visuel français existant. L’historique legionhq « défense rouge (19/07/2024) » n’est pas retenu. Variante Tabletop Admiral n° 1 (Rebels).",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
       "visualHash": "267ae0f978c1b605f6b48bc9fbc551eb4414047840d431da6e0a9371626b77ba"
     }
   },
@@ -1149,10 +1156,51 @@
             "count": 2
           }
         ],
-        "range": "1-5"
+        "range": "1-5",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2
+        }
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        }
+      ],
+      "cardUse": "passive",
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/dlt-20a-range-trooper.jpg",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "provenance": {
+        "frenchVisual": "public/cards/dlt-20a-range-trooper.jpg",
+        "note": "Ajoute 1 figurine ; Fusil Blaster DLT-20A 2 rouges, portée 1-5, Impact 2.",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
+      "visualHash": "4da07ab137b2e5710c4c3bf5ff43b253f06e32d45825f656d48f4a7be8be97b7"
+    }
   },
   "dlt 20a trooper": {
     "weapons": [
@@ -2639,8 +2687,8 @@
     "fullCardCertification": {
       "schemaVersion": 2,
       "cardType": "unit",
-      "rank": "corps",
-      "unitType": "",
+      "rank": "heavy",
+      "unitType": "Soldat Droïde",
       "speed": "1",
       "attackSurge": "none",
       "defenseSurge": "none",
@@ -2670,7 +2718,14 @@
       "rulesVersion": "AMG 2026-06-17",
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/dark-trooper-squad.jpg",
-      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "provenance": {
+        "frenchVisual": "public/cards/dark-trooper-squad.jpg",
+        "englishVisual": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticEmpire_Units.pdf#page=9",
+        "note": "Rang Lourd (icône de rang, 3 figurines) et type « Soldat Droïde » / « Droid Trooper » lus sur les deux visuels ; autres valeurs inchangées.",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
       "visualHash": "e14dc995a3d4ca857d4b1f0b90f42070ab1483eaf72848daf5f9997376281c92"
     }
   },
@@ -3725,7 +3780,7 @@
       "schemaVersion": 2,
       "cardType": "unit",
       "rank": "support",
-      "unitType": "",
+      "unitType": "Soldat",
       "speed": "1",
       "attackSurge": "none",
       "defenseSurge": "none",
@@ -3759,7 +3814,14 @@
       "rulesVersion": "AMG 2026-06-17",
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/range-troopers.jpg",
-      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "provenance": {
+        "frenchVisual": "public/cards/range-troopers.jpg",
+        "englishVisual": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticEmpire_Units.pdf#page=8",
+        "note": "Type « Soldat » lu sur le visuel ; autres valeurs inchangées.",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
       "visualHash": "c8c089d2c7dbb4820fefe384f70e5b433c9a4cfabb9352fcc107a27ddd2d26c8"
     }
   },
@@ -3955,10 +4017,51 @@
             "count": 4
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "critique-x"
+        ],
+        "keywordValues": {
+          "critique-x": 1
+        }
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        }
+      ],
+      "cardUse": "passive",
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/xs-iv-dark-trooper.jpg",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "provenance": {
+        "frenchVisual": "public/cards/xs-iv-dark-trooper.jpg",
+        "note": "Ajoute 1 figurine ; Canon d’Assaut XS-IV 4 noirs, portée 1-3, Critique 1. PV de la figurine ajoutée = PV de l’unité (non imprimés sur l’amélioration).",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
+      "visualHash": "04e0eab23b59580144e2857c1029e87c4ac22301f8bcf75d315331b8f18236b2"
+    }
   },
   "scatter gun trooper": {
     "weapons": [
@@ -4904,7 +5007,8 @@
             "count": 2
           }
         ],
-        "range": "melee"
+        "range": "melee",
+        "keywordIds": []
       },
       {
         "index": 1,
@@ -4919,14 +5023,75 @@
             "count": 2
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
       }
     ],
     "defenseColor": "rouge",
     "unitStats": {
       "woundsPerModel": 5,
       "courage": 3,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "Soldat",
+      "speed": "2",
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "surveillance-x",
+          "value": 1
+        },
+        {
+          "keywordId": "entourage",
+          "detail": "Dark Troopers Impériaux"
+        },
+        {
+          "keywordId": "impitoyable"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/moff-gideon.jpg",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "provenance": {
+        "frenchVisual": "public/cards/moff-gideon.jpg",
+        "englishVisual": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/04/DOC51_GalacticEmpire_Units.pdf#page=10",
+        "note": "Rang Commandant, Soldat, 1 figurine, 5 PV, courage 3, défense rouge, vitesse 2, adrénaline attaque → critique, défense → bloc, mots-clés et armes lus sur les deux visuels.",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
+      "visualHash": "417c513711e95201a59ed1d3064e84674de85f926e43fec27671b1c51da4eaaf"
     }
   },
   "rps 6 rocket gunner": {
@@ -6820,7 +6985,42 @@
   },
   "programmed loyalty": {
     "weapons": [],
-    "addedModels": 0
+    "addedModels": 0,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "escorte",
+          "detail": "Commandant"
+        }
+      ],
+      "cardUse": "passive",
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/programmed-loyalty.jpg",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "provenance": {
+        "frenchVisual": "public/cards/programmed-loyalty.jpg",
+        "note": "Dark Troopers Impériaux uniquement ; l’unité gagne Escorte : Commandant ; aucune arme.",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
+      "visualHash": "2ea010dbbd3806fa17b5d0a792241900fd14be398df488ccbeb5c4c2f8233e42"
+    }
   },
   "inquisitorius training": {
     "weapons": [],
@@ -6883,7 +7083,38 @@
   },
   "range trooper": {
     "weapons": [],
-    "addedModels": 1
+    "addedModels": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [],
+      "noKeywordsConfirmed": true,
+      "cardUse": "passive",
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/range-trooper.jpg",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "provenance": {
+        "frenchVisual": "public/cards/range-trooper.jpg",
+        "note": "Ajoute 1 figurine de Range Trooper ; aucune arme, aucun mot-clé.",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
+      "visualHash": "95d3cc9648ce7224305abec2e872fca0b4959822ff82d4477d3fd6fe6117cfc9"
+    }
   },
   "stormtrooper squad expansion": {
     "weapons": [],
@@ -8775,6 +9006,41 @@
       "visualPath": "/SWL/cards/fleet-trooper.jpg",
       "verifiedAt": "2026-09-30T19:32:59.333Z",
       "visualHash": "3bf275764a247bff5de23d817ccb282fd9d8cb86433877fce802d9d7f56c142c"
+    }
+  },
+  "improvised orders": {
+    "weapons": [],
+    "addedModels": 0,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [],
+      "noKeywordsConfirmed": true,
+      "cardUse": "exhaust",
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/improvised-orders.jpg",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "provenance": {
+        "frenchVisual": "public/cards/improvised-orders.jpg",
+        "note": "Aucune arme, aucun mot-clé, carte à épuiser (icône d’épuisement dans le texte).",
+        "correctedAt": "2026-10-21",
+        "by": "Certification automatique β — corrections historiques démontrées"
+      },
+      "visualHash": "663c5682c3973f5bf4e9b36e0d9f2ec4a12e99643d89c3e577f1dda43dcd9d17"
     }
   }
 }

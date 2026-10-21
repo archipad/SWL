@@ -1,0 +1,47 @@
+{
+  "_meta": {
+    "description": "Décisions certifiées de la Certification automatique β, communes à tous les appareils après publication. Le stockage local du navigateur (swl-auto-certification-beta-v1) peut les surcharger temporairement ; la valeur commune vient de ce fichier. Indépendant de la certification historique.",
+    "variantKey": "« type:nom de liste normalisé » (minuscules, sans accents ni ponctuation), comme le résolveur ; un import identique retrouve donc la même décision.",
+    "validationKey": "« type:identifiant Tabletop Admiral » ; une validation n'est valable que si les empreintes SHA-256 des deux visuels sont inchangées."
+  },
+  "variants": {
+    "upgrade:galaar 90 sniper rifle armament": {
+      "listName": "GALAAR-90 Sniper Rifle (Armament)",
+      "sourceId": "22654",
+      "compared": ["22419", "22654"],
+      "rule": "Nom d'export Tabletop Admiral identique à la liste (« GALAAR-90 Sniper Rifle (Armament) ») et carte réservée à l'unité porteuse (Mandalorian Hunter).",
+      "justification": "Deux cartes distinctes et actuelles : arme lourde à 35 points pour les escouades mandaloriennes (n° 22419) et Armement à 5 points pour Mandalorian Leader / Hunter (n° 22654). Le n° 22419 n'est pas autorisé sur le Mandalorian Hunter.",
+      "decidedAt": "2026-10-21",
+      "decidedBy": "Validation humaine (recommandation acceptée)"
+    },
+    "upgrade:combat armor rebel": {
+      "listName": "Combat Armor (Rebel)",
+      "sourceId": "20282",
+      "compared": ["20272", "20282"],
+      "rule": "Nom d'export Tabletop Admiral identique à la liste (« Combat Armor (Rebel) ») et carte réservée à l'unité porteuse (Rebel Agent Defender of Democracy).",
+      "justification": "Une carte par faction : Empire (n° 20272, Imperial Agent / Officer) et Rebelles (n° 20282, Rebel Agent / Officer). Visuel local : « Rebel Agent or Rebel Officer Only ».",
+      "decidedAt": "2026-10-21",
+      "decidedBy": "Validation humaine (recommandation acceptée)"
+    },
+    "unit:at rt": {
+      "listName": "AT-RT",
+      "sourceId": "1",
+      "compared": ["1", "70"],
+      "rule": "Faction : seule carte AT-RT jouable chez les Rebelles ; visuel officiel AMG (logo rebelle) et visuel français concordants.",
+      "justification": "Une carte par faction : Rebels (n° 1) et Galactic Republic / 501st / 212th (n° 70, Critical X, 60 points). Le coût n'a pas servi à départager.",
+      "decidedAt": "2026-10-21",
+      "decidedBy": "Validation humaine (recommandation acceptée)",
+      "factions": ["Rebels"]
+    },
+    "unit:rebel commandos strike team": {
+      "listName": "Rebel Commandos Strike Team",
+      "sourceId": "25979",
+      "compared": ["14", "25979"],
+      "rule": "Version de règles en vigueur : le n° 14 (Forces spéciales) est obsolète depuis le 21 avril 2026 et absent du référentiel modulaire actuel ; visuels AMG et français conformes au n° 25979.",
+      "justification": "Même carte en deux versions : n° 14 ancienne (classic, Scout, Sharpshooter) et n° 25979 actuelle (Détachement de Rebel Commandos, Soutien, Incognito, Position préparée).",
+      "decidedAt": "2026-10-21",
+      "decidedBy": "Validation humaine (recommandation acceptée)"
+    }
+  },
+  "validations": {}
+}

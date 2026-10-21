@@ -31,3 +31,10 @@ dev-dist
 
 # Images brutes générées par scripts/generate-portraits.mjs
 generated-portraits/
+
+# Visuels anglais extraits des PDF AMG (« Permission granted to print or photocopy for personal use only ») :
+# conservés localement, jamais versionnés tant que leur publication n'est pas autorisée.
+public/cards/auto-certification/en/
+
+# Inventaire des visuels AMG « usage personnel » (local uniquement, jamais publié)
+public/assistant/auto-certification-personal.js

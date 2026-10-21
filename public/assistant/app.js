@@ -2310,8 +2310,8 @@ $('#restart').onclick=()=>{attacker=null;defender=null;stage=1;applyFactionTheme
 /* Les écrans de contrôle restent accessibles depuis Gestion Armée, où leurs
    raccourcis ont été déplacés. Le déclenchement passe par les boutons internes
    conservés dans le DOM afin de réutiliser exactement la logique existante. */
-window.addEventListener('load',()=>{const requested=new URLSearchParams(location.search).get('open');if(requested==='readiness')$('#gameReadiness')?.click();if(requested==='certification')$('#certification')?.click()});
-const secondaryScreenOpen=()=>document.body.classList.contains('certification-open')||!!root.querySelector('.live-game-report,.round-phases,.table-game');
+window.addEventListener('load',()=>{const requested=new URLSearchParams(location.search).get('open');if(requested==='readiness')$('#gameReadiness')?.click();if(requested==='certification')$('#certification')?.click();if(requested==='certification-auto')$('#certificationAuto')?.click()});
+const secondaryScreenOpen=()=>document.body.classList.contains('certification-open')||document.body.classList.contains('certification-auto-open')||!!root.querySelector('.live-game-report,.round-phases,.table-game');
 syncUnitStates('pull').then(changed=>{if(changed&&stage===1&&!secondaryScreenOpen())pick('attacker')});
 setInterval(()=>{if(document.visibilityState!=='visible'||secondaryScreenOpen())return;syncUnitStates('pull').then(changed=>{if(!changed||secondaryScreenOpen())return;if(stage===1)pick('attacker');else if(!attackState&&stage===2&&attacker)overview(attacker,'attack');else if(!attackState&&stage===4&&defender)overview(defender,'defense')})},5000);
 window.addEventListener('storage',event=>{if(event.key==='swl.list.p1.v1'||event.key==='swl.list.p2.v1'){if(!secondaryScreenOpen())location.reload();return}if(event.key===unitStateKey&&event.newValue){unitStates=read(unitStateKey,{});if(stage===1&&!secondaryScreenOpen())pick('attacker')}});
