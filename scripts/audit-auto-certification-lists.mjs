@@ -52,7 +52,10 @@ function cardAudit(card, context, R = resolver) {
   const partial = s.keywords.filter((keyword) => keyword.partial)
   const uncertified = keywordChecks.filter((keyword) => keyword.fr && !keyword.certified)
   const published = R.publishedValidation(match.meta, s)
-  return { ...card, match, status: s, keywordChecks, partial, uncertified, blocks, published, validated: !!published?.intact, ready: !published?.intact && s.ready && !!s.frenchName && !s.newKeywords.length }
+  // Quatre états : une carte « certifiée et inchangée » n'exige aucune comparaison EN/FR (ni visuel anglais).
+  const classification = R.classify(card.name, card.kind, match)
+  const certified = classification.state === 'certified'
+  return { ...card, match, status: s, keywordChecks, partial, uncertified, blocks: certified ? [] : [`${classification.label}${classification.reasons.length ? ` (${classification.reasons.join(' ; ')})` : ''}`, ...blocks], published, classification, certified, validated: !certified && !!published?.intact, ready: !certified && !published?.intact && s.ready && !!s.frenchName && !s.newKeywords.length }
 }
 
 /** Données moteur d'une unité et de ses améliorations (référentiel historique), confrontées aux métadonnées Tabletop Admiral. */
@@ -120,6 +123,9 @@ const summaries = []
 const onlineSummaries = []
 const summarize = (name, cards, count, engine) => ({
   name, total: cards.length, copies: cards.reduce((sum, card) => sum + count(card.name, card.kind), 0),
+  certified: cards.filter((card) => card.classification.state === 'certified').length, obsolete: cards.filter((card) => card.classification.state === 'obsolete').length,
+  incomplete: cards.filter((card) => card.classification.state === 'incomplete').length, fresh: cards.filter((card) => card.classification.state === 'new').length,
+  interventions: cards.filter((card) => !card.certified && !card.validated).length,
   validated: cards.filter((card) => card.validated).length, ready: cards.filter((card) => card.ready).length,
   en: cards.filter((card) => card.match.meta && !card.status.en).length, fr: cards.filter((card) => card.match.meta && !card.status.fr).length,
   translation: cards.filter((card) => card.match.meta && (!card.status.frenchName || card.partial.length)).length, keyword: cards.filter((card) => card.status.newKeywords.length || card.uncertified.length).length,
@@ -137,18 +143,18 @@ for (const file of listFiles) {
   const engineUncertain = unitAudits.filter((audit) => audit.issues.length)
   const summary = summarize(list.listname || path.basename(file), cards, count, engineUncertain.length)
   const onlineSummary = summarize(summary.name, onlineCards, count, engineUncertain.length)
-  onlineSummary.blocked = onlineCards.filter((card) => !card.ready && !card.validated).map((card) => `${card.name} (${card.blocks.join(' ; ')})`)
+  onlineSummary.blocked = onlineCards.filter((card) => !card.certified && !card.validated).map((card) => `${card.name} — ${card.blocks.join(' ; ')}${card.status.en ? '' : ' → importer le visuel anglais sur l’appareil pour comparer'}`)
   summaries.push(summary)
   onlineSummaries.push(onlineSummary)
   const onlineByKey = new Map(onlineCards.map((card) => [`${card.kind}:${card.name}`, card]))
   const lines = [`## ${summary.name}`, '', `Fichier : \`${path.basename(file)}\` · ${list.points ?? '?'} points · faction ${list.armyFaction ?? '?'} · ${units.length} unités · ${summary.total} cartes distinctes (${summary.copies} exemplaires).`, '']
-  lines.push('### Cartes', '', '| Carte | Type | Ex. | Métadonnées | EN local | EN en ligne | FR | Traduction | Mots-clés certifiés | Prête (local / en ligne) | Blocage précis (local) |', '|---|---|---|---|---|---|---|---|---|---|---|')
+  lines.push('### Cartes', '', '| Carte | Type | Ex. | État | Métadonnées | EN local | EN en ligne | FR | Traduction | Mots-clés certifiés | Prête (local / en ligne) | Blocage précis (local) |', '|---|---|---|---|---|---|---|---|---|---|---|---|')
   for (const card of cards) {
     const s = card.status
     const meta = card.match.meta ? `✓ n° ${card.match.meta.sourceId}${card.match.meta.points != null ? ` · ${card.match.meta.points} pts` : ''}${card.match.certainty === 'decision' ? ` (décision certifiée du ${card.match.decision.decidedAt} parmi n° ${card.match.decision.compared.join(' / ')})` : ''}` : card.match.certainty === 'ambiguous' ? `! ambiguës (${card.match.options.length})` : '✗'
     const online = onlineByKey.get(`${card.kind}:${card.name}`)
     const kw = !s.keywords.length ? '— (aucun)' : card.keywordChecks.every((keyword) => keyword.certified) ? `✓ ${s.keywords.length}` : `! ${card.keywordChecks.filter((keyword) => !keyword.certified).map((keyword) => keyword.reason).join(' ; ')}`
-    lines.push(`| ${card.name} | ${kindLabel[card.kind]} | ${count(card.name, card.kind)} | ${meta} | ${s.en ? (s.en.certainty === 'certain' ? '✓' : '!') : '✗'} | ${online.status.en ? '✓' : '✗ non disponible en ligne'} | ${s.fr ? `${s.fr.certainty === 'certain' ? '✓' : '!'} ${s.fr.origin}` : '✗'} | ${s.frenchName ? `${card.partial.length ? '!' : '✓'} ${s.frenchName}${card.partial.length ? ` (précision à confirmer : ${card.partial.map((keyword) => keyword.name).join(', ')})` : ''}` : '✗'} | ${kw} | ${card.validated ? 'validée' : card.ready ? '✓' : '✗'} / ${online.validated ? 'validée' : online.ready ? '✓' : '✗'} | ${card.blocks.join(' ; ') || '—'} |`)
+    lines.push(`| ${card.name} | ${kindLabel[card.kind]} | ${count(card.name, card.kind)} | ${card.certified ? '✓ Certification existante valide' : card.classification.label} | ${meta} | ${s.en ? (s.en.certainty === 'certain' ? '✓' : '!') : '✗'} | ${online.status.en ? '✓' : '✗ non disponible en ligne'} | ${s.fr ? `${s.fr.certainty === 'certain' ? '✓' : '!'} ${s.fr.origin}` : '✗'} | ${s.frenchName ? `${card.partial.length ? '!' : '✓'} ${s.frenchName}${card.partial.length ? ` (précision à confirmer : ${card.partial.map((keyword) => keyword.name).join(', ')})` : ''}` : '✗'} | ${kw} | ${card.certified ? 'sans objet' : card.validated ? 'validée' : card.ready ? '✓' : '✗'} / ${online.certified ? 'sans objet' : online.validated ? 'validée' : online.ready ? '✓' : '✗'} | ${card.blocks.join(' ; ') || '—'} |`)
   }
   lines.push('', '### Données moteur des unités (référentiel historique, lecture seule)', '')
   for (const audit of unitAudits) {
@@ -185,15 +191,15 @@ const needed = new Set(allCards.flatMap((card) => { const match = resolver.findM
 const neededNames = new Set(allCards.map((card) => resolver.normalize(card.name)))
 const toCheck = [...Object.entries(inventory.assets).map(([id, asset]) => ({ id, ...asset })), ...inventory.unlinked].filter((asset) => asset.lang === 'fr' && asset.identification?.status === 'a-controler')
 const isNeeded = (asset) => (asset.sourceId && needed.has(`${asset.kind}:${asset.sourceId}`)) || (asset.identification?.duplicateOf && [...neededNames].some((name) => asset.identification.duplicateOf.includes(name.replace(/ /g, '-'))))
-const summaryTable = (rows) => ['| Liste | Cartes | Déjà validées (publiées) | Prêtes pour validation | Bloquées : visuel EN | Bloquées : visuel FR | Bloquées : traduction | Bloquées : mot-clé | Métadonnées manquantes ou ambiguës | Unités aux données moteur incertaines |', '|---|---|---|---|---|---|---|---|---|---|',
-  ...rows.map((s) => `| ${s.name} | ${s.total} (${s.copies} ex.) | ${s.validated} | ${s.ready} | ${s.en} | ${s.fr} | ${s.translation} | ${s.keyword} | ${s.metadata} | ${s.engine} |`)]
+const summaryTable = (rows) => ['| Liste | Cartes | Certifiées et inchangées | Certifications obsolètes | Connues mais incomplètes | Réellement nouvelles | Déjà validées (publiées) | Prêtes (EN + FR disponibles) | Interventions humaines restantes | Unités aux données moteur incertaines |', '|---|---|---|---|---|---|---|---|---|---|',
+  ...rows.map((s) => `| ${s.name} | ${s.total} (${s.copies} ex.) | ${s.certified} | ${s.obsolete} | ${s.incomplete} | ${s.fresh} | ${s.validated} | ${s.ready} | ${s.interventions} | ${s.engine} |`)]
 const header = ['# Audit des listes réelles — certification automatique β', '', `Généré le ${new Date().toISOString().slice(0, 10)} (lecture seule : ni la certification historique, ni la base moteur ne sont modifiées par l'audit). « Déjà validées » ne compte que les validations publiées dans \`src/data/autoCertificationDecisions.json\` ; celles d'un navigateur restent dans \`swl-auto-certification-beta-v1\`.`, '',
   '## Synthèse — résultat local', '', `Avec les visuels AMG « usage personnel » présents sur ce poste${personalLoaded ? '' : ' (aucun trouvé : identique au résultat en ligne)'} : ils ne sont jamais publiés.`, '', ...summaryTable(summaries), '',
-  '## Synthèse — résultat en ligne (GitHub Pages)', '', 'Calculé sur les seuls fichiers déployés : sans visuel anglais publié, une carte affiche « Visuel anglais non disponible en ligne » et n’est pas validable.', '', ...summaryTable(onlineSummaries), '',
-  ...onlineSummaries.flatMap((s) => [`### Cartes bloquées en ligne — ${s.name} (${s.blocked.length})`, '', ...s.blocked.map((entry) => `- ${entry}`), '']),
+  '## Synthèse — résultat en ligne (GitHub Pages)', '', 'Calculé sur les seuls fichiers déployés. Une carte certifiée et inchangée ne demande aucun visuel anglais ; les autres exigent une comparaison EN/FR, avec un visuel anglais importé sur l’appareil (jamais publié) quand aucun n’est publié.', '', ...summaryTable(onlineSummaries), '',
+  ...onlineSummaries.flatMap((s) => [`### Interventions humaines restantes en ligne — ${s.name} (${s.blocked.length})`, '', ...s.blocked.map((entry) => `- ${entry}`), '']),
   '## Cartes françaises extraites « à contrôler »', '', '| Carte | Groupe | Raison |', '|---|---|---|',
   ...toCheck.map((asset) => `| ${asset.nameFr || asset.canonicalName} | ${isNeeded(asset) ? '1 — nécessaire aux listes : à contrôler immédiatement' : '2 — absente des listes : contrôle différable'} | ${[asset.identification.method === 'elimination-sur-la-page' ? 'identifiée par élimination' : asset.identification.score < 0.9 ? `titre lu « ${asset.identification.text} »` : null, asset.identification.duplicateOf ? `doublon possible de \`${asset.identification.duplicateOf}\`` : null].filter(Boolean).join(' ; ')} |`), '']
 fs.mkdirSync(path.dirname(out), { recursive: true })
 fs.writeFileSync(out, `${[...header, ...sections].join('\n').trimEnd()}\n`)
 console.log(`Rapport : ${path.relative(root, out)}`)
-for (const [label, rows] of [['local', summaries], ['en ligne', onlineSummaries]]) for (const s of rows) console.log(`[${label}] ${s.name} : ${s.total} cartes, ${s.validated} validées, ${s.ready} prêtes, EN ${s.en}, FR ${s.fr}, traduction ${s.translation}, mot-clé ${s.keyword}, métadonnées ${s.metadata}, moteur incertain ${s.engine}`)
+for (const [label, rows] of [['local', summaries], ['en ligne', onlineSummaries]]) for (const s of rows) console.log(`[${label}] ${s.name} : ${s.total} cartes — ${s.certified} certifiées et inchangées, ${s.obsolete} obsolètes, ${s.incomplete} connues incomplètes, ${s.fresh} nouvelles ; ${s.validated} validées, ${s.ready} prêtes, ${s.interventions} interventions humaines, moteur incertain ${s.engine}`)

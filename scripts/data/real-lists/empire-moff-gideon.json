@@ -1,0 +1,110 @@
+{
+  "battleForce": null,
+  "author": "Tabletop Admiral",
+  "listname": "Antoine - Empire Moff G.",
+  "points": 1000,
+  "numActivations": 11,
+  "listlink": "https://modular.tabletopadmiral.com/legion",
+  "commandCards": [
+    "Die at My Hand",
+    "Ambush",
+    "You Have Something I Want",
+    "Push",
+    "Moment of Consideration",
+    "Assault",
+    "Standing Orders"
+  ],
+  "contingencies": [],
+  "units": [
+    {
+      "name": "Moff Gideon Long Live the Empire",
+      "upgrades": [
+        "Improvised Orders",
+        "Tank Hunting Munitions"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Mandalorian Hunter",
+      "upgrades": [
+        "Battlemaster",
+        "Tank Hunting Munitions",
+        "GALAAR-90 Sniper Rifle (Armament)",
+        "Champion of the Watch"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Stormtrooper Riot Squad",
+      "upgrades": [
+        "KX-Series Security Droids",
+        "Tenacity"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Stormtroopers",
+      "upgrades": [
+        "DLT-19 Stormtrooper",
+        "Stormtrooper Squad"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Stormtroopers",
+      "upgrades": [
+        "DLT-19 Stormtrooper"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Stormtroopers",
+      "upgrades": [],
+      "loadout": []
+    },
+    {
+      "name": "Stormtroopers",
+      "upgrades": [],
+      "loadout": []
+    },
+    {
+      "name": "Imperial Dark Troopers",
+      "upgrades": [
+        "Programmed Loyalty",
+        "XS-IV Assault Cannon"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Imperial Dark Troopers",
+      "upgrades": [
+        "Programmed Loyalty",
+        "XS-IV Assault Cannon"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Range Troopers",
+      "upgrades": [
+        "DLT-20A Range Trooper",
+        "Range Trooper"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Range Troopers",
+      "upgrades": [
+        "DLT-20A Range Trooper",
+        "Range Trooper"
+      ],
+      "loadout": []
+    }
+  ],
+  "battlefieldDeck": {
+    "scenario": "standard",
+    "conditions": [],
+    "deployment": [],
+    "objective": []
+  },
+  "armyFaction": "empire"
+}

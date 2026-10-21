@@ -15,7 +15,8 @@ export type ImportIssueKind = 'visual' | 'translation' | 'unit-stats' | 'dice';
 export type ImportIssueScope = 'certification' | 'catalog';
 export type ImportIssueResolution = 'unknown-card' | 'visual-unmapped' | 'translation-unmapped' | 'engine-certification';
 export interface ImportIssue { card: string; unit: string; kind: ImportIssueKind; scope: ImportIssueScope; resolution: ImportIssueResolution; message: string }
-export interface ImportUnitAudit { name: string; issues: ImportIssue[]; kind?: 'unit' | 'commands'; cards?: number }
+// `id` : identifiant stable (liste, position, clé d'unité) -- deux unités homonymes (Stormtroopers ×4) restent distinctes.
+export interface ImportUnitAudit { id: string; name: string; issues: ImportIssue[]; kind?: 'unit' | 'commands'; cards?: number }
 export interface ImportAudit {
   cards: number;
   readyCards: number;
@@ -52,7 +53,7 @@ export function auditImportedList(list: ParsedList): ImportAudit {
   const allIssues: ImportIssue[] = [];
   let cards = 0;
   let readyCards = 0;
-  const units = list.units.map((unit): ImportUnitAudit => {
+  const units = list.units.map((unit, position): ImportUnitAudit => {
     const unitIssues: ImportIssue[] = [];
     const inspect = (name: string, isUnit: boolean) => {
       cards += 1;
@@ -83,7 +84,7 @@ export function auditImportedList(list: ParsedList): ImportAudit {
     inspect(unit.name, true);
     unit.upgrades.forEach((upgrade) => inspect(upgrade.name, false));
     allIssues.push(...unitIssues);
-    return { name: unit.name, issues: unitIssues };
+    return { id: `${list.listName ?? 'liste'}#${position}:${unit.key ?? canonicalCardKey(unit.name)}`, name: unit.name, issues: unitIssues };
   });
   // Cartes de Commandement et contingences : seuls le visuel et la traduction sont exigés -- jamais de PV, d'effectif ni de dés.
   const commandCards = [...new Set([...(list.commandCards ?? []), ...(list.contingencies ?? [])])];
@@ -98,7 +99,7 @@ export function auditImportedList(list: ParsedList): ImportAudit {
       if (!CARD_NAMES_FR[key]) commandIssues.push({ card: name, unit: 'Cartes de Commandement', kind: 'translation', scope: 'catalog', resolution: unknownCard ? 'unknown-card' : 'translation-unmapped', message: unknownCard ? 'Traduction indisponible tant que la carte n’est pas raccordée' : 'Nom français non raccordé au catalogue' });
     }
     allIssues.push(...commandIssues);
-    units.push({ name: 'Cartes de Commandement', issues: commandIssues, kind: 'commands', cards: commandCards.length });
+    units.push({ id: `${list.listName ?? 'liste'}#commandes`, name: 'Cartes de Commandement', issues: commandIssues, kind: 'commands', cards: commandCards.length });
   }
   const certificationIssues = allIssues.filter((issue) => issue.scope === 'certification');
   const catalogIssues = allIssues.filter((issue) => issue.scope === 'catalog');

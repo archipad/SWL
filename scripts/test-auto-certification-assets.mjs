@@ -12,7 +12,8 @@ import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { BLOCKED_HOSTS, checkEntry, checkPdf } from './fetch-auto-certification-assets.mjs'
-import { identify, loadAssistantData } from './lib/auto-certification-pdf.mjs'
+import { identify, listCards, loadAssistantData } from './lib/auto-certification-pdf.mjs'
+import { changes } from './lib/auto-certification-historical.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const run = (script, env = {}) => new Promise((resolve) => execFile(process.execPath, [script], { cwd: root, env: { ...process.env, ...env } }, (error, stdout, stderr) => resolve({ ok: !error, output: `${stdout}\n${stderr}` })))
@@ -198,6 +199,79 @@ for (const variant of variants) {
     assert.ok(meta(candidate.kind, candidate.sourceId), `${variant.listName} : n° ${candidate.sourceId} présent dans le catalogue`)
     for (const visual of candidate.visuals.filter((entry) => entry.publication === 'usage-personnel')) assert.ok(await gitIgnored(`public/cards/${visual.src.replace('../cards/', '')}`), `${visual.src} : visuel AMG exclu du suivi Git`)
   }
+}
+// --- 6. Certifications historiques : quatre états, index versionné, aucun visuel anglais exigé pour une carte inchangée ---
+const historicalIndex = JSON.parse(fs.readFileSync(path.join(root, 'src/data/autoCertificationHistoricalIndex.json'), 'utf8')).certifications
+const classifyName = (R, name, kind, factions) => R.classify(name, kind, R.findMeta(name, kind, { factions }))
+// Carte certifiée et inchangée : reconnue telle quelle EN LIGNE, sans aucun visuel anglais publié.
+const stormtroopers = classifyName(online, 'Stormtroopers', 'unit', ['empire'])
+assert.equal(stormtroopers.state, 'certified', 'Stormtroopers : certification existante valide')
+assert.equal(online.status(meta('unit', '5')).en, null, 'aucun visuel anglais n’est publié pour les Stormtroopers…')
+assert.ok(stormtroopers.historical.valid && !stormtroopers.reasons.length, '… et la carte n’en réclame pas : certifiée et inchangée')
+assert.equal(classifyName(online, 'Moff Gideon Long Live the Empire', 'unit', ['empire']).state, 'certified', 'Moff Gideon (certifié le 21/10/2026) est reconnu par l’index')
+// Carte réellement nouvelle / connue mais incomplète : comparaison obligatoire.
+assert.equal(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'new', 'Mandalorian Hunter : carte réellement nouvelle')
+assert.equal(classifyName(online, 'GALAAR-90 Sniper Rifle (Armament)', 'upgrade', ['empire']).state, 'new', 'GALAAR-90 : carte réellement nouvelle')
+assert.equal(classifyName(online, 'Standing Orders', 'command', ['rebel']).state, 'incomplete', 'une carte de commandement connue n’a pas de certification historique : comparaison obligatoire')
+assert.equal(classifyName(online, 'AT-RT', 'unit', ['Galactic Republic']).state, 'incomplete', 'AT-RT de la République : identité incertaine, jamais rattachée à la certification rebelle')
+// Identité : la certification n'est rattachée qu'à la carte Tabletop Admiral retenue sans ambiguïté.
+assert.deepEqual(Object.keys(historicalIndex['at rt'].tta), ['unit:1'], 'AT-RT : seule la carte rebelle n° 1 est rattachée')
+assert.deepEqual(Object.keys(historicalIndex['rebel commandos strike team'].tta), ['unit:25979'], 'Strike Team : seule la version actuelle n° 25979 est rattachée')
+const ttaOwners = new Map()
+for (const [key, entry] of Object.entries(historicalIndex)) for (const id of Object.keys(entry.tta)) {
+  assert.ok(!ttaOwners.has(id), `${id} rattachée à deux certifications (${ttaOwners.get(id)}, ${key})`)
+  ttaOwners.set(id, key)
+  assert.equal(id.split(':')[0], entry.cardType, `${key} : type de carte identique à la carte Tabletop Admiral ${id}`)
+}
+assert.ok(Object.values(historicalIndex).every((entry) => !/auto-certification\/en\//.test(entry.frenchVisual || '')), 'l’index ne s’appuie jamais sur un visuel AMG personnel')
+// Nouveau mot-clé Tabletop Admiral → certification obsolète.
+const stormMeta = meta('unit', '5')
+assert.equal(online.classify('Stormtroopers', 'unit', { meta: { ...stormMeta, keywords: [...stormMeta.keywords, { name: 'Brand New Keyword' }] }, options: [stormMeta] }).state, 'obsolete', 'un nouveau mot-clé Tabletop Admiral rend la certification obsolète')
+// Empreintes : données, visuel français ou définition modifiés → obsolète (comparaison exigée de nouveau).
+const fingerprint = historicalIndex.stormtroopers
+assert.deepEqual(changes(fingerprint, fingerprint), [], 'empreintes identiques : certification valide')
+assert.deepEqual(changes(fingerprint, { ...fingerprint, dataSha256: '0'.repeat(64) }), ['données moteur modifiées'])
+assert.deepEqual(changes(fingerprint, { ...fingerprint, frenchVisualSha256: '1'.repeat(64) }), ['visuel français modifié'])
+assert.deepEqual(changes(fingerprint, { ...fingerprint, definitionsSha256: '2'.repeat(64) }), ['définition de mot-clé modifiée'])
+assert.deepEqual(changes(undefined, fingerprint), ['certification absente de l’index (modifiée ou ajoutée depuis la dernière indexation)'])
+{
+  // Même contrôle de bout en bout : un index dont l'empreinte diffère publie la certification comme obsolète.
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'swl-auto-index-'))
+  try {
+    const altered = JSON.parse(fs.readFileSync(path.join(root, 'src/data/autoCertificationHistoricalIndex.json'), 'utf8'))
+    altered.certifications.stormtroopers.frenchVisualSha256 = '3'.repeat(64)
+    altered.certifications['range troopers'].dataSha256 = '4'.repeat(64)
+    fs.writeFileSync(path.join(tmp, 'index.json'), JSON.stringify(altered))
+    const result = await run('scripts/generate-auto-certification-assets.mjs', { SWL_AUTO_CERT_HISTORICAL_INDEX: path.join(tmp, 'index.json'), SWL_AUTO_CERT_ASSETS_OUT: path.join(tmp, 'assets.js'), SWL_AUTO_CERT_PERSONAL_OUT: path.join(tmp, 'personal.js') })
+    assert.ok(result.ok, result.output)
+    const regenerated = JSON.parse(fs.readFileSync(path.join(tmp, 'assets.js'), 'utf8').replace(/^window\.SWL_AUTO_CERTIFICATION_ASSETS=/, '').replace(/;\s*$/, ''))
+    assert.deepEqual(regenerated.historical.stormtroopers.reasons, ['visuel français modifié'], 'visuel français modifié → certification obsolète')
+    assert.deepEqual(regenerated.historical['range troopers'].reasons, ['données moteur modifiées'], 'données modifiées → certification obsolète')
+  } finally { fs.rmSync(tmp, { recursive: true, force: true }) }
+}
+assert.ok(Object.values(published.historical).every((entry) => entry.valid), 'toutes les certifications historiques indexées sont valides et inchangées dans ce dépôt')
+
+// Audit réel des deux listes (scripts/data/real-lists) : la certification existante compte en ligne comme en local.
+for (const file of ['empire-moff-gideon.json', 'rebelles-simon-3.json']) {
+  const list = JSON.parse(fs.readFileSync(path.join(root, 'scripts/data/real-lists', file), 'utf8'))
+  const factions = [list.armyFaction]
+  const states = (R) => listCards(list).map((card) => ({ ...card, state: classifyName(R, card.name, card.kind, factions).state }))
+  const local = states(resolver), live = states(online)
+  assert.deepEqual(live.map((card) => card.state), local.map((card) => card.state), `${file} : même classement en ligne qu’en local (le visuel anglais n’y entre pas)`)
+  const certifiedCount = live.filter((card) => card.state === 'certified').length
+  assert.ok(certifiedCount >= live.length / 2, `${file} : ${certifiedCount}/${live.length} cartes reconnues comme déjà certifiées en ligne (plus de 0)`)
+  for (const card of live.filter((entry) => entry.kind === 'command' || entry.kind === 'contingency')) assert.notEqual(card.state, 'certified', `${card.name} : aucune carte de commandement n’a de certification historique`)
+  console.log(`  ${list.listname} : ${certifiedCount} certifiées et inchangées, ${live.filter((card) => card.state === 'obsolete').length} obsolètes, ${live.filter((card) => card.state === 'incomplete').length} connues incomplètes, ${live.filter((card) => card.state === 'new').length} nouvelles (sur ${live.length})`)
+}
+assert.equal(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'new')
+// Améliorations renommées par l'import du site : même carte Tabletop Admiral, même certification.
+for (const renamed of ['Cassian Andor Operative', 'Chewbacca Upgrade']) assert.equal(classifyName(online, renamed, 'upgrade', ['rebel']).state, 'certified', `${renamed} : reconnue malgré le renommage de l’import`)
+
+// SHA-256 de secours de la bêta (contexte non sécurisé, sans WebCrypto) : identique à celui de Node.
+{
+  const source = fs.readFileSync(path.join(root, 'public/assistant/certification-auto.js'), 'utf8')
+  const sha256Fallback = new Function(`${source.match(/function sha256Fallback\(bytes\)\{[\s\S]*?return H\.map\(word=>word\.toString\(16\)\.padStart\(8,'0'\)\)\.join\(''\)\}/)[0]};return sha256Fallback`)()
+  for (const buffer of [Buffer.alloc(0), Buffer.from('abc'), Buffer.alloc(55, 1), Buffer.alloc(56, 2), Buffer.alloc(64, 3), Buffer.alloc(100003, 7), fs.readFileSync(path.join(root, 'public/cards/stormtroopers.jpg'))]) assert.equal(sha256Fallback(new Uint8Array(buffer)), createHash('sha256').update(buffer).digest('hex'), `SHA-256 de secours (${buffer.length} octets)`)
 }
 const en = Object.values(repoManifest.assets).filter((entry) => entry.lang === 'en').length
 const fr = Object.values(repoManifest.assets).filter((entry) => entry.lang === 'fr')

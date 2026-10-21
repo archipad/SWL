@@ -15,6 +15,42 @@ La bêta ne traite que les cartes **des listes importées** : unités, améliora
 
 Une carte validée passe dans « Déjà validées » et n'est plus retraitée.
 
+### Quatre états : la comparaison EN/FR n'est exigée que si nécessaire
+
+| État | Condition | Comparaison EN/FR |
+|---|---|---|
+| **Certifiée et inchangée** | certification historique présente ; données moteur, visuel français et définitions inchangés depuis l'index ; identité Tabletop Admiral rattachée sans ambiguïté ; aucun mot-clé Tabletop Admiral nouveau | **non** : « Certification existante valide », hors de la file, aucun visuel anglais demandé |
+| **Certification devenue obsolète** | données, visuel français ou définition modifiés, ou nouveau mot-clé Tabletop Admiral | oui |
+| **Carte connue mais incomplète** | carte du site sans certification complète (dont toutes les cartes de commandement), ou identité incertaine | oui |
+| **Carte réellement nouvelle** | inconnue du référentiel SWL | oui |
+
+- L'index versionné `src/data/autoCertificationHistoricalIndex.json` fige les empreintes SHA-256 de chaque certification historique : données moteur, visuel français et définitions de mots-clés. Il garde aussi les cartes Tabletop Admiral rattachées sans ambiguïté : même type, et seule carte possible ou retenue par une décision certifiée.
+- Le build ne le réécrit jamais. Après une certification validée, on le met à jour volontairement avec `npm run index:auto-certification-historical`.
+- L'inventaire publié compare à chaque build l'état actuel à cet index.
+
+### Visuel anglais importé sur l'appareil
+
+Pour une carte qui exige une comparaison sans visuel anglais disponible, la fiche propose « Importer le visuel anglais » : sélection d'un fichier, glisser-déposer ou collage depuis le presse-papiers.
+
+- **Formats et contrôles :** JPEG, PNG ou WebP uniquement. Le type et les dimensions sont lus dans la signature réelle du fichier. Minimum 20 Ko et 600 × 400 pixels, maximum 15 Mo.
+- **Stockage :** l'image est enregistrée **uniquement dans IndexedDB**, sur l'appareil. Jamais en `localStorage`, jamais envoyée au dépôt, au Gist ni à un service externe.
+- **Empreinte :** le SHA-256 est calculé localement.
+- **Provenance :** une provenance textuelle est obligatoire.
+- **Suppression :** le visuel peut être supprimé après validation ; la validation garde son empreinte.
+
+### Lot partageable sans image
+
+« Validations prêtes à envoyer » regroupe les validations de l'appareil dans **un seul export JSON** (`format: swl-auto-certification-validations`, `formatVersion: 2`), à fusionner dans `validations` de `src/data/autoCertificationDecisions.json`. Chaque entrée contient :
+- l'identité canonique et le type de carte ;
+- les données moteur certifiées ;
+- la traduction française ;
+- les mots-clés et leurs définitions ;
+- la provenance textuelle et le SHA-256 du visuel anglais ;
+- le SHA-256 du visuel français ;
+- la version des règles et la date.
+
+Aucune image n'y figure. Une fois publiée, la validation vaut sur tous les appareils tant que les empreintes sont inchangées.
+
 ### Variantes ambiguës
 
 Quand plusieurs cartes Tabletop Admiral portent le nom d'une carte de liste, « Comparer les variantes » les affiche côte à côte :
@@ -119,6 +155,10 @@ Seconde lecture OCR (bandeau 3×, binarisé) pour les titres que la première ne
 ## Action planifiée
 
 `.github/workflows/refresh-auto-certification.yml` actualise les métadonnées toutes les six heures (et à la demande) ; elle ne touche jamais aux visuels, échoue si un autre fichier que le catalogue a changé ou si la branche distante a évolué, ne pousse qu'en avance rapide puis déclenche le déploiement.
+
+## Visuels manquants dans l'ancien écran
+
+Toutes les images de `public/cards` sont recensées par le catalogue. Une carte inconnue (Mandalorian Hunter…) reçoit donc le remplacement local `assistant/visuel-indisponible.svg`, sans requête vers un fichier deviné. Ce remplacement est présenté comme tel (« Visuel indisponible »), jamais comme la vraie carte. Un visuel de carte qui ne se charge pas est remplacé de la même façon.
 
 ## Accès
 

@@ -176,7 +176,7 @@ export function ImportCompatibilityReport({ list }: { list: ParsedList }) {
         {!!translationOnly && <span><b>{translationOnly}</b> traduction{translationOnly > 1 ? 's' : ''} à raccorder</span>}
         {!!audit.certificationCards && <span><b>{audit.certificationCards}</b> certification{audit.certificationCards > 1 ? 's' : ''} moteur</span>}
       </div>}
-      {audit.units.map((unit) => <article key={unit.name}>
+      {audit.units.map((unit) => <article key={unit.id}>
         <div><strong>{frenchCardName(unit.name)}</strong>{unit.kind === 'commands' && <span>{`${unit.cards ?? 0} carte${(unit.cards ?? 0) > 1 ? 's' : ''} de commandement`}</span>}</div>
         {unit.issues.length ? <ul>{unit.issues.map((issue, index) => <li key={`${issue.card}-${issue.kind}-${index}`}><b>{frenchCardName(issue.card)}</b> — {issue.message}</li>)}</ul> : <span className="import-audit-unit-ok">✓ Données moteur complètes</span>}
       </article>)}

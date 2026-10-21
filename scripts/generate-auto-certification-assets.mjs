@@ -9,6 +9,8 @@ import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import vm from 'node:vm';
+import { changes, fingerprints } from './lib/auto-certification-historical.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const imagePattern = /\.(jpe?g|png|webp)$/i;
@@ -100,6 +102,23 @@ for (const variant of variantCases) {
   }
 }
 
+// Certifications historiques : état actuel comparé à l'index versionné (src/data/autoCertificationHistoricalIndex.json).
+// « valide » = données moteur, visuel français et définitions inchangés depuis l'indexation ; la bêta n'exige alors aucune
+// nouvelle comparaison EN/FR pour une carte dont l'identité Tabletop Admiral est rattachée sans ambiguïté.
+const historicalIndexPath = process.env.SWL_AUTO_CERT_HISTORICAL_INDEX ?? path.join(root, 'src/data/autoCertificationHistoricalIndex.json');
+const historicalIndex = fs.existsSync(historicalIndexPath) ? JSON.parse(fs.readFileSync(historicalIndexPath, 'utf8')).certifications ?? {} : {};
+const referenceSandbox = { window: {} };
+vm.createContext(referenceSandbox);
+vm.runInContext(fs.readFileSync(path.join(root, 'public/assistant/reference-data.js'), 'utf8'), referenceSandbox);
+const reference = referenceSandbox.window.SWL_REFERENCE;
+const historical = {};
+for (const key of [...new Set([...Object.keys(historicalIndex), ...Object.keys(reference.weapons ?? {}).filter((key) => reference.weapons[key]?.fullCardCertification)])].sort()) {
+  const current = fingerprints(reference, key, root);
+  const indexed = historicalIndex[key];
+  const reasons = changes(indexed, current);
+  historical[key] = { valid: !reasons.length, reasons, cardType: current?.cardType ?? indexed?.cardType ?? null, frenchName: current?.frenchName ?? indexed?.frenchName ?? null, frenchVisual: current?.frenchVisual ?? null, frenchVisualSha256: current?.frenchVisualSha256 ?? null, rulesVersion: current?.rulesVersion ?? null, verifiedAt: current?.verifiedAt ?? null, tta: indexed?.tta ?? {} };
+}
+
 const pdfManifest = JSON.parse(fs.readFileSync(path.join(root, 'src/data/pdfCardManifest.json'), 'utf8'));
 const pdf = Object.entries(pdfManifest).filter(([key]) => key !== '_meta').filter(([, entry]) => ['unite', 'amelioration', 'commandement'].includes(entry.type) && Number.isInteger(entry.page)) // les lignes « Résumé — N pages » ne sont pas des cartes
   .map(([key, entry]) => ({ key, nameFr: entry.nameFr, nameEn: entry.nameEn ?? null, type: entry.type, pdfSource: entry.pdfSource, page: entry.page }));
@@ -112,7 +131,7 @@ for (const file of listImages('public/commandcards')) hashes[`commandcards/${fil
 for (const entry of [...Object.values(assets), ...unlinked]) hashes[`cards/${entry.file}`] = entry.sha256;
 const sortObject = (object) => Object.fromEntries(Object.entries(object).sort(([a], [b]) => a.localeCompare(b)));
 
-const payload = { assets, unlinked, coverage: { online: Object.keys(assets).length, personalListed: Object.values(manifest.assets ?? {}).filter((asset) => asset.publication === 'usage-personnel').length }, decisions: { variants: decisions.variants ?? {}, validations: decisions.validations ?? {} }, personalHashes: sortObject(Object.fromEntries(Object.entries(manifest.assets ?? {}).filter(([, asset]) => asset.publication === 'usage-personnel').map(([id, asset]) => [id, asset.sha256]))), hashes: sortObject(hashes), variants: variantCases, aliases: { cards: aliases.cards ?? {}, commands: aliases.commands ?? {}, keywordTranslations: Object.fromEntries(Object.entries(aliases.keywordTranslations ?? {}).map(([english, entry]) => [english, entry.fr])) }, localCardFiles: listImages('public/cards'), localCommandFiles: [...commandFiles].sort(), pdf };
+const payload = { assets, unlinked, coverage: { online: Object.keys(assets).length, personalListed: Object.values(manifest.assets ?? {}).filter((asset) => asset.publication === 'usage-personnel').length }, decisions: { variants: decisions.variants ?? {}, validations: decisions.validations ?? {} }, personalHashes: sortObject(Object.fromEntries(Object.entries(manifest.assets ?? {}).filter(([, asset]) => asset.publication === 'usage-personnel').map(([id, asset]) => [id, asset.sha256]))), hashes: sortObject(hashes), historical, rulesVersion: Object.entries(Object.values(historical).reduce((count, entry) => (entry.rulesVersion ? { ...count, [entry.rulesVersion]: (count[entry.rulesVersion] || 0) + 1 } : count), {})).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null, variants: variantCases, aliases: { cards: aliases.cards ?? {}, commands: aliases.commands ?? {}, keywordTranslations: Object.fromEntries(Object.entries(aliases.keywordTranslations ?? {}).map(([english, entry]) => [english, entry.fr])) }, localCardFiles: listImages('public/cards'), localCommandFiles: [...commandFiles].sort(), pdf };
 fs.writeFileSync(outputPath, `window.SWL_AUTO_CERTIFICATION_ASSETS=${JSON.stringify(payload)};\n`);
 if (Object.keys(personalAssets).length || Object.keys(personalVariantVisuals).length) fs.writeFileSync(personalOutputPath, `window.SWL_AUTO_CERTIFICATION_PERSONAL=${JSON.stringify({ assets: personalAssets, variantVisuals: personalVariantVisuals })};\n`);
 else fs.rmSync(personalOutputPath, { force: true });

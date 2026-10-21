@@ -7,6 +7,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { JSDOM, ResourceLoader, VirtualConsole } from 'jsdom'
+import { webcrypto } from 'node:crypto'
+import { IDBFactory } from 'fake-indexeddb'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const assistantDir = path.resolve(here, '../../public/assistant')
@@ -34,7 +36,8 @@ class LocalScriptsOnly extends ResourceLoader {
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 /** Charge l'Assistant dans jsdom, avec un stockage local pré-rempli (listes, états d'unités). */
-export async function openAssistant(storage = {}, { query = '', base = baseUrl } = {}) {
+// `indexedDB` : base IndexedDB de l'appareil simulé (une nouvelle par défaut ; la même pour rejouer un rechargement).
+export async function openAssistant(storage = {}, { query = '', base = baseUrl, indexedDB = new IDBFactory() } = {}) {
   const errors = []
   const virtualConsole = new VirtualConsole()
   virtualConsole.on('jsdomError', (error) => errors.push(String(error.message || error)))
@@ -48,6 +51,9 @@ export async function openAssistant(storage = {}, { query = '', base = baseUrl }
       for (const [key, value] of Object.entries({ 'swl.cert-filter.v1': 'all', ...storage })) window.localStorage.setItem(key, JSON.stringify(value))
       // Ce que jsdom ne fournit pas et que l'application utilise.
       window.structuredClone ||= structuredClone
+      // IndexedDB (visuels personnels de la bêta) et SHA-256 du navigateur, absents de jsdom.
+      Object.defineProperty(window, 'indexedDB', { value: indexedDB, configurable: true })
+      Object.defineProperty(window, 'crypto', { value: webcrypto, configurable: true })
       window.matchMedia ||= () => ({ matches: false, addEventListener() {}, removeEventListener() {}, addListener() {}, removeListener() {} })
       window.Element.prototype.scrollIntoView = function () {}
       window.scrollTo = () => {}

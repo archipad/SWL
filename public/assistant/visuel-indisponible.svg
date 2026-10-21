@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="726" height="520" viewBox="0 0 726 520" role="img" aria-label="Visuel indisponible">
+  <rect width="726" height="520" rx="22" fill="#0b1520"/>
+  <rect x="14" y="14" width="698" height="492" rx="16" fill="none" stroke="#4b6578" stroke-width="4" stroke-dasharray="18 12"/>
+  <g fill="none" stroke="#6b8597" stroke-width="10" stroke-linecap="round">
+    <rect x="303" y="150" width="120" height="92" rx="10"/>
+    <path d="M318 228l30-34 22 22 16-14 22 26"/>
+    <path d="M290 270l146-146"/>
+  </g>
+  <text x="363" y="330" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="700" fill="#c8d6e0">Visuel indisponible</text>
+  <text x="363" y="380" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#8fa6b6">Remplacement local — ce n’est pas la carte</text>
+</svg>

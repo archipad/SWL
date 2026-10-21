@@ -26,6 +26,14 @@
       "englishName": "XS-IV Assault Cannon",
       "frenchName": "Dark Trooper avec Canon d'Assaut XS-IV",
       "evidence": "Comparaison visuelle EN « XS-IV Assault Cannon Dark Trooper » / FR (public/cards/xs-iv-dark-trooper.jpg) : coût 55, Canon d'Assaut XS-IV 1-3, Critique 1."
+    },
+    "upgrade:20282": {
+      "localKey": "combat armor rebel",
+      "status": "confirmed",
+      "englishName": "Combat Armor (Rebel)",
+      "frenchName": "Armure de Combat",
+      "frenchVisual": false,
+      "evidence": "Décision certifiée du 21/10/2026 (variante n° 20282, « Rebel Agent or Rebel Officer Only ») ; certification historique « combat armor rebel ». Le visuel du site (public/cards/combat-armor-rebel.webp) est une carte anglaise communautaire (legion.takras.net) : il n'est jamais présenté comme visuel français."
     }
   },
   "commands": {

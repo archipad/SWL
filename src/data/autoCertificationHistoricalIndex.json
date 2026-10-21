@@ -1,0 +1,1979 @@
+{
+  "_meta": {
+    "description": "Certifications historiques valides au moment de l’indexation : empreintes SHA-256 des données moteur, du visuel français et des définitions de mots-clés, et identités Tabletop Admiral rattachées sans ambiguïté. Toute différence rend la certification obsolète dans la Certification automatique β.",
+    "indexedOn": "2026-10-21",
+    "uncertainIdentities": [
+      "a a5 speeder truck (unit:772, unit:4919)",
+      "agent kallus (unit:81, unit:29931)",
+      "beskad duelist (upgrade:175, upgrade:22602)",
+      "boba fett infamous bounty hunter (unit:16, unit:5000)",
+      "bossk terror of trandosha (unit:34, unit:4999)",
+      "cad bane (unit:59, unit:5001)",
+      "cassian andor (unit:57, unit:29930)",
+      "crosshair (upgrade:15009, upgrade:15989)",
+      "imperial march (upgrade:19828, upgrade:19896)",
+      "jetpack rockets (upgrade:176, upgrade:22605)",
+      "jyn erso (unit:27, unit:29928)",
+      "k 2so (unit:68, unit:29932)",
+      "kraken (upgrade:20803, upgrade:20841)",
+      "scout troopers strike team (unit:26, unit:25981)",
+      "the bad batch (unit:23655, unit:25086)",
+      "the darksaber (upgrade:71, upgrade:6132, upgrade:22587, upgrade:22610, upgrade:22611, upgrade:22612, upgrade:2632)",
+      "tristan wren (upgrade:177, upgrade:22608)",
+      "ursa wren (upgrade:178, upgrade:22650)"
+    ]
+  },
+  "certifications": {
+    "1 4 fd laser cannon team": {
+      "cardType": "unit",
+      "frenchName": "Équipe Canon Laser 1.4 FD",
+      "frenchVisual": "cards/1-4-fd-laser-cannon-team.jpg",
+      "frenchVisualSha256": "a6712a5535cfa9b93096aff09cf20def0f97010db41befc1f9a6d21bf5355f6f",
+      "dataSha256": "2117389c0710dccec752df265512224026e9ae04cd9dd006af92d0be40f57cbd",
+      "definitionsSha256": "1a75d0e74f3b7e219637668b827b756582fd6a1733f6f4e0c1b7095f9a70dd4e",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "tta": {
+        "unit:18": [
+          "Fixed: Front/Sides/Rear",
+          "Full Pivot",
+          "Impact X",
+          "Prepared Position",
+          "Sentinel",
+          "Stationary"
+        ]
+      }
+    },
+    "74 z speeder bikes": {
+      "cardType": "unit",
+      "frenchName": "Speederbikes 74-Z",
+      "frenchVisual": "cards/74-z-speeder-bikes.jpg",
+      "frenchVisualSha256": "dc261489e5e0e289c67a2215df1d31a8b31aba8934f635df5756022815174146",
+      "dataSha256": "660cee780cd851824c58bdbd82d75c324738b4ac0a2d5649292610b9fea460a3",
+      "definitionsSha256": "24dd4b7d4338d1bfa293867fbd4018762ae60a030ce80e4697d75a817906e3de",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:2": [
+          "Cover",
+          "Fixed: Front/Sides/Rear",
+          "Impact X",
+          "Speeder"
+        ]
+      }
+    },
+    "88i twin light blaster": {
+      "cardType": "upgrade",
+      "frenchName": "Blasters Légers Jumelés 88i",
+      "frenchVisual": "cards/88i-twin-light-blaster.jpg",
+      "frenchVisualSha256": "e2e5ed07c4370ad7ce1a45ce2b098d07ffd774bc727caf00f9437ad11a2a7ac8",
+      "dataSha256": "090d26ed607eda211bcf49f4bbf7787fda128dad5b51c81a41f9d54add44ecee",
+      "definitionsSha256": "88a3a6b8739fbe656099f83ce411c72760c20e2b266c594228f5dc77be84f744",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "upgrade:22": [
+          "Fixed: Front/Sides/Rear",
+          "Impact X"
+        ]
+      }
+    },
+    "a a5 speeder truck": {
+      "cardType": "unit",
+      "frenchName": "Camion Speeder A-A5",
+      "frenchVisual": "cards/a-a5-speeder-truck.jpg",
+      "frenchVisualSha256": "058d9f70e43ae26f95633c4fa499c8d252422a763f36f1cbe0059d042d43f4ae",
+      "dataSha256": "382a46dda76384597593cae4cfeac2d63e60a8ea8c7eb9ba37ccf07dc8b3c410",
+      "definitionsSha256": "bbe1aa0a3925a21d4ffdf91f68d53dbbc83c6b7aca6206e847552203915c69e5",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "a280 cfe pistol sniper config": {
+      "cardType": "upgrade",
+      "frenchName": "A280, Config Fusil",
+      "frenchVisual": "cards/a280-cfe-pistol-sniper-config.jpg",
+      "frenchVisualSha256": "69a27e7084d7d88094cddf8da6788c27224cf36aa35efc45795965b5333f024b",
+      "dataSha256": "8657a038241e39a3ddc9d1552a1a109f7771fdf66c03c4c2706d6fe2f25be6fb",
+      "definitionsSha256": "3103b7bbe344656a2ebeffb66930c60d64dd6de46288d2bbe08c8bec44ce2289",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.087Z",
+      "tta": {}
+    },
+    "ag 2g quad laser": {
+      "cardType": "upgrade",
+      "frenchName": "Quadrilaser AG-2G",
+      "frenchVisual": "cards/ag-2g-quad-laser.jpg",
+      "frenchVisualSha256": "80d401e222476805f79320a89e24e4830bc060fa01415e17efa2783274e40f29",
+      "dataSha256": "54a770ada919da541190f6d50baf39a64916998298f9338edb23fdac4d25b714",
+      "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:206": [
+          "Impact X"
+        ]
+      }
+    },
+    "agent kallus": {
+      "cardType": "unit",
+      "frenchName": "Agent Kallus",
+      "frenchVisual": "cards/agent-kallus.jpg",
+      "frenchVisualSha256": "dd684b60097adfde6bdcf1e126751c8ff0249f756e5eb2b0a1d3612217ee4f9b",
+      "dataSha256": "2f5b73ed409f35f119455db9f96cad4376941d832e14ff34c1d49215a7ca2239",
+      "definitionsSha256": "f477f0c9a16e7c55295169075c92b1c622085bb68e566e589845b8b7bdab15c2",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "tta": {}
+    },
+    "ahsoka tano": {
+      "cardType": "unit",
+      "frenchName": "Ahsoka Tano",
+      "frenchVisual": "cards/ahsoka-tano.jpg",
+      "frenchVisualSha256": "a3815536da2843947c04e73ccb6791c3131f1fad54f71aa4ef3c09c39ea20f68",
+      "dataSha256": "319d390ffb95bd1461b03c6767e5c7ebb805a4659b32b428e63324b59fbfa6a4",
+      "definitionsSha256": "b8ad326c2f5f977e41f3ceedede01a8928684871a146319ebebe9aa2475c57c6",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "tta": {
+        "unit:15014": [
+          "Charge",
+          "Defend",
+          "Deflect",
+          "Immune: Pierce",
+          "Impact X",
+          "Jar'Kai Mastery",
+          "Jump",
+          "Pierce X"
+        ]
+      }
+    },
+    "at rt": {
+      "cardType": "unit",
+      "frenchName": "TL-TT",
+      "frenchVisual": "cards/tl-tt.jpg",
+      "frenchVisualSha256": "267ae0f978c1b605f6b48bc9fbc551eb4414047840d431da6e0a9371626b77ba",
+      "dataSha256": "09f7cf43cdc17c2f64f1ddaff2a146550d1c1396cff07df25af79b3e57a79eb4",
+      "definitionsSha256": "7c5d0ab26e9d22c0000928b2eacbd3c66c63e14f55297b2145075ddbedaf9b6f",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "unit:1": [
+          "Armor",
+          "Climbing Vehicle",
+          "Expert Climber",
+          "Impact X",
+          "Scout X"
+        ]
+      }
+    },
+    "at rt flamethrower": {
+      "cardType": "upgrade",
+      "frenchName": "Lance-flammes de TL-TT",
+      "frenchVisual": "cards/tl-tt-flame-projector.jpg",
+      "frenchVisualSha256": "f04bd6376e5f9496684715cad350676d5f90709c65da6bb4cb4c403a1ae9522f",
+      "dataSha256": "d98386a179cf70c087324d1a0c06f0c4c087f2c0939c05efe0caf12e19971048",
+      "definitionsSha256": "37560b46ac2392d2a82ead7eeeffd33ac6dcfc87944061a0d157481ec7991f65",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "upgrade:20": [
+          "Blast",
+          "Fixed: Front/Sides/Rear",
+          "Spray"
+        ]
+      }
+    },
+    "at st": {
+      "cardType": "unit",
+      "frenchName": "TR-TT",
+      "frenchVisual": "cards/tr-tt.jpg",
+      "frenchVisualSha256": "2bb24533b634a80b4a761338a21e62b1543b641ff77a8231b3b113d339d3605b",
+      "dataSha256": "60763daf1e090f6370fe673f6cd3bad2d1a0a30dfd92f4c6c14e2892c29d87e0",
+      "definitionsSha256": "19dbaa9f09f93b065278c050a2f73e5c1c96a3e48b876b3347d4165973515f09",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "unit:9": [
+          "Armor [X]",
+          "Arsenal",
+          "Fixed: Front/Sides/Rear",
+          "Impact X",
+          "Weak Point [X]: Rear"
+        ]
+      }
+    },
+    "at st mortar launcher": {
+      "cardType": "upgrade",
+      "frenchName": "Lance-mortier de TR-TT",
+      "frenchVisual": "cards/tr-tt-mortar-launcher.jpg",
+      "frenchVisualSha256": "d41dd916bc1c64163f493b04f5fe1c3b4cae9f84fd3059ea2992bd9efe3371ff",
+      "dataSha256": "9aebc4a27f0e2044c713fac93bd295840901cfbc2b3dcffe1ea2119756f2fca7",
+      "definitionsSha256": "9c8182ea3cd5fac035c546690accf8e1baa5f7609216f7c64e2b16d347eee335",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "upgrade:23": [
+          "Fixed: Front/Sides/Rear",
+          "Suppressive"
+        ]
+      }
+    },
+    "ax 108 ground buzzer": {
+      "cardType": "upgrade",
+      "frenchName": "Ax-108 « Ground Buzzer »",
+      "frenchVisual": "cards/ax-108-ground-buzzer.jpg",
+      "frenchVisualSha256": "1491e04c048538933ed31e5bb326b655dff62877685a610cb0e074a6c724591b",
+      "dataSha256": "1f87ee43e456f01c06e1a6d06e2fcde0ea1bc7f202418bfaa12fc9d66fda25eb",
+      "definitionsSha256": "8ab1afa7475945104d9526811279cb6b5689bfca5f3ed2cb5d652a839ea4eb0f",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:27": [
+          "Fixed: Front/Sides/Rear"
+        ]
+      }
+    },
+    "barrage generator": {
+      "cardType": "upgrade",
+      "frenchName": "Générateur de Barrage",
+      "frenchVisual": "cards/barrage-generator.jpg",
+      "frenchVisualSha256": "6db53a6bc1bd0a2b87bb0fd7fb44f19c3bb287d04488d9eb49ca2549588ae292",
+      "dataSha256": "5f8450fceafc057168d6a02360c53f376fba9062bb596c902fee7551f1455d6d",
+      "definitionsSha256": "c0c05c2adbd35c97d10d29500dc6efb9108bcd98a0ebf398f4f42beda6e49a47",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {
+        "upgrade:40": [
+          "Suppressive"
+        ]
+      }
+    },
+    "battle shield wookiee": {
+      "cardType": "upgrade",
+      "frenchName": "Wookie avec Bouclier de Combat",
+      "frenchVisual": "cards/battle-shield-wookiee.jpg",
+      "frenchVisualSha256": "723bc2b783505b38d7c250258cce06d5b2d47b8cf2f0ae9bbec5bbcbd49f754f",
+      "dataSha256": "452779562865b2a28b14441f1ca89d50d74054f2df8f5e0052e393f0cb79c255",
+      "definitionsSha256": "6c8869bd846e17453e6ed31b0dbaac699453573d2c456ede0bbc34f2e596d234",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:413": [
+          "Armor [X]"
+        ]
+      }
+    },
+    "beskad duelist": {
+      "cardType": "upgrade",
+      "frenchName": "Duelliste avec Beskad",
+      "frenchVisual": "cards/beskad-duelist.jpg",
+      "frenchVisualSha256": "4f52e807be25439170ad393ee3a40fea7a5d8152a301306ba5c8d3fa11215e11",
+      "dataSha256": "16fc0e3e17de57ed39333065e503efc1d6fd4952e1b81827fa049beb06abbdb2",
+      "definitionsSha256": "d7848026606b37234d3f0400d3469b51e8a4a13f6c407604138adb2249c5f6be",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "black sun enforcers": {
+      "cardType": "unit",
+      "frenchName": "Hommes de Main du Soleil Noir",
+      "frenchVisual": "cards/black-sun-enforcers.jpg",
+      "frenchVisualSha256": "ec955598ed77f7f4372584d7e65b7e8bdc19aea5effa675db48351e1779241ec",
+      "dataSha256": "abe3b9e5bc3d2bf397141e3b618879b440be6e000ca0a67313921287c7f1e183",
+      "definitionsSha256": "5f951fb61eab7aa307eb802d33a8b16ca7db56a3de482003013f46f848b51ba3",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "unit:4417": [
+          "Dauntless",
+          "Independent: Token X/Action",
+          "Precise",
+          "Self-Preservation"
+        ]
+      }
+    },
+    "black sun vigo": {
+      "cardType": "unit",
+      "frenchName": "Vigo du Soleil Noir",
+      "frenchVisual": "cards/black-sun-vigo.jpg",
+      "frenchVisualSha256": "305984f933014fa2ba3250195fd8e3a40958da41846132525f4c7db9c93e9b55",
+      "dataSha256": "6ffe71f8b933e626e760e3180277d02edb02f225d22b1ecfc9525bf7da53a1b7",
+      "definitionsSha256": "8cd92e7dc101aa1e47331990aef7b04de55d84b5b8af7b9781b04ec4a2236243",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "unit:4717": [
+          "Aid",
+          "Dauntless",
+          "Independent: Token X/Action"
+        ]
+      }
+    },
+    "boba fett daimyo of mos espa": {
+      "cardType": "unit",
+      "frenchName": "Boba Fett, Daimyo de Mos Espa",
+      "frenchVisual": "cards/boba-fett-daimyo-of-mos-espa.jpg",
+      "frenchVisualSha256": "b47effe7917832f7322b238587cfaa7ecf55b7f537f1b3b4e5c680697e6035cb",
+      "dataSha256": "52f77e6cdc38d6c0d9520dbc95b3ada740256887bcd52d8b72c3c09e5d846154",
+      "definitionsSha256": "c47b3cc64c8810c7567c2ad4d33005f21225212cf7f8f942cd3cd76e43e9064e",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "unit:6176": [
+          "Arsenal",
+          "Impervious",
+          "Independent: Token X/Action",
+          "Jump",
+          "Pierce X",
+          "Sentinel",
+          "Sharpshooter",
+          "Tactical X"
+        ]
+      }
+    },
+    "boba fett infamous bounty hunter": {
+      "cardType": "unit",
+      "frenchName": "Boba Fett, Infâme Chasseur de Primes",
+      "frenchVisual": "cards/boba-fett-infamous-bounty-hunter.jpg",
+      "frenchVisualSha256": "d4033bfa842a6f995f329695fd151a3daebc762668e12bef03e2356048ed1da1",
+      "dataSha256": "fa41259c451fcf9cf434627362912b6ade436b719a647c5eded2f8a6d0f88caa",
+      "definitionsSha256": "f984df017fdecdf4f87e3dc745f189c750fdd8bd6151fe4bfe06e76d47c2c5f8",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "bossk terror of trandosha": {
+      "cardType": "unit",
+      "frenchName": "Bossk",
+      "frenchVisual": "cards/bossk-terror-of-trandosha.jpg",
+      "frenchVisualSha256": "e6c501ccca11a802bdd8e923f057af73eda6b40b1e6668d384803f898694eaea",
+      "dataSha256": "fbd8ef4ab12a33f1b0b1c4178b5eda35cb8d144f6d2fc1a2588672cf031a74a5",
+      "definitionsSha256": "e5f5d259be33bae23fdab7b9c4c05ccaa4f8779a90c4847d8b47efa208985078",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {}
+    },
+    "burst of speed": {
+      "cardType": "upgrade",
+      "frenchName": "Pointe de Vitesse",
+      "frenchVisual": "cards/burst-of-speed.jpg",
+      "frenchVisualSha256": "34aed69462d824b3916dc8ae89f101afe077ee4e5d75824a24878f97a98d90dc",
+      "dataSha256": "8151c960e649e741fd649395d7e43db7c09492dcb1f6dc2a398d048339021947",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:626": []
+      }
+    },
+    "cad bane": {
+      "cardType": "unit",
+      "frenchName": "Cad Bane",
+      "frenchVisual": "cards/cad-bane.jpg",
+      "frenchVisualSha256": "e7c3ed7467becb37893558bfa23acf2cd22349cc56ffe19a74acbc837c4676cc",
+      "dataSha256": "d1fe52059eec1659c894994bdb05489971520786b78d12ceff9c000c73e5e84e",
+      "definitionsSha256": "ebe6bf09adc9c7ed6350a76fb4a890324c52dddee01c5f4692f2fa70db935263",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {}
+    },
+    "cassian andor": {
+      "cardType": "unit",
+      "frenchName": "Cassian Andor",
+      "frenchVisual": "cards/cassian-andor.jpg",
+      "frenchVisualSha256": "aed428e8c68c163c064df3a5af4a2639795af76c3d88a269d370de8b37cdcabb",
+      "dataSha256": "8c2bbc77119207cce72e7531404699178ec1a9fce46a1c0a3ec16add7c6f6e42",
+      "definitionsSha256": "48093c4e380ae6ce490eccf41aa883173ab8c04119de2340a54f9546b339fd77",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "cassian andor operative": {
+      "cardType": "upgrade",
+      "frenchName": "Cassian Andor",
+      "frenchVisual": "cards/cassian-andor-operative.jpg",
+      "frenchVisualSha256": "3fadc71fa10156aeeedc7212235a9a9aaf0aac34b66b95b3d7d8c83dc970e5ec",
+      "dataSha256": "4ddd9a0b40fc77822fe09fd0da361fc4da07cfdfee59e7dbdcd5a796e5566d68",
+      "definitionsSha256": "044e89621e9c2809e0846e12516058d3092169ab82d6a067110de8704eb2aa8b",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T09:29:24.790Z",
+      "tta": {
+        "upgrade:20800": [
+          "Leader",
+          "Long Shot",
+          "Low Profile",
+          "Secret Mission",
+          "Uncanny Luck"
+        ]
+      }
+    },
+    "chewbacca": {
+      "cardType": "unit",
+      "frenchName": "Chewbacca",
+      "frenchVisual": "cards/chewbacca.jpg",
+      "frenchVisualSha256": "fe9753ea53bfeecc83f65521ff7ea0d5cb20c86eeeeb97fe9a7e9fa7d5db0dbf",
+      "dataSha256": "90207a5b5c7ab925e1a0c13c23990def1b821588652e2b3bb787a1a594b6a40c",
+      "definitionsSha256": "3d429bda39279f2434cd546283a3243e06ee91bfa018f82e786315a5bcf8d577",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "unit:25": [
+          "Enrage",
+          "Expert Climber",
+          "Guardian",
+          "Impact X",
+          "Lethal X",
+          "Pierce X",
+          "Teamwork: Han Solo"
+        ]
+      }
+    },
+    "chewbacca upgrade": {
+      "cardType": "upgrade",
+      "frenchName": "Chewbacca (amélioration)",
+      "frenchVisual": "cards/chewbacca-upgrade.png",
+      "frenchVisualSha256": "20f708f0c0aa8d0a4ad7c3e805efac9ba29253b211078b3b0c3e5a56ba252ad6",
+      "dataSha256": "8da2d5e3cb145b3df108251d7b8578f675fe02dc634efb81c8ca3356aca08a55",
+      "definitionsSha256": "954a87df5b1379e011798b403cf54fe5780b0ddcb80d9a6c4f12546eb1d78019",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "upgrade:21913": [
+          "Impact X",
+          "Leader"
+        ]
+      }
+    },
+    "cm o 93 trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat avec CM-O/93",
+      "frenchVisual": "cards/cm-o93-trooper.jpg",
+      "frenchVisualSha256": "9ed4c45b446659f59817426ab4ce7c38d365cd1ef80f451ee619bf625d9d3768",
+      "dataSha256": "6e6bd2eb33e6d434e23bdfc6564cc1ef4f21819089779bc46cea01f0aebd2182",
+      "definitionsSha256": "1714a7d1470111101ad7944f4e600cc6f1cbe0352472001f2c4bd9d2a8e94a0b",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:98": [
+          "Critical X"
+        ]
+      }
+    },
+    "combat armor rebel": {
+      "cardType": "upgrade",
+      "frenchName": "Armure de Combat",
+      "frenchVisual": "cards/combat-armor-rebel.webp",
+      "frenchVisualSha256": "32d921e4459aa0f60015b6666e6e99d5bbcf756cafad7be7b27b1801c9f623cd",
+      "dataSha256": "4f18afe06e0c4505aaafb56478e69faa48c8aa3258a92019629bb460583c119c",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:20282": []
+      }
+    },
+    "crosshair": {
+      "cardType": "upgrade",
+      "frenchName": "Crosshair",
+      "frenchVisual": "cards/crosshair.jpg",
+      "frenchVisualSha256": "b775305172cfca618c142f3a879562e3e9a6f4fc4bc704583a4d9dea4549e129",
+      "dataSha256": "c9e5a11b471a9226ccf830ddcc24ffcbaaa19a68495d0706554a8f4ace0a374e",
+      "definitionsSha256": "4199616647e7ccdf218661dba7b57ae0c3d5b14125c4e0172ea212071b8adfbb",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {}
+    },
+    "dark trooper squad": {
+      "cardType": "unit",
+      "frenchName": "Dark Troopers Impériaux",
+      "frenchVisual": "cards/dark-trooper-squad.jpg",
+      "frenchVisualSha256": "e14dc995a3d4ca857d4b1f0b90f42070ab1483eaf72848daf5f9997376281c92",
+      "dataSha256": "7063132334255a8a1f98aa8d817266aa7b3dc272fe7f017dba266206beafaa30",
+      "definitionsSha256": "63ff1b8b86c01fa19d4338c07cf53cac1688bee32567f5b5f28e5d7fb080bdba",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "tta": {
+        "unit:6180": [
+          "Armor [X]",
+          "Plodding",
+          "Unconcerned",
+          "Unstoppable"
+        ]
+      }
+    },
+    "darth vader dark lord of the sith": {
+      "cardType": "unit",
+      "frenchName": "Dark Vador, Seigneur Noir des Sith",
+      "frenchVisual": "cards/darth-vader-dark-lord-of-the-sith.jpg",
+      "frenchVisualSha256": "722d0cf6be1dcd2d238e4376e09483d867a986516405519497b4591649aa37a7",
+      "dataSha256": "f44544c05ab1a4fde5d8cc346688b8d07d4b50b5bea5d1ab8e6b3142abe827eb",
+      "definitionsSha256": "03f44752f117e7ca053edcf9ec11c34dc65bb699e036f2999f00f7ff38b702ad",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:3": [
+          "Compel",
+          "Deflect",
+          "Immune: Pierce",
+          "Impact X",
+          "Master of the Force",
+          "Pierce X",
+          "Relentless"
+        ]
+      }
+    },
+    "dewback rider": {
+      "cardType": "unit",
+      "frenchName": "Soldat Monté sur Dewback",
+      "frenchVisual": "cards/dewback-rider.jpg",
+      "frenchVisualSha256": "c97e4312a856815950e4e1195726547bda978be69f06c3e0080d536d40a044ac",
+      "dataSha256": "b3b318a042e9462eaba7ae1ff00fe712ed02edb9e36cfb218f30d119538cd669",
+      "definitionsSha256": "fa1b440ed9266f2dcdb2de9188044623e906d13c8e2bf297703909fefa9a5e0e",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "tta": {
+        "unit:40": [
+          "Armor [X]",
+          "Critical X",
+          "Relentless",
+          "Reposition",
+          "Spur",
+          "Suppressive",
+          "Unhindered"
+        ]
+      }
+    },
+    "df 90 mortar trooper": {
+      "cardType": "unit",
+      "frenchName": "Soldat avec Mortier DF-90",
+      "frenchVisual": "cards/df-90-mortar-trooper.jpg",
+      "frenchVisualSha256": "423af66b11f2a5b25debd39bcdae9b5d77e8ee483afa9801fb9072ddb29e311e",
+      "dataSha256": "5a85f6e6d9ede5216e6da6b99e118bcecf55b84729bc0ab42a30fd443458ead6",
+      "definitionsSha256": "8bf05c73957f211b57cbc82e17c17db0408fa1f4aa6617857b2f755957c1fa68",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "tta": {
+        "unit:48": [
+          "Critical X",
+          "Cumbersome",
+          "Detachment",
+          "Fire Support",
+          "Fixed: Front/Sides/Rear",
+          "Full Pivot",
+          "Prepared Position",
+          "Reposition",
+          "Sentinel",
+          "Suppressive"
+        ]
+      }
+    },
+    "dh 447 sniper": {
+      "cardType": "upgrade",
+      "frenchName": "Sniper avec DH-447",
+      "frenchVisual": "cards/dh-447-sniper.jpg",
+      "frenchVisualSha256": "ad103f239347e6050a8cbb7ffe6e2caf15541122a0eecdd563b42bc1e7c7f9a5",
+      "dataSha256": "44febe189f7be5e677b8e491fbce6b7d8b388c3de1f70899e805f34f94f68d25",
+      "definitionsSha256": "aae761ff620a3e16c782e461aa0e577a2d9d274e35a671cf95bd3e6008bf7ce7",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:47": [
+          "High Velocity",
+          "Overwhelm",
+          "Sniper Team"
+        ]
+      }
+    },
+    "director orson krennic": {
+      "cardType": "unit",
+      "frenchName": "Directeur Orson Krennic",
+      "frenchVisual": "cards/director-orson-krennic.jpg",
+      "frenchVisualSha256": "3486884d4dc41adfeebadd02f0e3feb69862bdbd46d1bcda8c11862074b10d53",
+      "dataSha256": "6656127a90978d297b96395364920ccac5edca080a62ac685d645ae1a3746fba",
+      "definitionsSha256": "2ed6ebc12686015c5e2aacc91d5ae78ef37fe0342ef9e57e7b00f3a937c13692",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:29": [
+          "Compel",
+          "Cunning",
+          "Entourage: Imperial Death Troopers",
+          "Exemplar",
+          "➦Spotter"
+        ]
+      }
+    },
+    "dlt 19 stormtrooper": {
+      "cardType": "upgrade",
+      "frenchName": "Stormtrooper avec DLT-19",
+      "frenchVisual": "cards/dlt-19-stormtrooper.jpg",
+      "frenchVisualSha256": "be9a58e729a40599d1171e72cf4fdaf071cb407450208a1945d0bac5765ccfd7",
+      "dataSha256": "80ae604e91d16ab3554795321d60c5a9f9daf96e9b75431159d127f1d081aa33",
+      "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T09:29:24.790Z",
+      "tta": {
+        "upgrade:7": [
+          "Impact X"
+        ]
+      }
+    },
+    "dlt 19x sniper": {
+      "cardType": "upgrade",
+      "frenchName": "Sniper avec DLT-19x",
+      "frenchVisual": "cards/dlt-19x-sniper.jpg",
+      "frenchVisualSha256": "fce5be73b0a33d5ef2977fc27a37f57d169e69bc2f7293bc6d94d8e447f49691",
+      "dataSha256": "457f370505614519423eeb678232619433764303a8f78d2958a9a26a9330cd9b",
+      "definitionsSha256": "aae761ff620a3e16c782e461aa0e577a2d9d274e35a671cf95bd3e6008bf7ce7",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:52": [
+          "High Velocity",
+          "Overwhelm",
+          "Sniper Team"
+        ]
+      }
+    },
+    "dlt 20a range trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Range Trooper avec DLT-20A",
+      "frenchVisual": "cards/dlt-20a-range-trooper.jpg",
+      "frenchVisualSha256": "4da07ab137b2e5710c4c3bf5ff43b253f06e32d45825f656d48f4a7be8be97b7",
+      "dataSha256": "da1ab74ffb04286f84889cd18118e49cf4d3a64e28a2fec8f3facc8373a18b5c",
+      "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "tta": {
+        "upgrade:15010": [
+          "Impact X"
+        ]
+      }
+    },
+    "dw 3 concussion grenade launcher": {
+      "cardType": "upgrade",
+      "frenchName": "Lance-grenades DW-3",
+      "frenchVisual": "cards/dw-3-concussion-grenade-launcher.jpg",
+      "frenchVisualSha256": "4df7d9d73b990b712ca41d01ee48b3b4fb800bb82af4d00191958c47a8bb5d86",
+      "dataSha256": "ca7aac1f5ad04f06d46390e9799a4c580f9540749b0c7d854e74b5bbc828b6da",
+      "definitionsSha256": "0464637961fb463770081ef6f9c6325f3aefdb39ae7d2e74daae70fa2d6c0916",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:24": [
+          "Blast",
+          "Fixed: Front/Sides/Rear"
+        ]
+      }
+    },
+    "e web heavy blaster team": {
+      "cardType": "unit",
+      "frenchName": "Équipe Blaster Lourd E-Web",
+      "frenchVisual": "cards/e-web-heavy-blaster-team.jpg",
+      "frenchVisualSha256": "5f9526497d46d2f8923669beb3b1d6e232393b33406e3baf8b381310e3d80adb",
+      "dataSha256": "2916748c89e06b7d3a6ae9c26c5d703eac2b4b0561e005a45154d8d89af6a249",
+      "definitionsSha256": "ea06e213785a6944cf0072e8a9d1692fdae6c3256b69918b1162f127d44e49a2",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "tta": {
+        "unit:19": [
+          "Cumbersome",
+          "Fixed: Front/Sides/Rear",
+          "Impact X",
+          "Prepared Position",
+          "Reposition",
+          "Sentinel"
+        ]
+      }
+    },
+    "emergency transponder": {
+      "cardType": "upgrade",
+      "frenchName": "Transpondeur d'Urgence",
+      "frenchVisual": "cards/emergency-transponder.jpg",
+      "frenchVisualSha256": "f6b9920479d7f8ea6270a7a4d24b2294176d2af0339f51f71494aa160fc9b66e",
+      "dataSha256": "32b5ce61f12f436bbc8bb85743034ec9cb3c4d844d616f99a74b4ee3031b90ad",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:2713": []
+      }
+    },
+    "engagement protocols": {
+      "cardType": "upgrade",
+      "frenchName": "Protocoles d'Engagement",
+      "frenchVisual": "cards/engagement-protocols.jpg",
+      "frenchVisualSha256": "f247183fbca1ef8c04f91e84c22b7a6dde554ee9f092bd5eca1c175fd17a8673",
+      "dataSha256": "53db42875a98bec85ddd4ae4db9d0388e102949a294a26d946e078241dc908c2",
+      "definitionsSha256": "87c038ddb99c2cc2557e2e318e5db9b34929c3532b5b125ab3a4027c1fcbe63c",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {
+        "upgrade:962": [
+          "AI: Action"
+        ]
+      }
+    },
+    "fire control": {
+      "cardType": "upgrade",
+      "frenchName": "Contrôle de Tir",
+      "frenchVisual": "cards/fire-control.webp",
+      "frenchVisualSha256": "38975113ec59013c328b954683a33fcd4dbded7369cf22b9005844b20e3932ca",
+      "dataSha256": "f63dee6c232eca7c44dbcbb9794541683dc37b1fbd8d1ce70c2f68dd92f49c99",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:22906": []
+      }
+    },
+    "flametrooper": {
+      "cardType": "upgrade",
+      "frenchName": "Flametrooper",
+      "frenchVisual": "cards/flametrooper.jpg",
+      "frenchVisualSha256": "05675cb0399b44ebb2136794080fe5c05072c226e9ce2cd9283dc8bbeeaae452",
+      "dataSha256": "ba097d05033fadb2df23ee7220c42fac52c62b3e2195c0b562d9089ec6aa0af6",
+      "definitionsSha256": "23f0820f0626ffdeb0bb1e20e576e13536011589e75ea7d43e34e64bbe96b31a",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:36": [
+          "Blast",
+          "Spray"
+        ]
+      }
+    },
+    "fleet trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat de la Flotte",
+      "frenchVisual": "cards/fleet-trooper.jpg",
+      "frenchVisualSha256": "3bf275764a247bff5de23d817ccb282fd9d8cb86433877fce802d9d7f56c142c",
+      "dataSha256": "7f473d9f4434429fcb995e86aae282374c612b765ad44542105718113c843826",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T19:32:59.333Z",
+      "tta": {
+        "upgrade:35": []
+      }
+    },
+    "fleet trooper squad": {
+      "cardType": "upgrade",
+      "frenchName": "Escouade Soldat de la Flotte",
+      "frenchVisual": "cards/fleet-trooper-squad.jpg",
+      "frenchVisualSha256": "28c9c2d7e813146fd2d9c2cf7ec3d2e71995e0039f6c81c1542e5baf528e0051",
+      "dataSha256": "3e8a17259299a06a1b19494579e89352065ca97587b03e15c0fab4c45247e4b2",
+      "definitionsSha256": "a414c2b7f0b54157b25388d58f2e5117d152e4772c66395aa37b2e7238994246",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:16558": [
+          "Indomitable"
+        ]
+      }
+    },
+    "fleet troopers": {
+      "cardType": "unit",
+      "frenchName": "Soldats de la Flotte",
+      "frenchVisual": "cards/fleet-troopers.jpg",
+      "frenchVisualSha256": "cea33293db590bdc2bd6ec7c2405fcdc5987f15f80d69d5fdc5c706e26fc6284",
+      "dataSha256": "10edea88e3ad317bdb998e8121488420f4bdfbbb79f17a5ffde221d6d7ef9f35",
+      "definitionsSha256": "43972f328be06ab992ac82bf6a36cda91a5a94c90b159324343e7368c96c89c1",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "unit:12": [
+          "Charge"
+        ]
+      }
+    },
+    "force choke": {
+      "cardType": "upgrade",
+      "frenchName": "Strangulation de la Force",
+      "frenchVisual": "cards/force-choke.jpg",
+      "frenchVisualSha256": "c45550ca61301a7f704a1dd13979c6c47dff5b8b4ff3ce877a3af63d3bb3d13f",
+      "dataSha256": "df115283661eda32cb801af5f2b0f4a90929cda12a1eeff989402cb87d6496e6",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:8": []
+      }
+    },
+    "gar saxon militant commando": {
+      "cardType": "unit",
+      "frenchName": "Gar Saxon",
+      "frenchVisual": "cards/gar-saxon-militant-commando.jpg",
+      "frenchVisualSha256": "75952e42c2a3d72f31254851d043727ec5d0519a71aaaf7d9f097c2a735d33a4",
+      "dataSha256": "324ac26521698a0210dd8811daff4feadc0d53077e9850e6e5c3a5588cd14a70",
+      "definitionsSha256": "ea2215aeb14bad8aafa5bbc9e9baba0b071703072404f2af73ec724e0b3d2a66",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "unit:4891": [
+          "Allies of Convenience",
+          "Compel",
+          "Impervious",
+          "Jump",
+          "Pierce X",
+          "Sharpshooter"
+        ]
+      }
+    },
+    "general veers": {
+      "cardType": "unit",
+      "frenchName": "Général Veers",
+      "frenchVisual": "cards/general-veers.jpg",
+      "frenchVisualSha256": "fa9de015666c773a34ff4608ce7e0d81780c917c51e1f75e94f9780dfd438a52",
+      "dataSha256": "ae7d61afd02f695d89639b83be4b6bed473881e3e29a87d347f8882c6fbf9bd4",
+      "definitionsSha256": "4dbe820d577f1a152170d930d92ba24d702610679cf0f81c2df15af6ade7a4e9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:8": [
+          "Exemplar",
+          "Guidance",
+          "Inspire",
+          "Sharpshooter",
+          "➦Spotter"
+        ]
+      }
+    },
+    "han solo": {
+      "cardType": "unit",
+      "frenchName": "Han Solo, Général Peu Orthodoxe",
+      "frenchVisual": "cards/han-solo.jpg",
+      "frenchVisualSha256": "eb0e72b8e177498319cb773d670a3579f5934ac3dfcca5095d90f5781d4f79b4",
+      "dataSha256": "57e8cc72cf2609731cc251e1812d28a3fd7bd782a6dfd133a594363614556e9b",
+      "definitionsSha256": "6306ebeebc8062b73702f5df3247df30e2b42b6ecbdd2a36e4e02b14691fdaae",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:15": [
+          "Gunslinger",
+          "Low Profile",
+          "Pierce X",
+          "Sharpshooter",
+          "Steady",
+          "Uncanny Luck"
+        ]
+      }
+    },
+    "hh 12 stormtrooper": {
+      "cardType": "upgrade",
+      "frenchName": "Stormtrooper avec HH-12",
+      "frenchVisual": "cards/hh-12-stormtrooper.jpg",
+      "frenchVisualSha256": "e43b01bdb4a788c51409c09efc1877baa8d7b3b41b1b12a66a9d696b5c2cc12f",
+      "dataSha256": "fd2cafbb747dc3342490a8d0f138cdbd6af06fbf5115da16e7590611226114c2",
+      "definitionsSha256": "e918a378ccb9e33ca3546c969560bec5c6ac9fc65ed47614e2575c6db92e388c",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:19": [
+          "Cumbersome",
+          "Impact X"
+        ]
+      }
+    },
+    "iden s id10 seeker droid": {
+      "cardType": "upgrade",
+      "frenchName": "Droïde Chercheur ID10 d'Iden",
+      "frenchVisual": "cards/idens-id10-seeker-droid.jpg",
+      "frenchVisualSha256": "afb15adf25222ed2cdf18a60ba7ccdc74359217274f4f17ceec24cf1ed3bdf58",
+      "dataSha256": "994c6924774faf56620ff54e40e9b18b2d5625402eba90945ff69be8665f31fe",
+      "definitionsSha256": "a069a88687ac0c4fc9b9138853645fbb85ab73a7174649cad182f6ad2f6b5b74",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:167": [
+          "Recharge",
+          "Shielded",
+          "Small"
+        ]
+      }
+    },
+    "iden versio": {
+      "cardType": "unit",
+      "frenchName": "Iden Versio",
+      "frenchVisual": "cards/iden-versio.jpg",
+      "frenchVisualSha256": "829645f4aa59a7329c4f398619f3af177a98d03c64002338451f367594209c25",
+      "dataSha256": "098b59d7aef4db9a468af4b23f374586b3c223839bf4681da059e8db67205266",
+      "definitionsSha256": "2816f72d359888b9eb3578f5af6314bf2620d856b9acc6d10e1c92ce6085695c",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "tta": {
+        "unit:58": [
+          "Critical X",
+          "High Velocity",
+          "Impact X",
+          "Infiltrate",
+          "Marksman",
+          "Nimble",
+          "Pierce X",
+          "➦Quick Thinking"
+        ]
+      }
+    },
+    "impact grenades": {
+      "cardType": "upgrade",
+      "frenchName": "Grenades à Impact",
+      "frenchVisual": "cards/impact-grenades.jpg",
+      "frenchVisualSha256": "c1450fa9d312c676e5284eb885dd0f7cda38515fe1b51c1fb666c087585334b7",
+      "dataSha256": "b8a64e6a9e1685422664961b20f183ae753672cc23e8d5b7f57da8ce4ea891c6",
+      "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:30": [
+          "Impact X"
+        ]
+      }
+    },
+    "imperial death troopers": {
+      "cardType": "unit",
+      "frenchName": "Death Troopers Impériaux",
+      "frenchVisual": "cards/imperial-death-troopers.jpg",
+      "frenchVisualSha256": "11b39c889e94ace39914fa4a12f644796f9c96c03a2b7091cd099dd0de8dad08",
+      "dataSha256": "c35c0eefefd96662abdbe6669fb6f82768f8a24a8aea5c5d043eac4a50b6a62e",
+      "definitionsSha256": "dfd54b88480f78c531b9f8851644f34c3322aa5c1f0a8c93d4f68d1564b83895",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:30": [
+          "Disciplined",
+          "Precise",
+          "Ready"
+        ]
+      }
+    },
+    "imperial march": {
+      "cardType": "upgrade",
+      "frenchName": "Marche Impériale",
+      "frenchVisual": "cards/imperial-march.jpg",
+      "frenchVisualSha256": "b50873d6602e5a4be9c3139697a3aaedd0120569b8edfeb9553659ab8aa3d9fd",
+      "dataSha256": "ceeb1cc364fe2e8922ef00843ed98feda5a688afaf4b8d17e7e46923872ecfda",
+      "definitionsSha256": "43972f328be06ab992ac82bf6a36cda91a5a94c90b159324343e7368c96c89c1",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {}
+    },
+    "improvised orders": {
+      "cardType": "upgrade",
+      "frenchName": "Ordres Improvisés",
+      "frenchVisual": "cards/improvised-orders.jpg",
+      "frenchVisualSha256": "663c5682c3973f5bf4e9b36e0d9f2ec4a12e99643d89c3e577f1dda43dcd9d17",
+      "dataSha256": "774387de3e1c7bccbb5e25cd012b494d064535e100aaff0e7a8de83b681f231d",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "tta": {
+        "upgrade:44": []
+      }
+    },
+    "in the fray": {
+      "cardType": "upgrade",
+      "frenchName": "Dans la Mêlée",
+      "frenchVisual": "cards/in-the-fray.jpg",
+      "frenchVisualSha256": "dab026c26aaba819b98bd5ef1584642e15b62b092152cbd42e2027dc905bd8eb",
+      "dataSha256": "f803d08a94ba255f1579290eb6d6592e7bf1a67d3ba7f70e8007daf7f4d273e7",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:628": []
+      }
+    },
+    "jetpack rockets": {
+      "cardType": "upgrade",
+      "frenchName": "Roquettes Dorsales",
+      "frenchVisual": "cards/jetpack-rockets.jpg",
+      "frenchVisualSha256": "fe96e7d01663f77d57c8e300189375958b4fdedabf9cbcdd3d267926c3bd83ad",
+      "dataSha256": "c280e9425fc1b4d62721e8c0d05df79264582b3b98417a33ca9bfdf34b831dff",
+      "definitionsSha256": "cf2bc385be23beb06bee5c45406fd5874373f691a19c7b62c62704edfed7e28a",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "jyn erso": {
+      "cardType": "unit",
+      "frenchName": "Jyn Erso",
+      "frenchVisual": "cards/jyn-erso.jpg",
+      "frenchVisualSha256": "0049a6e7f32da3a3d94674a1a035d2870957a7ae207a611b7107c212fb7d83b1",
+      "dataSha256": "e90279953157873686bc17e368dcb8ba001054f40afe87d1de8d0b0dc60062ad",
+      "definitionsSha256": "7266adb10ae32ae484b49b94016fa4b00ac351a092512fa24562e9acb59df2be",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "jyn s se 14 blaster": {
+      "cardType": "upgrade",
+      "frenchName": "Blaster SE-14 de Jyn",
+      "frenchVisual": "cards/jyns-se-14-blaster.jpg",
+      "frenchVisualSha256": "de76e8981b14e1416653e9d460d4d6f32a85ad057e2086decb3cd7ad303e03dc",
+      "dataSha256": "4fa3a4b174897907a3dd06a525f40a5bc299893eeeca78086a317c1f9f3b7f25",
+      "definitionsSha256": "a4fdfecca4b8bf6651080355fe23b26748e0c231f92c133b1ff1bcba49067060",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T09:29:24.790Z",
+      "tta": {
+        "upgrade:166": [
+          "Precise",
+          "Suppressive"
+        ]
+      }
+    },
+    "k 2so": {
+      "cardType": "unit",
+      "frenchName": "K-2SO",
+      "frenchVisual": "cards/k-2so.jpg",
+      "frenchVisualSha256": "8b15981ee4af05244c52ee499026471678834e5b05488118ac588a14c26ee995",
+      "dataSha256": "376d13909e45efe4d8dabb9fd1ae8771373ed19ab6628e2a6997f370ef2bc440",
+      "definitionsSha256": "1dfff1b356daadff95ccfe699dfa57761a643978b706df860ab916e026b6ea51",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "kallus the operative": {
+      "cardType": "upgrade",
+      "frenchName": "Agent Kallus",
+      "frenchVisual": "cards/kallus-the-operative.jpg",
+      "frenchVisualSha256": "cd71eb31866ad5614c8a9bd9394dee368f069eec54cebfd3b563c6286aed8489",
+      "dataSha256": "63895b14be592300895c44b79e081d037638fe777badad2288a567494da05f41",
+      "definitionsSha256": "d6eaefe633d5af424d9a0240b930cf01d0aced32458c33647fb97be4f1d91bea",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {}
+    },
+    "kraken": {
+      "cardType": "upgrade",
+      "frenchName": "Kraken",
+      "frenchVisual": "cards/kraken.jpg",
+      "frenchVisualSha256": "629a5722566c6901ca7ee4769b5bdd59bf9866f192f8d31679cda31d25c9ab54",
+      "dataSha256": "a8914ebbd6c8f9b070040b809ac0e2e8a7ea9ef995a9d33be13804c64bd283a0",
+      "definitionsSha256": "83cda588dc3bb662ba44996453cbb12fec2fdb17b3d25fd2e7b3dc8eb2e44c11",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "kx series security droids": {
+      "cardType": "upgrade",
+      "frenchName": "Droïdes de Sécurité de Série KX",
+      "frenchVisual": "cards/kx-series-security-droids.jpg",
+      "frenchVisualSha256": "676072a1b87c24e9e2d5648344a369f1778a88582a298b2b3b974be4840b7e6c",
+      "dataSha256": "a1bd6cc5f152ac09bb7fcc674f1be9b65bf3554613789c97e93b42d0ed8d9515",
+      "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "upgrade:16579": [
+          "Impact X"
+        ]
+      }
+    },
+    "linked targeting array": {
+      "cardType": "upgrade",
+      "frenchName": "Système de Visée Jumelé",
+      "frenchVisual": "cards/linked-targeting-array.jpg",
+      "frenchVisualSha256": "2a0d3ad187028991bf434791016808b334c5f78fefdd2403c4a39f5346406d08",
+      "dataSha256": "2974620fc51d7abd29e11d67095d93eeb15374a19fc00e4a2feb7d0608adfe3f",
+      "definitionsSha256": "02ec1ba86c885402b0d6c6f673cb0b02064da5c2cde5c78ad9c3b94ae3b3afcd",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:99": [
+          "Target"
+        ]
+      }
+    },
+    "luke skywalker hero of the rebellion": {
+      "cardType": "unit",
+      "frenchName": "Luke Skywalker, Héros de la Rébellion",
+      "frenchVisual": "cards/luke-skywalker-hero-of-the-rebellion.jpg",
+      "frenchVisualSha256": "948510b61a193f58952bedb1e6ac90dd90fff0de83a25d8a6a27285a761fcd82",
+      "dataSha256": "6369aa1dd59fa51d6019b06ebb3cbef701ba8c8b9f94883848197991a4886919",
+      "definitionsSha256": "05df72ac73dd142ab9d44319bf4a29b78de88fee37baa285e2c1f5135fe1eee3",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:4": [
+          "Block",
+          "Charge",
+          "Immune: Pierce",
+          "Impact X",
+          "Inspire",
+          "Jump",
+          "Long Shot",
+          "Pierce X",
+          "Sharpshooter"
+        ]
+      }
+    },
+    "major marquand": {
+      "cardType": "unit",
+      "frenchName": "Major Marquand",
+      "frenchVisual": "cards/major-marquand.jpg",
+      "frenchVisualSha256": "50cd5f7d8aa2be900f49cf80c0b2e8e1df80a396afeb8716619fca862af58eae",
+      "dataSha256": "073264f1ccf9fb52d6227443856890e5eac8b232d9f7dc30ad80e607b2c93563",
+      "definitionsSha256": "d51bab59cb1ed689c456aecd19090e7525fa44b7873bcbefc4543c74b8c7db4c",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:17348": [
+          "Armor",
+          "Arsenal",
+          "Blast",
+          "Fixed: Front/Sides/Rear",
+          "Impact X",
+          "Weak Point [X]: Rear"
+        ]
+      }
+    },
+    "mandalorian resistance": {
+      "cardType": "unit",
+      "frenchName": "Résistance Mandalorienne",
+      "frenchVisual": "cards/mandalorian-resistance.jpg",
+      "frenchVisualSha256": "b107c6d48388eaa0af52518786b1dfbfb6875705ac61fe24485ead73873428a9",
+      "dataSha256": "4783b9ef46c92325236824073925d5e540086d4db5095a0267e3c97677b37a17",
+      "definitionsSha256": "f384bcf5495ecc73b789f24051b2bad74001e4b9a1341db0d0888300908e05e2",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:71": [
+          "Impervious",
+          "Jump",
+          "Nimble"
+        ]
+      }
+    },
+    "mandalorian resistance clan wren": {
+      "cardType": "unit",
+      "frenchName": "Résistance Mandalorienne, Clan Wren",
+      "frenchVisual": "cards/mandalorian-resistance-clan-wren.jpg",
+      "frenchVisualSha256": "27c6bce8f9d939926e755404f7ac7ea8d87a8f2831a46aa21f8d5714db98db30",
+      "dataSha256": "b0aaa1e2c4c31ef5828437e757c947429c65f4177b4b26ae7653d12caeec6efb",
+      "definitionsSha256": "861e69f5c9dce72a1feb5942d189249d8475f7f9d82681ad70f519f8efbaa6f7",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:72": [
+          "Equip: Tristan Wren, Ursa Wren",
+          "Impervious",
+          "Jump",
+          "Nimble",
+          "Retinue: Sabine Wren"
+        ]
+      }
+    },
+    "mark ii medium blaster trooper": {
+      "cardType": "unit",
+      "frenchName": "Soldat avec Blaster Moyen Mark II",
+      "frenchVisual": "cards/mark-ii-medium-blaster-trooper.jpg",
+      "frenchVisualSha256": "e0bd674129a01435138717fe2f791542f0640858b69e048a4087a6d706044471",
+      "dataSha256": "3b98e7ce661c0a4905b9d65e9798f3720a0e8888bf524616a426acf92002b014",
+      "definitionsSha256": "f1c185dbf099a7546b84361643d5fb2fc6ee8a7e1d92872f8bda827e2d5938b7",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:42": [
+          "Critical X",
+          "Cumbersome",
+          "Detachment",
+          "Fire Support",
+          "Fixed: Front/Sides/Rear",
+          "Full Pivot",
+          "Prepared Position",
+          "Reposition",
+          "Sentinel"
+        ]
+      }
+    },
+    "maul a rival": {
+      "cardType": "unit",
+      "frenchName": "Maul",
+      "frenchVisual": "cards/maul-a-rival.jpg",
+      "frenchVisualSha256": "2f235547259f3950a1a23f73d1a241753ba54cfc137f3e0967726856a2c7263e",
+      "dataSha256": "c057420d4cd61651b9d380dfe031c213532ba365c78b3de64d05706eb7602de9",
+      "definitionsSha256": "09297b37712f74819dcc60383aaa8e6cef7211115b5386a7173704d9de96aa28",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "unit:4551": [
+          "Allies of Convenience",
+          "Deflect",
+          "Immune: Pierce",
+          "Impact X",
+          "Jump",
+          "Juyo Mastery",
+          "Pierce X",
+          "Wound"
+        ]
+      }
+    },
+    "moff gideon": {
+      "cardType": "unit",
+      "frenchName": "Moff Gideon",
+      "frenchVisual": "cards/moff-gideon.jpg",
+      "frenchVisualSha256": "417c513711e95201a59ed1d3064e84674de85f926e43fec27671b1c51da4eaaf",
+      "dataSha256": "0eaab5012d58ca9594613546f9958aa60569b081ccb2fb3446a37dc78f51e1d2",
+      "definitionsSha256": "1242960a64237ec04fa1ddb57965f541cf00de952ccc0ce1a05758402262204a",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "tta": {
+        "unit:11258": [
+          "Entourage",
+          "Observe",
+          "Pierce X",
+          "Ruthless",
+          "Sharpshooter",
+          "Tactical X"
+        ]
+      }
+    },
+    "mpl 57 ion trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat avec MPL-57 à Ions",
+      "frenchVisual": "cards/mpl-57-ion-trooper.jpg",
+      "frenchVisualSha256": "829e4e5426a01dbade41b549881ded4d522712bdfcf30af798a270b002d2f2ae",
+      "dataSha256": "043fa5aa1b3ed86d661987e0ef6ebd98c61640d863238750712624bb65918dc4",
+      "definitionsSha256": "82b4605c186dd3d7aeb7b12e4cecb2a8d08afdd4fdee538a7a0292d442a610c9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:11": [
+          "Critical X",
+          "Impact X",
+          "Ion X"
+        ]
+      }
+    },
+    "point blank": {
+      "cardType": "upgrade",
+      "frenchName": "À Bout Portant",
+      "frenchVisual": "cards/point-blank.jpg",
+      "frenchVisualSha256": "b9e27c00601d35317db9beff0682c6696e285f76e266c0d7fd1807c76350c027",
+      "dataSha256": "4b421487633dd097bf3389d64f268765b51e6e7be46fb385df9abc38c709e009",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:2631": []
+      }
+    },
+    "programmed loyalty": {
+      "cardType": "upgrade",
+      "frenchName": "Loyauté Programmée",
+      "frenchVisual": "cards/programmed-loyalty.jpg",
+      "frenchVisualSha256": "2ea010dbbd3806fa17b5d0a792241900fd14be398df488ccbeb5c4c2f8233e42",
+      "dataSha256": "c6276e0a1419c09c3c8d5aab137a315df4ade144da50133b3e467d563fb1b4bb",
+      "definitionsSha256": "0d7cfae7a8ceeb6cfcabd3fb0500ca0270f66c760e56e8cdf17f2a981e512509",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "tta": {
+        "upgrade:6322": [
+          "Retinue"
+        ]
+      }
+    },
+    "protector": {
+      "cardType": "upgrade",
+      "frenchName": "Protecteur",
+      "frenchVisual": "cards/protector.jpg",
+      "frenchVisualSha256": "120750c129d4baa2b8f169d9931efeed821aa6ad715f8272bc2a7d030f1ed02a",
+      "dataSha256": "fc6834a39eed0744cdadb9837d3318485386639c8cd755da14de13fc36c8d7d3",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {
+        "upgrade:627": []
+      }
+    },
+    "proton charge saboteur": {
+      "cardType": "upgrade",
+      "frenchName": "Saboteur avec Charge à Protons",
+      "frenchVisual": "cards/proton-charge-saboteur.jpg",
+      "frenchVisualSha256": "3b1718667d0e93baa3cb758ac4cd82dfcba89d27fd25a35e0e74d4e4e286ec1c",
+      "dataSha256": "c6aa3a394be73e7d11bc849c00b6346c0dfc24dde9ac08ffdb63bc90d12ab5f6",
+      "definitionsSha256": "54c649f938798c1b815a7bb29cb7a30b1c6ae93a8d0b517519a7422fe3943667",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {
+        "upgrade:48": [
+          "Assault X",
+          "Blast",
+          "Impact X"
+        ]
+      }
+    },
+    "pyke syndicate capo": {
+      "cardType": "unit",
+      "frenchName": "Capo du Syndicat Pyke",
+      "frenchVisual": "cards/pyke-syndicate-capo.jpg",
+      "frenchVisualSha256": "95186d4eb475269f55edc8aa5ebd83a2ffeb38f13f99e44804ea5f26dd0527e8",
+      "dataSha256": "20c0af7ce5fc410eb148ee4352de73dd11ed139db3cea53f14d8f93565d08088",
+      "definitionsSha256": "4a01e14152e91d9c9ed7641bc51feff753d43906c5cb7240c472f6bb5d1eff7d",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {
+        "unit:4216": [
+          "Aid: Pyke Syndicate",
+          "Danger Sense",
+          "Independent: Token X/Action"
+        ]
+      }
+    },
+    "pyke syndicate foot soldiers": {
+      "cardType": "unit",
+      "frenchName": "Fantassins du Syndicat Pyke",
+      "frenchVisual": "cards/pyke-syndicate-foot-soldiers.jpg",
+      "frenchVisualSha256": "0d5f8272a71aba35126ff70197fd90c8657176d4c7949d7027fab0b18c19346e",
+      "dataSha256": "62b76771b389dafd5a6c6f1f34fa1d50fd58c68f05e8dadfd6a4f48402d80526",
+      "definitionsSha256": "9f2abbb969b43f1112f2594413f1970b855764aea1a5fcea3b97b9aaa0694c1b",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {
+        "unit:4215": [
+          "Danger Sense",
+          "Independent: Token X/Action",
+          "Outmaneuver",
+          "Self-Preservation"
+        ]
+      }
+    },
+    "r2 d2": {
+      "cardType": "unit",
+      "frenchName": "R2-D2",
+      "frenchVisual": "cards/r2-d2.jpg",
+      "frenchVisualSha256": "6a50be99953a61704439127821849ddcbd781fa19d7da27ff1b88140c761f1b2",
+      "dataSha256": "c7f43065fd858b6c55f80fd35c96acf5f3aed7b48528c00a685d005600d65e6a",
+      "definitionsSha256": "c520a9c2467ffb16c695423fab9174268b11606786aa21d0a68209428f53788c",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "range trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Range Trooper",
+      "frenchVisual": "cards/range-trooper.jpg",
+      "frenchVisualSha256": "95d3cc9648ce7224305abec2e872fca0b4959822ff82d4477d3fd6fe6117cfc9",
+      "dataSha256": "9dec85c8659b26b3fb1c99ef327ca05a0863963a7e5da236c4f93fbc03f00e51",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "tta": {
+        "upgrade:15014": []
+      }
+    },
+    "range troopers": {
+      "cardType": "unit",
+      "frenchName": "Range Troopers",
+      "frenchVisual": "cards/range-troopers.jpg",
+      "frenchVisualSha256": "c8c089d2c7dbb4820fefe384f70e5b433c9a4cfabb9352fcc107a27ddd2d26c8",
+      "dataSha256": "3248ed80840edc4eb8beced020f609347027d1bcd9277bd614dc458a2d5591d7",
+      "definitionsSha256": "d8e16f7936aef59992776e3de4569f5ca3a25f71edfe4b5ced8652ceb8605216",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "tta": {
+        "unit:23657": [
+          "Advanced Targeting: X",
+          "Armor [X]",
+          "Indomitable",
+          "Scale",
+          "Spur"
+        ]
+      }
+    },
+    "rebel agent defender of democracy": {
+      "cardType": "unit",
+      "frenchName": "Agent Rebelle, Défenseur de la Démocratie",
+      "frenchVisual": "cards/rebel-agent-defender-of-democracy.png",
+      "frenchVisualSha256": "c1ab2198eac2be244ff8f21401bccd76649030d6244b91e0634179fdae47b0e5",
+      "dataSha256": "7cc6fe9f3efb6e9672090a7a92911e6dd10fc39c1cbeae051c044652459ebe3a",
+      "definitionsSha256": "470ca9a873164f019b9644e0c0cb4b017251ceed8bc31da6853260453f648e1e",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "unit:31670": [
+          "Equip",
+          "Independent: Token X/Action",
+          "Nimble"
+        ]
+      }
+    },
+    "rebel commandos": {
+      "cardType": "unit",
+      "frenchName": "Commandos Rebelles",
+      "frenchVisual": "cards/rebel-commandos.jpg",
+      "frenchVisualSha256": "520fadcb66574ab4927b22b2df2120d4052f7dd5cb48ad7f8d05e43db9993a0e",
+      "dataSha256": "cfa47df68151e8e3ee0401d964c9aed83aa046c37f5ad2165f9b4a6fbe739761",
+      "definitionsSha256": "992939c54ab8b455794e705fb621df2448bca201b597a70ba147a3e57c6d194b",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:13": [
+          "Low Profile",
+          "Scout X",
+          "Sharpshooter"
+        ]
+      }
+    },
+    "rebel commandos strike team": {
+      "cardType": "unit",
+      "frenchName": "Commandos Rebelles",
+      "frenchVisual": "cards/rebel-commandos-strike-team.jpg",
+      "frenchVisualSha256": "1e62b4c30b5968c4e276506811f0e1ef377d5e91cf2e1d4e25515872afdf2965",
+      "dataSha256": "81f85c245b97ec87356a69b21c6b7ef07aba66ffb37911182c78303ccc417292",
+      "definitionsSha256": "f75ba04f37828fabe850c34a99c1e3c0308b9941a712d8059bbb118851a47b60",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:25979": [
+          "Detachment",
+          "Heavy Weapon Team",
+          "Incognito",
+          "Low Profile",
+          "Prepared Position"
+        ]
+      }
+    },
+    "rebel trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat Rebelle",
+      "frenchVisual": "cards/rebel-trooper.jpg",
+      "frenchVisualSha256": "eb8b87dc5f89300aa13b87e5d4d6e9aafde606fe9df30225387913063bc80898",
+      "dataSha256": "57f8098ec8e859e880c7f008033882642b7e1b06cd73ede67123f48203a9883b",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:12": []
+      }
+    },
+    "rebel trooper squad": {
+      "cardType": "upgrade",
+      "frenchName": "Escouade Soldat Rebelle",
+      "frenchVisual": "cards/rebel-trooper-squad.jpg",
+      "frenchVisualSha256": "68d46c66520e70855ecad338a711141baa825bcd4ab60049c174453edfe3bce8",
+      "dataSha256": "e0583ba762e607ca6d5b2b435b3588fba35d7aeee66fb319efd004942fb38a42",
+      "definitionsSha256": "a414c2b7f0b54157b25388d58f2e5117d152e4772c66395aa37b2e7238994246",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:16562": [
+          "Indomitable"
+        ]
+      }
+    },
+    "rebel troopers": {
+      "cardType": "unit",
+      "frenchName": "Soldats Rebelles",
+      "frenchVisual": "cards/rebel-troopers.jpg",
+      "frenchVisualSha256": "ef57f040c9abae3d359c07273abfa5778f8bfc8537d515fce62fe0bd447e0aa4",
+      "dataSha256": "46fce99c89bb679a3e2bf8d61d8172888b298ab446f5939bd9c6dcd008123a88",
+      "definitionsSha256": "5bb8ff0a83bc318465e921c9f8c5d95a72b1ea35e3d7d5999b180404cbdfa550",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:6": [
+          "Agile",
+          "Nimble"
+        ]
+      }
+    },
+    "rebel veterans": {
+      "cardType": "unit",
+      "frenchName": "Vétérans Rebelles",
+      "frenchVisual": "cards/rebel-veterans.jpg",
+      "frenchVisualSha256": "5c0c68ff4281304689e7ee4d4ba3929fe2ba0b253edbbc09d14c1e250955375d",
+      "dataSha256": "2f2f3baf2f71b9e976c2de7d8300af1d6b1c00ebc717cbc741dc574894c3d5d6",
+      "definitionsSha256": "6e8a38336a177cc704437a224a55a255f1af77accfa4b0fcd91f74400b1f5740",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T19:32:59.333Z",
+      "tta": {
+        "unit:36": [
+          "Coordinate: Emplacement Trooper",
+          "Low Profile",
+          "Prepared Position"
+        ]
+      }
+    },
+    "reluctant hero": {
+      "cardType": "upgrade",
+      "frenchName": "Héros Malgré Lui",
+      "frenchVisual": "cards/reluctant-hero.webp",
+      "frenchVisualSha256": "36ad9faae510b5696ae0ff45e468301f6e4256fb21fd9e6fef5e7ac2f37097d1",
+      "dataSha256": "78b9ffea91589dcb304ef771d02dcd316bf03addbc5d4902f9025a922b7392ff",
+      "definitionsSha256": "8b1b8f2f12bc3f45e4891506153406ba8b47960eb6122b2f30eb4f450b0726f9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T11:08:56.136Z",
+      "tta": {
+        "upgrade:20281": [
+          "Critical X",
+          "Infiltrate",
+          "Relentless"
+        ]
+      }
+    },
+    "repeating blaster": {
+      "cardType": "upgrade",
+      "frenchName": "Blaster Répétiteur",
+      "frenchVisual": "cards/repeating-blaster.webp",
+      "frenchVisualSha256": "bc26bebcc91411ab25a02b55309f05fb3864f2197560eecce4e57dd4ff407abd",
+      "dataSha256": "35279ff9e690d1457b7e25996cc04a86cbba40e159002120f43d32827ee5c223",
+      "definitionsSha256": "db74435771074b86312a97390f736e74424e477b3dcc13a7cb2926b810a099e3",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:20283": [
+          "Critical X",
+          "Impact X",
+          "Long Shot",
+          "Precise"
+        ]
+      }
+    },
+    "rps 6 rocket gunner": {
+      "cardType": "upgrade",
+      "frenchName": "Artilleur avec Lance-roquettes RPS-6",
+      "frenchVisual": "cards/rps-6-rocket-gunner.jpg",
+      "frenchVisualSha256": "8dee3e84a4d76dfbde450705fca0a2bf99a9c6c4dea577126e980eb28f3d2c64",
+      "dataSha256": "4eeb01c8d858bd0ffdc6f1fefc2fd9c33b16e03bac9deb9bbb386ce995b626ee",
+      "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:81": [
+          "Impact X"
+        ]
+      }
+    },
+    "saber throw": {
+      "cardType": "upgrade",
+      "frenchName": "Sabre Lancé",
+      "frenchVisual": "cards/saber-throw.jpg",
+      "frenchVisualSha256": "56c3602618bb102384681a363e372424a8e9b91f74e1d1b6cbf573ccb8000816",
+      "dataSha256": "19fc9d68f061119f2d6c824f0092382e34b76c3119cf3bb3692c3e4ec10d3573",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "upgrade:13": []
+      }
+    },
+    "sabine wren": {
+      "cardType": "unit",
+      "frenchName": "Sabine Wren",
+      "frenchVisual": "cards/sabine-wren.jpg",
+      "frenchVisualSha256": "a0f52bdd70823ad5fe68cb306f2d8af3da2269257779d0281c54fa2e5e1549b6",
+      "dataSha256": "d597a465a2ceed7825487a725a186aa22d5d3ad151840298ed9eda692a31a1aa",
+      "definitionsSha256": "80c3da7d87b2523c8fe5347b1398f235ea4eba0ecee91de7a902b4a9afe69fdf",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "scatter gun trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat avec Fusil à Dispersion",
+      "frenchVisual": "cards/scatter-gun-trooper.jpg",
+      "frenchVisualSha256": "1a0bd50d2e5a8bf2c19023386f23fb84089c480cd03c50d934ec869eb7605ded",
+      "dataSha256": "6a7ef201fb5df8a95e435b8d138e755a13e8e25dd6067470e4da03e2da83590a",
+      "definitionsSha256": "6f30e034f8d0bb1c24e985aea1176a77df73a276f7c2a29e658558620801e816",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:31": [
+          "Pierce X"
+        ]
+      }
+    },
+    "scout troopers": {
+      "cardType": "unit",
+      "frenchName": "Scout Troopers",
+      "frenchVisual": "cards/scout-troopers.jpg",
+      "frenchVisualSha256": "2bcd5fdcc1acd67347e1b484a92f2334367b11d05c8059c311a75a99e5370096",
+      "dataSha256": "e0a74616f5f98106c8e449f3bcb45b8f6452a57328268adbdb8d925e380badf9",
+      "definitionsSha256": "992939c54ab8b455794e705fb621df2448bca201b597a70ba147a3e57c6d194b",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:17": [
+          "Low Profile",
+          "Scout X",
+          "Sharpshooter"
+        ]
+      }
+    },
+    "scout troopers strike team": {
+      "cardType": "unit",
+      "frenchName": "Scout Troopers",
+      "frenchVisual": "cards/scout-troopers-strike-team.jpg",
+      "frenchVisualSha256": "9b0e12e898b324fe278500b4eaa7360c34c9d79c780db802d3fb7703d6016928",
+      "dataSha256": "86e91cc50347586410cfbfd62f422031f360f2dd83e967e39ef6ebac820f872e",
+      "definitionsSha256": "f75ba04f37828fabe850c34a99c1e3c0308b9941a712d8059bbb118851a47b60",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "snowtroopers": {
+      "cardType": "unit",
+      "frenchName": "Snowtroopers",
+      "frenchVisual": "cards/snowtroopers.jpg",
+      "frenchVisualSha256": "1683da97dc1641f7d671f540950608bb97346b597cc9b04262edf89435f9b5c3",
+      "dataSha256": "1a1f7ba040a5edca9013a9114ccb4969d3da2ea19072c40b45651cc1665acf00",
+      "definitionsSha256": "f2e6bb63fdec9ec1790acc33de7b601d033774dd7a006d2c05d83bb3991e6576",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:7": [
+          "Steady"
+        ]
+      }
+    },
+    "sonic charge saboteur": {
+      "cardType": "upgrade",
+      "frenchName": "Saboteur avec Charge Sonique",
+      "frenchVisual": "cards/sonic-charge-saboteur.jpg",
+      "frenchVisualSha256": "957a4d3ef4a5681e87ef0f89ebbc94317c247c48a6d24f70f15ea33bb05f510f",
+      "dataSha256": "f2cf0388fd3795186dfee6769e92d74dd5f8956a236b095274928fd0fda116f1",
+      "definitionsSha256": "c7fb464a86bc4eb7d6bad439781c1fdac0b88e1db794dcc386671d8658682241",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "upgrade:53": [
+          "Assault X",
+          "Blast",
+          "Impact X",
+          "Suppressive"
+        ]
+      }
+    },
+    "stormtrooper heavy gunner squad": {
+      "cardType": "unit",
+      "frenchName": "Stormtroopers, Unité Lourde d'Intervention",
+      "frenchVisual": "cards/stormtrooper-heavy-gunner-squad.jpg",
+      "frenchVisualSha256": "5737eeb8907bc915a20a0dfe6726a15a9b2f908df74d20f7519d37d3bcf916c1",
+      "dataSha256": "98ab776d6c555ba408c1c4cb1b65dc4370f95000b00ce8b4e1e29be79dc4b5d3",
+      "definitionsSha256": "c33eb627a656d00b94bcb8ed555099750081fee2bf3b869b2b4c021ba41915ef",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {
+        "unit:5880": [
+          "Flexible Response [X]",
+          "Precise",
+          "Special Issue: Battle Force",
+          "Unhindered"
+        ]
+      }
+    },
+    "stormtrooper riot squad": {
+      "cardType": "unit",
+      "frenchName": "Escouade Stormtrooper Antiémeute",
+      "frenchVisual": "cards/stormtrooper-riot-squad.jpg",
+      "frenchVisualSha256": "d4a11b271a5bc213c3afe33c553b9f7e87ac01e80c9def42d06bc27502fba5c3",
+      "dataSha256": "e670fdb4b3e31af50c4873725a9f4613b1e8910c3d77c7e10fe4a03c0eab738a",
+      "definitionsSha256": "e9f6d6e2a8d2033fe5db04a203b9ac98a7745a5580943f61db758156cf660b15",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:25967": [
+          "Charge",
+          "Hold the Line",
+          "Suppressive"
+        ]
+      }
+    },
+    "stormtrooper specialist": {
+      "cardType": "upgrade",
+      "frenchName": "Spécialiste Stormtrooper",
+      "frenchVisual": "cards/stormtrooper-specialist.jpg",
+      "frenchVisualSha256": "91dcb46a2b9dce81f545fc0263d2cd7606829ebb3437ad043da26d7495111491",
+      "dataSha256": "ea45c41ce3071d1fd7d4fac04bc6236da47e59704d9262cc4d6b39f3a89a649d",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:135": []
+      }
+    },
+    "stormtrooper squad": {
+      "cardType": "upgrade",
+      "frenchName": "Escouade Stormtrooper",
+      "frenchVisual": "cards/stormtrooper-squad.jpg",
+      "frenchVisualSha256": "ff6b61eb17625bb8c6b5b328c800c0e5321d77ee7ea8870fa3fd8bd35a75f90c",
+      "dataSha256": "5d9c65f7e792332c8b908649cf0b04622b84fea69b20b2a0163b67df350d07a0",
+      "definitionsSha256": "a414c2b7f0b54157b25388d58f2e5117d152e4772c66395aa37b2e7238994246",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:16566": [
+          "Indomitable"
+        ]
+      }
+    },
+    "stormtroopers": {
+      "cardType": "unit",
+      "frenchName": "Stormtroopers",
+      "frenchVisual": "cards/stormtroopers.jpg",
+      "frenchVisualSha256": "963474d4bed7417e504c70c8f97363361fda4133dbebb45ad17eb966278d5a1a",
+      "dataSha256": "66dfef6a5166986d2506b8dc4a5af2181502bdfc975a31355c85e879d54abfe4",
+      "definitionsSha256": "a42161cdfe3c1cb72a77c6105fd97221a763147b4a2d5aade6a7fd3620e24a47",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "unit:5": [
+          "Precise"
+        ]
+      }
+    },
+    "swoop bike riders": {
+      "cardType": "unit",
+      "frenchName": "Pilotes de Swoop",
+      "frenchVisual": "cards/swoop-bike-riders.jpg",
+      "frenchVisualSha256": "cb587716ff9f2330ca9bc728b293fab952288ccbaa02d850193d14f491de1d04",
+      "dataSha256": "e6005b1200ce1816e581f1fde30556df2542f13f00912a98c856dd48aaa134f4",
+      "definitionsSha256": "086f4a590c9e659f03e376016ff0b09853ed1014e661edff86a0e663fe4d963f",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:26:58.823Z",
+      "tta": {
+        "unit:5406": [
+          "Cover",
+          "Independent: Token X/Action",
+          "Overrun X",
+          "Reinforcements",
+          "Speeder"
+        ]
+      }
+    },
+    "sx 21 trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat avec SX-21",
+      "frenchVisual": "cards/sx-21-trooper.jpg",
+      "frenchVisualSha256": "d475fb4f6eb6da87c5035fab76aea3021b35674364a911c4f0d1271e06685307",
+      "dataSha256": "dd60d1142110f7cf35609057d021384ac4d10250aa4fd5a65f2b1cc54cde9c21",
+      "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "upgrade:124": [
+          "Impact X"
+        ]
+      }
+    },
+    "t 47 airspeeder": {
+      "cardType": "unit",
+      "frenchName": "Airspeeder T-47",
+      "frenchVisual": "cards/t-47-airspeeder.jpg",
+      "frenchVisualSha256": "1ced06130bc18ecda0d39ac606f3162bf32a1c4112246e5cce97276446faa039",
+      "dataSha256": "43d03eb4aa973748d93b9aefb3bdf4bc8d3fcca7aff0d64ba5c53f6050913ccc",
+      "definitionsSha256": "ff64a1256a4c05f4e61afc0f8d299c14b003b20d9c637f595ae369c4f2305e2b",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "unit:10": [
+          "Armor",
+          "Arsenal",
+          "Cover",
+          "Fixed: Front/Sides/Rear",
+          "Immune: Blast",
+          "Immune: Melee",
+          "Immune: Range 1 Weapons",
+          "Impact X",
+          "Speeder"
+        ]
+      }
+    },
+    "t 7 ion snowtrooper": {
+      "cardType": "upgrade",
+      "frenchName": "Snowtrooper avec T-7 à Ions",
+      "frenchVisual": "cards/t-7-ion-snowtrooper.jpg",
+      "frenchVisualSha256": "c63739d08acc990f10f9fa445f4e15b1da5fec7950ed1d4493c191adea0a5294",
+      "dataSha256": "eec1105e3682f301b8083ce06a4898841221e2631c51443bb2618bcb4c998b8b",
+      "definitionsSha256": "82b4605c186dd3d7aeb7b12e4cecb2a8d08afdd4fdee538a7a0292d442a610c9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:21": [
+          "Critical X",
+          "Impact X",
+          "Ion X"
+        ]
+      }
+    },
+    "targeting scopes": {
+      "cardType": "upgrade",
+      "frenchName": "Lunette de Visée",
+      "frenchVisual": "cards/targeting-scopes.jpg",
+      "frenchVisualSha256": "9e1319abffc25d3a8af20f24d4fecda2bce3e207671234a00a7d2fc40983703a",
+      "dataSha256": "eb7c348b9540c333140bdace9165763fdc0d72154acae39370cb80d039e34c83",
+      "definitionsSha256": "a42161cdfe3c1cb72a77c6105fd97221a763147b4a2d5aade6a7fd3620e24a47",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:15": [
+          "Precise"
+        ]
+      }
+    },
+    "tauntaun riders": {
+      "cardType": "unit",
+      "frenchName": "Soldats Montés sur Tauntaun",
+      "frenchVisual": "cards/tauntaun-riders.jpg",
+      "frenchVisualSha256": "3fc35a4462b9abea0a3d65e1f46b6e4eed280b563b4b3f4abd51250a37eaf2c4",
+      "dataSha256": "8a58b9597f374e5f3d364573639741215fe6b5b851952a472c7798cb5d60760e",
+      "definitionsSha256": "9313852d4c2ad0b631f7b5dbfcaa886b78e9bfba772565a695e52cbf7a0018c0",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:35": [
+          "Agile",
+          "Ram X",
+          "Relentless",
+          "Reposition",
+          "Sharpshooter",
+          "Unhindered"
+        ]
+      }
+    },
+    "tenacity": {
+      "cardType": "upgrade",
+      "frenchName": "Ténacité",
+      "frenchVisual": "cards/tenacity.jpg",
+      "frenchVisualSha256": "7d8be7610b136d133a35b047961a89d165292803480e68135d31905735375e10",
+      "dataSha256": "a9d100c3b176b84133ec765fb1bb14792310c0ec601aca8e9148d5663b33b18b",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.248Z",
+      "tta": {
+        "upgrade:54": []
+      }
+    },
+    "the bad batch": {
+      "cardType": "unit",
+      "frenchName": "Le Bad Batch",
+      "frenchVisual": "cards/the-bad-batch.jpg",
+      "frenchVisualSha256": "11597f8d70ea90de75b1d1a7cc0ff37aaba0c1f9d06a9771caa32e7c7d88d6b0",
+      "dataSha256": "b61d5ee9c5e6dee49c9dffb1289d698419e77c7f44d38771bb0deb6bc07809fe",
+      "definitionsSha256": "c9dbf17efec0ed35358b0ddf61309ddf1ceaaf5eb0bf4f8836b8d64e7981db4e",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "the darksaber": {
+      "cardType": "upgrade",
+      "frenchName": "Le Sabre Noir",
+      "frenchVisual": "cards/the-darksaber.jpg",
+      "frenchVisualSha256": "927799e4c343fa1974b860ac20b953ee7763f4613f5769ce5cbf1a1f18dc6de1",
+      "dataSha256": "61f6827b9b0bf5802ebfba856bec3637ad57e80eed92ee62cdc36cb35dd7b388",
+      "definitionsSha256": "e3d7831bbdad121748e2da96d6a4da522c6631794ebdf40c7694b5ae4f3b089b",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "tl tt flame projector": {
+      "cardType": "upgrade",
+      "frenchName": "Lance-flammes de TL-TT",
+      "frenchVisual": "cards/tl-tt-flame-projector.jpg",
+      "frenchVisualSha256": "f04bd6376e5f9496684715cad350676d5f90709c65da6bb4cb4c403a1ae9522f",
+      "dataSha256": "645a07a9dcdbf4aa86551e11da2e9c0917c0a561a899bce8b53527f83350d9e7",
+      "definitionsSha256": "37560b46ac2392d2a82ead7eeeffd33ac6dcfc87944061a0d157481ec7991f65",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "tl tt laser cannon": {
+      "cardType": "upgrade",
+      "frenchName": "Canon Laser de TL-TT",
+      "frenchVisual": "cards/tl-tt-laser-cannon.jpg",
+      "frenchVisualSha256": "9ce08bd9c462232a926ca6ce17f54a6ae21180e51e2d51ec17f4d2e659c6c6d6",
+      "dataSha256": "deaa6e4461147bdf31c0ae1d408866ed401042042f294c42850c8b95207c6394",
+      "definitionsSha256": "88a3a6b8739fbe656099f83ce411c72760c20e2b266c594228f5dc77be84f744",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-20T13:59:45.332Z",
+      "tta": {
+        "upgrade:3": [
+          "Fixed: Front/Sides/Rear",
+          "Impact X"
+        ]
+      }
+    },
+    "tristan wren": {
+      "cardType": "upgrade",
+      "frenchName": "Tristan Wren",
+      "frenchVisual": "cards/tristan-wren.jpg",
+      "frenchVisualSha256": "4c9d503df96d9ce98e67acbb445c65fc7851fc33a4011dfcf39a6d9bc149be62",
+      "dataSha256": "e89899d54a7437f137e0d52bb582f05c5521b501ce67d4e9b510eabadac5b769",
+      "definitionsSha256": "091edcee3d55ec88e1191a599e257c8b3334db0fe5fe4a0f8f4ce4b9715dd566",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "ursa wren": {
+      "cardType": "upgrade",
+      "frenchName": "Ursa Wren",
+      "frenchVisual": "cards/ursa-wren.jpg",
+      "frenchVisualSha256": "4d5356c5490c9434890610ebd56e0d914b3171993ff190970d5d4e5122b09c9c",
+      "dataSha256": "79f73a0a50003cf189fdc76286b3d7cd89e5d283da28126471614b65c1ce0440",
+      "definitionsSha256": "7304f4174308c291ef97b10a6bc4892a67e9abfba136e898ee49f4effe99d953",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-21T23:25:39.088Z",
+      "tta": {}
+    },
+    "vigilance": {
+      "cardType": "upgrade",
+      "frenchName": "Vigilance",
+      "frenchVisual": "cards/vigilance.jpg",
+      "frenchVisualSha256": "c1d9b37b1027e1b582d068cbee840736abdec806b529b5aabe30204f212154e4",
+      "dataSha256": "58db92129945add38148e4f7aa6c6dc99cd52b7c772f725b38bb9b63ef5573ac",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:191": []
+      }
+    },
+    "wookiee warriors freedom fighters": {
+      "cardType": "unit",
+      "frenchName": "Guerriers Wookies, Combattants de la Liberté",
+      "frenchVisual": "cards/wookiee-warriors-freedom-fighters.jpg",
+      "frenchVisualSha256": "70b862f071a1754eabb55e34af22719055e96a6a16f462c88fee861d1aca2ed3",
+      "dataSha256": "d2ef22fa9432dc6492683de1e96c78b9aa9b80d3337010ff0b1ed8ec6803134a",
+      "definitionsSha256": "03544044c9f74ab370a3b6a17aaba62ba547060e38e9125bd5f06849b11dc5fe",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-15T08:43:15.247Z",
+      "tta": {
+        "unit:24": [
+          "Charge",
+          "Duelist",
+          "Indomitable",
+          "Scale"
+        ]
+      }
+    },
+    "xs iv dark trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Dark Trooper avec Canon d'Assaut XS-IV",
+      "frenchVisual": "cards/xs-iv-dark-trooper.jpg",
+      "frenchVisualSha256": "04e0eab23b59580144e2857c1029e87c4ac22301f8bcf75d315331b8f18236b2",
+      "dataSha256": "76e321a1da6f90a3b0d72478d18d6d1c971b8f2b00aa0ff6b052c3b1e5158e9e",
+      "definitionsSha256": "1714a7d1470111101ad7944f4e600cc6f1cbe0352472001f2c4bd9d2a8e94a0b",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-10-21T18:00:00.000Z",
+      "tta": {
+        "upgrade:6318": [
+          "Critical X"
+        ]
+      }
+    },
+    "z 6 trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat avec Z-6",
+      "frenchVisual": "cards/z-6-trooper.jpg",
+      "frenchVisualSha256": "e0b79820be0818184559f71f1d187e098311e3494a1087df1801a2ad199f868c",
+      "dataSha256": "ddd2b255223c78cd5a901f423fd4435876f95500f5ae1a8e05282a52dda32b66",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-09-30T18:39:01.888Z",
+      "tta": {
+        "upgrade:16": []
+      }
+    }
+  }
+}

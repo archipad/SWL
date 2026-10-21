@@ -30,6 +30,7 @@
     const commandById = new Map(commandCards.map((card) => [card.id, card]))
     // Décisions certifiées du dépôt (src/data/autoCertificationDecisions.json), communes à tous les appareils.
     const decisions = inventory.decisions || { variants: {}, validations: {} }
+    const historical = inventory.historical || {}
     const hashes = inventory.hashes || {}
     const withHash = (visual) => (visual && !visual.sha256 && hashes[visual.src?.slice(3)] ? { ...visual, sha256: hashes[visual.src.slice(3)] } : visual)
 
@@ -54,6 +55,9 @@
       // « GALAAR-90 Sniper Rifle (Armament) » : la précision désigne un emplacement, pas un nom ; plusieurs cartes restent ambiguës.
       const bare = String(name).replace(/\s*\([^)]*\)\s*$/, '')
       if (!options.length && bare !== name) { options = pool.filter((card) => normalize(fullEnglish(card)) === normalize(bare)); certainty = 'sans-precision' }
+      // Amélioration renommée par l'import du site (« Cassian Andor Operative », « Chewbacca Upgrade ») : nom Tabletop Admiral d'origine.
+      const collided = metaKind(kind) === 'upgrade' && Object.entries(reference.upgradeNameCollisions || {}).find(([, renamed]) => normalize(renamed) === target)
+      if (!options.length && collided) { options = pool.filter((card) => normalize(fullEnglish(card)) === normalize(collided[0])); certainty = 'collision' }
       if (!options.length) return { meta: null, certainty: 'none', options: [] }
       if (options.length > 1) {
         // Doublons Tabletop Admiral (même nom et titre) : jamais de choix silencieux, sauf alias confirmé explicite.
@@ -88,6 +92,7 @@
         return retrieved(meta, 'fr')
       }
       const alias = aliases.cards?.[`${meta.kind}:${meta.sourceId}`]
+      if (alias?.frenchVisual === false) return retrieved(meta, 'fr') // visuel du site qui n'est pas une carte française
       if (alias) { const file = swlFile(alias.localKey); if (file) return { src: localSrc(`../cards/${file}`), source: 'Visuel déjà présent dans public/cards/', origin: file, certainty: alias.status === 'confirmed' ? 'certain' : 'proposed', frenchName: alias.frenchName || reference.names?.[alias.localKey], evidence: alias.evidence } }
       const exactFile = swlFile(keyOf(fullEnglish(meta)))
       if (exactFile) return { src: localSrc(`../cards/${exactFile}`), source: 'Visuel déjà présent dans public/cards/', origin: exactFile, certainty: 'certain', frenchName: reference.names?.[keyOf(fullEnglish(meta))] }
@@ -106,6 +111,9 @@
       const alias = aliases.cards?.[`${meta.kind}:${meta.sourceId}`]
       if (alias && (reference.weapons?.[alias.localKey] || reference.names?.[alias.localKey])) return { key: alias.localKey, via: alias.status === 'confirmed' ? 'alias explicite' : 'alias proposé', certain: alias.status === 'confirmed' }
       const has = (key) => !!(reference.weapons?.[key] || reference.names?.[key])
+      // Amélioration homonyme d'une unité (« Cassian Andor », « Chewbacca ») : même table de collisions que le site.
+      const collision = meta.kind === 'upgrade' && reference.upgradeNameCollisions?.[normalize(fullEnglish(meta))]
+      if (collision && has(keyOf(collision))) return { key: keyOf(collision), via: 'collision amélioration/unité', certain: true }
       const english = keyOf(fullEnglish(meta))
       if (has(english)) return { key: english, via: 'nom anglais', certain: true }
       const french = fullFrench(meta) ? (frenchNameIndex.get(normalize(fullFrench(meta))) || []).filter(has) : []
@@ -151,21 +159,52 @@
       return { metadata: true, en, fr, frAmbiguous: french?.ambiguous || null, pdf: fr ? null : pdfEntry(meta), frenchName, keywords, newKeywords, translationComplete: !!frenchName && !newKeywords.length, ready: !!en && !!fr }
     }
 
+    /** Quatre états d'une carte importée. Seule une carte « certifiée et inchangée » se passe de comparaison EN/FR :
+        certification historique présente et inchangée depuis l'index (données, visuel français, définitions), identité
+        Tabletop Admiral rattachée sans ambiguïté, aucun mot-clé Tabletop Admiral nouveau. */
+    const STATE_LABEL = { certified: 'certifiée et inchangée', obsolete: 'certification devenue obsolète', incomplete: 'carte connue mais incomplète', new: 'carte réellement nouvelle' }
+    function classify(name, kind, match) {
+      const meta = match?.meta
+      const out = (state, reasons, extra = {}) => ({ state, label: STATE_LABEL[state], reasons, ...extra })
+      if (!meta) {
+        if ((match?.options || []).length > 1) return out('incomplete', ['identité incertaine : plusieurs cartes Tabletop Admiral possibles'])
+        return reference.names?.[keyOf(name)] || reference.images?.[keyOf(name)] ? out('incomplete', ['carte connue du site, absente des métadonnées Tabletop Admiral']) : out('new', ['carte absente des métadonnées et du référentiel SWL'])
+      }
+      if (meta.kind === 'command') {
+        const french = localFrench(meta)
+        return french && !french.ambiguous ? out('incomplete', ['carte de commandement connue (visuel français), sans certification historique']) : out('new', ['carte de commandement absente du paquet du site'])
+      }
+      const found = swlKey(meta)
+      if (!found) return out('new', ['carte inconnue du référentiel SWL'])
+      if (found.ambiguous || !found.certain) return out('incomplete', ['identité SWL incertaine'], { key: found.key || null })
+      const entry = historical[found.key]
+      if (!entry) return out('incomplete', ['certification complète absente'], { key: found.key })
+      if (!entry.valid) return out('obsolete', entry.reasons, { key: found.key, historical: entry })
+      const id = `${meta.kind}:${meta.sourceId}`
+      if (entry.cardType !== meta.kind || !entry.tta?.[id]) return out('incomplete', ['identité Tabletop Admiral non rattachée à cette certification'], { key: found.key, historical: entry })
+      const added = (meta.keywords || []).map((keyword) => keyword.name).filter((keyword) => keyword && !/^\s*n\/?a\s*$/i.test(keyword) && !entry.tta[id].includes(keyword))
+      if (added.length) return out('obsolete', [`nouveau mot-clé Tabletop Admiral : ${added.join(', ')}`], { key: found.key, historical: entry })
+      return out('certified', [], { key: found.key, historical: entry })
+    }
+
     /** Une validation n'est valable que si les deux visuels ont gardé leur empreinte SHA-256. Le visuel anglais AMG « usage
         personnel » n'est pas publié : en ligne, son empreinte (jamais son chemin) vient de l'inventaire publié. */
-    function validationIntact(meta, state, entry) {
+    // Visuel anglais importé sur l'appareil (jamais publié) : seule son empreinte compte ; s'il a été supprimé après la
+    // validation, l'empreinte retenue fait foi, et un autre fichier importé à sa place invalide la validation.
+    function validationIntact(meta, state, entry, localEnglishSha256) {
       if (!meta || !entry) return false
       const s = state || status(meta)
-      const english = s.en?.sha256 || inventory.personalHashes?.[`${meta.kind}:${meta.sourceId}:en`]
+      // Ordre : visuel affiché (publié ou AMG local), visuel importé sur l'appareil, empreinte AMG publiée, empreinte retenue.
+      const english = s.en?.sha256 || localEnglishSha256 || (entry.englishSource === 'import-local' ? entry.englishSha256 : inventory.personalHashes?.[`${meta.kind}:${meta.sourceId}:en`])
       return !!english && !!s.fr?.sha256 && english === entry.englishSha256 && s.fr.sha256 === entry.frenchSha256
     }
     /** Validation publiée dans le dépôt (commune à tous les appareils). */
-    function publishedValidation(meta, state) {
+    function publishedValidation(meta, state, localEnglishSha256) {
       const entry = meta && decisions.validations?.[`${meta.kind}:${meta.sourceId}`]
-      return entry ? { ...entry, intact: validationIntact(meta, state, entry) } : null
+      return entry ? { ...entry, intact: validationIntact(meta, state, entry, localEnglishSha256) } : null
     }
 
-    return { findMeta, variantDecision, publishedValidation, validationIntact, localFrench, swlKey, status, fullEnglish, fullFrench, normalize, keyOf }
+    return { findMeta, variantDecision, classify, publishedValidation, validationIntact, localFrench, swlKey, status, fullEnglish, fullFrench, normalize, keyOf }
   }
 
   root.SWL_AUTO_CERT_RESOLVER = { create, normalize, fullEnglish, fullFrench, localSrc, factionOf }

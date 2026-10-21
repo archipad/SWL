@@ -297,9 +297,9 @@ function WeaponSelectPanel({
         <p className="hud-weapon-empty">Aucune arme connue pour cette unité — voir directement la carte.</p>
       ) : (
         <div className="hud-weapon-grid">
-        {weaponCards.map((name) => (
+        {weaponCards.map((name, position) => (
           <WeaponTile
-            key={name}
+            key={`${name}-${position}`}
             name={name}
             weapons={diceProfileFor(name)?.weapons ?? []}
             selectedWeapons={selectedWeapons}

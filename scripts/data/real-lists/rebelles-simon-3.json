@@ -1,0 +1,109 @@
+{
+  "listname": "Rebelle - Simon 3",
+  "points": 1001,
+  "author": "Tabletop Admiral",
+  "numActivations": 11,
+  "armyFaction": "rebel",
+  "battleForce": null,
+  "commandCards": [
+    "Standing Orders",
+    "Son of Skywalker",
+    "My Ally Is the Force",
+    "Return of the Jedi",
+    "Covering Fire",
+    "Push",
+    "Sabotaged Communications"
+  ],
+  "contingencies": [],
+  "units": [
+    {
+      "name": "Luke Skywalker Hero of the Rebellion",
+      "upgrades": [
+        "Burst of Speed",
+        "Into the Fray"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Rebel Agent Defender of Democracy",
+      "upgrades": [
+        "Reluctant Hero",
+        "Fire Control",
+        "Combat Armor (Rebel)",
+        "Repeating Blaster"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Rebel Troopers",
+      "upgrades": [
+        "SX-21 Trooper",
+        "Rebel Trooper Squad"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Fleet Troopers",
+      "upgrades": [
+        "Cassian Andor",
+        "Fleet Trooper Squad"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Rebel Troopers",
+      "upgrades": [
+        "SX-21 Trooper",
+        "Rebel Trooper Squad",
+        "Targeting Scopes"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Wookiee Warriors Freedom Fighters",
+      "upgrades": [
+        "Chewbacca",
+        "Tenacity",
+        "Into the Fray"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Rebel Commandos",
+      "upgrades": [
+        "Proton Charge Saboteur"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "AT-RT",
+      "upgrades": [
+        "AT-RT Flamethrower"
+      ],
+      "loadout": []
+    },
+    {
+      "name": "Tauntaun Riders",
+      "upgrades": [],
+      "loadout": []
+    },
+    {
+      "name": "Tauntaun Riders",
+      "upgrades": [],
+      "loadout": []
+    },
+    {
+      "name": "Rebel Commandos Strike Team",
+      "upgrades": [
+        "DH-447 Sniper"
+      ],
+      "loadout": []
+    }
+  ],
+  "battlefieldDeck": {
+    "scenario": "standard",
+    "conditions": [],
+    "deployment": [],
+    "objective": []
+  }
+}

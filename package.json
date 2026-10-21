@@ -27,7 +27,7 @@
     "audit:auto-certification-visuals": "node scripts/audit-auto-certification-visuals.mjs",
     "audit:auto-certification-lists": "node scripts/audit-auto-certification-lists.mjs",
     "generate:assistant-data": "node scripts/generate-assistant-reference.mjs && node scripts/generate-card-notes.mjs && node scripts/generate-auto-certification-assets.mjs",
-    "build": "npm run test:assistant-engine && npm run test:assistant-scenarios && npm run generate:assistant-data && npm run test:assistant-contracts && npm run test:universal-certification && npm run test:auto-certification-assets && npm run test:reference-consistency && npm run test:assistant-parcours && npm run test:assistant-game-tools && npm run audit:assistant-visual && npm run test:assistant-phone && npm run test:import-pipeline && npm run test:sync-merge && npm run test:user-journeys && npm run test:pdf-catalog-manifest && npm run test:game-day && npm run test:print-export && npm run test:command-deck && npm run test:card-catalog && node scripts/audit-assistant-automation.mjs && node scripts/audit-keyword-timing.mjs && node scripts/audit-keyword-surfacing.mjs --check && node scripts/audit-card-effects.mjs && tsc -b && vite build",
+    "build": "npm run test:assistant-engine && npm run test:assistant-scenarios && npm run generate:assistant-data && npm run test:assistant-contracts && npm run test:universal-certification && npm run test:auto-certification-assets && npm run test:reference-consistency && npm run test:assistant-parcours && npm run test:react-keys && npm run test:assistant-game-tools && npm run audit:assistant-visual && npm run test:assistant-phone && npm run test:import-pipeline && npm run test:sync-merge && npm run test:user-journeys && npm run test:pdf-catalog-manifest && npm run test:game-day && npm run test:print-export && npm run test:command-deck && npm run test:card-catalog && node scripts/audit-assistant-automation.mjs && node scripts/audit-keyword-timing.mjs && node scripts/audit-keyword-surfacing.mjs --check && node scripts/audit-card-effects.mjs && tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
     "test:assistant-parcours": "node scripts/test-assistant-parcours.mjs",
@@ -37,7 +37,9 @@
     "test:reference-consistency": "node scripts/test-reference-consistency.mjs",
     "audit:list": "node scripts/audit-list-playthrough.mjs",
     "audit:takras": "node scripts/audit-takras-reference.mjs",
-    "audit:keywords": "node scripts/audit-keyword-timing.mjs"
+    "audit:keywords": "node scripts/audit-keyword-timing.mjs",
+    "test:react-keys": "node scripts/test-react-keys.mjs",
+    "index:auto-certification-historical": "node scripts/index-auto-certification-historical.mjs"
   },
   "dependencies": {
     "qrcode": "^1.5.4",
@@ -51,6 +53,7 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
+    "fake-indexeddb": "^6.2.6",
     "jsdom": "^26.1.0",
     "oxlint": "^1.75.0",
     "typescript": "~6.0.2",

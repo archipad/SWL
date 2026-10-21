@@ -8,7 +8,7 @@ Généré le 2026-10-21 depuis les fichiers du dépôt (aucun accès réseau). T
 - `public/commandcards/` : **82 cartes de Commandement françaises**.
 - `public/cards/auto-certification/en/` : **0 visuels anglais** extraits des PDF officiels AMG (cdn.svc.asmodee.net), identifiés par OCR du titre.
 - `public/cards/auto-certification/fr/` : **44 cartes françaises** extraites des PDF du disque (37 identifiées, 7 à contrôler), dont 16 reliées aux métadonnées.
-- Table explicite d’alias : 30 commandements (27 confirmés, 3 proposés) et 3 carte(s).
+- Table explicite d’alias : 30 commandements (27 confirmés, 3 proposés) et 4 carte(s).
 
 ### Cartes françaises extraites « À contrôler »
 
