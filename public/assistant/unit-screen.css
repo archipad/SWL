@@ -525,3 +525,14 @@ label.cert-missing select { border-color: #ff8a5c; }
 .cf-history p { margin: 4px 0; font-size: .85rem; }
 .cf-sources > summary, .cf-history > summary, .cf-advanced > summary { cursor: pointer; min-height: 40px; display: flex; align-items: center; opacity: .85; }
 .cf-advanced { display: grid; gap: 8px; }
+
+/* Certification : visuel Legion HQ de comparaison (référence externe, jamais certifiante) et vignettes des correspondances. */
+.cert-hq-visual { display: grid; gap: 8px; margin-top: 12px; }
+.cert-hq-visual img { width: 100%; height: auto; border-radius: 8px; border: 1px solid rgba(98, 207, 255, .45); background: #020609; }
+.cert-hq-visual small { opacity: .85; }
+.translation-match button.with-visual { display: grid; grid-template-columns: 76px 1fr auto; align-items: center; gap: 10px; min-height: 64px; }
+.translation-match button.with-visual img { width: 76px; height: auto; border-radius: 4px; }
+.cert-card-layout > .cert-fields { align-content: start; }
+#aliasSearch { min-height: 44px; height: auto; align-self: start; }
+.cert-fields .cert-list [data-alias-pick] { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 12px; text-align: left; }
+.cert-fields .cert-list [data-alias-pick] img { width: 110px; height: auto; border-radius: 4px; }

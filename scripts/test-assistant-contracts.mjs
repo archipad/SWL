@@ -412,6 +412,7 @@ assert.equal(cardKeyAliases['cm 0 93 trooper'], 'cm o 93 trooper', 'CM-0\/93 doi
 assert.equal(cardKeyAliases['chewbacca walking carpet'], 'chewbacca', 'Chewbacca Walking Carpet doit retrouver la carte Chewbacca')
 assert.equal(cardKeyAliases['into the fray'], 'in the fray', 'Into the Fray doit retrouver Dans la Mêlée')
 assert.equal(cardKeyAliases['at rt laser cannon'], 'tl tt laser cannon', 'AT-RT Laser Cannon doit retrouver le Canon Laser de TL-TT')
+assert.equal(cardKeyAliases['at rt rotary blaster'], 'tl tt rotary blaster', 'AT-RT Rotary Blaster doit retrouver le Blaster Rotatif de TL-TT')
 assert.equal(cardKeyAliases['up close and personal'], 'point blank', 'Up Close and Personal doit retrouver À Bout Portant')
 assert.deepEqual(reference.aliases, cardKeyAliases, 'Le référentiel généré doit refléter exactement src/data/cardKeyAliases.json')
 for (const card of ['force reflexes', 'improvised orders', 'prepared materiel', 'fragmentation grenades', 'situational awareness', 'impact grenades', 'hq uplink', 'duck and cover']) {
@@ -484,7 +485,7 @@ assert.match(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}<\/div>/, 'Le ba
 // (.ov-left/.ov-right, posées par app.js) qui partent du même bord haut,
 // un seul habillage de panneau, un bandeau du haut sur une seule ligne.
 const unitScreen = fs.readFileSync(new URL('../public/assistant/unit-screen.css', import.meta.url), 'utf8')
-assert.match(index, /unit-screen\.css\?v=26/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
+assert.match(index, /unit-screen\.css\?v=27/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
 assert.ok(index.indexOf('unit-screen.css') > index.indexOf('ipad-compact.css'), 'unit-screen.css doit être chargée après ipad-compact.css pour gagner les égalités de spécificité')
 assert.match(app, /overviewColumnsBase=overview;\s*overview=function\(entry,role\)\{overviewColumnsBase\(entry,role\);.*ov-left.*ov-right/, 'app.js doit regrouper les blocs de l’écran d’unité en deux colonnes réelles')
 assert.match(app, /matches\('\.activation-automation,\.post-rally-panel,\.activation-briefing,\.unit-state-editor'\)\?right:left/, 'Automatismes, options de démoralisation, Briefing et état de l’unité doivent aller dans la colonne de droite')
@@ -575,7 +576,7 @@ assert.match(app, /const secondaryScreenOpen=.*certification-open.*live-game-rep
 assert.match(app, /document\.visibilityState!=='visible'\|\|secondaryScreenOpen\(\)/, 'La synchronisation périodique ne doit jamais fermer la certification')
 assert.match(app, /if\(!secondaryScreenOpen\(\)\)location\.reload\(\)/, 'Une mise à jour de liste ne doit pas recharger la page pendant la certification')
 assert.match(index, /upgrades\.css\?v=2/, 'Le déplacement du bouton de fermeture doit invalider son cache CSS')
-assert.match(index, /certification\.js\?v=101/, 'La certification V2 et l’atelier de traduction doivent invalider le cache de son interface')
+assert.match(index, /certification\.js\?v=102/,'La certification V2 et l’atelier de traduction doivent invalider le cache de son interface')
 assert.match(index, /translation-glossary\.js\?v=1" defer><\/script>\s*<script src="\.\/certification\.js/, 'L’atelier doit charger le dictionnaire EN → FR avant la certification')
 assert.match(index, /self-audit\.js\?v=\d+/, 'L’audit automatique déclenchable depuis la page d’import doit être chargé')
 assert.ok(index.indexOf('self-audit.js') > index.indexOf('certification.js'), 'self-audit.js doit se charger après app.js et certification.js dont il dépend')
@@ -594,7 +595,7 @@ assert.ok(Object.keys(translationGlossary.keywords || {}).length >= 150, 'Le dic
 assert.equal(translationGlossary.keywords['CUNNING']?.fr, 'MALIN', 'Le mot-clé Cunning doit suivre l’index français')
 // Certification automatique β : laboratoire strictement parallèle à la certification historique.
 assert.match(index, /id="certificationAuto"/, 'Le laboratoire de certification automatique doit rester accessible séparément')
-assert.match(index, /certification\.js\?v=101" defer><\/script>\s*<script src="\.\/certification-auto\.js\?v=5"/, 'La bêta se charge après la certification historique, sans la remplacer')
+assert.match(index, /certification\.js\?v=102" defer><\/script>\s*<script src="\.\/certification-auto\.js\?v=5"/, 'La bêta se charge après la certification historique, sans la remplacer')
 assert.match(index, /certification-auto\.css\?v=4/, 'La bêta doit charger sa propre feuille de style')
 assert.doesNotMatch(index, /auto-certification-source\.js/, 'Le catalogue automatique (≈ 1 Mo) ne doit être chargé qu’à l’ouverture de la bêta')
 assert.match(automaticCertificationUi, /const scripts=\['\.\/auto-certification-source\.js\?v=\d+','\.\/auto-certification-assets\.js\?v=\d+','\.\/auto-certification-resolver\.js\?v=\d+'\]/, 'La bêta doit charger métadonnées, inventaire des visuels et résolveur partagé à la demande')

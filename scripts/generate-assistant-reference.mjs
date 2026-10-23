@@ -176,6 +176,8 @@ try {
   const hqFile = existsSync(hqPath) ? JSON.parse(await readFile(hqPath, 'utf8')) : { cards: {}, _meta: {} }
   const legionhq = hqFile.cards
   const legionhqKeywordIds = hqFile._meta?.keywordIds || []
+  // Index « nom anglais normalisé → visuel(s) Legion HQ » : comparaison visuelle d'une carte encore inconnue du catalogue.
+  const legionhqImages = hqFile.images || {}
   const hqTriagePath = resolve(projectRoot, 'src/data/legionhqTriage.json')
   const legionhqIgnore = existsSync(hqTriagePath) ? JSON.parse(await readFile(hqTriagePath, 'utf8')).cards : {}
 
@@ -194,6 +196,7 @@ try {
     errataResetCards,
     legionhq,
     legionhqKeywordIds,
+    legionhqImages,
     legionhqIgnore,
     tags,
     keywordConflicts,

@@ -1,10 +1,10 @@
 # Recoupement des caractéristiques avec Legion HQ
 
-> Deuxième avis automatique (2026-09-21), **pas une vérité** : le site applique les errata récents, le visuel peut être plus ancien, et le site peut se tromper. Chaque écart se tranche sur le visuel. Aucune donnée du site n’est recopiée ici, seulement les écarts.
+> Deuxième avis automatique (2026-10-23), **pas une vérité** : le site applique les errata récents, le visuel peut être plus ancien, et le site peut se tromper. Chaque écart se tranche sur le visuel. Aucune donnée du site n’est recopiée ici, seulement les écarts.
 
-Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moins un écart.** Non appariées : 5 unités, 28 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
+Comparé : 76 unités, 201 améliorations, 224 armes. **72 carte(s) avec au moins un écart.** Non appariées : 5 unités, 28 améliorations (nom introuvable côté site, à apparier dans scripts/data/legionhq-aliases.json).
 
-## Unités avec écart (29)
+## Unités avec écart (32)
 
 ### TL-TT — `at rt`
 - dé de défense : site rouge / appli blanc
@@ -13,14 +13,22 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 - arme « Fusil Blaster A300 » — dés : site 1n+2b / appli 2b
 - mots-clés : Legion HQ indique Critique X, absent(s) de l’appli
 
+### Cassian Andor — `cassian andor`
+- adrénaline d’attaque : site hit / appli none
+- adrénaline de défense : site block / appli none
+
 ### Soldat avec Mortier DF-90 — `df 90 mortar trooper`
 - arme « Fusil Blaster E-22 » — portée : site corps-à-corps / appli corps-à-corps ET distance 1-3  ⟵ expliqué par l’historique (15 November 2025)
 
 ### Directeur Orson Krennic — `director orson krennic`
-- dé de défense : site rouge / appli blanc
+- adrénaline d’attaque : site hit / appli none
+- adrénaline de défense : site block / appli none
 
 ### Équipe Blaster Lourd E-Web — `e web heavy blaster team`
 - arme « Blaster Lourd E-Web » — dés : site 1r / appli 1r+2b+2n
+
+### Général Veers — `general veers`
+- adrénaline d’attaque : site crit / appli none
 
 ### Cellule Dormante Rebelle — `rebel sleeper cell`
 - mots-clés : Legion HQ indique Impact X, Suppressif, absent(s) de l’appli
@@ -40,15 +48,14 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 
 ### Death Troopers Impériaux — `imperial death troopers`
 - adrénaline d’attaque : site crit / appli hit
-- arme « Fusil Blaster E-11D » — dés : site 1n / appli 1b  ⟵ expliqué par l’historique (16 June 2025)
 - mots-clés : valeur de « Discipliné X » : Legion HQ 2 / appli 1
 
 ### K-2SO — `k 2so`
 - mots-clés : Legion HQ indique Létal X, absent(s) de l’appli
 
 ### Major Marquand — `major marquand`
-- arme « Lance-grenades » — portée : site corps-à-corps / appli corps-à-corps ET distance 1-2
-- arme « Blasters Légers Jumelés 88 » — portée : site corps-à-corps / appli corps-à-corps ET distance 1-3
+- arme « Lance-grenades » — portée : site corps-à-corps / appli 1-2
+- arme « Blasters Légers Jumelés 88 » — portée : site corps-à-corps / appli 1-3
 - arme « Blasters Jumelés MS-4 » — dés : site 2r / appli 2b+2n+2r
 - mots-clés : présents dans l’appli mais pas sur Legion HQ : Déflagration
 
@@ -59,7 +66,11 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 - arme « Électrochoc » — portée : site corps-à-corps / appli corps-à-corps ET distance 1-1
 
 ### Vétérans Rebelles — `rebel veterans`
+- vitesse : site 2 / appli 1
 - courage : site 2 / appli 1
+
+### Sabine Wren — `sabine wren`
+- arme « Blasters WESTAR-35 » — portée : site corps-à-corps ET distance 1-2 / appli 1-2
 
 ### Scout Troopers — `scout troopers strike team`
 - figurines : site 4 / appli 1
@@ -80,14 +91,9 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 
 ### Vigo du Soleil Noir — `black sun vigo`
 - nombre d’armes : site 2 / appli 1
-- mots-clés : Legion HQ indique Aide : Affiliation/Type d'Unité, absent(s) de l’appli
 
 ### Gar Saxon — `gar saxon militant commando`
-- arme « Pistolet Blaster de Gar » — dés : site 1b+1r+2n / appli 1r+2n  ⟵ expliqué par l’historique (15 November 2025)
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Mercenaire : Faction
-
-### Maul — `maul a rival`
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Mercenaire : Faction
+- vitesse : site 2 / appli 3
 
 ### Boba Fett, Infâme Chasseur de Primes — `boba fett infamous bounty hunter`
 - arme « Carabine EE-3 » — dés : site — / appli 2n
@@ -113,10 +119,14 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 ### Agent Rebelle, Défenseur de la Démocratie — `rebel agent defender of democracy`
 - mots-clés : Legion HQ indique Équipe, absent(s) de l’appli
 
+### Grand Amiral Thrawn, Haut Commandement Impérial — `grand admiral thrawn imperial high command`
+- mots-clés : Legion HQ indique Longueur d'Avance, absent(s) de l’appli
+
 ## Améliorations avec écart (40)
 
 ### A280, Config Fusil — `a280 cfe pistol sniper config`
 - nombre d’armes : site 2 / appli 1
+- mots-clés : Legion HQ indique Longue Distance, absent(s) de l’appli
 
 ### Quadrilaser AG-2G — `ag 2g quad laser`
 - mots-clés : valeur de « Impact X » : Legion HQ 1/2 / appli 2
@@ -126,7 +136,6 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 
 ### Wookie avec Bouclier de Combat — `battle shield wookiee`
 - nombre d’armes : site 2 / appli 1
-- mots-clés : Legion HQ indique Reconfiguration, absent(s) de l’appli
 
 ### Duelliste avec Beskad — `beskad duelist`
 - mots-clés : Legion HQ indique Perforant X, absent(s) de l’appli
@@ -150,9 +159,6 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 ### Soldat avec MPL-57 à Ions — `mpl 57 ion trooper`
 - arme « MPL-57 à Ions » — portée : site corps-à-corps ET distance 1-3 / appli 1-3
 
-### Saboteur avec Charge à Protons — `proton charge saboteur`
-- mots-clés : Legion HQ indique Assaut X, absent(s) de l’appli  ⟵ expliqué par l’historique (21 April 2026)
-
 ### Artilleur avec Lance-roquettes RPS-6 — `rps 6 rocket gunner`
 - nombre d’armes : site 0 / appli 1
 
@@ -172,7 +178,7 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 - mots-clés : Legion HQ indique Transport, absent(s) de l’appli
 
 ### Kraken — `kraken`
-- mots-clés : Legion HQ indique Chef, IA : Action, absent(s) de l’appli
+- mots-clés : Legion HQ indique IA : Action, absent(s) de l’appli
 
 ### Capitaine Rex — `captain rex`
 - mots-clés : Legion HQ indique Chef, absent(s) de l’appli
@@ -182,10 +188,8 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 - mots-clés : présents dans l’appli mais pas sur Legion HQ : Alter Ego : Nom d'Unité, Suppressif
 
 ### Le Sabre Noir — `the darksaber`
-- mots-clés : Legion HQ indique Intrépide, Immunité : Perforant, absent(s) de l’appli
-- mots-clés : présents dans l’appli mais pas sur Legion HQ : Démoraliser X, Immunité : Perforant au Corps-à-Corps
-- mots-clés : valeur de « Impact X » : Legion HQ 1 / appli 2
-- mots-clés : valeur de « Perforant X » : Legion HQ 1 / appli 2
+- mots-clés : Legion HQ indique Immunité : Perforant, absent(s) de l’appli
+- mots-clés : présents dans l’appli mais pas sur Legion HQ : Immunité : Perforant au Corps-à-Corps
 
 ### Tristan Wren — `tristan wren`
 - nombre d’armes : site 0 / appli 1
@@ -228,8 +232,11 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 ### Programmation « Nounou » — `ig11 nanny programming`
 - mots-clés : Legion HQ indique Alter Ego : Nom d'Unité, IA : Action, absent(s) de l’appli
 
-### Crosshair — `crosshair`
-- mots-clés : Legion HQ indique Critique X, absent(s) de l’appli
+### Munitions Antichar — `tank hunting munitions`
+- mots-clés : Legion HQ indique Anti-matériel X, Impact X, absent(s) de l’appli
+
+### Tacticienne Éprouvée — `proven tactician`
+- mots-clés : Legion HQ indique Renforts, absent(s) de l’appli
 
 ### Posture Offensive — `offensive posture`
 - mots-clés : Legion HQ indique Reconfiguration, absent(s) de l’appli
@@ -251,60 +258,30 @@ Comparé : 73 unités, 195 améliorations, 216 armes. **69 carte(s) avec au moin
 - nombre d’armes : site 1 / appli 0
 - mots-clés : Legion HQ indique Fixe : Avant/Arrière/Flancs, absent(s) de l’appli
 
-## Vitesse à renseigner dans la certification (50 unités)
+## Vitesse à renseigner dans la certification (20 unités)
 
 La vitesse imprimée manque dans l’appli pour ces unités ; Legion HQ indique la valeur ci-dessous. À confirmer sur la carte avant de certifier.
 
-- Cassian Andor (`cassian andor`) : vitesse 2
-- Dark Troopers Impériaux (`dark trooper squad`) : vitesse 1
-- Directeur Orson Krennic (`director orson krennic`) : vitesse 2
-- Général Veers (`general veers`) : vitesse 2
-- Han Solo, Général Peu Orthodoxe (`han solo`) : vitesse 2
-- Camion Speeder A-A5 (`a a5 speeder truck`) : vitesse 1
 - Cellule Dormante Rebelle (`rebel sleeper cell`) : vitesse 2
-- Résistance Mandalorienne, Clan Wren (`mandalorian resistance clan wren`) : vitesse 3
-- Death Troopers Impériaux (`imperial death troopers`) : vitesse 2
 - Forces Spéciales Impériales (`imperial special forces`) : vitesse 2
 - Forces Spéciales Impériales, Escouade Inferno (`imperial special forces inferno squad`) : vitesse 2
-- Jyn Erso (`jyn erso`) : vitesse 2
-- K-2SO (`k 2so`) : vitesse 2
 - Transport de Patrouille LAAT/LE (`laat le patrol transport`) : vitesse 2
 - Lando Calrissian (`lando calrissian`) : vitesse 2
 - Leia Organa (`leia organa`) : vitesse 2
 - Luke Skywalker, Chevalier Jedi (`luke skywalker jedi knight`) : vitesse 2
-- Major Marquand (`major marquand`) : vitesse 2
-- Soldat avec Blaster Moyen Mark II (`mark ii medium blaster trooper`) : vitesse 1
-- Moff Gideon (`moff gideon`) : vitesse 2
-- R2-D2 (`r2 d2`) : vitesse 1
-- Range Troopers (`range troopers`) : vitesse 1
-- Commandos Rebelles (`rebel commandos strike team`) : vitesse 2
-- Vétérans Rebelles (`rebel veterans`) : vitesse 2
-- Sabine Wren (`sabine wren`) : vitesse 3
-- Scout Troopers (`scout troopers strike team`) : vitesse 2
 - Shoretroopers (`shoretroopers`) : vitesse 1
-- Stormtroopers, Unité Lourde d'Intervention (`stormtrooper heavy gunner squad`) : vitesse 2
-- Airspeeder T-47 (`t 47 airspeeder`) : vitesse 3
 - Tank « Occupier » TX-225 GAVw (`tx 225 occupier tank`) : vitesse 1
 - Le Cinquième Frère (`the fifth brother`) : vitesse 2
 - La Septième Sœur (`the seventh sister`) : vitesse 2
 - Guerriers Wookies, Résistance de Kashyyyk (`wookiee warriors kashyyyk resistance`) : vitesse 2
 - Landspeeder X-34 (`x 34 landspeeder`) : vitesse 2
-- Fantassins du Syndicat Pyke (`pyke syndicate foot soldiers`) : vitesse 2
-- Pilotes de Swoop (`swoop bike riders`) : vitesse 3
-- Capo du Syndicat Pyke (`pyke syndicate capo`) : vitesse 2
-- Vigo du Soleil Noir (`black sun vigo`) : vitesse 2
-- Hommes de Main du Soleil Noir (`black sun enforcers`) : vitesse 2
-- Gar Saxon (`gar saxon militant commando`) : vitesse 2
-- Maul (`maul a rival`) : vitesse 2
-- Bossk (`bossk terror of trandosha`) : vitesse 2
-- Boba Fett, Infâme Chasseur de Primes (`boba fett infamous bounty hunter`) : vitesse 3
-- Boba Fett, Daimyo de Mos Espa (`boba fett daimyo of mos espa`) : vitesse 2
-- Cad Bane (`cad bane`) : vitesse 2
 - IG-88 (`ig 88`) : vitesse 2
 - IG-11 (`ig 11`) : vitesse 2
 - Din Djarin (`din djarin`) : vitesse 2
 - Super Commandos Mandaloriens (`mandalorian super commandos`) : vitesse 3
-- Le Bad Batch (`the bad batch`) : vitesse 2
+- Grand Amiral Thrawn, Haut Commandement Impérial (`grand admiral thrawn imperial high command`) : vitesse 2
+- Chasseur Mandalorien (`mandalorian hunter`) : vitesse 3
+- Officier Rebelle, Combattre pour la Liberté (`rebel officer fighting for freedom`) : vitesse 2
 
 ## Cartes non appariées
 

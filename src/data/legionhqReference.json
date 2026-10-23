@@ -173,7 +173,7 @@
    "vivacite-desprit"
   ],
   "source": "https://legionhq2.com",
-  "genere": "2026-09-21",
+  "genere": "2026-10-23",
   "description": "Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write."
  },
  "cards": {
@@ -215,6 +215,7 @@
      "range": "1-5"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/1.4%20FD%20Laser%20Cannon%20Team.webp",
    "kw": {
     "pivot-complet": [],
     "position-preparee": [],
@@ -240,6 +241,7 @@
    "name": "2-1B Medical Droid",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/2-1B%20Medical%20Droid.webp",
    "kw": {
     "traiter-x": [],
     "non-combattant": []
@@ -282,6 +284,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/74-Z%20Speeder%20Bikes.webp",
    "kw": {
     "couvert-x": [
      1
@@ -310,6 +313,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/88%20Twin%20Light%20Blaster%20Cannon.webp",
    "kw": {
     "impact-x": [
      1
@@ -339,6 +343,7 @@
    "attackSurge": "none",
    "defenseSurge": "block",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/A-A5%20Speeder%20Truck%20R.webp",
    "kw": {
     "armure-x": [
      5
@@ -370,6 +375,7 @@
      "range": "1-14"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/A280-CFE.webp",
    "kw": {
     "encombrant": [],
     "haute-velocite": [],
@@ -385,6 +391,7 @@
    "name": "Extra Supplies",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Extra%20Supplies.webp",
    "kw": {}
   },
   "ag 2g quad laser": {
@@ -411,6 +418,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AG-2G%20Quad%20Laser.webp",
    "kw": {
     "impact-x": [
      1,
@@ -446,6 +454,7 @@
      "range": "?"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Agent%20Kallus.webp",
    "kw": {
     "surveillance-x": [
      2
@@ -488,6 +497,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ahsoka%20Tano%20Fulcrum.webp",
    "kw": {
     "saut-x": [
      2
@@ -517,6 +527,7 @@
    "name": "Anger",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Anger.webp",
    "kw": {}
   },
   "anti bunker shells": {
@@ -530,6 +541,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Bunker%20Buster%20Shells.webp",
    "kw": {
     "deflagration": [],
     "cycle": [],
@@ -548,6 +560,7 @@
      "range": "2-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Armor-Piercing%20Shells.webp",
    "kw": {
     "cycle": [],
     "fixe": [],
@@ -561,6 +574,7 @@
    "name": "Ascension Cables",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ascension%20Cables.webp",
    "kw": {
     "ascension": []
    }
@@ -598,6 +612,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/AT-RT%20Rep.webp",
    "kw": {
     "armure-x": [
      2
@@ -639,6 +654,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-RT%20Flamethrower.webp",
    "kw": {
     "deflagration": [],
     "fixe": [],
@@ -682,6 +698,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/AT-ST.webp",
    "kw": {
     "armure-x": [
      5
@@ -712,6 +729,7 @@
      "range": "4-12"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-ST%20Mortar%20Launcher.webp",
    "kw": {
     "fixe": [],
     "suppressif": []
@@ -731,6 +749,7 @@
    "name": "Attack Protocols",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Attack%20Protocols.webp",
    "kw": {
     "ia": [],
     "precis-x": []
@@ -752,6 +771,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ax-108%20Ground%20Buzzer.webp",
    "kw": {
     "fixe": []
    }
@@ -766,6 +786,7 @@
    "name": "Baron Rudor",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Baron%20Rudor.webp",
    "kw": {
     "tireur-embusque": []
    }
@@ -790,6 +811,7 @@
      "range": "?"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Barrage%20Generator.webp",
    "kw": {
     "fixe": [],
     "suppressif": []
@@ -811,9 +833,20 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Battle%20Shield%20Wookiee.webp",
    "kw": {
     "armure-x": [],
     "reconfiguration": []
+   }
+  },
+  "battlemaster": {
+   "history": [],
+   "name": "Battlemaster",
+   "kind": "upgrade",
+   "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Battlemaster.webp",
+   "kw": {
+    "la-mort-venue-du-ciel": []
    }
   },
   "beskad duelist": {
@@ -836,6 +869,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Beskad%20Duelist%20Mandos.webp",
    "kw": {
     "perforant-x": [
      1
@@ -862,6 +896,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mag-Det%20Enforcer.webp",
    "kw": {
     "deflagration": [],
     "impact-x": [
@@ -885,6 +920,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Scatter%20Gun%20Enforcer.webp",
    "kw": {
     "perforant-x": [
      1
@@ -920,6 +956,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Black%20Sun%20Enforcers.webp",
    "kw": {
     "mercenaire": [],
     "intrepide": [],
@@ -954,6 +991,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Black%20Sun%20Vigo.webp",
    "kw": {
     "mercenaire": [],
     "aide": [],
@@ -990,6 +1028,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Boba%20Fett%20Daimyo%20of%20Mos%20Espa.webp",
    "kw": {
     "mercenaire": [],
     "saut-x": [
@@ -1023,6 +1062,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Flame%20Projector.webp",
    "kw": {
     "deflagration": [],
     "souffle": [],
@@ -1071,6 +1111,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Boba%20Fett%20Infamous%20Bounty%20Hunter.webp",
    "kw": {
     "mercenaire": [],
     "saut-x": [
@@ -1123,6 +1164,7 @@
      "range": "2-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Bossk.webp",
    "kw": {
     "mercenaire": [],
     "prime": [],
@@ -1156,6 +1198,7 @@
      "range": "melee-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Bowcaster%20Wookiee.webp",
    "kw": {
     "impact-x": [
      1
@@ -1175,6 +1218,7 @@
    "name": "Burst of Speed",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Burst%20of%20Speed.webp",
    "kw": {}
   },
   "cad bane": {
@@ -1210,6 +1254,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Cad%20Bane.webp",
    "kw": {
     "mercenaire": [],
     "saut-x": [
@@ -1245,6 +1290,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electro%20Gauntlets.webp",
    "kw": {
     "immobiliser-x": [
      3
@@ -1263,6 +1309,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Captain%20Rex%20Upgrade.webp",
    "kw": {
     "chef": []
    }
@@ -1296,6 +1343,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Cassian%20Andor.webp",
    "kw": {
     "intuition-du-danger-x": [
      3
@@ -1328,6 +1376,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Cassian%20Andor%20Upgrade.webp",
    "kw": {
     "chef": [],
     "profil-bas": [],
@@ -1336,6 +1385,16 @@
      1
     ],
     "longue-distance": []
+   }
+  },
+  "champion of the watch": {
+   "history": [],
+   "name": "Champion of the Watch",
+   "kind": "upgrade",
+   "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Champion%20of%20the%20Watch.webp",
+   "kw": {
+    "telle-est-la-voie": []
    }
   },
   "chewbacca": {
@@ -1371,6 +1430,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Chewbacca%20Walking%20Carpet.webp",
    "kw": {
     "enrage-x": [
      4
@@ -1402,6 +1462,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Chewbacca%20Upgrade.webp",
    "kw": {
     "chef": [],
     "impact-x": [
@@ -1414,6 +1475,7 @@
    "name": "Clairvoyance",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clairvoyance.webp",
    "kw": {}
   },
   "climbing cables": {
@@ -1421,6 +1483,7 @@
    "name": "Ascension Cables",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ascension%20Cables.webp",
    "kw": {
     "ascension": []
    }
@@ -1449,6 +1512,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/CM-O%2093%20Trooper.webp",
    "kw": {
     "critique-x": [
      2
@@ -1460,6 +1524,7 @@
    "name": "Hacked Comms Unit",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hacked%20Comms%20Unit.webp",
    "kw": {}
   },
   "comms jammer": {
@@ -1472,6 +1537,7 @@
    "name": "Comms Jammer",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Comms%20Jammer.webp",
    "kw": {}
   },
   "concussion grenades": {
@@ -1490,6 +1556,7 @@
      "range": "1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Concussion%20Grenades.webp",
    "kw": {
     "deflagration": []
    }
@@ -1518,6 +1585,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/CR-24%20Flame%20Rifle.webp",
    "kw": {
     "deflagration": [],
     "souffle": []
@@ -1534,6 +1602,7 @@
      "range": "1-5"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Crosshair.webp",
    "kw": {
     "critique-x": [
      1
@@ -1574,6 +1643,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Dark%20Troopers.webp",
    "kw": {
     "armure-x": [
      3
@@ -1615,6 +1685,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Darth%20Vader%20Dark%20Lord%20of%20the%20Sith.webp",
    "kw": {
     "deflexion": [],
     "immunite-perforant": [],
@@ -1645,6 +1716,7 @@
    "name": "Defense Protocols",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Defense%20Protocols.webp",
    "kw": {
     "ia": [],
     "agile": [],
@@ -1661,6 +1733,7 @@
    "name": "Offensive Stance",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Offensive%20defensive%20Stance.webp",
    "kw": {
     "reconfiguration": []
    }
@@ -1685,6 +1758,7 @@
      "range": "1-5"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Del%20Meeko.webp",
    "kw": {
     "reparation-x": [],
     "haute-velocite": [],
@@ -1722,6 +1796,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Dewback%20Rider.webp",
    "kw": {
     "armure-x": [
      1
@@ -1773,6 +1848,7 @@
      "range": "3-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/DF-90%20Mortar%20Trooper.webp",
    "kw": {
     "detachement": [],
     "tirs-de-soutien": [],
@@ -1812,6 +1888,7 @@
      "range": "2-5"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DH-447%20Sniper.webp",
    "kw": {
     "haute-velocite": [],
     "debordement": [],
@@ -1851,6 +1928,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Din%20Djarin.webp",
    "kw": {
     "mercenaire": [],
     "arsenal-x": [
@@ -1880,6 +1958,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Din's%20Amban%20Rifle.webp",
    "kw": {
     "immobiliser-x": [
      2
@@ -1898,6 +1977,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Beskar%20Spear.webp",
    "kw": {
     "duelliste": [],
     "perforant-x": []
@@ -1914,6 +1994,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Flame%20Projector.webp",
    "kw": {
     "deflagration": [],
     "souffle": [],
@@ -1925,6 +2006,7 @@
    "name": "Din's Jetpack",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/The%20Mando's%20Jetpack.webp",
    "kw": {
     "saut-x": []
    }
@@ -1947,7 +2029,7 @@
    "minis": 1,
    "hp": 6,
    "courage": 2,
-   "defense": "rouge",
+   "defense": "blanc",
    "attackSurge": "hit",
    "defenseSurge": "block",
    "weapons": [
@@ -1962,6 +2044,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Director%20Orson%20Krennic.webp",
    "kw": {
     "observateur-x": [
      1
@@ -1988,6 +2071,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-19%20Rifle%20Pintle.webp",
    "kw": {
     "impact-x": [
      1
@@ -2014,6 +2098,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-19%20Stormtrooper.webp",
    "kw": {
     "impact-x": [
      1
@@ -2044,6 +2129,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-19D%20Trooper.webp",
    "kw": {
     "impact-x": [
      1
@@ -2074,6 +2160,7 @@
      "range": "2-5"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-19x%20Sniper.webp",
    "kw": {
     "haute-velocite": [],
     "debordement": [],
@@ -2091,6 +2178,7 @@
      "range": "1-5"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-20A%20Range%20Trooper.webp",
    "kw": {
     "impact-x": [
      2
@@ -2108,6 +2196,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-20A%20Trooper.webp",
    "kw": {
     "critique-x": [
      1
@@ -2134,6 +2223,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DT-F16.webp",
    "kw": {
     "contrainte": [],
     "chef": []
@@ -2153,6 +2243,7 @@
    "name": "Duck and Cover",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Duck%20and%20Cover.webp",
    "kw": {}
   },
   "dw 3 concussion grenade launcher": {
@@ -2171,6 +2262,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DW-3%20Concussion%20Grenade%20Launcher.webp",
    "kw": {
     "fixe": [],
     "deflagration": []
@@ -2197,6 +2289,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/E-11D.webp",
    "kw": {
     "deflagration": [],
     "suppressif": [],
@@ -2241,6 +2334,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/E-Web%20Heavy%20Blaster%20Team.webp",
    "kw": {
     "position-preparee": [],
     "redeploiement": [],
@@ -2257,6 +2351,7 @@
    "name": "Echo",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Echo%20BB.webp",
    "kw": {
     "fiable-x": []
    }
@@ -2266,6 +2361,7 @@
    "name": "Electrobinoculars",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electrobinoculars.webp",
    "kw": {
     "observateur-x": []
    }
@@ -2288,6 +2384,7 @@
    "name": "Emergency Stims",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Emergency%20Stims.webp",
    "kw": {}
   },
   "emergency transponder": {
@@ -2295,6 +2392,7 @@
    "name": "Emergency Transponder",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Emergency%20Transponder.webp",
    "kw": {}
   },
   "emp grenades": {
@@ -2308,6 +2406,7 @@
      "range": "1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/EMP%20Droid%20Poppers.webp",
    "kw": {
     "ion-x": [
      1
@@ -2319,6 +2418,7 @@
    "name": "Endurance",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Endurance.webp",
    "kw": {}
   },
   "engagement protocols": {
@@ -2331,6 +2431,7 @@
    "name": "Engagement Protocols",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Engagement%20Protocols.webp",
    "kw": {
     "ia": []
    }
@@ -2345,6 +2446,7 @@
    "name": "Environmental Gear",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Environmental%20Gear.webp",
    "kw": {
     "sans-entrave": []
    }
@@ -2354,6 +2456,7 @@
    "name": "Fear",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fear.webp",
    "kw": {
     "demoraliser-x": []
    }
@@ -2363,6 +2466,7 @@
    "name": "Fire Control",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fire%20Control.webp",
    "kw": {}
   },
   "first sergeant arbmab": {
@@ -2370,6 +2474,7 @@
    "name": "First Sergeant Arbmab",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/First%20Sergeant%20Arbmab.webp",
    "kw": {
     "tacticien-x": []
    }
@@ -2390,6 +2495,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Flametrooper.webp",
    "kw": {
     "deflagration": [],
     "souffle": []
@@ -2405,6 +2511,7 @@
    "name": "Fleet Trooper",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fleet%20Trooper.webp",
    "kw": {}
   },
   "fleet trooper squad": {
@@ -2417,6 +2524,7 @@
    "name": "Fleet Trooper Squad",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fleet%20Trooper%20Squad.webp",
    "kw": {
     "indomptable": [],
     "transport": []
@@ -2450,6 +2558,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Fleet%20Troopers.webp",
    "kw": {
     "charge": []
    }
@@ -2459,6 +2568,7 @@
    "name": "Force Barrier",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Barrier.webp",
    "kw": {}
   },
   "force choke": {
@@ -2471,6 +2581,7 @@
    "name": "Force Choke",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Choke.webp",
    "kw": {}
   },
   "force guidance": {
@@ -2483,6 +2594,7 @@
    "name": "Force Guidance",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Guidance.webp",
    "kw": {}
   },
   "force push": {
@@ -2495,6 +2607,7 @@
    "name": "Force Push",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Push.webp",
    "kw": {}
   },
   "force reflexes": {
@@ -2511,6 +2624,7 @@
    "name": "Force Reflexes",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Reflexes.webp",
    "kw": {}
   },
   "fragmentation grenades": {
@@ -2524,6 +2638,7 @@
      "range": "1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fragmentation%20Grenades.webp",
    "kw": {}
   },
   "fx 9 medical droid": {
@@ -2536,9 +2651,32 @@
    "name": "FX-9 Medical Droid",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/FX-9%20Medical%20Droid.webp",
    "kw": {
     "traiter-x": [],
     "non-combattant": []
+   }
+  },
+  "galaar 90 sniper rifle armament": {
+   "history": [],
+   "name": "GALAAR-90 Sniper Rifle",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "GALAAR-90 Sniper Rifle",
+     "dice": "1b+1n+1r",
+     "range": "1-5"
+    }
+   ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/GALAAR-90%20Sniper%20Rifle%20Leader.webp",
+   "kw": {
+    "tireur-delite-x": [
+     1
+    ],
+    "haute-velocite": [],
+    "perforant-x": [
+     1
+    ]
    }
   },
   "gar saxon galar90 rifle": {
@@ -2557,6 +2695,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Saxon's%20Galar-90%20Rifle.webp",
    "kw": {
     "haute-velocite": [],
     "letal-x": [
@@ -2602,6 +2741,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Gar%20Saxon.webp",
    "kw": {
     "saut-x": [
      2
@@ -2654,6 +2794,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Veers.webp",
    "kw": {
     "observateur-x": [
      2
@@ -2681,6 +2822,7 @@
    "name": "General Weiss",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/General%20Weiss.webp",
    "kw": {
     "arsenal-x": [],
     "commandant-des-operations": []
@@ -2706,6 +2848,7 @@
      "range": "?"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Overcharged%20Generator.webp",
    "kw": {
     "fixe": [],
     "impact-x": [
@@ -2729,6 +2872,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gideon%20Hask.webp",
    "kw": {
     "coordination": [],
     "chef": []
@@ -2748,8 +2892,48 @@
    "name": "Governor Pryce",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Governor%20Pryce.webp",
    "kw": {
     "commandant-des-operations": []
+   }
+  },
+  "grand admiral thrawn imperial high command": {
+   "history": [],
+   "name": "Grand Admiral Thrawn / Imperial High Command",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 5,
+   "courage": 3,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Chiss Martial Arts",
+     "dice": "4r",
+     "range": "melee"
+    },
+    {
+     "name": "Thrawn's Blaster",
+     "dice": "3r",
+     "range": "1-2"
+    }
+   ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Grand%20Admiral%20Thrawn.webp",
+   "kw": {
+    "stratege-x": [
+     2
+    ],
+    "malin": [],
+    "ordre-direct": [],
+    "duelliste": [],
+    "exemplaire": [],
+    "longueur-davance": [],
+    "tacticien-x": [
+     1
+    ]
    }
   },
   "grapnel hooks": {
@@ -2766,6 +2950,7 @@
    "name": "Grappling Hooks",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Grappling%20Hooks.webp",
    "kw": {
     "grimpeur-experimente": []
    }
@@ -2803,6 +2988,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Han%20Solo.webp",
    "kw": {
     "aguerri": [],
     "profil-bas": [],
@@ -2823,6 +3009,7 @@
    "name": "Portable Scanner",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Portable%20Scanner.webp",
    "kw": {
     "mettre-a-couvert-x": []
    }
@@ -2847,6 +3034,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Laser%20Retrofit.webp",
    "kw": {
     "critique-x": [
      1
@@ -2877,6 +3065,7 @@
      "range": "2-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/HH-12%20Stormtrooper.webp",
    "kw": {
     "encombrant": [],
     "impact-x": [
@@ -2895,6 +3084,7 @@
      "range": "2-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/High-Energy%20Shells.webp",
    "kw": {
     "critique-x": [
      1
@@ -2909,6 +3099,7 @@
    "name": "Hope",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hope.webp",
    "kw": {
     "inspiration-x": []
    }
@@ -2918,6 +3109,7 @@
    "name": "Hotshot Pilot",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hotshot%20Pilot.webp",
    "kw": {
     "tireur-delite-x": []
    }
@@ -2932,6 +3124,7 @@
    "name": "HQ Uplink",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/HQ%20Uplink.webp",
    "kw": {}
   },
   "hunter": {
@@ -2939,6 +3132,7 @@
    "name": "Hunter",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hunter%20BB.webp",
    "kw": {
     "chef": []
    }
@@ -2948,6 +3142,7 @@
    "name": "Seeker Droid",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Seeker%20Droid.webp",
    "kw": {
     "recharger-x": [
      1
@@ -2994,6 +3189,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Iden%20Versio.webp",
    "kw": {
     "vivacite-desprit": [],
     "infiltration": [],
@@ -3040,6 +3236,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-11.webp",
    "kw": {
     "mercenaire": [],
     "armure-x": [
@@ -3085,6 +3282,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-88.webp",
    "kw": {
     "mercenaire": [],
     "armure-x": [
@@ -3106,6 +3304,7 @@
    "name": "\"Nanny\" Programming",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Nanny%20Programming.webp",
    "kw": {
     "alter-ego": [],
     "ia": []
@@ -3131,6 +3330,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Impact%20Grenades.webp",
    "kw": {
     "impact-x": [
      4
@@ -3142,6 +3342,7 @@
    "name": "Imperial Comms Technician",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Comms%20Technician.webp",
    "kw": {}
   },
   "imperial death troopers": {
@@ -3182,6 +3383,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Death%20Troopers.webp",
    "kw": {
     "discipline-x": [
      2
@@ -3199,6 +3401,7 @@
    "name": "Imperial Hammers Elite Armor Pilot",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Hammers%20Elite%20Armor%20Pilot.webp",
    "kw": {}
   },
   "imperial march": {
@@ -3206,6 +3409,7 @@
    "name": "Imperial March",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20March.webp",
    "kw": {
     "charge": []
    }
@@ -3220,6 +3424,7 @@
    "name": "Imperial Officer",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Officer.webp",
    "kw": {
     "inspiration-x": [],
     "chef": []
@@ -3258,6 +3463,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Special%20Forces.webp",
    "kw": {
     "infiltration": [],
     "tireur-embusque": [],
@@ -3290,6 +3496,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Special%20Forces%20Inferno%20Squad.webp",
    "kw": {
     "equipe": [],
     "infiltration": [],
@@ -3305,6 +3512,7 @@
    "name": "Imperial TIE Pilot",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20TIE%20Pilot.webp",
    "kw": {}
   },
   "improvised orders": {
@@ -3321,6 +3529,7 @@
    "name": "Improvised Orders",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Improvised%20Orders.webp",
    "kw": {}
   },
   "in the fray": {
@@ -3328,6 +3537,7 @@
    "name": "Into the Fray",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Into%20the%20Fray.webp",
    "kw": {}
   },
   "inquisitorius training": {
@@ -3335,6 +3545,7 @@
    "name": "Inquisitorius Training",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Inquisitorius%20Training.webp",
    "kw": {}
   },
   "inspiring presence": {
@@ -3342,6 +3553,7 @@
    "name": "Inspiring Presence",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Inspiring%20Presence.webp",
    "kw": {}
   },
   "jetpack rockets": {
@@ -3364,6 +3576,7 @@
      "range": "3-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jetpack%20Rockets%20Mandos.webp",
    "kw": {
     "anti-materiel-x": [
      4
@@ -3410,6 +3623,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jyn%20Erso.webp",
    "kw": {
     "preste-x": [
      1
@@ -3439,6 +3653,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jyn's%20SE-14%20Blaster.webp",
    "kw": {
     "suppressif": [],
     "perforant-x": [
@@ -3470,6 +3685,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/K-2SO.webp",
    "kw": {
     "calcul-de-probabilites": [],
     "armure-x": [
@@ -3495,6 +3711,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Agent%20Kallus%20Upgrade.webp",
    "kw": {
     "chef": [],
     "demoraliser-x": [
@@ -3515,6 +3732,7 @@
      "range": "melee-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Kraken%20Upgrade.webp",
    "kw": {
     "chef": [],
     "ia": []
@@ -3536,6 +3754,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/KX-Series%20Security%20Droids.webp",
    "kw": {
     "impact-x": [
      1
@@ -3574,6 +3793,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/LAAT%20Patrol%20Transport%20E.webp",
    "kw": {
     "armure-x": [
      5
@@ -3628,6 +3848,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Lando%20Calrissian.webp",
    "kw": {
     "allies-de-circonstance": [],
     "aguerri": [],
@@ -3643,6 +3864,7 @@
    "name": "Lead By Example",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Lead%20by%20Example.webp",
    "kw": {
     "inspiration-x": [
      2
@@ -3686,6 +3908,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Leia%20Organa.webp",
    "kw": {
     "mettre-a-couvert-x": [
      2
@@ -3705,6 +3928,7 @@
    "name": "Linked Targeting Array",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Linked%20Targeting%20Array.webp",
    "kw": {
     "cible-x": []
    }
@@ -3720,6 +3944,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Long%20Gun%20Wookiee.webp",
    "kw": {
     "suppressif": []
    }
@@ -3757,6 +3982,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Hero%20of%20the%20Rebellion.webp",
    "kw": {
     "saut-x": [
      1
@@ -3811,6 +4037,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Jedi%20Knight.webp",
    "kw": {
     "saut-x": [
      1
@@ -3854,6 +4081,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/M-45%20Ion%20Blaster.webp",
    "kw": {
     "critique-x": [
      1
@@ -3901,6 +4129,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Major%20Marquand.webp",
    "kw": {
     "armure-x": [
      5
@@ -3927,8 +4156,46 @@
    "name": "Combat Shields",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Combat%20Shields.webp",
    "kw": {
     "bouclier-x": []
+   }
+  },
+  "mandalorian hunter": {
+   "history": [],
+   "name": "Mandalorian Hunter",
+   "kind": "unit",
+   "rank": "operative",
+   "speed": 3,
+   "minis": 1,
+   "hp": 5,
+   "courage": 2,
+   "defense": "rouge",
+   "attackSurge": "hit",
+   "defenseSurge": "none",
+   "weapons": [
+    {
+     "name": "Vibroknife",
+     "dice": "2b+2n",
+     "range": "melee"
+    },
+    {
+     "name": "Blaster Pistol",
+     "dice": "2b+2r",
+     "range": "1-2"
+    }
+   ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Hunter.webp",
+   "kw": {
+    "mercenaire": [],
+    "saut-x": [
+     2
+    ],
+    "equipe": [],
+    "insensible": [],
+    "perforant-x": [
+     1
+    ]
    }
   },
   "mandalorian resistance clan wren": {
@@ -3968,6 +4235,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clan%20Wren%20Veterans.webp",
    "kw": {
     "mercenaire": [],
     "saut-x": [
@@ -4016,6 +4284,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Super%20Commandos.webp",
    "kw": {
     "saut-x": [
      2
@@ -4065,6 +4334,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mark%20II%20Medium%20Blaster%20Trooper.webp",
    "kw": {
     "detachement": [],
     "tirs-de-soutien": [],
@@ -4107,6 +4377,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Maul%20A%20Rival.webp",
    "kw": {
     "saut-x": [
      1
@@ -4131,6 +4402,7 @@
    "name": "Mission Objective",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mission%20Objective.webp",
    "kw": {}
   },
   "mo dk power harpoon": {
@@ -4153,6 +4425,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/MoDk%20Power%20Harpoon.webp",
    "kw": {
     "fixe": [],
     "cable-de-remorquage": [],
@@ -4190,6 +4463,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Moff%20Gideon.webp",
    "kw": {
     "surveillance-x": [
      1
@@ -4231,6 +4505,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/MPL-57%20Barrage%20Trooper.webp",
    "kw": {
     "deflagration": [],
     "impact-x": [
@@ -4263,6 +4538,7 @@
      "range": "melee-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/MPL-57%20Ion%20Trooper.webp",
    "kw": {
     "critique-x": [
      1
@@ -4285,6 +4561,7 @@
    "name": "Offensive Stance",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Offensive%20defensive%20Stance.webp",
    "kw": {
     "reconfiguration": []
    }
@@ -4299,6 +4576,7 @@
    "name": "Offensive Push",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Offensive%20Push.webp",
    "kw": {
     "tacticien-x": []
    }
@@ -4313,6 +4591,7 @@
    "name": "Jedi Mind Trick",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jedi%20Mind%20Trick.webp",
    "kw": {}
   },
   "on the hunt": {
@@ -4325,6 +4604,7 @@
    "name": "On The Hunt",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/On%20The%20Hunt.webp",
    "kw": {}
   },
   "onboard comms channel": {
@@ -4337,6 +4617,7 @@
    "name": "Onboard Comms Channel",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Onboard%20Comms%20Channel.webp",
    "kw": {
     "coordination": []
    }
@@ -4346,6 +4627,7 @@
    "name": "Outer Rim Speeder Jockey",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Outer%20Rim%20Speeder%20Jockey.webp",
    "kw": {
     "couvert-x": []
    }
@@ -4360,6 +4642,7 @@
    "name": "Up Close and Personal",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Up%20Close%20and%20Personal.webp",
    "kw": {}
   },
   "prepared materiel": {
@@ -4367,6 +4650,7 @@
    "name": "Prepared Supplies",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Prepared%20Supplies.webp",
    "kw": {
     "cache": []
    }
@@ -4376,6 +4660,7 @@
    "name": "Programmed Loyalty",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Programmed%20Loyalty.webp",
    "kw": {
     "escorte": []
    }
@@ -4385,6 +4670,7 @@
    "name": "Protector",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Protector.webp",
    "kw": {}
   },
   "proton charge saboteur": {
@@ -4411,6 +4697,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Proton%20Charge%20Saboteur.webp",
    "kw": {
     "deflagration": [],
     "assaut-x": [
@@ -4419,6 +4706,18 @@
     "impact-x": [
      6
     ]
+   }
+  },
+  "proven tactician": {
+   "history": [],
+   "name": "Proven Tactician",
+   "kind": "upgrade",
+   "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Proven%20Tactician.webp",
+   "kw": {
+    "renforts": [],
+    "vivacite-desprit": [],
+    "exemplaire": []
    }
   },
   "pyke soldier electro whip": {
@@ -4432,6 +4731,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electro-Whip%20Soldier.webp",
    "kw": {
     "immobiliser-x": [
      1
@@ -4455,6 +4755,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/P13-M%20Disruptor%20Soldier.webp",
    "kw": {
     "impact-x": [
      1
@@ -4494,6 +4795,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Pyke%20Syndicate%20Capo.webp",
    "kw": {
     "mercenaire": [],
     "aide": [],
@@ -4536,6 +4838,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Pyke%20Syndicate%20Foot%20Soldiers.webp",
    "kw": {
     "mercenaire": [],
     "instinct-de-survie": [],
@@ -4578,6 +4881,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/R2-D2%20Hero%20of%20a%20Thousand%20Devices.webp",
    "kw": {
     "reparation-x": [],
     "discret": [],
@@ -4591,6 +4895,7 @@
    "name": "R4 Astromech",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/R4%20Astromech%20Droid.webp",
    "kw": {
     "reparation-x": [],
     "non-combattant": []
@@ -4606,6 +4911,7 @@
    "name": "R5 Astromech Droid",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/R5%20Astromech%20Droid.webp",
    "kw": {
     "reparation-x": [],
     "non-combattant": []
@@ -4616,6 +4922,7 @@
    "name": "Range Trooper",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Range%20Trooper.webp",
    "kw": {}
   },
   "range troopers": {
@@ -4651,6 +4958,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Range%20Troopers.webp",
    "kw": {
     "ciblage-avance": [],
     "armure-x": [
@@ -4685,6 +4993,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Agent.webp",
    "kw": {
     "agile": [],
     "autonome": [],
@@ -4728,6 +5037,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Commandos.webp",
    "kw": {
     "profil-bas": [],
     "eclaireur-x": [
@@ -4775,6 +5085,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Commandos%20Strike%20Team.webp",
    "kw": {
     "detachement": [],
     "equipe-avec-arme-lourde": [],
@@ -4793,6 +5104,7 @@
    "name": "Rebel Comms Technician",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Comms%20Technician.webp",
    "kw": {}
   },
   "rebel officer": {
@@ -4809,9 +5121,42 @@
    "name": "Rebel Officer",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Officer.webp",
    "kw": {
     "inspiration-x": [],
     "chef": []
+   }
+  },
+  "rebel officer fighting for freedom": {
+   "history": [],
+   "name": "Rebel Officer / Fighting for Freedom",
+   "kind": "unit",
+   "rank": "commandant",
+   "speed": 2,
+   "minis": 1,
+   "hp": 6,
+   "courage": 2,
+   "defense": "blanc",
+   "attackSurge": "hit",
+   "defenseSurge": "block",
+   "weapons": [
+    {
+     "name": "Combat Training",
+     "dice": "3n",
+     "range": "melee"
+    },
+    {
+     "name": "Blaster Pistol",
+     "dice": "1n+2b",
+     "range": "1-2"
+    }
+   ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Officer.webp",
+   "kw": {
+    "inspiration-x": [
+     1
+    ],
+    "equipe": []
    }
   },
   "rebel sleeper cell": {
@@ -4848,6 +5193,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Sleeper%20Cell.webp",
    "kw": {
     "agile": [],
     "eclaireur-x": [
@@ -4872,6 +5218,7 @@
    "name": "Rebel Trooper",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Trooper.webp",
    "kw": {}
   },
   "rebel trooper captain": {
@@ -4888,6 +5235,7 @@
    "name": "Rebel Trooper Captain",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Trooper%20Captain.webp",
    "kw": {
     "chef": []
    }
@@ -4906,6 +5254,7 @@
    "name": "Rebel Trooper Specialist",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Trooper%20Specialist.webp",
    "kw": {}
   },
   "rebel trooper squad": {
@@ -4918,6 +5267,7 @@
    "name": "Rebel Trooper Squad",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Trooper%20Squad.webp",
    "kw": {
     "indomptable": [],
     "transport": []
@@ -4952,6 +5302,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Troopers.webp",
    "kw": {
     "preste-x": [
      1
@@ -4969,6 +5320,7 @@
    "name": "Rebel Veteran",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Veteran.webp",
    "kw": {}
   },
   "rebel veteran squad": {
@@ -4981,6 +5333,7 @@
    "name": "Rebel Veteran Squad",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Veteran%20Squad.webp",
    "kw": {
     "indomptable": [],
     "transport": []
@@ -5015,6 +5368,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Veterans.webp",
    "kw": {
     "coordination": [],
     "profil-bas": [],
@@ -5035,6 +5389,7 @@
    "name": "Recon Intel",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Recon%20Intel.webp",
    "kw": {
     "eclaireur-x": []
    }
@@ -5044,6 +5399,7 @@
    "name": "Reluctant Hero",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Reluctant%20Hero.webp",
    "kw": {
     "critique-x": [
      1
@@ -5063,6 +5419,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Repeating%20Blaster.webp",
    "kw": {
     "precis-x": [
      2
@@ -5092,6 +5449,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rook%20Kast.webp",
    "kw": {
     "escorte": [],
     "chef": []
@@ -5111,6 +5469,7 @@
    "name": "RPS-6 Rocket Gunner",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RPS-6%20Rocket%20Gunner.webp",
    "kw": {
     "impact-x": []
    }
@@ -5135,6 +5494,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RT-97C%20Blaster%20Rifle.webp",
    "kw": {}
   },
   "rt 97c pintle mount": {
@@ -5153,6 +5513,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RT-97C%20Rifle%20Pintle.webp",
    "kw": {}
   },
   "rt 97c stormtrooper": {
@@ -5175,6 +5536,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RT-97C%20Stormtrooper.webp",
    "kw": {}
   },
   "ryder azadi": {
@@ -5182,6 +5544,7 @@
    "name": "Ryder Azadi",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ryder%20Azadi.webp",
    "kw": {}
   },
   "saber throw": {
@@ -5198,6 +5561,7 @@
    "name": "Saber Throw",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Saber%20Throw.webp",
    "kw": {}
   },
   "sabine wren": {
@@ -5228,6 +5592,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Sabine%20Wren.webp",
    "kw": {
     "saut-x": [
      2
@@ -5256,6 +5621,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Scatter%20Gun%20Trooper.webp",
    "kw": {
     "perforant-x": [
      1
@@ -5291,6 +5657,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Scout%20Troopers.webp",
    "kw": {
     "profil-bas": [],
     "eclaireur-x": [
@@ -5338,6 +5705,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Scout%20Troopers%20Strike%20Team.webp",
    "kw": {
     "detachement": [],
     "equipe-avec-arme-lourde": [],
@@ -5351,6 +5719,7 @@
    "name": "Seize the Initiative",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Seize%20the%20Initiative.webp",
    "kw": {}
   },
   "shoretrooper": {
@@ -5363,6 +5732,7 @@
    "name": "Shoretrooper",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Shoretrooper.webp",
    "kw": {}
   },
   "shoretrooper squad expansion": {
@@ -5375,6 +5745,7 @@
    "name": "Shoretrooper Squad",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Shoretrooper%20Squad.webp",
    "kw": {
     "indomptable": [],
     "transport": []
@@ -5413,6 +5784,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Shoretroopers.webp",
    "kw": {
     "coordination": [],
     "position-preparee": [],
@@ -5429,6 +5801,7 @@
    "name": "Shriv Suurgav",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Shriv%20Suurgav.webp",
    "kw": {
     "commandant-des-operations": []
    }
@@ -5447,6 +5820,7 @@
    "name": "Situational Awareness",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Situational%20Awareness.webp",
    "kw": {}
   },
   "sleeper cell astromech": {
@@ -5459,6 +5833,7 @@
    "name": "Astromech",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Astromech.webp",
    "kw": {
     "non-combattant": []
    }
@@ -5483,6 +5858,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/SM-9%20Frag%20Launcher.webp",
    "kw": {
     "deflagration": [],
     "impact-x": [
@@ -5505,6 +5881,7 @@
    "name": "Smoke Grenades",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Smoke%20Grenades.webp",
    "kw": {
     "fumee-x": []
    }
@@ -5519,6 +5896,7 @@
    "name": "Snowtrooper",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Snowtrooper.webp",
    "kw": {}
   },
   "snowtrooper squad expansion": {
@@ -5531,6 +5909,7 @@
    "name": "Snowtrooper Squad",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Snowtrooper%20Squad.webp",
    "kw": {
     "indomptable": [],
     "transport": []
@@ -5569,6 +5948,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Snowtroopers.webp",
    "kw": {
     "aguerri": []
    }
@@ -5593,6 +5973,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sonic%20Charge%20Saboteur.webp",
    "kw": {
     "deflagration": [],
     "impact-x": [
@@ -5613,6 +5994,7 @@
      "range": "1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sonic%20Imploders.webp",
    "kw": {
     "suppressif": []
    }
@@ -5622,6 +6004,7 @@
    "name": "Spotter Uplink",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Spotter%20Uplink.webp",
    "kw": {
     "tireur-delite-x": []
    }
@@ -5636,6 +6019,7 @@
    "name": "Stormtrooper",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper.webp",
    "kw": {}
   },
   "stormtrooper captain": {
@@ -5652,6 +6036,7 @@
    "name": "Stormtrooper Captain",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Captain.webp",
    "kw": {
     "chef": []
    }
@@ -5685,6 +6070,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Stormtroopers%20Heavy%20Response%20Unit.webp",
    "kw": {
     "riposte-graduee-x": [
      2
@@ -5724,6 +6110,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Riot%20Control%20Squad.webp",
    "kw": {
     "charge": [],
     "tenir-le-cap": [],
@@ -5744,6 +6131,7 @@
    "name": "Stormtrooper Specialist",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Specialist.webp",
    "kw": {}
   },
   "stormtrooper squad": {
@@ -5756,6 +6144,7 @@
    "name": "Stormtrooper Squad",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Squad.webp",
    "kw": {
     "indomptable": [],
     "transport": []
@@ -5771,6 +6160,7 @@
    "name": "Stormtrooper Squad",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Squad.webp",
    "kw": {
     "indomptable": [],
     "transport": []
@@ -5805,6 +6195,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Stormtroopers.webp",
    "kw": {
     "precis-x": [
      1
@@ -5816,6 +6207,7 @@
    "name": "Strict Orders",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Strict%20Orders.webp",
    "kw": {}
   },
   "super commando marksman": {
@@ -5826,7 +6218,7 @@
     },
     {
      "date": "17 June 2025",
-     "text": "Cost increased from 28 to 30 points. Lost Precise, but gained Lethal 1 keyword."
+     "text": "Cost increased from 28 to 30 points. Lost Precise and 1 white die, but gained Lethal 1 keyword."
     }
    ],
    "name": "Super Commando Marksman",
@@ -5838,6 +6230,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Super%20Commando%20Marksman.webp",
    "kw": {
     "letal-x": [
      1
@@ -5864,6 +6257,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Super%20Commando%20Gunslinger.webp",
    "kw": {
     "debordement": []
    }
@@ -5905,6 +6299,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Swoop%20Bike%20Riders.webp",
    "kw": {
     "mercenaire": [],
     "couvert-x": [
@@ -5944,6 +6339,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/SX-21%20Trooper.webp",
    "kw": {
     "impact-x": [
      1
@@ -5966,6 +6362,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21%20Blaster%20Rifle.webp",
    "kw": {
     "critique-x": [
      2
@@ -5996,6 +6393,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21%20Special%20Forces%20Trooper.webp",
    "kw": {
     "critique-x": [
      2
@@ -6026,6 +6424,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21%20Stormtrooper.webp",
    "kw": {
     "critique-x": [
      2
@@ -6043,6 +6442,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21A%20Range%20Trooper.webp",
    "kw": {
     "suppressif": []
    }
@@ -6071,6 +6471,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21B%20Trooper.webp",
    "kw": {
     "critique-x": [
      1
@@ -6109,6 +6510,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/T-47%20Airspeeder.webp",
    "kw": {
     "armure-x": [
      3
@@ -6155,6 +6557,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-7%20Ion%20Snowtrooper.webp",
    "kw": {
     "critique-x": [
      1
@@ -6164,6 +6567,21 @@
     ],
     "ion-x": [
      1
+    ]
+   }
+  },
+  "tank hunting munitions": {
+   "history": [],
+   "name": "Tank Hunting Munitions",
+   "kind": "upgrade",
+   "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tank%20Hunting%20Munitions.webp",
+   "kw": {
+    "anti-materiel-x": [
+     2
+    ],
+    "impact-x": [
+     2
     ]
    }
   },
@@ -6177,6 +6595,7 @@
    "name": "Targeting Scopes",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Targeting%20Scopes.webp",
    "kw": {
     "precis-x": []
    }
@@ -6218,6 +6637,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Tauntaun%20Riders.webp",
    "kw": {
     "preste-x": [
      1
@@ -6238,6 +6658,7 @@
    "name": "Tech",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tech.webp",
    "kw": {
     "cache": [],
     "tacticien-x": []
@@ -6253,6 +6674,7 @@
    "name": "Tenacity",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tenacity.webp",
    "kw": {}
   },
   "the bad batch": {
@@ -6284,6 +6706,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/The%20Bad%20Batch%20Rep.webp",
    "kw": {
     "equipe": [],
     "insensible": [],
@@ -6315,6 +6738,7 @@
      "range": "melee"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sabine%20The%20Darksaber.webp",
    "kw": {
     "intrepide": [],
     "immunite-perforant": [],
@@ -6355,6 +6779,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Fifth%20Brother.webp",
    "kw": {
     "intrepide": [],
     "blocage": [],
@@ -6402,6 +6827,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Seventh%20Sister.webp",
    "kw": {
     "saut-x": [
      1
@@ -6446,6 +6872,7 @@
      "range": "melee-1"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-RT%20Flamethrower.webp",
    "kw": {
     "deflagration": [],
     "fixe": [],
@@ -6476,6 +6903,7 @@
      "range": "2-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-RT%20Laser%20Cannon.webp",
    "kw": {
     "impact-x": [
      3
@@ -6503,6 +6931,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-RT%20Rotary%20Blaster.webp",
    "kw": {
     "fixe": []
    }
@@ -6521,6 +6950,7 @@
    "name": "Tristan Wren",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tristan%20Wren%20Mandos.webp",
    "kw": {
     "chef": [],
     "precis-x": [
@@ -6533,6 +6963,7 @@
    "name": "Trusted Agent",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Trusted%20Agent.webp",
    "kw": {}
   },
   "tx 225 occupier tank": {
@@ -6572,6 +7003,7 @@
      "range": "1-4"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/TX-225%20GAVw%20Occupier%20Tank.webp",
    "kw": {
     "armure-x": [
      5
@@ -6594,6 +7026,7 @@
    "name": "Underworld Connections",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Underworld%20Connections.webp",
    "kw": {
     "allies-de-circonstance": []
    }
@@ -6612,6 +7045,7 @@
    "name": "Unorthodox Tactician",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Unorthodox%20Tactician.webp",
    "kw": {}
   },
   "unstable astromech": {
@@ -6624,6 +7058,7 @@
    "name": "Unstable Astromech",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Unstable%20R5%20Astromech.webp",
    "kw": {}
   },
   "ursa wren": {
@@ -6640,10 +7075,33 @@
    "name": "Ursa Wren",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ursa%20Wren%20Mandos.webp",
    "kw": {
     "chef": [],
     "defense-x": [
      2
+    ]
+   }
+  },
+  "vibro axe": {
+   "history": [],
+   "name": "Vibro Axe",
+   "kind": "upgrade",
+   "weapons": [
+    {
+     "name": "Vibro Axe",
+     "dice": "1r+3n",
+     "range": "melee"
+    }
+   ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Vibro%20Axe.webp",
+   "kw": {
+    "charge": [],
+    "impact-x": [
+     1
+    ],
+    "letal-x": [
+     1
     ]
    }
   },
@@ -6661,6 +7119,7 @@
    "name": "Vigilance",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Vigilance.webp",
    "kw": {}
   },
   "wedge antilles": {
@@ -6677,6 +7136,7 @@
    "name": "Wedge Antilles",
    "kind": "upgrade",
    "weapons": [],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Wedge%20Antilles.webp",
    "kw": {
     "pivot-complet": [],
     "commandant-des-operations": []
@@ -6715,6 +7175,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Freedom%20Fighters.webp",
    "kw": {
     "charge": [],
     "duelliste": [],
@@ -6751,6 +7212,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Kashyyyk%20Resistance.webp",
    "kw": {
     "indomptable": [],
     "ascension": [],
@@ -6770,6 +7232,7 @@
      "range": "melee-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Wrecker.webp",
    "kw": {}
   },
   "x 34 landspeeder": {
@@ -6800,6 +7263,7 @@
      "range": "1-2"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/X-34%20Landspeeder.webp",
    "kw": {
     "armure-x": [
      2
@@ -6835,6 +7299,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mark%20II%20Medium%20Blaster.webp",
    "kw": {
     "fixe": []
    }
@@ -6859,6 +7324,7 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/XS-IV%20Assault%20Cannon.webp",
    "kw": {
     "critique-x": [
      1
@@ -6881,7 +7347,2756 @@
      "range": "1-3"
     }
    ],
+   "image": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Z-6%20Trooper.webp",
    "kw": {}
   }
+ },
+ "images": {
+  "1 4 fd laser cannon team": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/1.4%20FD%20Laser%20Cannon%20Team.webp"
+  ],
+  "2 1b medical droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/2-1B%20Medical%20Droid.webp"
+  ],
+  "327th star corps pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/327th%20Star%20Corps%20Pilot.webp"
+  ],
+  "74 z speeder bikes": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/74-Z%20Speeder%20Bikes.webp"
+  ],
+  "88i twin light blaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/88%20Twin%20Light%20Blaster%20Cannon.webp"
+  ],
+  "a 300 rifle gunner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/A-300%20Rifle%20Gunner.webp"
+  ],
+  "a a5 speeder truck": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/A-A5%20Speeder%20Truck%20R.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/A-A5%20Speeder%20Truck%20M.webp"
+  ],
+  "a beautiful friendship": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/A%20Beautiful%20Friendship.webp"
+  ],
+  "a disturbance in the force": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/A%20Disturbance%20in%20the%20Force.webp"
+  ],
+  "a higher purpose": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/A%20Higher%20Purpose.webp"
+  ],
+  "a machine made for killing": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/A%20Machine%20Made%20for%20Killing.webp"
+  ],
+  "a new beginning": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/A%20New%20Beginning.webp"
+  ],
+  "a simple man": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/A%20Simple%20Man.webp"
+  ],
+  "a280": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/A280-CFE.webp"
+  ],
+  "aat battle tank": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/AAT%20Battle%20Tank.webp"
+  ],
+  "aayla secura": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Aayla%20Secura.webp"
+  ],
+  "academy trained": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Academy%20Trained.webp"
+  ],
+  "ace up his sleeve": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Ace%20Up%20His%20Sleeve.webp"
+  ],
+  "adaptive combat network": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Adeptive%20Combat%20Network.webp"
+  ],
+  "admiral trench": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Admiral%20Trench.webp"
+  ],
+  "admiral trench fleet commander": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Admiral%20Trench.webp"
+  ],
+  "aerial assault": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Aerial%20Assault.webp"
+  ],
+  "affirmative general": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Affirmative%2C%20General.webp"
+  ],
+  "ag 2g quad laser": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AG-2G%20Quad%20Laser.webp"
+  ],
+  "agent kallus": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Agent%20Kallus.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Agent%20Kallus%20Upgrade.webp"
+  ],
+  "agent kallus hunter of spectres": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Agent%20Kallus.webp"
+  ],
+  "aggression": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Aggression.webp"
+  ],
+  "aggressive negotiations": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Aggressive%20Negotiations.webp"
+  ],
+  "agile climber": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Agile%20Climber.webp"
+  ],
+  "ahsoka tano": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ahsoka%20Tano%20Fulcrum.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ahsoka%20Tano%20Padawan%20Commander.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ahsoka%20Tano%20Jedi%20Padawan.webp"
+  ],
+  "ahsoka tano fulcrum": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ahsoka%20Tano%20Fulcrum.webp"
+  ],
+  "ahsoka tano jedi padawan": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ahsoka%20Tano%20Jedi%20Padawan.webp"
+  ],
+  "ahsoka tano padawan commander": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ahsoka%20Tano%20Padawan%20Commander.webp"
+  ],
+  "ai coordination": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/AI%20Coordination.webp"
+  ],
+  "air support": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Air%20Support.webp"
+  ],
+  "ambush": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Ambush.webp"
+  ],
+  "anakin skywalker": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Anakin%20Skywalker.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Anakin%20Skywalker%20Mounted%20Jedi%20General.webp"
+  ],
+  "anakin skywalker mounted jedi general": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Anakin%20Skywalker%20Mounted%20Jedi%20General.webp"
+  ],
+  "anakin skywalker the chosen one": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Anakin%20Skywalker.webp"
+  ],
+  "anger": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Anger.webp"
+  ],
+  "annihilation looms": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Annihilation%20Looms.webp"
+  ],
+  "annul": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Annul.webp"
+  ],
+  "anti capture protocols": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Anti-Capture%20Protocols.webp"
+  ],
+  "aqua droids": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Aqua%20Droids.webp"
+  ],
+  "arboreal assault": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Arboreal%20Assault.webp"
+  ],
+  "arc troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/ARC%20Trooper%20Strike%20Team.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/ARC%20Troopers.webp"
+  ],
+  "arc troopers strike team": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/ARC%20Trooper%20Strike%20Team.webp"
+  ],
+  "architects of their own destruction": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Architects%20of%20Their%20Own%20Destruction.webp"
+  ],
+  "arf trooper duo": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/ARF%20Trooper%20Duo.webp"
+  ],
+  "arf troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/ARF%20Troopers.webp"
+  ],
+  "armor piercing shells": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Armor-Piercing%20Shells.webp"
+  ],
+  "armored cavalry": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Armored%20Cavalry.webp"
+  ],
+  "asajj ventress": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Asajj%20Ventress.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Asajj%20Ventress%20Upgrade.webp"
+  ],
+  "asajj ventress separatist assassin": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Asajj%20Ventress.webp"
+  ],
+  "ascension cables": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ascension%20Cables.webp"
+  ],
+  "assault": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Assault.webp"
+  ],
+  "astromech": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Astromech.webp"
+  ],
+  "at last": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/At%20Last.webp"
+  ],
+  "at rt": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/AT-RT%20Reb.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/AT-RT%20Rep.webp"
+  ],
+  "at rt flamethrower": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-RT%20Flamethrower.webp"
+  ],
+  "at rt laser cannon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-RT%20Laser%20Cannon.webp"
+  ],
+  "at rt rotary blaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-RT%20Rotary%20Blaster.webp"
+  ],
+  "at st": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/AT-ST.webp"
+  ],
+  "at st mortar launcher": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/AT-ST%20Mortar%20Launcher.webp"
+  ],
+  "attack of the clones": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Attack%20of%20the%20Clones.webp"
+  ],
+  "attack protocols": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Attack%20Protocols.webp"
+  ],
+  "ax 108 ground buzzer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ax-108%20Ground%20Buzzer.webp"
+  ],
+  "axe ewok": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Axe%20Ewok.webp"
+  ],
+  "axe woves": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Axe%20Woves.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Axe%20Woves%20Upgrade.webp"
+  ],
+  "axe woves cunning warrior": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Axe%20Woves.webp"
+  ],
+  "b1 battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B1%20Battle%20Droid.webp"
+  ],
+  "b1 battle droid squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B1%20Battle%20Droid%20Squad.webp"
+  ],
+  "b1 battle droids": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/B1%20Battle%20Droids.webp"
+  ],
+  "b1 security droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B1%20Security%20Droid.webp"
+  ],
+  "b2 acm battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B2-ACM%20Trooper.webp"
+  ],
+  "b2 ha battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B2-HA%20Trooper.webp"
+  ],
+  "b2 ha rocket droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B2-HA%20Rocket%20Droid.webp"
+  ],
+  "b2 super battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B2%20Super%20Battle%20Droid.webp"
+  ],
+  "b2 super battle droid squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B2%20Super%20Battle%20Droid%20Squad.webp"
+  ],
+  "b2 super battle droids": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/B2%20Super%20Battle%20Droids.webp"
+  ],
+  "b2 super rocket battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/B2%20Super%20Rocket%20Battle%20Droid.webp"
+  ],
+  "b2 super rocket battle droids": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/B2%20Super%20Rocket%20Battle%20Droids.webp"
+  ],
+  "backworld medic": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Backworld%20Medic.webp"
+  ],
+  "barc ion gunner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/BARC%20Ion%20Gunner.webp"
+  ],
+  "barc rps 6 gunner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/BARC%20RPS-6%20Gunner.webp"
+  ],
+  "barc speeder": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/BARC%20Speeder.webp"
+  ],
+  "barc twin laser gunner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/BARC%20Twin%20Laser%20Gunner.webp"
+  ],
+  "baron rudor": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Baron%20Rudor.webp"
+  ],
+  "barrage generator": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Barrage%20Generator.webp"
+  ],
+  "battle shield wookiee": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Battle%20Shield%20Wookiee.webp"
+  ],
+  "battlefield reconnaissance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Battlefield%20Reconnaissance.webp"
+  ],
+  "battlemaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Battlemaster.webp"
+  ],
+  "battlemind": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Battlemind.webp"
+  ],
+  "beam turret": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/TX-130%20Beam%20Cannon%20Turret.webp"
+  ],
+  "beskad duelist": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Beskad%20Duelist%20Mandos.webp"
+  ],
+  "beskar spear": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Beskar%20Spear.webp"
+  ],
+  "black sun crew": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Black%20Sun%20Crew.webp"
+  ],
+  "black sun enforcer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Black%20Sun%20Enforcer.webp"
+  ],
+  "black sun enforcers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Black%20Sun%20Enforcers.webp"
+  ],
+  "black sun vigo": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Black%20Sun%20Vigo.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Black%20Sun%20Vigo.webp"
+  ],
+  "blast off": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Blast%20Off!.webp"
+  ],
+  "bo katan kryze": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Bo-Katan%20Kryze.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Bo-Katan%20Kryze%20Upgrade.webp"
+  ],
+  "bo katan kryze savior of mandalore": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Bo-Katan%20Kryze.webp"
+  ],
+  "boba fett": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Boba%20Fett%20Infamous%20Bounty%20Hunter.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Boba%20Fett%20Daimyo%20of%20Mos%20Espa.webp"
+  ],
+  "boba fett daimyo of mos espa": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Boba%20Fett%20Daimyo%20of%20Mos%20Espa.webp"
+  ],
+  "boba fett infamous bounty hunter": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Boba%20Fett%20Infamous%20Bounty%20Hunter.webp"
+  ],
+  "boil": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Boil.webp"
+  ],
+  "boring conversation anyway": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Boring%20Conversation%20Anyway.webp"
+  ],
+  "bossk": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Bossk.webp"
+  ],
+  "bossk trandoshan terror": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Bossk.webp"
+  ],
+  "both hunter and prey": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Both%20Hunter%20and%20Prey.webp"
+  ],
+  "bounty programming": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Bounty%20Programming.webp"
+  ],
+  "bowcaster wookiee": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Bowcaster%20Wookiee.webp"
+  ],
+  "brains and brawn": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Brains%20and%20Brawn.webp"
+  ],
+  "bring it down": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Bring%20It%20Down!.webp"
+  ],
+  "brutal enforcer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Brutal%20Enforcer.webp"
+  ],
+  "bunker buster shells": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Bunker%20Buster%20Shells.webp"
+  ],
+  "burst of speed": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Burst%20of%20Speed.webp"
+  ],
+  "bx deflector shields": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Deflector%20Shields.webp"
+  ],
+  "bx series droid commandos": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/BX-Series%20Droid%20Commandos.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/BX-Series%20Droid%20Commandos%20Strike%20Team.webp"
+  ],
+  "bx series droid commandos strike team": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/BX-Series%20Droid%20Commandos%20Strike%20Team.webp"
+  ],
+  "bx series droid sniper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/BX-Series%20Droid%20Sniper.webp"
+  ],
+  "bx vibroswords": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Vibroswords.webp"
+  ],
+  "c 3p0": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/C-3PO%20Golden%20God.webp"
+  ],
+  "c 3p0 golden god": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/C-3PO%20Golden%20God.webp"
+  ],
+  "cad bane": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Cad%20Bane.webp"
+  ],
+  "cad bane needs no introduction": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Cad%20Bane.webp"
+  ],
+  "call me captain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Call%20Me%20Captain.webp"
+  ],
+  "call to arms": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Call%20to%20Arms.webp"
+  ],
+  "canny adversary": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Canny%20Adversary.webp"
+  ],
+  "cassian andor": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Cassian%20Andor.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Cassian%20Andor%20Upgrade.webp"
+  ],
+  "cassian andor capable intelligence agent": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Cassian%20Andor.webp"
+  ],
+  "caught in a web": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Caught%20in%20a%20Web.webp"
+  ],
+  "champion of the watch": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Champion%20of%20the%20Watch.webp"
+  ],
+  "change of plans": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Change%20of%20Plans.webp"
+  ],
+  "chewbacca": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Chewbacca%20Walking%20Carpet.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Chewbacca%20Hero%20of%20Kashyyyk.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Chewbacca%20Let%20the%20Wookiee%20Win.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Chewbacca%20Upgrade.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Chewbacca%20Courageous%20Co-Pilot.webp"
+  ],
+  "chewbacca courageous co pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Chewbacca%20Courageous%20Co-Pilot.webp"
+  ],
+  "chewbacca hero of kashyyyk": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Chewbacca%20Hero%20of%20Kashyyyk.webp"
+  ],
+  "chewbacca let the wookiee win": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Chewbacca%20Let%20the%20Wookiee%20Win.webp"
+  ],
+  "chewbacca walking carpet": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Chewbacca%20Walking%20Carpet.webp"
+  ],
+  "children of the watch": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Children%20of%20the%20Watch.webp"
+  ],
+  "clairvoyance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clairvoyance.webp"
+  ],
+  "clan kryze": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clan%20Kryze.webp"
+  ],
+  "clan kryze veterans": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clan%20Kryze%20Veterans.webp"
+  ],
+  "clan saxon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clan%20Saxon.webp"
+  ],
+  "clan wren": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clan%20Wren.webp"
+  ],
+  "clan wren veterans": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clan%20Wren%20Veterans.webp"
+  ],
+  "clone captain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Captain.webp"
+  ],
+  "clone captain rex": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Captain%20Rex.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Captain%20Rex%20Upgrade.webp"
+  ],
+  "clone captain rex honorable soldier": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Captain%20Rex.webp"
+  ],
+  "clone commander": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Commander.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Commander.webp"
+  ],
+  "clone commander cody": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Commander%20Cody.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Commander%20Cody%20Upgrade.webp"
+  ],
+  "clone commander cody leader of the 212th": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Commander%20Cody.webp"
+  ],
+  "clone commander fox": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Commander%20Fox.webp"
+  ],
+  "clone commander trained for leadership": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Commander.webp"
+  ],
+  "clone commandos": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Commandos.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Delta%20Squad.webp"
+  ],
+  "clone commandos delta squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Delta%20Squad.webp"
+  ],
+  "clone comms technician": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Comms%20Technician.webp"
+  ],
+  "clone engineer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Engineer.webp"
+  ],
+  "clone medic": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Medic.webp"
+  ],
+  "clone shock trooper pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Shock%20Trooper%20Pilot.webp"
+  ],
+  "clone specialist": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Specialist.webp"
+  ],
+  "clone trooper infantry": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Trooper%20Infantry.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Trooper%20Infantry.webp"
+  ],
+  "clone trooper infantry squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Trooper%20Infantry%20Squad.webp"
+  ],
+  "clone trooper marksman": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Trooper%20Marksman.webp"
+  ],
+  "clone trooper marksmen": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clone%20Trooper%20Marksmen.webp"
+  ],
+  "clone trooper marksmen squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clone%20Trooper%20Marksmen%20Squad.webp"
+  ],
+  "close call": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Close%20Call.webp"
+  ],
+  "close formation": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Close%20Formation.webp"
+  ],
+  "cm 0 93 trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/CM-O%2093%20Trooper.webp"
+  ],
+  "combat armor": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Combat%20Armor%20Reb.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Combat%20Armor%20E.webp"
+  ],
+  "combat shields": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Combat%20Shields.webp"
+  ],
+  "combined arms": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Combined%20Arms.webp"
+  ],
+  "come and prove it": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Come%20and%20Prove%20It.webp"
+  ],
+  "command and control uplink": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Command%20and%20Control%20Uplink.webp"
+  ],
+  "command control array": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Command%20Control%20Array.webp"
+  ],
+  "common cause": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Common%20Cause.webp"
+  ],
+  "comms jammer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Comms%20Jammer.webp"
+  ],
+  "concussion grenades": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Concussion%20Grenades.webp"
+  ],
+  "concussive blast": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Concussive%20Blast.webp"
+  ],
+  "constantly alert": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Constantly%20Alert.webp"
+  ],
+  "coordinated bombardment": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Coordinated%20Bombardment.webp"
+  ],
+  "coordinated fire": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Coordinated%20Fire.webp"
+  ],
+  "corellian spike": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Corellian%20Spike.webp"
+  ],
+  "count dooku": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Count%20Dooku.webp"
+  ],
+  "count dooku darth tyranus": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Count%20Dooku.webp"
+  ],
+  "courage of the rebellion": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Courage%20of%20the%20Rebellion.webp"
+  ],
+  "courageous counterattack": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Courageous%20Counterattack.webp"
+  ],
+  "covering fire": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Covering%20Fire.webp"
+  ],
+  "covert observation": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Covert%20Observation.webp"
+  ],
+  "cr 24 flame rifle": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/CR-24%20Flame%20Rifle.webp"
+  ],
+  "crack shot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Crack%20Shot.webp"
+  ],
+  "crosshair": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Crosshair.webp"
+  ],
+  "crush them": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Crush%20Them!.webp"
+  ],
+  "daring defense": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Daring%20Defense.webp"
+  ],
+  "darkness descends": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Darkness%20Descends.webp"
+  ],
+  "darth vader": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Darth%20Vader%20Dark%20Lord%20of%20the%20Sith.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Darth%20Vader%20The%20Emperor's%20Apprentice.webp"
+  ],
+  "darth vader dark lord of the sith": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Darth%20Vader%20Dark%20Lord%20of%20the%20Sith.webp"
+  ],
+  "darth vader the emperor s apprentice": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Darth%20Vader%20The%20Emperor's%20Apprentice.webp"
+  ],
+  "dc 15 clone trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DC-15%20Phase%20I%20Clone%20Trooper.webp"
+  ],
+  "dc 15x arc trooper gunner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DC-15x%20ARC%20Trooper.webp"
+  ],
+  "dc 15x arc trooper sniper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DC-15x%20ARC%20Trooper%20Sniper.webp"
+  ],
+  "dc 17m icws config": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DC-17m%20ICWS%20Config.webp"
+  ],
+  "deadeye": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Deadeye.webp"
+  ],
+  "death before defeat": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Death%20Before%20Defeat.webp"
+  ],
+  "debark for ground assault": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Debark%20for%20Ground%20Assault.webp"
+  ],
+  "defend in depth": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Defend%20in%20Depth.webp"
+  ],
+  "defense protocols": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Defense%20Protocols.webp"
+  ],
+  "defiance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Defiance.webp"
+  ],
+  "del meeko": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Del%20Meeko.webp"
+  ],
+  "delaying tactics": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Delaying%20Tactics.webp"
+  ],
+  "deploy the garrison": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Deploy%20the%20Garrison.webp"
+  ],
+  "despair": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Despair.webp"
+  ],
+  "dewback rider": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Dewback%20Rider.webp"
+  ],
+  "df 90 mortar trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/DF-90%20Mortar%20Trooper.webp"
+  ],
+  "dh 447 sniper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DH-447%20Sniper.webp"
+  ],
+  "die at my hand": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Die%20at%20My%20Hand.webp"
+  ],
+  "din djarin": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Din%20Djarin.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Din%20Djarin%20Upgrade.webp"
+  ],
+  "din djarin the mandalorian": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Din%20Djarin.webp"
+  ],
+  "din s amban rifle": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Din's%20Amban%20Rifle.webp"
+  ],
+  "din s jetpack": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/The%20Mando's%20Jetpack.webp"
+  ],
+  "dioxis mine saboteur": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Dioxis%20Mine%20Saboteur.webp"
+  ],
+  "diplomatic cover": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Diplomatic%20Cover.webp"
+  ],
+  "director orson krennic": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Director%20Orson%20Krennic.webp"
+  ],
+  "director orson krennic architect of terror": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Director%20Orson%20Krennic.webp"
+  ],
+  "discretion": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Discretion.webp"
+  ],
+  "diversionary tactics": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Diversionary%20Tactics.webp"
+  ],
+  "dlt 19 stormtrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-19%20Stormtrooper.webp"
+  ],
+  "dlt 19d trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-19D%20Trooper.webp"
+  ],
+  "dlt 19x sniper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-19x%20Sniper.webp"
+  ],
+  "dlt 20a range trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-20A%20Range%20Trooper.webp"
+  ],
+  "dlt 20a trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-20A%20Trooper.webp"
+  ],
+  "do not underestimate our means": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Do%20Not%20Underestimate%20Our%20Means.webp"
+  ],
+  "door gunners": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Door%20Gunners.webp"
+  ],
+  "double bladed lightsaber": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Double-Bladed%20Lightsaber.webp"
+  ],
+  "double the fall": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Double%20the%20Fall.webp"
+  ],
+  "dp 23 clone trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DP-23%20Clone%20Trooper.webp"
+  ],
+  "drive them out": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Drive%20Them%20Out.webp"
+  ],
+  "drk 1 sith probe droids": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/DRK-1%20Sith%20Probe%20Droids.webp"
+  ],
+  "droidekas": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Droidekas.webp"
+  ],
+  "dsd1 dwarf spider droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/DSD1%20Dwarf%20Spider%20Droid.webp"
+  ],
+  "dt f16": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DT-F16.webp"
+  ],
+  "dual armaments": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Dual%20Armaments.webp"
+  ],
+  "duck and cover": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Duck%20and%20Cover.webp"
+  ],
+  "duel of the fates": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Duel%20of%20the%20Fates.webp"
+  ],
+  "dug in": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Dug%20In.webp"
+  ],
+  "dw 3 grenade launcher": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DW-3%20Concussion%20Grenade%20Launcher.webp"
+  ],
+  "e 11d focused fire configuration": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/E-11D.webp"
+  ],
+  "e 5c b1 battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/E-5C%20B1%20Trooper.webp"
+  ],
+  "e 5s b1 battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/E-5s%20B1%20Trooper.webp"
+  ],
+  "e 60r b1 battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/E-60R%20B1%20Trooper.webp"
+  ],
+  "e web heavy blaster team": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/E-Web%20Heavy%20Blaster%20Team.webp"
+  ],
+  "echo": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Echo%20ARC%20Marksman.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Echo%20BB.webp"
+  ],
+  "echo arc marksman": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Echo%20ARC%20Marksman.webp"
+  ],
+  "echo clone force 99": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Echo%20BB.webp"
+  ],
+  "ee 3 carbine rifle": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/EE-3%20Carbine%20Rifle.webp"
+  ],
+  "electro gauntlets": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electro%20Gauntlets.webp"
+  ],
+  "electro whip magnaguard": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electro-whip%20MagnaGuard.webp"
+  ],
+  "electro whip soldier": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electro-Whip%20Soldier.webp"
+  ],
+  "electrobinoculars": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electrobinoculars.webp"
+  ],
+  "electrostaff": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electrostaff.webp"
+  ],
+  "electrostaff pirate": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electrostaff%20Pirate.webp"
+  ],
+  "emergency stims": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Emergency%20Stims.webp"
+  ],
+  "emergency transponder": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Emergency%20Transponder.webp"
+  ],
+  "emp droid poppers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/EMP%20Droid%20Poppers.webp"
+  ],
+  "endurance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Endurance.webp"
+  ],
+  "engagement protocols": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Engagement%20Protocols.webp"
+  ],
+  "enhanced combat subroutines": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Enhanced%20Combat%20Subroutines.webp"
+  ],
+  "environmental gear": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Environmental%20Gear.webp"
+  ],
+  "ev series medical droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/EV-Series%20Medical%20Droid.webp"
+  ],
+  "evasive action": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Evasive%20Action.webp"
+  ],
+  "evasive maneuvers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Evasive%20Maneuvers.webp"
+  ],
+  "ewok skirmisher squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ewok%20Skirmisher%20Squad.webp"
+  ],
+  "ewok skirmishers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ewok%20Skirmishers.webp"
+  ],
+  "ewok slinger squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ewok%20Slinger%20Squad.webp"
+  ],
+  "ewok slingers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ewok%20Slingers.webp"
+  ],
+  "ewok trapper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ewok%20Trapper.webp"
+  ],
+  "expanded databanks": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Expanded%20Databanks.webp"
+  ],
+  "explosions": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Explosions!.webp"
+  ],
+  "exterminate": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Exterminate.webp"
+  ],
+  "extra supplies": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Extra%20Supplies.webp"
+  ],
+  "face me": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Face%20Me!.webp"
+  ],
+  "family reunion": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Family%20Reunion.webp"
+  ],
+  "fear": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fear.webp"
+  ],
+  "fear and dead men": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Fear%20and%20Dead%20Men.webp"
+  ],
+  "fear surprise intimidation": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Fear%2C%20Surprise%2C%20Intimidation.webp"
+  ],
+  "fear will keep them in line": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Fear%20Will%20Keep%20Them%20in%20Line.webp"
+  ],
+  "fearsome oration": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Fearsome%20Oration.webp"
+  ],
+  "fifth brother": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Fifth%20Brother.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fifth%20Brother%20Upgrade.webp"
+  ],
+  "fifth brother the kill is mine": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Fifth%20Brother.webp"
+  ],
+  "fight another day": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Fight%20Another%20Day.webp"
+  ],
+  "fire control": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fire%20Control.webp"
+  ],
+  "first sergeant arbmab": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/First%20Sergeant%20Arbmab.webp"
+  ],
+  "fives": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fives.webp"
+  ],
+  "flame projector": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Flame%20Projector.webp"
+  ],
+  "flametrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Flametrooper.webp"
+  ],
+  "fleet trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fleet%20Trooper.webp"
+  ],
+  "fleet trooper squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fleet%20Trooper%20Squad.webp"
+  ],
+  "fleet troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Fleet%20Troopers.webp"
+  ],
+  "flexible strategy": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Flexible%20Strategy.webp"
+  ],
+  "flow of the force": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Flow%20of%20the%20Force.webp"
+  ],
+  "focused on the kill": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Focused%20on%20the%20Kill.webp"
+  ],
+  "for the cause": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/For%20the%20Cause.webp"
+  ],
+  "for the tribe": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/For%20the%20Tribe.webp"
+  ],
+  "force absorb": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Absorb.webp"
+  ],
+  "force agility": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Agility.webp"
+  ],
+  "force barrier": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Barrier.webp"
+  ],
+  "force choke": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Choke.webp"
+  ],
+  "force drain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Drain.webp"
+  ],
+  "force enhanced defense": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Enhanced%20Defense.webp"
+  ],
+  "force guidance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Guidance.webp"
+  ],
+  "force of will": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Force%20of%20Will.webp"
+  ],
+  "force pike warrior": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Pike%20Warrior.webp"
+  ],
+  "force push": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Push.webp"
+  ],
+  "force reflexes": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Reflexes.webp"
+  ],
+  "forest dwellers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Forest%20Dwellers.webp"
+  ],
+  "fragmentation grenades": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Fragmentation%20Grenades.webp"
+  ],
+  "frenzied gunner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Frenzied%20Gunner.webp"
+  ],
+  "frontline commander": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Frontline%20Commander.webp"
+  ],
+  "full beskar armor": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Full%20Beskar%20Armor.webp"
+  ],
+  "full of surprises": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Full%20of%20Surprises.webp"
+  ],
+  "full throttle": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Full%20Throttle.webp"
+  ],
+  "fx 9 medical droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/FX-9%20Medical%20Droid.webp"
+  ],
+  "galaar 15 carbine": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/GALAAR-15%20Carbine.webp"
+  ],
+  "galaar 15 carbines": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/GALAAR-15%20Carbines.webp"
+  ],
+  "galaar 90 sniper rifle": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/GALAAR-90%20Sniper%20Rifle.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/GALAAR-90%20Sniper%20Rifle%20Leader.webp"
+  ],
+  "gang boss": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gang%20Boss.webp"
+  ],
+  "gar saxon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Gar%20Saxon.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Gar%20Saxon%20Head%20of%20Clan%20Saxon.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gar%20Saxon%20Upgrade.webp"
+  ],
+  "gar saxon head of clan saxon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Gar%20Saxon%20Head%20of%20Clan%20Saxon.webp"
+  ],
+  "gar saxon militant commando": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Gar%20Saxon.webp"
+  ],
+  "general grievous": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Grievous%20Sinister%20Cyborg.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Grievous%20Wheel%20Bike%20Warlord.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/General%20Grievous%20Upgrade.webp"
+  ],
+  "general grievous sinister cyborg": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Grievous%20Sinister%20Cyborg.webp"
+  ],
+  "general grievous wheel bike warlord": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Grievous%20Wheel%20Bike%20Warlord.webp"
+  ],
+  "general kenobi": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/General%20Kenobi.webp"
+  ],
+  "general of the republic": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/General%20of%20the%20Republic.webp"
+  ],
+  "general skywalker": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/General%20Skywalker.webp"
+  ],
+  "general tagge": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Tagge.webp"
+  ],
+  "general tagge imperial high command": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Tagge.webp"
+  ],
+  "general veers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Veers.webp"
+  ],
+  "general veers master tactician": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Veers.webp"
+  ],
+  "general weiss": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/General%20Weiss.webp"
+  ],
+  "geonosian warrior": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Geonosian%20Warrior.webp"
+  ],
+  "geonosian warrior squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Geonosian%20Warrior%20Squad.webp"
+  ],
+  "geonosian warriors": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Geonosian%20Warriors.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Geonosian%20Warriors%20Geonosian%20Engineers.webp"
+  ],
+  "geonosian warriors geonosian engineers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Geonosian%20Warriors%20Geonosian%20Engineers.webp"
+  ],
+  "geonosian warriors soldiers of the hive": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Geonosian%20Warriors.webp"
+  ],
+  "get in position": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Get%20In%20Position.webp"
+  ],
+  "gideon hask": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gideon%20Hask.webp"
+  ],
+  "gnasp bombardier": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gnasp%20Bombardier.webp"
+  ],
+  "gnasp gunner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gnasp%20Gunner.webp"
+  ],
+  "go for broke": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Go%20For%20Broke.webp"
+  ],
+  "go there are too many": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Go%2C%20There%20Are%20Too%20Many.webp"
+  ],
+  "governor pryce": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Governor%20Pryce.webp"
+  ],
+  "grand admiral thrawn": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Grand%20Admiral%20Thrawn.webp"
+  ],
+  "grand admiral thrawn imperial high command": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Grand%20Admiral%20Thrawn.webp"
+  ],
+  "grand moff tarkin": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Grand%20Moff%20Tarkin.webp"
+  ],
+  "grand moff tarkin imperial high command": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Grand%20Moff%20Tarkin.webp"
+  ],
+  "grappling hooks": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Grappling%20Hooks.webp"
+  ],
+  "guerilla troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Guerilla%20Troopers.webp"
+  ],
+  "guild member": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Guild%20Member.webp"
+  ],
+  "gunner infantry": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Gunner%2C%20Infantry!.webp"
+  ],
+  "hacked comms unit": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hacked%20Comms%20Unit.webp"
+  ],
+  "han chewie": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Han%20%26%20Chewie.webp"
+  ],
+  "han chewie notorious scoundrels": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Han%20%26%20Chewie.webp"
+  ],
+  "han solo": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Han%20Solo.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Han%20Solo%20Reluctant%20Hero.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Han%20Solo%20Reckless%20Smuggler.webp"
+  ],
+  "han solo reckless smuggler": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Han%20Solo%20Reckless%20Smuggler.webp"
+  ],
+  "han solo reluctant hero": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Han%20Solo%20Reluctant%20Hero.webp"
+  ],
+  "han solo unorthodox general": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Han%20Solo.webp"
+  ],
+  "hatred": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hatred.webp"
+  ],
+  "have i ever let you down": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Have%20I%20Ever%20Let%20You%20Down.webp"
+  ],
+  "heavy aqua droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Aqua%20Droid.webp"
+  ],
+  "heavy arm cannon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Arm%20Cannon.webp"
+  ],
+  "heavy blaster pistol": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Blaster%20Pistol%20E.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Blaster%20Pistol%20Reb.webp"
+  ],
+  "heavy laser cannon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Laser%20Cannon.webp"
+  ],
+  "heavy laser retrofit": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Laser%20Retrofit.webp"
+  ],
+  "hello there": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Hello%20There!.webp"
+  ],
+  "helping hand": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Helping%20Hand.webp"
+  ],
+  "herbal medicine": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Herbal%20Medicine.webp"
+  ],
+  "hh 12 stormtrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/HH-12%20Stormtrooper.webp"
+  ],
+  "hiding in plain sight": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Hiding%20in%20Plain%20Sight.webp"
+  ],
+  "high energy shells": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/High-Energy%20Shells.webp"
+  ],
+  "high speed tracking": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/High%20Speed%20Tracking.webp"
+  ],
+  "his eminence": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/His%20Eminence.webp"
+  ],
+  "hit the dirt": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hit%20the%20Dirt.webp"
+  ],
+  "hold at any cost": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Hold%20at%20Any%20Cost.webp"
+  ],
+  "hondo ohnaka": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Hondo%20Ohnaka.webp"
+  ],
+  "hondo ohnaka trustworthy compatriot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Hondo%20Ohnaka.webp"
+  ],
+  "honor and strength": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Honor%20and%20Strength.webp"
+  ],
+  "hope": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hope.webp"
+  ],
+  "hotshot pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hotshot%20Pilot.webp"
+  ],
+  "hound grizzer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hound%20and%20Grizzer.webp"
+  ],
+  "hq uplink": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/HQ%20Uplink.webp"
+  ],
+  "hunter": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hunter%20BB.webp"
+  ],
+  "i am a jedi": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Am%20a%20Jedi.webp"
+  ],
+  "i am fear": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20am%20Fear.webp"
+  ],
+  "i am no jedi": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Am%20No%20Jedi.webp"
+  ],
+  "i care not for your struggles": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Care%20Not%20For%20Your%20Struggles.webp"
+  ],
+  "i don t believe in chance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Don't%20Believe%20in%20Chance.webp"
+  ],
+  "i go where i m needed": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Go%20Where%20I'm%20Needed.webp"
+  ],
+  "i have graphs and the command": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Have%20Graphs%20AND%20the%20Command.webp"
+  ],
+  "i like those odds": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Like%20Those%20Odds.webp"
+  ],
+  "i ll do it myself": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I'll%20Do%20it%20Myself.webp"
+  ],
+  "i m in control": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I'm%20in%20Control.webp"
+  ],
+  "i m sorry master i didn t catch that": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Im%20Sorry%20Master%20I%20Didnt%20Catch%20That.webp"
+  ],
+  "i m your worst nightmare": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I'm%20Your%20Worst%20Nightmare.webp"
+  ],
+  "i make the rules now": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Make%20the%20Rules%20Now.webp"
+  ],
+  "i rebel": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Rebel.webp"
+  ],
+  "i smell fear and it smells good": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Smell%20Fear...%20and%20it%20Smells%20Good.webp"
+  ],
+  "i smell profit": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Smell%20Profit.webp"
+  ],
+  "i want you to know failure": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Want%20You%20to%20Know%20Failure.webp"
+  ],
+  "iden versio": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Iden%20Versio.webp"
+  ],
+  "iden versio inferno squad leader": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Iden%20Versio.webp"
+  ],
+  "idiot s array": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Idiot's%20Array.webp"
+  ],
+  "ig 100 magnaguard": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-100%20MagnaGuard.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/IG-100%20MagnaGuard.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-100%20MagnaGuard%20Prototype%20Assassin%20Droids.webp"
+  ],
+  "ig 100 magnaguard pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/IG-100%20MagnaGuard%20Pilot.webp"
+  ],
+  "ig 100 magnaguard prototype assassin droids": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-100%20MagnaGuard%20Prototype%20Assassin%20Droids.webp"
+  ],
+  "ig 11": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-11.webp"
+  ],
+  "ig 11 nurse and protect": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-11.webp"
+  ],
+  "ig 88": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-88.webp"
+  ],
+  "ig 88 notorious assassin droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/IG-88.webp"
+  ],
+  "impact grenades": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Impact%20Grenades.webp"
+  ],
+  "imperial agent": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Agent.webp"
+  ],
+  "imperial agent bringing order to the galaxy": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Agent.webp"
+  ],
+  "imperial comms technician": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Comms%20Technician.webp"
+  ],
+  "imperial dark trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Dark%20Trooper.webp"
+  ],
+  "imperial dark troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Dark%20Troopers.webp"
+  ],
+  "imperial death troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Death%20Troopers.webp"
+  ],
+  "imperial discipline": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Imperial%20Discipline.webp"
+  ],
+  "imperial hammers elite armor pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Hammers%20Elite%20Armor%20Pilot.webp"
+  ],
+  "imperial march": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20March.webp"
+  ],
+  "imperial officer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Officer.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Officer.webp"
+  ],
+  "imperial officer ruthless efficiency": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Officer.webp"
+  ],
+  "imperial probe droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Probe%20Droid.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Probe%20Droid%20Upgrade.webp"
+  ],
+  "imperial special forces": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Special%20Forces.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Special%20Forces%20Inferno%20Squad.webp"
+  ],
+  "imperial special forces inferno squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Special%20Forces%20Inferno%20Squad.webp"
+  ],
+  "imperial tie pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20TIE%20Pilot.webp"
+  ],
+  "implacable": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Implacable.webp"
+  ],
+  "impromptu immolation": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Impromptu%20Immolation.webp"
+  ],
+  "improvised orders": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Improvised%20Orders.webp"
+  ],
+  "incapacitate": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Incapacitate.webp"
+  ],
+  "independent programming": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Independent%20Programming.webp"
+  ],
+  "inexorable advance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Inexorable%20Advance.webp"
+  ],
+  "infantry support": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Infantry%20Support.webp"
+  ],
+  "infantry support platform": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Infantry%20Support%20Platform.webp"
+  ],
+  "inquisitorius training": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Inquisitorius%20Training.webp"
+  ],
+  "insatiable curiosity": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Insatiable%20Curiosity.webp"
+  ],
+  "insolence we are pirates": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Insolence!%20We%20are%20Pirates!.webp"
+  ],
+  "inspiring presence": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Inspiring%20Presence.webp"
+  ],
+  "into the breach": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Into%20the%20Breach.webp"
+  ],
+  "into the fray": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Into%20the%20Fray.webp"
+  ],
+  "isb investigation": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/ISB%20Investigation.webp"
+  ],
+  "jedi consular": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jedi%20Consular.webp"
+  ],
+  "jedi guardian": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jedi%20Guardian.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jedi%20Guardian%20(Doctrine).webp"
+  ],
+  "jedi knight": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jedi%20Knight.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jedi%20Knight%20Mounted%20Jedi%20General.webp"
+  ],
+  "jedi knight general": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jedi%20Knight%20General.webp"
+  ],
+  "jedi knight general strong in the force": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jedi%20Knight%20General.webp"
+  ],
+  "jedi knight keeper of the peace": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jedi%20Knight.webp"
+  ],
+  "jedi knight mounted jedi general": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jedi%20Knight%20Mounted%20Jedi%20General.webp"
+  ],
+  "jedi mind trick": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jedi%20Mind%20Trick.webp"
+  ],
+  "jedi negotiator": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jedi%20Negotiator.webp"
+  ],
+  "jedi training": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Master%20Duelist.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Peacekeeping%20Mission.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Adept.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tactical%20Acumen.webp"
+  ],
+  "jedi training force adept": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Adept.webp"
+  ],
+  "jedi training master duelist": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Master%20Duelist.webp"
+  ],
+  "jedi training peacekeeping mission": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Peacekeeping%20Mission.webp"
+  ],
+  "jedi training tactical acumen": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tactical%20Acumen.webp"
+  ],
+  "jetpack rockets": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jetpack%20Rockets%20Mandos.webp"
+  ],
+  "jyn erso": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jyn%20Erso.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jyn%20Erso%20Upgrade.webp"
+  ],
+  "jyn erso stardust": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Jyn%20Erso.webp"
+  ],
+  "jyn s se 14 blaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jyn's%20SE-14%20Blaster.webp"
+  ],
+  "k 2so": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/K-2SO.webp"
+  ],
+  "k 2so sardonic security droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/K-2SO.webp"
+  ],
+  "kalani": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Kalani.webp"
+  ],
+  "kalani super tactical droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Kalani.webp"
+  ],
+  "katarn pattern armor": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Katarn%20Pattern%20Armor.webp"
+  ],
+  "ki adi mundi": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ki-Adi-Mundi.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ki-Adi-Mundi%20Upgrade.webp"
+  ],
+  "ki adi mundi jedi council": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ki-Adi-Mundi.webp"
+  ],
+  "knowledge and defense": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Knowledge%20and%20Defense.webp"
+  ],
+  "kraken": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Kraken.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Kraken%20Upgrade.webp"
+  ],
+  "kraken super tactical droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Kraken.webp"
+  ],
+  "kx series security droids": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/KX-Series%20Security%20Droids.webp"
+  ],
+  "laat le patrol transport": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/LAAT%20Patrol%20Transport%20E.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/LAAT%20Patrol%20Transport%20R.webp"
+  ],
+  "lando calrissian": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Lando%20Calrissian.webp"
+  ],
+  "lando calrissian canny general": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Lando%20Calrissian.webp"
+  ],
+  "last stand": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Last%20Stand.webp"
+  ],
+  "lead by example": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Lead%20by%20Example.webp"
+  ],
+  "lead from the front": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Lead%20From%20the%20Front.webp"
+  ],
+  "leaders of the 501st": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Leaders%20of%20the%20501st.webp"
+  ],
+  "legacy of mandalore": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Legacy%20of%20Mandalore.webp"
+  ],
+  "leia organa": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Leia%20Organa.webp"
+  ],
+  "leia organa fearless and inventive": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Leia%20Organa.webp"
+  ],
+  "let the executions begin": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Let%20the%20Executions%20Begin!.webp"
+  ],
+  "lightsaber": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Lightsaber.webp"
+  ],
+  "limiter override": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Limiter%20Override.webp"
+  ],
+  "linked targeting array": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Linked%20Targeting%20Array.webp"
+  ],
+  "lm 432 crab droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/LM-432%20Crab%20Droid.webp"
+  ],
+  "log traps": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Log%20Traps.webp"
+  ],
+  "logistical prowess": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Logistical%20Prowess.webp"
+  ],
+  "logray": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Logray.webp"
+  ],
+  "logray superstitious shaman": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Logray.webp"
+  ],
+  "lok durd": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Lok%20Durd.webp"
+  ],
+  "long gun wookiee": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Long%20Gun%20Wookiee.webp"
+  ],
+  "long rifle pirate": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Long%20Rifle%20Pirate.webp"
+  ],
+  "luke skywalker": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Hero%20of%20the%20Rebellion.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Jedi%20Knight.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Commander%20Skywalker.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Luke%20Skywalker%20Upgrade.webp"
+  ],
+  "luke skywalker commander skywalker": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Commander%20Skywalker.webp"
+  ],
+  "luke skywalker hero of the rebellion": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Hero%20of%20the%20Rebellion.webp"
+  ],
+  "luke skywalker jedi knight": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Jedi%20Knight.webp"
+  ],
+  "luminous beings are we": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Luminous%20Beings%20Are%20We.webp"
+  ],
+  "lying in wait": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Lying%20in%20Wait.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Lying%20in%20Wait%20Upgrade.webp"
+  ],
+  "m 45 ion blaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/M-45%20Ion%20Blaster.webp"
+  ],
+  "mace windu": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mace%20Windu.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mace%20Windu%20Upgrade.webp"
+  ],
+  "mace windu jedi council": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mace%20Windu.webp"
+  ],
+  "mag det enforcer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mag-Det%20Enforcer.webp"
+  ],
+  "major marquand": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Major%20Marquand.webp"
+  ],
+  "major marquand tempest scout 2": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Major%20Marquand.webp"
+  ],
+  "make the impossible possible": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Make%20the%20Impossible%20Possible.webp"
+  ],
+  "making his way in the galaxy": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Making%20His%20Way%20In%20the%20Galaxy.webp"
+  ],
+  "mandalore will survive": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Mandalore%20Will%20Survive.webp"
+  ],
+  "mandalorian hunter": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Hunter.webp"
+  ],
+  "mandalorian initiate squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mandalorian%20Initiate%20Squad.webp"
+  ],
+  "mandalorian initiates": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Initiates.webp"
+  ],
+  "mandalorian leader": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Leader.webp"
+  ],
+  "mandalorian super commando": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mandalorian%20Super%20Commando.webp"
+  ],
+  "mandalorian super commandos": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Super%20Commandos.webp"
+  ],
+  "mandalorian warriors": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Warriors.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Warriors%20Fire%20Support.webp"
+  ],
+  "mandalorian warriors fire support": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Warriors%20Fire%20Support.webp"
+  ],
+  "mark ii medium blaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mark%20II%20Medium%20Blaster.webp"
+  ],
+  "mark ii medium blaster trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mark%20II%20Medium%20Blaster%20Trooper.webp"
+  ],
+  "marked for elimination": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Marked%20for%20Elimination.webp"
+  ],
+  "master of evil": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Master%20of%20Evil.webp"
+  ],
+  "maul": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Maul%20Impatient%20Apprentice.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Maul%20A%20Rival.webp"
+  ],
+  "maul a rival": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Maul%20A%20Rival.webp"
+  ],
+  "maul impatient apprentice": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Maul%20Impatient%20Apprentice.webp"
+  ],
+  "maximum firepower": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Maximum%20Firepower.webp"
+  ],
+  "mechanical carnage": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Mechanical%20Carnage.webp"
+  ],
+  "mechanized incursion": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Mechanized%20Incursion.webp"
+  ],
+  "merciless munitions": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Merciless%20Munitions.webp"
+  ],
+  "mertalizer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mertalizer.webp"
+  ],
+  "micro grenade launcher": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Micro-Grenade%20Launcher.webp"
+  ],
+  "missile pod rocket droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Missile%20Pod%20Rocket%20Droid.webp"
+  ],
+  "mission objective": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mission%20Objective.webp"
+  ],
+  "mo dk power harpoon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/MoDk%20Power%20Harpoon.webp"
+  ],
+  "mobility upgrade": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mobility%20Upgrade.webp"
+  ],
+  "moff gideon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Moff%20Gideon.webp"
+  ],
+  "moff gideon long live the empire": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Moff%20Gideon.webp"
+  ],
+  "moment of consideration": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Moment%20of%20Consideration.webp"
+  ],
+  "moment of triumph": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Moment%20of%20Triumph.webp"
+  ],
+  "mortar clone trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mortar%20Clone%20Trooper.webp"
+  ],
+  "mpl 57 barrage trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/MPL-57%20Barrage%20Trooper.webp"
+  ],
+  "mpl 57 ion trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/MPL-57%20Ion%20Trooper.webp"
+  ],
+  "my ally is the force": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/My%20Ally%20is%20the%20Force.webp"
+  ],
+  "nanny programming": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Nanny%20Programming.webp"
+  ],
+  "never tell me the odds": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Never%20Tell%20Me%20the%20Odds.webp"
+  ],
+  "new ways to motivate them": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/New%20Ways%20to%20Motivate%20Them.webp"
+  ],
+  "no escape": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/No%20Escape.webp"
+  ],
+  "no one threatens our family": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/No%20One%20Threatens%20Our%20Family.webp"
+  ],
+  "no time for sorrows": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/No%20Time%20for%20Sorrows.webp"
+  ],
+  "nose mounted flamethrower": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Nose-Mounted%20Flamethrower.webp"
+  ],
+  "nose mounted ion blaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Nose-Mounted%20Ion%20Blaster.webp"
+  ],
+  "nose mounted laser cannon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Nose-Mounted%20Laser%20Cannon.webp"
+  ],
+  "not out of it yet": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Not%20Out%20of%20it%20Yet.webp"
+  ],
+  "notorious scoundrels": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Notorious%20Scoundrels.webp"
+  ],
+  "obi wan kenobi": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Obi-Wan%20Kenobi.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Obi-Wan%20Kenobi%20Upgrade.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Obi-Wan%20Kenobi%20Mounted%20Jedi%20General.webp"
+  ],
+  "obi wan kenobi civilized warrior": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Obi-Wan%20Kenobi.webp"
+  ],
+  "obi wan kenobi mounted jedi general": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Obi-Wan%20Kenobi%20Mounted%20Jedi%20General.webp"
+  ],
+  "offensive push": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Offensive%20Push.webp"
+  ],
+  "offensive stance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Offensive%20defensive%20Stance.webp"
+  ],
+  "on patrol": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/On%20Patrol.webp"
+  ],
+  "on the hunt": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/On%20The%20Hunt.webp"
+  ],
+  "onboard comms channel": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Onboard%20Comms%20Channel.webp"
+  ],
+  "onward to victory": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Onward%20to%20Victory.webp"
+  ],
+  "oom series battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/OOM-Series%20Battle%20Droid.webp"
+  ],
+  "oom series droid pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/OOM-Series%20Droid%20Pilot.webp"
+  ],
+  "optimized task flow": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Optimized%20Task%20Flow.webp"
+  ],
+  "orbital strike": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Orbital%20Strike.webp"
+  ],
+  "our fate is in your hands": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Our%20Fate%20is%20in%20Your%20Hands.webp"
+  ],
+  "out of the shadows": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Out%20of%20the%20Shadows.webp"
+  ],
+  "outer rim speeder jockey": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Outer%20Rim%20Speeder%20Jockey.webp"
+  ],
+  "overcharged blaster packs": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Overcharged%20Blaster%20Packs.webp"
+  ],
+  "overcharged generator": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Overcharged%20Generator.webp"
+  ],
+  "overclock": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Overclock.webp"
+  ],
+  "overwatch": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Overwatch.webp"
+  ],
+  "overwhelming barrage": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Overwhelming%20Barrage.webp"
+  ],
+  "p13 m disruptor soldier": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/P13-M%20Disruptor%20Soldier.webp"
+  ],
+  "padme amidala": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Padme%20Amidala.webp"
+  ],
+  "padme amidala spirited senator": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Padme%20Amidala.webp"
+  ],
+  "paz vizsla": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Paz%20Vizsla.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Paz%20Vizsla%20Upgrade.webp"
+  ],
+  "paz vizsla proud warrior": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Paz%20Vizsla.webp"
+  ],
+  "personal combat shield": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Personal%20Combat%20Shield%20Leader.webp"
+  ],
+  "persuader class tank droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Persuader-Class%20Tank%20Droid.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Persuader-Class%20Tank%20Droid%20Prototype%20Tank%20Droid.webp"
+  ],
+  "persuader class tank droid prototype tank droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Persuader-Class%20Tank%20Droid%20Prototype%20Tank%20Droid.webp"
+  ],
+  "pincer attack": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Pincer%20Attack.webp"
+  ],
+  "pinned down": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Pinned%20Down.webp"
+  ],
+  "pintle mounted dlt 19": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/DLT-19%20Rifle%20Pintle.webp"
+  ],
+  "pintle mounted rt 97c": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RT-97C%20Rifle%20Pintle.webp"
+  ],
+  "pirate captain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Pirate%20Captain.webp"
+  ],
+  "pk series worker droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/PK-Series%20Worker%20Droid.webp"
+  ],
+  "platoon commander": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Platoon%20Commander.webp"
+  ],
+  "plo koon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Plo%20Koon.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Plo%20Koon.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Plo%20Koon%20Personnel.webp"
+  ],
+  "plo koon jedi council": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Plo%20Koon.webp"
+  ],
+  "ploy": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Ploy.webp"
+  ],
+  "poggle the lesser": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Poggle%20the%20Lesser.webp"
+  ],
+  "poggle the lesser public leader of the geonosians": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Poggle%20the%20Lesser.webp"
+  ],
+  "portable scanner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Portable%20Scanner.webp"
+  ],
+  "prepared supplies": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Prepared%20Supplies.webp"
+  ],
+  "preservation protocols": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Preservation%20Protocols.webp"
+  ],
+  "programmed loyalty": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Programmed%20Loyalty.webp"
+  ],
+  "protector": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Protector.webp"
+  ],
+  "proton charge saboteur": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Proton%20Charge%20Saboteur.webp"
+  ],
+  "proven tactician": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Proven%20Tactician.webp"
+  ],
+  "pulse scan": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Pulse%20Scan.webp"
+  ],
+  "push": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Push.webp"
+  ],
+  "pyke syndicate capo": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Pyke%20Syndicate%20Capo.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Pyke%20Syndicate%20Capo.webp"
+  ],
+  "pyke syndicate crew": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Pyke%20Syndicate%20Crew.webp"
+  ],
+  "pyke syndicate foot soldier": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Pyke%20Syndicate%20Foot%20Soldier.webp"
+  ],
+  "pyke syndicate foot soldier squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Pyke%20Syndicate%20Foot%20Soldier%20Squad.webp"
+  ],
+  "pyke syndicate foot soldiers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Pyke%20Syndicate%20Foot%20Soldiers.webp"
+  ],
+  "r2 d2": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/R2-D2%20Hero%20of%20a%20Thousand%20Devices.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/R2-D2%20Independent%20Astromech.webp"
+  ],
+  "r2 d2 hero of a thousand devices": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/R2-D2%20Hero%20of%20a%20Thousand%20Devices.webp"
+  ],
+  "r2 d2 independent astromech": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/R2-D2%20Independent%20Astromech.webp"
+  ],
+  "r4 astromech": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/R4%20Astromech%20Droid.webp"
+  ],
+  "r5 astromech droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/R5%20Astromech%20Droid.webp"
+  ],
+  "raddaugh gnasp fluttercraft": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Raddaugh%20Gnasp%20Fluttercraft.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Raddaugh%20Gnasp%20Fluttercraft%20Attack%20Craft.webp"
+  ],
+  "raddaugh gnasp fluttercraft attack craft": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Raddaugh%20Gnasp%20Fluttercraft%20Attack%20Craft.webp"
+  ],
+  "radiation cannon b1 battle droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Radiation%20Cannon%20B1%20Trooper.webp"
+  ],
+  "raiding party leader": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Raiding%20Party%20Leader.webp"
+  ],
+  "range trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Range%20Trooper.webp"
+  ],
+  "range troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Range%20Troopers.webp"
+  ],
+  "rebel agent": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Agent.webp"
+  ],
+  "rebel agent defender of democracy": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Agent.webp"
+  ],
+  "rebel commandos": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Commandos.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Commandos%20Strike%20Team.webp"
+  ],
+  "rebel commandos strike team": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Commandos%20Strike%20Team.webp"
+  ],
+  "rebel comms technician": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Comms%20Technician.webp"
+  ],
+  "rebel marksman": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Marksman.webp"
+  ],
+  "rebel officer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Officer.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Officer.webp"
+  ],
+  "rebel officer fighting for freedom": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Officer.webp"
+  ],
+  "rebel sleeper cell": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Sleeper%20Cell.webp"
+  ],
+  "rebel sleeper cell ready to strike": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Sleeper%20Cell.webp"
+  ],
+  "rebel trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Trooper.webp"
+  ],
+  "rebel trooper captain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Trooper%20Captain.webp"
+  ],
+  "rebel trooper specialist": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Trooper%20Specialist.webp"
+  ],
+  "rebel trooper squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Trooper%20Squad.webp"
+  ],
+  "rebel troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Troopers.webp"
+  ],
+  "rebel veteran": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Veteran.webp"
+  ],
+  "rebel veteran squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rebel%20Veteran%20Squad.webp"
+  ],
+  "rebel veterans": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Veterans.webp"
+  ],
+  "rebellions are built on hope": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Rebellions%20Are%20Built%20on%20Hope.webp"
+  ],
+  "reckless diversion": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Reckless%20Diversion.webp"
+  ],
+  "recon division": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Recon%20Division.webp"
+  ],
+  "recon intel": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Recon%20Intel.webp"
+  ],
+  "reluctant hero": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Reluctant%20Hero.webp"
+  ],
+  "repeating blaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Repeating%20Blaster.webp"
+  ],
+  "reptilian rampage": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Reptilian%20Rampage.webp"
+  ],
+  "return of the jedi": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Return%20of%20the%20Jedi.webp"
+  ],
+  "revenge is not the jedi way": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Revenge%20Is%20Not%20the%20Jedi%20Way.webp"
+  ],
+  "roger roger": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Roger%2C%20Roger!.webp"
+  ],
+  "rook kast": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rook%20Kast.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rook%20Kast%20Unit.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Rook%20Kast%20Mandos.webp"
+  ],
+  "rook kast devoted to the cause": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rook%20Kast%20Unit.webp"
+  ],
+  "rps 6 arf trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RPS-6%20ARF%20Trooper.webp"
+  ],
+  "rps 6 clone trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RPS-6%20Clone%20Trooper.webp"
+  ],
+  "rps 6 magnaguard": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RPS-6%20MagnaGuard.webp"
+  ],
+  "rps 6 rocket gunner": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RPS-6%20Rocket%20Gunner.webp"
+  ],
+  "rt 97c blaster rifle": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RT-97C%20Blaster%20Rifle.webp"
+  ],
+  "rt 97c stormtrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/RT-97C%20Stormtrooper.webp"
+  ],
+  "rule with respect": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Rule%20With%20Respect.webp"
+  ],
+  "ruthless tactics": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Ruthless%20Tactics.webp"
+  ],
+  "ryder azadi": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ryder%20Azadi.webp"
+  ],
+  "saber class tank": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Saber-Class%20Tank.webp"
+  ],
+  "saber throw": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Saber%20Throw.webp"
+  ],
+  "sabine wren": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Sabine%20Wren.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Sabine%20Wren%20Back%20in%20the%20Fold.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sabine%20Wren%20Upgrade.webp"
+  ],
+  "sabine wren back in the fold": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Sabine%20Wren%20Back%20in%20the%20Fold.webp"
+  ],
+  "sabine wren explosive artist": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Sabine%20Wren.webp"
+  ],
+  "sabotaged communications": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Sabotaged%20Communications.webp"
+  ],
+  "sacrifice": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Sacrifice.webp"
+  ],
+  "savage opress": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Savage%20Opress%20Maul's%20Enforcer.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Savage%20Opress%20Dooku's%20Apprentice.webp"
+  ],
+  "savage opress dooku s apprentice": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Savage%20Opress%20Dooku's%20Apprentice.webp"
+  ],
+  "savage opress maul s enforcer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Savage%20Opress%20Maul's%20Enforcer.webp"
+  ],
+  "saxon s galar 90 rifle": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Saxon's%20Galar-90%20Rifle.webp"
+  ],
+  "saxon s jetpack rockets": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Saxon's%20Z-3X%20Jetpack%20Rockets.webp"
+  ],
+  "scatter gun enforcer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Scatter%20Gun%20Enforcer.webp"
+  ],
+  "scatter gun trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Scatter%20Gun%20Trooper.webp"
+  ],
+  "scout troopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Scout%20Troopers.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Scout%20Troopers%20Strike%20Team.webp"
+  ],
+  "scout troopers strike team": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Scout%20Troopers%20Strike%20Team.webp"
+  ],
+  "secret ingredients": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Secret%20Ingredients.webp"
+  ],
+  "security detail": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Security%20Detail.webp"
+  ],
+  "see you in hell": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/See%20You%20in%20Hell.webp"
+  ],
+  "seek and destroy": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Seek%20and%20Destroy.webp"
+  ],
+  "seeker droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Seeker%20Droid.webp"
+  ],
+  "seize the initiative": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Seize%20the%20Initiative.webp"
+  ],
+  "seize what power we can": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Seize%20What%20Power%20We%20Can.webp"
+  ],
+  "seventh sister": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Seventh%20Sister.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Seventh%20Sister%20Upgrade.webp"
+  ],
+  "seventh sister compelled to inflict pain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Seventh%20Sister.webp"
+  ],
+  "shaak ti": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Shaak%20Ti.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Shaak%20Ti%20Upgrade.webp"
+  ],
+  "shaak ti jedi council": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Shaak%20Ti.webp"
+  ],
+  "shoretrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Shoretrooper.webp"
+  ],
+  "shoretrooper squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Shoretrooper%20Squad.webp"
+  ],
+  "shoretroopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Shoretroopers.webp"
+  ],
+  "shriv suurgav": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Shriv%20Suurgav.webp"
+  ],
+  "shukur 05 repeater": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/SHUKUR-05%20Repeater.webp"
+  ],
+  "situational awareness": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Situational%20Awareness.webp"
+  ],
+  "size matters not": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Size%20Matters%20Not.webp"
+  ],
+  "size matters sometimes": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Size%20Matters%20Sometimes.webp"
+  ],
+  "sliced comms": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sliced%20Comms.webp"
+  ],
+  "sm 9 frag launcher": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/SM-9%20Frag%20Launcher.webp"
+  ],
+  "smoke grenades": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Smoke%20Grenades.webp"
+  ],
+  "smoke screen": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Smoke%20Screen.webp"
+  ],
+  "sneak attack": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Sneak%20Attack.webp"
+  ],
+  "sneaky scouting": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Sneaky%20Scouting.webp"
+  ],
+  "snowtrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Snowtrooper.webp"
+  ],
+  "snowtrooper squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Snowtrooper%20Squad.webp"
+  ],
+  "snowtroopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Snowtroopers.webp"
+  ],
+  "somebody has to save our skins": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Somebody%20Has%20to%20Save%20Our%20Skins.webp"
+  ],
+  "son of skywalker": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Son%20of%20Skywalker.webp"
+  ],
+  "sonic cannon warrior": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sonic%20Cannon%20Warrior.webp"
+  ],
+  "sonic charge saboteur": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sonic%20Charge%20Saboteur.webp"
+  ],
+  "sonic imploders": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sonic%20Imploders.webp"
+  ],
+  "sorry about the mess": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Sorry%20About%20the%20Mess.webp"
+  ],
+  "speak softly and drive a big tank": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Speak%20Softly%20and%20Drive%20a%20Big%20Tank.webp"
+  ],
+  "spotter uplink": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Spotter%20Uplink.webp"
+  ],
+  "squadron leader": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Squadron%20Leader.webp"
+  ],
+  "squadron on me": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Squadron%2C%20On%20Me.webp"
+  ],
+  "standing orders": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Standing%20Orders.webp"
+  ],
+  "stap riders": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/STAP%20Riders.webp"
+  ],
+  "stories so many of them true": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Stories%2C%20So%20Many%20of%20Them%20True.webp"
+  ],
+  "stormtrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper.webp"
+  ],
+  "stormtrooper captain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Captain.webp"
+  ],
+  "stormtrooper marksman": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Marksman.webp"
+  ],
+  "stormtrooper riot squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Riot%20Control%20Squad.webp"
+  ],
+  "stormtrooper specialist": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Specialist.webp"
+  ],
+  "stormtrooper squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Squad.webp"
+  ],
+  "stormtroopers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Stormtroopers.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Stormtroopers%20Heavy%20Response%20Unit.webp"
+  ],
+  "stormtroopers heavy response unit": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Stormtroopers%20Heavy%20Response%20Unit.webp"
+  ],
+  "strategic programming": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Strategic%20Programming.webp"
+  ],
+  "strict orders": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Strict%20Orders.webp"
+  ],
+  "strike and fade": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Strike%20and%20Fade.webp"
+  ],
+  "strike team leader": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Strike%20Team%20Leader.webp"
+  ],
+  "strong in the force": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Strong%20in%20the%20Force.webp"
+  ],
+  "stuck in": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stuck%20In.webp"
+  ],
+  "stun baton": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stun%20Baton.webp"
+  ],
+  "sun fac": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Sun%20Fac.webp"
+  ],
+  "sun fac ruthless lieutenant": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Sun%20Fac.webp"
+  ],
+  "super commando gunslinger": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Super%20Commando%20Gunslinger.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Super%20Commando%20Gunslinger%20Mandos.webp"
+  ],
+  "super commando marksman": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Super%20Commando%20Marksman.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Super%20Commando%20Marksman%20Mandos.webp"
+  ],
+  "super commandos": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Super%20Commandos.webp"
+  ],
+  "super tactical command droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Command%20and%20Control%20Droid.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Auxiliary%20Command%20Droid.webp"
+  ],
+  "super tactical command droid auxiliary command droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Auxiliary%20Command%20Droid.webp"
+  ],
+  "super tactical command droid command and control droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Command%20and%20Control%20Droid.webp"
+  ],
+  "superior equipment": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Superior%20Equipment.webp"
+  ],
+  "supreme commander": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Supreme%20Commander.webp"
+  ],
+  "swift protector": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Swift%20Protector.webp"
+  ],
+  "swoop bike riders": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Swoop%20Bike%20Riders.webp"
+  ],
+  "sx 21 trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/SX-21%20Trooper.webp"
+  ],
+  "symbol of rebellion": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Symbol%20of%20Rebellion.webp"
+  ],
+  "synchronized offensive": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Synchronized%20Offensive.webp"
+  ],
+  "t 21 blaster rifle": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21%20Blaster%20Rifle.webp"
+  ],
+  "t 21 special forces trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21%20Special%20Forces%20Trooper.webp"
+  ],
+  "t 21 stormtrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21%20Stormtrooper.webp"
+  ],
+  "t 21a range trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21A%20Range%20Trooper.webp"
+  ],
+  "t 21b shoretrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-21B%20Trooper.webp"
+  ],
+  "t 47 airspeeder": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/T-47%20Airspeeder.webp"
+  ],
+  "t 7 ion snowtrooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-7%20Ion%20Snowtrooper.webp"
+  ],
+  "t series tactical droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-Series%20Tactical%20Droid.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/T-Series%20Tactical%20Droid.webp"
+  ],
+  "t series tactical droid pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/T-Series%20Tactical%20Droid%20Pilot.webp"
+  ],
+  "t series tactical droid programmed for strategy": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/T-Series%20Tactical%20Droid.webp"
+  ],
+  "tactical download": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Tactical%20Download.webp"
+  ],
+  "tactical planning": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Tactical%20Planning.webp"
+  ],
+  "tactical strike": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Tactical%20Strike.webp"
+  ],
+  "take that clankers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Take%20That%2C%20Clankers!.webp"
+  ],
+  "tank hunting munitions": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tank%20Hunting%20Munitions.webp"
+  ],
+  "targeting relay": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Targeting%20Relay.webp"
+  ],
+  "targeting scopes": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Targeting%20Scopes.webp"
+  ],
+  "tauntaun riders": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Tauntaun%20Riders.webp"
+  ],
+  "tech": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tech.webp"
+  ],
+  "tenacity": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tenacity.webp"
+  ],
+  "terror": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Terror.webp"
+  ],
+  "that s just good business": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/That's%20Just%20Good%20Business.webp"
+  ],
+  "the armorer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/The%20Armorer%20Upgrade.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/The%20Armorer.webp"
+  ],
+  "the armorer forging the future": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/The%20Armorer.webp"
+  ],
+  "the bad batch": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/The%20Bad%20Batch%20Rep.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/The%20Bad%20Batch%20Reb.webp"
+  ],
+  "the bad batch clone force 99": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/The%20Bad%20Batch%20Rep.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/The%20Bad%20Batch%20Reb.webp"
+  ],
+  "the darksaber": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sabine%20The%20Darksaber.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Bo-Katan%20The%20Darksaber.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Din%20Djarin%20The%20Darksaber.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gar%20Saxon%20The%20Darksaber.webp"
+  ],
+  "the darksaber gideon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Moff%20Gideon%20The%20Darksaber.webp"
+  ],
+  "the darksaber maul": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Maul%20The%20Darksaber.webp"
+  ],
+  "the empire does not tolerate failure": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/The%20Empire%20Does%20Not%20Tolerate%20Failure.webp"
+  ],
+  "the hand thing": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/The%20Hand%20Thing.webp"
+  ],
+  "the jedi shall fall": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/The%20Jedi%20Shall%20Fall.webp"
+  ],
+  "the phantom menace": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/The%20Phantom%20Menace.webp"
+  ],
+  "the sith will rule": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/The%20Sith%20Will%20Rule.webp"
+  ],
+  "there is no try": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/There%20Is%20No%20Try.webp"
+  ],
+  "thermal detonator": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Thermal%20Detonator.webp"
+  ],
+  "they too will suffer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/They%20Too%20Will%20Suffer.webp"
+  ],
+  "this is the way": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/This%20is%20the%20Way.webp"
+  ],
+  "this is where the fun begins": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/This%20is%20Where%20the%20Fun%20Begins.webp"
+  ],
+  "this party s over": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/This%20Party's%20Over.webp"
+  ],
+  "tip of the spear": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tip%20of%20the%20Spear.webp"
+  ],
+  "tools of the trade jetpack rockets": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jetpack%20Rockets%20Mandos.webp"
+  ],
+  "tools of the trade whipcord launcher": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Whipcord%20Launcher%20Mandos.webp"
+  ],
+  "trained in your jedi arts": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Trained%20in%20Your%20Jedi%20Arts.webp"
+  ],
+  "tranquility": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tranquility.webp"
+  ],
+  "tristan wren": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tristan%20Wren%20Mandos.webp"
+  ],
+  "trust goes both ways": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Trust%20Goes%20Both%20Ways.webp"
+  ],
+  "trusted agent": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Trusted%20Agent.webp"
+  ],
+  "tsmeu 6 wheel bikes": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/TSMEU-6%20Wheel%20Bikes.webp"
+  ],
+  "turbo charge": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Turbo-Charge.webp"
+  ],
+  "turning the tide": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Turning%20the%20Tide.webp"
+  ],
+  "twin beam cannons": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Twin%20Beam%20Cannons.webp"
+  ],
+  "twin blaster cannons": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Twin%20Blaster%20Cannons%20ISP.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Twin%20Blaster%20Cannons%20Crab.webp"
+  ],
+  "twin laser turret": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/TX-130%20Twin%20Laser%20Turret.webp"
+  ],
+  "twin lightsabers": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Twin%20Lightsabers.webp"
+  ],
+  "twin missile pods": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Twin%20Missile%20Pods.webp"
+  ],
+  "tx 225 gavw occupier tank": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/TX-225%20GAVw%20Occupier%20Tank.webp"
+  ],
+  "tyrannical taskmaster": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tyrannical%20Taskmaster.webp"
+  ],
+  "underworld connections": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Underworld%20Connections.webp"
+  ],
+  "unexpected but not unwelcome": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Unexpected%2C%20But%20Not%20Unwelcome.webp"
+  ],
+  "unity wins wars": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Unity%20Wins%20Wars.webp"
+  ],
+  "unorthodox tactician": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Unorthodox%20Tactician.webp"
+  ],
+  "unrelenting assault": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Unrelenting%20Assault.webp"
+  ],
+  "unrelenting fire": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Unrelenting%20Fire.webp"
+  ],
+  "unseen saboteur": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Unseen%20Saboteur.webp"
+  ],
+  "unstable astromech": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Unstable%20R5%20Astromech.webp"
+  ],
+  "unstoppable advance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Unstoppable%20Advance.webp"
+  ],
+  "up close and personal": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Up%20Close%20and%20Personal.webp"
+  ],
+  "ursa wren": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ursa%20Wren%20Unit.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ursa%20Wren%20Mandos.webp"
+  ],
+  "ursa wren leader of clan wren": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ursa%20Wren%20Unit.webp"
+  ],
+  "vader s might": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Vader's%20Might.webp"
+  ],
+  "vengeful strike": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Vengeful%20Strike.webp"
+  ],
+  "veteran clone pilot": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Veteran%20Clone%20Pilot.webp"
+  ],
+  "vibro axe": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Vibro%20Axe.webp"
+  ],
+  "vibrosword": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Vibrosword.webp"
+  ],
+  "victory or death": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Victory%20or%20Death!.webp"
+  ],
+  "vigilance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Vigilance.webp"
+  ],
+  "viper recon droid": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Viper%20Recon%20Droid.webp"
+  ],
+  "volunteer mission": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Volunteer%20Mission.webp"
+  ],
+  "voracious ambition": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Voracious%20Ambition.webp"
+  ],
+  "war party leader": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/War%20Party%20Leader.webp"
+  ],
+  "waxer": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Waxer.webp"
+  ],
+  "we are mandalorians": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Are%20Mandalorians.webp"
+  ],
+  "we do what we do": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Do%20What%20We%20Do.webp"
+  ],
+  "we make weapons": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Make%20Weapons.webp"
+  ],
+  "we must wait and watch": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Must%20Wait%20and%20Watch.webp"
+  ],
+  "we need reinforcements": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Need%20Reinforcements.webp"
+  ],
+  "we protect our own": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Protect%20Our%20Own.webp"
+  ],
+  "we re not programmed": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We're%20Not%20Programmed.webp"
+  ],
+  "we serve the queen": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Serve%20the%20Queen.webp"
+  ],
+  "we shall start with revenge": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Shall%20Start%20with%20Revenge.webp"
+  ],
+  "we shape ourselves": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Shape%20Ourselves.webp"
+  ],
+  "weapons are our religion": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Weapons%20Are%20Our%20Religion.webp"
+  ],
+  "wedge antilles": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Wedge%20Antilles.webp"
+  ],
+  "weequay captain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Weequay%20Captain.webp"
+  ],
+  "weequay crew": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Weequay%20Crew.webp"
+  ],
+  "weequay pirate squad": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Weequay%20Pirate%20Squad.webp"
+  ],
+  "weequay pirates": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Weequay%20Pirates.webp"
+  ],
+  "whipcord launcher": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Whipcord%20Launcher.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Whipcord%20Launcher%20Mandos.webp"
+  ],
+  "whistling birds": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Whistling%20Birds.webp"
+  ],
+  "wicket": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wicket.webp"
+  ],
+  "wicket hero of bright tree": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wicket.webp"
+  ],
+  "wisdom of the council": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Wisdom%20of%20the%20Council.webp"
+  ],
+  "witch magick": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Witch%20Magick.webp"
+  ],
+  "wlo 5 speeder tank": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/WLO-5%20Speeder%20Tank.webp"
+  ],
+  "wookiee chieftain": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Chieftain.webp"
+  ],
+  "wookiee chieftain clan leader": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Chieftain.webp"
+  ],
+  "wookiee life debt": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Wookiee%20Life%20Debt.webp"
+  ],
+  "wookiee warriors": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Freedom%20Fighters.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Kashyyyk%20Defenders.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Kashyyyk%20Resistance.webp",
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Noble%20Fighters.webp"
+  ],
+  "wookiee warriors freedom fighters": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Freedom%20Fighters.webp"
+  ],
+  "wookiee warriors kashyyyk defenders": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Kashyyyk%20Defenders.webp"
+  ],
+  "wookiee warriors kashyyyk resistance": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Kashyyyk%20Resistance.webp"
+  ],
+  "wookiee warriors noble fighters": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wookiee%20Warriors%20Noble%20Fighters.webp"
+  ],
+  "wrecker": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Wrecker.webp"
+  ],
+  "x 34 landspeeder": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/X-34%20Landspeeder.webp"
+  ],
+  "xs iv assault cannon": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/XS-IV%20Assault%20Cannon.webp"
+  ],
+  "yes my master": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Yes%2C%20My%20Master.webp"
+  ],
+  "yoda": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Yoda.webp"
+  ],
+  "yoda grand master of the jedi order": [
+   "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Yoda.webp"
+  ],
+  "you are beaten": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/You%20Are%20Beaten.webp"
+  ],
+  "you disappoint me": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/You%20Disappoint%20Me.webp"
+  ],
+  "you have something i want": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/You%20Have%20Something%20I%20Want.webp"
+  ],
+  "you hide your fear well": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/You%20Hide%20Your%20Fear%20Well.webp"
+  ],
+  "you re not all the same to me": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/You're%20Not%20All%20the%20Same%20to%20Me.webp"
+  ],
+  "you serve your master well": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/You%20Serve%20Your%20Master%20Well.webp"
+  ],
+  "you underestimate my power": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/You%20Underestimate%20My%20Power.webp"
+  ],
+  "you would question me": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/You%20Would%20Question%20Me.webp"
+  ],
+  "z 6 clone trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Z-6%20Clone%20Trooper.webp"
+  ],
+  "z 6 jetpack rocket": [
+   "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Z-6%20Jetpack%20Rocket.webp"
+  ],
+  "z 6 riot baton": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Z-6%20Riot%20Baton.webp"
+  ],
+  "z 6 trooper": [
+   "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Z-6%20Trooper.webp"
+  ]
  }
 }

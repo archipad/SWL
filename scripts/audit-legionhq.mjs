@@ -18,6 +18,9 @@ import { fileURLToPath } from 'node:url'
 const here = path.dirname(fileURLToPath(import.meta.url))
 const root = path.resolve(here, '..')
 const SITE = 'https://legionhq2.com'
+// Visuel public de la carte sur le CDN de Legion HQ : affiché à titre de comparaison dans la certification, jamais certifiant.
+const CARD_CDN = { unit: 'https://d2maxvwz12z6fm.cloudfront.net/unitCards/', upgrade: 'https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/', command: 'https://d2maxvwz12z6fm.cloudfront.net/commandCards/' }
+const hqImage = (c) => (c.imageName && CARD_CDN[c.cardType] ? CARD_CDN[c.cardType] + encodeURIComponent(c.imageName) : undefined)
 const args = process.argv.slice(2)
 const cacheFile = args.includes('--cache') ? args[args.indexOf('--cache') + 1] : null
 const writeReference = args.includes('--write')
@@ -187,6 +190,7 @@ for (const key of Object.keys(ref.weapons)) {
     const c = best(pool, score), st = c.stats, ustats = profile.unitStats, cert = profile.fullCardCertification, comb = combat[key] || {}
     comparedUnits++
     reference[key] = { history: (c.history || []).slice(-3).map((h) => ({ date: h.date, text: h.description })), name: c.cardName + (c.title ? ' / ' + c.title : ''), kind: 'unit', rank: RANK[c.rank] || null, speed: st.speed || null, minis: st.minicount ?? null, hp: st.hp ?? null, courage: Number.isFinite(st.courage) && st.courage > 0 ? st.courage : null, defense: { r: 'rouge', w: 'blanc' }[st.defense] || null, attackSurge: { h: 'hit', c: 'crit' }[st.hitsurge] || 'none', defenseSurge: st.defsurge === 'b' ? 'block' : 'none', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
+    if (hqImage(c)) reference[key].image = hqImage(c)
     if (RANK[c.rank] && rankOf[key] && RANK[c.rank] !== rankOf[key]) list.push(`rang : site ${RANK[c.rank]} / appli ${rankOf[key]}`)
     const appSpeed = printedSpeedOf(key)
     if (appSpeed !== null && st.speed && st.speed !== appSpeed) list.push(`vitesse : site ${st.speed} / appli ${appSpeed}`)
@@ -212,6 +216,7 @@ for (const key of Object.keys(ref.weapons)) {
     const c = best(pool, (card) => weaponScore(profile.weapons, card.weapons))
     comparedUpgrades++
     reference[key] = { history: (c.history || []).slice(-3).map((h) => ({ date: h.date, text: h.description })), name: c.cardName, kind: 'upgrade', weapons: (c.weapons || []).filter((w) => w.dice).map((w) => ({ name: w.name, dice: diceKey(w.dice), range: hqRange(w.range) })) }
+    if (hqImage(c)) reference[key].image = hqImage(c)
     if ((c.weapons || []).length || (profile.weapons || []).length) compareWeapons(list, profile.weapons, c.weapons)
     reference[key].kw = compareKeywords(list, key, profile, c)
     if (list.length) problems.push({ kind: 'amélioration', key, name: c.cardName, list, explained: list.map((line) => explainDiff(line, c)) })
@@ -240,7 +245,16 @@ lines.push('', '## Cartes non appariées', '', 'Unités : ' + (unmatched.unit.jo
 fs.writeFileSync(path.join(root, 'docs/audit/recoupement-legionhq.md'), lines.join('\n'))
 if (writeReference) {
   const sorted = Object.fromEntries(Object.entries(reference).sort(([a], [b]) => a.localeCompare(b)))
-  fs.writeFileSync(path.join(root, 'src/data/legionhqReference.json'), JSON.stringify({ _meta: { keywordIds: [...mappableIds].sort(), source: 'https://legionhq2.com', genere: new Date().toISOString().slice(0, 10), description: 'Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write.' }, cards: sorted }, null, 1) + '\n')
+  // Index « nom anglais normalisé → visuel(s) Legion HQ » de toutes les cartes Unité, Amélioration et Commandement : la certification
+  // l'affiche pour comparer une carte importée encore inconnue du catalogue (plusieurs visuels = variantes homonymes).
+  const images = {}
+  for (const c of Object.values(database)) {
+    const url = c && hqImage(c)
+    if (!url) continue
+    for (const key of new Set([norm(c.cardName + ' ' + (c.title || '')), norm(c.cardName)])) if (key && !(images[key] ||= []).includes(url)) images[key].push(url)
+  }
+  const sortedImages = Object.fromEntries(Object.entries(images).sort(([a], [b]) => a.localeCompare(b)))
+  fs.writeFileSync(path.join(root, 'src/data/legionhqReference.json'), JSON.stringify({ _meta: { keywordIds: [...mappableIds].sort(), source: 'https://legionhq2.com', genere: new Date().toISOString().slice(0, 10), description: 'Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write.' }, cards: sorted, images: sortedImages }, null, 1) + '\n')
   console.log('référence écrite : ' + Object.keys(sorted).length + ' cartes -> src/data/legionhqReference.json')
 }
 console.log(`Legion HQ : ${comparedUnits} unités, ${comparedUpgrades} améliorations, ${comparedWeapons} armes comparées ; ${problems.length} carte(s) avec écart ; ${speedSuggestions.length} vitesse(s) à renseigner ; non appariées : ${unmatched.unit.length} unités, ${unmatched.upgrade.length} améliorations.`)

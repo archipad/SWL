@@ -52,6 +52,7 @@ try {
   const tabletopAliases = [
     ['Into the Fray', 'in the fray', 'Dans la Mêlée'],
     ['AT-RT Laser Cannon', 'tl tt laser cannon', 'Canon Laser de TL-TT'],
+    ['AT-RT Rotary Blaster', 'tl tt rotary blaster', 'Blaster Rotatif de TL-TT'],
     ['Up Close and Personal', 'point blank', 'À Bout Portant'],
   ];
   for (const [importedName, expectedKey, expectedFrenchName] of tabletopAliases) {
