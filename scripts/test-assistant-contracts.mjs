@@ -632,7 +632,16 @@ for (const [key, check] of [['dark trooper squad', (c) => c.rank === 'heavy' && 
 }
 assert.equal(diceCertifications['at rt'].defenseColor, 'blanc', 'AT-RT rebelle : défense blanche (visuel AMG d’avril 2026 et visuel français)')
 for (const [from, to] of [['moff gideon long live the empire', 'moff gideon'], ['imperial dark troopers', 'dark trooper squad'], ['xs iv assault cannon', 'xs iv dark trooper']]) assert.equal(cardKeyAliases[from], to, `Alias historique ${from} → ${to}`)
-assert.ok(!('mandalorian hunter' in diceCertifications), 'Mandalorian Hunter : aucune donnée certifiée sans visuel démontré')
+// Mandalorian Hunter : certifiable seulement contre un visuel démontré, désormais sa fiche FR communautaire validée
+// (23/10/2026) ; la certification doit viser ce visuel publié et en porter l'empreinte exacte.
+{
+  const hunter = diceCertifications['mandalorian hunter']?.fullCardCertification
+  if (diceCertifications['mandalorian hunter']) {
+    const visual = new URL('../public/cards/mandalorian-hunter-fr-community.jpg', import.meta.url)
+    const sha256 = (await import('node:crypto')).createHash('sha256').update(fs.readFileSync(visual)).digest('hex')
+    assert.ok(hunter && /mandalorian-hunter-fr-community\.jpg$/.test(hunter.visualPath || '') && hunter.visualHash === sha256, 'Mandalorian Hunter : aucune donnée certifiée sans visuel démontré (fiche FR publiée, même empreinte)')
+  }
+}
 // Visuel anglais importé : IndexedDB seulement, signature réelle, SHA-256 local, jamais en localStorage ni envoyé ailleurs.
 assert.match(automaticCertificationUi, /indexedDB\.open\(IDB_NAME,1\)/, 'Les visuels personnels sont stockés dans IndexedDB')
 assert.match(automaticCertificationUi, /Importer le visuel anglais/, 'Le bouton « Importer le visuel anglais » est proposé')
