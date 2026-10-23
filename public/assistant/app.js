@@ -1522,7 +1522,7 @@ applyCardKeywordAction=function(entry,id,choiceIndex){
 };
 // Bonus permanents portés par des cartes : vitesse (Pilote de TIE, Jetpack de Din, Blaster à Répétition) et courage (Officiers, Gideon, Kallus, Rex, Cassian).
 const CARD_SPEED_BONUS={'imperial tie pilot':1,'din djarin jetpack':1,'repeating blaster':-1};
-const CARD_COURAGE_BONUS={'gideon hask':1,'imperial officer':1,'rebel officer':1,'kallus the operative':1,'captain rex':1,'cassian andor operative':1};
+const CARD_COURAGE_BONUS={'gideon hask':1,'imperial officer':1,'rebel officer':1,'kallus the operative':1,'captain rex':1,'cassian andor operative':1,'proven tactician':1};
 const cardBonus=(entry,table)=>(entry?.unit?.upgrades||[]).reduce((sum,up)=>sum+(table[cardKey(up.name)]||0),0);
 // Cartes à deux faces / retournables : la face visible décide des mots-clés actifs (Bouclier de Combat, Cassian Andor, Postures).
 const FLIP_CARDS=new Set(['battle shield wookiee','cassian andor operative','defensive posture','offensive posture']);
@@ -1562,6 +1562,7 @@ function crossCardNotes(entry){
 const ATTACK_CARD_FX=[
   {id:'barrage-generator',card:'barrage generator',side:'attacker',steps:[0],ranged:true,needsFixed:true,use:'tilt',title:'GÉNÉRATEUR DE BARRAGE',text:'Arme à distance Fixe : incliner la carte ajoute 2 dés blancs et Suppressif à la réserve d’attaque.',done:'+2 dés blancs et Suppressif ajoutés à la réserve d’attaque'},
   {id:'generator-overcharge',card:'generator overcharge',side:'attacker',steps:[0],ranged:true,needsFixed:true,use:'tilt',title:'SURCHARGE DU GÉNÉRATEUR',text:'Arme à distance Fixe : incliner la carte ajoute 1 dé noir et Impact 1 à la réserve d’attaque.',done:'+1 dé noir et Impact 1 ajoutés à la réserve d’attaque'},
+  {id:'tank-hunting-munitions',card:'tank hunting munitions',side:'attacker',steps:[0],use:'discard',title:'MUNITIONS ANTICHAR',text:'Étape « Former la Réserve d’Attaque » : ✖ supprimer la carte donne Anti-matériel 2 et Impact 2 à cette réserve d’attaque.',done:'Anti-matériel 2 et Impact 2 ajoutés à la réserve d’attaque'},
   {id:'spotter-link',card:'spotter link',side:'attackerAllies',steps:[0],ranged:true,title:'LIAISON AVEC UN OBSERVATEUR',text:'Si la cible est à portée 1 de cette unité, en LdV, et n’est pas au corps-à-corps : l’attaquant gagne Tireur d’Élite 1.'},
   {id:'mission-objective',card:'mission objective',side:'attacker',steps:[1],use:'tilt',title:'OBJECTIF DE MISSION',text:'Si la cible détient ou conteste un pion Objectif : incliner la carte pour relancer 1 dé d’attaque (étape « Relancer les dés »).',done:'relance de 1 dé d’attaque (à effectuer à la table)'},
   {id:'clairvoyance-attack',card:'clairvoyance',side:'attacker',steps:[1],use:'discard',title:'CLAIRVOYANCE · ATTAQUE',text:'✖ supprime la carte : relancez TOUS vos dés d’attaque, puis convertissez normalement l’Adrénaline ; ce jet ne peut plus être modifié.',done:'tous les dés d’attaque relancés (jet non modifiable ensuite)'},
@@ -1646,6 +1647,7 @@ activeAttackTags=function(){
   const result=activeAttackTagsCardsBase(),extra=[],add=(id,source,value)=>{const def=keywords.find(item=>item.id===id);if(def)extra.push({source,def,tag:{keywordId:id,...(value?{value}:{})}})};
   if(fxUsed('barrage-generator'))add('suppressif','Générateur de Barrage');
   if(fxUsed('generator-overcharge'))add('impact-x','Surcharge du Générateur',1);
+  if(fxUsed('tank-hunting-munitions')){add('anti-materiel-x','Munitions Antichar',2);add('impact-x','Munitions Antichar',2)}
   const rows=attacker?selectedWeaponRows():[];
   if(attacker&&hasCard(attacker,'crosshair')&&rows.length===1&&cardKey(rows[0].card)==='crosshair')add('critique-x','Crosshair',1);
   return extra.length?[...result,...extra]:result

@@ -594,7 +594,7 @@ assert.ok(Object.keys(translationGlossary.keywords || {}).length >= 150, 'Le dic
 assert.equal(translationGlossary.keywords['CUNNING']?.fr, 'MALIN', 'Le mot-clé Cunning doit suivre l’index français')
 // Certification automatique β : laboratoire strictement parallèle à la certification historique.
 assert.match(index, /id="certificationAuto"/, 'Le laboratoire de certification automatique doit rester accessible séparément')
-assert.match(index, /certification\.js\?v=101" defer><\/script>\s*<script src="\.\/certification-auto\.js\?v=4"/, 'La bêta se charge après la certification historique, sans la remplacer')
+assert.match(index, /certification\.js\?v=101" defer><\/script>\s*<script src="\.\/certification-auto\.js\?v=5"/, 'La bêta se charge après la certification historique, sans la remplacer')
 assert.match(index, /certification-auto\.css\?v=4/, 'La bêta doit charger sa propre feuille de style')
 assert.doesNotMatch(index, /auto-certification-source\.js/, 'Le catalogue automatique (≈ 1 Mo) ne doit être chargé qu’à l’ouverture de la bêta')
 assert.match(automaticCertificationUi, /const scripts=\['\.\/auto-certification-source\.js\?v=\d+','\.\/auto-certification-assets\.js\?v=\d+','\.\/auto-certification-resolver\.js\?v=\d+'\]/, 'La bêta doit charger métadonnées, inventaire des visuels et résolveur partagé à la demande')
@@ -737,7 +737,7 @@ const tsIds = [...commandCardsTs.matchAll(/^\s*id: '([a-z0-9-]+)'/gm)].map((matc
 const jsIds = [...commandCardsJs.matchAll(/"id":"([a-z0-9-]+)"/g)].map((match) => match[1])
 assert.ok(tsIds.length > 40, 'src/data/commandCards.ts doit exposer les cartes de Commandement')
 assert.deepEqual(jsIds, tsIds, 'public/assistant/command-cards.js doit rester synchronisé avec src/data/commandCards.ts (relancer scripts/generate-assistant-command-cards.cjs)')
-assert.match(index, /command-cards\.js\?v=2/, 'index.html doit charger command-cards.js avant app.js')
+assert.match(index, /command-cards\.js\?v=3/,'index.html doit charger command-cards.js avant app.js')
 assert.match(app, /const trackerKey='swl\.game-tracker\.v1'/, 'La page Partie doit lire et écrire le même suivi que l’appli principale')
 
 // Couverture visuelle complète : le registre couvre toutes les illustrations

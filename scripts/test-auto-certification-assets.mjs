@@ -103,8 +103,10 @@ const standing = resolver.findMeta('Standing Orders', 'command')
 assert.equal(standing.meta?.sourceId, '8', 'un doublon Tabletop Admiral n’est résolu que par un alias confirmé explicite')
 const bossk = resolver.findMeta('Bossk Trandoshan Terror', 'unit')
 assert.ok(!bossk.meta && bossk.certainty === 'ambiguous' && bossk.options.length > 1, 'un doublon sans alias reste ambigu (jamais de choix silencieux)')
-const ambush = meta('command', '7')
-const withRemote = { ...ambush, englishImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/en.webp', frenchImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/fr.jpg', image_url: 'https://d26oqf9i6fvic.cloudfront.net/commands-new/resized/7.webp', imageUrl: 'https://cdn.svc.asmodee.net/x.png' }
+// Carte sans aucun visuel local (Ambush en a désormais un : fiche FR communautaire du 23/10/2026).
+const unvisualized = meta('command', '86')
+assert.ok(unvisualized && !resolver.status(unvisualized).fr, 'Aggressive Negotiations n’a aucun visuel local')
+const withRemote = { ...unvisualized,englishImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/en.webp', frenchImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/fr.jpg', image_url: 'https://d26oqf9i6fvic.cloudfront.net/commands-new/resized/7.webp', imageUrl: 'https://cdn.svc.asmodee.net/x.png' }
 const remote = resolver.status(withRemote)
 assert.ok(!remote.en && !remote.fr && !remote.ready, 'une URL externe seule ne suffit jamais à déverrouiller la certification')
 const vader = resolver.status(meta('unit', '3'))
@@ -210,8 +212,10 @@ assert.equal(online.status(meta('unit', '5')).en, null, 'aucun visuel anglais n�
 assert.ok(stormtroopers.historical.valid && !stormtroopers.reasons.length, '… et la carte n’en réclame pas : certifiée et inchangée')
 assert.equal(classifyName(online, 'Moff Gideon Long Live the Empire', 'unit', ['empire']).state, 'certified', 'Moff Gideon (certifié le 21/10/2026) est reconnu par l’index')
 // Carte réellement nouvelle / connue mais incomplète : comparaison obligatoire.
-assert.equal(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'new', 'Mandalorian Hunter : carte réellement nouvelle')
-assert.equal(classifyName(online, 'GALAAR-90 Sniper Rifle (Armament)', 'upgrade', ['empire']).state, 'new', 'GALAAR-90 : carte réellement nouvelle')
+assert.equal(classifyName(online, 'Aggressive Negotiations', 'command', ['Galactic Republic']).state, 'new', 'Aggressive Negotiations : carte réellement nouvelle (absente du paquet du site)')
+// Fiches FR communautaires du 23/10/2026 : connues du site, mais sans certification historique → comparaison obligatoire.
+assert.equal(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'incomplete', 'Mandalorian Hunter : carte connue mais incomplète')
+assert.equal(classifyName(online, 'GALAAR-90 Sniper Rifle (Armament)', 'upgrade', ['empire']).state, 'incomplete', 'GALAAR-90 : carte connue mais incomplète')
 assert.equal(classifyName(online, 'Standing Orders', 'command', ['rebel']).state, 'incomplete', 'une carte de commandement connue n’a pas de certification historique : comparaison obligatoire')
 assert.equal(classifyName(online, 'AT-RT', 'unit', ['Galactic Republic']).state, 'incomplete', 'AT-RT de la République : identité incertaine, jamais rattachée à la certification rebelle')
 // Identité : la certification n'est rattachée qu'à la carte Tabletop Admiral retenue sans ambiguïté.
@@ -263,7 +267,7 @@ for (const file of ['empire-moff-gideon.json', 'rebelles-simon-3.json']) {
   for (const card of live.filter((entry) => entry.kind === 'command' || entry.kind === 'contingency')) assert.notEqual(card.state, 'certified', `${card.name} : aucune carte de commandement n’a de certification historique`)
   console.log(`  ${list.listname} : ${certifiedCount} certifiées et inchangées, ${live.filter((card) => card.state === 'obsolete').length} obsolètes, ${live.filter((card) => card.state === 'incomplete').length} connues incomplètes, ${live.filter((card) => card.state === 'new').length} nouvelles (sur ${live.length})`)
 }
-assert.equal(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'new')
+assert.equal(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'incomplete')
 // Améliorations renommées par l'import du site : même carte Tabletop Admiral, même certification.
 for (const renamed of ['Cassian Andor Operative', 'Chewbacca Upgrade']) assert.equal(classifyName(online, renamed, 'upgrade', ['rebel']).state, 'certified', `${renamed} : reconnue malgré le renommage de l’import`)
 

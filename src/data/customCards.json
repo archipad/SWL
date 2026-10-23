@@ -2043,5 +2043,325 @@
       "verifiedAt": "2026-10-20T00:00:00.000Z"
     },
     "verificationSource": "Carte anglaise HD officielle AMG SWQ42 ; traduction communautaire relue avec l’index Star Wars Légion V2.6."
+  },
+  "mandalorian hunter": {
+    "nameFr": "Chasseur Mandalorien",
+    "cardType": "unit",
+    "rank": "operative",
+    "speed": 3,
+    "image": "mandalorian-hunter-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrocouteau",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "attackSurge": "hit",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "equipe"
+      },
+      {
+        "keywordId": "insensible"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Mandalorian Hunter",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Hunter.webp",
+      "englishText": "Mandalorian Trooper; Mercenary: all factions; Jump 2; Equip: armament, doctrine; Impervious; Vibroknife (2 black, 2 white, melee, Pierce 1); Blaster Pistol (2 red, 2 white, 1-2)",
+      "frenchText": "Soldat Mandalorien ; Mercenaire : toutes factions ; Saut 2 ; Équipe : armement, doctrine ; Insensible ; Vibrocouteau (2 noirs, 2 blancs, corps-à-corps, Perforant 1) ; Pistolet Blaster (2 rouges, 2 blancs, 1-2)",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-23T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-10-23"
+  },
+  "rebel officer fighting for freedom": {
+    "nameFr": "Officier Rebelle, Combattre pour la Liberté",
+    "cardType": "unit",
+    "rank": "commandant",
+    "speed": 2,
+    "image": "rebel-officer-fighting-for-freedom-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "blanc",
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "equipe"
+      },
+      {
+        "keywordId": "inspiration-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Rebel Officer Fighting for Freedom",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rebel%20Officer.webp",
+      "englishText": "Trooper; Equip: doctrine; Inspire 1; Combat Training (3 black, melee); Blaster Pistol (1 black, 2 white, 1-2)",
+      "frenchText": "Soldat ; Équipe : doctrine ; Inspiration 1 ; Entraînement au Combat (3 noirs, corps-à-corps) ; Pistolet Blaster (1 noir, 2 blancs, 1-2)",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-23T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-10-23"
+  },
+  "tank hunting munitions": {
+    "nameFr": "Munitions Antichar",
+    "cardType": "upgrade",
+    "image": "tank-hunting-munitions-fr-community.jpg",
+    "weapons": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Tank Hunting Munitions",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tank%20Hunting%20Munitions.webp",
+      "englishText": "When this unit attacks, during the Form Attack Pool step, you may discard this card. If you do, that Attack Pool gains Anti-Materiel 2 and Impact 2.",
+      "frenchText": "Quand cette unité attaque, pendant l'étape Former la Réserve d'Attaque, vous pouvez ✖ cette carte. Dans ce cas, cette Réserve d'Attaque gagne Anti-matériel 2 et Impact 2.",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-23T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-10-23"
+  },
+  "battlemaster": {
+    "nameFr": "Maître de Bataille",
+    "cardType": "upgrade",
+    "image": "battlemaster-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "la-mort-venue-du-ciel"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Battlemaster",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Battlemaster.webp",
+      "englishText": "Mandalorian Leader or Mandalorian Hunter only. This unit gains Death From Above. The first time each Game this unit would discard a gear, armament or clan Upgrade Card, that Upgrade Card is exhausted instead.",
+      "frenchText": "Chef Mandalorien ou Chasseur Mandalorien uniquement. Cette unité gagne La Mort Venue du Ciel. La première fois de chaque partie que cette unité devrait ✖ une carte Amélioration (équipement, armement ou clan), cette carte Amélioration est ↱ à la place.",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-23T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-10-23"
+  },
+  "galaar 90 sniper rifle armament": {
+    "nameFr": "Fusil Sniper GALAAR-90",
+    "cardType": "upgrade",
+    "image": "galaar-90-sniper-rifle-armament-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Fusil Sniper GALAAR-90",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-5",
+        "keywordIds": [
+          "haute-velocite",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "GALAAR-90 Sniper Rifle (Armament)",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/GALAAR-90%20Sniper%20Rifle%20Leader.webp",
+      "englishText": "Mandalorian Leader or Mandalorian Hunter only. This unit gains Sharpshooter 1. GALAAR-90 Sniper Rifle (1 red, 1 white, 1 black, 1-5): High Velocity, Pierce 1.",
+      "frenchText": "Chef Mandalorien ou Chasseur Mandalorien uniquement. Cette unité gagne Tireur d'Élite 1. Fusil Sniper GALAAR-90 (1 rouge, 1 blanc, 1 noir, 1-5) : Haute Vélocité, Perforant 1.",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-23T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-10-23"
+  },
+  "champion of the watch": {
+    "nameFr": "Champion de la Ronde",
+    "cardType": "upgrade",
+    "image": "champion-of-the-watch-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "telle-est-la-voie"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Champion of the Watch",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Champion%20of%20the%20Watch.webp",
+      "englishText": "Mandalorian Trooper commander or Mandalorian Trooper operative only. This unit changes its Affiliation to Children of the Watch. This unit gains This is the Way: Aim 1 or Dodge 1.",
+      "frenchText": "Soldat Mandalorien commandant ou Soldat Mandalorien agent uniquement. Cette unité change son Affiliation en Enfants de la Ronde. Cette unité gagne Telle est la Voie : Viser 1 ou Esquiver 1.",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-23T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-10-23"
+  },
+  "proven tactician": {
+    "nameFr": "Tacticienne Éprouvée",
+    "cardType": "upgrade",
+    "image": "proven-tactician-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "vivacite-desprit"
+      },
+      {
+        "keywordId": "exemplaire"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Proven Tactician",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Proven%20Tactician.webp",
+      "englishText": "Rebel Officer only. Increase this unit's courage by 1. While within range 1 of this unit, allied trooper units gain Reinforcements. This unit gains Quick Thinking and Exemplar.",
+      "frenchText": "Officier Rebelle uniquement. Augmentez le courage de cette unité de 1. Tant qu'elles sont à portée 1 de cette unité, les unités de soldats alliées gagnent Renforts. Cette unité gagne Vivacité d'Esprit et Exemplaire.",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-23T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-10-23"
+  },
+  "vibro axe": {
+    "nameFr": "Vibrohache",
+    "cardType": "upgrade",
+    "image": "vibro-axe-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrohache",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "impact-x",
+          "letal-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1,
+          "letal-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "charge"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Vibro Axe",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Vibro%20Axe.webp",
+      "englishText": "Rebel Agent or Rebel Officer only. This unit gains Charge. Vibro Axe (1 red, 3 black, melee): Impact 1, Lethal 1.",
+      "frenchText": "Agent Rebelle ou Officier Rebelle uniquement. Cette unité gagne Charge. Vibrohache (1 rouge, 3 noirs, corps-à-corps) : Impact 1, Létal 1.",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-10-23T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-10-23"
   }
 }

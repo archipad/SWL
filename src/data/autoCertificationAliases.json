@@ -3,7 +3,8 @@
     "description": "Table explicite des rapprochements de la certification automatique β, utilisée quand la correspondance automatique (nom anglais, nom français, titre, glossaire) n'est pas certaine. Elle ne modifie ni les alias ni les certifications historiques. « confirmed » : sens, nombre de pips et série de cartes concordants, rapprochement utilisé directement. « proposed » : rapprochement plausible mais incertain, affiché comme proposition et soumis à confirmation humaine.",
     "cles": "cards : « kind:sourceId » Tabletop Admiral → clé de carte SWL (public/cards). commands : identifiant Tabletop Admiral → identifiant de public/commandcards.",
     "printedTitles": "Titre imprimé sur la carte anglaise officielle quand il diffère du nom Tabletop Admiral (vérifié à l'œil sur le PDF AMG) ; sert uniquement à identifier la carte lors de l'extraction.",
-    "keywordTranslations": "Traductions de mots-clés absentes de l'index V2.6 (marquées « N/A ») : terme imprimé sur la carte française et présent dans le glossaire certifié SWL."
+    "keywordTranslations": "Traductions de mots-clés absentes de l'index V2.6 (marquées « N/A ») : terme imprimé sur la carte française et présent dans le glossaire certifié SWL.",
+    "decisionOnly": "Alias de carte marqué « decisionOnly » : raccorde seulement le visuel et la clé SWL d'une variante déjà tranchée par une décision certifiée (autoCertificationDecisions.json) ; il ne tranche jamais un doublon Tabletop Admiral."
   },
   "cards": {
     "upgrade:2429": {
@@ -34,6 +35,14 @@
       "frenchName": "Armure de Combat",
       "frenchVisual": false,
       "evidence": "Décision certifiée du 21/10/2026 (variante n° 20282, « Rebel Agent or Rebel Officer Only ») ; certification historique « combat armor rebel ». Le visuel du site (public/cards/combat-armor-rebel.webp) est une carte anglaise communautaire (legion.takras.net) : il n'est jamais présenté comme visuel français."
+    },
+    "upgrade:22654": {
+      "localKey": "galaar 90 sniper rifle armament",
+      "status": "confirmed",
+      "decisionOnly": true,
+      "englishName": "GALAAR-90 Sniper Rifle",
+      "frenchName": "Fusil Sniper GALAAR-90",
+      "evidence": "Variante « Armament » 5 pts retenue par la décision certifiée du 21/10/2026 : Tireur d'Élite 1, arme 1 rouge + 1 blanc + 1 noir, portée 1-5, Haute Vélocité, Perforant 1 ; fiche FR communautaire validée visuellement par Antoine le 23/10/2026."
     }
   },
   "commands": {
@@ -216,6 +225,18 @@
       "status": "confirmed",
       "englishName": "Armored Cavalry",
       "evidence": "Major Marquand, 3 pips, série 8115-8117."
+    },
+    "17864": {
+      "localId": "reconnaissance-du-champ-de-bataille",
+      "status": "confirmed",
+      "englishName": "Battlefield Reconnaissance",
+      "evidence": "Agent Rebelle, 2 pips ; fiche FR communautaire validée visuellement par Antoine le 23/10/2026 (visuel anglais Legion HQ)."
+    },
+    "17863": {
+      "localId": "tactiques-de-diversion",
+      "status": "confirmed",
+      "englishName": "Diversionary Tactics",
+      "evidence": "Officier Rebelle, 3 pips ; fiche FR communautaire validée visuellement par Antoine le 23/10/2026 (visuel anglais Legion HQ)."
     }
   },
   "printedTitles": {

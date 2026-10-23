@@ -81,5 +81,7 @@ window.SWL_CODEX_PORTRAITS={
   "mandalorian resistance": "catalog-resistance-mandalorienne.webp",
   "grogu": "../cards/grogu.jpg",
   "omega": "../cards/omega.jpg",
-  "grand admiral thrawn imperial high command": "../cards/grand-admiral-thrawn-fr-community.png"
+  "grand admiral thrawn imperial high command": "../cards/grand-admiral-thrawn-fr-community.png",
+  "mandalorian hunter": "../cards/mandalorian-hunter-fr-community.jpg",
+  "rebel officer fighting for freedom": "../cards/rebel-officer-fighting-for-freedom-fr-community.jpg"
 };

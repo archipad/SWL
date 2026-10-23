@@ -2384,7 +2384,7 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
   const historicAliases = { 'carte de test': 'stormtroopers' }
   // Rejoué à l'origine du site publié : l'inventaire personnel n'y est jamais chargé, le parcours est identique en local et en CI.
   const app = await openAssistant({
-    'swl.list.p1.v1': { listName: 'Test bêta', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Underworld Connections' }] }, { name: 'Imaginary Beta Unit', upgrades: [] }], commandCards: ['Ambush', 'Imaginary Beta Command'], contingencies: ['Imaginary Beta Contingency'] },
+    'swl.list.p1.v1': { listName: 'Test bêta', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [{ name: 'Underworld Connections' }] }, { name: 'Imaginary Beta Unit', upgrades: [] }], commandCards: ['Aggressive Negotiations', 'Imaginary Beta Command'], contingencies: ['Imaginary Beta Contingency'] },
     'swl.list.p2.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [] }] },
     'swl-dice-certification-batch-v1': historicBatch,
     'swl-unknown-card-aliases-v1': historicAliases,
@@ -2415,12 +2415,12 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
   // File : uniquement les cartes des listes importées, des quatre familles.
   const row = (key) => $$('[data-auto-card]').find((button) => decodeURIComponent(button.dataset.autoCard) === key)
   const listed = $$('[data-auto-card]').map((button) => decodeURIComponent(button.dataset.autoCard))
-  assert.deepEqual([...listed].sort(), ['ambush', 'imaginary beta command', 'imaginary beta contingency', 'imaginary beta unit', 'underworld connections'], 'la file contient les cartes des listes à comparer (unités, améliorations, commandements, contingences)')
+  assert.deepEqual([...listed].sort(), ['aggressive negotiations', 'imaginary beta command', 'imaginary beta contingency', 'imaginary beta unit', 'underworld connections'], 'la file contient les cartes des listes à comparer (unités, améliorations, commandements, contingences)')
   assert.match(text($('.auto-cert-certified')), /Certifications existantes valides \(2\)[\s\S]*Stormtroopers[\s\S]*Rebel Troopers/, 'Stormtroopers et Rebel Troopers, certifiés et inchangés, quittent la file sans visuel anglais')
   assert.match(text(row('underworld connections')), /Amélioration · Contacts dans la Pègre/, 'Underworld Connections est rattachée à Contacts dans la Pègre')
   assert.match(text(row('underworld connections')), /✓ Métadonnées.*✓ EN.*✓ FR.*✓ Traduction.*✓ Mots-clés connus.*✓ Prête/, 'les six états sont affichés et indépendants')
-  assert.match(text(row('ambush')), /Commandement.*✓ Métadonnées.*✗ EN.*✗ FR.*✗ Prête/, 'une carte sans visuel reste à préparer')
-  assert.match(row('ambush').innerHTML, /Visuel anglais non disponible en ligne/, 'en ligne, l’absence de visuel anglais est annoncée comme telle')
+  assert.match(text(row('aggressive negotiations')), /Commandement.*✓ Métadonnées.*✗ EN.*✗ FR.*✗ Prête/, 'une carte sans visuel reste à préparer')
+  assert.match(row('aggressive negotiations').innerHTML, /Visuel anglais non disponible en ligne/, 'en ligne, l’absence de visuel anglais est annoncée comme telle')
   assert.match(text(row('imaginary beta contingency')), /Contingence.*✗ Métadonnées/, 'une contingence inconnue est signalée sans métadonnées')
   const sections = $$('.auto-cert-page h2').map(text)
   assert.deepEqual(sections, ['Prêtes pour validation humaine', 'À préparer'], 'la file sépare les cartes prêtes de celles à préparer')
@@ -2430,9 +2430,10 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
 
   // Non-régression : une URL externe seule ne suffit JAMAIS à déverrouiller la certification.
   const catalog = app.window.SWL_AUTO_CERTIFICATION_SOURCE.cards
-  const ambush = catalog.find((card) => card.kind === 'command' && card.englishName === 'Ambush')
-  Object.assign(ambush, { englishImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/en.webp', frenchImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/fr.jpg', image_url: 'https://d26oqf9i6fvic.cloudfront.net/commands-new/resized/7.webp', imageUrl: 'https://cdn.svc.asmodee.net/x.png' })
-  await open('ambush')
+  // Carte sans aucun visuel local (Ambush a désormais une fiche FR communautaire, 23/10/2026).
+  const unvisualized = catalog.find((card) => card.kind === 'command' && card.englishName === 'Aggressive Negotiations')
+  Object.assign(unvisualized, { englishImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/en.webp', frenchImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/fr.jpg', image_url: 'https://d26oqf9i6fvic.cloudfront.net/commands-new/resized/7.webp', imageUrl: 'https://cdn.svc.asmodee.net/x.png' })
+  await open('aggressive negotiations')
   assert.ok(!$$('.auto-cert-page img').length, 'une adresse distante n’est jamais affichée ni considérée comme un visuel')
   assert.ok($('#validateAutoCard').disabled && $('#autoVisualCheck').disabled, 'une adresse distante ne déverrouille jamais la certification')
   const inventory = app.window.SWL_AUTO_CERTIFICATION_ASSETS.assets
@@ -2527,11 +2528,11 @@ scenario('Certification automatique β : les quatre variantes tranchées viennen
   const app = await openBeta(variantLists, { base: ONLINE_BASE_URL })
   const { $, $$, text, click } = app
   const expected = { 'galaar 90 sniper rifle armament': '22654', 'combat armor rebel': '20282', 'at rt': '1', 'rebel commandos strike team': '25979' }
-  // Une carte tranchée reste dans la file (GALAAR-90, nouvelle) ou la quitte si sa certification existante est valide.
+  // Une carte tranchée reste dans la file (GALAAR-90, sans certification historique) ou la quitte si sa certification existante est valide.
   const decidedIn = (target, key, sourceId) => { const pattern = new RegExp(`n° ${sourceId} \\(décision certifiée\\)`), row = betaRow(target, key); return row ? pattern.test(row.innerHTML) && !/cartes possibles/.test(row.innerHTML) : target.$$('.auto-cert-certified li').some((item) => cardKey(item.querySelector('strong').textContent) === key && new RegExp(`Tabletop Admiral n° ${sourceId}(?!\d)`).test(item.textContent)) }
   const cardKey = (name) => app.window.eval(`cardKey(${JSON.stringify(name)})`)
   for (const [key, sourceId] of Object.entries(expected)) assert.ok(decidedIn(app, key, sourceId), `${key} : variante n° ${sourceId} appliquée depuis le dépôt, sans ambiguïté`)
-  assert.ok(betaRow(app, 'galaar 90 sniper rifle armament') && !betaRow(app, 'at rt'), 'GALAAR-90 (nouvelle) reste à comparer ; l’AT-RT rebelle, déjà certifié, quitte la file')
+  assert.ok(betaRow(app, 'galaar 90 sniper rifle armament') && !betaRow(app, 'at rt'), 'GALAAR-90 (sans certification historique) reste à comparer ; l’AT-RT rebelle, déjà certifié, quitte la file')
   assert.match(text($('.auto-cert-banner')), /4 carte\(s\) à variantes Tabletop Admiral \(0 sans variante retenue\)/, 'le compteur ne signale plus aucune variante à choisir')
   assert.equal(app.window.localStorage.getItem('swl-auto-certification-beta-v1'), null, 'aucune décision n’est écrite dans le stockage local : elles viennent du dépôt')
 
@@ -2617,7 +2618,7 @@ const pngImage = (width, height, seed) => {
 const upgradeCollisions = JSON.parse(fs.readFileSync(new URL('../src/data/upgradeNameCollisions.json', import.meta.url), 'utf8'))
 const realListUnits = (file) => { const list = JSON.parse(fs.readFileSync(new URL(`./data/real-lists/${file}`, import.meta.url), 'utf8')); return { listName: list.listname, faction: list.armyFaction === 'rebel' ? 'Alliance Rebelle' : 'Empire Galactique', units: list.units.map((unit) => ({ name: unit.name, upgrades: unit.upgrades.map((name) => ({ name: upgradeCollisions[name.toLowerCase()] || name })) })), commandCards: list.commandCards, contingencies: list.contingencies } }
 
-scenario('Certification automatique β en ligne : une carte certifiée et inchangée ne réclame aucun visuel anglais, une carte nouvelle reste bloquée', async () => {
+scenario('Certification automatique β en ligne : une carte certifiée et inchangée ne réclame aucun visuel anglais, une carte à comparer reste bloquée', async () => {
   const app = await openBeta({ 'swl.list.p1.v1': realListUnits('empire-moff-gideon.json'), 'swl.list.p2.v1': realListUnits('rebelles-simon-3.json') }, { base: ONLINE_BASE_URL })
   const { $, text, click } = app
   assert.ok(!betaRow(app, 'stormtroopers') && !betaRow(app, 'moff gideon long live the empire'), 'les cartes certifiées et inchangées quittent la file de validation humaine')
@@ -2625,9 +2626,10 @@ scenario('Certification automatique β en ligne : une carte certifiée et inchan
   assert.match(text($('.auto-cert-certified')), /Certifications existantes valides \(\d+\)[\s\S]*Stormtroopers[\s\S]*Certification existante valide/, 'elles sont listées comme « Certification existante valide », sans visuel anglais')
   const counts = text($('.auto-cert-banner')).match(/(\d+) certifiée\(s\) et inchangée\(s\) · (\d+) certification\(s\) devenue\(s\) obsolète\(s\) · (\d+) connue\(s\) mais incomplète\(s\) · (\d+) réellement nouvelle\(s\)/)
   assert.ok(counts && Number(counts[1]) >= 30 && Number(counts[2]) === 0, `les quatre états sont comptés sur les deux listes réelles (${counts?.[0]})`)
-  assert.match(text(betaRow(app, 'mandalorian hunter')), /carte réellement nouvelle/, 'Mandalorian Hunter est une carte réellement nouvelle')
+  // Fiche FR communautaire du 23/10/2026 : connue du site, mais sans certification historique → comparaison EN/FR obligatoire.
+  assert.match(text(betaRow(app, 'mandalorian hunter')), /carte connue mais incomplète/, 'Mandalorian Hunter est une carte connue mais incomplète')
   await click(betaRow(app, 'mandalorian hunter'))
-  assert.ok($('#validateAutoCard').disabled && $('#autoEnglishDrop'), 'une carte nouvelle reste bloquée sans comparaison : import du visuel anglais proposé')
+  assert.ok($('#validateAutoCard').disabled && $('#autoEnglishDrop'), 'une carte à comparer reste bloquée sans visuel anglais : import du visuel anglais proposé')
   assert.match(text($('#autoEnglishDrop')), /Importer le visuel anglais[\s\S]*Visuel personnel conservé uniquement sur cet appareil/, 'l’import local est proposé avec son avertissement')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()
@@ -2729,13 +2731,16 @@ scenario('Certification automatique β : visuel anglais importé dans IndexedDB,
 })
 
 scenario('Ancien écran : visuel manquant remplacé par « Visuel indisponible », sans requête vers un fichier deviné', async () => {
-  const app = await openAssistant({ 'swl.list.p1.v1': realListUnits('empire-moff-gideon.json'), 'swl.list.p2.v1': realListUnits('rebelles-simon-3.json') })
+  // Toutes les cartes des listes réelles ont désormais un visuel (fiches FR communautaires du 23/10/2026) : une unité inconnue y est ajoutée.
+  const empire = realListUnits('empire-moff-gideon.json')
+  const app = await openAssistant({ 'swl.list.p1.v1': { ...empire, units: [...empire.units, { name: 'Imaginary Beta Unit', upgrades: [] }] }, 'swl.list.p2.v1': realListUnits('rebelles-simon-3.json') })
   const { $$, settle } = app
   await settle(100)
   const sources = () => $$('img').map((img) => img.getAttribute('src') || '')
-  assert.ok(!sources().some((src) => /mandalorian-hunter\.jpg/.test(src)), 'aucune image ne pointe vers cards/mandalorian-hunter.jpg, absent du dépôt')
+  assert.ok(!sources().some((src) => /imaginary-beta-unit\.jpg/.test(src)), 'aucune image ne pointe vers un fichier deviné, absent du dépôt')
   assert.ok(sources().some((src) => src.endsWith('visuel-indisponible.svg')), 'la carte inconnue reçoit le remplacement local')
-  assert.equal(app.window.eval('imageFor("Mandalorian Hunter")'), './visuel-indisponible.svg', 'carte inconnue : remplacement, jamais un chemin deviné')
+  assert.equal(app.window.eval('imageFor("Imaginary Beta Unit")'), './visuel-indisponible.svg', 'carte inconnue : remplacement, jamais un chemin deviné')
+  assert.match(app.window.eval('imageFor("Mandalorian Hunter")'), /cards\/mandalorian-hunter-fr-community\.jpg$/, 'Mandalorian Hunter : fiche FR communautaire raccordée')
   assert.match(app.window.eval('imageFor("Stormtroopers")'), /cards\/stormtroopers\.jpg$/, 'une carte connue garde son vrai visuel')
   // Filet de sécurité : tout visuel de carte qui échoue est remplacé et signalé comme tel.
   const img = app.window.document.createElement('img')

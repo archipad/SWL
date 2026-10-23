@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.
 
-305 cartes connues dans le référentiel · 99 cartes à effet propre · 56 sondes rejouées dans l’Assistant.
+313 cartes connues dans le référentiel · 100 cartes à effet propre · 56 sondes rejouées dans l’Assistant.
 
 | Carte | ↱ / ✖ | Traitement | Où | Remarque |
 |---|---|---|---|---|
@@ -98,6 +98,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Spécialiste Stormtrooper | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Ordres Stricts | — | Rappel (briefing) | briefing tactique | agit sur les unités alliées : rappelé dans leur briefing |
 | Super Commando Mandalorien | — | Rappel (briefing) | briefing tactique | conserve Cache si la figurine est vaincue : rappelé dans le briefing |
+| Munitions Antichar | ✖ | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | Ténacité | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Agent de Confiance | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Tacticien Peu Orthodoxe | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |

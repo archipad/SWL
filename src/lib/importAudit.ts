@@ -31,10 +31,12 @@ export interface ImportAudit {
 }
 
 // Cartes de Commandement déjà présentes dans le paquet du site (src/data/commandCards.ts) : reconnues par
-// identifiant, nom français ou nom anglais cité entre parenthèses (« Carte générique (Ambush) »).
+// identifiant, nom français, nom anglais Tabletop Admiral (englishName) ou nom anglais cité entre parenthèses
+// (« Carte générique (Ambush) »).
 const COMMAND_CATALOG_KEYS = new Set(COMMAND_CARDS.flatMap((card) => [
   card.id.replace(/-/g, ' '),
   canonicalCardKey(card.name),
+  ...(card.englishName ? [canonicalCardKey(card.englishName)] : []),
   ...[...card.requirement.matchAll(/\(([^)]+)\)/g)].map((match) => canonicalCardKey(match[1])),
 ]));
 export const isKnownCommandCard = (name: string) => { const key = canonicalCardKey(name); return COMMAND_CATALOG_KEYS.has(key) || Boolean(CARD_IMAGES[key] && CARD_NAMES_FR[key]); };

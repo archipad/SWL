@@ -80,6 +80,10 @@
       "use": "passive",
       "icons": []
     },
+    "battlemaster": {
+      "use": "passive",
+      "icons": []
+    },
     "beskad duelist": {
       "use": "passive",
       "icons": []
@@ -123,6 +127,10 @@
       "icons": []
     },
     "cassian andor operative": {
+      "use": "passive",
+      "icons": []
+    },
+    "champion of the watch": {
       "use": "passive",
       "icons": []
     },
@@ -368,6 +376,10 @@
       "icons": []
     },
     "fx 9 medical droid": {
+      "use": "passive",
+      "icons": []
+    },
+    "galaar 90 sniper rifle armament": {
       "use": "passive",
       "icons": []
     },
@@ -619,6 +631,10 @@
       ]
     },
     "proton charge saboteur": {
+      "use": "passive",
+      "icons": []
+    },
+    "proven tactician": {
       "use": "passive",
       "icons": []
     },
@@ -893,6 +909,12 @@
       "use": "passive",
       "icons": []
     },
+    "tank hunting munitions": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
     "targeting scopes": {
       "use": "passive",
       "icons": []
@@ -946,6 +968,10 @@
       ]
     },
     "ursa wren": {
+      "use": "passive",
+      "icons": []
+    },
+    "vibro axe": {
       "use": "passive",
       "icons": []
     },

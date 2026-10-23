@@ -25,7 +25,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Stratège X | Actions de carte | auto | 1 |
 | Tirer les Ficelles | Actions de carte | auto | 0 |
 | Traiter X : Capacité Y | Actions de carte | auto | 2 |
-| Vivacité d'Esprit | Actions de carte | auto | 1 |
+| Vivacité d'Esprit | Actions de carte | auto | 2 |
 | Accomplir la Mission | Attaque | moteur (automatique) | 0 |
 | Anti-matériel X | Attaque | moteur (automatique) | 0 |
 | Anti-personnel X | Attaque | moteur (automatique) | 0 |
@@ -39,7 +39,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Bélier X | Attaque | moteur (automatique) | 2 |
 | Bordée X | Attaque | moteur (assisté) | 1 |
 | Câble de Remorquage | Attaque | moteur (automatique) | 1 |
-| Charge | Attaque | moteur (assisté) | 9 |
+| Charge | Attaque | moteur (assisté) | 10 |
 | Chasseur de Jedi | Attaque | moteur (automatique) | 1 |
 | Ciblage Avancé : Type d'Unité X | Attaque | moteur (assisté) | 1 |
 | Critique X | Attaque | moteur (automatique) | 21 |
@@ -49,18 +49,18 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Duelliste | Attaque | moteur (automatique) | 4 |
 | Encombrant | Attaque | moteur (automatique) | 5 |
 | Équipe Sniper | Attaque | moteur (assisté) | 2 |
-| Exemplaire | Attaque | moteur (assisté) | 4 |
+| Exemplaire | Attaque | moteur (assisté) | 5 |
 | Explosion X : Type de Charge | Attaque | moteur (assisté) | 0 |
 | Fixe : Avant/Arrière/Flancs | Attaque | moteur (automatique) | 25 |
-| Haute Vélocité | Attaque | moteur (automatique) | 8 |
+| Haute Vélocité | Attaque | moteur (automatique) | 9 |
 | Immobiliser X | Attaque | moteur (automatique) | 3 |
 | Immunité : Déflexion | Attaque | moteur (automatique) | 0 |
-| Impact X | Attaque | moteur (automatique) | 53 |
+| Impact X | Attaque | moteur (automatique) | 54 |
 | Implacable | Attaque | moteur (assisté) | 5 |
 | Ion X | Attaque | moteur (automatique) | 4 |
-| La Mort Venue du Ciel | Attaque | moteur (automatique) | 0 |
+| La Mort Venue du Ciel | Attaque | moteur (automatique) | 1 |
 | Les Mandaloriens sont Plus Forts Ensemble | Attaque | moteur (assisté) | 0 |
-| Létal X | Attaque | moteur (automatique) | 7 |
+| Létal X | Attaque | moteur (automatique) | 8 |
 | Longue Distance | Attaque | moteur (automatique) | 11 |
 | Maîtrise de l'Ataru | Attaque | moteur (automatique) | 0 |
 | Maîtrise du Jar'Kai | Attaque | moteur (automatique) | 1 |
@@ -69,7 +69,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Matamore | Attaque | moteur (automatique) | 0 |
 | Non-combattant | Attaque | moteur (assisté) | 5 |
 | Nous nous Battons pour notre Famille | Attaque | moteur (assisté) | 0 |
-| Perforant X | Attaque | moteur (automatique) | 28 |
+| Perforant X | Attaque | moteur (automatique) | 30 |
 | Pistolero | Attaque | moteur (assisté) | 2 |
 | Poison X | Attaque | moteur (automatique) | 0 |
 | Polyvalent | Attaque | moteur (assisté) | 3 |
@@ -81,7 +81,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Surveillance X | Attaque | moteur (automatique) | 3 |
 | Tenir Bon | Attaque | moteur (automatique) | 1 |
 | Tir de Soutien | Attaque | moteur (assisté) | 2 |
-| Tireur d'Élite X | Attaque | moteur (automatique) | 21 |
+| Tireur d'Élite X | Attaque | moteur (automatique) | 22 |
 | Tireur Embusqué | Attaque | moteur (automatique) | 5 |
 | Transport X : Ouvert/Fermé | Attaque | moteur (assisté) | 0 |
 | Aléas X | Composition d'armée | composition | 0 |
@@ -90,9 +90,9 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Commandant des Opérations | Composition d'armée | composition | 6 |
 | Défaut | Composition d'armée | composition | 0 |
 | Détachement : Nom/Type d'Unité | Composition d'armée | composition | 5 |
-| Équipe | Composition d'armée | composition | 4 |
+| Équipe | Composition d'armée | composition | 6 |
 | Équipe avec Arme Lourde | Composition d'armée | composition | 2 |
-| Mercenaire : Faction | Composition d'armée | composition | 16 |
+| Mercenaire : Faction | Composition d'armée | composition | 17 |
 | Paquetage | Composition d'armée | composition | 0 |
 | Programmé | Composition d'armée | composition | 1 |
 | Riposte Graduée X | Composition d'armée | composition | 1 |
@@ -116,7 +116,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Incognito | Défense | moteur (automatique) | 3 |
 | Indifférent | Défense | moteur (automatique) | 1 |
 | Influence Divine | Défense | moteur (assisté) | 0 |
-| Insensible | Défense | moteur (automatique) | 11 |
+| Insensible | Défense | moteur (automatique) | 12 |
 | Intuition du Danger X | Défense | moteur (assisté) | 4 |
 | La Victoire ou la Mort | Défense | moteur (assisté) | 0 |
 | Maîtrise du Djem So | Défense | moteur (automatique) | 0 |
@@ -139,7 +139,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Redéploiement | Déplacement | regle | 7 |
 | Retrait | Déplacement | regle | 2 |
 | Sans Entrave | Déplacement | regle | 4 |
-| Saut X | Déplacement | auto | 14 |
+| Saut X | Déplacement | auto | 15 |
 | Speeder X | Déplacement | auto | 4 |
 | Stationnaire | Déplacement | regle | 1 |
 | Sustentation : Terrestre/Aérienne X | Déplacement | regle | 2 |
@@ -154,7 +154,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Restaurer | Effets permanents | rappel | 0 |
 | Tenir le Cap : Mot-clé | Effets permanents | rappel | 0 |
 | Cycle | Fin d'activation | auto | 5 |
-| Inspiration X | Fin d'activation | auto | 7 |
+| Inspiration X | Fin d'activation | auto | 8 |
 | Maître de la Force X | Fin d'activation | auto | 3 |
 | Pouvoir Latent | Fin d'activation | auto | 1 |
 | Régénérer X | Fin d'activation | auto | 1 |
@@ -182,7 +182,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Maîtrise du Juyo | Ordre reçu · début d'activation | auto | 1 |
 | Mode Roue | Ordre reçu · début d'activation | auto | 0 |
 | Surcharge X | Ordre reçu · début d'activation | auto | 0 |
-| Telle est la Voie | Ordre reçu · début d'activation | auto | 0 |
+| Telle est la Voie | Ordre reçu · début d'activation | auto | 1 |
 | Autoritaire | Phase de Commandement | auto | 0 |
 | Coordination : Nom/Type d'Unité | Phase de Commandement | auto | 4 |
 | Divulgation | Phase de Commandement | auto | 0 |

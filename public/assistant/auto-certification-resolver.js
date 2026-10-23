@@ -60,8 +60,9 @@
       if (!options.length && collided) { options = pool.filter((card) => normalize(fullEnglish(card)) === normalize(collided[0])); certainty = 'collision' }
       if (!options.length) return { meta: null, certainty: 'none', options: [] }
       if (options.length > 1) {
-        // Doublons Tabletop Admiral (même nom et titre) : jamais de choix silencieux, sauf alias confirmé explicite.
-        const confirmed = options.filter((card) => (card.kind === 'command' ? aliases.commands?.[card.sourceId] : aliases.cards?.[`${card.kind}:${card.sourceId}`])?.status === 'confirmed')
+        // Doublons Tabletop Admiral (même nom et titre) : jamais de choix silencieux, sauf alias confirmé explicite
+        // (un alias « decisionOnly » raccorde seulement le visuel : la variante vient de la décision certifiée).
+        const confirmed = options.filter((card) => { const alias = card.kind === 'command' ? aliases.commands?.[card.sourceId] : aliases.cards?.[`${card.kind}:${card.sourceId}`]; return alias?.status === 'confirmed' && !alias.decisionOnly })
         if (confirmed.length === 1) return { meta: confirmed[0], certainty: 'alias', options }
         const decision = variantDecision(name, kind, context)
         const decided = decision && options.find((card) => card.sourceId === decision.sourceId)

@@ -8,7 +8,7 @@
   // Les visuels AMG « usage personnel » ne sont jamais publiés : leur inventaire (ignoré par Git) n'est demandé qu'en local.
   const LOCAL_HOST=['localhost','127.0.0.1','[::1]','::1'].includes(location.hostname)
   // Métadonnées Tabletop Admiral (≈ 1 Mo), inventaire des visuels publiés et résolveur partagé, chargés à l'ouverture de la bêta.
-  const scripts=['./auto-certification-source.js?v=3','./auto-certification-assets.js?v=5','./auto-certification-resolver.js?v=4'];let sourceLoading=null
+  const scripts=['./auto-certification-source.js?v=3','./auto-certification-assets.js?v=6','./auto-certification-resolver.js?v=5'];let sourceLoading=null
   const loadScript=src=>new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src;script.onload=resolve;script.onerror=()=>{script.remove();reject(new Error(src))};document.head.appendChild(script)})
   const loadPersonal=()=>LOCAL_HOST&&!window.SWL_AUTO_CERTIFICATION_PERSONAL?loadScript('./auto-certification-personal.js').catch(()=>{}):null
   const loadSource=()=>window.SWL_AUTO_CERTIFICATION_SOURCE&&window.SWL_AUTO_CERTIFICATION_ASSETS&&window.SWL_AUTO_CERT_RESOLVER?Promise.resolve(loadPersonal()):sourceLoading||(sourceLoading=Promise.all(scripts.map(loadScript)).then(loadPersonal).catch(error=>{sourceLoading=null;throw error}))
