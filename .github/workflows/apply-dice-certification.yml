@@ -13,7 +13,7 @@ jobs:
   apply:
     if: >-
       github.event.issue.pull_request == null &&
-      github.event.comment.body == '/appliquer-certification' &&
+      startsWith(github.event.comment.body, '/appliquer-certification') &&
       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
     runs-on: ubuntu-latest
     steps:
