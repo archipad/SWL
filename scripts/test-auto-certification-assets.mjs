@@ -123,7 +123,8 @@ assert.deepEqual({ ...resolver.swlKey(meta('unit', '11258')) }, { key: 'moff gid
 // Glossaire : formes génériques sans deux-points (« RETINUE UNIT/UNIT TYPE ») et variantes d'orthographe signalées à confirmer.
 assert.equal(resolver.status(meta('upgrade', '6322')).keywords.find((keyword) => keyword.name === 'Retinue')?.fr, 'ESCORTE', 'Retinue → ESCORTE')
 assert.ok(resolver.status(meta('unit', '23657')).keywords.some((keyword) => keyword.name === 'Advanced Targeting: X' && keyword.fr === 'CIBLAGE AVANCÉ' && keyword.partial), 'Advanced Targeting (glossaire : « ADVANCE TARGETING ») est rapproché mais reste à confirmer')
-assert.ok(resolver.status(meta('upgrade', '22599')).newKeywords.some((keyword) => keyword.name === 'This is the Way'), 'un mot-clé absent du glossaire reste nouveau')
+assert.ok(!resolver.status(meta('upgrade', '22599')).newKeywords.length, 'This is the Way → TELLE EST LA VOIE (table keywordTranslations)')
+assert.ok(resolver.status({ ...meta('upgrade', '22599'), keywords: [{ name: 'Brand New Keyword' }] }).newKeywords.some((keyword) => keyword.name === 'Brand New Keyword'), 'un mot-clé absent du glossaire reste nouveau')
 // Liste Rebelles réelle : le nom anglais exact prime sur un nom français partagé (Commandos Rebelles / Strike Team).
 assert.equal(resolver.localFrench(meta('unit', '13'))?.src, '../cards/rebel-commandos.jpg', 'Rebel Commandos : pas de fausse ambiguïté avec le Strike Team')
 // « N/A » de l'index V2.6 n'est jamais une traduction ; la table explicite (termes des cartes françaises) prend le relais.

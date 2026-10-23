@@ -53,6 +53,7 @@ try {
     ['Into the Fray', 'in the fray', 'Dans la Mêlée'],
     ['AT-RT Laser Cannon', 'tl tt laser cannon', 'Canon Laser de TL-TT'],
     ['AT-RT Rotary Blaster', 'tl tt rotary blaster', 'Blaster Rotatif de TL-TT'],
+    ['Soldat avec CM-0/93', 'cm o 93 trooper', 'Soldat avec CM-O/93'],
     ['Up Close and Personal', 'point blank', 'À Bout Portant'],
   ];
   for (const [importedName, expectedKey, expectedFrenchName] of tabletopAliases) {
