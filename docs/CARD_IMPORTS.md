@@ -31,3 +31,12 @@ Une carte importée est immédiatement fonctionnelle si sa variante se résout v
 - Problème de certification : dés, défense, PV, courage ou effectif non vérifié ; l'automatisation concernée ne doit pas être présentée comme certaine.
 
 Une amélioration sans arme et sans ajout de figurine ne doit pas apparaître artificiellement dans la certification des dés/effectifs. Elle reste contrôlée par le catalogue et, si nécessaire, par ses tags ou notes.
+
+## Fiche française communautaire (carte sans visuel FR)
+
+Depuis la certification, « Créer sa version française » ouvre l'atelier Legion HQ :
+1. Il retrouve la carte et vérifie sa concordance avec Tabletop Admiral.
+2. Il prépare la traduction.
+3. Il ouvre un ticket GitHub.
+
+Le workflow « Fiche FR communautaire » génère alors l'image française et publie l'aperçu. Le commentaire `/valider-fiche-fr` l'intègre au site sans écraser un visuel existant. Les données moteur se certifient ensuite comme pour toute carte. Détail : `scripts/fr-cards/README.md`.

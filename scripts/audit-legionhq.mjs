@@ -256,5 +256,18 @@ if (writeReference) {
   const sortedImages = Object.fromEntries(Object.entries(images).sort(([a], [b]) => a.localeCompare(b)))
   fs.writeFileSync(path.join(root, 'src/data/legionhqReference.json'), JSON.stringify({ _meta: { keywordIds: [...mappableIds].sort(), source: 'https://legionhq2.com', genere: new Date().toISOString().slice(0, 10), description: 'Valeurs de référence Legion HQ des cartes appariées (vitesse, rang, figurines, PV, courage, défense, adrénalines, dés et portée des armes). Généré par scripts/audit-legionhq.mjs --write.' }, cards: sorted, images: sortedImages }, null, 1) + '\n')
   console.log('référence écrite : ' + Object.keys(sorted).length + ' cartes -> src/data/legionhqReference.json')
+  // Catalogue Legion HQ chargé à la demande par l'atelier des fiches FR (public/assistant/fr-card-workshop.js) : structure de
+  // chaque carte (type, coût, pips, mots-clés, armes, restrictions) pour vérifier la concordance avec Tabletop Admiral et
+  // préremplir la traduction. Le texte des règles n'existe pas chez Legion HQ : il reste saisi dans l'atelier.
+  const kw = (k) => (typeof k === 'string' ? { name: k } : { name: k.name, value: k.value })
+  const catalog = Object.values(database).filter((c) => c && hqImage(c)).map((c) => ({
+    type: c.cardType, name: c.cardName, title: c.title || undefined, subtype: c.cardSubtype, cost: c.cost, unique: c.isUnique || undefined,
+    faction: c.faction || undefined, commander: c.commander || undefined, rank: c.rank || undefined,
+    keywords: (c.keywords || []).map(kw), requirements: c.requirements?.length ? c.requirements : undefined,
+    weapons: (c.weapons || []).map((w) => ({ name: w.name, range: w.range, dice: w.dice, keywords: (w.keywords || []).map(kw) })),
+    stats: c.stats || undefined, image: hqImage(c),
+  }))
+  fs.writeFileSync(path.join(root, 'public/assistant/legionhq-catalog.js'), '/* Généré par scripts/audit-legionhq.mjs --write depuis https://legionhq2.com — ne pas éditer à la main. */\nwindow.SWL_LEGIONHQ_CATALOG=' + JSON.stringify({ generated: new Date().toISOString().slice(0, 10), cards: catalog }) + ';\n')
+  console.log('catalogue écrit : ' + catalog.length + ' cartes -> public/assistant/legionhq-catalog.js')
 }
 console.log(`Legion HQ : ${comparedUnits} unités, ${comparedUpgrades} améliorations, ${comparedWeapons} armes comparées ; ${problems.length} carte(s) avec écart ; ${speedSuggestions.length} vitesse(s) à renseigner ; non appariées : ${unmatched.unit.length} unités, ${unmatched.upgrade.length} améliorations.`)

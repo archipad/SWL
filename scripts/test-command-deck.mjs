@@ -17,9 +17,10 @@ try {
   assert.ok(COMMAND_CARDS.find((c) => c.id === 'ordres-permanents' && c.faction === 'generique'), 'Ordres Permanents doit être générique (utilisable par les deux factions)')
   const rebel = COMMAND_CARDS.filter((c) => c.faction === 'rebelles')
   const empire = COMMAND_CARDS.filter((c) => c.faction === 'empire')
-  // 42 cartes de la planche + 2 fiches FR communautaires (Reconnaissance du Champ de Bataille, Tactiques de Diversion, 23/10/2026).
-  assert.equal(rebel.length, 44, 'Alliance Rebelle : 44 cartes attendues (planche + 2 fiches communautaires)')
-  assert.equal(empire.length, 39, 'Planche Empire Galactique : 39 cartes attendues')
+  // Planches officielles : 42 cartes rebelles et 39 impériales ; les fiches FR communautaires (community: true) s'y ajoutent.
+  assert.equal(rebel.filter((c) => !c.community).length, 42, 'Planche Alliance Rebelle : 42 cartes attendues')
+  assert.ok(COMMAND_CARDS.filter((c) => c.community).every((c) => c.image && c.englishName), 'Une fiche communautaire a toujours un visuel et son nom anglais')
+  assert.equal(empire.filter((c) => !c.community).length, 39, 'Planche Empire Galactique : 39 cartes attendues')
 
   // Règle officielle : 2 cartes par PIP 1/2/3, 1 carte à 4 PIP, 7 au total.
   assert.deepEqual(COMMAND_SUITE_RULE.perPip, { 1: 2, 2: 2, 3: 2, 4: 1 })

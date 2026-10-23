@@ -28,6 +28,8 @@ export interface CommandCard {
   name: string;
   /** Nom anglais Tabletop Admiral (exports de listes) quand la correspondance est certaine. */
   englishName?: string;
+  /** Fiche FR communautaire (texte superposé sur le visuel anglais Legion HQ), hors planches officielles. */
+  community?: boolean;
   pip: 1 | 2 | 3 | 4;
   faction: CommandFaction | 'generique';
   requirement: string;
@@ -224,11 +226,11 @@ export const COMMAND_CARDS: CommandCard[] = [
   },
   // Fiches FR communautaires (texte superposé sur le visuel anglais Legion HQ), validées par Antoine le 23/10/2026.
   {
-    id: 'reconnaissance-du-champ-de-bataille', name: 'Reconnaissance du Champ de Bataille', englishName: 'Battlefield Reconnaissance', pip: 2, faction: 'rebelles',
+    id: 'reconnaissance-du-champ-de-bataille', name: 'Reconnaissance du Champ de Bataille', englishName: 'Battlefield Reconnaissance', pip: 2, faction: 'rebelles', community: true,
     requirement: 'Agent Rebelle', image: `${BASE}reconnaissance-du-champ-de-bataille.jpg`,
   },
   {
-    id: 'tactiques-de-diversion', name: 'Tactiques de Diversion', englishName: 'Diversionary Tactics', pip: 3, faction: 'rebelles',
+    id: 'tactiques-de-diversion', name: 'Tactiques de Diversion', englishName: 'Diversionary Tactics', pip: 3, faction: 'rebelles', community: true,
     requirement: 'Officier Rebelle', image: `${BASE}tactiques-de-diversion.jpg`,
   },
   {

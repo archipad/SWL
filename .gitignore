@@ -38,3 +38,6 @@ public/cards/auto-certification/en/
 
 # Inventaire des visuels AMG « usage personnel » (local uniquement, jamais publié)
 public/assistant/auto-certification-personal.js
+
+# Générateur de fiches FR (scripts/fr-cards)
+__pycache__/

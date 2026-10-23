@@ -536,3 +536,15 @@ label.cert-missing select { border-color: #ff8a5c; }
 #aliasSearch { min-height: 44px; height: auto; align-self: start; }
 .cert-fields .cert-list [data-alias-pick] { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 12px; text-align: left; }
 .cert-fields .cert-list [data-alias-pick] img { width: 110px; height: auto; border-radius: 4px; }
+
+/* Atelier « fiche FR communautaire » (fr-card-workshop.js). */
+.fr-workshop .cert-fields { display: grid; gap: 10px; }
+.fr-workshop label { display: grid; gap: 4px; }
+.fr-workshop textarea { min-height: 2.6em; font: inherit; }
+.fr-concordance { display: grid; gap: 2px; padding: 10px 12px; border: 1px solid rgba(98, 207, 255, .35); border-radius: 8px; }
+.fr-concordance p { margin: 0; }
+.fr-concordance .warn { color: #ffb020; }
+.fr-icons { display: flex; flex-wrap: wrap; gap: 6px; }
+.fr-icons button { min-height: 32px; padding: 4px 8px; font-size: .8rem; }
+.fr-weapon { display: grid; gap: 6px; padding: 8px; border: 1px solid rgba(255, 255, 255, .15); border-radius: 8px; }
+.fr-variants { display: grid; gap: 6px; margin-top: 10px; }

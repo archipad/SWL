@@ -1,0 +1,137 @@
+{
+ "description": "Masques alpha (blanc = encre) recolorés au rendu par scripts/fr-cards/render.py. Extraits une fois des visuels publics Legion HQ (symboles de règles relevés sur Tank Hunting Munitions, Battlemaster, Proven Tactician, Champion of the Watch ; emplacements d'amélioration dans la case en haut à gauche d'une carte de chaque type) et des logos de faction SVG du site Legion HQ.",
+ "icons": {
+  "action": [
+   149,
+   128
+  ],
+  "affiliation-enfants-de-la-ronde": [
+   140,
+   128
+  ],
+  "courage": [
+   121,
+   128
+  ],
+  "emplacement-arme-lourde": [
+   132,
+   128
+  ],
+  "emplacement-armement": [
+   180,
+   128
+  ],
+  "emplacement-chef-d-escouade": [
+   144,
+   128
+  ],
+  "emplacement-clan": [
+   148,
+   128
+  ],
+  "emplacement-commandement": [
+   175,
+   128
+  ],
+  "emplacement-communications": [
+   136,
+   128
+  ],
+  "emplacement-doctrine": [
+   163,
+   128
+  ],
+  "emplacement-entrainement": [
+   167,
+   128
+  ],
+  "emplacement-equipage": [
+   151,
+   128
+  ],
+  "emplacement-equipement": [
+   161,
+   128
+  ],
+  "emplacement-force": [
+   157,
+   128
+  ],
+  "emplacement-generateur": [
+   154,
+   128
+  ],
+  "emplacement-grenades": [
+   151,
+   128
+  ],
+  "emplacement-munitions": [
+   163,
+   128
+  ],
+  "emplacement-personnel": [
+   136,
+   128
+  ],
+  "emplacement-pilote": [
+   148,
+   128
+  ],
+  "emplacement-point-d-ancrage": [
+   153,
+   128
+  ],
+  "emplacement-programmation": [
+   160,
+   128
+  ],
+  "faction-empire": [
+   128,
+   128
+  ],
+  "faction-mandaloriens": [
+   129,
+   128
+  ],
+  "faction-mercenaires": [
+   120,
+   128
+  ],
+  "faction-rebelles": [
+   128,
+   128
+  ],
+  "faction-republique": [
+   128,
+   128
+  ],
+  "faction-separatistes": [
+   147,
+   128
+  ],
+  "incliner": [
+   139,
+   128
+  ],
+  "portee-1": [
+   128,
+   128
+  ],
+  "rang-agent": [
+   105,
+   128
+  ],
+  "rang-commandant": [
+   229,
+   128
+  ],
+  "soldat": [
+   172,
+   128
+  ],
+  "suppr": [
+   132,
+   128
+  ]
+ }
+}

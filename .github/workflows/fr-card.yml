@@ -1,0 +1,136 @@
+name: Fiche FR communautaire
+
+# Lancée depuis l'atelier « Créer sa version française » de la certification : le ticket contient la fiche
+# (bloc <!-- SWL_FR_CARD … -->). À l'ouverture du ticket (ou sur « /apercu-fiche-fr »), l'image française est générée
+# depuis le visuel Legion HQ et publiée en commentaire ; « /valider-fiche-fr » l'intègre au site (visuel, nom français,
+# raccordement), vérifie le build et déclenche le déploiement. Seuls le propriétaire et les collaborateurs déclenchent.
+
+on:
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: fiche-fr-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+env:
+  BRANCH: claude/star-wars-legion-app-49rc3z
+  PREVIEW_BRANCH: fr-card-previews
+
+jobs:
+  apercu:
+    if: >-
+      github.event.issue.pull_request == null &&
+      contains(github.event.issue.body, 'SWL_FR_CARD') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), (github.event.comment && github.event.comment.author_association) || github.event.issue.author_association) &&
+      (github.event_name == 'issues' || github.event.comment.body == '/apercu-fiche-fr')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/fr-cards/requirements.txt
+      - uses: actions/github-script@v7
+        with:
+          script: require('fs').writeFileSync('issue-body.txt', context.payload.issue.body || '')
+      - id: render
+        run: node scripts/fr-cards/preview.mjs issue-body.txt "apercu/issue-${{ github.event.issue.number }}.png" --rapport apercu/rapport.json
+      - name: Publier l'aperçu
+        id: publish
+        run: |
+          set -e
+          n=${{ github.event.issue.number }}
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code origin "refs/heads/$PREVIEW_BRANCH" >/dev/null; then
+            git fetch origin "$PREVIEW_BRANCH"
+            git worktree add previews "origin/$PREVIEW_BRANCH"
+            (cd previews && git checkout -B "$PREVIEW_BRANCH")
+          else
+            git worktree add --detach previews
+            (cd previews && git checkout --orphan "$PREVIEW_BRANCH" && git rm -rfq .)
+          fi
+          cp "apercu/issue-$n.png" "previews/issue-$n.png"
+          cd previews
+          git add "issue-$n.png"
+          git commit -qm "Aperçu de la fiche FR du ticket #$n" || true
+          git push -q origin "HEAD:$PREVIEW_BRANCH"
+          echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const report = JSON.parse(require('fs').readFileSync('apercu/rapport.json', 'utf8'))
+            const n = context.issue.number
+            const url = `https://raw.githubusercontent.com/${context.repo.owner}/${context.repo.repo}/${process.env.PREVIEW_BRANCH}/issue-${n}.png?v=${{ steps.publish.outputs.sha }}`
+            const points = report.problems.length ? report.problems.map((p) => `- ⚠ ${p}`).join('\n') : '- ✓ Aucune anomalie de mise en page détectée.'
+            await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: n, body:
+              `### Aperçu de la fiche française\n\n<img src="${url}" width="420" alt="Fiche FR">\n\n${points}\n\nComparez avec le visuel anglais, puis commentez \`/valider-fiche-fr\` pour l’intégrer au site. Pour corriger, modifiez la fiche dans l’atelier, renvoyez-la, ou éditez le bloc du ticket puis commentez \`/apercu-fiche-fr\`.` })
+
+  integration:
+    if: >-
+      github.event_name == 'issue_comment' &&
+      github.event.issue.pull_request == null &&
+      github.event.comment.body == '/valider-fiche-fr' &&
+      contains(github.event.issue.body, 'SWL_FR_CARD') &&
+      contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r scripts/fr-cards/requirements.txt
+      - run: npm ci
+      - uses: actions/github-script@v7
+        with:
+          script: require('fs').writeFileSync('issue-body.txt', context.payload.issue.body || '')
+      - run: node scripts/fr-cards/integrate.mjs issue-body.txt --issue ${{ github.event.issue.number }}
+      - run: rm -f issue-body.txt
+      - run: npm run build
+      - name: Enregistrer la fiche
+        env:
+          TITLE: ${{ github.event.issue.title }}
+          NUMBER: ${{ github.event.issue.number }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data public/cards public/commandcards public/assistant docs/audit
+          git commit -m "Fiche FR communautaire : $TITLE (#$NUMBER)"
+          git push origin "HEAD:$BRANCH"
+      - name: Déclenche le déploiement
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Un push fait avec le jeton du workflow ne relance pas les autres workflows : déploiement demandé explicitement.
+            await github.rest.actions.createWorkflowDispatch({ owner: context.repo.owner, repo: context.repo.repo, workflow_id: 'deploy-pages.yml', ref: process.env.BRANCH })
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number,
+              body: '✅ Fiche FR intégrée au site (visuel, nom français, raccordement), build validé et déploiement déclenché. Les dés, PV et mots-clés de la carte se certifient maintenant dans l’écran de certification.' })
+            await github.rest.issues.update({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number, state: 'closed' })
+      - if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: context.issue.number,
+              body: `❌ Intégration impossible : voir le journal ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}. Rien n’a été publié.` })

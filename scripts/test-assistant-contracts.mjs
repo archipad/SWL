@@ -485,7 +485,7 @@ assert.match(app, /class="hero">\$\{unitIdentityPanel\(entry\)\}<\/div>/, 'Le ba
 // (.ov-left/.ov-right, posées par app.js) qui partent du même bord haut,
 // un seul habillage de panneau, un bandeau du haut sur une seule ligne.
 const unitScreen = fs.readFileSync(new URL('../public/assistant/unit-screen.css', import.meta.url), 'utf8')
-assert.match(index, /unit-screen\.css\?v=27/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
+assert.match(index, /unit-screen\.css\?v=28/, 'La feuille de mise en page de l’écran d’unité doit être chargée')
 assert.ok(index.indexOf('unit-screen.css') > index.indexOf('ipad-compact.css'), 'unit-screen.css doit être chargée après ipad-compact.css pour gagner les égalités de spécificité')
 assert.match(app, /overviewColumnsBase=overview;\s*overview=function\(entry,role\)\{overviewColumnsBase\(entry,role\);.*ov-left.*ov-right/, 'app.js doit regrouper les blocs de l’écran d’unité en deux colonnes réelles')
 assert.match(app, /matches\('\.activation-automation,\.post-rally-panel,\.activation-briefing,\.unit-state-editor'\)\?right:left/, 'Automatismes, options de démoralisation, Briefing et état de l’unité doivent aller dans la colonne de droite')
@@ -576,7 +576,7 @@ assert.match(app, /const secondaryScreenOpen=.*certification-open.*live-game-rep
 assert.match(app, /document\.visibilityState!=='visible'\|\|secondaryScreenOpen\(\)/, 'La synchronisation périodique ne doit jamais fermer la certification')
 assert.match(app, /if\(!secondaryScreenOpen\(\)\)location\.reload\(\)/, 'Une mise à jour de liste ne doit pas recharger la page pendant la certification')
 assert.match(index, /upgrades\.css\?v=2/, 'Le déplacement du bouton de fermeture doit invalider son cache CSS')
-assert.match(index, /certification\.js\?v=102/,'La certification V2 et l’atelier de traduction doivent invalider le cache de son interface')
+assert.match(index, /certification\.js\?v=103/,'La certification V2 et l’atelier de traduction doivent invalider le cache de son interface')
 assert.match(index, /translation-glossary\.js\?v=1" defer><\/script>\s*<script src="\.\/certification\.js/, 'L’atelier doit charger le dictionnaire EN → FR avant la certification')
 assert.match(index, /self-audit\.js\?v=\d+/, 'L’audit automatique déclenchable depuis la page d’import doit être chargé')
 assert.ok(index.indexOf('self-audit.js') > index.indexOf('certification.js'), 'self-audit.js doit se charger après app.js et certification.js dont il dépend')
@@ -595,7 +595,7 @@ assert.ok(Object.keys(translationGlossary.keywords || {}).length >= 150, 'Le dic
 assert.equal(translationGlossary.keywords['CUNNING']?.fr, 'MALIN', 'Le mot-clé Cunning doit suivre l’index français')
 // Certification automatique β : laboratoire strictement parallèle à la certification historique.
 assert.match(index, /id="certificationAuto"/, 'Le laboratoire de certification automatique doit rester accessible séparément')
-assert.match(index, /certification\.js\?v=102" defer><\/script>\s*<script src="\.\/certification-auto\.js\?v=5"/, 'La bêta se charge après la certification historique, sans la remplacer')
+assert.match(index, /certification\.js\?v=103" defer><\/script>\s*<script src="\.\/certification-auto\.js\?v=5"/, 'La bêta se charge après la certification historique, sans la remplacer')
 assert.match(index, /certification-auto\.css\?v=4/, 'La bêta doit charger sa propre feuille de style')
 assert.doesNotMatch(index, /auto-certification-source\.js/, 'Le catalogue automatique (≈ 1 Mo) ne doit être chargé qu’à l’ouverture de la bêta')
 assert.match(automaticCertificationUi, /const scripts=\['\.\/auto-certification-source\.js\?v=\d+','\.\/auto-certification-assets\.js\?v=\d+','\.\/auto-certification-resolver\.js\?v=\d+'\]/, 'La bêta doit charger métadonnées, inventaire des visuels et résolveur partagé à la demande')
@@ -738,7 +738,7 @@ const tsIds = [...commandCardsTs.matchAll(/^\s*id: '([a-z0-9-]+)'/gm)].map((matc
 const jsIds = [...commandCardsJs.matchAll(/"id":"([a-z0-9-]+)"/g)].map((match) => match[1])
 assert.ok(tsIds.length > 40, 'src/data/commandCards.ts doit exposer les cartes de Commandement')
 assert.deepEqual(jsIds, tsIds, 'public/assistant/command-cards.js doit rester synchronisé avec src/data/commandCards.ts (relancer scripts/generate-assistant-command-cards.cjs)')
-assert.match(index, /command-cards\.js\?v=3/,'index.html doit charger command-cards.js avant app.js')
+assert.match(index, /command-cards\.js\?v=\d+/,'index.html doit charger command-cards.js avant app.js')
 assert.match(app, /const trackerKey='swl\.game-tracker\.v1'/, 'La page Partie doit lire et écrire le même suivi que l’appli principale')
 
 // Couverture visuelle complète : le registre couvre toutes les illustrations
