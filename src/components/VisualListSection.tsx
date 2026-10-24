@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { CardTagLibrary, KeywordDef, ParsedList, ParsedUnit } from '../types';
 import { resolveUnitKeywords } from '../lib/combat';
 import { cardImageFor } from '../data/cardImages';
@@ -58,13 +59,32 @@ function unitCardNotes(unit: ParsedUnit): { key: string; displayName: string; no
   return result;
 }
 
+/** Mots-clés regroupés par moment d'usage, comme le mode « mots-clés » (MinimalKeywordsSection). */
+const IMPACT_GROUPS: { id: KeywordDef['impact']; label: string }[] = [
+  { id: 'attaque', label: 'En attaque' },
+  { id: 'défense', label: 'En défense' },
+  { id: 'autre', label: 'Déplacement, ordres et autres' },
+];
+
+/**
+ * Hauteur imprimée des visuels (mm) pour que la carte d'unité (paysage, ≈ 1,43) et toutes ses
+ * améliorations (portrait, ≈ 0,71) tiennent sur une seule ligne de la demi-page A4 (≈ 190 mm utiles),
+ * plafonnée à 50 mm.
+ */
+function printedCardHeight(upgrades: number): number {
+  const usable = 190 - upgrades * 1;
+  return Math.min(50, Math.floor(usable / (1.43 + 0.71 * upgrades)));
+}
+
 function VisualUnitBlock({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary: CardTagLibrary; keywords: KeywordDef[] }) {
   const resolved = resolveUnitKeywords(unit, tagLibrary, keywords);
   const notes = unitCardNotes(unit);
   const unitImg = cardImageFor(unit.name);
+  const upgradesWithImage = unit.upgrades.filter((up) => cardImageFor(up.name)).length;
+  const cardHeight = { '--visual-list-card-height': `${printedCardHeight(upgradesWithImage)}mm` } as CSSProperties;
 
   return (
-    <div className="visual-list-block">
+    <div className="visual-list-block" style={cardHeight}>
       <div className="visual-list-head">
         <strong>{frenchCardName(unit.name)}</strong>
         <PointsBreakdown unit={unit} />
@@ -93,20 +113,34 @@ function VisualUnitBlock({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tag
       </div>
       {(resolved.length > 0 || notes.length > 0) && (
         <div className="visual-list-keywords">
-          {resolved.map((r) => (
-            <p key={r.tag.keywordId} className="visual-list-kw">
-              <strong>{r.def.name}{r.def.hasValue && r.tag.value ? ` ${r.tag.value}` : ''}</strong>
-              {' — '}
-              <DefinitionText text={shortDef(r.def)} />
-            </p>
-          ))}
-          {notes.map((n) => (
-            <p key={n.key} className="visual-list-kw">
-              <strong>{n.displayName}</strong>
-              {' — '}
-              <DefinitionText text={n.note} />
-            </p>
-          ))}
+          {IMPACT_GROUPS.map(({ id, label }) => {
+            const items = resolved.filter((r) => r.def.impact === id);
+            if (items.length === 0) return null;
+            return (
+              <div key={id} className="visual-list-kw-group">
+                <h4 className="visual-list-kw-heading">{label}</h4>
+                {items.map((r) => (
+                  <p key={r.tag.keywordId} className="visual-list-kw">
+                    <strong>{r.def.name}{r.def.hasValue && r.tag.value ? ` ${r.tag.value}` : ''}</strong>
+                    {' — '}
+                    <DefinitionText text={shortDef(r.def)} />
+                  </p>
+                ))}
+              </div>
+            );
+          })}
+          {notes.length > 0 && (
+            <div className="visual-list-kw-group">
+              <h4 className="visual-list-kw-heading">Effets des cartes</h4>
+              {notes.map((n) => (
+                <p key={n.key} className="visual-list-kw">
+                  <strong>{n.displayName}</strong>
+                  {' — '}
+                  <DefinitionText text={n.note} />
+                </p>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

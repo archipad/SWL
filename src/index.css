@@ -1057,7 +1057,8 @@ body:has(.app-game-tracker){min-height:100vh;background-color:var(--t-outer);bac
 @media (min-width: 700px) {
   .visual-list-keywords { grid-template-columns: 1fr 1fr; }
 }
-.visual-list-kw { font-size: 0.85rem; margin: 0; }
+.visual-list-kw { font-size: 0.85rem; margin: 0 0 0.35rem; }
+.visual-list-kw-heading { margin: 0 0 0.3rem; color: var(--text-dim); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
 
 .card-row-head { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
 .card-row-name { font-weight: 600; }
@@ -1489,16 +1490,30 @@ select option { background: var(--t-panel-2); color: var(--text); }
      fiches d'unité (colonne étroite, gain de hauteur nécessaire), ici les
      images sont côte à côte, une hauteur commune donne un rendu plus
      proche de la capture Tabletop Admiral d'origine. */
-  .visual-list-block { margin-bottom: 0.7em; }
+  /* 24/10/2026 : une unité = une demi-page A4 (deux au plus par page), jamais coupée entre deux pages,
+     encadrée d'un trait de coupe — découpée, elle remplace la carte sur la table (carte, améliorations
+     et mots-clés réunis). La hauteur des visuels est calculée par bloc (VisualListSection.tsx) pour que
+     la carte et toutes ses améliorations tiennent sur une ligne. Une unité trop chargée pour une
+     demi-page prend une page entière plutôt que d'être coupée : avec une hauteur minimale d'une demi-page,
+     il n'en tient jamais plus de deux par page, sans saut de page forcé. */
+  .visual-list-block {
+    box-sizing: border-box; min-height: 136mm; margin: 0; padding: 3mm 4mm;
+    outline: 1px dashed #999; outline-offset: -0.5px; break-inside: avoid;
+  }
   .visual-list-head {
     display: flex; align-items: baseline; justify-content: space-between; gap: 0.6em;
-    color: black; font-size: 9pt; margin-bottom: 0.15em;
+    color: black; font-size: 12pt; margin-bottom: 1.5mm;
   }
-  .visual-list-points { color: #444; font-size: 7.5pt; white-space: nowrap; }
-  .visual-list-images { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.15em; break-inside: avoid; }
-  .visual-list-image { height: 32mm; width: auto; object-fit: contain; }
-  .visual-list-keywords { column-count: 2; column-gap: 1em; margin-top: 0.2em; }
-  .visual-list-kw { color: black; font-size: 7.5pt; line-height: 1.25; margin: 0 0 0.15em; break-inside: avoid; }
+  .visual-list-points { color: #444; font-size: 8.5pt; white-space: nowrap; }
+  .visual-list-images { display: flex; flex-wrap: nowrap; align-items: flex-end; gap: 1mm; break-inside: avoid; }
+  .visual-list-image { height: var(--visual-list-card-height, 46mm); width: auto; object-fit: contain; }
+  .visual-list-keywords { display: block; column-count: 2; column-gap: 5mm; margin-top: 2.5mm; }
+  .visual-list-kw-group { break-inside: avoid-column; margin: 0 0 1.5mm; }
+  .visual-list-kw-heading {
+    color: black; font-size: 7.5pt; letter-spacing: 0.08em; text-transform: uppercase;
+    border-bottom: 0.3mm solid #000; margin: 0 0 0.8mm; padding-bottom: 0.3mm;
+  }
+  .visual-list-kw { color: black; font-size: 8.5pt; line-height: 1.28; margin: 0 0 0.8mm; break-inside: avoid; }
 }
 /* Rapport de compatibilité affiché immédiatement après chaque import. */
 .import-audit{margin-top:14px;border:1px solid var(--t-line);background:var(--t-s2)}
