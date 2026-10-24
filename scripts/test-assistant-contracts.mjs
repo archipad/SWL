@@ -595,7 +595,7 @@ assert.ok(Object.keys(translationGlossary.keywords || {}).length >= 150, 'Le dic
 assert.equal(translationGlossary.keywords['CUNNING']?.fr, 'MALIN', 'Le mot-clé Cunning doit suivre l’index français')
 // Certification automatique β : laboratoire strictement parallèle à la certification historique.
 assert.match(index, /id="certificationAuto"/, 'Le laboratoire de certification automatique doit rester accessible séparément')
-assert.match(index, /certification\.js\?v=103" defer><\/script>\s*<script src="\.\/certification-auto\.js\?v=9"/, 'La bêta se charge après la certification historique, sans la remplacer')
+assert.match(index, /certification\.js\?v=103" defer><\/script>\s*<script src="\.\/certification-auto\.js\?v=10"/, 'La bêta se charge après la certification historique, sans la remplacer')
 assert.match(index, /certification-auto\.css\?v=4/, 'La bêta doit charger sa propre feuille de style')
 assert.doesNotMatch(index, /auto-certification-source\.js/, 'Le catalogue automatique (≈ 1 Mo) ne doit être chargé qu’à l’ouverture de la bêta')
 assert.match(automaticCertificationUi, /const scripts=\['\.\/auto-certification-source\.js\?v=\d+','\.\/auto-certification-assets\.js\?v=\d+','\.\/auto-certification-resolver\.js\?v=\d+'\]/, 'La bêta doit charger métadonnées, inventaire des visuels et résolveur partagé à la demande')
