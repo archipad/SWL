@@ -1,0 +1,28 @@
+{
+ "_meta": {
+  "description": "Fiches FR communautaires générées depuis les visuels Legion HQ (scripts/fr-cards) et validées visuellement."
+ },
+ "cards": {
+  "upgrade:go for broke": {
+   "englishName": "Go For Broke",
+   "nameFr": "Le Tout pour le Tout",
+   "kind": "upgrade",
+   "image": "go-for-broke-fr-community.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Go%20For%20Broke.webp",
+   "fr": {
+    "title": "Le Tout pour le Tout",
+    "body": "**Soldat uniquement.**\nPendant l'étape __Retirer les Pions__, si cette unité a 1 pion Suppression ou plus, elle peut choisir de ne pas retirer de pions Suppression. Si elle ne retire aucun pion Suppression, choisissez 1 pion vert sur cette unité. Le pion choisi n'est pas retiré.",
+    "weapons": []
+   },
+   "use": "passive",
+   "ttaId": "upgrade:22913",
+   "translationProof": {
+    "englishText": "Go For Broke — mots-clés : ",
+    "concordance": "Nom ✓ Go For Broke | Coût ✓ TTA 5 · HQ 5 | Mots-clés ✓ Tabletop Admiral n’en liste aucun : non vérifiable",
+    "glossaryVersion": "2026-05-08"
+   },
+   "issue": 27,
+   "integratedAt": "2026-10-24"
+  }
+ }
+}

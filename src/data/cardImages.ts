@@ -308,6 +308,7 @@ const RAW: Record<string, string> = {
   'In the Fray': 'in-the-fray.jpg',
   'Point Blank': 'point-blank.jpg',
   'Emergency Transponder': 'emergency-transponder.jpg',
+  'Go For Broke': 'go-for-broke-fr-community.jpg',
 };
 
 export const CARD_IMAGES: Record<string, string> = {

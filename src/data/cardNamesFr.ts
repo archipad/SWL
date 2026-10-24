@@ -295,6 +295,7 @@ const RAW: Record<string, string> = {
   "Trusted Agent": "Agent de Confiance",
   "Underworld Contacts": "Contacts dans la Pègre",
   "Vigilance": "Vigilance",
+  "Go For Broke": "Le Tout pour le Tout",
 };
 
 export const CARD_NAMES_FR: Record<string, string> = {

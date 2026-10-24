@@ -27,7 +27,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Traiter X : Capacité Y | Actions de carte | auto | 2 |
 | Vivacité d'Esprit | Actions de carte | auto | 2 |
 | Accomplir la Mission | Attaque | moteur (automatique) | 0 |
-| Anti-matériel X | Attaque | moteur (automatique) | 0 |
+| Anti-matériel X | Attaque | moteur (automatique) | 1 |
 | Anti-personnel X | Attaque | moteur (automatique) | 0 |
 | Arme à Effet de Zone | Attaque | moteur (automatique) | 0 |
 | Arme de Poing : Corps-à-Corps/à Distance | Attaque | moteur (assisté) | 1 |
@@ -55,7 +55,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Haute Vélocité | Attaque | moteur (automatique) | 9 |
 | Immobiliser X | Attaque | moteur (automatique) | 3 |
 | Immunité : Déflexion | Attaque | moteur (automatique) | 0 |
-| Impact X | Attaque | moteur (automatique) | 54 |
+| Impact X | Attaque | moteur (automatique) | 55 |
 | Implacable | Attaque | moteur (assisté) | 5 |
 | Ion X | Attaque | moteur (automatique) | 4 |
 | La Mort Venue du Ciel | Attaque | moteur (automatique) | 1 |
@@ -70,14 +70,14 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Non-combattant | Attaque | moteur (assisté) | 5 |
 | Nous nous Battons pour notre Famille | Attaque | moteur (assisté) | 0 |
 | Perforant X | Attaque | moteur (automatique) | 30 |
-| Pistolero | Attaque | moteur (assisté) | 2 |
+| Pistolero | Attaque | moteur (assisté) | 3 |
 | Poison X | Attaque | moteur (automatique) | 0 |
 | Polyvalent | Attaque | moteur (assisté) | 3 |
 | Précis X | Attaque | moteur (automatique) | 8 |
 | Primitif | Attaque | moteur (automatique) | 0 |
 | Rayons X | Attaque | moteur (assisté) | 0 |
 | Souffle | Attaque | moteur (automatique) | 7 |
-| Suppressif | Attaque | moteur (automatique) | 23 |
+| Suppressif | Attaque | moteur (automatique) | 24 |
 | Surveillance X | Attaque | moteur (automatique) | 3 |
 | Tenir Bon | Attaque | moteur (automatique) | 1 |
 | Tir de Soutien | Attaque | moteur (assisté) | 2 |
@@ -189,13 +189,13 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Entourage : Nom d'Unité | Phase de Commandement | auto | 2 |
 | Inarrêtable | Phase de Commandement | auto | 1 |
 | Interrogatoire | Phase de Commandement | auto | 2 |
-| Longueur d'Avance | Phase de Commandement | auto | 1 |
+| Longueur d'Avance | Phase de Commandement | auto | 2 |
 | Malin | Phase de Commandement | auto | 2 |
 | Mission Secrète | Phase de Commandement | auto | 2 |
 | Ordre Direct : Nom/Type d'Unité | Phase de Commandement | auto | 3 |
 | Générateur X | Phase Finale | auto | 0 |
 | Permanent | Phase Finale | rappel | 0 |
-| Renforts | Phase Finale | auto | 1 |
+| Renforts | Phase Finale | auto | 2 |
 | Contrainte : Rang/Type d'Unité | Rallier · récupérer | auto | 4 |
 | Démoraliser X | Rallier · récupérer | auto | 3 |
 | Indomptable | Rallier · récupérer | auto | 10 |
