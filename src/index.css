@@ -1190,6 +1190,13 @@ select option { background: var(--t-panel-2); color: var(--text); }
   flex-shrink: 0;
 }
 .icon-legend .dice-icon { width: 1.05em; height: 1.05em; vertical-align: -0.15em; }
+/* À l'impression, l'icône est l'image elle-même (voir DiceIcon) : un masque peint sur une couleur de fond
+   disparaît quand le navigateur imprime sans « graphiques d'arrière-plan ». */
+.dice-icon-print { display: none; }
+@media print {
+  .dice-icon { background: none; -webkit-mask-image: none !important; mask-image: none !important; }
+  .dice-icon-print { display: block; width: 100%; height: 100%; object-fit: contain; }
+}
 
 /* --- Glossary (visible on screen and used in print) --- */
 .glossary-section { margin-top: 1.75rem; }

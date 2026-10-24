@@ -33,12 +33,20 @@ const TOKEN_TO_TYPE: Record<string, DiceIconType> = {
 
 const TOKEN_RE = /(\[(?:TOUCHE|CRITIQUE|BLOC|ADR-ATQ|ADR-DEF)\])/g;
 
-/** Icône d'un résultat de dé, dessinée avec la vraie forme officielle. */
+/**
+ * Icône d'un résultat de dé, dessinée avec la vraie forme officielle. À l'écran, masque CSS teinté par la
+ * couleur du texte ; à l'impression, l'image elle-même (silhouette noire) : un masque peint sur une couleur
+ * de fond disparaît quand le navigateur imprime sans « graphiques d'arrière-plan » (signalement du 24/10/2026).
+ */
 export function DiceIcon({ type }: { type: DiceIconType }) {
   const meta = DICE_ICON_META[type];
   const src = `${import.meta.env.BASE_URL}icons/dice/${meta.file}`;
   const style = { WebkitMaskImage: `url(${src})`, maskImage: `url(${src})` } as const;
-  return <span className="dice-icon" role="img" aria-label={meta.label} title={meta.label} style={style} />;
+  return (
+    <span className="dice-icon" role="img" aria-label={meta.label} title={meta.label} style={style}>
+      <img className="dice-icon-print" src={src} alt="" />
+    </span>
+  );
 }
 
 /**
