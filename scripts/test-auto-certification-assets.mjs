@@ -215,8 +215,10 @@ assert.equal(classifyName(online, 'Moff Gideon Long Live the Empire', 'unit', ['
 // Carte réellement nouvelle / connue mais incomplète : comparaison obligatoire.
 assert.equal(classifyName(online, 'Aggressive Negotiations', 'command', ['Galactic Republic']).state, 'new', 'Aggressive Negotiations : carte réellement nouvelle (absente du paquet du site)')
 // Fiches FR communautaires du 23/10/2026 : connues du site, mais sans certification historique → comparaison obligatoire.
-assert.equal(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'incomplete', 'Mandalorian Hunter : carte connue mais incomplète')
-assert.equal(classifyName(online, 'GALAAR-90 Sniper Rifle (Armament)', 'upgrade', ['empire']).state, 'incomplete', 'GALAAR-90 : carte connue mais incomplète')
+// Connues du site : « incomplète » avant leur certification, puis « obsolète » tant que l'index historique n'est pas
+// régénéré volontairement (npm run index:auto-certification-historical) — jamais « nouvelle ».
+assert.ok(['incomplete', 'obsolete', 'certified'].includes(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state), 'Mandalorian Hunter : carte connue du site')
+assert.ok(['incomplete', 'obsolete', 'certified'].includes(classifyName(online, 'GALAAR-90 Sniper Rifle (Armament)', 'upgrade', ['empire']).state), 'GALAAR-90 : carte connue du site')
 assert.equal(classifyName(online, 'Standing Orders', 'command', ['rebel']).state, 'incomplete', 'une carte de commandement connue n’a pas de certification historique : comparaison obligatoire')
 assert.equal(classifyName(online, 'AT-RT', 'unit', ['Galactic Republic']).state, 'incomplete', 'AT-RT de la République : identité incertaine, jamais rattachée à la certification rebelle')
 // Identité : la certification n'est rattachée qu'à la carte Tabletop Admiral retenue sans ambiguïté.
@@ -268,7 +270,7 @@ for (const file of ['empire-moff-gideon.json', 'rebelles-simon-3.json']) {
   for (const card of live.filter((entry) => entry.kind === 'command' || entry.kind === 'contingency')) assert.notEqual(card.state, 'certified', `${card.name} : aucune carte de commandement n’a de certification historique`)
   console.log(`  ${list.listname} : ${certifiedCount} certifiées et inchangées, ${live.filter((card) => card.state === 'obsolete').length} obsolètes, ${live.filter((card) => card.state === 'incomplete').length} connues incomplètes, ${live.filter((card) => card.state === 'new').length} nouvelles (sur ${live.length})`)
 }
-assert.equal(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'incomplete')
+assert.notEqual(classifyName(online, 'Mandalorian Hunter', 'unit', ['empire']).state, 'new')
 // Améliorations renommées par l'import du site : même carte Tabletop Admiral, même certification.
 for (const renamed of ['Cassian Andor Operative', 'Chewbacca Upgrade']) assert.equal(classifyName(online, renamed, 'upgrade', ['rebel']).state, 'certified', `${renamed} : reconnue malgré le renommage de l’import`)
 

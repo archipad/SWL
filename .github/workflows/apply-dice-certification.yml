@@ -38,13 +38,16 @@ jobs:
             require('fs').writeFileSync('issue-body.txt', body)
       - run: npm ci
       - run: node scripts/apply-dice-certification.mjs certification-payload.json issue-body.txt
+      # Un lot appliqué est une certification validée : l'index historique de la certification β est régénéré,
+      # sinon toute carte déjà indexée et recertifiée passerait « obsolète » et bloquerait le build.
+      - run: npm run index:auto-certification-historical
       - run: npm run verify:assistant-dice
       - run: npm run build
       - name: Enregistrer la certification
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/data/diceCertifications.json src/data/cardKeyAliases.json src/data/customCards.json src/data/customKeywords.json public/cards public/assistant/reference-data.js public/assistant/index.html
+          git add src/data/diceCertifications.json src/data/cardKeyAliases.json src/data/customCards.json src/data/customKeywords.json src/data/autoCertificationHistoricalIndex.json public/cards public/assistant/reference-data.js public/assistant/auto-certification-assets.js public/assistant/index.html
           git commit -m "Certifie les dés : ${{ github.event.issue.title }}"
           git push origin HEAD:claude/star-wars-legion-app-49rc3z
       - name: Déclenche le déploiement

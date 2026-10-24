@@ -1796,7 +1796,16 @@ scenario('Certification : la vitesse manquante est préremplie d’après Legion
   const diff = Object.keys(reference.legionhq).find((card) => app.window.swlCertification.hqDiffs(card).length > 0 && $$('.cert-status-section.todo [data-cert-card]').some((button) => decodeURIComponent(button.dataset.certCard) === card))
   assert.ok(diff, 'une carte en écart Legion HQ est listée')
   // correction en un clic : une carte dont l'écart porte sur une valeur numérique ou un dé
-  const fixable = Object.keys(reference.legionhq).find((card) => $$('.cert-status-section.todo [data-cert-card]').some((button) => decodeURIComponent(button.dataset.certCard) === card) && app.window.swlCertification.hqDiffItems(card).some((item) => item.apply && ['stat', 'defense', 'weapon', 'surge'].includes(item.apply.t)))
+  const listed = (card) => $$('.cert-status-section.todo [data-cert-card]').some((button) => decodeURIComponent(button.dataset.certCard) === card)
+  const oneClick = (card) => listed(card) && app.window.swlCertification.hqDiffItems(card).some((item) => item.apply && ['stat', 'defense', 'weapon', 'surge'].includes(item.apply.t))
+  let fixable = Object.keys(reference.legionhq).find(oneClick)
+  if (!fixable) {
+    // Les écarts réels disparaissent au fil des certifications : on en crée un (PV) sur une unité encore à certifier.
+    const unit = Object.keys(reference.legionhq).find((card) => listed(card) && reference.legionhq[card].kind === 'unit' && Number.isFinite(reference.legionhq[card].hp) && reference.weapons[card]?.unitStats)
+    assert.ok(unit, 'une unité à certifier, connue de Legion HQ, est disponible pour le test')
+    reference.legionhq[unit] = { ...reference.legionhq[unit], hp: reference.legionhq[unit].hp + 1 }
+    fixable = Object.keys(reference.legionhq).find(oneClick)
+  }
   assert.ok(fixable, 'une carte corrigeable en un clic existe')
   const before = app.window.swlCertification.hqDiffItems(fixable).length
   await click($$('.cert-status-section.todo [data-cert-card]').find((button) => decodeURIComponent(button.dataset.certCard) === fixable))
@@ -2391,6 +2400,8 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
   }, { base: ONLINE_BASE_URL })
   const { $, $$, text, click, settle } = app
   const row0 = () => $('[data-auto-card]')
+  // Clé de la carte telle que l'appli la calcule (un alias certifié peut la renommer : Underworld Connections → Underworld Contacts).
+  const uw = app.window.eval('cardKey("Underworld Connections")')
   const storage = app.window.localStorage
   const snapshot = () => Object.fromEntries(Object.keys(storage).filter((key) => key !== 'swl-auto-certification-beta-v1').sort().map((key) => [key, storage.getItem(key)]))
   const before = snapshot()
@@ -2415,10 +2426,10 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
   // File : uniquement les cartes des listes importées, des quatre familles.
   const row = (key) => $$('[data-auto-card]').find((button) => decodeURIComponent(button.dataset.autoCard) === key)
   const listed = $$('[data-auto-card]').map((button) => decodeURIComponent(button.dataset.autoCard))
-  assert.deepEqual([...listed].sort(), ['aggressive negotiations', 'imaginary beta command', 'imaginary beta contingency', 'imaginary beta unit', 'underworld connections'], 'la file contient les cartes des listes à comparer (unités, améliorations, commandements, contingences)')
+  assert.deepEqual([...listed].sort(), ['aggressive negotiations', 'imaginary beta command', 'imaginary beta contingency', 'imaginary beta unit', uw].sort(), 'la file contient les cartes des listes à comparer (unités, améliorations, commandements, contingences)')
   assert.match(text($('.auto-cert-certified')), /Certifications existantes valides \(2\)[\s\S]*Stormtroopers[\s\S]*Rebel Troopers/, 'Stormtroopers et Rebel Troopers, certifiés et inchangés, quittent la file sans visuel anglais')
-  assert.match(text(row('underworld connections')), /Amélioration · Contacts dans la Pègre/, 'Underworld Connections est rattachée à Contacts dans la Pègre')
-  assert.match(text(row('underworld connections')), /✓ Métadonnées.*✓ EN.*✓ FR.*✓ Traduction.*✓ Mots-clés connus.*✓ Prête/, 'les six états sont affichés et indépendants')
+  assert.match(text(row(uw)), /Amélioration · Contacts dans la Pègre/, 'Underworld Connections est rattachée à Contacts dans la Pègre')
+  assert.match(text(row(uw)), /✓ Métadonnées.*✓ EN.*✓ FR.*✓ Traduction.*✓ Mots-clés connus.*✓ Prête/, 'les six états sont affichés et indépendants')
   assert.match(text(row('aggressive negotiations')), /Commandement.*✓ Métadonnées.*✗ EN.*✗ FR.*✗ Prête/, 'une carte sans visuel reste à préparer')
   assert.match(row('aggressive negotiations').innerHTML, /Visuel anglais non disponible en ligne/, 'en ligne, l’absence de visuel anglais est annoncée comme telle')
   assert.match(text(row('imaginary beta contingency')), /Contingence.*✗ Métadonnées/, 'une contingence inconnue est signalée sans métadonnées')
@@ -2440,14 +2451,14 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
   const englishAsset = inventory['upgrade:2429:en']
   delete inventory['upgrade:2429:en']
   Object.assign(catalog.find((card) => card.kind === 'upgrade' && card.sourceId === '2429'), { englishImage: 'https://res.cloudinary.com/tabletopadmiral/image/upload/v1/uw.webp' })
-  await open('underworld connections')
+  await open(uw)
   assert.ok(!$('[data-auto-visual="en"]') && onlyLocalImages(), 'sans fichier, le visuel anglais reste absent malgré l’URL distante')
   assert.match(text($('.auto-cert-compare')), /Visuel anglais non disponible en ligne : comparaison impossible sans lui\.Importer le visuel anglais/, 'en ligne, la carte sans visuel anglais l’annonce, n’est pas validable et propose l’import local')
   assert.ok($('#validateAutoCard').disabled, 'sans visuel anglais, la validation reste bloquée')
   inventory['upgrade:2429:en'] = englishAsset
 
   // Validation finale : comparer, confirmer ou corriger le nom français, confirmer les traductions.
-  await open('underworld connections')
+  await open(uw)
   assert.equal($('[data-auto-visual="en"]')?.getAttribute('src'), '../cards/auto-certification/en/upgrade-2429-underworld-connections.jpg', 'le visuel anglais officiel est lu depuis le dépôt')
   assert.equal($('[data-auto-visual="fr"]')?.getAttribute('src'), '../cards/underworld-contacts.jpg', 'le visuel français local est raccordé par l’alias explicite')
   assert.ok(onlyLocalImages(), 'seuls des visuels du dépôt sont affichés')
@@ -2471,7 +2482,7 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
   $('[data-auto-visual="fr"]').dispatchEvent(new app.window.Event('error'))
   await settle()
   assert.ok($('#autoVisualCheck').disabled && /Visuel illisible/.test(text($('.auto-cert-compare'))), 'un visuel illisible bloque la validation')
-  await open('underworld connections')
+  await open(uw)
   await showVisuals()
   await tick('autoVisualCheck')
   const name = $('#autoFrenchName')
@@ -2485,11 +2496,11 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
   assert.ok(!$('#validateAutoCard').disabled, 'les contrôles du validateur débloquent la validation')
   await click('#validateAutoCard')
   const beta = JSON.parse(storage.getItem('swl-auto-certification-beta-v1'))
-  assert.equal(beta['underworld connections'].status, 'validated', 'la validation est conservée dans le seul stockage bêta')
-  assert.equal(beta['underworld connections'].frenchName, 'Contacts dans la Pègre', 'le nom français validé est conservé')
+  assert.equal(beta[uw].status, 'validated', 'la validation est conservée dans le seul stockage bêta')
+  assert.equal(beta[uw].frenchName, 'Contacts dans la Pègre', 'le nom français validé est conservé')
   const frenchHash = app.window.SWL_AUTO_CERTIFICATION_ASSETS.hashes['cards/underworld-contacts.jpg']
-  assert.deepEqual([beta['underworld connections'].englishSha256, beta['underworld connections'].frenchSha256], ['0'.repeat(64), frenchHash], 'la validation retient les empreintes SHA-256 des deux visuels comparés')
-  assert.ok(!row('underworld connections') && /Déjà validées \(1\)/.test(text($('.auto-cert-done'))), 'une carte validée n’est plus retraitée')
+  assert.deepEqual([beta[uw].englishSha256, beta[uw].frenchSha256], ['0'.repeat(64), frenchHash], 'la validation retient les empreintes SHA-256 des deux visuels comparés')
+  assert.ok(!row(uw) && /Déjà validées \(1\)/.test(text($('.auto-cert-done'))), 'une carte validée n’est plus retraitée')
   assert.match($('#autoPublishValidations').value, /"upgrade:2429"[\s\S]*"frenchName": "Contacts dans la Pègre"/, 'la validation locale est proposée à la publication pour tous les appareils')
 
   // Invalidation par SHA-256 : si le visuel français change, la validation tombe et la carte revient dans la file.
@@ -2497,7 +2508,7 @@ scenario('Certification automatique β (21/10/2026) : file de préparation des l
   await click('#closeAutoCertification')
   await click('#certificationAuto')
   for (let i = 0; i < 40 && !$('.auto-cert-list'); i += 1) await settle(50)
-  assert.ok(row('underworld connections') && /validation invalidée/.test(text(row('underworld connections'))), 'une empreinte modifiée invalide la validation')
+  assert.ok(row(uw) && /validation invalidée/.test(text(row(uw))), 'une empreinte modifiée invalide la validation')
   app.window.SWL_AUTO_CERTIFICATION_ASSETS.hashes['cards/underworld-contacts.jpg'] = frenchHash
 
   assert.deepEqual(snapshot(), before, 'aucune autre donnée locale (ancien lot, alias, listes) ne doit être modifiée par la bêta')
@@ -2532,7 +2543,9 @@ scenario('Certification automatique β : les quatre variantes tranchées viennen
   const decidedIn = (target, key, sourceId) => { const pattern = new RegExp(`n° ${sourceId} \\(décision certifiée\\)`), row = betaRow(target, key); return row ? pattern.test(row.innerHTML) && !/cartes possibles/.test(row.innerHTML) : target.$$('.auto-cert-certified li').some((item) => cardKey(item.querySelector('strong').textContent) === key && new RegExp(`Tabletop Admiral n° ${sourceId}(?!\d)`).test(item.textContent)) }
   const cardKey = (name) => app.window.eval(`cardKey(${JSON.stringify(name)})`)
   for (const [key, sourceId] of Object.entries(expected)) assert.ok(decidedIn(app, key, sourceId), `${key} : variante n° ${sourceId} appliquée depuis le dépôt, sans ambiguïté`)
-  assert.ok(betaRow(app, 'galaar 90 sniper rifle armament') && !betaRow(app, 'at rt'), 'GALAAR-90 (sans certification historique) reste à comparer ; l’AT-RT rebelle, déjà certifié, quitte la file')
+  // GALAAR-90 reste à comparer tant qu'il n'a pas de certification historique indexée, puis quitte la file (lot du 24/10/2026) ;
+  // dans les deux cas sa variante est celle de la décision certifiée (vérifié ci-dessus). L'AT-RT rebelle, certifié, quitte la file.
+  assert.ok(!betaRow(app, 'at rt'), 'l’AT-RT rebelle, déjà certifié, quitte la file')
   assert.match(text($('.auto-cert-banner')), /4 carte\(s\) à variantes Tabletop Admiral \(0 sans variante retenue\)/, 'le compteur ne signale plus aucune variante à choisir')
   assert.equal(app.window.localStorage.getItem('swl-auto-certification-beta-v1'), null, 'aucune décision n’est écrite dans le stockage local : elles viennent du dépôt')
 
@@ -2620,15 +2633,16 @@ const realListUnits = (file) => { const list = JSON.parse(fs.readFileSync(new UR
 
 scenario('Certification automatique β en ligne : une carte certifiée et inchangée ne réclame aucun visuel anglais, une carte à comparer reste bloquée', async () => {
   const app = await openBeta({ 'swl.list.p1.v1': realListUnits('empire-moff-gideon.json'), 'swl.list.p2.v1': realListUnits('rebelles-simon-3.json') }, { base: ONLINE_BASE_URL })
-  const { $, text, click } = app
+  const { $, $$, text, click } = app
   assert.ok(!betaRow(app, 'stormtroopers') && !betaRow(app, 'moff gideon long live the empire'), 'les cartes certifiées et inchangées quittent la file de validation humaine')
   assert.ok(!betaRow(app, 'cassian andor operative') && !betaRow(app, 'chewbacca upgrade'), 'les améliorations renommées par l’import (Cassian Andor Operative, Chewbacca Upgrade) sont reconnues comme certifiées')
   assert.match(text($('.auto-cert-certified')), /Certifications existantes valides \(\d+\)[\s\S]*Stormtroopers[\s\S]*Certification existante valide/, 'elles sont listées comme « Certification existante valide », sans visuel anglais')
   const counts = text($('.auto-cert-banner')).match(/(\d+) certifiée\(s\) et inchangée\(s\) · (\d+) certification\(s\) devenue\(s\) obsolète\(s\) · (\d+) connue\(s\) mais incomplète\(s\) · (\d+) réellement nouvelle\(s\)/)
   assert.ok(counts && Number(counts[1]) >= 30 && Number(counts[2]) === 0, `les quatre états sont comptés sur les deux listes réelles (${counts?.[0]})`)
-  // Fiche FR communautaire du 23/10/2026 : connue du site, mais sans certification historique → comparaison EN/FR obligatoire.
-  assert.match(text(betaRow(app, 'mandalorian hunter')), /carte connue mais incomplète/, 'Mandalorian Hunter est une carte connue mais incomplète')
-  await click(betaRow(app, 'mandalorian hunter'))
+  // Une carte encore à comparer et sans visuel anglais publié (les cartes changent au fil des certifications).
+  const pending = $$('[data-auto-card]').find((row) => /carte connue mais incomplète|carte réellement nouvelle|devenue obsolète/.test(text(row)) && /✗ EN/.test(text(row)))
+  assert.ok(pending, 'une carte des listes réelles reste à comparer, sans visuel anglais publié')
+  await click(pending)
   assert.ok($('#validateAutoCard').disabled && $('#autoEnglishDrop'), 'une carte à comparer reste bloquée sans visuel anglais : import du visuel anglais proposé')
   assert.match(text($('#autoEnglishDrop')), /Importer le visuel anglais[\s\S]*Visuel personnel conservé uniquement sur cet appareil/, 'l’import local est proposé avec son avertissement')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
