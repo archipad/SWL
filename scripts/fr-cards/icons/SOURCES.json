@@ -1,5 +1,5 @@
 {
- "description": "Masques alpha (blanc = encre) recolorés au rendu par scripts/fr-cards/render.py. Extraits une fois des visuels publics Legion HQ (symboles de règles relevés sur Tank Hunting Munitions, Battlemaster, Proven Tactician, Champion of the Watch ; emplacements d'amélioration dans la case en haut à gauche d'une carte de chaque type) et des logos de faction SVG du site Legion HQ. Ajouts du 24/10/2026 (commandements Legion HQ) : adrénaline et critique (Sneaky Scouting), symbole Ewok (Courageous Counterattack), action gratuite (On Patrol).",
+ "description": "Masques alpha (blanc = encre) recolorés au rendu par scripts/fr-cards/render.py. Extraits une fois des visuels publics Legion HQ (symboles de règles relevés sur Tank Hunting Munitions, Battlemaster, Proven Tactician, Champion of the Watch ; emplacements d'amélioration dans la case en haut à gauche d'une carte de chaque type) et des logos de faction SVG du site Legion HQ. Ajouts du 24/10/2026 (commandements Legion HQ) : adrénaline et critique (Sneaky Scouting), symbole Ewok (Courageous Counterattack), action gratuite (On Patrol). Ajouts du lot 2 : touche (Whistling Birds) et symbole des unités alliées de Gar Saxon, ▼▲▼ (Fight Another Day ; nommé affiliation-super-commandos, à confirmer).",
  "icons": {
   "action": [
    149,
@@ -15,6 +15,10 @@
   ],
   "affiliation-enfants-de-la-ronde": [
    140,
+   128
+  ],
+  "affiliation-super-commandos": [
+   347,
    128
   ],
   "courage": [
@@ -147,6 +151,10 @@
   ],
   "suppr": [
    132,
+   128
+  ],
+  "touche": [
+   128,
    128
   ]
  }

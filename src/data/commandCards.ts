@@ -31,7 +31,8 @@ export interface CommandCard {
   /** Fiche FR communautaire (texte superposé sur le visuel anglais Legion HQ), hors planches officielles. */
   community?: boolean;
   pip: 1 | 2 | 3 | 4;
-  faction: CommandFaction | 'generique';
+  /** 'mercenaire' : commandement d'un personnage mercenaire (Boba Fett, Maul…), jouable seulement avec ce personnage ; jamais proposé d'office dans une main de faction. */
+  faction: CommandFaction | 'generique' | 'mercenaire';
   requirement: string;
   image?: string;
 }
@@ -472,6 +473,122 @@ export const COMMAND_CARDS: CommandCard[] = [
   {
     id: 'en-patrouille', name: 'En Patrouille', englishName: 'On Patrol', pip: 2, faction: 'rebelles', community: true,
     requirement: 'Luke Skywalker, Commandant Skywalker', image: `${BASE}en-patrouille.jpg`,
+  },
+  {
+    id: 'roquette-dorsale-z-6', name: 'Roquette Dorsale Z-6', englishName: 'Z-6 Jetpack Rocket', pip: 3, faction: 'mercenaire',
+    requirement: 'Boba Fett', image: `${BASE}roquette-dorsale-z-6.jpg`,
+  },
+  {
+    id: 'a-l-affut', name: 'À l’Affût', englishName: 'Lying In Wait', pip: 3, faction: 'mercenaire',
+    requirement: 'Bossk', image: `${BASE}a-l-affut.jpg`,
+  },
+  {
+    id: 'lanceur-de-corde', name: 'Lanceur de Corde', englishName: 'Whipcord Launcher', pip: 1, faction: 'mercenaire',
+    requirement: 'Boba Fett', image: `${BASE}lanceur-de-corde.jpg`,
+  },
+  {
+    id: 'munitions-foudroyantes', name: 'Munitions Foudroyantes', englishName: 'Merciless Munitions', pip: 1, faction: 'mercenaire',
+    requirement: 'Bossk', image: `${BASE}munitions-foudroyantes.jpg`,
+  },
+  {
+    id: 'fureur-reptilienne', name: 'Fureur Reptilienne', englishName: 'Reptilian Rampage', pip: 2, faction: 'mercenaire',
+    requirement: 'Bossk', image: `${BASE}fureur-reptilienne.jpg`,
+  },
+  {
+    id: 'c-est-moi-le-boss', name: 'C’est Moi le Boss', englishName: 'I\'m in Control', pip: 2, faction: 'mercenaire',
+    requirement: 'Cad Bane', image: `${BASE}c-est-moi-le-boss.jpg`,
+  },
+  {
+    id: 'c-est-moi-qui-fixe-les-regles', name: 'C’est Moi qui Fixe les Règles', englishName: 'I Make the Rules Now', pip: 3, faction: 'mercenaire',
+    requirement: 'Cad Bane', image: `${BASE}c-est-moi-qui-fixe-les-regles.jpg`,
+  },
+  {
+    id: 'je-suis-ton-pire-cauchemar', name: 'Je Suis ton Pire Cauchemar', englishName: 'I\'m Your Worst Nightmare', pip: 1, faction: 'mercenaire',
+    requirement: 'Cad Bane', image: `${BASE}je-suis-ton-pire-cauchemar.jpg`,
+  },
+  {
+    id: 'duel-des-destins', name: 'Duel des Destins', englishName: 'Duel of the Fates', pip: 1, faction: 'mercenaire',
+    requirement: 'Maul', image: `${BASE}duel-des-destins.jpg`,
+  },
+  {
+    id: 'la-menace-fantome', name: 'La Menace Fantôme', englishName: 'The Phantom Menace', pip: 2, faction: 'mercenaire',
+    requirement: 'Maul', image: `${BASE}la-menace-fantome.jpg`,
+  },
+  {
+    id: 'enfin', name: 'Enfin !', englishName: 'At Last', pip: 3, faction: 'mercenaire',
+    requirement: 'Maul', image: `${BASE}enfin.jpg`,
+  },
+  {
+    id: 'sorcellerie', name: 'Sorcellerie', englishName: 'Witch Magick', pip: 1, faction: 'mercenaire',
+    requirement: 'Maul, un Rival', image: `${BASE}sorcellerie.jpg`,
+  },
+  {
+    id: 'son-eminence', name: 'Son Éminence', englishName: 'His Eminence', pip: 2, faction: 'mercenaire',
+    requirement: 'Maul, un Rival', image: `${BASE}son-eminence.jpg`,
+  },
+  {
+    id: 'saisir-le-pouvoir-qu-on-peut', name: 'Saisir le Pouvoir qu’On Peut', englishName: 'Seize What Power We Can', pip: 3, faction: 'mercenaire',
+    requirement: 'Maul, un Rival', image: `${BASE}saisir-le-pouvoir-qu-on-peut.jpg`,
+  },
+  {
+    id: 'marque-pour-elimination', name: 'Marqué pour Élimination', englishName: 'Marked For Elimination', pip: 1, faction: 'mercenaire',
+    requirement: 'Gar Saxon', image: `${BASE}marque-pour-elimination.jpg`,
+  },
+  {
+    id: 'combattre-un-autre-jour', name: 'Combattre un Autre Jour', englishName: 'Fight Another Day', pip: 2, faction: 'mercenaire',
+    requirement: 'Gar Saxon', image: `${BASE}combattre-un-autre-jour.jpg`,
+  },
+  {
+    id: 'la-victoire-ou-la-mort', name: 'La Victoire ou la Mort !', englishName: 'Victory or Death!', pip: 3, faction: 'mercenaire',
+    requirement: 'Gar Saxon', image: `${BASE}la-victoire-ou-la-mort.jpg`,
+  },
+  {
+    id: 'un-homme-simple', name: 'Un Homme Simple', englishName: 'A Simple Man', pip: 1, faction: 'mercenaire',
+    requirement: 'Boba Fett', image: `${BASE}un-homme-simple.jpg`,
+  },
+  {
+    id: 'tracer-son-chemin-dans-la-galaxie', name: 'Tracer son Chemin dans la Galaxie', englishName: 'Making His Way in the Galaxy', pip: 2, faction: 'mercenaire',
+    requirement: 'Boba Fett', image: `${BASE}tracer-son-chemin-dans-la-galaxie.jpg`,
+  },
+  {
+    id: 'gouverner-avec-respect', name: 'Gouverner avec Respect', englishName: 'Rule With Respect', pip: 3, faction: 'mercenaire',
+    requirement: 'Boba Fett', image: `${BASE}gouverner-avec-respect.jpg`,
+  },
+  {
+    id: 'oiseaux-siffleurs', name: 'Oiseaux Siffleurs', englishName: 'Whistling Birds', pip: 3, faction: 'mercenaire',
+    requirement: 'Din Djarin', image: `${BASE}oiseaux-siffleurs.jpg`,
+  },
+  {
+    id: 'j-aime-ces-probabilites', name: 'J’Aime ces Probabilités', englishName: 'I Like Those Odds', pip: 2, faction: 'mercenaire',
+    requirement: 'Din Djarin', image: `${BASE}j-aime-ces-probabilites.jpg`,
+  },
+  {
+    id: 'telle-est-la-voie', name: 'Telle est la Voie', englishName: 'This is the Way', pip: 1, faction: 'mercenaire',
+    requirement: 'Din Djarin', image: `${BASE}telle-est-la-voie.jpg`,
+  },
+  {
+    id: 'concu-pour-tuer', name: 'Conçu pour Tuer', englishName: 'A Machine Made For Killing', pip: 2, faction: 'mercenaire',
+    requirement: 'IG-11 ou IG-88', image: `${BASE}concu-pour-tuer.jpg`,
+  },
+  {
+    id: 'protocoles-anti-capture', name: 'Protocoles Anti-capture', englishName: 'Anti-Capture Protocols', pip: 3, faction: 'mercenaire',
+    requirement: 'IG-11', image: `${BASE}protocoles-anti-capture.jpg`,
+  },
+  {
+    id: 'dedie-a-l-assassinat', name: 'Dédié à l’Assassinat', englishName: 'Focused on the Kill', pip: 1, faction: 'mercenaire',
+    requirement: 'IG-88', image: `${BASE}dedie-a-l-assassinat.jpg`,
+  },
+  {
+    id: 'programme-autonome', name: 'Programme Autonome', englishName: 'Independent Programming', pip: 2, faction: 'mercenaire',
+    requirement: 'IG-88', image: `${BASE}programme-autonome.jpg`,
+  },
+  {
+    id: 'carnage-mecanique', name: 'Carnage Mécanique', englishName: 'Mechanical Carnage', pip: 1, faction: 'mercenaire',
+    requirement: 'IG-11', image: `${BASE}carnage-mecanique.jpg`,
+  },
+  {
+    id: 'le-truc-de-la-main', name: 'Le Truc de la Main', englishName: 'The Hand Thing', pip: 2, faction: 'mercenaire',
+    requirement: 'Grogu', image: `${BASE}le-truc-de-la-main.jpg`,
   },
 ];
 

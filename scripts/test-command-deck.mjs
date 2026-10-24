@@ -64,6 +64,9 @@ try {
   // recompte les PIP sur les visuels.
   const generic = COMMAND_CARDS.filter((c) => c.faction === 'generique')
   assert.deepEqual(generic.map((c) => `${c.id}:${c.pip}`).sort(), ['assaut:3', 'embuscade:1', 'ordres-permanents:4', 'poussee:2'])
+  const mercenary = COMMAND_CARDS.filter((c) => c.faction === 'mercenaire')
+  assert.ok(mercenary.length >= 29 && mercenary.every((c) => c.englishName && c.requirement), 'les commandements de personnages mercenaires nomment leur personnage')
+  assert.ok(!eligibleCommandCards('empire').some((c) => c.faction === 'mercenaire'), 'un commandement de mercenaire n’est jamais proposé d’office dans une main de faction')
   const empireHand = ['ordres-permanents', 'tirs-coordonnes', 'maitre-du-mal', 'impitoyable', 'embuscade', 'la-peur-et-les-hommes-morts', 'nouvelle-technique-de-motivation']
   const rebelHand = ['ordres-permanents', 'sabotage-des-communications', 'fils-de-skywalker', 'poussee', 'mon-alliee-est-la-force', 'tirs-de-couverture', 'le-retour-du-jedi']
   assert.ok(suiteIsComplete(empireHand), 'la main Empire (Vador) se construit : ' + JSON.stringify(suitePipCounts(empireHand)))

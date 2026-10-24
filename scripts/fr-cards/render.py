@@ -292,19 +292,19 @@ def draw_weapons(rgb, bars, weapons, x_left, x_right, report, min_name=12, max_s
         stop = saturated(rgb, (a + b) // 2, lx, int(x_right + (x_right - x_left) * 0.5))
         right = lx + int(stop[0]) - 6 if len(stop) else int(x_right)
         # Ligne de mots-clés : nettement sous le nom, d'une hauteur comparable (pas un jambage de lettre).
-        kws = [l for l in bar_lines(g, (x_left, b + 3, x_right, bottom), 120)
-               if l[0] > b + (b - a) * 0.25 and 0.4 * (b - a) <= l[1] - l[0] < (b - a)]
-        rgb[:] = erase(rgb, (lx - 3, a - 3, min(rx + 4, right + 2), b + 4), 'light', 150)
+        kws = [l for l in bar_lines(g, (x_left, b + 3, x_right + 100, bottom), 120)  # la ligne passe sous la pastille de portée
+               if l[0] > b + (b - a) * 0.25 and 0.4 * (b - a) <= l[1] - l[0] <= (b - a) * 1.15]
+        rgb[:] = erase(rgb, (lx - 3, a - 3, min(rx + 4, right + 2), b + 4), 'light', 110)
         if kws and weapons[i].get('keywords') is not None:
-            ka, kb, klx, krx = kws[0]
-            rgb[:] = erase(rgb, (klx - 3, ka - 3, krx + 4, kb + 4), 'light', 110)
+            for ka, kb, klx, krx in kws:  # les mots-clés d'une arme peuvent tenir sur deux lignes
+                rgb[:] = erase(rgb, (klx - 3, ka - 3, krx + 4, kb + 4), 'light', 110)
         img = Image.fromarray(rgb)
         draw_text(img, (lx, a - 6, right, b + 7), weapons[i].get('name', ''), min(max_size, (b - a) * 1.32), report,
                   f'arme {i + 1} : nom', style='band', color=WHITE, align='left', lh=1.0, wrap=False)
         if kws and weapons[i].get('keywords') is not None:
             ka, kb, klx, _ = kws[0]
-            draw_text(img, (klx, ka - 5, right, kb + 6), weapons[i]['keywords'], min(max_size * 0.8, (kb - ka) * 1.35), report,
-                      f'arme {i + 1} : mots-clés', style='bandi', color=GREY_KW, align='left', lh=1.0, wrap=False)
+            draw_text(img, (klx, ka - 5, right, kws[-1][1] + 6), weapons[i]['keywords'], min(max_size * 0.8, (kb - ka) * 1.35), report,
+                      f'arme {i + 1} : mots-clés', style='bandi', color=GREY_KW, align='left', lh=1.0, wrap=len(kws) > 1)
         elif weapons[i].get('keywords'):
             report.problem(f'arme {i + 1} : ligne de mots-clés introuvable sur la carte')
         rgb[:] = np.asarray(img)
@@ -378,9 +378,14 @@ def find_band(g, footer_top):
     H = g.shape[0]
     solid = (g[:, 30:704] < 70).mean(1) > 0.95
     edges = runs(solid[int(H * 0.25):footer_top], 1, int(H * 0.25))
-    for (a, a2), (b1, b) in zip(edges, edges[1:]):
-        if not 12 <= b1 - a2 <= 60 or not 22 <= b - a <= 70:
+    # Un texte court (« IG-11 ») laisse des lignes entièrement noires au milieu du bandeau : on essaie toutes les paires de bords
+    # et l'on garde la plus serrée (une paire plus large engloberait le filet qui borde l'illustration).
+    found = []
+    for (a, a2), (b1, b) in ((e1, e2) for i, e1 in enumerate(edges) for e2 in edges[i + 1:]):
+        if not 4 <= b1 - a2 <= 60 or not 22 <= b - a <= 70:
             continue
+        if g[a - 12:a - 4, 60:660].mean() < 150:
+            continue  # le bandeau est détaché de l'illustration par une bande claire ; sinon on est au milieu du bandeau
         inner = (g[a2 + 1:b1, 30:704] < 90).mean(1)
         if (inner > 0.4).mean() < 0.8:
             continue
@@ -389,8 +394,8 @@ def find_band(g, footer_top):
         if not len(cols) or not 0.3 < (cols.min() + cols.max()) / 2 / 614 < 0.7:
             continue  # pas de texte centré : ce n'est pas le bandeau
         if g[b + 4:b + 40, 60:660].mean() > 175:
-            return a, b
-    return None
+            found.append((a, b))
+    return min(found, key=lambda ab: ab[1] - ab[0]) if found else None
 
 
 def separators(g, top, bottom):
@@ -424,6 +429,12 @@ def command(rgb, fr, report):
     footer_rows = [y for y in range(int(H * 0.88), H - 4) if (g[y, 40:690] < 70).mean() > 0.8 and (g[y, 694:714] < 70).mean() > 0.8]
     footer_top = footer_rows[0] if footer_rows else H - 60
     band = find_band(g, footer_top)
+    if not band and not fr.get('units'):
+        # Carte sans bandeau d'effectif (ex. jouée depuis la main) : le texte commence sous le filet qui borde l'illustration.
+        solid = (g[:, 30:704] < 70).mean(1) > 0.95
+        edges = [(a, b) for a, b in runs(solid[int(H * 0.3):footer_top], 1, int(H * 0.3)) if g[b + 4:b + 40, 60:660].mean() > 175]
+        band = (edges[0][1] - 10, edges[0][1]) if edges else None
+        report.zones['effectif'] = 'aucun'
     if not band:
         report.problem('bandeau d’effectif introuvable')
         band = (footer_top - 200, footer_top - 170)
@@ -438,7 +449,7 @@ def command(rgb, fr, report):
     seps = separators(g, body_top, text_bottom)
     # Titre (une ou deux lignes), effectif, pied de carte : texte clair sur fond foncé.
     if fr.get('title'):
-        rgb = erase(rgb, (160, 6, 708, 67), 'light', 150)
+        rgb = erase(rgb, (160, 6, 730, 67), 'light', 150)
     if fr.get('units'):
         rgb = erase(rgb, (30, band_top + 2, 704, band_bottom - 2), 'light', 150)
     if fr.get('footer'):
