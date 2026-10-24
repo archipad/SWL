@@ -425,6 +425,8 @@ def command(rgb, fr, report):
                 continue
             rgb = erase(rgb, erase_box, mode, thr)
             img = Image.fromarray(rgb)
+            if key == 'body' and '__' in fr[key]:
+                style = 'serif'  # texte de règle (termes en gras, ex. Ordres Permanents) : droit, pas en italique d'ambiance
             draw_text(img, box, fr[key], size, report, key, style=style, color=color, kwcolor=color, align=align, lh=lh or 1.0)
             rgb = np.asarray(img).copy()
         return rgb

@@ -969,6 +969,24 @@
    },
    "issue": 27,
    "integratedAt": "2026-10-24"
+  },
+  "command:standing orders": {
+   "englishName": "Standing Orders",
+   "nameFr": "Ordres Permanents",
+   "kind": "command",
+   "image": "ordres-permanents.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Standing%20Orders.webp",
+   "fr": {
+    "title": "Ordres Permanents",
+    "units": "1 UNITÉ",
+    "body": "À la fin de la __Phase de Commandement__, reprenez cette carte dans votre main."
+   },
+   "command": {
+    "pip": 4,
+    "faction": "generique",
+    "requirement": "Toujours disponible"
+   },
+   "note": "Remplace le visuel anglais (Standing Orders) publié jusqu’ici sous ce nom ; validé visuellement par Antoine le 24/10/2026."
   }
  }
 }
