@@ -166,6 +166,110 @@
   "tl tt flame projector": {
    "text": "TL-TT uniquement. Arme : Lance-flammes (corps-à-corps et portée 1) — 2 dés noirs ; Fixe : avant, Déflagration, Souffle.",
    "source": "visuel FR du site"
+  },
+  "beskad duelist": {
+   "text": "Résistance Mandalorienne uniquement. Ajoutez 1 figurine de Duelliste avec Beskad. Cette unité gagne Duelliste. Arme : Vibrolame (corps-à-corps) — 2 dés rouges.",
+   "source": "visuel FR du site"
+  },
+  "tristan wren": {
+   "text": "Résistance Mandalorienne uniquement. Ajoutez 1 figurine de Tristan Wren. Arme : Blaster de Tristan (portée 1-3) — 2 dés noirs ; Létal 1, Suppressif.",
+   "source": "visuel FR du site"
+  },
+  "ursa wren": {
+   "text": "Résistance Mandalorienne uniquement. Ajoutez 1 figurine d'Ursa Wren. Chef. Cette unité gagne Intrépide. Arme : Blaster d'Ursa (corps-à-corps et portée 1-2) — 1 dé rouge, 1 dé blanc, 1 dé noir ; Longue Distance.",
+   "source": "visuel FR du site"
+  },
+  "2 1b medical droid": {
+   "text": "Soldat Rebelle ▲ uniquement. Ajoutez 1 figurine de Droïde Médical 2-1B. Non-combattant. Traiter 1 : Capacité 2 (action).",
+   "source": "visuel FR du site"
+  },
+  "r5 astromech droid": {
+   "text": "Soldat Rebelle ▲ uniquement. Ajoutez 1 figurine de Droïde Astromech. Non-combattant. Réparation 1 : Capacité 2 (action).",
+   "source": "visuel FR du site"
+  },
+  "rebel veteran squad": {
+   "text": "Vétérans Rebelles uniquement. Ajoutez 5 figurines de Vétéran Rebelle. Cette unité gagne Indomptable ; elle conserve ce mot-clé même si ces figurines ajoutées sont vaincues. Cette unité est en cohésion si toutes ses figurines sont à ① du Chef d'unité au lieu de ½ ; elle conserve cette règle même si ces figurines ajoutées sont vaincues. Cette unité ne peut pas être déployée ou recevoir des ordres via le mot-clé Transport.",
+   "source": "visuel FR du site"
+  },
+  "hotshot pilot": {
+   "text": "Véhicule à Répulseurs Rebelle uniquement. Cette unité gagne Tireur d'Élite 1.",
+   "source": "visuel FR du site"
+  },
+  "rps 6 rocket gunner": {
+   "text": "Landspeeder X-34 uniquement. Arme : Lance-roquettes RPS-6 (portée 2-4) — 1 dé rouge, 1 dé blanc, 1 dé noir ; Impact 2.",
+   "source": "visuel FR du site"
+  },
+  "outer rim speeder jockey": {
+   "text": "Véhicule à Répulseurs Rebelle uniquement. Cette unité gagne Couvert 1.",
+   "source": "visuel FR du site"
+  },
+  "mo dk power harpoon": {
+   "text": "Airspeeder T-47 uniquement. Arme : Harpon Magnétique Mo/Dk (portée 1-2) — 1 dé rouge ; Fixe : arrière, Impact 1, Câble de Remorquage.",
+   "source": "visuel FR du site"
+  },
+  "tl tt laser cannon": {
+   "text": "TL-TT uniquement. Arme : Canon Laser (portée 2-4) — 1 dé rouge, 2 dés noirs ; Fixe : avant, Impact 3.",
+   "source": "visuel FR du site"
+  },
+  "m 45 ion blaster": {
+   "text": "Landspeeder X-34 uniquement. Arme : Blaster Ionique M-45 (portée 1-4) — 2 dés blancs, 2 dés noirs ; Fixe : avant, Critique 1, Impact 1, Ion 1.",
+   "source": "visuel FR du site"
+  },
+  "mandalorian combat shields": {
+   "text": "Résistance Mandalorienne uniquement. Cette unité gagne Bouclier 2.",
+   "source": "visuel FR du site"
+  },
+  "jetpack rockets": {
+   "text": "Résistance Mandalorienne uniquement. Arme : Roquettes Dorsales (portée 3-4) — 1 dé rouge ; Déflagration, Impact 1.",
+   "source": "visuel FR du site"
+  },
+  "ag 2g quad laser": {
+   "text": "Camion Speeder A-A5 uniquement. Arme : Quadrilaser AG-2G (portée 1-3) — 6 dés noirs ; Impact 2.",
+   "source": "visuel FR du site"
+  },
+  "heavy laser retrofit": {
+   "text": "Camion Speeder A-A5 uniquement. Arme : Canon Laser Lourd (portée 1-4) — 1 dé rouge, 1 dé blanc, 1 dé noir ; Critique 1.",
+   "source": "visuel FR du site"
+  },
+  "a280 cfe pistol sniper config": {
+   "text": "Cassian Andor uniquement. Reconfiguration. Arme : Fusil A280 (portée 1 et au-delà) — 1 dé rouge, 1 dé noir ; Encombrant, Haute Vélocité, Perforant 1. (Carte à deux faces : l'autre face porte la configuration pistolet.)",
+   "source": "visuel FR du site"
+  },
+  "jyn s se 14 blaster": {
+   "text": "K-2SO uniquement. Si votre armée contient Jyn Erso, réduisez de 5 les points de cette carte. Arme : Blaster SE-14 (portée 1-2) — 5 dés blancs ; Perforant 1, Suppressif.",
+   "source": "visuel FR du site"
+  },
+  "rt 97c stormtrooper": {
+   "text": "Stormtroopers uniquement. Ajoutez 1 figurine de Stormtrooper avec RT-97C. Arme : Fusil Blaster RT-97C (portée 1-4) — 1 dé rouge, 3 dés blancs.",
+   "source": "visuel FR du site"
+  },
+  "dt f16": {
+   "text": "Death Troopers Impériaux uniquement. Ajoutez 1 figurine de DT-F16. Cette unité gagne Contrainte. Chef. Arme : Fusil Blaster E-11D (portée 1-3) — 1 dé blanc, 1 dé noir.",
+   "source": "visuel FR du site"
+  },
+  "del meeko": {
+   "text": "Forces Spéciales Impériales ou Soldat Impérial ▲ uniquement. Ajoutez 1 figurine de Del Meeko. Réparation 2 : Capacité 1 (action). Arme : DLT-19x de Del (portée 1-5) — 2 dés noirs ; Haute Vélocité, Létal 1.",
+   "source": "visuel FR du site"
+  },
+  "t 21 special forces trooper": {
+   "text": "Forces Spéciales Impériales uniquement. Ajoutez 1 figurine de Soldat avec T-21. Arme : Blaster à Répétition T-21 (portée 1-3) — 4 dés blancs ; Critique 2.",
+   "source": "visuel FR du site"
+  },
+  "sm 9 dark trooper": {
+   "text": "Dark Troopers Impériaux uniquement. Ajoutez 1 figurine de Dark Trooper avec Lanceur à Fragmentation SM-9. Arme : Lanceur à Fragmentation SM-9 (portée 1-2) — 2 dés rouges, 1 dé noir ; Déflagration, Cycle, Impact 2.",
+   "source": "visuel FR du site"
+  },
+  "stormtrooper": {
+   "text": "Stormtroopers uniquement. Ajoutez 1 figurine de Stormtrooper.",
+   "source": "visuel FR du site"
+  },
+  "shoretrooper": {
+   "text": "Shoretroopers uniquement. Ajoutez 1 figurine de Shoretrooper.",
+   "source": "visuel FR du site"
+  },
+  "stormtrooper squad expansion": {
+   "text": "Stormtroopers uniquement. Ajoutez 5 figurines de Stormtrooper. Cette unité gagne Indomptable ; elle conserve ce mot-clé même si ces figurines ajoutées sont vaincues. Cette unité est en cohésion si toutes ses figurines sont à ① du Chef d'unité au lieu de ½ ; elle conserve cette règle même si ces figurines ajoutées sont vaincues. Cette unité ne peut pas être déployée ou recevoir des ordres via le mot-clé Transport.",
+   "source": "visuel FR du site"
   }
  }
 }
