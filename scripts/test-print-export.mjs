@@ -90,6 +90,19 @@ try {
   assert.ok(emptyHtml.includes(frenchCardName(canonicalCardKey(sampleCard))) || emptyHtml.includes(sampleCard), 'La liste de sélection doit lister au moins une carte connue')
   console.log('PrintCardsScreen : rendu initial OK (titre, bandeau « aucune sélection », liste des cartes non vide).')
 
+  // Encart « Améliorations » (24/10/2026) : un mot-clé cité par le texte d'une carte est défini entre
+  // parenthèses, sauf s'il est déjà défini sous l'unité ou s'il fait partie d'un nom propre.
+  const { annotateKeywords } = await vite.ssrLoadModule('/src/lib/keywordText.ts')
+  const antichar = annotateKeywords("Cette Réserve d'Attaque gagne Anti-matériel 2 et Impact 2.", SEED_KEYWORDS, new Set())
+  assert.match(antichar, /Anti-matériel 2 \([^)]*améliore 2 dés/, 'Anti-matériel 2 défini avec sa valeur')
+  assert.match(antichar, /Impact 2 \(/, 'Impact 2 défini')
+  assert.equal(annotateKeywords('Impact 2.', SEED_KEYWORDS, new Set(['impact-x'])), 'Impact 2.', 'mot-clé déjà défini sous l’unité : pas de répétition')
+  for (const plain of ['Chef Mandalorien uniquement.', 'Arme : Blaster à Dispersion SX-21.', 'Saboteur avec Charge à Protons.', 'il gagne 1 pion Blessure.', "du Chef d'unité."])
+    assert.equal(annotateKeywords(plain, SEED_KEYWORDS, new Set()), plain, `« ${plain} » ne cite aucun mot-clé`)
+  const listHtml = renderToStaticMarkup(React.createElement(VisualListSection, { list: importArmyList(fs.readFileSync('scripts/data/real-lists/empire-moff-gideon.json', 'utf8')), tagLibrary: SEED_CARD_TAGS, keywords: SEED_KEYWORDS }))
+  assert.match(listHtml, /Munitions Antichar[\s\S]*Anti-matériel 2 \(/, 'Munitions Antichar : Anti-matériel défini dans l’encart')
+  console.log('Encart des améliorations : mots-clés cités définis entre parenthèses.')
+
   console.log(`Audit des écrans d'impression OK.`)
 } finally {
   await vite.close()

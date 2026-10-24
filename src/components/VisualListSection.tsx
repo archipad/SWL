@@ -4,7 +4,7 @@ import { resolveUnitKeywords } from '../lib/combat';
 import { cardImageFor } from '../data/cardImages';
 import { cardNoteFor } from '../data/cardNotes';
 import { DefinitionText } from '../lib/diceIcons';
-import { shortDef } from '../lib/keywordText';
+import { annotateKeywords, shortDef } from '../lib/keywordText';
 import { frenchCardName, canonicalCardKey } from '../lib/cardNames';
 import { upgradeTextFor, upgradeUseFor, type UpgradeUse } from '../data/upgradeTexts';
 
@@ -63,7 +63,7 @@ const USE_LABEL: Record<UpgradeUse, string | null> = {
  * fois imprimé ; il est recopié ici en entier, avec le symbole d'utilisation de la carte. Une carte dont
  * le texte n'a pas encore été transcrit est signalée plutôt que passée sous silence.
  */
-function UpgradeTexts({ unit }: { unit: ParsedUnit }) {
+function UpgradeTexts({ unit, keywords, defined }: { unit: ParsedUnit; keywords: KeywordDef[]; defined: Set<string> }) {
   const seen = new Set<string>();
   const upgrades = unit.upgrades.filter((up) => {
     const key = canonicalCardKey(up.name);
@@ -76,7 +76,9 @@ function UpgradeTexts({ unit }: { unit: ParsedUnit }) {
     <div className="visual-list-upgrades">
       <h4 className="visual-list-kw-heading">Améliorations</h4>
       {upgrades.map((up) => {
-        const text = upgradeTextFor(up.name);
+        const raw = upgradeTextFor(up.name);
+        // Mots-clés cités par la carte mais absents de la liste ci-dessous : définis entre parenthèses.
+        const text = raw ? annotateKeywords(raw, keywords, defined) : undefined;
         const use = upgradeUseFor(up.name);
         const useLabel = use ? USE_LABEL[use] : null;
         return (
@@ -144,7 +146,7 @@ function VisualUnitBlock({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tag
           ) : null;
         })}
       </div>
-      <UpgradeTexts unit={unit} />
+      <UpgradeTexts unit={unit} keywords={keywords} defined={new Set(resolved.map((r) => r.def.id))} />
       {(resolved.length > 0 || notes.length > 0) && (
         <div className="visual-list-keywords">
           {IMPACT_GROUPS.map(({ id, label }) => {
