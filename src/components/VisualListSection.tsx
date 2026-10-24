@@ -77,8 +77,8 @@ function UpgradeTexts({ unit, keywords, defined }: { unit: ParsedUnit; keywords:
       <h4 className="visual-list-kw-heading">Améliorations</h4>
       {upgrades.map((up) => {
         const raw = upgradeTextFor(up.name);
-        // Mots-clés cités par la carte mais absents de la liste ci-dessous : définis entre parenthèses.
-        const text = raw ? annotateKeywords(raw, keywords, defined) : undefined;
+        // Mots-clés en gras ; ceux absents de la liste ci-dessous sont définis entre parenthèses.
+        const segments = raw ? annotateKeywords(raw, keywords, defined) : undefined;
         const use = upgradeUseFor(up.name);
         const useLabel = use ? USE_LABEL[use] : null;
         return (
@@ -86,7 +86,9 @@ function UpgradeTexts({ unit, keywords, defined }: { unit: ParsedUnit; keywords:
             <strong>{frenchCardName(up.name)}</strong>
             {useLabel && <span className="visual-list-upgrade-use"> ({useLabel})</span>}
             {' — '}
-            {text ? <DefinitionText text={text} /> : <em className="visual-list-upgrade-missing">texte à transcrire (voir le visuel de la carte)</em>}
+            {segments
+              ? segments.map((s, i) => (s.keyword ? <strong key={i}>{s.text}</strong> : <DefinitionText key={i} text={s.text} />))
+              : <em className="visual-list-upgrade-missing">texte à transcrire (voir le visuel de la carte)</em>}
           </p>
         );
       })}

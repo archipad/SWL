@@ -39,32 +39,52 @@ function printedKeywordName(name: string): string {
   return base.replace(/\s+X$/, '');
 }
 
+export interface AnnotatedSegment {
+  text: string;
+  /** Mot-clé du glossaire, imprimé en gras comme sur les cartes. */
+  keyword?: boolean;
+}
+
 /**
- * Ajoute, entre parenthèses après sa première occurrence, la définition courte de chaque mot-clé cité
- * dans le texte d'une carte d'amélioration (24/10/2026 : « Anti-matériel 2 et Impact 2 » de Munitions
- * Antichar n'étaient définis nulle part). Les mots-clés de `skip` (déjà définis sous l'unité) ne sont pas
- * répétés. Un nom de mot-clé qui sert aussi de nom de pion (« pion Blessure »), de règle (« Chef d'unité »)
- * ou qui fait partie d'un nom propre (« Chef Mandalorien », « Blaster à Dispersion SX-21 », « Saboteur avec
- * Charge à Protons ») n'est pas pris pour le mot-clé.
+ * Découpe le texte d'une carte d'amélioration en segments : chaque mot-clé du glossaire cité est marqué
+ * (rendu en gras, comme la nomenclature des cartes) et sa première occurrence est suivie de sa définition
+ * courte entre parenthèses, valeur reportée (24/10/2026 : « Anti-matériel 2 et Impact 2 » de Munitions
+ * Antichar n'étaient définis nulle part). Les mots-clés de `skip` (déjà définis sous l'unité) restent en
+ * gras sans définition répétée. Un nom de mot-clé qui sert aussi de nom de pion (« pion Blessure »), de
+ * règle (« Chef d'unité ») ou qui fait partie d'un nom propre (« Chef Mandalorien », « Blaster à
+ * Dispersion SX-21 », « Saboteur avec Charge à Protons ») n'est pas pris pour le mot-clé.
  */
-export function annotateKeywords(text: string, keywords: KeywordDef[], skip: Set<string>): string {
+export function annotateKeywords(text: string, keywords: KeywordDef[], skip: Set<string>): AnnotatedSegment[] {
   const candidates = keywords
-    .filter((def) => !skip.has(def.id))
     .map((def) => ({ def, label: printedKeywordName(def.name) }))
     .filter((c) => c.label.length > 2)
     .sort((a, b) => b.label.length - a.label.length);
-  const taken: [number, number][] = [];
-  const inserts: { at: number; text: string }[] = [];
+  const found: { start: number; end: number; definition?: string }[] = [];
   for (const { def, label } of candidates) {
-    const re = new RegExp(`(?<![\\p{L}'’])(?<!pions? |avec )${escapeRe(label)}(?: (\\d+))?(?![\\p{L}'’-])(?! d['’]unit| \\p{Lu}| à \\p{Lu})`, 'u');
-    const m = re.exec(text);
-    if (!m) continue;
-    const start = m.index;
-    const end = start + m[0].length;
-    if (taken.some(([a, b]) => start < b && end > a)) continue;
-    taken.push([start, end]);
-    const value = m[1] !== undefined ? Number(m[1]) : undefined;
-    inserts.push({ at: end, text: ` (${substituteValue(shortDef(def), value).replace(/\.\s*$/, '')})` });
+    const re = new RegExp(`(?<![\\p{L}'’])(?<!pions? |avec )${escapeRe(label)}(?: (\\d+))?(?![\\p{L}'’-])(?! d['’]unit| \\p{Lu}| à \\p{Lu})`, 'gu');
+    let first = true;
+    for (const m of text.matchAll(re)) {
+      const start = m.index ?? 0;
+      const end = start + m[0].length;
+      if (found.some((f) => start < f.end && end > f.start)) continue;
+      const value = m[1] !== undefined ? Number(m[1]) : undefined;
+      const definition = first && !skip.has(def.id) ? substituteValue(shortDef(def), value).replace(/\.\s*$/, '') : undefined;
+      found.push({ start, end, definition });
+      first = false;
+    }
   }
-  return inserts.sort((a, b) => b.at - a.at).reduce((out, ins) => out.slice(0, ins.at) + ins.text + out.slice(ins.at), text);
+  found.sort((a, b) => a.start - b.start);
+  const segments: AnnotatedSegment[] = [];
+  let at = 0;
+  for (const f of found) {
+    if (f.start > at) segments.push({ text: text.slice(at, f.start) });
+    segments.push({ text: text.slice(f.start, f.end), keyword: true });
+    if (f.definition) segments.push({ text: ` (${f.definition})` });
+    at = f.end;
+  }
+  if (at < text.length) segments.push({ text: text.slice(at) });
+  return segments;
 }
+
+/** Texte brut d'un texte annoté (tests, infobulles). */
+export const annotatedText = (segments: AnnotatedSegment[]) => segments.map((s) => s.text).join('');

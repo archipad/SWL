@@ -92,15 +92,17 @@ try {
 
   // Encart « Améliorations » (24/10/2026) : un mot-clé cité par le texte d'une carte est défini entre
   // parenthèses, sauf s'il est déjà défini sous l'unité ou s'il fait partie d'un nom propre.
-  const { annotateKeywords } = await vite.ssrLoadModule('/src/lib/keywordText.ts')
+  const { annotateKeywords: segments, annotatedText } = await vite.ssrLoadModule('/src/lib/keywordText.ts')
+  const annotateKeywords = (text, keywords, skip) => annotatedText(segments(text, keywords, skip))
   const antichar = annotateKeywords("Cette Réserve d'Attaque gagne Anti-matériel 2 et Impact 2.", SEED_KEYWORDS, new Set())
   assert.match(antichar, /Anti-matériel 2 \([^)]*améliore 2 dés/, 'Anti-matériel 2 défini avec sa valeur')
   assert.match(antichar, /Impact 2 \(/, 'Impact 2 défini')
   assert.equal(annotateKeywords('Impact 2.', SEED_KEYWORDS, new Set(['impact-x'])), 'Impact 2.', 'mot-clé déjà défini sous l’unité : pas de répétition')
+  assert.deepEqual(segments('gagne Impact 2.', SEED_KEYWORDS, new Set(['impact-x'])).filter((s) => s.keyword).map((s) => s.text), ['Impact 2'], 'mot-clé en gras même déjà défini')
   for (const plain of ['Chef Mandalorien uniquement.', 'Arme : Blaster à Dispersion SX-21.', 'Saboteur avec Charge à Protons.', 'il gagne 1 pion Blessure.', "du Chef d'unité."])
     assert.equal(annotateKeywords(plain, SEED_KEYWORDS, new Set()), plain, `« ${plain} » ne cite aucun mot-clé`)
   const listHtml = renderToStaticMarkup(React.createElement(VisualListSection, { list: importArmyList(fs.readFileSync('scripts/data/real-lists/empire-moff-gideon.json', 'utf8')), tagLibrary: SEED_CARD_TAGS, keywords: SEED_KEYWORDS }))
-  assert.match(listHtml, /Munitions Antichar[\s\S]*Anti-matériel 2 \(/, 'Munitions Antichar : Anti-matériel défini dans l’encart')
+  assert.match(listHtml, /Munitions Antichar[\s\S]*<strong>Anti-matériel 2<\/strong> \(/, 'Munitions Antichar : Anti-matériel en gras et défini dans l’encart')
   console.log('Encart des améliorations : mots-clés cités définis entre parenthèses.')
 
   console.log(`Audit des écrans d'impression OK.`)
