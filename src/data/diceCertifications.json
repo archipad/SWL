@@ -1502,10 +1502,46 @@
             "count": 1
           }
         ],
-        "range": "1-4"
+        "range": "1-4",
+        "keywordIds": [
+          "suppressif"
+        ]
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "reconfiguration"
+        },
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/e-11d-focused-strike-config.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.986Z",
+      "visualHash": "c9285b9a51513d22f6b4867f01c93117ad2311033a4f23cd0852c6fbc07ed055"
+    }
   },
   "cleaver dark trooper": {
     "weapons": [
@@ -2139,10 +2175,43 @@
             "count": 5
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "fixe"
+        ]
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "fixe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/tl-tt-rotary-blaster.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.986Z",
+      "visualHash": "8fe52741a49037fadf76a84db360c5b556db176d488cad9ed1707bc69370e304"
+    }
   },
   "tl tt laser cannon": {
     "weapons": [
@@ -6469,7 +6538,38 @@
   },
   "offensive push": {
     "weapons": [],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "exhaust",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/offensive-push.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "364681eb3539d03caa679a7c299c386ad3829d8e771e9c195184d21fbe41ca3c"
+    }
   },
   "outer rim speeder jockey": {
     "weapons": [],
@@ -6591,7 +6691,37 @@
   },
   "rebel veteran squad": {
     "weapons": [],
-    "addedModels": 5
+    "addedModels": 5,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "indomptable"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/rebel-veteran-squad.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "303cf5ff181e45c115191e52abb2f0f36294ad9d44a83fc045fe22390cf79e53"
+    }
   },
   "shriv suurgav": {
     "weapons": [],
@@ -9041,6 +9171,1091 @@
         "by": "Certification automatique β — corrections historiques démontrées"
       },
       "visualHash": "663c5682c3973f5bf4e9b36e0d9f2ec4a12e99643d89c3e577f1dda43dcd9d17"
+    }
+  },
+  "ig 88": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Vibrocouperet",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "index": 1,
+        "name": "Blaster Modifié E-11",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "perforant-x",
+          "polyvalent"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "index": 2,
+        "name": "DLT-20A Modifié",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat Droïde",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "crit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "armure-x",
+          "value": 1
+        },
+        {
+          "keywordId": "arsenal-x",
+          "value": 2
+        },
+        {
+          "keywordId": "prime"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "polyvalent"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/ig-88.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "e3296031f7bbf66b34c3b089078d2d08269db41a8ea316e10ad7bddef0eb57bc"
+    }
+  },
+  "ig 11": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Prépotence",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Blaster E-11 Modifié",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "index": 2,
+        "name": "DLT-20A Modifié",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat Droïde",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "hit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "armure-x",
+          "value": 1
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "programme"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "pistolero"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/ig-11.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "7b67283584a120025f51a92871b37bd60f0780ba468234ab771a1ed4269ac03d"
+    }
+  },
+  "din djarin": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Vibrolame",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "letal-x"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      },
+      {
+        "index": 1,
+        "name": "Pistolet Blaster IB-94",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "letal-x",
+          "longue-distance",
+          "polyvalent"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "crit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "arsenal-x",
+          "value": 2
+        },
+        {
+          "keywordId": "prime"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "autonome"
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        },
+        {
+          "keywordId": "longue-distance"
+        },
+        {
+          "keywordId": "polyvalent"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/din-djarin.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "d42433f579ae4fe0ad8c353f1602b0ce6e0da0d5d317bb6e66951980287612d9"
+    }
+  },
+  "mandalorian super commandos": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Blasters WESTAR-35",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Carabines Blaster",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 3,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "special",
+      "unitType": "Soldat",
+      "speed": "3",
+      "speedFromHq": true,
+      "attackSurge": "none",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "defense-x",
+          "value": 1
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "autonome"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/mandalorian-super-commandos.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "38d362bc51fd3a1ce3cc8f0a8f6b9786d69a45abdaee2eba360a9b1478848d08"
+    }
+  },
+  "high energy shells": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Obus à Haute Énergie",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "2-4",
+        "keywordIds": [
+          "fixe",
+          "critique-x",
+          "haute-velocite"
+        ],
+        "keywordValues": {
+          "critique-x": 1
+        }
+      }
+    ],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "cycle"
+        },
+        {
+          "keywordId": "fixe"
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "haute-velocite"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/high-energy-shells.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "f3fb279be543837ffc81077cebc649abf9076f036a744966085db93e411c4ab7"
+    }
+  },
+  "prepared materiel": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "cache"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/prepared-materiel.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "e24fc35dca21892a3d2c2ee864398df86e151e30947c917666cbb02e5f93ef00"
+    }
+  },
+  "environmental gear": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "sans-entrave"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/environmental-gear.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "b4e36ca93968064be1253f22badf819c4a6a0e39d656ab520db08454302e7d08"
+    }
+  },
+  "mandalorian hunter": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Vibrocouteau",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "index": 1,
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "operative",
+      "unitType": "Soldat Mandalorien",
+      "speed": "3",
+      "speedFromHq": true,
+      "attackSurge": "hit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "mercenaire"
+        },
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "equipe"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/mandalorian-hunter-fr-community.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "120b53fb2026ffa66ba4dd870ddc9dcf6d8e4eebe5a3cf401276f9ee80ed5531"
+    }
+  },
+  "grand admiral thrawn imperial high command": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Arts Martiaux Chiss",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Blaster de Thrawn",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "Soldat",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "hit",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "stratege-x",
+          "value": 2
+        },
+        {
+          "keywordId": "malin"
+        },
+        {
+          "keywordId": "ordre-direct"
+        },
+        {
+          "keywordId": "duelliste"
+        },
+        {
+          "keywordId": "exemplaire"
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        },
+        {
+          "keywordId": "longueur-davance"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/grand-admiral-thrawn-fr-community.png",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "9f88213175b9d941e51b5b685887cf3aecf63149a49004d1db64482acc39a653"
+    }
+  },
+  "tank hunting munitions": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "anti-materiel-x",
+          "value": 2
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "discard",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/tank-hunting-munitions-fr-community.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "0c789fb632a24da4f86f5ed4cda1da8d49b5913ee4d444f6a4e5a7af170c03cc"
+    }
+  },
+  "proven tactician": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "vivacite-desprit"
+        },
+        {
+          "keywordId": "exemplaire"
+        },
+        {
+          "keywordId": "renforts"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/proven-tactician-fr-community.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "15b2a15343f2904214dfdc832a35c28d595e49614909eb0aaf4dc0537d4d1f0a"
+    }
+  },
+  "rebel officer fighting for freedom": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "index": 1,
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "commandant",
+      "unitType": "Soldat",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "equipe"
+        },
+        {
+          "keywordId": "inspiration-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/rebel-officer-fighting-for-freedom-fr-community.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "f2af7d5cec23822a28b3225983f6e7d5bc96de2c33010bd75722ad98d00593d3"
+    }
+  },
+  "champion of the watch": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "telle-est-la-voie"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/champion-of-the-watch-fr-community.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "5dd3bc6baec68a17ea7ed209c7ed05ec2bb294e6325a7555fcc98323c79e92a0"
+    }
+  },
+  "galaar 90 sniper rifle armament": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Sniper GALAAR-90",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-5",
+        "keywordIds": [
+          "haute-velocite",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "haute-velocite"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/galaar-90-sniper-rifle-armament-fr-community.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "b163fba217751eef32385e1d1e8b73ab33ee5069ab53e80809d4d498983b0ac1"
+    }
+  },
+  "battlemaster": {
+    "weapons": [],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "la-mort-venue-du-ciel"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/battlemaster-fr-community.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "6ffc6317b80870c7070906f8d4b240ad3fcdb17ba4494fb23c231db9d9f40852"
+    }
+  },
+  "vibro axe": {
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Vibrohache",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "impact-x",
+          "letal-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1,
+          "letal-x": 1
+        }
+      }
+    ],
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "charge"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/vibro-axe-fr-community.jpg",
+      "verifiedAt": "2026-10-23T22:31:04.987Z",
+      "visualHash": "533b408ea02199a5371937645d5b3d98dd3b130e90a3d6cc28a3412e91fe9536"
     }
   }
 }
