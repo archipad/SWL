@@ -6,6 +6,7 @@ import { cardNoteFor } from '../data/cardNotes';
 import { DefinitionText } from '../lib/diceIcons';
 import { shortDef } from '../lib/keywordText';
 import { frenchCardName, canonicalCardKey } from '../lib/cardNames';
+import { upgradeTextFor, upgradeUseFor, type UpgradeUse } from '../data/upgradeTexts';
 
 interface Props {
   list: ParsedList;
@@ -44,19 +45,51 @@ function PointsBreakdown({ unit }: { unit: ParsedUnit }) {
  * améliorations.
  */
 function unitCardNotes(unit: ParsedUnit): { key: string; displayName: string; note: string }[] {
+  // Les améliorations ont désormais leur texte complet dans l'encart « Améliorations » (UpgradeTexts) :
+  // seule la carte d'unité garde ici sa note propre (ex. erratum).
+  const note = cardNoteFor(unit.name);
+  return note ? [{ key: canonicalCardKey(unit.name), displayName: frenchCardName(unit.name), note }] : [];
+}
+
+const USE_LABEL: Record<UpgradeUse, string | null> = {
+  passive: null,
+  exhaust: '↱ à incliner',
+  discard: '✖ à supprimer',
+  both: '↱ à incliner ou ✖ à supprimer',
+};
+
+/**
+ * Encart sous les visuels (24/10/2026) : le texte d'une petite carte d'amélioration est illisible une
+ * fois imprimé ; il est recopié ici en entier, avec le symbole d'utilisation de la carte. Une carte dont
+ * le texte n'a pas encore été transcrit est signalée plutôt que passée sous silence.
+ */
+function UpgradeTexts({ unit }: { unit: ParsedUnit }) {
   const seen = new Set<string>();
-  const result: { key: string; displayName: string; note: string }[] = [];
-  const visit = (name: string) => {
-    const key = canonicalCardKey(name);
-    if (seen.has(key)) return;
-    const note = cardNoteFor(name);
-    if (!note) return;
+  const upgrades = unit.upgrades.filter((up) => {
+    const key = canonicalCardKey(up.name);
+    if (seen.has(key)) return false;
     seen.add(key);
-    result.push({ key, displayName: frenchCardName(name), note });
-  };
-  visit(unit.name);
-  for (const up of unit.upgrades) visit(up.name);
-  return result;
+    return true;
+  });
+  if (upgrades.length === 0) return null;
+  return (
+    <div className="visual-list-upgrades">
+      <h4 className="visual-list-kw-heading">Améliorations</h4>
+      {upgrades.map((up) => {
+        const text = upgradeTextFor(up.name);
+        const use = upgradeUseFor(up.name);
+        const useLabel = use ? USE_LABEL[use] : null;
+        return (
+          <p key={up.key} className="visual-list-kw visual-list-upgrade">
+            <strong>{frenchCardName(up.name)}</strong>
+            {useLabel && <span className="visual-list-upgrade-use"> ({useLabel})</span>}
+            {' — '}
+            {text ? <DefinitionText text={text} /> : <em className="visual-list-upgrade-missing">texte à transcrire (voir le visuel de la carte)</em>}
+          </p>
+        );
+      })}
+    </div>
+  );
 }
 
 /** Mots-clés regroupés par moment d'usage, comme le mode « mots-clés » (MinimalKeywordsSection). */
@@ -69,11 +102,11 @@ const IMPACT_GROUPS: { id: KeywordDef['impact']; label: string }[] = [
 /**
  * Hauteur imprimée des visuels (mm) pour que la carte d'unité (paysage, ≈ 1,43) et toutes ses
  * améliorations (portrait, ≈ 0,71) tiennent sur une seule ligne de la demi-page A4 (≈ 190 mm utiles),
- * plafonnée à 50 mm.
+ * plafonnée à 46 mm.
  */
 function printedCardHeight(upgrades: number): number {
   const usable = 190 - upgrades * 1;
-  return Math.min(50, Math.floor(usable / (1.43 + 0.71 * upgrades)));
+  return Math.min(46, Math.floor(usable / (1.43 + 0.71 * upgrades)));
 }
 
 function VisualUnitBlock({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tagLibrary: CardTagLibrary; keywords: KeywordDef[] }) {
@@ -111,6 +144,7 @@ function VisualUnitBlock({ unit, tagLibrary, keywords }: { unit: ParsedUnit; tag
           ) : null;
         })}
       </div>
+      <UpgradeTexts unit={unit} />
       {(resolved.length > 0 || notes.length > 0) && (
         <div className="visual-list-keywords">
           {IMPACT_GROUPS.map(({ id, label }) => {

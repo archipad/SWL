@@ -1059,6 +1059,9 @@ body:has(.app-game-tracker){min-height:100vh;background-color:var(--t-outer);bac
 }
 .visual-list-kw { font-size: 0.85rem; margin: 0 0 0.35rem; }
 .visual-list-kw-heading { margin: 0 0 0.3rem; color: var(--text-dim); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.visual-list-upgrades { margin-bottom: 0.6rem; padding: 0.5rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; }
+.visual-list-upgrade-use { color: var(--text-dim); font-size: 0.78rem; }
+.visual-list-upgrade-missing { color: var(--text-dim); }
 
 .card-row-head { display: flex; justify-content: space-between; gap: 0.5rem; align-items: baseline; }
 .card-row-name { font-weight: 600; }
@@ -1520,7 +1523,11 @@ select option { background: var(--t-panel-2); color: var(--text); }
     color: black; font-size: 7.5pt; letter-spacing: 0.08em; text-transform: uppercase;
     border-bottom: 0.3mm solid #000; margin: 0 0 0.8mm; padding-bottom: 0.3mm;
   }
-  .visual-list-kw { color: black; font-size: 8.5pt; line-height: 1.28; margin: 0 0 0.8mm; break-inside: avoid; }
+  .visual-list-kw { color: black; font-size: 8pt; line-height: 1.25; margin: 0 0 0.6mm; break-inside: avoid; }
+  /* Encart « Améliorations » : texte complet des cartes, sous les visuels, sur toute la largeur. */
+  .visual-list-upgrades { margin-top: 2.5mm; padding: 1.5mm 2.5mm; border: 0.3mm solid #000; border-radius: 1.5mm; }
+  .visual-list-upgrade-use { color: #444; font-size: 7.5pt; }
+  .visual-list-upgrade-missing { color: #666; }
 }
 /* Rapport de compatibilité affiché immédiatement après chaque import. */
 .import-audit{margin-top:14px;border:1px solid var(--t-line);background:var(--t-s2)}

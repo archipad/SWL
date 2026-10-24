@@ -1,0 +1,6 @@
+{
+ "_meta": {
+  "description": "Texte français complet des cartes d'amélioration, transcrit en session depuis leur visuel français (termes de l'index V2.6) et validé visuellement par Antoine, pour l'encart imprimé sous chaque unité (src/data/upgradeTexts.ts). Clé : canonicalCardKey du nom anglais."
+ },
+ "cards": {}
+}
