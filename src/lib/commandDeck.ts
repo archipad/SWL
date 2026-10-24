@@ -1,5 +1,6 @@
 import { COMMAND_CARDS, COMMAND_SUITE_RULE, type CommandCard, type CommandFaction } from '../data/commandCards';
 import type { ParsedList } from '../types';
+import { canonicalCardKey } from './cardNames';
 
 /** Détecte la faction Commandement (Empire/Rebelles) d'une liste importée à
  * partir du texte libre de `faction` (pas de valeur normalisée garantie côté
@@ -19,6 +20,14 @@ export function eligibleCommandCards(faction: CommandFaction | null): CommandCar
 
 export function commandCardById(id: string): CommandCard | undefined {
   return COMMAND_CARDS.find((card) => card.id === id);
+}
+
+/** Carte du paquet du site désignée par un nom de liste importée : identifiant, nom français ou nom
+ * anglais Tabletop Admiral (englishName), comme la reconnaissance de l'écran d'import. */
+export function commandCardForName(name: string): CommandCard | undefined {
+  const key = canonicalCardKey(name);
+  return COMMAND_CARDS.find((card) => card.id.replace(/-/g, ' ') === key || canonicalCardKey(card.name) === key
+    || (card.englishName !== undefined && canonicalCardKey(card.englishName) === key));
 }
 
 /** Nombre de cartes déjà choisies par valeur de PIP dans une suite en cours

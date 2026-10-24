@@ -2,12 +2,13 @@
    construction de la Suite (2×1/2×2/2×3 PIP + Ordres Permanents, 7 cartes,
    sans doublon) et intégrité du catalogue extrait des planches AMG. */
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
 import { createServer } from 'vite'
 
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom', optimizeDeps: { noDiscovery: true } })
 try {
   const { COMMAND_CARDS, COMMAND_SUITE_RULE } = await vite.ssrLoadModule('/src/data/commandCards.ts')
-  const { suiteIsComplete, suitePipCounts, canAddToSuite, commandFactionForList, eligibleCommandCards, commandCardById } = await vite.ssrLoadModule('/src/lib/commandDeck.ts')
+  const { suiteIsComplete, suitePipCounts, canAddToSuite, commandFactionForList, eligibleCommandCards, commandCardById, commandCardForName } = await vite.ssrLoadModule('/src/lib/commandDeck.ts')
 
   // Intégrité du catalogue : identifiants uniques, pips valides, une seule carte à 4 PIP (Ordres Permanents).
   const ids = COMMAND_CARDS.map((c) => c.id)
@@ -67,6 +68,11 @@ try {
   const mercenary = COMMAND_CARDS.filter((c) => c.faction === 'mercenaire')
   assert.ok(mercenary.length >= 29 && mercenary.every((c) => c.englishName && c.requirement), 'les commandements de personnages mercenaires nomment leur personnage')
   assert.ok(!eligibleCommandCards('empire').some((c) => c.faction === 'mercenaire'), 'un commandement de mercenaire n’est jamais proposé d’office dans une main de faction')
+  // Impression depuis la page Listes : chaque nom de carte d'une liste Tabletop Admiral réelle retrouve son visuel du paquet.
+  const realLists = ['empire-moff-gideon', 'rebelles-simon-3'].map((f) => JSON.parse(fs.readFileSync(`scripts/data/real-lists/${f}.json`, 'utf8')))
+  for (const name of realLists.flatMap((l) => [...(l.commandCards ?? []), ...(l.contingencies ?? [])])) assert.ok(commandCardForName(name)?.image, `${name} : visuel de Commandement imprimable`)
+  assert.equal(commandCardForName('Standing Orders')?.id, 'ordres-permanents')
+  assert.equal(commandCardForName('Mourir de ma Main')?.englishName, 'Die at My Hand')
   const empireHand = ['ordres-permanents', 'tirs-coordonnes', 'maitre-du-mal', 'impitoyable', 'embuscade', 'la-peur-et-les-hommes-morts', 'nouvelle-technique-de-motivation']
   const rebelHand = ['ordres-permanents', 'sabotage-des-communications', 'fils-de-skywalker', 'poussee', 'mon-alliee-est-la-force', 'tirs-de-couverture', 'le-retour-du-jedi']
   assert.ok(suiteIsComplete(empireHand), 'la main Empire (Vador) se construit : ' + JSON.stringify(suitePipCounts(empireHand)))

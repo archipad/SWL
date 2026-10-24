@@ -1476,6 +1476,10 @@ select option { background: var(--t-panel-2); color: var(--text); }
   }
   .print-card-box-landscape { width: 88mm; height: 62mm; }
   .print-card-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Cartes de Commandement de la liste, imprimées après les fiches de la page Listes
+     (CommandCardsPrintSection.tsx) : nouvelle page, cases au format réel. */
+  .command-cards-print { break-before: page; }
+  .command-cards-print-missing { color: black; font-size: 8pt; margin: 0.3em 0 0; }
 
   /* Imprimer la liste (visuel + mots-clés) : mise en page « façon Tabletop
      Admiral » — carte de troupe et cartes d'amélioration équipées côte à

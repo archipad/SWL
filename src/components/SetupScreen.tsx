@@ -4,6 +4,7 @@ import { SyncSettings } from './SyncSettings';
 import { UnitCardsSection } from './UnitCardsSection';
 import { MinimalKeywordsSection } from './MinimalKeywordsSection';
 import { VisualListSection } from './VisualListSection';
+import { CommandCardsPrintSection } from './CommandCardsPrintSection';
 import { DiceIcon } from '../lib/diceIcons';
 import { UiIcon } from '../lib/uiIcons';
 import { ImportCompatibilityReport } from './ImportCompatibilityReport';
@@ -174,6 +175,7 @@ export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, o
             <DiceIcon type="adr-def" /> Adrénaline (défense) · <strong>①②③</strong> portée/distance
           </p>
           <UnitCardsSection list={printList} tagLibrary={tagLibrary} keywords={keywords} />
+          <CommandCardsPrintSection list={printList} label={printLabel} />
         </section>
       )}
 
@@ -200,6 +202,7 @@ export function SetupScreen({ listP1, listP2, tagLibrary, keywords, onParseP1, o
             {printList.totalPoints !== undefined ? ` (${printList.totalPoints} pts)` : ''}
           </h2>
           <VisualListSection list={printList} tagLibrary={tagLibrary} keywords={keywords} />
+          <CommandCardsPrintSection list={printList} label={printLabel} />
         </section>
       )}
     </div>
