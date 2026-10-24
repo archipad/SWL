@@ -3,6 +3,46 @@
   "description": "Fiches FR communautaires générées depuis les visuels Legion HQ (scripts/fr-cards) et validées visuellement."
  },
  "cards": {
+  "command:a higher purpose": {
+   "englishName": "A Higher Purpose",
+   "nameFr": "Une Cause Supérieure",
+   "kind": "command",
+   "image": "une-cause-superieure.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/A%20Higher%20Purpose.webp",
+   "fr": {
+    "title": "Une Cause Supérieure",
+    "units": "BO-KATAN KRYZE",
+    "body": "Au début de la prochaine activation de __Bo-Katan Kryze__, elle peut effectuer une action Récupérer.\n__Bo-Katan Kryze__ gagne **Barrage** et **Implacable** ce round. De plus, tant que __Bo-Katan Kryze__ est engagée ce round, ses armes gagnent **Perforant 1**.",
+    "footer": "Bo-Katan Kryze"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "mercenaire",
+    "requirement": "Bo-Katan Kryze"
+   },
+   "ttaId": "command:19487",
+   "integratedAt": "2026-10-24"
+  },
+  "command:aerial assault": {
+   "englishName": "Aerial Assault",
+   "nameFr": "Assaut Aérien",
+   "kind": "command",
+   "image": "assaut-aerien.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Aerial%20Assault.webp",
+   "fr": {
+    "title": "Assaut Aérien",
+    "units": "2 UNITÉS",
+    "body": "Quand une unité ayant le mot-clé **Saut X** reçoit un ordre via cette carte, elle peut effectuer une action {action}**Saut 2**.\nCe round, quand une unité alliée qui a un pion Ordre face visible et le mot-clé **Saut X** attaque, elle gagne **La Mort Venue du Ciel** jusqu'à la fin du round.",
+    "footer": "Clans Mandaloriens"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "Clans Mandaloriens"
+   },
+   "ttaId": "command:19510",
+   "integratedAt": "2026-10-24"
+  },
   "command:arboreal assault": {
    "englishName": "Arboreal Assault",
    "nameFr": "Assaut Arboricole",
@@ -41,6 +81,46 @@
     "requirement": "Grand Amiral Thrawn"
    },
    "ttaId": "command:18898",
+   "integratedAt": "2026-10-24"
+  },
+  "command:boring conversation anyway": {
+   "englishName": "Boring Conversation Anyway",
+   "nameFr": "Conversation Ennuyeuse de Toute Façon",
+   "kind": "command",
+   "image": "conversation-ennuyeuse-de-toute-facon.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Boring%20Conversation%20Anyway.webp",
+   "fr": {
+    "title": "Conversation Ennuyeuse de Toute Façon",
+    "units": "AUCUNE UNITÉ",
+    "body": "__Han & Chewie__, __Leia Organa__ et __Luke Skywalker__ peuvent se donner des ordres.\nCe round, quand __Han & Chewie__, ou une unité __Leia Organa__ ou __Luke Skywalker__ alliée à {portee-2} et dans la ligne de vue de __Han & Chewie__, attaque, ajoutez 1 résultat {critique} à la réserve d'attaque pour chaque résultat {touche} de la réserve d'attaque à la fin de l'étape __Convertir les Adrénalines d'Attaque__.",
+    "footer": "Han & Chewie"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "Han & Chewie"
+   },
+   "ttaId": "command:20010",
+   "integratedAt": "2026-10-24"
+  },
+  "command:both hunter and prey": {
+   "englishName": "Both Hunter and Prey",
+   "nameFr": "À la Fois Chasseur et Proie",
+   "kind": "command",
+   "image": "a-la-fois-chasseur-et-proie.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Both%20Hunter%20and%20Prey.webp",
+   "fr": {
+    "title": "À la Fois Chasseur et Proie",
+    "units": "L’ARMURIÈRE & 1 UNITÉ",
+    "body": "À la fin de la première activation de __l'Armurière__ ce round, elle peut subir 1 blessure. Dans ce cas, remélangez son pion Ordre dans la réserve d'ordres. Pendant la deuxième activation de __l'Armurière__ ce round, elle effectue 1 action de moins.",
+    "footer": "L’Armurière"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "L’Armurière"
+   },
+   "ttaId": "command:19485",
    "integratedAt": "2026-10-24"
   },
   "command:canny adversary": {
@@ -83,6 +163,26 @@
    "ttaId": "command:7328",
    "integratedAt": "2026-10-24"
   },
+  "command:close formation": {
+   "englishName": "Close Formation",
+   "nameFr": "Formation Serrée",
+   "kind": "command",
+   "image": "formation-serree.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Close%20Formation.webp",
+   "fr": {
+    "title": "Formation Serrée",
+    "units": "2 {clan-kryze} UNITÉS",
+    "body": "Ce round, tant qu'une unité {clan-kryze} alliée est à {portee-1} d'une autre unité {clan-kryze} alliée, ces unités gagnent **Précis 1** et **Manœuvre Improbable**.",
+    "footer": "{clan-kryze}{rang-commandant} ou {clan-kryze}{rang-agent}"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "Commandant ou agent du clan Kryze"
+   },
+   "ttaId": "command:19511",
+   "integratedAt": "2026-10-24"
+  },
   "command:courageous counterattack": {
    "englishName": "Courageous Counterattack",
    "nameFr": "Contre-attaque Courageuse",
@@ -101,6 +201,26 @@
     "requirement": "Wicket"
    },
    "ttaId": "command:7326",
+   "integratedAt": "2026-10-24"
+  },
+  "command:death before defeat": {
+   "englishName": "Death Before Defeat",
+   "nameFr": "Plutôt la Mort que la Défaite",
+   "kind": "command",
+   "image": "plutot-la-mort-que-la-defaite.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Death%20Before%20Defeat.webp",
+   "fr": {
+    "title": "Plutôt la Mort que la Défaite",
+    "units": "3 {clan-saxon} UNITÉS",
+    "body": "Quand une unité reçoit un ordre via cette carte, elle gagne 1 pion Viser ou 1 pion Adrénaline.\nCe round, quand une unité {clan-saxon} alliée effectue une attaque de corps-à-corps, la réserve d'attaque gagne **Bélier 1**.",
+    "footer": "{clan-saxon}{rang-commandant} ou {clan-saxon}{rang-agent}"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "Commandant ou agent du clan Saxon"
+   },
+   "ttaId": "command:19512",
    "integratedAt": "2026-10-24"
   },
   "command:fear will keep them in line": {
@@ -163,6 +283,26 @@
    "ttaId": "command:6351",
    "integratedAt": "2026-10-24"
   },
+  "command:go there are too many": {
+   "englishName": "Go, There Are Too Many...",
+   "nameFr": "Partez, Ils Sont Trop Nombreux…",
+   "kind": "command",
+   "image": "partez-ils-sont-trop-nombreux.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Go%2C%20There%20Are%20Too%20Many.webp",
+   "fr": {
+    "title": "Partez, Ils Sont Trop Nombreux…",
+    "units": "PAZ VIZSLA",
+    "body": "**Permanent.** Cette carte ne peut être choisie que si __Paz Vizsla__ est à {portee-2} d'au moins 2 unités ennemies.\n__Paz Vizsla__ remplace son {courage} par « – », gagne 1 pion En attente, gagne **Stationnaire**, et ses armes gagnent **Polyvalent**. De plus, quand __Paz Vizsla__ dépense un pion En attente, après la résolution de l'effet, il peut subir 1 blessure. Dans ce cas, il gagne 1 pion En attente.",
+    "footer": "Paz Vizsla"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "mercenaire",
+    "requirement": "Paz Vizsla"
+   },
+   "ttaId": "command:19483",
+   "integratedAt": "2026-10-24"
+  },
   "command:hiding in plain sight": {
    "englishName": "Hiding in Plain Sight",
    "nameFr": "Caché aux Yeux de Tous",
@@ -181,6 +321,26 @@
     "requirement": "Village de Bright Tree"
    },
    "ttaId": "command:6350",
+   "integratedAt": "2026-10-24"
+  },
+  "command:honor and strength": {
+   "englishName": "Honor and Strength",
+   "nameFr": "Honneur et Force",
+   "kind": "command",
+   "image": "honneur-et-force.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Honor%20and%20Strength.webp",
+   "fr": {
+    "title": "Honneur et Force",
+    "units": "3 UNITÉS",
+    "body": "Ce round, tant que le commandant désigné n'est ni réprimé ni paniqué, les autres unités de soldats mandaloriens alliées à {portee-2} de lui peuvent améliorer 2 de leurs dés d'attaque quand elles attaquent.\nTant que le commandant désigné n'est ni réprimé ni paniqué, les unités ennemies à {portee-1} de lui dégradent 1 de leurs dés d'attaque quand elles attaquent.",
+    "footer": "Chef Mandalorien"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "Chef Mandalorien"
+   },
+   "ttaId": "command:19530",
    "integratedAt": "2026-10-24"
   },
   "command:i have graphs and the command": {
@@ -223,6 +383,26 @@
    "ttaId": "command:16619",
    "integratedAt": "2026-10-24"
   },
+  "command:i smell profit": {
+   "englishName": "I Smell Profit",
+   "nameFr": "Ça Sent le Profit",
+   "kind": "command",
+   "image": "ca-sent-le-profit.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Smell%20Profit.webp",
+   "fr": {
+    "title": "Ça Sent le Profit",
+    "units": "3 UNITÉS",
+    "body": "Ce round, les unités {gang-ohnaka} alliées ont **Les Yeux sur le Butin : Profil Bas et Agile**.",
+    "footer": "Le Gang Ohnaka"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "Le Gang Ohnaka"
+   },
+   "ttaId": "command:19407",
+   "integratedAt": "2026-10-24"
+  },
   "command:i want you to know failure": {
    "englishName": "I Want You to Know Failure",
    "nameFr": "Je Veux que Vous Connaissiez l’Échec",
@@ -263,6 +443,26 @@
    "ttaId": "command:17861",
    "integratedAt": "2026-10-24"
   },
+  "command:insolence we are pirates": {
+   "englishName": "Insolence?! We are Pirates!",
+   "nameFr": "De l’Insolence ?! Nous Sommes des Pirates !",
+   "kind": "command",
+   "image": "de-l-insolence-nous-sommes-des-pirates.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Insolence!%20We%20are%20Pirates!.webp",
+   "fr": {
+    "title": "De l’Insolence ?! Nous Sommes des Pirates !",
+    "units": "HONDO OHNAKA",
+    "body": "Quand vous créez votre main de commandement, considérez que cette carte a 1 pip.\nCe round, quand une unité de soldats {gang-ohnaka} alliée à {portee-2} et dans la ligne de vue d'__Hondo Ohnaka__ attaque, si __Hondo Ohnaka__ n'est ni réprimé ni paniqué, il peut gagner 1 pion Suppression pendant l'étape __Lancer les Dés d'Attaque__. Dans ce cas, cette unité de soldats {gang-ohnaka} alliée gagne {adrenaline} : {critique} pendant cette attaque.",
+    "footer": "Le Gang Ohnaka"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "mercenaire",
+    "requirement": "Le Gang Ohnaka"
+   },
+   "ttaId": "command:19405",
+   "integratedAt": "2026-10-24"
+  },
   "command:log traps": {
    "englishName": "Log Traps",
    "nameFr": "Pièges à Rondins",
@@ -289,6 +489,46 @@
    "ttaId": "command:6349",
    "integratedAt": "2026-10-24"
   },
+  "command:make the impossible possible": {
+   "englishName": "Make the Impossible Possible",
+   "nameFr": "Rendre l’Impossible Possible",
+   "kind": "command",
+   "image": "rendre-l-impossible-possible.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Make%20the%20Impossible%20Possible.webp",
+   "fr": {
+    "title": "Rendre l’Impossible Possible",
+    "units": "SABINE WREN & 1 {clan-wren} UNITÉ",
+    "body": "__Sabine Wren__ a **Aguerri** ce round.\nCe round, __Sabine Wren__ gagne l'action gratuite suivante :\n{action-gratuite} Placez 1 pion Graffiti allié à {portee-1} et dans la ligne de vue de __Sabine Wren__, au contact d'un élément de terrain qui n'est pas un terrain en zone.",
+    "footer": "Sabine Wren, de Retour au Bercail"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "Sabine Wren, de Retour au Bercail"
+   },
+   "ttaId": "command:19513",
+   "integratedAt": "2026-10-24"
+  },
+  "command:mandalore will survive": {
+   "englishName": "Mandalore Will Survive",
+   "nameFr": "Mandalore Survivra",
+   "kind": "command",
+   "image": "mandalore-survivra.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Mandalore%20Will%20Survive.webp",
+   "fr": {
+    "title": "Mandalore Survivra",
+    "units": "BO-KATAN KRYZE & 2 UNITÉS",
+    "body": "Quand une unité reçoit un ordre via cette carte, elle peut retirer 1 pion Suppression.\nCe round, quand une unité {clan-kryze} alliée qui a un pion Ordre face visible effectue une action Attaquer pendant son activation, après la résolution de l'effet, cette unité peut effectuer un déplacement à vitesse 1.",
+    "footer": "Bo-Katan Kryze"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "Bo-Katan Kryze"
+   },
+   "ttaId": "command:19486",
+   "integratedAt": "2026-10-24"
+  },
   "command:moment of triumph": {
    "englishName": "Moment of Triumph",
    "nameFr": "Instant de Triomphe",
@@ -307,6 +547,66 @@
     "requirement": "Grand Moff Tarkin"
    },
    "ttaId": "command:18902",
+   "integratedAt": "2026-10-24"
+  },
+  "command:never tell me the odds": {
+   "englishName": "Never Tell Me the Odds",
+   "nameFr": "Ne Me Dites Jamais Quelles Sont nos Chances",
+   "kind": "command",
+   "image": "ne-me-dites-jamais-quelles-sont-nos-chances.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Never%20Tell%20Me%20the%20Odds.webp",
+   "fr": {
+    "title": "Ne Me Dites Jamais Quelles Sont nos Chances",
+    "units": "AUCUNE UNITÉ",
+    "body": "__Han & Chewie__ peuvent se donner un ordre. Au début de la prochaine activation de __Han & Chewie__, s'ils tiennent ou contestent 1 pion Objectif ou plus, ils gagnent 2 pions Viser et **Tireur Embusqué** pendant cette activation.\nÀ la fin de la prochaine activation de __Han & Chewie__, s'ils tiennent ou contestent 1 pion Objectif ou plus, ils gagnent 2 pions Esquive et peuvent retirer tous leurs pions Suppression.",
+    "footer": "Han & Chewie"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "mercenaire",
+    "requirement": "Han & Chewie"
+   },
+   "ttaId": "command:20009",
+   "integratedAt": "2026-10-24"
+  },
+  "command:no escape": {
+   "englishName": "No Escape",
+   "nameFr": "Pas d’Échappatoire",
+   "kind": "command",
+   "image": "pas-d-echappatoire.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/No%20Escape.webp",
+   "fr": {
+    "title": "Pas d’Échappatoire",
+    "units": "1 CHASSEUR MANDALORIEN",
+    "body": "Quand une unité ayant reçu un ordre via cette carte attaque ce round, l'unité en défense ne peut dépenser ni pion Esquive ni pion Adrénaline pendant cette attaque.\nDe plus, tant qu'une unité ayant reçu un ordre via cette carte est engagée avec une unité ennemie ce round, cette unité ennemie ne peut dépenser ni pion Viser, ni pion Esquive, ni pion Adrénaline.",
+    "footer": "Chasseur Mandalorien"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "mercenaire",
+    "requirement": "Chasseur Mandalorien"
+   },
+   "ttaId": "command:19531",
+   "integratedAt": "2026-10-24"
+  },
+  "command:no one threatens our family": {
+   "englishName": "No One Threatens Our Family",
+   "nameFr": "Personne ne Menace Notre Famille",
+   "kind": "command",
+   "image": "personne-ne-menace-notre-famille.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/No%20One%20Threatens%20Our%20Family.webp",
+   "fr": {
+    "title": "Personne ne Menace Notre Famille",
+    "units": "1 {clan-wren}{rang-commandant} ou {clan-wren}{rang-agent}",
+    "body": "Les unités {clan-wren}{rang-commandant} et {clan-wren}{rang-agent} alliées gagnent **Gardien 1 :** {clan-wren} jusqu'à la fin du round.\nDe plus, quand une unité {clan-wren} alliée utilise **Gardien X** ce round, après la résolution de l'effet, choisissez une unité {clan-wren} alliée à {portee-1} de cette unité. L'unité choisie gagne 1 pion Viser.",
+    "footer": "Ursa Wren"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "mercenaire",
+    "requirement": "Ursa Wren"
+   },
+   "ttaId": "command:19514",
    "integratedAt": "2026-10-24"
   },
   "command:not out of it yet": {
@@ -349,6 +649,26 @@
    "ttaId": "command:18904",
    "integratedAt": "2026-10-24"
   },
+  "command:out of the shadows": {
+   "englishName": "Out of the Shadows",
+   "nameFr": "Surgis de l’Ombre",
+   "kind": "command",
+   "image": "surgis-de-l-ombre.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Out%20of%20the%20Shadows.webp",
+   "fr": {
+    "title": "Surgis de l’Ombre",
+    "units": "2 {enclave-armuriere} UNITÉS",
+    "body": "Ce round, chaque fois qu'une unité {enclave-armuriere} alliée attaque une unité qui a un pion Ordre face visible, après la résolution de l'attaque, le joueur qui contrôle cette unité remélange son pion Ordre dans sa réserve d'ordres, puis l'unité en défense gagne 1 pion Suppression.\n---\n**Divulgation :** étape __Résoudre les effets de mise en place__. Choisissez 2 unités {enclave-armuriere} alliées. Les unités choisies ont **Infiltration** pour cette partie.",
+    "footer": "{enclave-armuriere}{rang-commandant} ou {enclave-armuriere}{rang-agent}"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "Commandant ou agent de l’enclave de l’Armurière"
+   },
+   "ttaId": "command:19515",
+   "integratedAt": "2026-10-24"
+  },
   "command:see you in hell": {
    "englishName": "See You in Hell",
    "nameFr": "On se Reverra en Enfer",
@@ -389,6 +709,66 @@
    "ttaId": "command:7327",
    "integratedAt": "2026-10-24"
   },
+  "command:speak softly and drive a big tank": {
+   "englishName": "Speak Softly and Drive a Big Tank",
+   "nameFr": "Parlez Doucement et Conduisez un Gros Tank",
+   "kind": "command",
+   "image": "parlez-doucement-et-conduisez-un-gros-tank.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Speak%20Softly%20and%20Drive%20a%20Big%20Tank.webp",
+   "fr": {
+    "title": "Parlez Doucement et Conduisez un Gros Tank",
+    "units": "2 UNITÉS DE VÉHICULES",
+    "body": "Quand une unité reçoit un ordre via cette carte, elle peut effectuer une action Se déplacer gratuite, ou gagner 1 pion Viser ou 1 pion Esquive.",
+    "footer": "Le Gang Ohnaka"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "Le Gang Ohnaka"
+   },
+   "ttaId": "command:19406",
+   "integratedAt": "2026-10-24"
+  },
+  "command:stories so many of them true": {
+   "englishName": "Stories, So Many of Them True",
+   "nameFr": "Tant d’Histoires, et Tant de Vraies",
+   "kind": "command",
+   "image": "tant-d-histoires-et-tant-de-vraies.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Stories%2C%20So%20Many%20of%20Them%20True.webp",
+   "fr": {
+    "title": "Tant d’Histoires, et Tant de Vraies",
+    "units": "HONDO OHNAKA",
+    "body": "Ce round, quand une unité alliée commence son activation sur le champ de bataille et à {portee-1} d'__Hondo Ohnaka__, s'il a un pion Ordre face visible et n'est pas paniqué, __Hondo Ohnaka__ peut gagner 1 pion Suppression. Dans ce cas, l'unité qui s'active gagne 1 pion Viser, 1 pion Esquive ou 1 pion Adrénaline.",
+    "footer": "Hondo Ohnaka"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "Hondo Ohnaka"
+   },
+   "ttaId": "command:16488",
+   "integratedAt": "2026-10-24"
+  },
+  "command:that s just good business": {
+   "englishName": "That's Just Good Business",
+   "nameFr": "Ce Ne Sont que des Affaires",
+   "kind": "command",
+   "image": "ce-ne-sont-que-des-affaires.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/That's%20Just%20Good%20Business.webp",
+   "fr": {
+    "title": "Ce Ne Sont que des Affaires",
+    "units": "HONDO OHNAKA & 1 UNITÉ",
+    "body": "Ce round, __Hondo Ohnaka__ ne peut être ni réprimé ni paniqué et peut effectuer une action Se déplacer gratuite pendant son activation. La première fois qu'__Hondo Ohnaka__ se déplace au corps-à-corps avec une unité ennemie ce round, après la résolution du déplacement, __Hondo Ohnaka__ retire tous ses pions Suppression et cette unité ennemie gagne les pions retirés. Ensuite, cette unité ennemie retire tous ses pions verts et __Hondo Ohnaka__ gagne les pions retirés.",
+    "footer": "Hondo Ohnaka"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "Hondo Ohnaka"
+   },
+   "ttaId": "command:16487",
+   "integratedAt": "2026-10-24"
+  },
   "command:the empire does not tolerate failure": {
    "englishName": "The Empire Does Not Tolerate Failure",
    "nameFr": "L'Empire ne Tolère pas l'Échec",
@@ -409,6 +789,46 @@
    "ttaId": "command:18906",
    "integratedAt": "2026-10-24"
   },
+  "command:vengeful strike": {
+   "englishName": "Vengeful Strike",
+   "nameFr": "Frappe Vengeresse",
+   "kind": "command",
+   "image": "frappe-vengeresse.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Vengeful%20Strike.webp",
+   "fr": {
+    "title": "Frappe Vengeresse",
+    "units": "ROOK KAST & 1 {clan-saxon} UNITÉ",
+    "body": "Au début de la prochaine __Phase d'Activation__, choisissez une autre unité {clan-saxon} alliée à {portee-2} de __Rook Kast__, si possible. __Rook Kast__ et l'unité choisie gagnent chacune 1 pion En attente.\nCe round, quand __Rook Kast__ ou l'unité choisie dépense ou retire 1 pion En attente ou plus, elle gagne 1 pion Viser et 1 pion Esquive.",
+    "footer": "Rook Kast"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "Rook Kast"
+   },
+   "ttaId": "command:19516",
+   "integratedAt": "2026-10-24"
+  },
+  "command:we are mandalorians": {
+   "englishName": "We Are Mandalorians",
+   "nameFr": "Nous Sommes Mandaloriens",
+   "kind": "command",
+   "image": "nous-sommes-mandaloriens.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Are%20Mandalorians.webp",
+   "fr": {
+    "title": "Nous Sommes Mandaloriens",
+    "units": "1 UNITÉ DE SOLDATS MANDALORIENS",
+    "body": "Quand une unité reçoit un ordre via cette carte, elle gagne **Inspiration 2** ce round et peut effectuer un déplacement à vitesse 1.\nCe round, quand une unité ayant reçu un ordre via cette carte attaque, pendant l'étape __Former la Réserve d'Attaque__, elle peut ajouter X dés d'attaque noirs à 1 de ses réserves d'attaque, jusqu'à 5 au maximum, X étant le nombre de pions Suppression des autres unités de soldats mandaloriens alliées à {portee-2} de l'unité attaquante.",
+    "footer": "Clans Mandaloriens"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "mercenaire",
+    "requirement": "Clans Mandaloriens"
+   },
+   "ttaId": "command:19517",
+   "integratedAt": "2026-10-24"
+  },
   "command:we must wait and watch": {
    "englishName": "We Must Wait and Watch",
    "nameFr": "Nous Devons Attendre et Observer",
@@ -427,6 +847,106 @@
     "requirement": "Grand Amiral Thrawn"
    },
    "ttaId": "command:18309",
+   "integratedAt": "2026-10-24"
+  },
+  "command:we protect our own": {
+   "englishName": "We Protect Our Own",
+   "nameFr": "Nous Protégeons les Nôtres",
+   "kind": "command",
+   "image": "nous-protegeons-les-notres.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Protect%20Our%20Own.webp",
+   "fr": {
+    "title": "Nous Protégeons les Nôtres",
+    "units": "3 {clan-wren} UNITÉS",
+    "body": "Quand une unité reçoit un ordre via cette carte, elle gagne 1 pion Viser ou 1 pion Esquive.\nCe round, quand une unité {clan-wren} alliée dépense 1 pion Viser ou Esquive ou plus, après la résolution de l'effet, choisissez une autre unité {clan-wren} alliée à {portee-2}. L'unité choisie gagne 1 pion du même type.",
+    "footer": "{clan-wren}{rang-commandant} ou {clan-wren}{rang-agent}"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "Commandant ou agent du clan Wren"
+   },
+   "ttaId": "command:19518",
+   "integratedAt": "2026-10-24"
+  },
+  "command:we shall start with revenge": {
+   "englishName": "We Shall Start with Revenge",
+   "nameFr": "Commençons par la Vengeance",
+   "kind": "command",
+   "image": "commencons-par-la-vengeance.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Shall%20Start%20with%20Revenge.webp",
+   "fr": {
+    "title": "Commençons par la Vengeance",
+    "units": "MAUL & SAVAGE OPRESS",
+    "body": "__Savage Opress__ peut subir un nombre de blessures allant jusqu'au numéro du round en cours. Ensuite, pour chaque pion Blessure de __Savage Opress__, __Savage Opress__ gagne 1 pion Viser. Enfin, pour chaque pion Blessure de __Maul__, __Maul__ gagne 1 pion Viser.\nChoisissez 1 des cartes Commandement de __Maul__ dans votre défausse, si possible. Remettez la carte choisie dans votre main de commandement.",
+    "footer": "Savage Opress"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "mercenaire",
+    "requirement": "Savage Opress"
+   },
+   "ttaId": "command:19081",
+   "integratedAt": "2026-10-24"
+  },
+  "command:we shape ourselves": {
+   "englishName": "We Shape Ourselves",
+   "nameFr": "Nous Nous Forgeons Nous-mêmes",
+   "kind": "command",
+   "image": "nous-nous-forgeons-nous-memes.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Shape%20Ourselves.webp",
+   "fr": {
+    "title": "Nous Nous Forgeons Nous-mêmes",
+    "units": "L’ARMURIÈRE & 2 UNITÉS",
+    "body": "**Divulgation :** étape __Résoudre les effets de mise en place__.\nChoisissez 1 des effets suivants :\n• 2 unités {enclave-armuriere} alliées gagnent **Cache : Viser 1** pour cette partie.\n• 2 unités {enclave-armuriere} alliées gagnent **Cache : Esquive 1** pour cette partie.\n---\nQuand une unité reçoit un ordre via cette carte, elle peut effectuer une action Récupérer.",
+    "footer": "L’Armurière"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "L’Armurière"
+   },
+   "ttaId": "command:19484",
+   "integratedAt": "2026-10-24"
+  },
+  "command:weapons are our religion": {
+   "englishName": "Weapons Are Our Religion",
+   "nameFr": "Les Armes Sont Notre Religion",
+   "kind": "command",
+   "image": "les-armes-sont-notre-religion.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Weapons%20Are%20Our%20Religion.webp",
+   "fr": {
+    "title": "Les Armes Sont Notre Religion",
+    "units": "3 UNITÉS",
+    "body": "Quand une unité reçoit un ordre via cette carte, elle gagne **Charge** ce round.\nLes armes des unités de soldats mandaloriens alliées gagnent **Polyvalent** ce round.",
+    "footer": "Clans Mandaloriens"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "mercenaire",
+    "requirement": "Clans Mandaloriens"
+   },
+   "ttaId": "command:19519",
+   "integratedAt": "2026-10-24"
+  },
+  "command:wookiee life debt": {
+   "englishName": "Wookiee Life Debt",
+   "nameFr": "Dette de Vie Wookie",
+   "kind": "command",
+   "image": "dette-de-vie-wookie.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Wookiee%20Life%20Debt.webp",
+   "fr": {
+    "title": "Dette de Vie Wookie",
+    "units": "HAN & CHEWIE",
+    "body": "**Permanent.** Si une figurine __Chewbacca__ alliée est sur le champ de bataille, __Han & Chewie__, ou une unité __Leia Organa__ ou __Luke Skywalker__ alliée à {portee-1} de __Han & Chewie__, peut gagner 1 pion Suppression chaque fois qu'elle est prise pour cible par une attaque ennemie pendant l'étape __Déclarer le Défenseur__. Dans ce cas, elle a **Armure 1** et __Han & Chewie__ ont **Gardien 2** jusqu'à la résolution de cette attaque.",
+    "footer": "Han & Chewie"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "mercenaire",
+    "requirement": "Han & Chewie"
+   },
+   "ttaId": "command:20008",
    "integratedAt": "2026-10-24"
   },
   "upgrade:go for broke": {

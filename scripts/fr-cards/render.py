@@ -398,15 +398,17 @@ def find_band(g, footer_top):
     return min(found, key=lambda ab: ab[1] - ab[0]) if found else None
 
 
-def separators(g, top, bottom):
+def separators(g, top, bottom, full=0.95, ink=140):
     """Filets de séparation du texte (ligne fine foncée sur la largeur du cadre)."""
-    frac = (g[:, 70:660] < 140).mean(1)
-    rows = frac[top:bottom] > 0.95  # un filet est continu ; une ligne de texte en gras ne l'est jamais
+    frac = (g[:, 70:660] < ink).mean(1)
+    rows = frac[top:bottom] > full  # un filet est continu ; une ligne de texte en gras ne l'est jamais
     return [(a, b) for a, b in runs(rows, 0, top)
             if b - a <= 4 and frac[a - 3] < 0.3 and frac[min(b + 3, len(frac) - 1)] < 0.3]
 
 
 def command(rgb, fr, report):
+    # Visuel Legion HQ en basse définition (≈ 290 px) : agrandi, son texte devient gris et flou ; l'effacement s'adapte.
+    low = rgb.shape[1] < 600
     rgb = resize_to(rgb, 734)
     g = gray(rgb)
     H = rgb.shape[0]
@@ -446,27 +448,34 @@ def command(rgb, fr, report):
             body_top = max(body_top, y + 6)
     bars = weapon_bars(g, 70, 655, body_top, footer_top - 4, 30)
     text_bottom = (bars[0][0] - 8) if bars else footer_top - 6
-    seps = separators(g, body_top, text_bottom)
-    # Titre (une ou deux lignes), effectif, pied de carte : texte clair sur fond foncé.
+    seps = separators(g, body_top, text_bottom, *((0.8, 175) if low else (0.95, 140)))  # filet agrandi : plus pâle par endroits
+    # Titre (une ou deux lignes, jusqu'au filet orange), effectif, pied de carte : texte clair sur fond foncé.
+    light = 95 if low else 150
+    c = rgb[40:120, 200:700].astype(np.int16)
+    orange = ((c[..., 0] > 170) & (c[..., 2] < 140) & (c[..., 0] - c[..., 2] > 60)).mean(1) > 0.5
+    title_bottom = 40 + int(np.argmax(orange)) - 2 if orange.any() else 67
+    if low:
+        report.zones['source'] = 'basse définition'
     if fr.get('title'):
-        rgb = erase(rgb, (160, 6, 730, 67), 'light', 150)
+        rgb = erase(rgb, (160, 6, 730, title_bottom), 'light', light)
     if fr.get('units'):
-        rgb = erase(rgb, (30, band_top + 2, 704, band_bottom - 2), 'light', 150)
+        rgb = erase(rgb, (30, band_top + 2, 704, band_bottom - 2), 'light', light)
     if fr.get('footer'):
-        rgb = erase(rgb, (14, footer_top + 4, 720, min(H - 4, footer_top + 56)), 'light', 150)
+        rgb = erase(rgb, (14, footer_top + 4, 720, min(H - 4, footer_top + 56)), 'light', light)
     # Texte : on efface tout le foncé sauf les filets de séparation, conservés tels quels.
     if fr.get('body'):
         g0 = gray(rgb)
         mask = np.zeros(g0.shape, np.uint8)
         region = g0[body_top:text_bottom, 40:704]
-        mask[body_top:text_bottom, 40:704] = (region < 130).astype(np.uint8) * 255
+        dark = max(130, float(np.median(region)) - 40) if low else 130
+        mask[body_top:text_bottom, 40:704] = (region < dark).astype(np.uint8) * 255
         mask = cv2.dilate(mask, np.ones((3, 3), np.uint8), iterations=2)
         for a, b in seps:
             mask[a - 1:b + 2, :] = 0
         rgb = cv2.inpaint(rgb, mask, 5, cv2.INPAINT_TELEA)
     img = Image.fromarray(rgb)
     if fr.get('title'):
-        draw_text(img, (165, 8, 712, 60), fr['title'], 34, report, 'titre', style='band', color=WHITE, align='left', lh=1.0, gap=0.0)
+        draw_text(img, (165, 8, 712, min(60, title_bottom - 6)), fr['title'], 34, report, 'titre', style='band', color=WHITE, align='left', lh=1.0, gap=0.0)
     if fr.get('units'):
         draw_text(img, (40, band_top, 694, band_bottom), fr['units'], (band_bottom - band_top) * 0.82, report, 'effectif',
                   style='band', color=WHITE, align='center', lh=1.0, wrap=False)

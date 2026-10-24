@@ -54,7 +54,7 @@ export function validatePayload(raw) {
   if (raw.kind === 'command') {
     const c = raw.command || {}
     if (![1, 2, 3, 4].includes(c.pip)) throw new Error('command.pip : 1 à 4')
-    if (!['rebelles', 'empire', 'generique'].includes(c.faction)) throw new Error('command.faction : rebelles, empire ou generique')
+    if (!['rebelles', 'empire', 'generique', 'mercenaire'].includes(c.faction)) throw new Error('command.faction : rebelles, empire, generique ou mercenaire')
     payload.command = { pip: c.pip, faction: c.faction, requirement: text(c.requirement, 'command.requirement', 120) || '' }
   }
   if (raw.translationProof && typeof raw.translationProof === 'object') {

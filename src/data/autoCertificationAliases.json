@@ -363,6 +363,162 @@
       "status": "confirmed",
       "englishName": "On Patrol",
       "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "16487": {
+      "localId": "ce-ne-sont-que-des-affaires",
+      "status": "confirmed",
+      "englishName": "That's Just Good Business",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "16488": {
+      "localId": "tant-d-histoires-et-tant-de-vraies",
+      "status": "confirmed",
+      "englishName": "Stories, So Many of Them True",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19081": {
+      "localId": "commencons-par-la-vengeance",
+      "status": "confirmed",
+      "englishName": "We Shall Start with Revenge",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19510": {
+      "localId": "assaut-aerien",
+      "status": "confirmed",
+      "englishName": "Aerial Assault",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19519": {
+      "localId": "les-armes-sont-notre-religion",
+      "status": "confirmed",
+      "englishName": "Weapons Are Our Religion",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19407": {
+      "localId": "ca-sent-le-profit",
+      "status": "confirmed",
+      "englishName": "I Smell Profit",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19406": {
+      "localId": "parlez-doucement-et-conduisez-un-gros-tank",
+      "status": "confirmed",
+      "englishName": "Speak Softly and Drive a Big Tank",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19405": {
+      "localId": "de-l-insolence-nous-sommes-des-pirates",
+      "status": "confirmed",
+      "englishName": "Insolence?! We are Pirates!",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19487": {
+      "localId": "une-cause-superieure",
+      "status": "confirmed",
+      "englishName": "A Higher Purpose",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19486": {
+      "localId": "mandalore-survivra",
+      "status": "confirmed",
+      "englishName": "Mandalore Will Survive",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19485": {
+      "localId": "a-la-fois-chasseur-et-proie",
+      "status": "confirmed",
+      "englishName": "Both Hunter and Prey",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19484": {
+      "localId": "nous-nous-forgeons-nous-memes",
+      "status": "confirmed",
+      "englishName": "We Shape Ourselves",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19483": {
+      "localId": "partez-ils-sont-trop-nombreux",
+      "status": "confirmed",
+      "englishName": "Go, There Are Too Many...",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19517": {
+      "localId": "nous-sommes-mandaloriens",
+      "status": "confirmed",
+      "englishName": "We Are Mandalorians",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19514": {
+      "localId": "personne-ne-menace-notre-famille",
+      "status": "confirmed",
+      "englishName": "No One Threatens Our Family",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19513": {
+      "localId": "rendre-l-impossible-possible",
+      "status": "confirmed",
+      "englishName": "Make the Impossible Possible",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19518": {
+      "localId": "nous-protegeons-les-notres",
+      "status": "confirmed",
+      "englishName": "We Protect Our Own",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19511": {
+      "localId": "formation-serree",
+      "status": "confirmed",
+      "englishName": "Close Formation",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19512": {
+      "localId": "plutot-la-mort-que-la-defaite",
+      "status": "confirmed",
+      "englishName": "Death Before Defeat",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19516": {
+      "localId": "frappe-vengeresse",
+      "status": "confirmed",
+      "englishName": "Vengeful Strike",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19515": {
+      "localId": "surgis-de-l-ombre",
+      "status": "confirmed",
+      "englishName": "Out of the Shadows",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19531": {
+      "localId": "pas-d-echappatoire",
+      "status": "confirmed",
+      "englishName": "No Escape",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "19530": {
+      "localId": "honneur-et-force",
+      "status": "confirmed",
+      "englishName": "Honor and Strength",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "20009": {
+      "localId": "ne-me-dites-jamais-quelles-sont-nos-chances",
+      "status": "confirmed",
+      "englishName": "Never Tell Me the Odds",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "20008": {
+      "localId": "dette-de-vie-wookie",
+      "status": "confirmed",
+      "englishName": "Wookiee Life Debt",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "20010": {
+      "localId": "conversation-ennuyeuse-de-toute-facon",
+      "status": "confirmed",
+      "englishName": "Boring Conversation Anyway",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
     }
   },
   "printedTitles": {

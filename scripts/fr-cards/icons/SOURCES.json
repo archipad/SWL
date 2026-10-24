@@ -1,5 +1,5 @@
 {
- "description": "Masques alpha (blanc = encre) recolorés au rendu par scripts/fr-cards/render.py. Extraits une fois des visuels publics Legion HQ (symboles de règles relevés sur Tank Hunting Munitions, Battlemaster, Proven Tactician, Champion of the Watch ; emplacements d'amélioration dans la case en haut à gauche d'une carte de chaque type) et des logos de faction SVG du site Legion HQ. Ajouts du 24/10/2026 (commandements Legion HQ) : adrénaline et critique (Sneaky Scouting), symbole Ewok (Courageous Counterattack), action gratuite (On Patrol). Ajouts du lot 2 : touche (Whistling Birds) et symbole des unités alliées de Gar Saxon, ▼▲▼ (Fight Another Day ; nommé affiliation-super-commandos, à confirmer).",
+ "description": "Masques alpha (blanc = encre) recolorés au rendu par scripts/fr-cards/render.py. Extraits une fois des visuels publics Legion HQ (symboles de règles relevés sur Tank Hunting Munitions, Battlemaster, Proven Tactician, Champion of the Watch ; emplacements d'amélioration dans la case en haut à gauche d'une carte de chaque type) et des logos de faction SVG du site Legion HQ. Ajouts du 24/10/2026 (commandements Legion HQ) : adrénaline et critique (Sneaky Scouting), symbole Ewok (Courageous Counterattack), action gratuite (On Patrol). Ajouts du lot 2 : touche (Whistling Birds) et symbole des unités alliées de Gar Saxon, ▼▲▼ (Fight Another Day ; nommé affiliation-super-commandos, à confirmer). Ajouts du lot 3 : symboles des clans Kryze (Mandalore Will Survive), Wren (No One Threatens Our Family), Saxon (Death Before Defeat), de l’enclave de l’Armurière (We Shape Ourselves) et du gang Ohnaka (I Smell Profit), relevés sur des visuels en basse définition ; noms à confirmer.",
  "icons": {
   "action": [
    149,
@@ -19,6 +19,18 @@
   ],
   "affiliation-super-commandos": [
    347,
+   128
+  ],
+  "clan-kryze": [
+   124,
+   128
+  ],
+  "clan-saxon": [
+   87,
+   128
+  ],
+  "clan-wren": [
+   169,
    128
   ],
   "courage": [
@@ -101,6 +113,10 @@
    160,
    128
   ],
+  "enclave-armuriere": [
+   147,
+   128
+  ],
   "ewok": [
    66,
    128
@@ -126,6 +142,10 @@
    128
   ],
   "faction-separatistes": [
+   147,
+   128
+  ],
+  "gang-ohnaka": [
    147,
    128
   ],

@@ -590,6 +590,126 @@ export const COMMAND_CARDS: CommandCard[] = [
     id: 'le-truc-de-la-main', name: 'Le Truc de la Main', englishName: 'The Hand Thing', pip: 2, faction: 'mercenaire',
     requirement: 'Grogu', image: `${BASE}le-truc-de-la-main.jpg`,
   },
+  {
+    id: 'stratageme', name: 'Stratagème', englishName: 'Ploy', pip: 1, faction: 'mercenaire',
+    requirement: 'Commandant ou agent Mercenaire', image: `${BASE}stratageme.jpg`,
+  },
+  {
+    id: 'agression', name: 'Agression', englishName: 'Aggression', pip: 2, faction: 'mercenaire',
+    requirement: 'Commandant ou agent Mercenaire', image: `${BASE}agression.jpg`,
+  },
+  {
+    id: 'discretion', name: 'Discrétion', englishName: 'Discretion', pip: 3, faction: 'mercenaire',
+    requirement: 'Commandant ou agent Mercenaire', image: `${BASE}discretion.jpg`,
+  },
+  {
+    id: 'on-les-descend-un-par-un', name: 'On les Descend Un par Un', englishName: 'We Do What We Do', pip: 3, faction: 'mercenaire',
+    requirement: 'Le Bad Batch', image: `${BASE}on-les-descend-un-par-un.jpg`,
+  },
+  {
+    id: 'ce-ne-sont-que-des-affaires', name: 'Ce Ne Sont que des Affaires', englishName: 'That\'s Just Good Business', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'Hondo Ohnaka', image: `${BASE}ce-ne-sont-que-des-affaires.jpg`,
+  },
+  {
+    id: 'tant-d-histoires-et-tant-de-vraies', name: 'Tant d’Histoires, et Tant de Vraies', englishName: 'Stories, So Many of Them True', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'Hondo Ohnaka', image: `${BASE}tant-d-histoires-et-tant-de-vraies.jpg`,
+  },
+  {
+    id: 'commencons-par-la-vengeance', name: 'Commençons par la Vengeance', englishName: 'We Shall Start with Revenge', pip: 1, faction: 'mercenaire', community: true,
+    requirement: 'Savage Opress', image: `${BASE}commencons-par-la-vengeance.jpg`,
+  },
+  {
+    id: 'assaut-aerien', name: 'Assaut Aérien', englishName: 'Aerial Assault', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'Clans Mandaloriens', image: `${BASE}assaut-aerien.jpg`,
+  },
+  {
+    id: 'les-armes-sont-notre-religion', name: 'Les Armes Sont Notre Religion', englishName: 'Weapons Are Our Religion', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'Clans Mandaloriens', image: `${BASE}les-armes-sont-notre-religion.jpg`,
+  },
+  {
+    id: 'ca-sent-le-profit', name: 'Ça Sent le Profit', englishName: 'I Smell Profit', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'Le Gang Ohnaka', image: `${BASE}ca-sent-le-profit.jpg`,
+  },
+  {
+    id: 'parlez-doucement-et-conduisez-un-gros-tank', name: 'Parlez Doucement et Conduisez un Gros Tank', englishName: 'Speak Softly and Drive a Big Tank', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'Le Gang Ohnaka', image: `${BASE}parlez-doucement-et-conduisez-un-gros-tank.jpg`,
+  },
+  {
+    id: 'de-l-insolence-nous-sommes-des-pirates', name: 'De l’Insolence ?! Nous Sommes des Pirates !', englishName: 'Insolence?! We are Pirates!', pip: 1, faction: 'mercenaire', community: true,
+    requirement: 'Le Gang Ohnaka', image: `${BASE}de-l-insolence-nous-sommes-des-pirates.jpg`,
+  },
+  {
+    id: 'une-cause-superieure', name: 'Une Cause Supérieure', englishName: 'A Higher Purpose', pip: 1, faction: 'mercenaire', community: true,
+    requirement: 'Bo-Katan Kryze', image: `${BASE}une-cause-superieure.jpg`,
+  },
+  {
+    id: 'mandalore-survivra', name: 'Mandalore Survivra', englishName: 'Mandalore Will Survive', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'Bo-Katan Kryze', image: `${BASE}mandalore-survivra.jpg`,
+  },
+  {
+    id: 'a-la-fois-chasseur-et-proie', name: 'À la Fois Chasseur et Proie', englishName: 'Both Hunter and Prey', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'L’Armurière', image: `${BASE}a-la-fois-chasseur-et-proie.jpg`,
+  },
+  {
+    id: 'nous-nous-forgeons-nous-memes', name: 'Nous Nous Forgeons Nous-mêmes', englishName: 'We Shape Ourselves', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'L’Armurière', image: `${BASE}nous-nous-forgeons-nous-memes.jpg`,
+  },
+  {
+    id: 'partez-ils-sont-trop-nombreux', name: 'Partez, Ils Sont Trop Nombreux…', englishName: 'Go, There Are Too Many...', pip: 1, faction: 'mercenaire', community: true,
+    requirement: 'Paz Vizsla', image: `${BASE}partez-ils-sont-trop-nombreux.jpg`,
+  },
+  {
+    id: 'nous-sommes-mandaloriens', name: 'Nous Sommes Mandaloriens', englishName: 'We Are Mandalorians', pip: 1, faction: 'mercenaire', community: true,
+    requirement: 'Clans Mandaloriens', image: `${BASE}nous-sommes-mandaloriens.jpg`,
+  },
+  {
+    id: 'personne-ne-menace-notre-famille', name: 'Personne ne Menace Notre Famille', englishName: 'No One Threatens Our Family', pip: 1, faction: 'mercenaire', community: true,
+    requirement: 'Ursa Wren', image: `${BASE}personne-ne-menace-notre-famille.jpg`,
+  },
+  {
+    id: 'rendre-l-impossible-possible', name: 'Rendre l’Impossible Possible', englishName: 'Make the Impossible Possible', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'Sabine Wren, de Retour au Bercail', image: `${BASE}rendre-l-impossible-possible.jpg`,
+  },
+  {
+    id: 'nous-protegeons-les-notres', name: 'Nous Protégeons les Nôtres', englishName: 'We Protect Our Own', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'Commandant ou agent du clan Wren', image: `${BASE}nous-protegeons-les-notres.jpg`,
+  },
+  {
+    id: 'formation-serree', name: 'Formation Serrée', englishName: 'Close Formation', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'Commandant ou agent du clan Kryze', image: `${BASE}formation-serree.jpg`,
+  },
+  {
+    id: 'plutot-la-mort-que-la-defaite', name: 'Plutôt la Mort que la Défaite', englishName: 'Death Before Defeat', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'Commandant ou agent du clan Saxon', image: `${BASE}plutot-la-mort-que-la-defaite.jpg`,
+  },
+  {
+    id: 'frappe-vengeresse', name: 'Frappe Vengeresse', englishName: 'Vengeful Strike', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'Rook Kast', image: `${BASE}frappe-vengeresse.jpg`,
+  },
+  {
+    id: 'surgis-de-l-ombre', name: 'Surgis de l’Ombre', englishName: 'Out of the Shadows', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'Commandant ou agent de l’enclave de l’Armurière', image: `${BASE}surgis-de-l-ombre.jpg`,
+  },
+  {
+    id: 'pas-d-echappatoire', name: 'Pas d’Échappatoire', englishName: 'No Escape', pip: 1, faction: 'mercenaire', community: true,
+    requirement: 'Chasseur Mandalorien', image: `${BASE}pas-d-echappatoire.jpg`,
+  },
+  {
+    id: 'honneur-et-force', name: 'Honneur et Force', englishName: 'Honor and Strength', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'Chef Mandalorien', image: `${BASE}honneur-et-force.jpg`,
+  },
+  {
+    id: 'ne-me-dites-jamais-quelles-sont-nos-chances', name: 'Ne Me Dites Jamais Quelles Sont nos Chances', englishName: 'Never Tell Me the Odds', pip: 1, faction: 'mercenaire', community: true,
+    requirement: 'Han & Chewie', image: `${BASE}ne-me-dites-jamais-quelles-sont-nos-chances.jpg`,
+  },
+  {
+    id: 'dette-de-vie-wookie', name: 'Dette de Vie Wookie', englishName: 'Wookiee Life Debt', pip: 2, faction: 'mercenaire', community: true,
+    requirement: 'Han & Chewie', image: `${BASE}dette-de-vie-wookie.jpg`,
+  },
+  {
+    id: 'conversation-ennuyeuse-de-toute-facon', name: 'Conversation Ennuyeuse de Toute Façon', englishName: 'Boring Conversation Anyway', pip: 3, faction: 'mercenaire', community: true,
+    requirement: 'Han & Chewie', image: `${BASE}conversation-ennuyeuse-de-toute-facon.jpg`,
+  },
 ];
 
 export const COMMAND_SUITE_RULE = { total: 7, perPip: { 1: 2, 2: 2, 3: 2, 4: 1 } } as const;
