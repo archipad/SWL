@@ -1,8 +1,16 @@
 {
- "description": "Masques alpha (blanc = encre) recolorés au rendu par scripts/fr-cards/render.py. Extraits une fois des visuels publics Legion HQ (symboles de règles relevés sur Tank Hunting Munitions, Battlemaster, Proven Tactician, Champion of the Watch ; emplacements d'amélioration dans la case en haut à gauche d'une carte de chaque type) et des logos de faction SVG du site Legion HQ.",
+ "description": "Masques alpha (blanc = encre) recolorés au rendu par scripts/fr-cards/render.py. Extraits une fois des visuels publics Legion HQ (symboles de règles relevés sur Tank Hunting Munitions, Battlemaster, Proven Tactician, Champion of the Watch ; emplacements d'amélioration dans la case en haut à gauche d'une carte de chaque type) et des logos de faction SVG du site Legion HQ. Ajouts du 24/10/2026 (commandements Legion HQ) : adrénaline et critique (Sneaky Scouting), symbole Ewok (Courageous Counterattack), action gratuite (On Patrol).",
  "icons": {
   "action": [
    149,
+   128
+  ],
+  "action-gratuite": [
+   137,
+   128
+  ],
+  "adrenaline": [
+   128,
    128
   ],
   "affiliation-enfants-de-la-ronde": [
@@ -11,6 +19,10 @@
   ],
   "courage": [
    121,
+   128
+  ],
+  "critique": [
+   124,
    128
   ],
   "emplacement-arme-lourde": [
@@ -83,6 +95,10 @@
   ],
   "emplacement-programmation": [
    160,
+   128
+  ],
+  "ewok": [
+   66,
    128
   ],
   "faction-empire": [

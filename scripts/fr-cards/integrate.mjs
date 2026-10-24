@@ -80,10 +80,32 @@ function integrateCommand(root, payload, files) {
     const aliases = JSON.parse(fs.readFileSync(aliasFile, 'utf8'))
     const id = payload.ttaId.split(':')[1]
     if (!aliases.commands[id]) {
-      aliases.commands[id] = { localId: files.id, status: 'confirmed', englishName: payload.englishName, evidence: 'Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé).' }
-      fs.writeFileSync(aliasFile, JSON.stringify(aliases, null, 2) + '\n')
+      const entry = { localId: files.id, status: 'confirmed', englishName: payload.englishName, evidence: 'Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé).' }
+      fs.writeFileSync(aliasFile, appendCommandAlias(fs.readFileSync(aliasFile, 'utf8'), id, entry))
     }
   }
+}
+
+// Ajoute l'alias en fin de bloc « commands » sans réécrire le fichier : JSON.stringify rangerait les identifiants
+// numériques Tabletop Admiral par ordre croissant et réordonnerait tout le bloc.
+function appendCommandAlias(source, id, entry) {
+  const start = source.indexOf('"commands": {')
+  if (start < 0) throw new Error('Bloc « commands » absent de autoCertificationAliases.json')
+  let depth = 0
+  let end = -1
+  let inString = false
+  for (let i = source.indexOf('{', start); i < source.length; i++) {
+    const ch = source[i]
+    if (inString) {
+      if (ch === '\\') i++
+      else if (ch === '"') inString = false
+    } else if (ch === '"') inString = true
+    else if (ch === '{') depth++
+    else if (ch === '}' && --depth === 0) { end = i; break }
+  }
+  const body = JSON.stringify({ [id]: entry }, null, 2).slice(2, -2).replace(/^/gm, '  ')
+  const before = source.slice(0, end).replace(/\s*$/, '')
+  return `${before}${before.endsWith('{') ? '' : ','}\n${body}\n  ${source.slice(end)}`
 }
 
 function record(root, payload, files, issue) {

@@ -250,7 +250,7 @@ export const COMMAND_CARDS: CommandCard[] = [
     requirement: 'La Septième Sœur', image: `${BASE}viens-donc-le-prouver.jpg`,
   },
   {
-    id: 'tu-caches-mal-ta-peur', name: 'Tu Caches Mal ta Peur', pip: 3, faction: 'empire',
+    id: 'tu-caches-mal-ta-peur', name: 'Tu Caches Mal ta Peur', englishName: 'You Hide Your Fear Well', pip: 3, faction: 'empire',
     requirement: 'La Septième Sœur', image: `${BASE}tu-caches-mal-ta-peur.jpg`,
   },
   {
@@ -374,7 +374,7 @@ export const COMMAND_CARDS: CommandCard[] = [
     requirement: 'Force Tempest', image: `${BASE}besoin-de-renforts.jpg`,
   },
   {
-    id: 'prets-a-riposter', name: 'Prêts à Riposter', pip: 3, faction: 'empire',
+    id: 'prets-a-riposter', name: 'Prêts à Riposter', englishName: 'Constantly Alert', pip: 3, faction: 'empire',
     requirement: 'Force Tempest', image: `${BASE}prets-a-riposter.jpg`,
   },
   {
@@ -388,6 +388,90 @@ export const COMMAND_CARDS: CommandCard[] = [
   {
     id: 'cavalerie-blindee', name: 'Cavalerie Blindée', englishName: 'Armored Cavalry', pip: 3, faction: 'empire',
     requirement: 'Major Marquand', image: `${BASE}cavalerie-blindee.jpg`,
+  },
+  {
+    id: 'on-se-reverra-en-enfer', name: 'On se Reverra en Enfer', englishName: 'See You in Hell', pip: 1, faction: 'rebelles', community: true,
+    requirement: 'Han Solo, Héros Malgré Lui', image: `${BASE}on-se-reverra-en-enfer.jpg`,
+  },
+  {
+    id: 'avancee-inexorable', name: 'Avancée Inexorable', englishName: 'Inexorable Advance', pip: 3, faction: 'empire', community: true,
+    requirement: 'Officier Impérial', image: `${BASE}avancee-inexorable.jpg`,
+  },
+  {
+    id: 'discours-terrifiant', name: 'Discours Terrifiant', englishName: 'Fearsome Oration', pip: 1, faction: 'empire', community: true,
+    requirement: 'Agent Impérial', image: `${BASE}discours-terrifiant.jpg`,
+  },
+  {
+    id: 'nous-devons-attendre-et-observer', name: 'Nous Devons Attendre et Observer', englishName: 'We Must Wait and Watch', pip: 2, faction: 'empire', community: true,
+    requirement: 'Grand Amiral Thrawn', image: `${BASE}nous-devons-attendre-et-observer.jpg`,
+  },
+  {
+    id: 'la-peur-les-tiendra-en-respect', name: 'La Peur les Tiendra en Respect', englishName: 'Fear Will Keep Them in Line', pip: 3, faction: 'empire', community: true,
+    requirement: 'Grand Moff Tarkin', image: `${BASE}la-peur-les-tiendra-en-respect.jpg`,
+  },
+  {
+    id: 'les-artisans-de-leur-propre-perte', name: 'Les Artisans de leur Propre Perte', englishName: 'Architects of Their Own Destruction', pip: 1, faction: 'empire', community: true,
+    requirement: 'Grand Amiral Thrawn', image: `${BASE}les-artisans-de-leur-propre-perte.jpg`,
+  },
+  {
+    id: 'adversaire-ruse', name: 'Adversaire Rusé', englishName: 'Canny Adversary', pip: 3, faction: 'empire', community: true,
+    requirement: 'Général Tagge', image: `${BASE}adversaire-ruse.jpg`,
+  },
+  {
+    id: 'j-ai-les-graphiques-et-le-commandement', name: 'J\'ai les Graphiques ET le Commandement', englishName: 'I Have Graphs AND the Command', pip: 1, faction: 'empire', community: true,
+    requirement: 'Général Tagge', image: `${BASE}j-ai-les-graphiques-et-le-commandement.jpg`,
+  },
+  {
+    id: 'je-veux-que-vous-connaissiez-l-echec', name: 'Je Veux que Vous Connaissiez l’Échec', englishName: 'I Want You to Know Failure', pip: 3, faction: 'empire', community: true,
+    requirement: 'Grand Amiral Thrawn', image: `${BASE}je-veux-que-vous-connaissiez-l-echec.jpg`,
+  },
+  {
+    id: 'instant-de-triomphe', name: 'Instant de Triomphe', englishName: 'Moment of Triumph', pip: 1, faction: 'empire', community: true,
+    requirement: 'Grand Moff Tarkin', image: `${BASE}instant-de-triomphe.jpg`,
+  },
+  {
+    id: 'l-empire-ne-tolere-pas-l-echec', name: 'L\'Empire ne Tolère pas l\'Échec', englishName: 'The Empire Does Not Tolerate Failure', pip: 2, faction: 'empire', community: true,
+    requirement: 'Haut Commandement Impérial', image: `${BASE}l-empire-ne-tolere-pas-l-echec.jpg`,
+  },
+  {
+    id: 'je-me-rebelle', name: 'Je me Rebelle', englishName: 'I Rebel', pip: 1, faction: 'rebelles', community: true,
+    requirement: 'Jyn Erso', image: `${BASE}je-me-rebelle.jpg`,
+  },
+  {
+    id: 'il-s-en-est-fallu-de-peu', name: 'Il s\'en Est Fallu de Peu', englishName: 'Close Call', pip: 1, faction: 'rebelles', community: true,
+    requirement: 'Wicket', image: `${BASE}il-s-en-est-fallu-de-peu.jpg`,
+  },
+  {
+    id: 'reconnaissance-furtive', name: 'Reconnaissance Furtive', englishName: 'Sneaky Scouting', pip: 2, faction: 'rebelles', community: true,
+    requirement: 'Wicket', image: `${BASE}reconnaissance-furtive.jpg`,
+  },
+  {
+    id: 'contre-attaque-courageuse', name: 'Contre-attaque Courageuse', englishName: 'Courageous Counterattack', pip: 3, faction: 'rebelles', community: true,
+    requirement: 'Wicket', image: `${BASE}contre-attaque-courageuse.jpg`,
+  },
+  {
+    id: 'assaut-arboricole', name: 'Assaut Arboricole', englishName: 'Arboreal Assault', pip: 1, faction: 'rebelles', community: true,
+    requirement: 'Village de Bright Tree', image: `${BASE}assaut-arboricole.jpg`,
+  },
+  {
+    id: 'pieges-a-rondins', name: 'Pièges à Rondins', englishName: 'Log Traps', pip: 1, faction: 'rebelles', community: true,
+    requirement: 'Village de Bright Tree', image: `${BASE}pieges-a-rondins.jpg`,
+  },
+  {
+    id: 'cache-aux-yeux-de-tous', name: 'Caché aux Yeux de Tous', englishName: 'Hiding in Plain Sight', pip: 2, faction: 'rebelles', community: true,
+    requirement: 'Village de Bright Tree', image: `${BASE}cache-aux-yeux-de-tous.jpg`,
+  },
+  {
+    id: 'pour-la-tribu', name: 'Pour la Tribu', englishName: 'For the Tribe', pip: 3, faction: 'rebelles', community: true,
+    requirement: 'Village de Bright Tree', image: `${BASE}pour-la-tribu.jpg`,
+  },
+  {
+    id: 'on-n-est-pas-encore-morts', name: 'On n\'Est Pas Encore Morts', englishName: 'Not Out of it Yet', pip: 3, faction: 'rebelles', community: true,
+    requirement: 'Han Solo & Luke Skywalker', image: `${BASE}on-n-est-pas-encore-morts.jpg`,
+  },
+  {
+    id: 'en-patrouille', name: 'En Patrouille', englishName: 'On Patrol', pip: 2, faction: 'rebelles', community: true,
+    requirement: 'Luke Skywalker, Commandant Skywalker', image: `${BASE}en-patrouille.jpg`,
   },
 ];
 

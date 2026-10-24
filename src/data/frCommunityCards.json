@@ -3,6 +3,432 @@
   "description": "Fiches FR communautaires générées depuis les visuels Legion HQ (scripts/fr-cards) et validées visuellement."
  },
  "cards": {
+  "command:arboreal assault": {
+   "englishName": "Arboreal Assault",
+   "nameFr": "Assaut Arboricole",
+   "kind": "command",
+   "image": "assaut-arboricole.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Arboreal%20Assault.webp",
+   "fr": {
+    "title": "Assaut Arboricole",
+    "units": "2 {ewok} UNITÉS DE SOLDATS",
+    "body": "Vous devez désigner un Commandant {ewok}. Si vous ne pouvez pas désigner de Commandant {ewok}, vous ne pouvez pas jouer cette carte.\nQuand une unité de soldats {ewok} reçoit un ordre via cette carte, ses armes gagnent **Suppressif** et **Immobiliser 1** jusqu'à la fin du round. De plus, quand une unité {rang-commandant} alliée attaque une unité ennemie qui a un pion Ordre face visible, après la résolution de l'attaque, remélangez ce pion Ordre dans la réserve d'ordres de ce joueur.",
+    "footer": "Village de Bright Tree"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "rebelles",
+    "requirement": "Village de Bright Tree"
+   },
+   "ttaId": "command:6348",
+   "integratedAt": "2026-10-24"
+  },
+  "command:architects of their own destruction": {
+   "englishName": "Architects of Their Own Destruction",
+   "nameFr": "Les Artisans de leur Propre Perte",
+   "kind": "command",
+   "image": "les-artisans-de-leur-propre-perte.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Architects%20of%20Their%20Own%20Destruction.webp",
+   "fr": {
+    "title": "Les Artisans de leur Propre Perte",
+    "units": "1 UNITÉ",
+    "body": "Au début de la __Phase d'Activation__, choisissez une unité ennemie. Si l'unité choisie n'a pas de pion Ordre face visible, assignez-lui un pion Ordre face visible pris dans la réserve d'ordres de votre adversaire, si possible.\nLa première fois que votre adversaire choisit d'activer une unité ce round, il peut choisir d'activer l'unité choisie. S'il ne le fait pas, l'unité choisie ne peut pas s'activer avec un pion Ordre face visible tant que votre adversaire a encore des pions Ordre dans sa réserve d'ordres ou sur des cartes Commandement, ou d'autres unités avec un pion Ordre face visible.",
+    "footer": "Grand Amiral Thrawn"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "empire",
+    "requirement": "Grand Amiral Thrawn"
+   },
+   "ttaId": "command:18898",
+   "integratedAt": "2026-10-24"
+  },
+  "command:canny adversary": {
+   "englishName": "Canny Adversary",
+   "nameFr": "Adversaire Rusé",
+   "kind": "command",
+   "image": "adversaire-ruse.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Canny%20Adversary.webp",
+   "fr": {
+    "title": "Adversaire Rusé",
+    "units": "3 UNITÉS",
+    "body": "Ce round, quand une unité ennemie à {portee-4} du __Général Tagge__ dépense 1 pion Viser, Esquive ou Adrénaline ou plus, ajoutez 1 pion Viser, 1 pion Esquive ou 1 pion Adrénaline à __Prouesse Logistique__. Ensuite, si l'unité ennemie est dans la ligne de vue du __Général Tagge__, cette unité ennemie gagne 1 pion Surveillance.",
+    "footer": "Général Tagge"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "empire",
+    "requirement": "Général Tagge"
+   },
+   "ttaId": "command:18899",
+   "integratedAt": "2026-10-24"
+  },
+  "command:close call": {
+   "englishName": "Close Call",
+   "nameFr": "Il s'en Est Fallu de Peu",
+   "kind": "command",
+   "image": "il-s-en-est-fallu-de-peu.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Close%20Call.webp",
+   "fr": {
+    "title": "Il s'en Est Fallu de Peu",
+    "units": "WICKET",
+    "body": "Au début de la prochaine __Phase d'Activation__, __Wicket__ gagne 1 pion Esquive. Jusqu'à la fin du round, __Wicket__ augmente sa vitesse maximale à 3 et gagne **Manœuvre Improbable**. __Wicket__ ne peut pas attaquer ce round.",
+    "footer": "Wicket"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "rebelles",
+    "requirement": "Wicket"
+   },
+   "ttaId": "command:7328",
+   "integratedAt": "2026-10-24"
+  },
+  "command:courageous counterattack": {
+   "englishName": "Courageous Counterattack",
+   "nameFr": "Contre-attaque Courageuse",
+   "kind": "command",
+   "image": "contre-attaque-courageuse.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Courageous%20Counterattack.webp",
+   "fr": {
+    "title": "Contre-attaque Courageuse",
+    "units": "WICKET & 2 UNITÉS",
+    "body": "Les unités {ewok} alliées ayant un pion Ordre face visible considèrent leur {courage} comme « – » ce round.\nJusqu'à la fin du round, chaque fois qu'une unité de soldats {ewok} alliée ayant un pion Ordre face visible attaque, pendant l'étape __Former la Réserve d'Attaque__, pour chaque pion Blessure et chaque figurine de cette unité précédemment vaincue, ajoutez 1 dé d'attaque blanc à la réserve d'attaque.",
+    "footer": "Wicket"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "rebelles",
+    "requirement": "Wicket"
+   },
+   "ttaId": "command:7326",
+   "integratedAt": "2026-10-24"
+  },
+  "command:fear will keep them in line": {
+   "englishName": "Fear Will Keep Them in Line",
+   "nameFr": "La Peur les Tiendra en Respect",
+   "kind": "command",
+   "image": "la-peur-les-tiendra-en-respect.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Fear%20Will%20Keep%20Them%20in%20Line.webp",
+   "fr": {
+    "title": "La Peur les Tiendra en Respect",
+    "units": "3 UNITÉS",
+    "body": "**Divulgation :** étape __Résoudre les effets de mise en place__.\n**Permanent.** Quand une unité {faction-empire} alliée reçoit un ordre, elle a **Démoraliser 1** jusqu'à la fin du round.\n---\nLes unités {faction-empire} alliées ont **Démoraliser 1** ce round.",
+    "footer": "Grand Moff Tarkin"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "empire",
+    "requirement": "Grand Moff Tarkin"
+   },
+   "ttaId": "command:18310",
+   "integratedAt": "2026-10-24"
+  },
+  "command:fearsome oration": {
+   "englishName": "Fearsome Oration",
+   "nameFr": "Discours Terrifiant",
+   "kind": "command",
+   "image": "discours-terrifiant.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Fearsome%20Oration.webp",
+   "fr": {
+    "title": "Discours Terrifiant",
+    "units": "AGENT IMPÉRIAL",
+    "body": "Quand un __Agent Impérial__ reçoit un ordre via cette carte, il gagne **Démoraliser 2** et **Inspiration 2** jusqu'à la fin du round.",
+    "footer": "Agent Impérial"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "empire",
+    "requirement": "Agent Impérial"
+   },
+   "ttaId": "command:17862",
+   "integratedAt": "2026-10-24"
+  },
+  "command:for the tribe": {
+   "englishName": "For the Tribe",
+   "nameFr": "Pour la Tribu",
+   "kind": "command",
+   "image": "pour-la-tribu.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/For%20the%20Tribe.webp",
+   "fr": {
+    "title": "Pour la Tribu",
+    "units": "3 {ewok} UNITÉS DE SOLDATS",
+    "body": "Vous devez désigner un Commandant {ewok}. Si vous ne pouvez pas désigner de Commandant {ewok}, vous ne pouvez pas jouer cette carte.\nLes unités ayant reçu un ordre via cette carte gagnent **Intrépide** et **Implacable** ce round. Quand une unité reçoit un ordre via cette carte, elle peut effectuer une action Récupérer.",
+    "footer": "Village de Bright Tree"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "rebelles",
+    "requirement": "Village de Bright Tree"
+   },
+   "ttaId": "command:6351",
+   "integratedAt": "2026-10-24"
+  },
+  "command:hiding in plain sight": {
+   "englishName": "Hiding in Plain Sight",
+   "nameFr": "Caché aux Yeux de Tous",
+   "kind": "command",
+   "image": "cache-aux-yeux-de-tous.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Hiding%20in%20Plain%20Sight.webp",
+   "fr": {
+    "title": "Caché aux Yeux de Tous",
+    "units": "2 {ewok} UNITÉS DE SOLDATS",
+    "body": "Vous devez désigner un Commandant {ewok}. Si vous ne pouvez pas désigner de Commandant {ewok}, vous ne pouvez pas jouer cette carte.\nLes unités ayant reçu un ordre via cette carte gagnent **Discret** ce round.",
+    "footer": "Village de Bright Tree"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "rebelles",
+    "requirement": "Village de Bright Tree"
+   },
+   "ttaId": "command:6350",
+   "integratedAt": "2026-10-24"
+  },
+  "command:i have graphs and the command": {
+   "englishName": "I Have Graphs AND the Command",
+   "nameFr": "J'ai les Graphiques ET le Commandement",
+   "kind": "command",
+   "image": "j-ai-les-graphiques-et-le-commandement.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Have%20Graphs%20AND%20the%20Command.webp",
+   "fr": {
+    "title": "J'ai les Graphiques ET le Commandement",
+    "units": "1 UNITÉ",
+    "body": "Le __Général Tagge__ peut retirer autant de pions qu'il le souhaite de __Prouesse Logistique__ pour gagner les pions correspondants.\nAu début de la __Phase d'Activation__, le __Général Tagge__ peut effectuer un déplacement à vitesse 2.",
+    "footer": "Général Tagge"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "empire",
+    "requirement": "Général Tagge"
+   },
+   "ttaId": "command:18900",
+   "integratedAt": "2026-10-24"
+  },
+  "command:i rebel": {
+   "englishName": "I Rebel",
+   "nameFr": "Je me Rebelle",
+   "kind": "command",
+   "image": "je-me-rebelle.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Rebel.webp",
+   "fr": {
+    "title": "Je me Rebelle",
+    "units": "JYN ERSO",
+    "body": "__Jyn Erso__ gagne **Charge** pendant sa prochaine activation. Une fois ce round, quand une unité ennemie à {portee-2} et dans la ligne de vue de __Jyn Erso__ commence son activation, avant son étape __Se rallier__, __Jyn Erso__ peut gagner 1 pion Suppression. Dans ce cas, elle peut effectuer une action Se déplacer gratuite, puis une action Attaquer gratuite.",
+    "footer": "Jyn Erso"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "rebelles",
+    "requirement": "Jyn Erso"
+   },
+   "ttaId": "command:16619",
+   "integratedAt": "2026-10-24"
+  },
+  "command:i want you to know failure": {
+   "englishName": "I Want You to Know Failure",
+   "nameFr": "Je Veux que Vous Connaissiez l’Échec",
+   "kind": "command",
+   "image": "je-veux-que-vous-connaissiez-l-echec.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/I%20Want%20You%20to%20Know%20Failure.webp",
+   "fr": {
+    "title": "Je Veux que Vous Connaissiez l’Échec",
+    "units": "3 UNITÉS",
+    "body": "Ce round, quand une unité {faction-empire} alliée attaque, pendant l'étape __Former les Réserves d'Attaque__, elle gagne 1 pion Viser si l'unité en défense n'a pas 1 pion Ordre face cachée ou plus.",
+    "footer": "Grand Amiral Thrawn"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "empire",
+    "requirement": "Grand Amiral Thrawn"
+   },
+   "ttaId": "command:18901",
+   "integratedAt": "2026-10-24"
+  },
+  "command:inexorable advance": {
+   "englishName": "Inexorable Advance",
+   "nameFr": "Avancée Inexorable",
+   "kind": "command",
+   "image": "avancee-inexorable.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Inexorable%20Advance.webp",
+   "fr": {
+    "title": "Avancée Inexorable",
+    "units": "3 UNITÉS DE SOLDATS",
+    "body": "Quand une unité de soldats {soldat} reçoit un ordre via cette carte, ses armes à distance gagnent **Suppressif** jusqu'à la fin du round.\nDe plus, quand une unité ennemie panique ce round, après la résolution de l'effet, une unité {soldat} alliée peut effectuer un déplacement à vitesse 1.",
+    "footer": "Officier Impérial"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "empire",
+    "requirement": "Officier Impérial"
+   },
+   "ttaId": "command:17861",
+   "integratedAt": "2026-10-24"
+  },
+  "command:log traps": {
+   "englishName": "Log Traps",
+   "nameFr": "Pièges à Rondins",
+   "kind": "command",
+   "image": "pieges-a-rondins.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Log%20Traps.webp",
+   "fr": {
+    "title": "Pièges à Rondins",
+    "units": "AUCUNE UNITÉ",
+    "body": "Au début de la __Phase d'Activation__ de ce round, 1 unité de soldats {ewok} qui contient une figurine de __Trappeur Ewok__ peut effectuer une attaque avec l'arme ci-dessous.",
+    "footer": "Village de Bright Tree",
+    "weapons": [
+     {
+      "name": "Piège à Rondins",
+      "keywords": "Impact 4, Perforant 1"
+     }
+    ]
+   },
+   "command": {
+    "pip": 1,
+    "faction": "rebelles",
+    "requirement": "Village de Bright Tree"
+   },
+   "ttaId": "command:6349",
+   "integratedAt": "2026-10-24"
+  },
+  "command:moment of triumph": {
+   "englishName": "Moment of Triumph",
+   "nameFr": "Instant de Triomphe",
+   "kind": "command",
+   "image": "instant-de-triomphe.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Moment%20of%20Triumph.webp",
+   "fr": {
+    "title": "Instant de Triomphe",
+    "units": "AUCUNE UNITÉ",
+    "body": "Vous devez divulguer cette carte.\n**Divulgation :** étape __Résoudre les effets de mise en place__.\n**Permanent.** __Dark Vador__ gagne **Gardien 4 : Grand Moff Tarkin** et peut prêter main-forte. Tant qu'il défend, __Grand Moff Tarkin__ peut bénéficier de l'aide de __Dark Vador__ même si le chef d'unité de l'unité attaquante est à {portee-2} de __Grand Moff Tarkin__.\nTant que __Grand Moff Tarkin__ conteste un pion Objectif qui n'est pas en territoire allié, les unités de soldats alliées à {portee-2} de lui ont **Discipliné 1**.",
+    "footer": "Grand Moff Tarkin"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "empire",
+    "requirement": "Grand Moff Tarkin"
+   },
+   "ttaId": "command:18902",
+   "integratedAt": "2026-10-24"
+  },
+  "command:not out of it yet": {
+   "englishName": "Not Out of it Yet",
+   "nameFr": "On n'Est Pas Encore Morts",
+   "kind": "command",
+   "image": "on-n-est-pas-encore-morts.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Not%20Out%20of%20it%20Yet.webp",
+   "fr": {
+    "title": "On n'Est Pas Encore Morts",
+    "units": "HAN SOLO & LUKE SKYWALKER",
+    "body": "__Han Solo__ et __Luke Skywalker__ peuvent chacun effectuer un déplacement à vitesse 1.\nCe round, quand __Luke Skywalker__ commence son activation à {portee-2} de __Han Solo__, il gagne 1 pion Viser et 1 pion Esquive. De plus, quand __Han Solo__ commence son activation à {portee-2} de __Luke Skywalker__ ce round, il gagne 1 pion Viser et 1 pion Esquive.",
+    "footer": "Han Solo & Luke Skywalker"
+   },
+   "command": {
+    "pip": 3,
+    "faction": "rebelles",
+    "requirement": "Han Solo & Luke Skywalker"
+   },
+   "ttaId": "command:18903",
+   "integratedAt": "2026-10-24"
+  },
+  "command:on patrol": {
+   "englishName": "On Patrol",
+   "nameFr": "En Patrouille",
+   "kind": "command",
+   "image": "en-patrouille.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/On%20Patrol.webp",
+   "fr": {
+    "title": "En Patrouille",
+    "units": "LUKE SKYWALKER & 1 UNITÉ DE SOLDATS",
+    "body": "Quand une unité reçoit un ordre via cette carte, elle peut effectuer un déplacement à vitesse 1, puis une action {action-gratuite}**Surveillance 4**.\nDe plus, quand une unité ennemie termine son activation à {portee-2} d'une unité de soldats créatures alliée ce round, l'unité alliée peut gagner 1 pion Esquive.",
+    "footer": "Luke Skywalker, Commandant Skywalker"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "rebelles",
+    "requirement": "Luke Skywalker, Commandant Skywalker"
+   },
+   "ttaId": "command:18904",
+   "integratedAt": "2026-10-24"
+  },
+  "command:see you in hell": {
+   "englishName": "See You in Hell",
+   "nameFr": "On se Reverra en Enfer",
+   "kind": "command",
+   "image": "on-se-reverra-en-enfer.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/See%20You%20in%20Hell.webp",
+   "fr": {
+    "title": "On se Reverra en Enfer",
+    "units": "HAN SOLO",
+    "body": "**Permanent.** __Han Solo__ gagne **Indifférent** et **Inarrêtable**.\nPendant le round où cette carte a été jouée, __Han Solo__ gagne **Retrait**, gagne 1 pion Viser et 1 pion Esquive, et ne peut être ni réprimé ni paniqué.",
+    "footer": "Han Solo, Héros Malgré Lui"
+   },
+   "command": {
+    "pip": 1,
+    "faction": "rebelles",
+    "requirement": "Han Solo, Héros Malgré Lui"
+   },
+   "ttaId": "command:18905",
+   "integratedAt": "2026-10-24"
+  },
+  "command:sneaky scouting": {
+   "englishName": "Sneaky Scouting",
+   "nameFr": "Reconnaissance Furtive",
+   "kind": "command",
+   "image": "reconnaissance-furtive.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/Sneaky%20Scouting.webp",
+   "fr": {
+    "title": "Reconnaissance Furtive",
+    "units": "WICKET",
+    "body": "Choisissez jusqu'à 2 unités ennemies à {portee-2} de __Wicket__. Chaque unité choisie gagne 2 pions Surveillance. Jusqu'à la fin du round, chaque fois qu'une unité alliée déclare une attaque contre une unité qui a 1 pion Surveillance ou plus, vous pouvez dépenser 1 pion Surveillance de cette unité ennemie. Dans ce cas, la réserve d'attaque gagne {adrenaline} : {critique} pour cette attaque.",
+    "footer": "Wicket"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "rebelles",
+    "requirement": "Wicket"
+   },
+   "ttaId": "command:7327",
+   "integratedAt": "2026-10-24"
+  },
+  "command:the empire does not tolerate failure": {
+   "englishName": "The Empire Does Not Tolerate Failure",
+   "nameFr": "L'Empire ne Tolère pas l'Échec",
+   "kind": "command",
+   "image": "l-empire-ne-tolere-pas-l-echec.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/The%20Empire%20Does%20Not%20Tolerate%20Failure.webp",
+   "fr": {
+    "title": "L'Empire ne Tolère pas l'Échec",
+    "units": "2 {faction-empire} UNITÉS",
+    "body": "Quand une unité ayant reçu un ordre via cette carte commence son activation ce round, elle peut gagner 2 pions Viser. Dans ce cas, à la fin de l'activation de cette unité, si elle n'a pas vaincu au moins 1 unité ennemie pendant cette activation, elle subit 2 blessures.\nPendant la __Phase Finale__, si 1 unité ou plus ayant reçu un ordre via cette carte a vaincu 1 unité {rang-commandant} ou {rang-agent} ennemie ou plus ce round, vous marquez 1 PV.",
+    "footer": "Haut Commandement Impérial"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "empire",
+    "requirement": "Haut Commandement Impérial"
+   },
+   "ttaId": "command:18906",
+   "integratedAt": "2026-10-24"
+  },
+  "command:we must wait and watch": {
+   "englishName": "We Must Wait and Watch",
+   "nameFr": "Nous Devons Attendre et Observer",
+   "kind": "command",
+   "image": "nous-devons-attendre-et-observer.jpg",
+   "hqImage": "https://d2maxvwz12z6fm.cloudfront.net/commandCards/We%20Must%20Wait%20and%20Watch.webp",
+   "fr": {
+    "title": "Nous Devons Attendre et Observer",
+    "units": "AUCUNE UNITÉ",
+    "body": "**Divulgation :** étape __Résoudre les effets de mise en place__.\n**Permanent.** Choisissez 3 unités {faction-empire} alliées. Les unités choisies gagnent **Renforts** pour cette partie.\n---\nCette carte ne peut pas être choisie pendant la __Phase de Commandement__. Quand une unité ennemie termine son activation, vous pouvez défausser cette carte. Dans ce cas, choisissez une unité alliée non réprimée ou non paniquée à {portee-2} de l'unité ennemie. L'unité choisie peut effectuer une action Se déplacer ou Attaquer gratuite.",
+    "footer": "Grand Amiral Thrawn"
+   },
+   "command": {
+    "pip": 2,
+    "faction": "empire",
+    "requirement": "Grand Amiral Thrawn"
+   },
+   "ttaId": "command:18309",
+   "integratedAt": "2026-10-24"
+  },
   "upgrade:go for broke": {
    "englishName": "Go For Broke",
    "nameFr": "Le Tout pour le Tout",

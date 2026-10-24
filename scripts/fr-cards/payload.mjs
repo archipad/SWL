@@ -6,7 +6,7 @@ export const HQ_PREFIX = /^https:\/\/d2maxvwz12z6fm\.cloudfront\.net\/(unitCards
 const FOLDER = { unit: 'unitCards', upgrade: 'upgradeCards', command: 'commandCards' }
 const ZONES = {
   upgrade: ['title', 'body', 'weapons'],
-  command: ['title', 'units', 'body', 'footer'],
+  command: ['title', 'units', 'body', 'footer', 'weapons'],
   unit: ['name', 'subtitle', 'type', 'keywords', 'weapons'],
 }
 const MARKER = /<!--\s*SWL_FR_CARD\s*([\s\S]*?)\s*-->/

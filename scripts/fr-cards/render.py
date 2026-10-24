@@ -371,43 +371,113 @@ def upgrade(rgb, fr, report):
     return rgb
 
 
+def find_band(g, footer_top):
+    """Bandeau d'effectif : bande noire (aux bouts arrondis) sur presque toute la largeur, avec du texte clair centré,
+    juste au-dessus du texte de la carte (sa hauteur varie avec l'illustration). On le repère à ses bords haut et bas,
+    noirs d'un bout à l'autre, que le texte du bandeau ne touche jamais ; le cadre d'une arme n'est pas suivi de texte clair."""
+    H = g.shape[0]
+    solid = (g[:, 30:704] < 70).mean(1) > 0.95
+    edges = runs(solid[int(H * 0.25):footer_top], 1, int(H * 0.25))
+    for (a, a2), (b1, b) in zip(edges, edges[1:]):
+        if not 12 <= b1 - a2 <= 60 or not 22 <= b - a <= 70:
+            continue
+        inner = (g[a2 + 1:b1, 30:704] < 90).mean(1)
+        if (inner > 0.4).mean() < 0.8:
+            continue
+        light = g[a2 + 1:b1, 60:674] > 200
+        cols = np.nonzero(light.sum(0) >= 2)[0]
+        if not len(cols) or not 0.3 < (cols.min() + cols.max()) / 2 / 614 < 0.7:
+            continue  # pas de texte centré : ce n'est pas le bandeau
+        if g[b + 4:b + 40, 60:660].mean() > 175:
+            return a, b
+    return None
+
+
+def separators(g, top, bottom):
+    """Filets de séparation du texte (ligne fine foncée sur la largeur du cadre)."""
+    frac = (g[:, 70:660] < 140).mean(1)
+    rows = frac[top:bottom] > 0.95  # un filet est continu ; une ligne de texte en gras ne l'est jamais
+    return [(a, b) for a, b in runs(rows, 0, top)
+            if b - a <= 4 and frac[a - 3] < 0.3 and frac[min(b + 3, len(frac) - 1)] < 0.3]
+
+
 def command(rgb, fr, report):
     rgb = resize_to(rgb, 734)
     g = gray(rgb)
     H = rgb.shape[0]
     generic = g[45:75, 300:600].mean() > 150  # bandeau de titre clair = carte générique du livret de règles
     report.zones['gabarit'] = 'commandement générique' if generic else 'commandement de faction'
-    img_ops = []
     if generic:
-        img_ops = [
+        ops = [
             ('title', (120, 40, 725, 82), 'dark', 100, (110, 40, 729, 82), 38, 'band', DARK, 'center', None),
             ('units', (150, 768, 590, 802), 'dark', 100, (150, 768, 590, 802), 33, 'band', DARK, 'center', None),
             ('body', (58, 866, 680, 962), 'dark', 165, (66, 864, 674, 966), 34, 'serif-i', FLAVOR, 'center', 1.25),
         ]
-    else:
-        band = [l for l in text_lines(g, (30, 760, 700, 890), 'light', 200, 4) if l[1] - l[0] >= 10]
-        footer_rows = [y for y in range(int(H * 0.9), H - 4) if (g[y, 40:690] < 70).mean() > 0.8]
-        footer_top = footer_rows[0] if footer_rows else H - 60
-        band_bottom = band[0][1] + 18 if band else 870
-        img_ops.append(('title', (160, 12, 708, 58), 'light', 150, (165, 12, 712, 58), 34, 'band', WHITE, 'left', None))
-        if band:
-            a, b, _, _ = band[0]
-            img_ops.append(('units', (30, a - 8, 700, b + 8), 'light', 150, (40, a - 10, 690, b + 10), (b - a) * 1.35,
-                            'band', WHITE, 'center', None))
-        else:
-            report.problem('bandeau d’effectif introuvable')
-        img_ops.append(('body', (40, band_bottom, 704, footer_top - 6), 'dark', 130, (50, band_bottom, 698, footer_top - 6),
-                        31, 'serif', DARK, 'left', 1.22))
-        img_ops.append(('footer', (40, footer_top + 4, 690, min(H - 4, footer_top + 56)), 'light', 150,
-                        (40, footer_top + 2, 690, min(H - 2, footer_top + 58)), 40, 'title', WHITE, 'center', None))
-    for key, erase_box, mode, thr, box, size, style, color, align, lh in img_ops:
-        if not fr.get(key):
-            continue
-        rgb = erase(rgb, erase_box, mode, thr)
-        img = Image.fromarray(rgb)
-        draw_text(img, box, fr[key], size, report, key, style=style, color=color, kwcolor=color, align=align,
-                  lh=lh or 1.0)
-        rgb = np.asarray(img).copy()
+        for key, erase_box, mode, thr, box, size, style, color, align, lh in ops:
+            if not fr.get(key):
+                continue
+            rgb = erase(rgb, erase_box, mode, thr)
+            img = Image.fromarray(rgb)
+            draw_text(img, box, fr[key], size, report, key, style=style, color=color, kwcolor=color, align=align, lh=lh or 1.0)
+            rgb = np.asarray(img).copy()
+        return rgb
+    footer_rows = [y for y in range(int(H * 0.88), H - 4) if (g[y, 40:690] < 70).mean() > 0.8 and (g[y, 694:714] < 70).mean() > 0.8]
+    footer_top = footer_rows[0] if footer_rows else H - 60
+    band = find_band(g, footer_top)
+    if not band:
+        report.problem('bandeau d’effectif introuvable')
+        band = (footer_top - 200, footer_top - 170)
+    band_top, band_bottom = band
+    body_top = band_bottom + 10
+    # Certains gabarits tirent un filet sur toute la largeur juste sous le bandeau : ce n'est pas un séparateur de texte.
+    for y in range(band_bottom + 1, band_bottom + 26):
+        if (g[y, 70:660] < 140).mean() > 0.6:
+            body_top = max(body_top, y + 6)
+    bars = weapon_bars(g, 70, 655, body_top, footer_top - 4, 30)
+    text_bottom = (bars[0][0] - 8) if bars else footer_top - 6
+    seps = separators(g, body_top, text_bottom)
+    # Titre (une ou deux lignes), effectif, pied de carte : texte clair sur fond foncé.
+    if fr.get('title'):
+        rgb = erase(rgb, (160, 6, 708, 67), 'light', 150)
+    if fr.get('units'):
+        rgb = erase(rgb, (30, band_top + 2, 704, band_bottom - 2), 'light', 150)
+    if fr.get('footer'):
+        rgb = erase(rgb, (14, footer_top + 4, 720, min(H - 4, footer_top + 56)), 'light', 150)
+    # Texte : on efface tout le foncé sauf les filets de séparation, conservés tels quels.
+    if fr.get('body'):
+        g0 = gray(rgb)
+        mask = np.zeros(g0.shape, np.uint8)
+        region = g0[body_top:text_bottom, 40:704]
+        mask[body_top:text_bottom, 40:704] = (region < 130).astype(np.uint8) * 255
+        mask = cv2.dilate(mask, np.ones((3, 3), np.uint8), iterations=2)
+        for a, b in seps:
+            mask[a - 1:b + 2, :] = 0
+        rgb = cv2.inpaint(rgb, mask, 5, cv2.INPAINT_TELEA)
+    img = Image.fromarray(rgb)
+    if fr.get('title'):
+        draw_text(img, (165, 8, 712, 60), fr['title'], 34, report, 'titre', style='band', color=WHITE, align='left', lh=1.0, gap=0.0)
+    if fr.get('units'):
+        draw_text(img, (40, band_top, 694, band_bottom), fr['units'], (band_bottom - band_top) * 0.82, report, 'effectif',
+                  style='band', color=WHITE, align='center', lh=1.0, wrap=False)
+    if fr.get('footer'):
+        draw_text(img, (40, footer_top + 2, 690, min(H - 2, footer_top + 58)), fr['footer'], 40, report, 'pied de carte',
+                  style='band', color=WHITE, align='center', lh=1.0, wrap=False)
+    if fr.get('body'):
+        segments = [s.strip('\n') for s in fr['body'].split('\n---\n')]
+        bounds = [body_top] + [x for a, b in seps for x in (a - 6, b + 8)] + [text_bottom]
+        zones = [(bounds[i], bounds[i + 1]) for i in range(0, len(bounds), 2)]
+        if len(segments) != len(zones):
+            report.problem(f'texte : {len(segments)} partie(s) séparée(s) par « --- » pour {len(zones)} zone(s) sur la carte')
+            segments = ['\n'.join(segments)] if len(zones) == 1 else segments + [''] * (len(zones) - len(segments))
+        for i, (top, bottom) in enumerate(zones):
+            if i < len(segments) and segments[i]:
+                draw_text(img, (50, top, 698, bottom), segments[i], 33, report, f'texte {i + 1}', style='serif', color=DARK,
+                          kwcolor=DARK, align='left', lh=1.22, gap=0.22)
+    rgb = np.asarray(img).copy()
+    if bars:
+        draw_weapons(rgb, bars, fr.get('weapons') or [], 66, 400, report)
+    elif fr.get('weapons'):
+        report.problem('arme décrite dans la fiche mais aucun cadre d’arme sur la carte')
     return rgb
 
 

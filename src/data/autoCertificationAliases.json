@@ -237,6 +237,132 @@
       "status": "confirmed",
       "englishName": "Diversionary Tactics",
       "evidence": "Officier Rebelle, 3 pips ; fiche FR communautaire validée visuellement par Antoine le 23/10/2026 (visuel anglais Legion HQ)."
+    },
+    "18905": {
+      "localId": "on-se-reverra-en-enfer",
+      "status": "confirmed",
+      "englishName": "See You in Hell",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "17861": {
+      "localId": "avancee-inexorable",
+      "status": "confirmed",
+      "englishName": "Inexorable Advance",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "17862": {
+      "localId": "discours-terrifiant",
+      "status": "confirmed",
+      "englishName": "Fearsome Oration",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18309": {
+      "localId": "nous-devons-attendre-et-observer",
+      "status": "confirmed",
+      "englishName": "We Must Wait and Watch",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18310": {
+      "localId": "la-peur-les-tiendra-en-respect",
+      "status": "confirmed",
+      "englishName": "Fear Will Keep Them in Line",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18898": {
+      "localId": "les-artisans-de-leur-propre-perte",
+      "status": "confirmed",
+      "englishName": "Architects of Their Own Destruction",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18899": {
+      "localId": "adversaire-ruse",
+      "status": "confirmed",
+      "englishName": "Canny Adversary",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18900": {
+      "localId": "j-ai-les-graphiques-et-le-commandement",
+      "status": "confirmed",
+      "englishName": "I Have Graphs AND the Command",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18901": {
+      "localId": "je-veux-que-vous-connaissiez-l-echec",
+      "status": "confirmed",
+      "englishName": "I Want You to Know Failure",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18902": {
+      "localId": "instant-de-triomphe",
+      "status": "confirmed",
+      "englishName": "Moment of Triumph",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18906": {
+      "localId": "l-empire-ne-tolere-pas-l-echec",
+      "status": "confirmed",
+      "englishName": "The Empire Does Not Tolerate Failure",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "16619": {
+      "localId": "je-me-rebelle",
+      "status": "confirmed",
+      "englishName": "I Rebel",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "7328": {
+      "localId": "il-s-en-est-fallu-de-peu",
+      "status": "confirmed",
+      "englishName": "Close Call",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "7327": {
+      "localId": "reconnaissance-furtive",
+      "status": "confirmed",
+      "englishName": "Sneaky Scouting",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "7326": {
+      "localId": "contre-attaque-courageuse",
+      "status": "confirmed",
+      "englishName": "Courageous Counterattack",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "6348": {
+      "localId": "assaut-arboricole",
+      "status": "confirmed",
+      "englishName": "Arboreal Assault",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "6349": {
+      "localId": "pieges-a-rondins",
+      "status": "confirmed",
+      "englishName": "Log Traps",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "6350": {
+      "localId": "cache-aux-yeux-de-tous",
+      "status": "confirmed",
+      "englishName": "Hiding in Plain Sight",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "6351": {
+      "localId": "pour-la-tribu",
+      "status": "confirmed",
+      "englishName": "For the Tribe",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18903": {
+      "localId": "on-n-est-pas-encore-morts",
+      "status": "confirmed",
+      "englishName": "Not Out of it Yet",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
+    },
+    "18904": {
+      "localId": "en-patrouille",
+      "status": "confirmed",
+      "englishName": "On Patrol",
+      "evidence": "Fiche FR communautaire validée dans l’atelier (visuel Legion HQ comparé)."
     }
   },
   "printedTitles": {
