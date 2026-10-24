@@ -18,7 +18,7 @@ Création d'une carte française à partir du visuel anglais de Legion HQ, lanc�
 
    Le workflow lance ensuite `npm run build`, committe et déploie. `/apercu-fiche-fr` régénère l'aperçu après une correction de la fiche.
 
-Une carte qui possède déjà un visuel n'est jamais écrasée. Les données moteur (dés, PV, courage, mots-clés) ne sont pas écrites par ce circuit : elles se certifient ensuite dans l'écran de certification, qui affiche le visuel FR et la référence Legion HQ.
+Une carte qui possède déjà un visuel n'est jamais écrasée. Une amélioration passive est enregistrée comme telle dans `upgradeCardUse.json`. Une amélioration ↱ ou ✖ est refusée à l'intégration (l'aperçu le signale), car son suivi (bouton prête / inclinée / supprimée) doit d'abord être ajouté au moteur de l'Assistant. Les données moteur (dés, PV, courage, mots-clés) ne sont pas écrites par ce circuit : elles se certifient ensuite dans l'écran de certification, qui affiche le visuel FR et la référence Legion HQ.
 
 ## Moteur de rendu
 

@@ -36,7 +36,7 @@ assert.equal(targetFiles(validatePayload(command)).publicPath, 'public/commandca
 // Intégration dans une copie des données.
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'swl-fr-cards-'))
 try {
-  for (const file of ['src/data/cardImages.ts', 'src/data/cardNamesFr.ts', 'src/data/customCards.json', 'src/data/commandCards.ts', 'src/data/autoCertificationAliases.json', 'public/assistant/index.html']) {
+  for (const file of ['src/data/cardImages.ts', 'src/data/cardNamesFr.ts', 'src/data/customCards.json', 'src/data/commandCards.ts', 'src/data/autoCertificationAliases.json', 'src/data/upgradeCardUse.json', 'public/assistant/index.html']) {
     fs.mkdirSync(path.dirname(path.join(tmp, file)), { recursive: true })
     fs.copyFileSync(path.join(root, file), path.join(tmp, file))
   }
@@ -52,6 +52,9 @@ try {
   const recorded = JSON.parse(fs.readFileSync(path.join(tmp, 'src/data/frCommunityCards.json'), 'utf8')).cards['upgrade:test vibro blade']
   assert.equal(recorded.issue, 12)
   assert.equal(recorded.use, 'passive')
+  assert.deepEqual(JSON.parse(fs.readFileSync(path.join(tmp, 'src/data/upgradeCardUse.json'), 'utf8')).cards['test vibro blade'], { use: 'passive', icons: [] }, 'utilisation de l’amélioration enregistrée')
+  await assert.rejects(integrate(validatePayload({ ...upgrade, englishName: 'Test Discard Card', use: 'discard' }), { root: tmp, image, generate: false }), /suivi .* moteur/, 'une carte ✖ exige d’abord son suivi dans le moteur')
+  assert.ok(!fs.existsSync(path.join(tmp, 'public/cards/test-discard-card-fr-community.jpg')), 'rien n’est écrit pour une carte refusée')
   assert.equal(versionOf('reference-data\\.js'), referenceBefore + 1, 'le référentiel Assistant change de version')
   await assert.rejects(integrate(validatePayload(upgrade), { root: tmp, image, generate: false }), /existe déjà/, 'un visuel existant n’est jamais écrasé')
   await assert.rejects(integrate(validatePayload({ ...upgrade, englishName: 'Stormtroopers' }), { root: tmp, image, generate: false }), /déjà raccordée/, 'une carte déjà raccordée garde son visuel')

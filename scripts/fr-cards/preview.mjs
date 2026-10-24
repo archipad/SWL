@@ -37,6 +37,10 @@ export async function renderPayload(payload, output, reportFile) {
   fs.mkdirSync(path.dirname(path.resolve(output)), { recursive: true })
   const args = [path.join(here, 'render.py'), spec, image, output, ...(reportFile ? ['--rapport', reportFile] : [])]
   const result = JSON.parse(execFileSync(python, args, { encoding: 'utf8' }).trim().split('\n').pop())
+  if (payload.kind === 'upgrade' && ['exhaust', 'discard', 'both'].includes(payload.use)) {
+    result.problems.push('carte ↱ / ✖ : son suivi doit être ajouté au moteur avant l’intégration (/valider-fiche-fr sera refusé)')
+    if (reportFile) fs.writeFileSync(reportFile, JSON.stringify(result, null, 1) + '\n')
+  }
   return result
 }
 

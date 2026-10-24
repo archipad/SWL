@@ -36,12 +36,26 @@ function addRawEntry(file, line, englishName) {
   })
 }
 
+// Utilisation d'une amélioration (src/data/upgradeCardUse.json), exigée pour toute amélioration du site. Une carte ↱ ou ✖
+// doit avoir un bouton de suivi dans le moteur (scripts/audit-card-effects.mjs) : elle ne peut pas être intégrée
+// automatiquement et est refusée avant toute écriture.
+export const NEEDS_ENGINE = new Set(['exhaust', 'discard', 'both'])
+function recordUpgradeUse(root, payload) {
+  const file = path.join(root, 'src/data/upgradeCardUse.json')
+  const data = JSON.parse(fs.readFileSync(file, 'utf8'))
+  const key = norm(payload.englishName)
+  if (!data.cards[key]) data.cards[key] = { use: 'passive', icons: [] }
+  data.cards = Object.fromEntries(Object.entries(data.cards).sort(([a], [b]) => a.localeCompare(b)))
+  fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n')
+}
+
 function integrateCatalogCard(root, payload, files) {
   const custom = JSON.parse(fs.readFileSync(path.join(root, 'src/data/customCards.json'), 'utf8'))
   if (Object.keys(custom).some((key) => norm(key) === norm(payload.englishName))) throw new Error(`« ${payload.englishName} » existe déjà dans customCards.json`)
   const single = (s) => `'${s.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`
   addRawEntry(path.join(root, 'src/data/cardImages.ts'), `  ${single(payload.englishName)}: ${single(files.file)},`, payload.englishName)
   addRawEntry(path.join(root, 'src/data/cardNamesFr.ts'), `  ${JSON.stringify(payload.englishName)}: ${JSON.stringify(payload.nameFr)},`, payload.englishName)
+  if (payload.kind === 'upgrade') recordUpgradeUse(root, payload)
 }
 
 function integrateCommand(root, payload, files) {
@@ -94,6 +108,7 @@ function bumpAssistantVersions(root, command) {
 }
 
 export async function integrate(payload, { root = repoRoot, issue = null, image = null, generate = true } = {}) {
+  if (payload.kind === 'upgrade' && NEEDS_ENGINE.has(payload.use)) throw new Error(`Carte ${payload.use === 'discard' ? '✖' : '↱'} : son suivi (bouton prête / inclinée / supprimée) doit d’abord être ajouté au moteur de l’Assistant ; intégration automatique impossible`)
   const files = targetFiles(payload)
   const target = path.join(root, files.publicPath)
   if (fs.existsSync(target)) throw new Error(`${files.publicPath} existe déjà : visuel conservé`)
