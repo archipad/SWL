@@ -58,6 +58,114 @@
   "dh 447 sniper": {
    "text": "Groupe de Combat Commandos Rebelles uniquement. Ajoutez 1 figurine de Sniper avec DH-447. Arme : Fusil de Sniper DH-447 (portée 2-5) — 2 dés blancs, 1 dé noir ; Haute Vélocité, Débordement, Équipe Sniper.",
    "source": "visuel FR du site"
+  },
+  "iden s id10 seeker droid": {
+   "text": "Carte de compagnon d'Iden Versio : Soldat droïde « Droïde », 1 PV. Surveillance 1 (action), Alter Ego : Iden Versio, Recharger 1, Bouclier 1, Petit. Arme : Électrochoc (corps-à-corps et portée 1) — 3 dés blancs ; Suppressif.",
+   "source": "visuel FR du site"
+  },
+  "t 21 stormtrooper": {
+   "text": "Stormtroopers uniquement. Ajoutez 1 figurine de Stormtrooper avec T-21. Arme : Blaster à Répétition T-21 (portée 1-3) — 4 dés blancs ; Critique 2.",
+   "source": "visuel FR du site"
+  },
+  "hh 12 stormtrooper": {
+   "text": "Stormtroopers uniquement. Ajoutez 1 figurine de Stormtrooper avec HH-12. Arme : Lance-roquettes HH-12 (portée 2-4) — 3 dés noirs ; Encombrant, Impact 3.",
+   "source": "visuel FR du site"
+  },
+  "flametrooper": {
+   "text": "Snowtroopers uniquement. Ajoutez 1 figurine de Flametrooper. Arme : Lance-flammes (corps-à-corps et portée 1) — 1 dé noir ; Déflagration, Souffle.",
+   "source": "visuel FR du site"
+  },
+  "t 7 ion snowtrooper": {
+   "text": "Snowtroopers uniquement. Ajoutez 1 figurine de Snowtrooper avec T-7 à Ions. Arme : Fusil T-7 à Ions (portée 1-3) — 1 dé blanc, 2 dés noirs ; Critique 1, Impact 1, Ion 1.",
+   "source": "visuel FR du site"
+  },
+  "t 21b shoretrooper": {
+   "text": "Shoretroopers uniquement. Ajoutez 1 figurine de Shoretrooper avec T-21B. Arme : Blaster à Répétition T-21B (portée 1-4) — 2 dés blancs, 2 dés noirs ; Critique 1.",
+   "source": "visuel FR du site"
+  },
+  "dlt 19x sniper": {
+   "text": "Groupe de Combat Scout Troopers uniquement. Ajoutez 1 figurine de Sniper avec DLT-19x. Arme : Fusil de Sniper DLT-19x (portée 2-5) — 2 dés blancs, 1 dé noir ; Haute Vélocité, Débordement, Équipe Sniper.",
+   "source": "visuel FR du site"
+  },
+  "dlt 19d trooper": {
+   "text": "Death Troopers Impériaux uniquement. Ajoutez 1 figurine de Soldat avec DLT-19D. Arme : Fusil Blaster DLT-19D (portée 1-4) — 2 dés rouges, 1 dé blanc ; Impact 1.",
+   "source": "visuel FR du site"
+  },
+  "t 21a range trooper": {
+   "text": "Range Troopers uniquement. Ajoutez 1 figurine de Range Trooper avec T-21A. Arme : Blaster à Répétition T-21A (portée 1-4) — 2 dés blancs, 2 dés noirs ; Suppressif.",
+   "source": "visuel FR du site"
+  },
+  "fx 9 medical droid": {
+   "text": "Soldat Impérial ▲ uniquement. Ajoutez 1 figurine de Droïde Médical FX-9. Non-combattant. Traiter 1 : Capacité 2 (action).",
+   "source": "visuel FR du site"
+  },
+  "88i twin light blaster": {
+   "text": "TR-TT uniquement. Arme : Blasters Légers Jumelés 88i (portée 1-3) — 1 dé rouge, 1 dé blanc, 1 dé noir ; Fixe : avant, Impact 1.",
+   "source": "visuel FR du site"
+  },
+  "dw 3 concussion grenade launcher": {
+   "text": "TR-TT uniquement. Arme : Lance-grenades DW-3 (portée 1-2) — 2 dés noirs ; Fixe : avant, Déflagration.",
+   "source": "visuel FR du site"
+  },
+  "at st mortar launcher": {
+   "text": "TR-TT uniquement. Arme : Lance-mortier de TR-TT (portée 4 et au-delà) — 3 dés blancs ; Fixe : avant, Suppressif.",
+   "source": "visuel FR du site"
+  },
+  "snowtrooper": {
+   "text": "Snowtroopers uniquement. Ajoutez 1 figurine de Snowtrooper.",
+   "source": "visuel FR du site"
+  },
+  "offensive push": {
+   "text": "Action (carte à incliner ↱) : pendant sa prochaine action Se déplacer de cette activation, cette unité gagne Tacticien 1.",
+   "source": "visuel FR du site"
+  },
+  "linked targeting array": {
+   "text": "Soldat en Position ou Véhicule uniquement. Cette unité gagne Cible 1.",
+   "source": "visuel FR du site"
+  },
+  "the darksaber": {
+   "text": "Sabine Wren uniquement. Cette unité gagne Intrépide et Immunité : Perforant au Corps-à-Corps. Arme : Le Sabre Noir (corps-à-corps) — 5 dés noirs ; Impact 1, Perforant 1.",
+   "source": "visuel FR du site"
+  },
+  "x 34 mark ii blaster": {
+   "text": "Landspeeder X-34 uniquement. Arme : Blaster Moyen Mark II (portée 1-3) — 4 dés noirs ; Fixe : avant.",
+   "source": "visuel FR du site"
+  },
+  "recon intel": {
+   "text": "Cette unité gagne Éclaireur 1.",
+   "source": "visuel FR du site"
+  },
+  "mpl 57 ion trooper": {
+   "text": "Soldats Rebelles uniquement. Ajoutez 1 figurine de Soldat avec MPL-57 à Ions. Arme : MPL-57 à Ions (portée 1-3) — 1 dé blanc, 2 dés noirs ; Critique 1, Impact 1, Ion 1.",
+   "source": "visuel FR du site"
+  },
+  "dlt 20a trooper": {
+   "text": "Soldats Rebelles uniquement. Ajoutez 1 figurine de Soldat avec DLT-20A. Arme : Fusil Blaster DLT-20A (portée 1-4) — 1 dé blanc, 2 dés noirs ; Critique 1.",
+   "source": "visuel FR du site"
+  },
+  "mpl 57 barrage trooper": {
+   "text": "Soldats de la Flotte uniquement. Ajoutez 1 figurine de Soldat avec MPL-57 de Barrage. Cycle. Arme : MPL-57 de Barrage (portée 1-3) — 2 dés blancs, 1 dé noir ; Déflagration, Impact 2.",
+   "source": "visuel FR du site"
+  },
+  "cm o 93 trooper": {
+   "text": "Vétérans Rebelles uniquement. Ajoutez 1 figurine de Soldat avec CM-O/93. Arme : CM-O/93 (portée 1-4) — 4 dés blancs ; Critique 2.",
+   "source": "visuel FR du site"
+  },
+  "scatter gun trooper": {
+   "text": "Soldats de la Flotte uniquement. Ajoutez 1 figurine de Soldat avec Fusil à Dispersion. Arme : Fusil à Dispersion (corps-à-corps et portée 1-2) — 2 dés rouges ; Perforant 1.",
+   "source": "visuel FR du site"
+  },
+  "long gun wookiee": {
+   "text": "Guerriers Wookies uniquement. Ajoutez 1 figurine de Wookie avec Arme d'Épaule. Arme : Arme d'Épaule (portée 1-4) — 2 dés noirs ; Suppressif.",
+   "source": "visuel FR du site"
+  },
+  "bowcaster wookiee": {
+   "text": "Guerriers Wookies uniquement. Ajoutez 1 figurine de Wookie avec Arbalète. Arme : Arbalète (portée 1-3) — 1 dé rouge, 1 dé blanc ; Impact 1, Perforant 1.",
+   "source": "visuel FR du site"
+  },
+  "tl tt flame projector": {
+   "text": "TL-TT uniquement. Arme : Lance-flammes (corps-à-corps et portée 1) — 2 dés noirs ; Fixe : avant, Déflagration, Souffle.",
+   "source": "visuel FR du site"
   }
  }
 }

@@ -61,7 +61,8 @@ export function annotateKeywords(text: string, keywords: KeywordDef[], skip: Set
     .sort((a, b) => b.label.length - a.label.length);
   const found: { start: number; end: number; definition?: string }[] = [];
   for (const { def, label } of candidates) {
-    const re = new RegExp(`(?<![\\p{L}'’])(?<!pions? |avec )${escapeRe(label)}(?: (\\d+))?(?![\\p{L}'’-])(?! d['’]unit| \\p{Lu}| à \\p{Lu})`, 'gu');
+    // « de Barrage », « à Dispersion » : fin d'un nom d'arme (MPL-57 de Barrage, Fusil à Dispersion).
+    const re = new RegExp(`(?<![\\p{L}'’])(?<!pions? |avec |de |à )${escapeRe(label)}(?: (\\d+))?(?![\\p{L}'’-])(?! d['’]unit| \\p{Lu}| à \\p{Lu})`, 'gu');
     let first = true;
     for (const m of text.matchAll(re)) {
       const start = m.index ?? 0;
