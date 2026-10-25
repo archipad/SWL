@@ -57,12 +57,13 @@ export interface AnnotatedSegment {
 export function annotateKeywords(text: string, keywords: KeywordDef[], skip: Set<string>): AnnotatedSegment[] {
   const candidates = keywords
     .map((def) => ({ def, label: printedKeywordName(def.name) }))
-    .filter((c) => c.label.length > 2)
+    .filter((c) => c.label.length > 2 || c.label === 'IA')
     .sort((a, b) => b.label.length - a.label.length);
   const found: { start: number; end: number; definition?: string }[] = [];
   for (const { def, label } of candidates) {
-    // « de Barrage », « à Dispersion » : fin d'un nom d'arme (MPL-57 de Barrage, Fusil à Dispersion).
-    const re = new RegExp(`(?<![\\p{L}'’])(?<!pions? |avec |de |à )${escapeRe(label)}(?: (\\d+))?(?![\\p{L}'’-])(?! d['’]unit| \\p{Lu}| à \\p{Lu})`, 'gu');
+    // « de Barrage », « à Dispersion » : fin d'un nom d'arme (MPL-57 de Barrage, Fusil à Dispersion) ;
+    // « Commando Pistolero » : fin d'un nom de figurine (mot à majuscule juste avant).
+    const re = new RegExp(`(?<![\\p{L}'’])(?<!pions? |avec |de |à |\\p{Lu}\\p{Ll}+ )${escapeRe(label)}(?: (\\d+))?(?![\\p{L}'’-])(?! d['’]unit| \\p{Lu}| à \\p{Lu})`, 'gu');
     let first = true;
     for (const m of text.matchAll(re)) {
       const start = m.index ?? 0;

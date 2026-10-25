@@ -125,7 +125,7 @@
   },
   "the darksaber": {
    "text": "Sabine Wren uniquement. Cette unité gagne Intrépide et Immunité : Perforant au Corps-à-Corps. Arme : Le Sabre Noir (corps-à-corps) — 5 dés noirs ; Impact 1, Perforant 1.",
-   "source": "visuel FR du site"
+   "source": "visuel FR du site (version de Sabine Wren) ; Impact 1 confirmé par Antoine le 25/10/2026, certification alignée"
   },
   "x 34 mark ii blaster": {
    "text": "Landspeeder X-34 uniquement. Arme : Blaster Moyen Mark II (portée 1-3) — 4 dés noirs ; Fixe : avant.",
@@ -269,6 +269,210 @@
   },
   "stormtrooper squad expansion": {
    "text": "Stormtroopers uniquement. Ajoutez 5 figurines de Stormtrooper. Cette unité gagne Indomptable ; elle conserve ce mot-clé même si ces figurines ajoutées sont vaincues. Cette unité est en cohésion si toutes ses figurines sont à ① du Chef d'unité au lieu de ½ ; elle conserve cette règle même si ces figurines ajoutées sont vaincues. Cette unité ne peut pas être déployée ou recevoir des ordres via le mot-clé Transport.",
+   "source": "visuel FR du site"
+  },
+  "snowtrooper squad expansion": {
+   "text": "Snowtroopers uniquement. Ajoutez 5 figurines de Snowtrooper. Cette unité gagne Indomptable ; elle conserve ce mot-clé même si ces figurines ajoutées sont vaincues. Cette unité est en cohésion si toutes ses figurines sont à ① du Chef d'unité au lieu de ½ ; elle conserve cette règle même si ces figurines ajoutées sont vaincues. Cette unité ne peut pas être déployée ou recevoir des ordres via le mot-clé Transport.",
+   "source": "visuel FR du site"
+  },
+  "shoretrooper squad expansion": {
+   "text": "Shoretroopers uniquement. Ajoutez 5 figurines de Shoretrooper. Cette unité gagne Indomptable ; elle conserve ce mot-clé même si ces figurines ajoutées sont vaincues. Cette unité est en cohésion si toutes ses figurines sont à ① du Chef d'unité au lieu de ½ ; elle conserve cette règle même si ces figurines ajoutées sont vaincues. Cette unité ne peut pas être déployée ou recevoir des ordres via le mot-clé Transport.",
+   "source": "visuel FR du site"
+  },
+  "first sergeant arbmab": {
+   "text": "Véhicule terrestre Impérial uniquement. Cette unité gagne Tacticien 1.",
+   "source": "visuel FR du site"
+  },
+  "general weiss": {
+   "text": "Véhicule terrestre Impérial uniquement. Cette unité gagne Arsenal 2 et Commandant des Opérations.",
+   "source": "visuel FR du site"
+  },
+  "e 11d focused strike config": {
+   "text": "Death Troopers Impériaux uniquement. Reconfiguration. Arme : E-11D Frappe Concentrée (portée 1-4) — 1 dé noir ; Suppressif. (Carte à deux faces : l'autre face porte l'autre configuration.)",
+   "source": "visuel FR du site"
+  },
+  "cr 24 flame rifle": {
+   "text": "Soldat Monté sur Dewback uniquement. Arme : Fusil Lance-flammes CR-24 (corps-à-corps et portée 1) — 1 dé blanc, 1 dé noir ; Déflagration, Souffle.",
+   "source": "visuel FR du site"
+  },
+  "rt 97c dewback rider": {
+   "text": "Soldat Monté sur Dewback uniquement. Arme : Fusil Blaster RT-97C (portée 1-4) — 1 dé rouge, 3 dés blancs.",
+   "source": "visuel FR du site"
+  },
+  "t 21 dewback rider": {
+   "text": "Soldat Monté sur Dewback uniquement. Arme : Fusil Blaster T-21 (portée 1-3) — 4 dés blancs ; Critique 2.",
+   "source": "visuel FR du site"
+  },
+  "r4 astromech droid": {
+   "text": "Soldat Impérial ▲ uniquement. Ajoutez 1 figurine d'Astromech R4. Non-combattant. Cette unité gagne Réparation 1 : Capacité 2 (action).",
+   "source": "visuel FR du site"
+  },
+  "dlt 19 pintle mount": {
+   "text": "Tank « Occupier » TX-225 GAVw uniquement. Arme : Fusil Blaster DLT-19 (portée 1-4) — 2 dés rouges ; Impact 1.",
+   "source": "visuel FR du site"
+  },
+  "rt 97c pintle mount": {
+   "text": "Tank « Occupier » TX-225 GAVw uniquement. Arme : Fusil Blaster RT-97C (portée 1-4) — 1 dé rouge, 3 dés blancs.",
+   "source": "visuel FR du site"
+  },
+  "z 6 trooper": {
+   "text": "Soldats Rebelles uniquement. Ajoutez 1 figurine de Soldat avec Z-6. Arme : Blaster Rotatif Z-6 (portée 1-3) — 6 dés blancs.",
+   "source": "visuel FR du site"
+  },
+  "rebel trooper": {
+   "text": "Soldats Rebelles uniquement. Ajoutez 1 figurine de Soldat Rebelle.",
+   "source": "visuel FR du site"
+  },
+  "fleet trooper": {
+   "text": "Soldats de la Flotte uniquement. Ajoutez 1 figurine de Soldat de la Flotte.",
+   "source": "visuel FR du site"
+  },
+  "rebel veteran": {
+   "text": "Vétérans Rebelles uniquement. Ajoutez 1 figurine de Vétéran Rebelle.",
+   "source": "visuel FR du site"
+  },
+  "tl tt rotary blaster": {
+   "text": "TL-TT uniquement. Arme : Blaster Rotatif (portée 1-3) — 5 dés noirs ; Fixe : avant.",
+   "source": "visuel FR du site"
+  },
+  "ax 108 ground buzzer": {
+   "text": "Airspeeder T-47 uniquement. Arme : Ax-108 « Ground Buzzer » (portée 1-2) — 4 dés noirs ; Fixe : arrière.",
+   "source": "visuel FR du site"
+  },
+  "prepared materiel": {
+   "text": "Cache : Esquive 1.",
+   "source": "visuel FR du site"
+  },
+  "situational awareness": {
+   "text": "Cette unité gagne Manœuvre Improbable.",
+   "source": "visuel FR du site"
+  },
+  "impact grenades": {
+   "text": "Arme : Grenade à Impact (corps-à-corps et portée 1) — 1 dé noir ; Impact 4.",
+   "source": "visuel FR du site"
+  },
+  "lead by example": {
+   "text": "Cette unité gagne Inspiration 2.",
+   "source": "visuel FR du site"
+  },
+  "electrobinoculars": {
+   "text": "Cette unité gagne Observateur 1 (action de carte). Les unités de Droïdes de Combat B1 peuvent s'équiper de cette carte même si elles n'ont pas d'icône d'amélioration Équipement.",
+   "source": "visuel FR du site"
+  },
+  "underworld contacts": {
+   "text": "Cette unité gagne Alliés de Circonstance.",
+   "source": "visuel FR du site"
+  },
+  "environmental gear": {
+   "text": "Cette unité gagne Sans Entrave.",
+   "source": "visuel FR du site"
+  },
+  "handheld scanner": {
+   "text": "Cette unité gagne Mettre à Couvert 1 (action de carte). Les unités de Droïdes de Combat B1 peuvent s'équiper de cette carte même si elles n'ont pas d'icône d'amélioration Équipement.",
+   "source": "visuel FR du site"
+  },
+  "grapnel hooks": {
+   "text": "Cette unité gagne Grimpeur Expérimenté.",
+   "source": "visuel FR du site"
+  },
+  "attack protocols": {
+   "text": "Véhicule uniquement. Cette unité gagne IA : Viser et Précis 2.",
+   "source": "visuel FR du site"
+  },
+  "onboard comms channel": {
+   "text": "Véhicule uniquement. Cette unité gagne Coordination : Soldat.",
+   "source": "visuel FR du site"
+  },
+  "concussion grenades": {
+   "text": "Arme : Grenade à Concussion (portée 1) — 1 dé noir ; Déflagration.",
+   "source": "visuel FR du site (noir et blanc) ; dés conformes à diceCertifications.json"
+  },
+  "emp grenades": {
+   "text": "Arme : Grenades « Anti-droïdes » EMP (portée 1) — 1 dé noir ; Ion 1.",
+   "source": "visuel FR du site (noir et blanc) ; dés conformes à diceCertifications.json"
+  },
+  "sonic imploders": {
+   "text": "Arme : Imploseur Sonique (portée 1) — 1 dé noir ; Suppressif.",
+   "source": "visuel FR du site (noir et blanc) ; dés conformes à diceCertifications.json"
+  },
+  "defense protocols": {
+   "text": "Véhicule uniquement. Cette unité gagne Agile, Manœuvre Improbable et IA : Esquive.",
+   "source": "visuel FR du site"
+  },
+  "engagement protocols": {
+   "text": "Véhicule uniquement. Cette unité gagne IA : Attaque, Déplacement.",
+   "source": "visuel FR du site"
+  },
+  "armor piercing shells": {
+   "text": "Cycle. Arme : Obus Antiblindage (portée 2-3) — 1 dé rouge, 2 dés noirs ; Fixe : avant, Impact 3.",
+   "source": "visuel FR du site (noir et blanc) ; dés conformes à diceCertifications.json"
+  },
+  "high energy shells": {
+   "text": "Cycle. Arme : Obus à Haute Énergie (portée 2-4) — 2 dés rouges, 1 dé blanc ; Fixe : avant, Critique 1, Haute Vélocité.",
+   "source": "visuel FR du site (noir et blanc) ; dés conformes à diceCertifications.json"
+  },
+  "anti bunker shells": {
+   "text": "Cycle. Arme : Obus « Antibunker » (portée 1-2) — 3 dés blancs, 1 dé noir ; Fixe : avant, Déflagration, Dispersion.",
+   "source": "visuel FR du site (noir et blanc) ; dés conformes à diceCertifications.json"
+  },
+  "fear": {
+   "text": "Côté Obscur uniquement. Cette unité gagne Démoraliser 1.",
+   "source": "visuel FR du site"
+  },
+  "hope": {
+   "text": "Côté Lumineux uniquement. Cette unité gagne Inspiration 1.",
+   "source": "visuel FR du site"
+  },
+  "pyke soldier p13m disruptor": {
+   "text": "Fantassins du Syndicat Pyke uniquement. Ajoutez 1 figurine de Soldat avec Disrupteur P13-M. Arme : Disrupteur P13-M (portée 1-4) — 1 dé rouge, 2 dés noirs ; Impact 1.",
+   "source": "visuel FR du site"
+  },
+  "black sun enforcer magnetic detonator": {
+   "text": "Hommes de Main du Soleil Noir uniquement. Ajoutez 1 figurine d'Homme de Main avec Détonateur Magnétique. Arme : Détonateur Magnétique (corps-à-corps et portée 1) — 3 dés noirs ; Déflagration, Impact 3.",
+   "source": "visuel FR du site"
+  },
+  "black sun enforcer scatter gun": {
+   "text": "Hommes de Main du Soleil Noir uniquement. Ajoutez 1 figurine d'Homme de Main avec Fusil à Dispersion. Arme : Fusil à Dispersion (corps-à-corps et portée 1-2) — 2 dés rouges ; Perforant 1.",
+   "source": "visuel FR du site"
+  },
+  "super commando pistoleer": {
+   "text": "Super Commandos Mandaloriens uniquement. Ajoutez 1 figurine de Super Commando Pistolero. Arme : Paire de Pistolets Blaster (corps-à-corps et portée 1-2) — 2 dés rouges, 2 dés blancs ; Débordement.",
+   "source": "visuel FR du site"
+  },
+  "super commando marksman": {
+   "text": "Super Commandos Mandaloriens uniquement. Ajoutez 1 figurine de Super Commando Tireur Embusqué. Arme : Tireur Embusqué Désigné (portée 1-3) — 1 dé rouge, 1 dé noir ; Létal 1.",
+   "source": "visuel FR du site"
+  },
+  "rook kast": {
+   "text": "Super Commandos Mandaloriens uniquement. Ajoutez 1 figurine de Rook Kast. Chef. Cette unité gagne Escorte : Maul. Arme : Pistolets Blaster de Rook (corps-à-corps et portée 1-2) — 2 dés rouges, 2 dés blancs.",
+   "source": "visuel FR du site"
+  },
+  "din djarin beskar spear": {
+   "text": "Din Djarin uniquement. Cette unité gagne Duelliste. Arme : Lance en Beskar (corps-à-corps) — 2 dés rouges, 1 dé noir.",
+   "source": "visuel FR du site"
+  },
+  "din djarin flamethrower": {
+   "text": "Din Djarin uniquement. Arme : Projecteur de Flammes (corps-à-corps et portée 1) — 1 dé rouge ; Déflagration, Souffle, Suppressif.",
+   "source": "visuel FR du site"
+  },
+  "gar saxon galar90 rifle": {
+   "text": "Gar Saxon uniquement. Arme : Fusil Sniper Galar-90 (portée 1-4) — 1 dé rouge, 1 dé blanc, 1 dé noir ; Haute Vélocité, Létal 1, Longue Distance.",
+   "source": "visuel FR du site"
+  },
+  "boba fett flamethrower": {
+   "text": "Boba Fett uniquement. Arme : Projecteur de Flammes (corps-à-corps et portée 1) — 1 dé rouge ; Déflagration, Souffle, Suppressif.",
+   "source": "visuel FR du site"
+  },
+  "tech": {
+   "text": "Le Bad Batch uniquement. Ajoutez 1 figurine de Tech. Cette unité gagne Tacticien 1 et Cache : Viser 1 et Esquive 1.",
+   "source": "visuel FR du site"
+  },
+  "echo clone force 99": {
+   "text": "Le Bad Batch uniquement. Ajoutez 1 figurine d'Echo. Cette unité gagne Fiable 3.",
+   "source": "visuel FR du site"
+  },
+  "pyke soldier electro whip": {
+   "text": "Fantassins du Syndicat Pyke uniquement. Ajoutez 1 figurine de Soldat avec Électro-fouet. Arme : Électro-fouet (corps-à-corps et portée 1) — 2 dés rouges ; Immobiliser 1, Suppressif.",
    "source": "visuel FR du site"
   }
  }

@@ -99,7 +99,7 @@ try {
   assert.match(antichar, /Impact 2 \(/, 'Impact 2 défini')
   assert.equal(annotateKeywords('Impact 2.', SEED_KEYWORDS, new Set(['impact-x'])), 'Impact 2.', 'mot-clé déjà défini sous l’unité : pas de répétition')
   assert.deepEqual(segments('gagne Impact 2.', SEED_KEYWORDS, new Set(['impact-x'])).filter((s) => s.keyword).map((s) => s.text), ['Impact 2'], 'mot-clé en gras même déjà défini')
-  for (const plain of ['Chef Mandalorien uniquement.', 'Arme : Blaster à Dispersion SX-21.', 'Saboteur avec Charge à Protons.', 'Arme : MPL-57 de Barrage.', 'Arme : Fusil à Dispersion.', 'il gagne 1 pion Blessure.', "du Chef d'unité."])
+  for (const plain of ['Chef Mandalorien uniquement.', 'Arme : Blaster à Dispersion SX-21.', 'Saboteur avec Charge à Protons.', 'Arme : MPL-57 de Barrage.', 'Ajoutez 1 figurine de Super Commando Pistolero.', 'Arme : Fusil à Dispersion.', 'il gagne 1 pion Blessure.', "du Chef d'unité."])
     assert.equal(annotateKeywords(plain, SEED_KEYWORDS, new Set()), plain, `« ${plain} » ne cite aucun mot-clé`)
   const listHtml = renderToStaticMarkup(React.createElement(VisualListSection, { list: importArmyList(fs.readFileSync('scripts/data/real-lists/empire-moff-gideon.json', 'utf8')), tagLibrary: SEED_CARD_TAGS, keywords: SEED_KEYWORDS }))
   assert.match(listHtml, /Munitions Antichar[\s\S]*<strong>Anti-matériel 2<\/strong> \(/, 'Munitions Antichar : Anti-matériel en gras et défini dans l’encart')

@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Certifications historiques valides au moment de l’indexation : empreintes SHA-256 des données moteur, du visuel français et des définitions de mots-clés, et identités Tabletop Admiral rattachées sans ambiguïté. Toute différence rend la certification obsolète dans la Certification automatique β.",
-    "indexedOn": "2026-10-24",
+    "indexedOn": "2026-10-25",
     "uncertainIdentities": [
       "a a5 speeder truck (unit:772, unit:4919)",
       "agent kallus (unit:81, unit:29931)",
@@ -2156,7 +2156,7 @@
       "frenchName": "Le Sabre Noir",
       "frenchVisual": "cards/the-darksaber.jpg",
       "frenchVisualSha256": "927799e4c343fa1974b860ac20b953ee7763f4613f5769ce5cbf1a1f18dc6de1",
-      "dataSha256": "61f6827b9b0bf5802ebfba856bec3637ad57e80eed92ee62cdc36cb35dd7b388",
+      "dataSha256": "ac01012e561e347e0f7444ffb0dc7bab2c8df364e35fec06927d74afd502ddf2",
       "definitionsSha256": "e3d7831bbdad121748e2da96d6a4da522c6631794ebdf40c7694b5ae4f3b089b",
       "rulesVersion": "AMG 2026-06-17",
       "verifiedAt": "2026-09-21T23:25:39.088Z",
