@@ -68,6 +68,21 @@ try {
   const mercenary = COMMAND_CARDS.filter((c) => c.faction === 'mercenaire')
   assert.ok(mercenary.length >= 29 && mercenary.every((c) => c.englishName && c.requirement), 'les commandements de personnages mercenaires nomment leur personnage')
   assert.ok(!eligibleCommandCards('empire').some((c) => c.faction === 'mercenaire'), 'un commandement de mercenaire n’est jamais proposé d’office dans une main de faction')
+  // Une liste qui contient le personnage débloque ses commandements (unité ou amélioration), et seulement les siens.
+  const withUnits = (...names) => ({ faction: 'Empire Galactique', units: names.map((name) => ({ name, upgrades: [] })), unparsedLines: [] })
+  const bobaList = withUnits('Stormtroopers', 'Boba Fett, Daimyo of Mos Espa')
+  const bobaIds = eligibleCommandCards('empire', bobaList).filter((c) => c.faction === 'mercenaire').map((c) => c.id)
+  for (const id of ['un-homme-simple', 'roquette-dorsale-z-6', 'stratageme']) assert.ok(bobaIds.includes(id), `${id} proposé avec Boba Fett`)
+  assert.ok(!bobaIds.includes('duel-des-destins'), 'pas de carte de Maul sans Maul')
+  const groguList = { ...withUnits('Din Djarin'), units: [{ name: 'Din Djarin', upgrades: [{ name: 'Grogu' }] }] }
+  assert.ok(eligibleCommandCards(null, groguList).some((c) => c.id === 'le-truc-de-la-main'), 'Grogu (amélioration) débloque Le Truc de la Main')
+  assert.ok(COMMAND_CARDS.filter((c) => c.faction === 'mercenaire').every((c) => c.unlockedBy?.length), 'chaque commandement mercenaire dit quel personnage le débloque')
+  // Listes réelles : le Chasseur Mandalorien de la liste Empire débloque ses cartes ; la liste Rebelles n'a aucun mercenaire.
+  const { importArmyList } = await vite.ssrLoadModule('/src/lib/importList.ts')
+  const realList = (file) => importArmyList(fs.readFileSync(`scripts/data/real-lists/${file}.json`, 'utf8'))
+  const empireMerc = eligibleCommandCards('empire', realList('empire-moff-gideon')).filter((c) => c.faction === 'mercenaire').map((c) => c.id)
+  for (const id of ['pas-d-echappatoire', 'stratageme', 'nous-sommes-mandaloriens']) assert.ok(empireMerc.includes(id), `liste Empire : ${id} proposé grâce au Chasseur Mandalorien`)
+  assert.ok(!eligibleCommandCards('rebelles', realList('rebelles-simon-3')).some((c) => c.faction === 'mercenaire'), 'liste Rebelles sans mercenaire : aucune carte mercenaire')
   // Impression depuis la page Listes : chaque nom de carte d'une liste Tabletop Admiral réelle retrouve son visuel du paquet.
   const realLists = ['empire-moff-gideon', 'rebelles-simon-3'].map((f) => JSON.parse(fs.readFileSync(`scripts/data/real-lists/${f}.json`, 'utf8')))
   for (const name of realLists.flatMap((l) => [...(l.commandCards ?? []), ...(l.contingencies ?? [])])) assert.ok(commandCardForName(name)?.image, `${name} : visuel de Commandement imprimable`)

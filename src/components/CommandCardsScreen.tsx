@@ -154,7 +154,7 @@ export function CommandCardsScreen({ listP1, listP2, tracker, onSync }: Props) {
   const renderSide = (color: BattleColor) => {
     const deck = commandDecks[color];
     const faction = commandFactionForList(listFor(color));
-    const eligible = eligibleCommandCards(faction);
+    const eligible = eligibleCommandCards(faction, listFor(color));
     const complete = suiteIsComplete(deck.suite);
     const counts = suitePipCounts(deck.suite);
     const remaining = deck.suite.filter((id) => !deck.played.includes(id));

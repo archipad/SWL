@@ -69,6 +69,9 @@ const automatic = new Set([
   'deflexion',
   'maitrise-du-shien',
   'immunite-deflexion',
+  // 25/10/2026 : Ciblage Avancé (bouton +X Viser contre des soldats) et Équipe Sniper (réserve améliorée sans déplacement).
+  'ciblage-avance',
+  'equipe-sniper',
 ])
 
 const assisted = new Set([
@@ -80,7 +83,6 @@ const assisted = new Set([
   'autodestruction-x-unite',
   'barrage',
   'charge',
-  'ciblage-avance',
   'exemplaire',
   'fumee-x',
   'implacable',
@@ -93,7 +95,6 @@ const assisted = new Set([
   'pistolero',
   'autodestruction-x-arme',
   'bordee-x',
-  'equipe-sniper',
   'explosion-x',
   'polyvalent',
   'rayons-x',

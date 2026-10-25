@@ -13,9 +13,23 @@ export function commandFactionForList(list: ParsedList | null): CommandFaction |
   return null;
 }
 
-export function eligibleCommandCards(faction: CommandFaction | null): CommandCard[] {
-  if (!faction) return COMMAND_CARDS.filter((card) => card.faction === 'generique');
-  return COMMAND_CARDS.filter((card) => card.faction === faction || card.faction === 'generique');
+/** Noms canoniques des unités et améliorations d'une liste (pour débloquer les commandements mercenaires). */
+function listCardKeys(list: ParsedList | null | undefined): string[] {
+  if (!list) return [];
+  return list.units.flatMap((unit) => [unit.name, ...unit.upgrades.map((up) => up.name)]).map(canonicalCardKey);
+}
+
+/** Une carte mercenaire est jouable si la liste contient son personnage (unité ou amélioration) ou l'a déjà choisie. */
+export function mercenaryCardUnlocked(card: CommandCard, list: ParsedList | null | undefined): boolean {
+  if (card.faction !== 'mercenaire') return false;
+  const keys = listCardKeys(list);
+  if ((card.unlockedBy ?? []).some((prefix) => keys.some((key) => key === prefix || key.startsWith(`${prefix} `)))) return true;
+  return (list?.commandCards ?? []).some((name) => commandCardForName(name)?.id === card.id);
+}
+
+export function eligibleCommandCards(faction: CommandFaction | null, list?: ParsedList | null): CommandCard[] {
+  return COMMAND_CARDS.filter((card) => card.faction === 'generique' || (faction !== null && card.faction === faction)
+    || mercenaryCardUnlocked(card, list));
 }
 
 export function commandCardById(id: string): CommandCard | undefined {

@@ -9,7 +9,7 @@ const start = source.indexOf('export const COMMAND_CARDS: CommandCard[] = [')
 const end = source.indexOf('\n];', start)
 if (start < 0 || end < 0) throw new Error('COMMAND_CARDS introuvable dans commandCards.ts')
 const body = source.slice(start + 'export const COMMAND_CARDS: CommandCard[] = '.length, end + 3).replace(/`\$\{BASE\}([^`]*)`/g, '"$1"')
-const cards = eval(body).map(({ id, name, englishName, pip, faction, requirement }) => ({ id, name, ...(englishName ? { englishName } : {}), pip, faction, requirement }))
+const cards = eval(body).map(({ id, name, englishName, pip, faction, unlockedBy, requirement }) => ({ id, name, ...(englishName ? { englishName } : {}), pip, faction, ...(unlockedBy ? { unlockedBy } : {}), requirement }))
 const out = '/* Généré par scripts/generate-assistant-command-cards.cjs depuis src/data/commandCards.ts — ne pas éditer à la main. */\n'
   + 'window.SWL_COMMAND_CARDS=' + JSON.stringify(cards) + ';\n'
 fs.writeFileSync(path.join(root, 'public', 'assistant', 'command-cards.js'), out)

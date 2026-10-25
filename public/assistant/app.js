@@ -2133,6 +2133,32 @@ const rulesPanelChewbaccaBase=rulesPanel;
 rulesPanel=function(){return `${chewbaccaPanel()}${rulesPanelChewbaccaBase()}`};
 const bindChewbaccaBase=bindAttackInputs;
 bindAttackInputs=function(){bindChewbaccaBase();const input=$('#chewbaccaUpgrades');if(input){input.oninput=()=>{attackState.chewbaccaUpgrades=Math.max(0,+input.value||0)};input.onchange=resolveScreen}};
+// ---- Ciblage Avancé et Équipe Sniper : automatisés (25/10/2026) ----
+// Ciblage Avancé : Soldat X (Range Troopers, Gar Saxon) : contre une unité de soldats, +X pions Viser à « Former la Réserve
+// d'Attaque », d'un bouton ; une seule réserve d'attaque et pas de défenseur supplémentaire (rappel affiché).
+function advancedTargetingPanel(){
+  if(!attacker||!defender||!attackState||attackStep!==0)return'';
+  const x=keywordValue(attacker,'ciblage-avance');if(!x)return'';
+  if(isVehicle(defender))return `<div class="automation-card"><strong>CIBLAGE AVANCÉ : SOLDAT ${x}</strong><small>La cible est un véhicule : pas de pion Viser gagné.</small></div>`;
+  const used=!!attackState.advancedTargetingAims;
+  return `<div class="automation-card rule-highlight"><strong>CIBLAGE AVANCÉ : SOLDAT ${x}</strong><small>Cible de soldats : gagnez ${x} pion${x>1?'s':''} Viser maintenant. Dans ce cas, une seule réserve d’attaque et pas de défenseur supplémentaire.</small><button type="button" data-advanced-targeting ${used?'disabled':''}>${used?`+${x} Viser gagné${x>1?'s':''} ✓`:`Gagner ${x} pion${x>1?'s':''} Viser`}</button></div>`;
+}
+// Équipe Sniper : si toutes les armes de la réserve ont Équipe Sniper, que l'unité ne s'est pas déplacée (case « déplacée »
+// déjà demandée pour Encombrant) et que chaque figurine voit le défenseur, chaque dé est amélioré (blanc → noir, noir → rouge).
+const sniperTeamPool=()=>!!attacker&&!!attackState&&selectedWeaponRows().length>0&&selectedWeaponRows().every(row=>weaponHasKeyword(row,'equipe-sniper'));
+const sniperTeamActive=()=>sniperTeamPool()&&!attackState.moved&&attackState.sniperTeamLos===true;
+const upgradeEveryDie=dice=>({...dice,blanc:0,noir:dice.blanc||0,rouge:(dice.rouge||0)+(dice.noir||0)});
+const poolSniperTeamBase=pool;
+pool=function(){const result=poolSniperTeamBase();return sniperTeamActive()?upgradeEveryDie(result):result};
+function sniperTeamPanel(){
+  if(!sniperTeamPool()||attackStep!==0)return'';
+  const blocked=attackState.moved;
+  return `<div class="automation-card rule-highlight"><strong>ÉQUIPE SNIPER</strong><small>${blocked?'L’unité s’est déplacée pendant cette activation : pas d’amélioration.':'Sans déplacement pendant cette activation et si chaque figurine voit le défenseur, chaque dé de la réserve est amélioré (la réserve affichée en tient compte). Après la conversion des adrénalines, vous pourrez annuler toute la réserve pour passer directement à l’attribution du pion Suppression : 1 blessure au défenseur si au moins 1 Critique est annulé ainsi.'}</small><label class="situation-check"><input id="sniperTeamMoved" type="checkbox" ${blocked?'checked':''}> L’unité s’est déplacée pendant cette activation</label>${blocked?'':`<label class="situation-check"><input id="sniperTeamLos" type="checkbox" ${attackState.sniperTeamLos?'checked':''}> Chaque figurine voit le défenseur</label>`}</div>`;
+}
+const rulesPanelSniperBase=rulesPanel;
+rulesPanel=function(){return `${advancedTargetingPanel()}${sniperTeamPanel()}${rulesPanelSniperBase()}`};
+const bindSniperBase=bindAttackInputs;
+bindAttackInputs=function(){bindSniperBase();const los=$('#sniperTeamLos');if(los)los.onchange=()=>{attackState.sniperTeamLos=los.checked;resolveScreen()};const moved=$('#sniperTeamMoved');if(moved)moved.onchange=()=>{attackState.moved=moved.checked;resolveScreen()};const aim=$('[data-advanced-targeting]');if(aim)aim.onclick=()=>{const x=keywordValue(attacker,'ciblage-avance');if(!x||attackState.advancedTargetingAims)return;bumpTokens(attacker,{aim:x});attackState.availableAims=(Number(attackState.availableAims)||0)+x;attackState.advancedTargetingAims=x;logActivationEffect(attacker,'Ciblage Avancé','+'+x+' pion(s) Viser contre '+entryName(defender));resolveScreen()}};
 const unitModelsChipSpeedBase=unitModelsChip;
 unitModelsChip=function(entry){return unitModelsChipSpeedBase(entry)+speedChip(entry)};
 applyFactionTheme('rebel');
@@ -2215,9 +2241,12 @@ const ghSuiteComplete=suite=>suite.length===7&&[1,2,3].every(pip=>suite.filter(i
 const ghStatus=(tracker,color,revealed)=>{const deck=tracker.commandDecks[color];if(!ghSuiteComplete(ghSuite(deck)))return'suite en construction';if(revealed)return'carte révélée';return deck.pendingId?'carte engagée ✓':'en train de choisir…'};
 const ghTile=(card,pickAttr='',selected=false)=>`<div class="gh-card${selected?' on':''}${pickAttr?'':' inert'}"><button type="button" class="gh-card-pick" ${pickAttr} ${pickAttr?'':'disabled'} title="${ghEsc(card.requirement)}"><span class="gh-pip">PIP ${card.pip}</span>${selected?'<span class="gh-check">✓</span>':''}${ghHasImage(card.id)?`<img src="${ghImage(card.id)}" alt="${ghEsc(card.name)}" loading="lazy">`:`<span class="gh-card-noimage">${ghEsc(card.name)}</span>`}<span class="gh-card-name">${ghEsc(card.name)}</span></button><button type="button" class="gh-zoom" data-gh-zoom="${card.id}" aria-label="Agrandir ${ghEsc(card.name)}">+</button></div>`;
 const ghFaction=(tracker,side)=>{const army=side===tracker.p1Color?armies[0]:armies[1],label=(army.list.faction||'').toLowerCase();if(label.includes('empire'))return'empire';if(label.includes('rebel'))return'rebelles';return null};
-const ghEligibleCards=faction=>ghCards.filter(card=>card.faction==='generique'||card.faction===faction);
+// Carte mercenaire (Boba Fett, Maul…) : proposée seulement si la liste contient son personnage (unité ou amélioration,
+// débuts de nom canonique de unlockedBy) ou l'a déjà choisie dans Tabletop Admiral — même règle que src/lib/commandDeck.ts.
+const ghMercenaryUnlocked=(card,list)=>{if(card.faction!=='mercenaire')return false;const keys=(list?.units||[]).flatMap(u=>[u.name,...(u.upgrades||[]).map(up=>up.name)]).map(cardKey);if((card.unlockedBy||[]).some(prefix=>keys.some(key=>key===prefix||key.startsWith(prefix+' '))))return true;return(list?.commandCards||[]).some(name=>[card.id.replace(/-/g,' '),norm(card.name),norm(card.englishName||'')].includes(norm(name)))};
+const ghEligibleCards=(faction,list)=>ghCards.filter(card=>card.faction==='generique'||card.faction===faction||ghMercenaryUnlocked(card,list));
 function ghSuiteBuilderHtml(tracker,side,suite,deck){
-  const faction=ghFaction(tracker,side),eligible=ghEligibleCards(faction),complete=ghSuiteComplete(suite);
+  const faction=ghFaction(tracker,side),eligible=ghEligibleCards(faction,(side===tracker.p1Color?armies[0]:armies[1]).list),complete=ghSuiteComplete(suite);
   const counts={1:0,2:0,3:0};suite.forEach(id=>{const card=ghCardById(id);if(card&&card.pip<=3)counts[card.pip]++});
   const pipBlock=pip=>`<div class="gh-pip-block"><h4>PIP ${pip}</h4><div class="gh-grid">${eligible.filter(card=>card.pip===pip).map(card=>{const selected=suite.includes(card.id),full=counts[pip]>=2&&!selected;return ghTile(card,full?'':`data-gh-suite-toggle="${card.id}" data-gh-suite-side="${side}"`,selected)}).join('')}</div></div>`;
   return `<p class="gh-note">Construisez la suite de ${ghEsc(ghLabel(tracker,side))} : exactement 2 cartes à 1, 2 et 3 PIP, plus Ordres Permanents (déjà incluse). Touchez une carte pour l’ajouter ou la retirer.</p>`

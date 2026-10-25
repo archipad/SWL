@@ -57,8 +57,43 @@ assert.equal(bobaState.aim,1,'le Transpondeur met à jour le pion Viser')
 assert.ok(bobaState.discardedCards.includes('emergency-transponder'),'le Transpondeur est supprimé après utilisation')
 assert.ok(!boba.$('[data-card-life="gone:emergency-transponder"]'),'aucun second bouton manuel ne duplique l’action du Transpondeur')
 assert.equal(boba.errors.length,0,boba.errors.join(' | '))
+// Main de Commandement : Boba Fett débloque ses cartes mercenaires dans l'Assistant, pas celles de Maul (25/10/2026).
+const bobaCards = boba.window.eval("ghEligibleCards('empire', armies[0].list).filter(card => card.faction === 'mercenaire').map(card => card.id)")
+assert.ok(['un-homme-simple', 'roquette-dorsale-z-6', 'stratageme'].every((id) => bobaCards.includes(id)), 'les commandements de Boba Fett sont proposés : ' + bobaCards.join(', '))
+assert.ok(!bobaCards.includes('duel-des-destins'), 'pas de commandement de Maul sans Maul')
+assert.ok(!boba.window.eval("ghEligibleCards('rebelles', armies[1].list).some(card => card.faction === 'mercenaire')"), 'aucun mercenaire côté rebelle')
 boba.window.close()
 console.log('Assistant Table de jeu, barre rapide et contrôles physiques : OK')
+
+// Ciblage Avancé et Équipe Sniper automatisés (25/10/2026) : Range Troopers contre des soldats, DH-447 sans déplacement.
+const targeting = await openAssistant({
+  'swl.list.p1.v1': { listName: 'Empire', faction: 'Empire', units: [{ name: 'Range Troopers', upgrades: [] }] },
+  'swl.list.p2.v1': { listName: 'Rébellion', faction: 'Rebelles', units: [{ name: 'Rebel Commandos', upgrades: [{ name: 'DH-447 Sniper' }] }, { name: 'Rebel Troopers', upgrades: [] }] },
+})
+await targeting.pickUnit('Range Troopers'); await targeting.click('#next'); await targeting.pickUnit('Soldats Rebelles')
+await targeting.click('[data-range="2"]')
+assert.match(targeting.text(targeting.$('.resolve-center')), /CIBLAGE AVANCÉ : SOLDAT 1/, 'Ciblage Avancé proposé contre une unité de soldats')
+await targeting.click('[data-advanced-targeting]')
+assert.equal(targeting.window.eval('attackState.availableAims'), 1, 'Ciblage Avancé ajoute 1 pion Viser')
+assert.ok(targeting.$('[data-advanced-targeting]').disabled, 'le bouton ne sert qu’une fois par attaque')
+assert.equal(targeting.errors.length, 0, targeting.errors.join(' | '))
+targeting.window.close()
+const sniper = await openAssistant({
+  'swl.list.p1.v1': { listName: 'Rébellion', faction: 'Rebelles', units: [{ name: 'Rebel Commandos', upgrades: [{ name: 'DH-447 Sniper' }] }] },
+  'swl.list.p2.v1': { listName: 'Empire', faction: 'Empire', units: [{ name: 'Range Troopers', upgrades: [] }] },
+})
+await sniper.pickUnit('Commandos'); await sniper.click('#next'); await sniper.pickUnit('Range Troopers')
+await sniper.click('[data-range="3"]')
+await sniper.click(sniper.$$('.weapon-toggle').find((b) => /DH-447/.test(sniper.text(b.closest('.weapon-choice') || b))))
+const sniperPool = () => JSON.stringify(sniper.window.eval('pool()'))
+assert.match(sniperPool(), /"rouge":0,"noir":1,"blanc":2/, 'réserve imprimée : 2 blancs, 1 noir')
+await sniper.click('#sniperTeamLos')
+assert.match(sniperPool(), /"rouge":1,"noir":2,"blanc":0/, 'Équipe Sniper : chaque dé amélioré')
+await sniper.click('#sniperTeamMoved')
+assert.match(sniperPool(), /"rouge":0,"noir":1,"blanc":2/, 'après un déplacement, pas d’amélioration')
+assert.equal(sniper.errors.length, 0, sniper.errors.join(' | '))
+sniper.window.close()
+console.log('Ciblage Avancé et Équipe Sniper : OK')
 
 // Effet utilisé : ligne verte et réactivation par la seule icône ↩ (01/10/2026).
 const luke = await openAssistant({

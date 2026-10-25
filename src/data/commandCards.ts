@@ -33,6 +33,11 @@ export interface CommandCard {
   pip: 1 | 2 | 3 | 4;
   /** 'mercenaire' : commandement d'un personnage mercenaire (Boba Fett, Maul…), jouable seulement avec ce personnage ; jamais proposé d'office dans une main de faction. */
   faction: CommandFaction | 'generique' | 'mercenaire';
+  /**
+   * Carte mercenaire : débuts de nom canonique (canonicalCardKey) d'une unité ou d'une amélioration de la
+   * liste qui rend la carte jouable (ex. 'boba fett' couvre « Boba Fett, Daimyo de Mos Espa »).
+   */
+  unlockedBy?: string[];
   requirement: string;
   image?: string;
 }
@@ -475,239 +480,239 @@ export const COMMAND_CARDS: CommandCard[] = [
     requirement: 'Luke Skywalker, Commandant Skywalker', image: `${BASE}en-patrouille.jpg`,
   },
   {
-    id: 'roquette-dorsale-z-6', name: 'Roquette Dorsale Z-6', englishName: 'Z-6 Jetpack Rocket', pip: 3, faction: 'mercenaire',
+    id: 'roquette-dorsale-z-6', name: 'Roquette Dorsale Z-6', englishName: 'Z-6 Jetpack Rocket', pip: 3, faction: 'mercenaire', unlockedBy: ['boba fett'],
     requirement: 'Boba Fett', image: `${BASE}roquette-dorsale-z-6.jpg`,
   },
   {
-    id: 'a-l-affut', name: 'À l’Affût', englishName: 'Lying In Wait', pip: 3, faction: 'mercenaire',
+    id: 'a-l-affut', name: 'À l’Affût', englishName: 'Lying In Wait', pip: 3, faction: 'mercenaire', unlockedBy: ['bossk'],
     requirement: 'Bossk', image: `${BASE}a-l-affut.jpg`,
   },
   {
-    id: 'lanceur-de-corde', name: 'Lanceur de Corde', englishName: 'Whipcord Launcher', pip: 1, faction: 'mercenaire',
+    id: 'lanceur-de-corde', name: 'Lanceur de Corde', englishName: 'Whipcord Launcher', pip: 1, faction: 'mercenaire', unlockedBy: ['boba fett'],
     requirement: 'Boba Fett', image: `${BASE}lanceur-de-corde.jpg`,
   },
   {
-    id: 'munitions-foudroyantes', name: 'Munitions Foudroyantes', englishName: 'Merciless Munitions', pip: 1, faction: 'mercenaire',
+    id: 'munitions-foudroyantes', name: 'Munitions Foudroyantes', englishName: 'Merciless Munitions', pip: 1, faction: 'mercenaire', unlockedBy: ['bossk'],
     requirement: 'Bossk', image: `${BASE}munitions-foudroyantes.jpg`,
   },
   {
-    id: 'fureur-reptilienne', name: 'Fureur Reptilienne', englishName: 'Reptilian Rampage', pip: 2, faction: 'mercenaire',
+    id: 'fureur-reptilienne', name: 'Fureur Reptilienne', englishName: 'Reptilian Rampage', pip: 2, faction: 'mercenaire', unlockedBy: ['bossk'],
     requirement: 'Bossk', image: `${BASE}fureur-reptilienne.jpg`,
   },
   {
-    id: 'c-est-moi-le-boss', name: 'C’est Moi le Boss', englishName: 'I\'m in Control', pip: 2, faction: 'mercenaire',
+    id: 'c-est-moi-le-boss', name: 'C’est Moi le Boss', englishName: 'I\'m in Control', pip: 2, faction: 'mercenaire', unlockedBy: ['cad bane'],
     requirement: 'Cad Bane', image: `${BASE}c-est-moi-le-boss.jpg`,
   },
   {
-    id: 'c-est-moi-qui-fixe-les-regles', name: 'C’est Moi qui Fixe les Règles', englishName: 'I Make the Rules Now', pip: 3, faction: 'mercenaire',
+    id: 'c-est-moi-qui-fixe-les-regles', name: 'C’est Moi qui Fixe les Règles', englishName: 'I Make the Rules Now', pip: 3, faction: 'mercenaire', unlockedBy: ['cad bane'],
     requirement: 'Cad Bane', image: `${BASE}c-est-moi-qui-fixe-les-regles.jpg`,
   },
   {
-    id: 'je-suis-ton-pire-cauchemar', name: 'Je Suis ton Pire Cauchemar', englishName: 'I\'m Your Worst Nightmare', pip: 1, faction: 'mercenaire',
+    id: 'je-suis-ton-pire-cauchemar', name: 'Je Suis ton Pire Cauchemar', englishName: 'I\'m Your Worst Nightmare', pip: 1, faction: 'mercenaire', unlockedBy: ['cad bane'],
     requirement: 'Cad Bane', image: `${BASE}je-suis-ton-pire-cauchemar.jpg`,
   },
   {
-    id: 'duel-des-destins', name: 'Duel des Destins', englishName: 'Duel of the Fates', pip: 1, faction: 'mercenaire',
+    id: 'duel-des-destins', name: 'Duel des Destins', englishName: 'Duel of the Fates', pip: 1, faction: 'mercenaire', unlockedBy: ['maul'],
     requirement: 'Maul', image: `${BASE}duel-des-destins.jpg`,
   },
   {
-    id: 'la-menace-fantome', name: 'La Menace Fantôme', englishName: 'The Phantom Menace', pip: 2, faction: 'mercenaire',
+    id: 'la-menace-fantome', name: 'La Menace Fantôme', englishName: 'The Phantom Menace', pip: 2, faction: 'mercenaire', unlockedBy: ['maul'],
     requirement: 'Maul', image: `${BASE}la-menace-fantome.jpg`,
   },
   {
-    id: 'enfin', name: 'Enfin !', englishName: 'At Last', pip: 3, faction: 'mercenaire',
+    id: 'enfin', name: 'Enfin !', englishName: 'At Last', pip: 3, faction: 'mercenaire', unlockedBy: ['maul'],
     requirement: 'Maul', image: `${BASE}enfin.jpg`,
   },
   {
-    id: 'sorcellerie', name: 'Sorcellerie', englishName: 'Witch Magick', pip: 1, faction: 'mercenaire',
+    id: 'sorcellerie', name: 'Sorcellerie', englishName: 'Witch Magick', pip: 1, faction: 'mercenaire', unlockedBy: ['maul'],
     requirement: 'Maul, un Rival', image: `${BASE}sorcellerie.jpg`,
   },
   {
-    id: 'son-eminence', name: 'Son Éminence', englishName: 'His Eminence', pip: 2, faction: 'mercenaire',
+    id: 'son-eminence', name: 'Son Éminence', englishName: 'His Eminence', pip: 2, faction: 'mercenaire', unlockedBy: ['maul'],
     requirement: 'Maul, un Rival', image: `${BASE}son-eminence.jpg`,
   },
   {
-    id: 'saisir-le-pouvoir-qu-on-peut', name: 'Saisir le Pouvoir qu’On Peut', englishName: 'Seize What Power We Can', pip: 3, faction: 'mercenaire',
+    id: 'saisir-le-pouvoir-qu-on-peut', name: 'Saisir le Pouvoir qu’On Peut', englishName: 'Seize What Power We Can', pip: 3, faction: 'mercenaire', unlockedBy: ['maul'],
     requirement: 'Maul, un Rival', image: `${BASE}saisir-le-pouvoir-qu-on-peut.jpg`,
   },
   {
-    id: 'marque-pour-elimination', name: 'Marqué pour Élimination', englishName: 'Marked For Elimination', pip: 1, faction: 'mercenaire',
+    id: 'marque-pour-elimination', name: 'Marqué pour Élimination', englishName: 'Marked For Elimination', pip: 1, faction: 'mercenaire', unlockedBy: ['gar saxon'],
     requirement: 'Gar Saxon', image: `${BASE}marque-pour-elimination.jpg`,
   },
   {
-    id: 'combattre-un-autre-jour', name: 'Combattre un Autre Jour', englishName: 'Fight Another Day', pip: 2, faction: 'mercenaire',
+    id: 'combattre-un-autre-jour', name: 'Combattre un Autre Jour', englishName: 'Fight Another Day', pip: 2, faction: 'mercenaire', unlockedBy: ['gar saxon'],
     requirement: 'Gar Saxon', image: `${BASE}combattre-un-autre-jour.jpg`,
   },
   {
-    id: 'la-victoire-ou-la-mort', name: 'La Victoire ou la Mort !', englishName: 'Victory or Death!', pip: 3, faction: 'mercenaire',
+    id: 'la-victoire-ou-la-mort', name: 'La Victoire ou la Mort !', englishName: 'Victory or Death!', pip: 3, faction: 'mercenaire', unlockedBy: ['gar saxon'],
     requirement: 'Gar Saxon', image: `${BASE}la-victoire-ou-la-mort.jpg`,
   },
   {
-    id: 'un-homme-simple', name: 'Un Homme Simple', englishName: 'A Simple Man', pip: 1, faction: 'mercenaire',
+    id: 'un-homme-simple', name: 'Un Homme Simple', englishName: 'A Simple Man', pip: 1, faction: 'mercenaire', unlockedBy: ['boba fett'],
     requirement: 'Boba Fett', image: `${BASE}un-homme-simple.jpg`,
   },
   {
-    id: 'tracer-son-chemin-dans-la-galaxie', name: 'Tracer son Chemin dans la Galaxie', englishName: 'Making His Way in the Galaxy', pip: 2, faction: 'mercenaire',
+    id: 'tracer-son-chemin-dans-la-galaxie', name: 'Tracer son Chemin dans la Galaxie', englishName: 'Making His Way in the Galaxy', pip: 2, faction: 'mercenaire', unlockedBy: ['boba fett'],
     requirement: 'Boba Fett', image: `${BASE}tracer-son-chemin-dans-la-galaxie.jpg`,
   },
   {
-    id: 'gouverner-avec-respect', name: 'Gouverner avec Respect', englishName: 'Rule With Respect', pip: 3, faction: 'mercenaire',
+    id: 'gouverner-avec-respect', name: 'Gouverner avec Respect', englishName: 'Rule With Respect', pip: 3, faction: 'mercenaire', unlockedBy: ['boba fett'],
     requirement: 'Boba Fett', image: `${BASE}gouverner-avec-respect.jpg`,
   },
   {
-    id: 'oiseaux-siffleurs', name: 'Oiseaux Siffleurs', englishName: 'Whistling Birds', pip: 3, faction: 'mercenaire',
+    id: 'oiseaux-siffleurs', name: 'Oiseaux Siffleurs', englishName: 'Whistling Birds', pip: 3, faction: 'mercenaire', unlockedBy: ['din djarin'],
     requirement: 'Din Djarin', image: `${BASE}oiseaux-siffleurs.jpg`,
   },
   {
-    id: 'j-aime-ces-probabilites', name: 'J’Aime ces Probabilités', englishName: 'I Like Those Odds', pip: 2, faction: 'mercenaire',
+    id: 'j-aime-ces-probabilites', name: 'J’Aime ces Probabilités', englishName: 'I Like Those Odds', pip: 2, faction: 'mercenaire', unlockedBy: ['din djarin'],
     requirement: 'Din Djarin', image: `${BASE}j-aime-ces-probabilites.jpg`,
   },
   {
-    id: 'telle-est-la-voie', name: 'Telle est la Voie', englishName: 'This is the Way', pip: 1, faction: 'mercenaire',
+    id: 'telle-est-la-voie', name: 'Telle est la Voie', englishName: 'This is the Way', pip: 1, faction: 'mercenaire', unlockedBy: ['din djarin'],
     requirement: 'Din Djarin', image: `${BASE}telle-est-la-voie.jpg`,
   },
   {
-    id: 'concu-pour-tuer', name: 'Conçu pour Tuer', englishName: 'A Machine Made For Killing', pip: 2, faction: 'mercenaire',
+    id: 'concu-pour-tuer', name: 'Conçu pour Tuer', englishName: 'A Machine Made For Killing', pip: 2, faction: 'mercenaire', unlockedBy: ['ig 11', 'ig 88'],
     requirement: 'IG-11 ou IG-88', image: `${BASE}concu-pour-tuer.jpg`,
   },
   {
-    id: 'protocoles-anti-capture', name: 'Protocoles Anti-capture', englishName: 'Anti-Capture Protocols', pip: 3, faction: 'mercenaire',
+    id: 'protocoles-anti-capture', name: 'Protocoles Anti-capture', englishName: 'Anti-Capture Protocols', pip: 3, faction: 'mercenaire', unlockedBy: ['ig 11'],
     requirement: 'IG-11', image: `${BASE}protocoles-anti-capture.jpg`,
   },
   {
-    id: 'dedie-a-l-assassinat', name: 'Dédié à l’Assassinat', englishName: 'Focused on the Kill', pip: 1, faction: 'mercenaire',
+    id: 'dedie-a-l-assassinat', name: 'Dédié à l’Assassinat', englishName: 'Focused on the Kill', pip: 1, faction: 'mercenaire', unlockedBy: ['ig 88'],
     requirement: 'IG-88', image: `${BASE}dedie-a-l-assassinat.jpg`,
   },
   {
-    id: 'programme-autonome', name: 'Programme Autonome', englishName: 'Independent Programming', pip: 2, faction: 'mercenaire',
+    id: 'programme-autonome', name: 'Programme Autonome', englishName: 'Independent Programming', pip: 2, faction: 'mercenaire', unlockedBy: ['ig 88'],
     requirement: 'IG-88', image: `${BASE}programme-autonome.jpg`,
   },
   {
-    id: 'carnage-mecanique', name: 'Carnage Mécanique', englishName: 'Mechanical Carnage', pip: 1, faction: 'mercenaire',
+    id: 'carnage-mecanique', name: 'Carnage Mécanique', englishName: 'Mechanical Carnage', pip: 1, faction: 'mercenaire', unlockedBy: ['ig 11'],
     requirement: 'IG-11', image: `${BASE}carnage-mecanique.jpg`,
   },
   {
-    id: 'le-truc-de-la-main', name: 'Le Truc de la Main', englishName: 'The Hand Thing', pip: 2, faction: 'mercenaire',
+    id: 'le-truc-de-la-main', name: 'Le Truc de la Main', englishName: 'The Hand Thing', pip: 2, faction: 'mercenaire', unlockedBy: ['grogu'],
     requirement: 'Grogu', image: `${BASE}le-truc-de-la-main.jpg`,
   },
   {
-    id: 'stratageme', name: 'Stratagème', englishName: 'Ploy', pip: 1, faction: 'mercenaire',
+    id: 'stratageme', name: 'Stratagème', englishName: 'Ploy', pip: 1, faction: 'mercenaire', unlockedBy: ['boba fett', 'bossk', 'cad bane', 'pyke syndicate capo', 'black sun vigo', 'maul', 'gar saxon', 'ig 88', 'ig 11', 'din djarin', 'wicket', 'logray', 'the bad batch', 'hondo ohnaka', 'savage opress', 'mandalorian leader', 'mandalorian hunter', 'bo katan kryze', 'axe woves', 'the armorer', 'paz vizsla', 'han chewie', 'ursa wren'],
     requirement: 'Commandant ou agent Mercenaire', image: `${BASE}stratageme.jpg`,
   },
   {
-    id: 'agression', name: 'Agression', englishName: 'Aggression', pip: 2, faction: 'mercenaire',
+    id: 'agression', name: 'Agression', englishName: 'Aggression', pip: 2, faction: 'mercenaire', unlockedBy: ['boba fett', 'bossk', 'cad bane', 'pyke syndicate capo', 'black sun vigo', 'maul', 'gar saxon', 'ig 88', 'ig 11', 'din djarin', 'wicket', 'logray', 'the bad batch', 'hondo ohnaka', 'savage opress', 'mandalorian leader', 'mandalorian hunter', 'bo katan kryze', 'axe woves', 'the armorer', 'paz vizsla', 'han chewie', 'ursa wren'],
     requirement: 'Commandant ou agent Mercenaire', image: `${BASE}agression.jpg`,
   },
   {
-    id: 'discretion', name: 'Discrétion', englishName: 'Discretion', pip: 3, faction: 'mercenaire',
+    id: 'discretion', name: 'Discrétion', englishName: 'Discretion', pip: 3, faction: 'mercenaire', unlockedBy: ['boba fett', 'bossk', 'cad bane', 'pyke syndicate capo', 'black sun vigo', 'maul', 'gar saxon', 'ig 88', 'ig 11', 'din djarin', 'wicket', 'logray', 'the bad batch', 'hondo ohnaka', 'savage opress', 'mandalorian leader', 'mandalorian hunter', 'bo katan kryze', 'axe woves', 'the armorer', 'paz vizsla', 'han chewie', 'ursa wren'],
     requirement: 'Commandant ou agent Mercenaire', image: `${BASE}discretion.jpg`,
   },
   {
-    id: 'on-les-descend-un-par-un', name: 'On les Descend Un par Un', englishName: 'We Do What We Do', pip: 3, faction: 'mercenaire',
+    id: 'on-les-descend-un-par-un', name: 'On les Descend Un par Un', englishName: 'We Do What We Do', pip: 3, faction: 'mercenaire', unlockedBy: ['the bad batch'],
     requirement: 'Le Bad Batch', image: `${BASE}on-les-descend-un-par-un.jpg`,
   },
   {
-    id: 'ce-ne-sont-que-des-affaires', name: 'Ce Ne Sont que des Affaires', englishName: 'That\'s Just Good Business', pip: 2, faction: 'mercenaire', community: true,
+    id: 'ce-ne-sont-que-des-affaires', name: 'Ce Ne Sont que des Affaires', englishName: 'That\'s Just Good Business', pip: 2, faction: 'mercenaire', unlockedBy: ['hondo ohnaka'], community: true,
     requirement: 'Hondo Ohnaka', image: `${BASE}ce-ne-sont-que-des-affaires.jpg`,
   },
   {
-    id: 'tant-d-histoires-et-tant-de-vraies', name: 'Tant d’Histoires, et Tant de Vraies', englishName: 'Stories, So Many of Them True', pip: 3, faction: 'mercenaire', community: true,
+    id: 'tant-d-histoires-et-tant-de-vraies', name: 'Tant d’Histoires, et Tant de Vraies', englishName: 'Stories, So Many of Them True', pip: 3, faction: 'mercenaire', unlockedBy: ['hondo ohnaka'], community: true,
     requirement: 'Hondo Ohnaka', image: `${BASE}tant-d-histoires-et-tant-de-vraies.jpg`,
   },
   {
-    id: 'commencons-par-la-vengeance', name: 'Commençons par la Vengeance', englishName: 'We Shall Start with Revenge', pip: 1, faction: 'mercenaire', community: true,
+    id: 'commencons-par-la-vengeance', name: 'Commençons par la Vengeance', englishName: 'We Shall Start with Revenge', pip: 1, faction: 'mercenaire', unlockedBy: ['savage opress'], community: true,
     requirement: 'Savage Opress', image: `${BASE}commencons-par-la-vengeance.jpg`,
   },
   {
-    id: 'assaut-aerien', name: 'Assaut Aérien', englishName: 'Aerial Assault', pip: 2, faction: 'mercenaire', community: true,
+    id: 'assaut-aerien', name: 'Assaut Aérien', englishName: 'Aerial Assault', pip: 2, faction: 'mercenaire', unlockedBy: ['mandalorian', 'bo katan kryze', 'clan kryze', 'clan wren', 'ursa wren', 'axe woves', 'the armorer', 'paz vizsla', 'sabine wren'], community: true,
     requirement: 'Clans Mandaloriens', image: `${BASE}assaut-aerien.jpg`,
   },
   {
-    id: 'les-armes-sont-notre-religion', name: 'Les Armes Sont Notre Religion', englishName: 'Weapons Are Our Religion', pip: 3, faction: 'mercenaire', community: true,
+    id: 'les-armes-sont-notre-religion', name: 'Les Armes Sont Notre Religion', englishName: 'Weapons Are Our Religion', pip: 3, faction: 'mercenaire', unlockedBy: ['mandalorian', 'bo katan kryze', 'clan kryze', 'clan wren', 'ursa wren', 'axe woves', 'the armorer', 'paz vizsla', 'sabine wren'], community: true,
     requirement: 'Clans Mandaloriens', image: `${BASE}les-armes-sont-notre-religion.jpg`,
   },
   {
-    id: 'ca-sent-le-profit', name: 'Ça Sent le Profit', englishName: 'I Smell Profit', pip: 3, faction: 'mercenaire', community: true,
+    id: 'ca-sent-le-profit', name: 'Ça Sent le Profit', englishName: 'I Smell Profit', pip: 3, faction: 'mercenaire', unlockedBy: ['hondo ohnaka', 'weequay pirates', 'wlo 5'], community: true,
     requirement: 'Le Gang Ohnaka', image: `${BASE}ca-sent-le-profit.jpg`,
   },
   {
-    id: 'parlez-doucement-et-conduisez-un-gros-tank', name: 'Parlez Doucement et Conduisez un Gros Tank', englishName: 'Speak Softly and Drive a Big Tank', pip: 2, faction: 'mercenaire', community: true,
+    id: 'parlez-doucement-et-conduisez-un-gros-tank', name: 'Parlez Doucement et Conduisez un Gros Tank', englishName: 'Speak Softly and Drive a Big Tank', pip: 2, faction: 'mercenaire', unlockedBy: ['hondo ohnaka', 'weequay pirates', 'wlo 5'], community: true,
     requirement: 'Le Gang Ohnaka', image: `${BASE}parlez-doucement-et-conduisez-un-gros-tank.jpg`,
   },
   {
-    id: 'de-l-insolence-nous-sommes-des-pirates', name: 'De l’Insolence ?! Nous Sommes des Pirates !', englishName: 'Insolence?! We are Pirates!', pip: 1, faction: 'mercenaire', community: true,
+    id: 'de-l-insolence-nous-sommes-des-pirates', name: 'De l’Insolence ?! Nous Sommes des Pirates !', englishName: 'Insolence?! We are Pirates!', pip: 1, faction: 'mercenaire', unlockedBy: ['hondo ohnaka'], community: true,
     requirement: 'Le Gang Ohnaka', image: `${BASE}de-l-insolence-nous-sommes-des-pirates.jpg`,
   },
   {
-    id: 'une-cause-superieure', name: 'Une Cause Supérieure', englishName: 'A Higher Purpose', pip: 1, faction: 'mercenaire', community: true,
+    id: 'une-cause-superieure', name: 'Une Cause Supérieure', englishName: 'A Higher Purpose', pip: 1, faction: 'mercenaire', unlockedBy: ['bo katan kryze'], community: true,
     requirement: 'Bo-Katan Kryze', image: `${BASE}une-cause-superieure.jpg`,
   },
   {
-    id: 'mandalore-survivra', name: 'Mandalore Survivra', englishName: 'Mandalore Will Survive', pip: 3, faction: 'mercenaire', community: true,
+    id: 'mandalore-survivra', name: 'Mandalore Survivra', englishName: 'Mandalore Will Survive', pip: 3, faction: 'mercenaire', unlockedBy: ['bo katan kryze'], community: true,
     requirement: 'Bo-Katan Kryze', image: `${BASE}mandalore-survivra.jpg`,
   },
   {
-    id: 'a-la-fois-chasseur-et-proie', name: 'À la Fois Chasseur et Proie', englishName: 'Both Hunter and Prey', pip: 2, faction: 'mercenaire', community: true,
+    id: 'a-la-fois-chasseur-et-proie', name: 'À la Fois Chasseur et Proie', englishName: 'Both Hunter and Prey', pip: 2, faction: 'mercenaire', unlockedBy: ['the armorer'], community: true,
     requirement: 'L’Armurière', image: `${BASE}a-la-fois-chasseur-et-proie.jpg`,
   },
   {
-    id: 'nous-nous-forgeons-nous-memes', name: 'Nous Nous Forgeons Nous-mêmes', englishName: 'We Shape Ourselves', pip: 3, faction: 'mercenaire', community: true,
+    id: 'nous-nous-forgeons-nous-memes', name: 'Nous Nous Forgeons Nous-mêmes', englishName: 'We Shape Ourselves', pip: 3, faction: 'mercenaire', unlockedBy: ['the armorer'], community: true,
     requirement: 'L’Armurière', image: `${BASE}nous-nous-forgeons-nous-memes.jpg`,
   },
   {
-    id: 'partez-ils-sont-trop-nombreux', name: 'Partez, Ils Sont Trop Nombreux…', englishName: 'Go, There Are Too Many...', pip: 1, faction: 'mercenaire', community: true,
+    id: 'partez-ils-sont-trop-nombreux', name: 'Partez, Ils Sont Trop Nombreux…', englishName: 'Go, There Are Too Many...', pip: 1, faction: 'mercenaire', unlockedBy: ['paz vizsla'], community: true,
     requirement: 'Paz Vizsla', image: `${BASE}partez-ils-sont-trop-nombreux.jpg`,
   },
   {
-    id: 'nous-sommes-mandaloriens', name: 'Nous Sommes Mandaloriens', englishName: 'We Are Mandalorians', pip: 1, faction: 'mercenaire', community: true,
+    id: 'nous-sommes-mandaloriens', name: 'Nous Sommes Mandaloriens', englishName: 'We Are Mandalorians', pip: 1, faction: 'mercenaire', unlockedBy: ['mandalorian', 'bo katan kryze', 'clan kryze', 'clan wren', 'ursa wren', 'axe woves', 'the armorer', 'paz vizsla', 'sabine wren'], community: true,
     requirement: 'Clans Mandaloriens', image: `${BASE}nous-sommes-mandaloriens.jpg`,
   },
   {
-    id: 'personne-ne-menace-notre-famille', name: 'Personne ne Menace Notre Famille', englishName: 'No One Threatens Our Family', pip: 1, faction: 'mercenaire', community: true,
+    id: 'personne-ne-menace-notre-famille', name: 'Personne ne Menace Notre Famille', englishName: 'No One Threatens Our Family', pip: 1, faction: 'mercenaire', unlockedBy: ['ursa wren'], community: true,
     requirement: 'Ursa Wren', image: `${BASE}personne-ne-menace-notre-famille.jpg`,
   },
   {
-    id: 'rendre-l-impossible-possible', name: 'Rendre l’Impossible Possible', englishName: 'Make the Impossible Possible', pip: 2, faction: 'mercenaire', community: true,
+    id: 'rendre-l-impossible-possible', name: 'Rendre l’Impossible Possible', englishName: 'Make the Impossible Possible', pip: 2, faction: 'mercenaire', unlockedBy: ['sabine wren'], community: true,
     requirement: 'Sabine Wren, de Retour au Bercail', image: `${BASE}rendre-l-impossible-possible.jpg`,
   },
   {
-    id: 'nous-protegeons-les-notres', name: 'Nous Protégeons les Nôtres', englishName: 'We Protect Our Own', pip: 3, faction: 'mercenaire', community: true,
+    id: 'nous-protegeons-les-notres', name: 'Nous Protégeons les Nôtres', englishName: 'We Protect Our Own', pip: 3, faction: 'mercenaire', unlockedBy: ['ursa wren', 'clan wren', 'sabine wren'], community: true,
     requirement: 'Commandant ou agent du clan Wren', image: `${BASE}nous-protegeons-les-notres.jpg`,
   },
   {
-    id: 'formation-serree', name: 'Formation Serrée', englishName: 'Close Formation', pip: 2, faction: 'mercenaire', community: true,
+    id: 'formation-serree', name: 'Formation Serrée', englishName: 'Close Formation', pip: 2, faction: 'mercenaire', unlockedBy: ['bo katan kryze', 'clan kryze', 'axe woves'], community: true,
     requirement: 'Commandant ou agent du clan Kryze', image: `${BASE}formation-serree.jpg`,
   },
   {
-    id: 'plutot-la-mort-que-la-defaite', name: 'Plutôt la Mort que la Défaite', englishName: 'Death Before Defeat', pip: 3, faction: 'mercenaire', community: true,
+    id: 'plutot-la-mort-que-la-defaite', name: 'Plutôt la Mort que la Défaite', englishName: 'Death Before Defeat', pip: 3, faction: 'mercenaire', unlockedBy: ['gar saxon', 'super commandos', 'mandalorian super commandos', 'rook kast'], community: true,
     requirement: 'Commandant ou agent du clan Saxon', image: `${BASE}plutot-la-mort-que-la-defaite.jpg`,
   },
   {
-    id: 'frappe-vengeresse', name: 'Frappe Vengeresse', englishName: 'Vengeful Strike', pip: 2, faction: 'mercenaire', community: true,
+    id: 'frappe-vengeresse', name: 'Frappe Vengeresse', englishName: 'Vengeful Strike', pip: 2, faction: 'mercenaire', unlockedBy: ['rook kast'], community: true,
     requirement: 'Rook Kast', image: `${BASE}frappe-vengeresse.jpg`,
   },
   {
-    id: 'surgis-de-l-ombre', name: 'Surgis de l’Ombre', englishName: 'Out of the Shadows', pip: 2, faction: 'mercenaire', community: true,
+    id: 'surgis-de-l-ombre', name: 'Surgis de l’Ombre', englishName: 'Out of the Shadows', pip: 2, faction: 'mercenaire', unlockedBy: ['the armorer', 'paz vizsla'], community: true,
     requirement: 'Commandant ou agent de l’enclave de l’Armurière', image: `${BASE}surgis-de-l-ombre.jpg`,
   },
   {
-    id: 'pas-d-echappatoire', name: 'Pas d’Échappatoire', englishName: 'No Escape', pip: 1, faction: 'mercenaire', community: true,
+    id: 'pas-d-echappatoire', name: 'Pas d’Échappatoire', englishName: 'No Escape', pip: 1, faction: 'mercenaire', unlockedBy: ['mandalorian hunter'], community: true,
     requirement: 'Chasseur Mandalorien', image: `${BASE}pas-d-echappatoire.jpg`,
   },
   {
-    id: 'honneur-et-force', name: 'Honneur et Force', englishName: 'Honor and Strength', pip: 3, faction: 'mercenaire', community: true,
+    id: 'honneur-et-force', name: 'Honneur et Force', englishName: 'Honor and Strength', pip: 3, faction: 'mercenaire', unlockedBy: ['mandalorian leader'], community: true,
     requirement: 'Chef Mandalorien', image: `${BASE}honneur-et-force.jpg`,
   },
   {
-    id: 'ne-me-dites-jamais-quelles-sont-nos-chances', name: 'Ne Me Dites Jamais Quelles Sont nos Chances', englishName: 'Never Tell Me the Odds', pip: 1, faction: 'mercenaire', community: true,
+    id: 'ne-me-dites-jamais-quelles-sont-nos-chances', name: 'Ne Me Dites Jamais Quelles Sont nos Chances', englishName: 'Never Tell Me the Odds', pip: 1, faction: 'mercenaire', unlockedBy: ['han chewie'], community: true,
     requirement: 'Han & Chewie', image: `${BASE}ne-me-dites-jamais-quelles-sont-nos-chances.jpg`,
   },
   {
-    id: 'dette-de-vie-wookie', name: 'Dette de Vie Wookie', englishName: 'Wookiee Life Debt', pip: 2, faction: 'mercenaire', community: true,
+    id: 'dette-de-vie-wookie', name: 'Dette de Vie Wookie', englishName: 'Wookiee Life Debt', pip: 2, faction: 'mercenaire', unlockedBy: ['han chewie'], community: true,
     requirement: 'Han & Chewie', image: `${BASE}dette-de-vie-wookie.jpg`,
   },
   {
-    id: 'conversation-ennuyeuse-de-toute-facon', name: 'Conversation Ennuyeuse de Toute Façon', englishName: 'Boring Conversation Anyway', pip: 3, faction: 'mercenaire', community: true,
+    id: 'conversation-ennuyeuse-de-toute-facon', name: 'Conversation Ennuyeuse de Toute Façon', englishName: 'Boring Conversation Anyway', pip: 3, faction: 'mercenaire', unlockedBy: ['han chewie'], community: true,
     requirement: 'Han & Chewie', image: `${BASE}conversation-ennuyeuse-de-toute-facon.jpg`,
   },
 ];
