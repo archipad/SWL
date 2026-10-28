@@ -42,6 +42,8 @@ export interface CardDiceProfile {
   /** Adrénaline d'attaque accordée par une amélioration (ex. Imperial Hammers : Adrénaline → Touche). */
   attackSurgeOverride?: 'hit' | 'crit';
   criticalPerSuppression?: boolean;
+  /** Carte <Grenades> : une seule figurine par attaque peut ajouter son arme à la réserve (FAQ AMG, refresh 2024). */
+  grenade?: boolean;
   fireControl?: boolean;
   autonomousTokens?: { token: 'aim' | 'dodge' | 'surge'; count: number }[];
   /** Certification exhaustive de la carte et version des règles contrôlée. */
@@ -151,7 +153,7 @@ const RAW: Record<string, CardDiceProfile> = {
   'Imperial Officer': { weapons: [], note: 'Chef, pas d\'arme propre' },
   'Imperial Special Forces': { weapons: [{ name: 'Non armé', dice: [{ color: 'noir', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'noir', count: 1 }], range: '1-3' }], defenseColor: 'rouge' },
   'Imperial Special Forces Inferno Squad': { weapons: [{ name: 'Combat Rapproché', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }, { name: 'Fusil Blaster E-11', dice: [{ color: 'noir', count: 2 }], range: '1-3' }], defenseColor: 'rouge' },
-  'Jetpack Rockets': { weapons: [{ name: 'Roquettes Dorsales', dice: [{ color: 'rouge', count: 1 }], range: '3-4' }] },
+  'Jetpack Rockets': { grenade: true, weapons: [{ name: 'Roquettes Dorsales', dice: [{ color: 'rouge', count: 1 }], range: '3-4' }] },
   'Jyn Erso': { weapons: [{ name: 'Tonfa Télescopique', dice: [{ color: 'noir', count: 4 }], range: 'melee', keywordIds: ['suppressif'] }, { name: 'Pistolet Blaster A-180', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 1 }], range: '1-2', keywordIds: ['longue-distance', 'perforant-x'] }], defenseColor: 'blanc' },
   'K-2SO': { weapons: [{ name: 'Domination', dice: [{ color: 'rouge', count: 4 }], range: 'melee' }], defenseColor: 'rouge' },
   'KX-Series Security Droids': { weapons: [{ name: 'Oppression', dice: [{ color: 'rouge', count: 1 }], range: 'melee' }] },
@@ -257,11 +259,11 @@ const RAW: Record<string, CardDiceProfile> = {
   'Cleaver Dark Trooper': { weapons: [{ name: 'Tranchoir', dice: [{ color: 'rouge', count: 2 }, { color: 'noir', count: 1 }], range: 'melee', keywordIds: ['suppressif'], verifiedAgainstCard: true, verificationSource: 'Contrôle visuel direct (Claude, 27/09/2026)' }] },
   'E-11D Focused Strike Config': { weapons: [{ name: 'E-11D Frappe Concentrée', dice: [{ color: 'blanc', count: 1 }], range: '1-4' }] },
   'E-11D Grenade Launcher Config': { weapons: [{ name: 'E-11D Lance-grenades', dice: [{ color: 'rouge', count: 1 }], range: '1-2' }] },
-  'Fragmentation Grenades': { weapons: [{ name: 'Grenade à Fragmentation', dice: [{ color: 'rouge', count: 1 }], range: '1', attackSurge: 'crit', verifiedAgainstCard: true, verificationSource: 'Carte française Grenades à Fragmentation' }] },
-  'Impact Grenades': { weapons: [{ name: 'Grenade à Impact', dice: [{ color: 'noir', count: 1 }], range: 'melee-1', keywordIds: ['impact-x'], keywordValues: { 'impact-x': 4 }, verifiedAgainstCard: true, verificationSource: 'Carte française Grenades à Impact' }] },
-  'Concussion Grenades': { weapons: [{ name: 'Grenade à Concussion', dice: [{ color: 'noir', count: 1 }], range: '1', keywordIds: ['deflagration'], verifiedAgainstCard: true, verificationSource: 'Carte française Grenades à Concussion (Generic Upgrades FR.pdf)' }] },
-  'EMP Grenades': { weapons: [{ name: 'Grenade « Anti-Droïdes » EMP', dice: [{ color: 'noir', count: 1 }], range: '1', keywordIds: ['ion-x'], keywordValues: { 'ion-x': 1 }, verifiedAgainstCard: true, verificationSource: 'Carte française Grenades « Anti-Droïdes » EMP (Generic Upgrades FR.pdf)' }] },
-  'Sonic Imploders': { weapons: [{ name: 'Imploseur Sonique', dice: [{ color: 'noir', count: 1 }], range: '1', keywordIds: ['suppressif'], verifiedAgainstCard: true, verificationSource: 'Carte française Imploseurs Soniques (Generic Upgrades FR.pdf)' }] },
+  'Fragmentation Grenades': { grenade: true, weapons: [{ name: 'Grenade à Fragmentation', dice: [{ color: 'rouge', count: 1 }], range: '1', attackSurge: 'crit', verifiedAgainstCard: true, verificationSource: 'Carte française Grenades à Fragmentation' }] },
+  'Impact Grenades': { grenade: true, weapons: [{ name: 'Grenade à Impact', dice: [{ color: 'noir', count: 1 }], range: 'melee-1', keywordIds: ['impact-x'], keywordValues: { 'impact-x': 4 }, verifiedAgainstCard: true, verificationSource: 'Carte française Grenades à Impact' }] },
+  'Concussion Grenades': { grenade: true, weapons: [{ name: 'Grenade à Concussion', dice: [{ color: 'noir', count: 1 }], range: '1', keywordIds: ['deflagration'], verifiedAgainstCard: true, verificationSource: 'Carte française Grenades à Concussion (Generic Upgrades FR.pdf)' }] },
+  'EMP Grenades': { grenade: true, weapons: [{ name: 'Grenade « Anti-Droïdes » EMP', dice: [{ color: 'noir', count: 1 }], range: '1', keywordIds: ['ion-x'], keywordValues: { 'ion-x': 1 }, verifiedAgainstCard: true, verificationSource: 'Carte française Grenades « Anti-Droïdes » EMP (Generic Upgrades FR.pdf)' }] },
+  'Sonic Imploders': { grenade: true, weapons: [{ name: 'Imploseur Sonique', dice: [{ color: 'noir', count: 1 }], range: '1', keywordIds: ['suppressif'], verifiedAgainstCard: true, verificationSource: 'Carte française Imploseurs Soniques (Generic Upgrades FR.pdf)' }] },
   'Armor-Piercing Shells': { weapons: [{ name: 'Obus Antiblindage', dice: [{ color: 'rouge', count: 1 }, { color: 'noir', count: 2 }], range: '2-3', keywordIds: ['fixe', 'impact-x'], keywordValues: { 'impact-x': 3 }, verifiedAgainstCard: true, verificationSource: 'Carte française Obus Antiblindage (Generic Upgrades FR.pdf)', note: 'Véhicule uniquement, Cycle.' }] },
   'High-Energy Shells': { weapons: [{ name: 'Obus à Haute Énergie', dice: [{ color: 'rouge', count: 2 }, { color: 'blanc', count: 1 }], range: '2-4', keywordIds: ['fixe', 'critique-x', 'haute-velocite'], keywordValues: { 'critique-x': 1 }, verifiedAgainstCard: true, verificationSource: 'Carte française Obus à Haute Énergie (Generic Upgrades FR.pdf)', note: 'Véhicule uniquement, Cycle.' }] },
   'Anti-Bunker Shells': { weapons: [{ name: 'Obus « Antibunker »', dice: [{ color: 'blanc', count: 3 }, { color: 'noir', count: 1 }], range: '1-2', keywordIds: ['fixe', 'deflagration', 'dispersion'], verifiedAgainstCard: true, verificationSource: 'Carte française Obus « Antibunker » (Generic Upgrades FR.pdf)', note: 'Véhicule uniquement, Cycle.' }] },

@@ -458,9 +458,10 @@ scenario('Duels réels (audit du 01/10/2026) : Insensible, Bélier sur vierges, 
   // Insensible : Perforant 1 devrait annuler 1 blocage, il en annule un de moins (0).
   const impervious = duel(L, 'Boba Fett Infamous Bounty Hunter', L, 0, 'melee', { roll: { hit: 3, crit: 0, surge: 0, blank: 2 }, defense: { block: 2, surge: 0, blank: 1 } })
   assert.deepEqual([impervious.pierceUsed, impervious.blocks, impervious.wounds], [0, 2, 1], 'Insensible de Boba : ' + JSON.stringify(impervious))
-  // Bélier 1 : un jet entièrement vierge donne quand même 1 critique (« X résultats », vierges comprises).
+  // Bélier 1 par cavalier : un jet entièrement vierge donne quand même des critiques (« X résultats », vierges comprises).
+  // Les 2 cavaliers ajoutent chacun leur arme et son Bélier 1 : Bélier 2 (livre de règles, « Mots-clés X »).
   const ram = duel('Tauntaun Riders', 'Stormtroopers', 'Tauntaun Riders', 0, 'melee', { roll: { hit: 0, crit: 0, surge: 0, blank: 3 }, ramEligible: true })
-  assert.deepEqual([ram.crit, ram.ram], [1, 1], 'Bélier sur un jet vierge : ' + JSON.stringify(ram))
+  assert.deepEqual([ram.crit, ram.ram], [2, 2], 'Bélier sur un jet vierge : ' + JSON.stringify(ram))
   // Pion Adrénaline de défense : le blocage obtenu est converti AVANT Perforant, qui peut donc l'annuler.
   const token = duel(V, 'Stormtroopers', V, 0, 'melee', { roll: { hit: 3, crit: 0, surge: 0, blank: 3 }, defense: { block: 1, surge: 1, blank: 1 }, defenseSurgesSpent: 1, availableDefenseSurges: 1 })
   assert.deepEqual([token.pierceUsed, token.blocks, token.wounds], [2, 0, 3], 'Perforant 3 annule aussi le blocage du pion Adrénaline : ' + JSON.stringify(token))
@@ -2767,6 +2768,37 @@ scenario('Ancien écran : visuel manquant remplacé par « Visuel indisponible �
   app.window.close()
 })
 
+/* ------------------------------------------------------------------ */
+// Livre de règles « Mots-clés X » : chaque figurine ajoute son arme avec ses mots-clés et les valeurs X s'additionnent ;
+// FAQ AMG (refresh 2024) : une seule figurine par attaque utilise l'arme d'une carte <Grenades>.
+scenario('Cumul des mots-clés X : Impact par figurine, Grenades à Impact limitées à une figurine', async () => {
+  const empire = { listName: 'Cumul', faction: 'Empire', units: [{ name: '74-Z Speeder Bikes', upgrades: [] }] }
+  const rebels = { listName: 'Cumul', faction: 'Rebelles', units: [{ name: 'Rebel Troopers', upgrades: [{ name: 'Impact Grenades' }] }, { name: 'T-47 Airspeeder', upgrades: [] }] }
+  {
+    const app = await openAssistant({ 'swl.list.p1.v1': empire, 'swl.list.p2.v1': rebels })
+    const { click, pickUnit } = app
+    await pickUnit('Speederbikes 74-Z'); await click('#next'); await pickUnit('Airspeeder T-47')
+    await click('[data-range="2"]')
+    await click('.weapon-toggle[data-key="74 z speeder bikes:1"]')
+    assert.equal(app.window.eval("attackState.counts['74 z speeder bikes:1']"), 2, 'les deux motos tirent au Canon Blaster')
+    assert.equal(app.window.eval("attackKeywordValue('impact-x')"), 2, 'Impact 1 par moto : Impact 2 pour la réserve')
+    assert.equal(app.window.eval('effectiveImpactX()'), 2)
+    assert.equal(app.errors.length, 0, app.errors.join(' | '))
+    app.window.close()
+  }
+  {
+    const app = await openAssistant({ 'swl.list.p1.v1': rebels, 'swl.list.p2.v1': { listName: 'Cible', faction: 'Empire', units: [{ name: 'AT-ST', upgrades: [] }] } })
+    const { click, pickUnit } = app
+    await pickUnit('Soldats Rebelles'); await click('#next'); await pickUnit('TR-TT')
+    await click('[data-range="1"]')
+    await click('.weapon-toggle[data-key="impact grenades:0"]')
+    assert.equal(app.window.eval("attackState.counts['impact grenades:0']"), 1, 'une seule figurine lance la grenade')
+    assert.equal(app.window.eval('pool().noir'), 1, '1 dé noir, pas un par figurine')
+    assert.equal(app.window.eval("attackKeywordValue('impact-x')"), 4, 'Impact 4 une seule fois')
+    assert.equal(app.errors.length, 0, app.errors.join(' | '))
+    app.window.close()
+  }
+})
 
 /* ------------------------------------------------------------------ */
 async function run() {

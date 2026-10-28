@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 199 mots-clés du glossaire.
 
-- Combat (attaque / défense), gérés par le moteur : **86** (58 automatiques, 28 assistés).
+- Combat (attaque / défense), gérés par le moteur : **86** (60 automatiques, 26 assistés).
 - Hors combat, **application par bouton** : 78.
 - Hors combat, **règle de mouvement affichée dans le Briefing** : 12.
 - Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 9.
@@ -41,14 +41,14 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Câble de Remorquage | Attaque | moteur (automatique) | 1 |
 | Charge | Attaque | moteur (assisté) | 10 |
 | Chasseur de Jedi | Attaque | moteur (automatique) | 1 |
-| Ciblage Avancé : Type d'Unité X | Attaque | moteur (assisté) | 1 |
+| Ciblage Avancé : Type d'Unité X | Attaque | moteur (automatique) | 1 |
 | Critique X | Attaque | moteur (automatique) | 21 |
 | Débordement | Attaque | moteur (automatique) | 3 |
 | Déflagration | Attaque | moteur (automatique) | 20 |
 | Dispersion | Attaque | moteur (automatique) | 2 |
 | Duelliste | Attaque | moteur (automatique) | 4 |
 | Encombrant | Attaque | moteur (automatique) | 5 |
-| Équipe Sniper | Attaque | moteur (assisté) | 2 |
+| Équipe Sniper | Attaque | moteur (automatique) | 2 |
 | Exemplaire | Attaque | moteur (assisté) | 5 |
 | Explosion X : Type de Charge | Attaque | moteur (assisté) | 0 |
 | Fixe : Avant/Arrière/Flancs | Attaque | moteur (automatique) | 25 |
