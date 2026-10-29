@@ -229,7 +229,8 @@ function renderDiceText(text){return text
   .replace(/\[CRITIQUE\]|critiques?/gi,()=>diceIcon('crit'))
   .replace(/\[TOUCHE\]|touches?/gi,()=>diceIcon('hit'))
   .replace(/\[BLOC\]|blocages?|blocs?/gi,()=>diceIcon('block'))}
-function definitionText(item){return renderDiceText((item.def.shortDefinition||item.def.definition||'').replace(/\bX\b/g,item.tag.value??'X'))}
+// Seul le X de la valeur du mot-clé affiché est substitué. « Nom X » qui cite un mot-clé en général reste X (« Armure X » dans Impact X, « si le défenseur a aussi Gardien X ») ; « gagne(nt) Nom X » transmet la même valeur (Point Faible X → Impact X, Équipe d'Éclaireurs X → Éclaireur X).
+function definitionText(item){const bases=name=>String(name||'').replace(/\s+X\b.*$/,'').split('/').map(n=>n.trim()).filter(Boolean),names=keywords.filter(k=>k.hasValue).flatMap(k=>bases(k.name));return renderDiceText((item.def.shortDefinition||item.def.definition||'').replace(/\bX\b/g,(m,at,text)=>{const before=text.slice(0,at).replace(/[\s/]+$/,''),cited=names.find(n=>before.endsWith(n));return cited&&!/\bgagne(nt)?\s*$/.test(before.slice(0,-cited.length))?m:(item.tag.value??'X')}))}
 /**
  * Une seule galerie pour la carte Unité et ses améliorations : chaque
  * mot-clé n'est plus affiché qu'une fois, au même endroit que la carte qui
