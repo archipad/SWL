@@ -28,7 +28,7 @@
 .fiche-kw-section { padding: 10px 12px; border: 1px solid var(--fiche-line); border-left: 4px solid var(--fiche-accent); border-radius: 8px; background: var(--fiche-fill); }
 .fiche-kw-section[data-kw-section="attaque"] { --fiche-accent: #ff6b63; }
 .fiche-kw-section[data-kw-section="défense"] { --fiche-accent: #47d4ff; }
-.fiche-kw-section[data-kw-section="deplacement"] { --fiche-accent: #5fe3a1; }
+.fiche-kw-section[data-kw-section="amelioration"] { --fiche-accent: #5fe3a1; }
 .fiche-kw-section[data-kw-section="autre"] { --fiche-accent: #e6b94f; }
 .fiche-kw-section h3 .cx-icon { flex: none; width: 1.3em; height: 1.3em; }
 

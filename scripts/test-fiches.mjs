@@ -5,6 +5,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { JSDOM, ResourceLoader, VirtualConsole } from 'jsdom'
+import { openAssistant } from './lib/assistant-harness.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const publicDir = path.resolve(here, '../public')
@@ -67,8 +68,8 @@ for (const pattern of [/const specialImages=\{.*?\};/, /^const rankCatalog=.*?\}
 const sheets = (file) => [...fs.readFileSync(path.join(publicDir, file), 'utf8').matchAll(/href="\.?\.?\/(?:assistant\/)?([\w-]+\.css)/g)].map((match) => match[1])
 assert.deepEqual(sheets('fiches/index.html').filter((sheet) => sheet !== 'fiches.css'), sheets('assistant/index.html'))
 
-// Classement : chaque mot-clé tombe dans au moins une section connue, et « Déplacement » regroupe bien ces règles.
-const { keywords, keywordTiming } = window.SWL_REFERENCE
+// Classement : chaque mot-clé tombe dans au moins une section connue.
+const { keywords } = window.SWL_REFERENCE
 // JSON : les tableaux créés dans jsdom viennent d'un autre royaume et ne passent pas deepEqual.
 const sectionsOf = (id) => JSON.parse(window.eval(`JSON.stringify(keywordSections(keywords.find(item=>item.id===${JSON.stringify(id)})))`))
 const known = new Set(window.eval('KEYWORD_SECTIONS.map(section=>section.id)'))
@@ -76,11 +77,9 @@ for (const keyword of keywords) {
   const sections = sectionsOf(keyword.id)
   assert.ok(sections.length && sections.every((section) => known.has(section)), `sections de ${keyword.id} : ${sections}`)
 }
-for (const id of window.eval('[...MOVEMENT_KEYWORDS]')) assert.ok(keywords.some((keyword) => keyword.id === id), `mot-clé de déplacement inconnu : ${id}`)
-for (const [id, [phase]] of Object.entries(keywordTiming.keywords)) if (phase === 'deplacement') assert.ok(sectionsOf(id).includes('deplacement'), id)
-assert.deepEqual(sectionsOf('implacable').sort(), ['attaque', 'deplacement'])
+assert.deepEqual(sectionsOf('implacable').sort(), ['attaque', 'autre'])
 assert.deepEqual(sectionsOf('impact-x'), ['attaque'])
-assert.deepEqual(sectionsOf('saut-x'), ['deplacement'])
+assert.deepEqual(sectionsOf('saut-x'), ['autre'], 'un mot-clé de déplacement va dans Autre')
 assert.deepEqual(sectionsOf('position-preparee'), ['autre'])
 
 // Chaque unité des deux armées : carte, améliorations, et tous les mots-clés portés par ses cartes.
@@ -98,7 +97,10 @@ for (const army of ['p1', 'p2']) {
     assert.ok(document.querySelector('.fiche'), `fiche ouverte pour ${tile.dataset.id}`)
     assert.equal(document.querySelectorAll('.fiche-card-unit').length, 1)
     assert.equal(document.querySelectorAll('.fiche-card-upgrade').length, entry.unit.upgrades.length, `améliorations de ${entry.unit.name}`)
-    assert.deepEqual([...document.querySelectorAll('[data-kw-section] h3')].map((title) => title.lastChild.previousSibling.textContent), ['Attaque', 'Défense', 'Déplacement', 'Autre'])
+    assert.deepEqual([...document.querySelectorAll('[data-kw-section] h3')].map((title) => title.lastChild.previousSibling.textContent), ['Améliorations', 'Attaque', 'Défense', 'Autre'])
+    const effects = document.querySelectorAll('[data-kw-section="amelioration"] .fiche-kw')
+    assert.equal(effects.length, entry.unit.upgrades.length, `effets de cartes de ${entry.unit.name}`)
+    assert.ok(![...effects].some((effect) => /undefined/.test(effect.textContent)))
     const expected = window.eval(`unitKeywordRows(entries.find(item=>item.id===${JSON.stringify(tile.dataset.id)})).map(row=>keywordLabel(row.def,row.tag))`)
     const shown = new Set([...document.querySelectorAll('.fiche-kw h4')].map((title) => title.textContent))
     for (const label of expected) assert.ok(shown.has(label), `${entry.unit.name} : ${label} absent de la fiche`)
@@ -110,6 +112,13 @@ for (const army of ['p1', 'p2']) {
   }
 }
 assert.equal(opened, empire.units.length + rebels.units.length)
+
+// Une amélioration sans aucun mot-clé apparaît quand même, avec son texte (signalement : À Bout Portant).
+const effectHtml = window.eval(`upgradeEffectRow({name:'Point Blank'})`)
+assert.match(effectHtml, /À Bout Portant/)
+assert.match(effectHtml, /gagne 1 pion Esquive/)
+assert.match(window.eval(`upgradeEffectRow({name:'Tank Hunting Munitions'})`), /Usage unique/)
+assert.match(window.eval(`upgradeEffectRow({name:'Carte inconnue'})`), /Texte non transcrit/)
 
 // Deux occurrences d'une même unité restent distinctes (Stormtroopers 1 à 4 dans la liste Empire).
 document.querySelector('.army-switch [data-army="p1"]').click()
@@ -136,4 +145,34 @@ assert.deepEqual(JSON.parse(local.window.eval(`JSON.stringify(tags['reluctant he
 local.window.close()
 
 window.close()
+
+// Assistant : même priorité que les Fiches, et les mots-clés retirés en certification ne reviennent pas par la copie locale.
+const staleTags = {
+  'reluctant hero': [{ keywordId: 'critique-x', value: 0 }, { keywordId: 'infiltration' }, { keywordId: 'implacable' }],
+  'the darksaber': [{ keywordId: 'impact-x', value: 2 }, { keywordId: 'perforant-x', value: 2 }, { keywordId: 'demoraliser-x', value: 1 }],
+  'proton charge saboteur': [{ keywordId: 'impact-x', value: 6 }],
+  'a280 cfe pistol sniper config': [{ keywordId: 'longue-distance' }],
+  'gar saxon militant commando': [{ keywordId: 'mercenaire' }],
+  'maul a rival': [{ keywordId: 'mercenaire' }],
+}
+const assistant = await openAssistant({
+  'swl.card-tags.v1': staleTags,
+  'swl.list.p1.v1': { listName: 'Test rebelles', faction: 'Rebelles', units: [{ name: 'Rebel Agent Defender of Democracy', upgrades: [{ name: 'Reluctant Hero' }] }] },
+  'swl.list.p2.v1': { listName: 'Test empire', faction: 'Empire', units: [{ name: 'Stormtroopers', upgrades: [] }] },
+  'swl.assistant.unit-state.v1': { 'p1:0': { suppression: 2 } },
+})
+const tagOf = (card, id) => JSON.parse(assistant.window.eval(`JSON.stringify((tags[${JSON.stringify(card)}]||[]).find(tag=>tag.keywordId===${JSON.stringify(id)})||null)`))
+assert.equal(tagOf('reluctant hero', 'critique-x').value, 1, 'Critique 1 imprimé sur Héros Malgré Lui')
+assert.equal(tagOf('the darksaber', 'impact-x').value, 1, 'Impact 1 imprimé sur le Sabre Noir')
+assert.equal(tagOf('the darksaber', 'perforant-x').value, 1, 'Perforant 1 imprimé sur le Sabre Noir')
+assert.equal(tagOf('proton charge saboteur', 'impact-x').value, 6, 'Impact 6 imprimé sur la Charge à Protons')
+assert.equal(tagOf('the darksaber', 'demoraliser-x'), null)
+assert.equal(tagOf('a280 cfe pistol sniper config', 'longue-distance'), null)
+assert.equal(tagOf('gar saxon militant commando', 'mercenaire'), null)
+assert.equal(tagOf('maul a rival', 'mercenaire'), null)
+assert.equal(tagOf('bossk terror of trandosha', 'autonome').value, 2)
+// Héros Malgré Lui : Critique vaut le nombre de pions Suppression, jamais ce nombre + le 1 de la carte.
+assistant.window.eval(`attacker=entries.find(entry=>entry.army==='p1');attackState={counts:{}};selectedWeaponRows=()=>[]`)
+assert.equal(assistant.window.eval(`attackKeywordValue('critique-x')`), 2, 'Critique suit la suppression sans s’ajouter au 1 de la carte')
+assistant.window.close()
 console.log(`Fiches d'unité OK : ${opened} fiches ouvertes, ${keywords.length} mots-clés classés.`)

@@ -15,8 +15,7 @@ const usingDemo=!localStorage.getItem('swl.list.p1.v1')||!localStorage.getItem('
 for(const list of [list1,list2])for(const unit of list.units||[])for(const upgrade of unit.upgrades||[])if(norm(upgrade.name)==='cassian andor')upgrade.name='Cassian Andor Operative';
 
 // Le référentiel livré fait foi : le stockage local n'ajoute que ses propres mots-clés, étiquettes et définitions retouchées.
-// Contrairement à app.js, une étiquette présente des deux côtés garde la valeur certifiée : swl.card-tags.v1 contient aussi une copie
-// de l'ancienne table SEED_CARD_TAGS (ex. Critique 0 pour Héros Malgré Lui, là où la carte imprime Critique 1).
+// Une étiquette présente des deux côtés garde la valeur certifiée, comme dans app.js : swl.card-tags.v1 contient aussi une copie de l'ancienne amorce.
 const seedKeywords=reference.keywords||[],localKeywords=read('swl.keywords.v1',[]),localKeywordById=new Map(localKeywords.map(item=>[item.id,item])),seedKeywordIds=new Set(seedKeywords.map(item=>item.id));
 const keywords=[...seedKeywords.map(seed=>{const mine=localKeywordById.get(seed.id);return mine?{...seed,definition:mine.definition??seed.definition,shortDefinition:mine.shortDefinition??seed.shortDefinition}:seed}),...localKeywords.filter(item=>!seedKeywordIds.has(item.id))];
 const seedTags=reference.tags||{},localTags=read('swl.card-tags.v1',{}),removedTags=read('swl.card-tags-removed.v1',{});
@@ -101,18 +100,9 @@ function definitionHtml(text,value){const bases=name=>String(name||'').replace(/
 const KEYWORD_SECTIONS=[
   {id:'attaque',label:'Attaque',icon:'attack'},
   {id:'défense',label:'Défense',icon:'defense'},
-  {id:'deplacement',label:'Déplacement',icon:'move'},
   {id:'autre',label:'Autre',icon:'rules'},
 ];
-// Le référentiel ne connaît que attaque/défense/autre. « Déplacement » rassemble ce que keywordTiming place à la phase
-// Déplacement, plus les mots-clés qui agissent ailleurs mais donnent ou modifient un déplacement.
-const MOVEMENT_KEYWORDS=new Set(['alourdissement','attaque-impetueuse','charge','eclaireur-x','equipe-declaireurs-x','implacable','intrepide','longueur-davance','mode-roue','renforts']);
-const isMovementKeyword=def=>MOVEMENT_KEYWORDS.has(def.id)||reference.keywordTiming?.keywords?.[def.id]?.[0]==='deplacement';
-function keywordSections(def){
-  const declared=def.displaySections?.length?def.displaySections:[def.impact];
-  if(!isMovementKeyword(def))return declared;
-  return [...new Set(declared.map(section=>section==='autre'?'deplacement':section))];
-}
+const keywordSections=def=>def.displaySections?.length?def.displaySections:[def.impact];
 function keywordLabel(def,tag){
   const label=String(def.name).replace(/\bX\b/,tag.value??'X');
   return tag.detail?`${label.split(' : ')[0]} : ${tag.detail}`:label;
@@ -132,9 +122,19 @@ function keywordRow(row){
   const short=row.def.shortDefinition||row.def.definition||'',full=row.def.definition||'';
   return `<article class="fiche-kw"><header><h4>${esc(keywordLabel(row.def,row.tag))}</h4><small>${row.sources.map(esc).join(' · ')}</small></header><p>${definitionHtml(short,row.tag.value)}</p>${full&&full!==short?`<details><summary>Règle complète</summary><p>${definitionHtml(full,row.tag.value)}</p></details>`:''}</article>`;
 }
+// Effets de cartes : une amélioration sans mot-clé (À Bout Portant, Munitions Antichar) n'apparaîtrait nulle part ailleurs.
+const UPGRADE_USES={exhaust:'Inclinable',discard:'Usage unique',both:'Inclinable · usage unique'};
+function upgradeEffectRow(upgrade){
+  const effect=window.SWL_UPGRADE_TEXTS?.[cardKey(upgrade.name)],use=UPGRADE_USES[effect?.use];
+  return `<article class="fiche-kw"><header><h4>${esc(displayName(upgrade.name))}</h4>${use?`<small>${use}</small>`:''}</header><p>${effect?esc(effect.text):'<em>Texte non transcrit : voir le visuel de la carte.</em>'}</p></article>`;
+}
+function upgradePanel(entry){
+  const upgrades=entry.unit.upgrades||[];
+  return `<section class="fiche-kw-section" data-kw-section="amelioration"><h3><i class="cx-icon" style="--cx-icon:url(../codex/icons/tools.png)" aria-hidden="true"></i>Améliorations<b>${upgrades.length}</b></h3>${upgrades.length?upgrades.map(upgradeEffectRow).join(''):'<p class="fiche-kw-empty">Sans amélioration.</p>'}</section>`;
+}
 function keywordPanel(entry){
   const rows=unitKeywordRows(entry);
-  return KEYWORD_SECTIONS.map(section=>{
+  return upgradePanel(entry)+KEYWORD_SECTIONS.map(section=>{
     const inSection=rows.filter(row=>keywordSections(row.def).includes(section.id));
     return `<section class="fiche-kw-section" data-kw-section="${section.id}"><h3><i class="cx-icon" style="--cx-icon:url(../codex/icons/${section.icon}.png)" aria-hidden="true"></i>${section.label}<b>${inSection.length}</b></h3>${inSection.length?inSection.map(keywordRow).join(''):'<p class="fiche-kw-empty">Aucun mot-clé de ce type.</p>'}</section>`;
   }).join('');
