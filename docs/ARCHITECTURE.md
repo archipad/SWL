@@ -27,6 +27,10 @@ Les listes et l'état courant sont conservés localement. `src/lib/gistSync.ts` 
 - `public/assistant/certification.js` : contrôle humain et préparation des lots de corrections.
 - `public/assistant/engine.css` et feuilles associées : interface tactile et thèmes de faction.
 
+## Fiches d'unité
+
+`public/fiches/` (`/SWL/fiches/`) est une interface de consultation autonome : sélecteur identique à celui de l'Assistant, puis carte, améliorations et mots-clés définis, rangés par type (Attaque, Défense, Déplacement, Autre). Elle lit les listes importées et le référentiel, mais ne charge ni `app.js` ni le moteur et ne suit aucun état de partie. « Déplacement » vient de `keywordTiming` et de `MOVEMENT_KEYWORDS` dans `fiches.js`. Contrôle : `scripts/test-fiches.mjs`, qui compare aussi les tables recopiées d'`app.js` et la liste des feuilles de style.
+
 ## Construction et déploiement
 
 `npm run build` régénère le référentiel, lance les tests et audits, compile TypeScript puis produit `dist/`. `.github/workflows/deploy-pages.yml` exécute ce même build et déploie GitHub Pages sur les branches autorisées.

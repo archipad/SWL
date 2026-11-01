@@ -53,9 +53,9 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,png,svg,ico,webmanifest,otf}', 'codex/**/*.{jpg,webp}'],
         // Catalogue de la certification automatique β (≈ 1 Mo) : chargé à la demande, jamais précaché pour tous les appareils.
         globIgnores: ['**/node_modules/**/*', 'assistant/auto-certification-source.js', 'assistant/auto-certification-assets.js'],
-        // L'assistant est une page HTML autonome. Sans cette exception,
+        // L'assistant et les fiches d'unité sont des pages HTML autonomes. Sans cette exception,
         // le mode hors-ligne renvoie toute navigation vers l'application React.
-        navigateFallbackDenylist: [/^\/SWL\/assistant(?:\/|$)/],
+        navigateFallbackDenylist: [/^\/SWL\/assistant(?:\/|$)/, /^\/SWL\/fiches(?:\/|$)/],
         runtimeCaching: [
           {
             urlPattern: /\/SWL\/cards\/.*\.(?:png|jpe?g|webp)$/i,

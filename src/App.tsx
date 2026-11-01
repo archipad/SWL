@@ -350,15 +350,18 @@ export default function App() {
                 );
               })}
               {currentSection?.id === 'partie' && (
-                <li>
-                  <a
-                    className={`cx-menu-item cx-menu-item-external${assistantIgniting ? ' igniting' : ''}`}
-                    href={ASSISTANT_URL}
-                    onClick={openAssistant}
-                  >
-                    <CxIcon name="attack" /><span>Assistant d'unité</span>
-                  </a>
-                </li>
+                <>
+                  <li>
+                    <a
+                      className={`cx-menu-item cx-menu-item-external${assistantIgniting ? ' igniting' : ''}`}
+                      href={ASSISTANT_URL}
+                      onClick={openAssistant}
+                    >
+                      <CxIcon name="attack" /><span>Assistant d'unité</span>
+                    </a>
+                  </li>
+                  <li><a className="cx-menu-item cx-menu-item-external" href="./fiches/index.html"><CxIcon name="rules" /><span>Fiches d'unité</span></a></li>
+                </>
               )}
             </ul>
             <div className="cx-art" aria-hidden="true" />

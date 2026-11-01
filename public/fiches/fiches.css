@@ -1,0 +1,55 @@
+/* Fiche d'unité : carte et améliorations à gauche, mots-clés rangés par type à droite.
+   Le fond, la barre du haut et le sélecteur viennent des feuilles de l'Assistant. */
+.fiche { --fiche-line: rgba(150, 190, 215, .32); --fiche-fill: rgba(5, 10, 16, .84); margin: 0 auto; max-width: 1400px; padding: 10px 14px 0; }
+
+.fiche-head { position: relative; display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 60px; margin-bottom: 12px; padding: 6px 10px; border: 1px solid var(--fiche-line); border-radius: 8px; background: var(--fiche-fill); text-align: center; }
+.fiche-head .fiche-back { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); min-height: 44px; padding: 8px 14px; font-size: 1rem; }
+.fiche-head .cx-side-emblem { flex: none; }
+.fiche-head h2 { margin: 0; font-family: Orbitron, sans-serif; font-size: clamp(1.25rem, 2.6vw, 1.9rem); letter-spacing: .05em; text-transform: uppercase; }
+.fiche-head small { color: var(--hud-muted, #a8c3d4); font-size: 1rem; }
+
+.fiche-layout { display: grid; grid-template-columns: minmax(0, 46fr) minmax(0, 54fr); gap: 16px; align-items: start; }
+
+.fiche-cards { position: sticky; top: 84px; display: flex; flex-direction: column; gap: 10px; }
+.fiche-cards h3, .fiche-kw-section h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-family: Orbitron, sans-serif; font-size: 1rem; letter-spacing: .06em; text-transform: uppercase; color: var(--fiche-accent, var(--hud-text, #e6f1f8)); }
+.fiche-cards h3 b, .fiche-kw-section h3 b { margin-left: auto; min-width: 1.7em; padding: 0 .4em; border: 1px solid currentColor; border-radius: 99px; font-family: Rajdhani, sans-serif; font-size: .9rem; text-align: center; }
+.fiche-cards h3 b { margin-left: 0; }
+
+.fiche button.fiche-card { all: unset; box-sizing: border-box; display: block; cursor: zoom-in; min-width: 0; -webkit-tap-highlight-color: transparent; }
+.fiche-card img { display: block; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 6px 18px rgba(0, 0, 0, .55); }
+.fiche-card-unit img { aspect-ratio: 2078 / 1452; }
+.fiche-card-upgrade img { aspect-ratio: 1452 / 2078; }
+.fiche-card:focus-visible img { outline: 3px solid var(--acid, #47d4ff); outline-offset: 2px; }
+.fiche-card-unit small { display: none; }
+.fiche-card-upgrade small { display: block; margin-top: 4px; color: var(--hud-text, #e6f1f8); font-size: .92rem; line-height: 1.1; text-align: center; overflow-wrap: anywhere; }
+.fiche-upgrades { display: grid; grid-template-columns: repeat(var(--upgrade-cols, 3), minmax(0, 1fr)); gap: 10px; }
+
+.fiche-keywords { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.fiche-kw-section { padding: 10px 12px; border: 1px solid var(--fiche-line); border-left: 4px solid var(--fiche-accent); border-radius: 8px; background: var(--fiche-fill); }
+.fiche-kw-section[data-kw-section="attaque"] { --fiche-accent: #ff6b63; }
+.fiche-kw-section[data-kw-section="défense"] { --fiche-accent: #47d4ff; }
+.fiche-kw-section[data-kw-section="deplacement"] { --fiche-accent: #5fe3a1; }
+.fiche-kw-section[data-kw-section="autre"] { --fiche-accent: #e6b94f; }
+.fiche-kw-section h3 .cx-icon { flex: none; width: 1.3em; height: 1.3em; }
+
+.fiche-kw { padding: 8px 0 2px; border-top: 1px solid rgba(150, 190, 215, .16); }
+.fiche-kw-section h3 + .fiche-kw { margin-top: 6px; }
+.fiche-kw header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 10px; }
+.fiche-kw h4 { margin: 0; font-family: Rajdhani, sans-serif; font-size: 1.16rem; font-weight: 700; color: var(--hud-text, #e6f1f8); }
+.fiche-kw header small { color: var(--hud-muted, #a8c3d4); font-size: .9rem; }
+.fiche-kw p { margin: 2px 0 6px; color: var(--hud-text, #e6f1f8); font-size: 1.05rem; line-height: 1.32; }
+.fiche-kw .dice-symbol { display: inline-block; width: 1.15em; height: 1.15em; vertical-align: -.2em; }
+.fiche-kw details { margin-bottom: 6px; }
+.fiche-kw summary { color: var(--fiche-accent); font-size: .95rem; cursor: pointer; }
+.fiche-kw details p { margin-top: 4px; color: var(--hud-muted, #a8c3d4); }
+.fiche-kw-empty { margin: 6px 0 0; color: var(--hud-muted, #a8c3d4); font-size: 1rem; }
+.fiche-warning { margin: 0; padding: 8px 12px; border: 1px solid #e6b94f; border-radius: 8px; background: rgba(50, 36, 6, .86); color: #ffe4a3; font-size: 1.02rem; }
+
+@media (max-width: 899px) {
+  .fiche-layout { grid-template-columns: minmax(0, 1fr); }
+  .fiche-cards { position: static; }
+  .fiche-upgrades { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+  .fiche-head { flex-wrap: wrap; }
+  .fiche-head .fiche-back { position: static; transform: none; flex-basis: 100%; }
+}
+.fiche-kw .dice-symbol { filter: invert(1) brightness(2.8) contrast(1.15); background: transparent; }
