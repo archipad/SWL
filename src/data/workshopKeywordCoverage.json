@@ -1,0 +1,997 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-01",
+  "source": {
+    "url": "https://legionhq2.com/cards",
+    "bundleUrl": "https://legionhq2.com/static/js/main.be54f6ff.js",
+    "bundleSha256": "f02aa166bf540f0d38744362f3a79e17fbc28ac82145822c79b05a914bd34cde"
+  },
+  "notice": "Audit de présence des définitions, pas certification humaine de toutes les cartes ni copie des textes LegionHQ2. AMG reste la source de règles. Les trois types d’unité et quatre sous-règles ne sont pas de nouveaux mots-clés.",
+  "entries": [
+    {
+      "englishName": "Advanced Targeting",
+      "kind": "keyword",
+      "keywordId": "ciblage-avance"
+    },
+    {
+      "englishName": "AI",
+      "kind": "keyword",
+      "keywordId": "ia"
+    },
+    {
+      "englishName": "Agile",
+      "kind": "keyword",
+      "keywordId": "preste-x"
+    },
+    {
+      "englishName": "Aid",
+      "kind": "keyword",
+      "keywordId": "aide"
+    },
+    {
+      "englishName": "Allies of Convenience",
+      "kind": "keyword",
+      "keywordId": "allies-de-circonstance"
+    },
+    {
+      "englishName": "Armor",
+      "kind": "keyword",
+      "keywordId": "armure-x"
+    },
+    {
+      "englishName": "Arsenal",
+      "kind": "keyword",
+      "keywordId": "arsenal-x"
+    },
+    {
+      "englishName": "Associate",
+      "kind": "keyword",
+      "keywordId": "associe"
+    },
+    {
+      "englishName": "Ataru Mastery",
+      "kind": "keyword",
+      "keywordId": "maitrise-de-lataru"
+    },
+    {
+      "englishName": "Attack Run",
+      "kind": "keyword",
+      "keywordId": "attaque-impetueuse"
+    },
+    {
+      "englishName": "Anti-Material",
+      "kind": "keyword",
+      "keywordId": "anti-materiel-x"
+    },
+    {
+      "englishName": "Anti-Personnel",
+      "kind": "keyword",
+      "keywordId": "anti-personnel-x"
+    },
+    {
+      "englishName": "Area Weapon",
+      "kind": "keyword",
+      "keywordId": "arme-a-effet-de-zone"
+    },
+    {
+      "englishName": "Arm",
+      "kind": "keyword",
+      "keywordId": "armer-x"
+    },
+    {
+      "englishName": "Assault",
+      "kind": "keyword",
+      "keywordId": "assaut-x"
+    },
+    {
+      "englishName": "Barrage",
+      "kind": "keyword",
+      "keywordId": "barrage"
+    },
+    {
+      "englishName": "Block",
+      "kind": "keyword",
+      "keywordId": "blocage"
+    },
+    {
+      "englishName": "Bolster",
+      "kind": "keyword",
+      "keywordId": "assistance-x"
+    },
+    {
+      "englishName": "Bounty",
+      "kind": "keyword",
+      "keywordId": "prime"
+    },
+    {
+      "englishName": "Beam",
+      "kind": "keyword",
+      "keywordId": "rayons-x"
+    },
+    {
+      "englishName": "Blast",
+      "kind": "keyword",
+      "keywordId": "deflagration"
+    },
+    {
+      "englishName": "Bane Tokens",
+      "kind": "keyword",
+      "keywordId": "pions-bane"
+    },
+    {
+      "englishName": "Cache",
+      "kind": "keyword",
+      "keywordId": "cache"
+    },
+    {
+      "englishName": "Calculate Odds",
+      "kind": "keyword",
+      "keywordId": "calcul-de-probabilites"
+    },
+    {
+      "englishName": "Charge",
+      "kind": "keyword",
+      "keywordId": "charge"
+    },
+    {
+      "englishName": "Climbing Vehicle",
+      "kind": "keyword",
+      "keywordId": "vehicule-grimpant"
+    },
+    {
+      "englishName": "Complete the Mission",
+      "kind": "keyword",
+      "keywordId": "accomplir-la-mission"
+    },
+    {
+      "englishName": "Command Vehicle",
+      "kind": "keyword",
+      "keywordId": "pilotage-de-vehicule-x"
+    },
+    {
+      "englishName": "Compel",
+      "kind": "keyword",
+      "keywordId": "contrainte"
+    },
+    {
+      "englishName": "Coordinate",
+      "kind": "keyword",
+      "keywordId": "coordination"
+    },
+    {
+      "englishName": "Counterpart",
+      "kind": "keyword",
+      "keywordId": "alter-ego"
+    },
+    {
+      "englishName": "Cover",
+      "kind": "keyword",
+      "keywordId": "couvert-x"
+    },
+    {
+      "englishName": "Creature Trooper",
+      "kind": "unit-type",
+      "topicId": "soldat-creature"
+    },
+    {
+      "englishName": "Cunning",
+      "kind": "keyword",
+      "keywordId": "malin"
+    },
+    {
+      "englishName": "Critical",
+      "kind": "keyword",
+      "keywordId": "critique-x"
+    },
+    {
+      "englishName": "Cumbersome",
+      "kind": "keyword",
+      "keywordId": "encombrant"
+    },
+    {
+      "englishName": "Cycle",
+      "kind": "keyword",
+      "keywordId": "cycle"
+    },
+    {
+      "englishName": "Danger Sense",
+      "kind": "keyword",
+      "keywordId": "intuition-du-danger-x"
+    },
+    {
+      "englishName": "Dauntless",
+      "kind": "keyword",
+      "keywordId": "intrepide"
+    },
+    {
+      "englishName": "Death from Above",
+      "kind": "keyword",
+      "keywordId": "la-mort-venue-du-ciel"
+    },
+    {
+      "englishName": "Defend",
+      "kind": "keyword",
+      "keywordId": "defense-x"
+    },
+    {
+      "englishName": "Deflect",
+      "kind": "keyword",
+      "keywordId": "deflexion"
+    },
+    {
+      "englishName": "Demoralize",
+      "kind": "keyword",
+      "keywordId": "demoraliser-x"
+    },
+    {
+      "englishName": "Detachment",
+      "kind": "keyword",
+      "keywordId": "detachement"
+    },
+    {
+      "englishName": "Direct",
+      "kind": "keyword",
+      "keywordId": "ordre-direct"
+    },
+    {
+      "englishName": "Disciplined",
+      "kind": "keyword",
+      "keywordId": "discipline-x"
+    },
+    {
+      "englishName": "Disengage",
+      "kind": "keyword",
+      "keywordId": "retrait"
+    },
+    {
+      "englishName": "Distract",
+      "kind": "keyword",
+      "keywordId": "distraire"
+    },
+    {
+      "englishName": "Divine Influence",
+      "kind": "keyword",
+      "keywordId": "influence-divine"
+    },
+    {
+      "englishName": "Djem So Mastery",
+      "kind": "keyword",
+      "keywordId": "maitrise-du-djem-so"
+    },
+    {
+      "englishName": "Droid Trooper",
+      "kind": "unit-type",
+      "topicId": "soldat-droide"
+    },
+    {
+      "englishName": "Duelist",
+      "kind": "keyword",
+      "keywordId": "duelliste"
+    },
+    {
+      "englishName": "Detonate",
+      "kind": "keyword",
+      "keywordId": "explosion-x"
+    },
+    {
+      "englishName": "Divulge",
+      "kind": "keyword",
+      "keywordId": "divulgation"
+    },
+    {
+      "englishName": "Emplacement Trooper",
+      "kind": "unit-type",
+      "topicId": "soldat-en-position"
+    },
+    {
+      "englishName": "Enrage",
+      "kind": "keyword",
+      "keywordId": "enrage-x"
+    },
+    {
+      "englishName": "Entourage",
+      "kind": "keyword",
+      "keywordId": "entourage"
+    },
+    {
+      "englishName": "Equip",
+      "kind": "keyword",
+      "keywordId": "equipe"
+    },
+    {
+      "englishName": "Exemplar",
+      "kind": "keyword",
+      "keywordId": "exemplaire"
+    },
+    {
+      "englishName": "Expert Climber",
+      "kind": "keyword",
+      "keywordId": "grimpeur-experimente"
+    },
+    {
+      "englishName": "Eyes on the Prize",
+      "kind": "keyword",
+      "keywordId": "tenir-le-cap"
+    },
+    {
+      "englishName": "Field Commander",
+      "kind": "keyword",
+      "keywordId": "commandant-des-operations"
+    },
+    {
+      "englishName": "Fire Support",
+      "kind": "keyword",
+      "keywordId": "tirs-de-soutien"
+    },
+    {
+      "englishName": "Flexible Response",
+      "kind": "keyword",
+      "keywordId": "riposte-graduee-x"
+    },
+    {
+      "englishName": "Full Pivot",
+      "kind": "keyword",
+      "keywordId": "pivot-complet"
+    },
+    {
+      "englishName": "Fixed",
+      "kind": "keyword",
+      "keywordId": "fixe"
+    },
+    {
+      "englishName": "Generator",
+      "kind": "keyword",
+      "keywordId": "generateur-x"
+    },
+    {
+      "englishName": "Guardian",
+      "kind": "keyword",
+      "keywordId": "gardien-x"
+    },
+    {
+      "englishName": "Guidance",
+      "kind": "keyword",
+      "keywordId": "conseils"
+    },
+    {
+      "englishName": "Gunslinger",
+      "kind": "keyword",
+      "keywordId": "pistolero"
+    },
+    {
+      "englishName": "Graffitti Tokens",
+      "kind": "keyword",
+      "keywordId": "pions-graffiti"
+    },
+    {
+      "englishName": "Heavy Weapon Team",
+      "kind": "keyword",
+      "keywordId": "equipe-avec-arme-lourde"
+    },
+    {
+      "englishName": "Hold the Line",
+      "kind": "keyword",
+      "keywordId": "tenir-bon"
+    },
+    {
+      "englishName": "Hover",
+      "kind": "keyword",
+      "keywordId": "sustentation"
+    },
+    {
+      "englishName": "Hunted",
+      "kind": "keyword",
+      "keywordId": "traque"
+    },
+    {
+      "englishName": "High Velocity",
+      "kind": "keyword",
+      "keywordId": "haute-velocite"
+    },
+    {
+      "englishName": "Here I Am",
+      "kind": "subrule",
+      "keywordId": "pions-bane"
+    },
+    {
+      "englishName": "I'm Part of the Squad Too",
+      "kind": "keyword",
+      "keywordId": "je-fais-aussi-partie-de-lequipe"
+    },
+    {
+      "englishName": "Immune: Blast",
+      "kind": "keyword",
+      "keywordId": "immunite-deflagration"
+    },
+    {
+      "englishName": "Immune: Enemy Effects",
+      "kind": "keyword",
+      "keywordId": "immunite-effets-ennemis"
+    },
+    {
+      "englishName": "Immune: Melee",
+      "kind": "keyword",
+      "keywordId": "immunite-corps-a-corps"
+    },
+    {
+      "englishName": "Immune: Melee Pierce",
+      "kind": "keyword",
+      "keywordId": "immunite-perforant-corps-a-corps"
+    },
+    {
+      "englishName": "Immune: Pierce",
+      "kind": "keyword",
+      "keywordId": "immunite-perforant"
+    },
+    {
+      "englishName": "Immune: Range 1 Weapons",
+      "kind": "keyword",
+      "keywordId": "immunite-armes-portee-1"
+    },
+    {
+      "englishName": "Impervious",
+      "kind": "keyword",
+      "keywordId": "insensible"
+    },
+    {
+      "englishName": "Incognito",
+      "kind": "keyword",
+      "keywordId": "incognito"
+    },
+    {
+      "englishName": "Inconspicuous",
+      "kind": "keyword",
+      "keywordId": "discret"
+    },
+    {
+      "englishName": "Independent",
+      "kind": "keyword",
+      "keywordId": "autonome"
+    },
+    {
+      "englishName": "Indomitable",
+      "kind": "keyword",
+      "keywordId": "indomptable"
+    },
+    {
+      "englishName": "Infiltrate",
+      "kind": "keyword",
+      "keywordId": "infiltration"
+    },
+    {
+      "englishName": "Inspire",
+      "kind": "keyword",
+      "keywordId": "inspiration-x"
+    },
+    {
+      "englishName": "Interrogate",
+      "kind": "keyword",
+      "keywordId": "interrogatoire"
+    },
+    {
+      "englishName": "Immobilize",
+      "kind": "keyword",
+      "keywordId": "immobiliser-x"
+    },
+    {
+      "englishName": "Immune: Deflect",
+      "kind": "keyword",
+      "keywordId": "immunite-deflexion"
+    },
+    {
+      "englishName": "Impact",
+      "kind": "keyword",
+      "keywordId": "impact-x"
+    },
+    {
+      "englishName": "Ion",
+      "kind": "keyword",
+      "keywordId": "ion-x"
+    },
+    {
+      "englishName": "Jar'Kai Mastery",
+      "kind": "keyword",
+      "keywordId": "maitrise-du-jarkai"
+    },
+    {
+      "englishName": "Jedi Hunter",
+      "kind": "keyword",
+      "keywordId": "chasseur-de-jedi"
+    },
+    {
+      "englishName": "Jump",
+      "kind": "keyword",
+      "keywordId": "saut-x"
+    },
+    {
+      "englishName": "Juyo Mastery",
+      "kind": "keyword",
+      "keywordId": "maitrise-du-juyo"
+    },
+    {
+      "englishName": "Kablamo!",
+      "kind": "subrule",
+      "keywordId": "pions-bane"
+    },
+    {
+      "englishName": "Latent Power",
+      "kind": "keyword",
+      "keywordId": "pouvoir-latent"
+    },
+    {
+      "englishName": "Low Profile",
+      "kind": "keyword",
+      "keywordId": "profil-bas"
+    },
+    {
+      "englishName": "Lethal",
+      "kind": "keyword",
+      "keywordId": "letal-x"
+    },
+    {
+      "englishName": "Long Shot",
+      "kind": "keyword",
+      "keywordId": "longue-distance"
+    },
+    {
+      "englishName": "Leader",
+      "kind": "keyword",
+      "keywordId": "chef"
+    },
+    {
+      "englishName": "Makashi Mastery",
+      "kind": "keyword",
+      "keywordId": "maitrise-du-makashi"
+    },
+    {
+      "englishName": "Mandalorians Are Stronger Together",
+      "kind": "keyword",
+      "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+    },
+    {
+      "englishName": "Marksman",
+      "kind": "keyword",
+      "keywordId": "tireur-embusque"
+    },
+    {
+      "englishName": "Master of the Force",
+      "kind": "keyword",
+      "keywordId": "maitre-de-la-force-x"
+    },
+    {
+      "englishName": "Master Storyteller",
+      "kind": "keyword",
+      "keywordId": "maitre-conteur"
+    },
+    {
+      "englishName": "Mechanized Infantry",
+      "kind": "keyword",
+      "keywordId": "infanterie-mecanisee"
+    },
+    {
+      "englishName": "Mercenary",
+      "kind": "keyword",
+      "keywordId": "mercenaire"
+    },
+    {
+      "englishName": "Mobile",
+      "kind": "keyword",
+      "keywordId": "mobile"
+    },
+    {
+      "englishName": "My Mood Is Based On Profit",
+      "kind": "keyword",
+      "keywordId": "je-sens-le-profit"
+    },
+    {
+      "englishName": "Nimble",
+      "kind": "keyword",
+      "keywordId": "agile"
+    },
+    {
+      "englishName": "Noncombatant",
+      "kind": "keyword",
+      "keywordId": "non-combattant"
+    },
+    {
+      "englishName": "Observe",
+      "kind": "keyword",
+      "keywordId": "surveillance-x"
+    },
+    {
+      "englishName": "One Step Ahead",
+      "kind": "keyword",
+      "keywordId": "longueur-davance"
+    },
+    {
+      "englishName": "Outmaneuver",
+      "kind": "keyword",
+      "keywordId": "manoeuvre-improbable"
+    },
+    {
+      "englishName": "Override",
+      "kind": "keyword",
+      "keywordId": "surcharge"
+    },
+    {
+      "englishName": "Overrun",
+      "kind": "keyword",
+      "keywordId": "bordee-x"
+    },
+    {
+      "englishName": "Overwhelm",
+      "kind": "keyword",
+      "keywordId": "debordement"
+    },
+    {
+      "englishName": "Plodding",
+      "kind": "keyword",
+      "keywordId": "mobilite-difficile"
+    },
+    {
+      "englishName": "Precise",
+      "kind": "keyword",
+      "keywordId": "precis-x"
+    },
+    {
+      "englishName": "Prepared Position",
+      "kind": "keyword",
+      "keywordId": "position-preparee"
+    },
+    {
+      "englishName": "Programmed",
+      "kind": "keyword",
+      "keywordId": "programme"
+    },
+    {
+      "englishName": "Pulling the Strings",
+      "kind": "keyword",
+      "keywordId": "tirer-les-ficelles"
+    },
+    {
+      "englishName": "Pierce",
+      "kind": "keyword",
+      "keywordId": "perforant-x"
+    },
+    {
+      "englishName": "Poison",
+      "kind": "keyword",
+      "keywordId": "poison-x"
+    },
+    {
+      "englishName": "Primitive",
+      "kind": "keyword",
+      "keywordId": "primitif"
+    },
+    {
+      "englishName": "Permanent",
+      "kind": "keyword",
+      "keywordId": "permanent"
+    },
+    {
+      "englishName": "Quick Thinking",
+      "kind": "keyword",
+      "keywordId": "vivacite-desprit"
+    },
+    {
+      "englishName": "Ready",
+      "kind": "keyword",
+      "keywordId": "operationnel-x"
+    },
+    {
+      "englishName": "Recharge",
+      "kind": "keyword",
+      "keywordId": "recharger-x"
+    },
+    {
+      "englishName": "Reinforcements",
+      "kind": "keyword",
+      "keywordId": "renforts"
+    },
+    {
+      "englishName": "Regenerate",
+      "kind": "keyword",
+      "keywordId": "regenerer-x"
+    },
+    {
+      "englishName": "Reliable",
+      "kind": "keyword",
+      "keywordId": "fiable-x"
+    },
+    {
+      "englishName": "Relentless",
+      "kind": "keyword",
+      "keywordId": "implacable"
+    },
+    {
+      "englishName": "Reposition",
+      "kind": "keyword",
+      "keywordId": "redeploiement"
+    },
+    {
+      "englishName": "Retinue",
+      "kind": "keyword",
+      "keywordId": "escorte"
+    },
+    {
+      "englishName": "Ruthless",
+      "kind": "keyword",
+      "keywordId": "impitoyable"
+    },
+    {
+      "englishName": "Ram",
+      "kind": "keyword",
+      "keywordId": "belier-x"
+    },
+    {
+      "englishName": "Reconfigure",
+      "kind": "keyword",
+      "keywordId": "reconfiguration"
+    },
+    {
+      "englishName": "Repair",
+      "kind": "keyword",
+      "keywordId": "reparation-x"
+    },
+    {
+      "englishName": "Restore",
+      "kind": "keyword",
+      "keywordId": "restauration"
+    },
+    {
+      "englishName": "Strafe",
+      "kind": "subrule",
+      "keywordId": "sustentation"
+    },
+    {
+      "englishName": "Scale",
+      "kind": "keyword",
+      "keywordId": "ascension"
+    },
+    {
+      "englishName": "Scout",
+      "kind": "keyword",
+      "keywordId": "eclaireur-x"
+    },
+    {
+      "englishName": "Scouting Party",
+      "kind": "keyword",
+      "keywordId": "equipe-declaireurs-x"
+    },
+    {
+      "englishName": "Secret Mission",
+      "kind": "keyword",
+      "keywordId": "mission-secrete"
+    },
+    {
+      "englishName": "Self-Destruct",
+      "kind": "keyword",
+      "keywordId": "autodestruction-x-unite"
+    },
+    {
+      "englishName": "Self-Preservation",
+      "kind": "keyword",
+      "keywordId": "instinct-de-survie"
+    },
+    {
+      "englishName": "Sentinel",
+      "kind": "keyword",
+      "keywordId": "sentinelle"
+    },
+    {
+      "englishName": "Sharpshooter",
+      "kind": "keyword",
+      "keywordId": "tireur-delite-x"
+    },
+    {
+      "englishName": "Shielded",
+      "kind": "keyword",
+      "keywordId": "bouclier-x"
+    },
+    {
+      "englishName": "Shien Mastery",
+      "kind": "keyword",
+      "keywordId": "maitrise-du-shien"
+    },
+    {
+      "englishName": "Smoke",
+      "kind": "keyword",
+      "keywordId": "fumee-x"
+    },
+    {
+      "englishName": "Special Issue",
+      "kind": "keyword",
+      "keywordId": "specificite"
+    },
+    {
+      "englishName": "Soresu Mastery",
+      "kind": "keyword",
+      "keywordId": "maitrise-du-soresu"
+    },
+    {
+      "englishName": "Speeder",
+      "kind": "keyword",
+      "keywordId": "speeder-x"
+    },
+    {
+      "englishName": "Spotter",
+      "kind": "keyword",
+      "keywordId": "observateur-x"
+    },
+    {
+      "englishName": "Spur",
+      "kind": "keyword",
+      "keywordId": "marche-forcee"
+    },
+    {
+      "englishName": "Stationary",
+      "kind": "keyword",
+      "keywordId": "stationnaire"
+    },
+    {
+      "englishName": "Steady",
+      "kind": "keyword",
+      "keywordId": "aguerri"
+    },
+    {
+      "englishName": "Swashbuckler",
+      "kind": "keyword",
+      "keywordId": "matamore"
+    },
+    {
+      "englishName": "Strategize",
+      "kind": "keyword",
+      "keywordId": "stratege-x"
+    },
+    {
+      "englishName": "Scatter",
+      "kind": "keyword",
+      "keywordId": "dispersion"
+    },
+    {
+      "englishName": "Sniper Team",
+      "kind": "keyword",
+      "keywordId": "equipe-sniper"
+    },
+    {
+      "englishName": "Spray",
+      "kind": "keyword",
+      "keywordId": "souffle"
+    },
+    {
+      "englishName": "Suppressive",
+      "kind": "keyword",
+      "keywordId": "suppressif"
+    },
+    {
+      "englishName": "Smoke and Mirrors",
+      "kind": "subrule",
+      "keywordId": "pions-bane"
+    },
+    {
+      "englishName": "Sidearm",
+      "kind": "keyword",
+      "keywordId": "arme-de-poing"
+    },
+    {
+      "englishName": "Small",
+      "kind": "keyword",
+      "keywordId": "petit"
+    },
+    {
+      "englishName": "Tactical",
+      "kind": "keyword",
+      "keywordId": "tacticien-x"
+    },
+    {
+      "englishName": "Take Cover",
+      "kind": "keyword",
+      "keywordId": "mettre-a-couvert-x"
+    },
+    {
+      "englishName": "Teamwork",
+      "kind": "keyword",
+      "keywordId": "travail-dequipe"
+    },
+    {
+      "englishName": "Target",
+      "kind": "keyword",
+      "keywordId": "cible-x"
+    },
+    {
+      "englishName": "Tempted",
+      "kind": "keyword",
+      "keywordId": "tentation"
+    },
+    {
+      "englishName": "This is the Way",
+      "kind": "keyword",
+      "keywordId": "telle-est-la-voie"
+    },
+    {
+      "englishName": "Tough",
+      "kind": "keyword",
+      "keywordId": "coriace"
+    },
+    {
+      "englishName": "Transport",
+      "kind": "keyword",
+      "keywordId": "transport"
+    },
+    {
+      "englishName": "Tow Cable",
+      "kind": "keyword",
+      "keywordId": "cable-de-remorquage"
+    },
+    {
+      "englishName": "Treat",
+      "kind": "keyword",
+      "keywordId": "traiter-x"
+    },
+    {
+      "englishName": "Uncanny Luck",
+      "kind": "keyword",
+      "keywordId": "coup-de-chance-x"
+    },
+    {
+      "englishName": "Unconcerned",
+      "kind": "keyword",
+      "keywordId": "indifferent"
+    },
+    {
+      "englishName": "Unhindered",
+      "kind": "keyword",
+      "keywordId": "sans-entrave"
+    },
+    {
+      "englishName": "Unstoppable",
+      "kind": "keyword",
+      "keywordId": "inarretable"
+    },
+    {
+      "englishName": "Vaapad Mastery",
+      "kind": "keyword",
+      "keywordId": "maitrise-du-vaapad"
+    },
+    {
+      "englishName": "Victory or Death",
+      "kind": "keyword",
+      "keywordId": "la-victoire-ou-la-mort"
+    },
+    {
+      "englishName": "Versatile",
+      "kind": "keyword",
+      "keywordId": "polyvalent"
+    },
+    {
+      "englishName": "We Fight for Our Family",
+      "kind": "keyword",
+      "keywordId": "nous-nous-battons-pour-notre-famille"
+    },
+    {
+      "englishName": "Weak Point",
+      "kind": "keyword",
+      "keywordId": "point-faible-x"
+    },
+    {
+      "englishName": "Weighed Down",
+      "kind": "keyword",
+      "keywordId": "alourdissement"
+    },
+    {
+      "englishName": "We're Not Regs",
+      "kind": "keyword",
+      "keywordId": "on-est-pas-des-regs"
+    },
+    {
+      "englishName": "Wheel Mode",
+      "kind": "keyword",
+      "keywordId": "mode-roue"
+    },
+    {
+      "englishName": "Wound",
+      "kind": "keyword",
+      "keywordId": "blessure-x"
+    }
+  ]
+}

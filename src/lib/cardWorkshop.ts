@@ -136,7 +136,7 @@ export function buildWorkshopCatalog(tags: CardTagLibrary, keywords: KeywordDef[
       return [rule];
     }));
     card.keywordReview = { status: review.status, reviewedAt: keywordReviews.reviewedAt, note: review.note, sourceSha256: review.front.sha256 };
-    card.warnings = card.warnings.filter((text) => !/Mots-clés du commandement à identifier|Couverture des capacités à relire|Aucune définition associée|Un paramètre X reste à préciser/.test(text));
+    card.warnings = card.warnings.filter((text) => !/Mot-clé à associer|Définition absente|Mots-clés du commandement à identifier|Couverture des capacités à relire|Aucune définition associée|Un paramètre X reste à préciser/.test(text));
     if ('frontLanguage' in review && review.frontLanguage === 'en') card.warnings.push('Recto anglais du dépôt : traduction française à réaliser. Les définitions du verso sont en français.');
     if ('officialNote' in review && typeof review.officialNote === 'string') card.warnings.push(review.officialNote);
     for (const entry of review.keywords) if (!definitions.has(entry.keywordId)) card.warnings.push(`Définition absente : ${entry.keywordId}.`);

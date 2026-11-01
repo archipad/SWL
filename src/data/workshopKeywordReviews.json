@@ -3578,7 +3578,8 @@
           "value": 5
         },
         {
-          "keywordId": "sustentation"
+          "keywordId": "sustentation",
+          "label": "Sustentation : Terrestre"
         },
         {
           "keywordId": "redeploiement"
@@ -3592,7 +3593,8 @@
         }
       ],
       "status": "keywords-reviewed",
-      "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG."
+      "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-01"
     },
     {
       "id": "upgrade:onboard comms channel",
@@ -3800,11 +3802,13 @@
       "keywords": [
         {
           "keywordId": "telle-est-la-voie",
-          "label": "Telle est la Voie : Viser 1 ou Esquiver 1"
+          "label": "Telle est la Voie : Viser 1 ou Esquiver 1",
+          "value": 1
         }
       ],
       "status": "keywords-reviewed",
-      "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG."
+      "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-01"
     },
     {
       "id": "unit:mandalorian hunter",
@@ -3819,7 +3823,7 @@
         },
         {
           "keywordId": "saut-x",
-          "value": 2
+          "value": 3
         },
         {
           "keywordId": "equipe"
@@ -3833,7 +3837,8 @@
         }
       ],
       "status": "keywords-reviewed",
-      "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG."
+      "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-01"
     },
     {
       "id": "unit:chewbacca",
@@ -8592,7 +8597,8 @@
         },
         {
           "keywordId": "sustentation",
-          "value": 2
+          "value": 2,
+          "label": "Sustentation : Aérienne 2"
         },
         {
           "keywordId": "immunite-deflagration"
@@ -8611,11 +8617,13 @@
           "value": 1
         },
         {
-          "keywordId": "fixe"
+          "keywordId": "fixe",
+          "label": "Fixe : Avant"
         }
       ],
       "status": "keywords-reviewed",
-      "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG."
+      "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG. Sous-type Aérienne 2 et arc Avant revus sur le recto pour la version condensée.",
+      "parametersReviewedAt": "2026-11-01"
     },
     {
       "id": "upgrade:tristan wren",

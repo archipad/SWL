@@ -34,3 +34,7 @@ Les listes et l'état courant sont conservés localement. `src/lib/gistSync.ts` 
 ## Atelier de cartes FR — publication du 01/11/2026
 
 La page `print-cards` et les ancres `#imprimer` / `#atelier-cartes` ouvrent désormais `CardWorkshopScreen`. L’entrée de menu existante est renommée « Atelier de cartes FR » : aucun doublon de navigation. Impression : un recto et un verso par exemplaire, uniquement les définitions au dos. Voir docs/CARD_WORKSHOP.md et docs/CARD_WORKSHOP_FRONTS_CURRENT.md. Les sources anglaises personnelles des recettes ne sont pas publiées.
+
+## Versos compacts et planches A4 — 01/11/2026
+
+Le mode condensé et le format commun 68 × 98 mm (8/A4) sont proposés par défaut. Les textes intégraux restent inchangés. Voir docs/CARD_WORKSHOP_COMPACT.md pour les 156 résumés, Tough, la couverture des 197 entrées HQ et les essais des deux listes réelles. Aucun changement du moteur ni des certifications humaines.

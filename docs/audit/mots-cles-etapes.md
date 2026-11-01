@@ -1,11 +1,11 @@
 # Mots-clés : étape où ils agissent et traitement dans l’Assistant
 
-Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 199 mots-clés du glossaire.
+Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 200 mots-clés du glossaire.
 
 - Combat (attaque / défense), gérés par le moteur : **86** (60 automatiques, 26 assistés).
 - Hors combat, **application par bouton** : 78.
 - Hors combat, **règle de mouvement affichée dans le Briefing** : 12.
-- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 9.
+- Hors combat, **rappel à l’étape** (pastille d’étape dans le Briefing de la fiche d’unité) : 10.
 - Composition d’armée (rappel replié) : 14.
 
 | Mot-clé | Étape | Traitement | Cartes |
@@ -147,6 +147,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 19
 | Véhicule Grimpant | Déplacement | regle | 2 |
 | Alourdi | Effets permanents | regle | 0 |
 | Chef | Effets permanents | rappel | 12 |
+| Coriace (Tough) | Effets permanents | rappel | 0 |
 | Enragé X | Effets permanents | auto | 3 |
 | Immunité : Effets Ennemis | Effets permanents | rappel | 0 |
 | Je Sens le Profit | Effets permanents | rappel | 0 |

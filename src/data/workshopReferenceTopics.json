@@ -1,0 +1,37 @@
+{
+  "source": {
+    "title": "Star Wars: Legion Core Rules",
+    "publisher": "Atomic Mass Games",
+    "updatedAt": "2026-06-17",
+    "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/06/DOC56_SWQ_Rulebook-2.pdf",
+    "indexUrl": "https://www.atomicmassgames.com/swlegiondocs/",
+    "sha256": "c9d0ffcece6d33dbf222d2a780cff92392df56f59027aa55ec79aba7ee6ce3b8",
+    "language": "en",
+    "frenchTextStatus": "Traduction française vérifiée sur le règlement officiel anglais ; ce texte français n’est pas une édition officielle publiée par AMG."
+  },
+  "reviewedAt": "2026-11-01",
+  "notice": "Compléments de type d’unité, distincts des mots-clés ; traduction locale comparée à l’annexe B officielle.",
+  "topics": [
+    {
+      "id": "soldat-creature",
+      "englishName": "Creature Trooper",
+      "name": "Soldat créature",
+      "page": 39,
+      "definition": "Soldats sur socles à encoches. Peuvent reculer et pivoter, même engagés. Ne bénéficient pas du couvert des barricades. Peuvent attaquer et se replier pendant la même activation."
+    },
+    {
+      "id": "soldat-droide",
+      "englishName": "Droid Trooper",
+      "name": "Soldat droïde",
+      "page": 39,
+      "definition": "Ne perd pas une action du fait d’être démoralisé au début de l’étape Effectuer des actions. La panique s’applique normalement. Ne peut gagner ni résoudre de pions Poison."
+    },
+    {
+      "id": "soldat-en-position",
+      "englishName": "Emplacement Trooper",
+      "name": "Soldat en position",
+      "page": 39,
+      "definition": "Soldats sur socles à encoches. Peuvent reculer et pivoter, même engagés. Appliquent les autres règles de soldats ; les anciennes interdictions de Revendiquer/Sabotage/Réparation listées par LegionHQ2 ne figurent pas dans l’annexe B actuelle."
+    }
+  ]
+}

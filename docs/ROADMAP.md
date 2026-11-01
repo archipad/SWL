@@ -501,3 +501,19 @@ Lot : remplacement de « Imprimer des cartes » par l’Atelier de cartes FR, au
 Le test de Certification β qui échouait avant ce lot est corrigé : contrôle du blocage d’une identité ambiguë, puis contrôle du refus de validation sans image EN sur une identité déjà résolue. Le produit, le moteur et le design de Certification β sont inchangés.
 
 Validation de publication : npm run verify réussi intégralement (77 parcours Assistant, moteur, contrats, import, impression, 478 cartes atelier, audits, TypeScript et compilation PWA). Contrôle visuel : entrée unique « Atelier de cartes FR » à l’emplacement de l’ancienne impression ; #imprimer ouvre le nouvel écran. Commit du lot : « Publie l’atelier de cartes FR à la place de l’impression ». Publication demandée sur https://archipad.github.io/SWL/#atelier-cartes ; résultat GitHub Pages contrôlé après envoi.
+
+## Atelier FR publié — 01/11/2026
+
+Commit publié : f12e17f15e20213461535196755d641988bab362, branche claude/star-wars-legion-app-49rc3z. Déploiement GitHub Pages réussi : https://github.com/archipad/SWL/actions/runs/41296261495 . Site contrôlé : https://archipad.github.io/SWL/#atelier-cartes .
+
+L’entrée unique « Atelier de cartes FR » remplace « Imprimer des cartes », conserve la page persistée print-cards et accepte #imprimer / #atelier-cartes. Le catalogue de 478 cartes, les 156 définitions et les huit traductions locales sont publiés. Sources anglaises personnelles et fichiers temporaires exclus. Fichiers : App.tsx, composants/librairies/data cardWorkshop, visuels public/cards/workshop, recettes/rendu/tests/export, package.json et documentation CARD_WORKSHOP*. Test préexistant Certification β corrigé dans scripts/test-assistant-parcours.mjs sans modifier le produit : identité ambiguë distincte du manque de visuel EN. npm run verify réussi intégralement ; 77 parcours Assistant validés ; contrôle en ligne du recto FR Agent Rebelle et de l’aperçu (1 recto, 1 verso, 2 pages), panier de test remis à zéro.
+
+Publication préparée dans une copie isolée fondée sur eb341a7, conservant les trois dernières modifications distantes et les travaux locaux. Navigation et correction du test reportées dans le dépôt de travail. Restent : relecture humaine des traductions, impression matérielle et traduction automatique à l’upload. Sur un appareil gardant l’ancienne application : toucher Recharger dans le bandeau de mise à jour.
+
+### 01/11/2026 — Versos condensés et bibliothèque imprimable
+
+- 156 définitions courtes sourcées + Tough (AMG), couverture des 197 entrées LegionHQ2 ; corrections de correspondances EN/FR.
+- Format commun classeur 68 × 98 mm, 8 cartes/A4 ; un recto et un verso, aucun texte coupé ; impression complète des 478 modèles.
+- Essais Empire Moff Gideon et Rebelles Simon 3 : 37 cartes et 5 feuilles recto verso chacun. Bibliothèque 478 cartes : 60 feuilles.
+- Contrôle visuel des PDF et calibration ; détails et limites : CARD_WORKSHOP_COMPACT.md.
+- Validation finale : `npm run verify` réussi ; aperçus des 478 paires et PDF des deux armées vérifiés.

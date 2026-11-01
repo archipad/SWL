@@ -1,1 +1,23 @@
-{}
+{
+  "coriace": {
+    "id": "coriace",
+    "englishName": "Tough",
+    "name": "Coriace (Tough)",
+    "category": "unité",
+    "impact": "autre",
+    "hasValue": false,
+    "definition": "Une figurine dotée du mot-clé Coriace (Tough) peut se voir attribuer des blessures même si elle est le Chef de l’unité ou si elle n’est pas la figurine de l’unité possédant le plus de pions Blessure.",
+    "shortDefinition": "Cette figurine peut recevoir des blessures même si elle est le Chef ou n’est pas la plus blessée de l’unité.",
+    "trigger": "passive",
+    "automation": "informative",
+    "sourceUrl": "https://www.atomicmassgames.com/transmission/scene-to-stats-han-chewie-notorious-scoundrels/",
+    "rulesVersion": "AMG Scene-to-Stats, 10/09/2026 ; traduction FR locale relue par IA",
+    "verifiedAt": "2026-11-01",
+    "checks": {
+      "translation": false,
+      "definition": false,
+      "behavior": false,
+      "source": false
+    }
+  }
+}
