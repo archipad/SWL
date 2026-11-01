@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Certifications historiques valides au moment de l’indexation : empreintes SHA-256 des données moteur, du visuel français et des définitions de mots-clés, et identités Tabletop Admiral rattachées sans ambiguïté. Toute différence rend la certification obsolète dans la Certification automatique β.",
-    "indexedOn": "2026-10-25",
+    "indexedOn": "2026-11-01",
     "uncertainIdentities": [
       "a a5 speeder truck (unit:772, unit:4919)",
       "agent kallus (unit:81, unit:29931)",
@@ -1522,7 +1522,7 @@
       "frenchName": "Saboteur avec Charge à Protons",
       "frenchVisual": "cards/proton-charge-saboteur.jpg",
       "frenchVisualSha256": "3b1718667d0e93baa3cb758ac4cd82dfcba89d27fd25a35e0e74d4e4e286ec1c",
-      "dataSha256": "c6aa3a394be73e7d11bc849c00b6346c0dfc24dde9ac08ffdb63bc90d12ab5f6",
+      "dataSha256": "cea71103fb1166f616a4254752cff0d20a59d94f911d3106783e6edc27f2a9cd",
       "definitionsSha256": "54c649f938798c1b815a7bb29cb7a30b1c6ae93a8d0b517519a7422fe3943667",
       "rulesVersion": "AMG 2026-06-17",
       "verifiedAt": "2026-09-21T23:26:58.823Z",

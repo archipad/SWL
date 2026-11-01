@@ -185,7 +185,12 @@ try {
   const errataPath = resolve(projectRoot, 'src/data/errata.json')
   const errataFile = existsSync(errataPath) ? JSON.parse(await readFile(errataPath, 'utf8')) : {}
   const removedCards = errataFile.removed || {}
-  const retiredKeywords = errataFile.retiredKeywords || {}
+  const retiredKeywords = { ...(errataFile.retiredKeywords || {}) }
+  // Un retrait confirmé en certification doit aussi écarter la copie locale de l'ancienne amorce (swl.card-tags.v1), sinon le mot-clé y survit.
+  for (const [card, profile] of Object.entries(weapons)) {
+    const removals = (profile.fullCardCertification?.confirmedRemovals || []).filter((id) => !(tags[card] || []).some((tag) => tag.keywordId === id))
+    if (removals.length) retiredKeywords[card] = [...new Set([...(retiredKeywords[card] || []), ...removals])]
+  }
   const errataResetCards = Object.keys(errataFile.updated || {})
 
   const reference = {
