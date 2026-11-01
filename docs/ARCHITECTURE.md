@@ -10,7 +10,7 @@ Les deux interfaces doivent employer les mêmes clés canoniques et certificatio
 
 1. `src/lib/parseListJson.ts` lit prioritairement le JSON Tabletop Admiral.
 2. `src/lib/cardNames.ts` ramène les variantes anglaises ou françaises vers une clé canonique.
-3. `src/data/cardImages.ts`, `cardNamesFr.ts`, `cardTags.ts` et `cardNotes.ts` fournissent présentation et effets.
+3. `src/data/cardImages.ts`, `cardNamesFr.ts`, `cardTags.ts` et `cardNotes.ts` fournissent présentation et effets. `certifiedCardTags.json`, généré par `generate-assistant-reference.mjs`, donne à l'application principale les mêmes mots-clés certifiés que l'Assistant ; `src/lib/certifiedTags.ts` les fait primer sur la copie locale `swl.card-tags.v1`.
 4. `src/data/diceProfiles.ts` décrit les profils utilisables par le moteur.
 5. `src/data/diceCertifications.json` confirme dés, défense, PV, courage et figurines.
 6. `src/lib/unitModels.ts` calcule l'effectif et les PV en intégrant seulement les améliorations déclarées comme ajoutant des figurines.

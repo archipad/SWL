@@ -226,6 +226,13 @@ try {
     'utf8',
   );
 
+  // Même résultat pour l'application principale (src/lib/certifiedTags.ts) : page Listes, impressions et combat lisent ces valeurs.
+  await writeFile(
+    resolve(projectRoot, 'src/data/certifiedCardTags.json'),
+    `${JSON.stringify({ tags: reference.tags, retiredKeywords: reference.retiredKeywords })}\n`,
+    'utf8',
+  );
+
   console.log(
     `Référentiel Assistant généré : ${reference.keywords.length} mots-clés, ` +
       `${Object.keys(reference.tags).length} cartes, ` +

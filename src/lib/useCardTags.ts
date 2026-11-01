@@ -1,6 +1,7 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { usePersistentState } from './storage';
 import { canonicalCardKey } from './cardNames';
+import { applyCertifiedTags } from './certifiedTags';
 import { SEED_CARD_TAGS } from '../data/cardTags';
 import type { CardKeywordTag, CardTagLibrary } from '../types';
 
@@ -13,13 +14,14 @@ const APPLIED_SEED_KEY = 'swl.card-tags-seed-applied.v1';
 const REMOVED_KEY = 'swl.card-tags-removed.v1';
 
 export function useCardTags() {
-  const [library, setLibrary] = usePersistentState<CardTagLibrary>(STORAGE_KEY, {});
+  const [localLibrary, setLibrary] = usePersistentState<CardTagLibrary>(STORAGE_KEY, {});
   // Mémorise, par carte, les entrées d'amorce déjà appliquées sur cet
   // appareil — pour appliquer une fois chaque nouveauté de data/cardTags.ts
   // (y compris sur un appareil qui a déjà utilisé l'appli avant son ajout),
   // sans jamais revenir sur une suppression volontaire de l'utilisateur.
   const [appliedSeedKeys, setAppliedSeedKeys] = usePersistentState<string[]>(APPLIED_SEED_KEY, []);
   const [removed, setRemoved] = usePersistentState<Record<string, string[]>>(REMOVED_KEY, {});
+  const library = useMemo(() => applyCertifiedTags(localLibrary, removed), [localLibrary, removed]);
 
   useEffect(() => {
     const applied = new Set(appliedSeedKeys);

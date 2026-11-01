@@ -105,6 +105,32 @@ try {
   assert.match(listHtml, /Munitions Antichar[\s\S]*<strong>Anti-matériel 2<\/strong> \(/, 'Munitions Antichar : Anti-matériel en gras et défini dans l’encart')
   console.log('Encart des améliorations : mots-clés cités définis entre parenthèses.')
 
+  // Copie locale d'un appareil déjà utilisé : la page Listes et les impressions affichent les valeurs certifiées.
+  const { applyCertifiedTags } = await vite.ssrLoadModule('/src/lib/certifiedTags.ts')
+  const reference = new Function('window', `${fs.readFileSync('public/assistant/reference-data.js', 'utf8')};return window.SWL_REFERENCE`)({})
+  assert.deepEqual(applyCertifiedTags({}, {}), reference.tags, 'src/data/certifiedCardTags.json suit le référentiel de l’Assistant')
+  const stale = {
+    'reluctant hero': [{ keywordId: 'critique-x', value: 0 }],
+    'the darksaber': [{ keywordId: 'impact-x', value: 2 }, { keywordId: 'perforant-x', value: 2 }, { keywordId: 'demoraliser-x', value: 1 }],
+    'gar saxon militant commando': [{ keywordId: 'mercenaire' }],
+    'carte inconnue': [{ keywordId: 'impact-x', value: 3 }],
+  }
+  const effective = applyCertifiedTags(stale, {})
+  const tagOf = (library, card, id) => library[card].find((tag) => tag.keywordId === id)
+  assert.equal(tagOf(effective, 'reluctant hero', 'critique-x').value, 1)
+  assert.equal(tagOf(effective, 'the darksaber', 'impact-x').value, 1)
+  assert.equal(tagOf(effective, 'the darksaber', 'perforant-x').value, 1)
+  assert.equal(tagOf(effective, 'the darksaber', 'demoraliser-x'), undefined, 'mot-clé retiré en certification')
+  assert.equal(tagOf(effective, 'gar saxon militant commando', 'mercenaire'), undefined, 'mot-clé retiré en certification')
+  assert.equal(tagOf(effective, 'carte inconnue', 'impact-x').value, 3, 'une étiquette ajoutée à la main sur une carte non certifiée reste')
+  assert.equal(tagOf(applyCertifiedTags(stale, { 'the darksaber': ['impact-x'] }), 'the darksaber', 'impact-x'), undefined, 'un retrait volontaire reste respecté')
+  const rebels = importArmyList(fs.readFileSync('scripts/data/real-lists/rebelles-simon-3.json', 'utf8'))
+  const withDarksaber = { ...rebels, units: [{ ...rebels.units[0], upgrades: [{ key: 'darksaber', name: 'The Darksaber' }] }] }
+  const printed = renderToStaticMarkup(React.createElement(VisualListSection, { list: withDarksaber, tagLibrary: effective, keywords: SEED_KEYWORDS }))
+  assert.doesNotMatch(printed, /Démoraliser/, 'mot-clé retiré absent de la liste imprimée')
+  assert.match(printed, /Impact 1/, 'valeur certifiée dans la liste imprimée')
+  console.log('Valeurs certifiées : priorité sur la copie locale vérifiée.')
+
   console.log(`Audit des écrans d'impression OK.`)
 } finally {
   await vite.close()
