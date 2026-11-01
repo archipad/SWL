@@ -1,0 +1,60 @@
+{
+  "stem": "ursa-wren-current",
+  "cardId": "upgrade:ursa wren",
+  "name": "Ursa Wren",
+  "kind": "upgrade",
+  "sourceFile": "cards/workshop/sources/ursa-wren-official-en.png",
+  "expectedSize": [
+    727,
+    1040
+  ],
+  "fr": {
+    "body": "__{restriction} uniquement.__\nAjoutez 1 figurine d’Ursa Wren.\nCette unité augmente sa valeur de {courage} de 1 et gagne **Défense 1**.\n**Chef.**"
+  },
+  "zones": {
+    "body": [
+      65,
+      630,
+      670,
+      895
+    ]
+  },
+  "sourceIcons": {
+    "restriction": [
+      284,
+      642,
+      333,
+      681
+    ],
+    "courage": [
+      393,
+      749,
+      432,
+      790
+    ]
+  },
+  "protectedZones": [
+    [
+      0,
+      0,
+      727,
+      600
+    ],
+    [
+      0,
+      925,
+      727,
+      1040
+    ]
+  ],
+  "englishText": "[Mandalorian Clans symbol] only. Add 1 Ursa Wren miniature. This unit increases its [Courage] value by 1 and gains Defend 1. Leader.",
+  "officialSource": {
+    "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/07/DOC56_Mandalorian_BattleForceCards-3.pdf",
+    "page": 9,
+    "imageObject": "Im2",
+    "pdfSha256": "17dc96519f5fb3614a70a4b14f1e1eb7880dc72268fee47a9249acfcc09635a9",
+    "version": "v1.1"
+  },
+  "sourceSha256": "380a5d5ef01e8b3754ef2d49ccddf6b5fbbf2dda9221fda762f70383f3ed06d1",
+  "translationStatus": "local-ai-reviewed-not-human-certified"
+}

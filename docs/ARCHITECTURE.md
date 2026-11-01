@@ -30,3 +30,7 @@ Les listes et l'état courant sont conservés localement. `src/lib/gistSync.ts` 
 ## Construction et déploiement
 
 `npm run build` régénère le référentiel, lance les tests et audits, compile TypeScript puis produit `dist/`. `.github/workflows/deploy-pages.yml` exécute ce même build et déploie GitHub Pages sur les branches autorisées.
+
+## Atelier de cartes FR — publication du 01/11/2026
+
+La page `print-cards` et les ancres `#imprimer` / `#atelier-cartes` ouvrent désormais `CardWorkshopScreen`. L’entrée de menu existante est renommée « Atelier de cartes FR » : aucun doublon de navigation. Impression : un recto et un verso par exemplaire, uniquement les définitions au dos. Voir docs/CARD_WORKSHOP.md et docs/CARD_WORKSHOP_FRONTS_CURRENT.md. Les sources anglaises personnelles des recettes ne sont pas publiées.

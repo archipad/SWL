@@ -1,0 +1,959 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-31",
+  "source": {
+    "title": "Star Wars: Legion Core Rules",
+    "publisher": "Atomic Mass Games",
+    "updatedAt": "2026-06-17",
+    "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/06/DOC56_SWQ_Rulebook-2.pdf",
+    "indexUrl": "https://www.atomicmassgames.com/swlegiondocs/",
+    "sha256": "c9d0ffcece6d33dbf222d2a780cff92392df56f59027aa55ec79aba7ee6ce3b8",
+    "language": "en",
+    "frenchTextStatus": "Traduction française vérifiée sur le règlement officiel anglais ; ce texte français n’est pas une édition officielle publiée par AMG."
+  },
+  "keywords": {
+    "tireur-delite-x": {
+      "name": "Tireur d'Élite X",
+      "definition": "Pendant l'étape « Déterminer le couvert », une unité dotée du mot-clé Tireur d'Élite X soustrait X de la valeur numérique du couvert du défenseur. Par exemple, une unité bénéficiant d'un couvert lourd et d'un pion Suppression qui est attaquée par une unité dotée de Tireur d'Élite 1 bénéficie d'un couvert léger.",
+      "heading": "SHARPSHOOTER X",
+      "page": 55
+    },
+    "tacticien-x": {
+      "name": "Tacticien X",
+      "definition": "Lorsqu’une unité dotée du mot-clé Tacticien X effectue un déplacement normal dans le cadre d’une action ou d’une action gratuite, elle gagne X pions Viser après la résolution de l’effet.",
+      "heading": "TACTICAL X",
+      "page": 56
+    },
+    "suppressif": {
+      "name": "Suppressif",
+      "definition": "Après avoir défendu contre une réserve d’attaque qui contient une arme dotée du mot-clé Suppressif, l’unité en défense gagne 1 pion Suppression supplémentaire pendant l’étape « Attribuer un pion Suppression au défenseur ».",
+      "heading": "SUPPRESSIVE",
+      "page": 60
+    },
+    "pistolero": {
+      "name": "Pistolero",
+      "definition": "Lorsqu'une unité dotée du mot-clé Pistolero effectue son étape « Déclarer un défenseur supplémentaire », elle peut déclarer un défenseur supplémentaire et créer une réserve d'attaque consistant uniquement en une arme à distance qui a déjà été ajoutée à une autre réserve d'attaque. Le mot-clé Pistolero ne peut être utilisé qu'une fois par séquence d'attaque.",
+      "heading": "GUNSLINGER",
+      "page": 50
+    },
+    "indomptable": {
+      "name": "Indomptable",
+      "definition": "Lorsqu'une unité dotée du mot-clé Indomptable effectue son étape « Se rallier », elle lance des dés de défense rouges à la place de dés de défense blancs.",
+      "heading": "INDOMITABLE",
+      "page": 51
+    },
+    "retrait": {
+      "name": "Retrait",
+      "definition": "Tant qu'une unité de soldats dotée du mot-clé Retrait est engagée avec une seule unité ennemie, elle peut effectuer des déplacements normalement.",
+      "heading": "DISENGAGE",
+      "page": 48
+    },
+    "immunite-deflexion": {
+      "name": "Immunité : Déflexion",
+      "definition": "Pendant une attaque, si la réserve d'attaque contient des armes dotées du mot-clé Immunité : déflexion, l'unité attaquante ne peut pas subir de blessures dues au mot-clé Déflexion.",
+      "heading": "IMMUNE: DEFLECT",
+      "page": 59
+    },
+    "divulgation": {
+      "name": "Divulgation",
+      "definition": "Certaines cartes Commandement sont dotées du mot-clé Divulgation : elles sont alors divisées par une ligne horizontale, qui sert à séparer visuellement l'effet du mot-clé Divulgation de l'effet normal de la carte Commandement. Certaines de ces cartes Commandement disposent de plusieurs options : le joueur doit alors en choisir une. Ces cartes peuvent être révélées au début de la phase ou étape indiquée par le mot-clé Divulgation. Si une carte est révélée de cette manière, résolvez le texte qui suit le mot-clé Divulgation. Une carte ainsi révélée n'est pas jouée : elle est remise dans la main de Commandement de ce joueur à la fin de l'étape au cours de laquelle elle a été divulguée. Si une carte qui a le mot-clé Permanent est divulguée, elle n'est pas remise dans la main de Commandement, mais reste en jeu. Les joueurs peuvent divulguer autant de cartes Commandement qu'ils le souhaitent. Si les deux joueurs disposent de cartes Commandement qui doivent être divulguées en même temps, le joueur bleu peut révéler la sienne le premier. S'il décline cette opportunité, la carte ne peut plus être divulguée.",
+      "heading": "DIVULGE",
+      "page": 61
+    },
+    "deflagration": {
+      "name": "Déflagration",
+      "definition": "Pendant l'étape « Appliquer les esquives et couverts », une unité en défense ne peut pas utiliser de couvert léger ni de couvert lourd pour annuler un résultat [TOUCHE] obtenu sur un dé issu d'une réserve d'attaque constituée d'au moins une arme dotée du mot-clé Déflagration.",
+      "heading": "BLAST",
+      "page": 58
+    },
+    "critique-x": {
+      "name": "Critique X",
+      "definition": "Lorsqu'une unité convertit des adrénalines d'attaque pour une réserve d'attaque dotée du mot-clé Critique X, pendant l'étape « Convertir les adrénalines d'attaque », elle peut convertir jusqu'à X résultats [ADR-ATQ] en résultats [CRITIQUE].",
+      "heading": "CRITICAL X",
+      "page": 58
+    },
+    "impact-x": {
+      "name": "Impact X",
+      "definition": "Pendant l'étape « Modifier les dés d'attaque », si l'unité en défense est dotée du mot-clé Armure X, une unité dont la réserve d'attaque contient une arme dotée du mot-clé Impact X peut changer jusqu'à X résultats [TOUCHE] en résultats [CRITIQUE] pour cette attaque.",
+      "heading": "IMPACT X",
+      "page": 59
+    },
+    "arme-a-effet-de-zone": {
+      "name": "Arme à Effet de Zone",
+      "definition": "Une arme affichant une icône de portée jaune est une arme à effet de zone. Lorsque vous utilisez une arme à effet de zone, effectuez une attaque distincte contre chaque unité, alliée et ennemie, qui se trouve en LdV et à la portée indiquée par le chiffre figurant sur l'icône de portée, même si cette unité est engagée. Les attaques effectuées par des armes à effet de zone sont toujours des attaques à distance. Les armes à effet de zone ne peuvent jamais être incluses dans une réserve d'attaque constituée par une unité et doivent toujours être la seule arme d'une réserve d'attaque.",
+      "heading": "AREA WEAPON",
+      "page": 58
+    },
+    "tenir-le-cap": {
+      "name": "Les Yeux sur le Butin : Mot-clé",
+      "definition": "Tant que le Chef d’une unité dotée du mot-clé Les Yeux sur le Butin se trouve à portée ½ d’au moins 1 pion Objectif, ou que cette unité détient au moins 1 pion Objectif, elle possède le mot-clé indiqué.",
+      "heading": "EYES ON THE PRIZE: KEYWORD",
+      "page": 49
+    },
+    "profil-bas": {
+      "name": "Profil Bas",
+      "definition": "Lorsqu’une unité dotée du mot-clé Profil Bas devrait lancer au moins 1 dé de défense pendant l’étape « Lancer la réserve de couvert », elle lance 1 dé de défense de moins et ajoute à la place 1 résultat [BLOC] supplémentaire à la réserve de couvert après le jet.",
+      "heading": "LOW PROFILE",
+      "page": 52
+    },
+    "agile": {
+      "name": "Agile",
+      "definition": "Lorsqu’une unité dotée du mot-clé Agile défend contre une attaque et dépense au moins 1 pion Esquive à n’importe quel moment de la séquence d’attaque, elle gagne 1 pion Esquive après la résolution de l’attaque.",
+      "heading": "NIMBLE",
+      "page": 53
+    },
+    "demoraliser-x": {
+      "name": "Démoraliser X",
+      "definition": "Après qu’une unité dotée du mot-clé Démoraliser X a effectué son étape « Se rallier », ajoutez au total jusqu’à X pions Suppression à des unités ennemies à portée 2.",
+      "heading": "DEMORALIZE X",
+      "page": 48
+    },
+    "manoeuvre-improbable": {
+      "name": "Manœuvre Improbable",
+      "definition": "Pendant l'étape « Appliquer les esquives et couverts », une unité dotée du mot-clé Manœuvre Improbable peut dépenser des pions Esquive pour annuler des résultats [CRITIQUE].",
+      "heading": "OUTMANEUVER",
+      "page": 53
+    },
+    "aguerri": {
+      "name": "Aguerri",
+      "definition": "Après qu'une unité dotée du mot-clé Aguerri a effectué au cours de son activation une action Se déplacer, elle peut effectuer une action Attaquer gratuite. Pendant cette action Attaquer, elle ne peut ajouter que des armes à distance aux réserves d'attaques.",
+      "heading": "STEADY",
+      "page": 56
+    },
+    "marche-forcee": {
+      "name": "Marche Forcée",
+      "definition": "Lorsqu'une unité dotée du mot-clé Marche Forcée se déplace, son contrôleur peut lui attribuer un pion Suppression afin d'augmenter de 1 sa vitesse maximale pour ce déplacement, jusqu'à un maximum de 3. Lorsqu'une unité se déplace, appliquez tout effet qui augmente sa vitesse maximale avant d'appliquer les effets qui réduisent la vitesse maximale de cette unité. Par exemple, une unité ayant normalement une vitesse maximale de 1, mais qui possède 1 pion Immobilisation, peut utiliser le mot-clé Marche Forcée pour effectuer un déplacement d'une vitesse maximale totale de 1. Néanmoins, une unité ayant normalement une vitesse maximale de 1, mais qui possède 2 pions Immobilisation, ne peut pas utiliser le mot-clé Marche Forcée pour effectuer un déplacement car sa vitesse maximale sera alors égale à 0.",
+      "heading": "SPUR",
+      "page": 56
+    },
+    "saut-x": {
+      "name": "Saut X",
+      "definition": "Une unité dotée du mot-clé Saut X peut effectuer l'action de carte Saut X à tout moment auquel elle peut effectuer une action Se déplacer. L'unité effectue une action Se déplacer normalement et peut ignorer le terrain ou mettre fin à ce déplacement sur un terrain de hauteur X ou moins. Tant qu'elle effectue un déplacement avec l'action accordée par Saut X, une unité ignore les effets des terrains difficiles et des autres figurines d'une hauteur inférieure ou égale à X. Lorsqu'elle effectue un déplacement avec l'action Saut X, une unité peut placer le gabarit de déplacement à cheval sur un terrain infranchissable mais ne peut pas terminer son déplacement sur ce terrain infranchissable. Lorsqu'une unité effectue l'action Saut X, mesurez la hauteur à partir de la position de départ de l'unité.",
+      "heading": "JUMP X",
+      "page": 52
+    },
+    "permanent": {
+      "name": "Permanent",
+      "definition": "Certaines cartes Commandement sont dotées du mot-clé Permanent. Contrairement aux cartes Commandement ordinaires, ces cartes ne sont pas défaussées pendant la Phase Finale et leurs effets persistent tant qu'elles sont en jeu.",
+      "heading": "PERMANENT",
+      "page": 62
+    },
+    "dispersion": {
+      "name": "Dispersion",
+      "definition": "Après qu'une unité a effectué une attaque contre une unité de soldats ayant des petits socles et utilisant une réserve d'attaque qui contient une arme dotée du mot-clé Dispersion, cette unité peut placer toute figurine de l'unité en défense autre que le Chef d'unité, en respectant les règles de cohésion, comme si le Chef de l'unité en défense venait d'effectuer un déplacement normal.",
+      "heading": "SCATTER",
+      "page": 60
+    },
+    "fumee-x": {
+      "name": "Fumée X",
+      "definition": "Une unité dotée du mot-clé Fumée X peut effectuer l'action Fumée X. Pour effectuer cette action, l'unité place X pions Fumée intégralement à ① et en LdV de son Chef d'unité. Les pions Fumée ne peuvent pas chevaucher les pions Objectif, Avantage et Charge, ni les autres pions Fumée, et ils doivent être placés sur une surface plane. Pions Fumée : les unités de soldats dont le Chef se trouve à ① d'un pion Fumée améliorent de 1 la valeur numérique de leur couvert au cours de l'étape « Déterminer le couvert ». Tant qu'une unité de soldats attaque, si le Chef de l'unité attaquante se trouve à ① d'un pion Fumée, l'unité en défense améliore de 1 la valeur numérique de son couvert. Les effets qui améliorent le couvert d'une unité peuvent se cumuler. Une unité ne peut pas être affectée par un même pion Fumée plus d'une fois. Les pions Fumée sont retirés pendant l'étape « Retirer les pions » de la Phase Finale. Par exemple, une unité de soldats dont le Chef d'unité se trouve à ① de 2 pions Fumée améliore de 2 la valeur numérique de son couvert.",
+      "heading": "SMOKE X",
+      "page": 55
+    },
+    "chasseur-de-jedi": {
+      "name": "Chasseur de Jedi",
+      "definition": "Lorsqu’une unité dotée du mot-clé Chasseur de Jedi attaque une unité dont la barre d’amélioration affiche une icône d’amélioration Force, l’unité attaquante gagne [ADR-ATQ] : [CRITIQUE] jusqu’à la fin de cette attaque.",
+      "heading": "JEDI HUNTER",
+      "page": 52
+    },
+    "armer-x": {
+      "name": "Armer X : Type de Charge",
+      "definition": "Une unité équipée d'une carte dotée du mot-clé Armer X : type de charge peut effectuer l'action Armer X. Lorsqu'une unité effectue l'action Armer X, l'unité place X pions Charge (Avantage) du type spécifié et correspondant à la couleur du joueur qui la contrôle intégralement à ① et en LdV de son Chef d'unité. Les pions Charge ne peuvent pas chevaucher les pions Objectif et Avantage, ni d'autres pions Charge, et ils doivent être placés complètement à plat sur une surface plane.",
+      "heading": "ARM X: CHARGE TOKEN TYPE",
+      "page": 58
+    },
+    "explosion-x": {
+      "name": "Explosion X : Type de Charge",
+      "definition": "Après qu'une unité contrôlée par n'importe quel joueur a attaqué, s'est déplacée ou a effectué une action, chaque unité possédant une arme dotée du mot-clé Explosion X peut faire exploser jusqu'à X pions Charge (Avantage) alliés du type spécifié. Lorsqu'un pion doit exploser, il explose avant toute autre capacité ou tout autre effet qui se déclenche après qu'une unité s'est déplacée ou a effectué une action, sauf en cas de dépense d'un pion En attente, qui peut être dépensé par une unité avant que le pion n'explose. Si les deux joueurs possèdent des unités qui peuvent faire exploser des pions Charge, le joueur qui ne contrôle pas l'unité venant d'effectuer l'attaque, le déplacement ou l'action peut utiliser le mot-clé Explosion X de son unité le premier. Lorsqu'un pion explose, effectuez une attaque distincte contre chaque unité, alliée et ennemie, qui a une LdV sur le pion et se trouve à portée de l'arme à effet de zone, en utilisant la fenêtre de conversion d'adrénaline et les mots-clés d'arme de la carte correspondant au pion qui explose. Le pion qui explose est considéré comme l'unité attaquante lorsqu'il effectue des attaques, ce qui signifie que le joueur ne peut pas dépenser de pions Viser, ni modifier les dés d'attaque, quelles que soient les capacités de l'unité qui a placé le pion. Une fois qu'un pion a explosé, retirez-le du champ de bataille.",
+      "heading": "DETONATE X: (CHARGE TYPE)",
+      "page": 58
+    },
+    "inspiration-x": {
+      "name": "Inspiration X",
+      "definition": "À la fin de l'activation d'une unité dotée du mot-clé Inspiration X, retirez au total jusqu'à X pions Suppression d'autres unités alliées à ②.",
+      "heading": "INSPIRE X",
+      "page": 51
+    },
+    "souffle": {
+      "name": "Souffle",
+      "definition": "Lorsqu'une figurine ajoute une arme dotée du mot-clé Souffle à la réserve d'attaque, cette arme fait contribuer ses dés un nombre de fois égal au nombre de figurines de l'unité en défense qui sont en LdV de la figurine utilisant cette arme. Par exemple, si un TL-TT attaque une unité de 3 Death Troopers avec un lance-flamme, comme le lance-flamme est doté du mot-clé Souffle et dispose de 2 dés noirs, le lance-flamme ajoute 6 dés d'attaque noirs à la réserve d'attaque.",
+      "heading": "SPRAY",
+      "page": 60
+    },
+    "charge": {
+      "name": "Charge",
+      "definition": "Après qu'une unité dotée du mot-clé Charge a effectué, au cours de son activation, une action Se déplacer qui l'amène au contact d'une figurine ennemie afin d'attaquer au corps-à-corps, cette unité peut effectuer une action Attaquer gratuite contre cette unité en n'utilisant que des armes de corps-à-corps.",
+      "heading": "CHARGE",
+      "page": 47
+    },
+    "intrepide": {
+      "name": "Intrépide",
+      "definition": "Après qu'une unité de soldats non-droïdes dotée du mot-clé Intrépide a effectué son étape « Se rallier », si elle est démoralisée mais pas paniquée, au début de son étape « Effectuer des actions », elle peut gagner un pion Suppression afin d'effectuer une action Se déplacer gratuite. Une unité dotée du mot-clé Intrépide ne peut pas être affectée par le mot-clé Contrainte.",
+      "heading": "DAUNTLESS",
+      "page": 48
+    },
+    "preste-x": {
+      "name": "Preste X",
+      "definition": "Lorsqu’une unité dotée du mot-clé Preste X effectue un déplacement normal dans le cadre d’une action ou d’une action gratuite, elle gagne X pions Esquive après la résolution de l’effet.",
+      "heading": "AGILE X",
+      "page": 46
+    },
+    "coup-de-chance-x": {
+      "name": "Coup de Chance X",
+      "definition": "Tant qu'une unité dotée du mot-clé Coup de Chance X défend contre une attaque, elle peut relancer jusqu'à X de ses dés de défense au cours de l'étape « Relancer les dés de défense ». Tous les dés relancés grâce au mot-clé Coup de Chance X doivent l'être en même temps, et chaque dé ne peut pas être relancé plus d'une fois.",
+      "heading": "UNCANNY LUCK X",
+      "page": 56
+    },
+    "travail-dequipe": {
+      "name": "Travail d'Équipe : Nom d'Unité",
+      "definition": "Tant qu’une unité dotée du mot-clé Travail d’Équipe se trouve à portée 2 d’une unité alliée portant le nom spécifié par ce mot-clé, si l’une ou l’autre des unités gagne au moins 1 pion Viser ou au moins 1 pion Esquive, l’autre unité gagne 1 pion du même type.",
+      "heading": "TEAMWORK: UNIT NAME",
+      "page": 56
+    },
+    "infiltration": {
+      "name": "Infiltration",
+      "definition": "Lorsqu’une unité dotée du mot-clé Infiltration commence son activation, si elle n’est pas déployée, elle peut se déployer en plaçant son Chef d’unité intégralement dans le territoire allié. Les autres figurines de cette unité sont ensuite placées en cohésion avec leur Chef d’unité et intégralement dans le territoire allié. Les figurines ne peuvent pas chevaucher un terrain infranchissable lorsqu’elles sont placées avec Infiltration.",
+      "heading": "INFILTRATE",
+      "page": 51
+    },
+    "deflexion": {
+      "name": "Déflexion",
+      "definition": "Tant qu’une unité dotée du mot-clé Déflexion défend contre une attaque à distance ou utilise le mot-clé Gardien X, sa fenêtre de conversion d’adrénaline gagne [ADR-DEF] : [BLOC]. De plus, pendant l’étape « Convertir les adrénalines de défense », avant de convertir les résultats [ADR-DEF], l’attaquant subit 1 blessure si au moins 1 résultat [ADR-DEF] a été obtenu lors du jet de défense. Lorsqu’une unité dotée du mot-clé Déflexion utilise Gardien X, avant de convertir les résultats d’adrénaline de défense, l’attaquant subit 1 blessure si au moins 1 des dés lancés pour Gardien X a obtenu un résultat [ADR-DEF]. Si Déflexion permet de vaincre l’unité attaquante, l’attaque continue et le défenseur peut toujours subir des blessures. Tant qu’une unité défend ou utilise Gardien X contre une attaque dont la réserve contient uniquement des armes dotées du mot-clé Haute Vélocité, Déflexion n’a aucun effet.",
+      "heading": "DEFLECT",
+      "page": 48
+    },
+    "intuition-du-danger-x": {
+      "name": "Intuition du Danger X",
+      "definition": "Lorsqu'une unité dotée du mot-clé Intuition du Danger X est censée retirer n'importe quel nombre de ses pions Suppression, elle peut choisir de ne pas retirer jusqu'à X pions, y compris zéro. Tant qu'une unité dotée du mot-clé Intuition du Danger X défend contre une attaque, elle lance un dé de défense supplémentaire pendant l'étape « Lancer les dés de défense » pour chaque pion Suppression qu'elle possède, jusqu'à X dés supplémentaires.",
+      "heading": "DANGER SENSE X",
+      "page": 48
+    },
+    "fiable-x": {
+      "name": "Fiable X",
+      "definition": "Au début de la Phase d'Activation, une unité dotée du mot-clé Fiable X gagne X pions Adrénaline.",
+      "heading": "RELIABLE X",
+      "page": 54
+    },
+    "implacable": {
+      "name": "Implacable",
+      "definition": "Après qu'une unité dotée du mot-clé Implacable a effectué au cours de son activation une action Se Déplacer, elle peut effectuer une action Attaquer gratuite.",
+      "heading": "RELENTLESS",
+      "page": 54
+    },
+    "precis-x": {
+      "name": "Précis X",
+      "definition": "Lorsqu'une unité attaquante dotée du mot-clé Précis X dépense un pion Viser pendant l'étape « Relancer les dés d'attaque », elle peut relancer jusqu'à X dés d'attaque supplémentaires par pion Viser dépensé.",
+      "heading": "PRECISE X",
+      "page": 53
+    },
+    "perforant-x": {
+      "name": "Perforant X",
+      "definition": "Si une unité attaque avec une arme dotée du mot-clé Perforant X, elle peut annuler jusqu'à X résultats [BLOC] pendant l'étape « Modifier les dés de défense ». Le mot-clé Perforant X peut être utilisé pour annuler des résultats [BLOC] de dés de défense lancés par une unité utilisant le mot-clé Gardien X. Dans ce cas, traitez les résultats [BLOC] annulés comme des résultats vierges. Après avoir utilisé le mot-clé Perforant X de cette manière, toute valeur inutilisée de Perforant X peut toujours être utilisée pour annuler des résultats [BLOC] obtenus par le défenseur. Par exemple, une unité dotée du mot-clé Perforant 3 attaque une unité ennemie, et une autre unité ennemie utilise Gardien 2 pour annuler 2 résultats [TOUCHE]. Après avoir converti les résultats [ADR-DEF], l'unité utilisant le mot-clé Gardien a obtenu 2 résultats [BLOC]. L'unité attaquante utilise Perforant pour annuler les 2 résultats [BLOC] et l'unité utilisant Gardien subit 2 blessures. Le défenseur lance alors les dés de défense et l'unité attaquante peut annuler 1 résultat [BLOC] de plus obtenu par le défenseur puisqu'elle n'a utilisé que 2 points sur les 3 accordés par son mot-clé Perforant 3.",
+      "heading": "PIERCE X",
+      "page": 59
+    },
+    "autonome": {
+      "name": "Autonome : Pion X/Action",
+      "definition": "Au début de la Phase d'Activation, si une unité dotée du mot-clé Autonome ne possède pas de pion Ordre, cette unité peut gagner X pions spécifiés ou effectuer l'action spécifiée en tant qu'action gratuite.",
+      "heading": "INDEPENDENT: TOKEN X/ ACTION",
+      "page": 51
+    },
+    "gardien-x": {
+      "name": "Gardien X",
+      "definition": "Tant qu'une unité de soldats alliée à ① et en ligne de vue d'une unité dotée du mot-clé Gardien X défend contre une attaque à distance, elle peut annuler jusqu'à X résultats [TOUCHE] au cours de l'étape « Modifier les dés d'attaque » de la séquence d'attaque. Pour chaque [TOUCHE] annulé de cette manière, l'unité dotée du mot-clé Gardien X lance un dé de défense correspondant à celui de sa carte Unité. Après avoir converti des résultats [ADR-DEF] en fonction de sa fenêtre d'adrénaline ou grâce à des pions Adrénaline, l'unité dotée du mot-clé Gardien X gagne 1 pion Suppression, puis subit 1 blessure pour chaque résultat vierge. Une unité en défense sur laquelle le mot-clé Gardien X est utilisé gagne un pion Suppression normalement. Une unité ne peut pas utiliser Gardien X si l'unité en défense est également dotée du mot-clé Gardien X. Si plusieurs unités alliées peuvent utiliser le mot-clé Gardien X au cours d'une attaque, le joueur qui contrôle ces unités déclare quelle unité utilise le mot-clé Gardien X et résout sa capacité avant de choisir s'il déclare qu'une autre unité utilise le mot-clé Gardien X. Une unité ne peut pas utiliser Gardien X si elle possède un nombre de pions Suppression supérieur ou égal à sa valeur de courage. Le mot-clé Perforant X peut être utilisé pour annuler des résultats [BLOC] sur des dés de défense lancés par une unité utilisant Gardien X ; considérez les résultats [BLOC] annulés comme des résultats vierges. Après une telle utilisation du mot-clé Perforant X, toute valeur de Perforant X non utilisée peut toujours être utilisée pour annuler des résultats [BLOC] obtenus par l'unité en défense. De plus, une unité dotée du mot-clé Gardien X ne peut pas se faire prêter main-forte et ignore le prérequis de rang Troupes (Corps) pour prêter main-forte.",
+      "heading": "GUARDIAN X",
+      "page": 50
+    },
+    "autodestruction-x-unite": {
+      "name": "Autodestruction X (unité)",
+      "definition": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. Pour chaque unité à ① et en LdV, lancez X dés d'attaque noirs, en résolvant entièrement chaque jet avant de passer à l'unité suivante. L'unité visée subit 1 blessure pour chaque résultat [ADR-ATQ] et [CRITIQUE] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [TOUCHE] obtenu. Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.",
+      "heading": "SELF-DESTRUCT X",
+      "page": 54
+    },
+    "incognito": {
+      "name": "Incognito",
+      "definition": "Une unité dotée du mot-clé Incognito ne peut pas être attaquée par des unités ennemies se trouvant au-delà de 1 de cette dernière. De plus, elle ne peut pas contester d'objectifs, ni prêter main-forte. Si une unité dotée du mot-clé Incognito effectue une attaque ou défend contre une attaque, elle perd toutes les règles spéciales du mot-clé Incognito jusqu'à la fin de la partie. De plus, au début de l'activation d'une unité dotée du mot-clé Incognito, elle peut choisir de perdre les règles spéciales du mot-clé Incognito jusqu'à la fin de la partie.",
+      "heading": "INCOGNITO",
+      "page": 51
+    },
+    "rayons-x": {
+      "name": "Rayons X",
+      "definition": "Pendant l'étape « Déclarer un défenseur supplémentaire », si la réserve d'attaque d'une unité contient une arme dotée du mot-clé Rayons X, cette unité peut déclarer jusqu'à X attaques supplémentaires en constituant des réserves d'attaque n'utilisant que l'arme dotée de Rayons X, même si l'arme a déjà été ajoutée à une réserve d'attaque. Ces attaques supplémentaires ne génèrent pas d'autres attaques. Chaque attaque supplémentaire doit cibler une unité en défense différente qui se trouve à ① de la dernière unité déclarée en défense. Ces attaques supplémentaires doivent être en LdV de l'unité attaquante mais peuvent se trouver au-delà de la portée maximale de l'arme dotée du mot-clé Rayons X. Les unités ne peuvent pas utiliser les mots-clés Rayons X et Pistolero au cours de la même attaque.",
+      "heading": "BEAM X",
+      "page": 58
+    },
+    "polyvalent": {
+      "name": "Polyvalent",
+      "definition": "Certaines armes à distance sont dotées du mot-clé Polyvalent. Une unité peut effectuer une attaque à distance en utilisant une arme dotée du mot-clé Polyvalent même si elle est engagée. Une arme dotée du mot-clé Polyvalent qui est à la fois une arme de corps-à-corps et à distance peut être utilisée pour effectuer soit une attaque au corps-à-corps soit une attaque à distance.",
+      "heading": "VERSATILE",
+      "page": 60
+    },
+    "tireur-embusque": {
+      "name": "Tireur Embusqué",
+      "definition": "Après avoir converti les adrénalines d'attaque au cours de l'étape « Convertir les adrénalines d'attaque », une unité dotée du mot-clé Tireur Embusqué peut dépenser n'importe quel nombre de pions Viser. Pour chaque pion Viser ainsi dépensé, au lieu de relancer les dés, transformez un résultat vierge en résultat [TOUCHE] ou un résultat [TOUCHE] en résultat [CRITIQUE], ou bien dépensez deux pions Viser pour transformer un résultat vierge en résultat [CRITIQUE].",
+      "heading": "MARKSMAN",
+      "page": 52
+    },
+    "tenir-bon": {
+      "name": "Tenir Bon",
+      "definition": "Tant qu'une unité dotée du mot-clé Tenir Bon est engagée, elle gagne [ADR-ATQ] : [TOUCHE] et [ADR-DEF] : [BLOC].",
+      "heading": "HOLD THE LINE",
+      "page": 50
+    },
+    "speeder-x": {
+      "name": "Speeder X",
+      "definition": "Tant qu'elle se déplace, une unité dotée du mot-clé Speeder X peut se déplacer ou terminer son déplacement sur un terrain d'une hauteur inférieure ou égale à X. De plus, lorsqu'une unité ayant un socle avec encoches effectue un déplacement, elle saute l'étape 1 du déplacement des socles avec encoches, consistant à tourner le socle du Chef d'unité. Une unité dotée du mot-clé Speeder X doit effectuer une action Se déplacer obligatoire gratuite au début ou à la fin de son étape « Effectuer des actions ». Si une unité dotée du mot-clé Speeder X effectue plusieurs actions Se déplacer non obligatoires au cours de son activation, elle ne peut pas revendiquer de pions Atout au cours de cette activation. De plus, une unité dotée du mot-clé Speeder X qui a revendiqué un pion Atout ne peut effectuer qu'une seule action Se déplacer non obligatoire au cours de son activation. Un déplacement obligatoire est une action Se déplacer gratuite. Pour effectuer un déplacement obligatoire, l’unité effectue un déplacement normal complet à sa vitesse. Si elle ne peut pas le faire, ou si un déplacement complet placerait une partie du socle de son Chef d’unité hors du champ de bataille, elle peut effectuer à la place un déplacement partiel, en terminant aussi loin que possible le long du gabarit de déplacement.",
+      "heading": "SPEEDER X",
+      "page": 55
+    },
+    "alter-ego": {
+      "name": "Alter Ego : Nom d'Unité",
+      "definition": "Certaines unités sont de fidèles compagnons ou adeptes serviles qui ne se séparent jamais d'un autre personnage. Une unité dotée du mot-clé Alter Ego représente cela : elle est composée d'une figurine qui ne se déploie pas séparément, mais qui est ajoutée à l'unité spécifiée dans le mot-clé. Cette figurine possède une carte Alter Ego et non une carte Unité, et cette figurine est une figurine Alter Ego. L'unité obtenue a le rang, le type, le dé de défense, la valeur de courage, la fenêtre de conversion d'adrénaline et la vitesse maximale de la carte Unité spécifiée. L'Alter Ego peut avoir un type différent noté sur sa carte, mais ce type ne sert que pour le choix des cartes Amélioration. Le Chef d'une unité combinée peut se voir attribuer des blessures s'il s'agit de la seule figurine non-Alter Ego de l'unité. Lorsqu'un pion Blessure est censé être attribué à une figurine non-Alter Ego d'une unité combinée, le joueur qui la contrôle peut attribuer ce pion Blessure à une figurine Alter Ego non vaincue à la place. Ce pion Blessure doit être attribué à une figurine Alter Ego s’il devait vaincre la dernière figurine non-Alter Ego de l’unité. Une carte Amélioration sans arme équipée sur la figurine Alter Ego peut être utilisée par le reste de l'unité, sauf si la figurine Alter Ego est vaincue. Une carte Amélioration comprenant une arme ne peut être utilisée que par la figurine qui en est équipée. Les figurines non-Alter Ego de l'unité utilisent le seuil de blessure de leur carte Unité ou Amélioration, tandis que la figurine Alter Ego utilise le seuil de blessure de la carte Alter Ego. Une unité combinée est dotée des mots-clés de la carte Unité et de la carte Alter Ego. Une figurine de l'unité combinée ne peut utiliser que les armes notées sur sa propre carte ; si l'unité combinée gagne l'accès à une arme grâce à une carte Commandement, seules les figurines non-Alter Ego peuvent s'en servir. Si la figurine Alter Ego est vaincue, l'unité perd tout mot-clé, capacité et effet de la carte Alter Ego.",
+      "heading": "COUNTERPART",
+      "page": 47
+    },
+    "ia": {
+      "name": "IA : Action",
+      "definition": "Quand une unité dotée du mot-clé IA commence son étape « Effectuer des actions », si elle n'a pas de pion Ordre face visible et si 1 des conditions listées ci-dessous est remplie, elle doit effectuer 1 des actions spécifiées par son mot-clé IA. • L'unité est démoralisée mais pas paniquée. • L'unité possède un pion Dégât de véhicule. • C'est une unité de véhicule et au moins la moitié de ses figurines avec lesquelles elle a commencé la partie ont été vaincues. Si l'unité ne peut effectuer aucune des actions spécifiées par son mot-clé IA, elle effectue une action de moins lors de son étape « Effectuer des actions ».",
+      "heading": "AI: ACTION",
+      "page": 46
+    },
+    "coordination": {
+      "name": "Coordination : Nom/Type d'Unité",
+      "definition": "Après qu'une unité dotée du mot-clé Coordination a reçu un ordre, elle peut donner un ordre à une unité alliée à ① qui porte le nom ou est du type spécifié. Une unité pour laquelle sont spécifiés plusieurs noms ou types d'unités ne peut donner un ordre qu'à une seule de ces unités en utilisant le mot-clé Coordination. Si une unité déjà dotée du mot-clé Coordination gagne ce mot-clé une seconde fois, cette unité peut choisir à quelles cibles elle donne un ordre parmi les unités spécifiées sur les deux mots-clés : elle ne donne pas deux ordres.",
+      "heading": "COORDINATE: UNIT NAME/ UNIT TYPE",
+      "page": 47
+    },
+    "ciblage-avance": {
+      "name": "Ciblage Avancé : Type d'Unité X",
+      "definition": "Lorsqu'une unité dotée du mot-clé Ciblage Avancé X effectue une attaque contre une unité ennemie du type spécifié, pendant l'étape « Constituer la réserve d'attaque », elle peut gagner X pions Viser. Une unité qui utilise le mot-clé Ciblage Avancé X ne peut constituer qu'une réserve d'attaque et saute l'étape « Déclarer un défenseur supplémentaire » de la séquence d'attaque.",
+      "page": 46,
+      "heading": "ADVANCED TARGETING: UNIT TYPE X"
+    },
+    "aide": {
+      "name": "Aide : Affiliation/Type d'Unité",
+      "definition": "Chaque fois qu’une unité dotée du mot-clé Aide devrait gagner un pion Viser, Esquive ou Adrénaline, une autre unité alliée de l’affiliation ou du type indiqué, à portée 2 et en ligne de vue, peut gagner ce pion à sa place. Si elle le fait, l’unité dotée d’Aide gagne 1 pion Suppression, si elle le peut. Par exemple, Logray gagne 2 pions Viser et 1 pion Esquive au début de son activation grâce à sa carte Amélioration Ingrédients Secrets. Il utilise Aide pour donner 1 de ces pions Viser à une unité de Tirailleurs Ewoks et l’autre à une unité de Frondeurs Ewoks. Il gagne 1 pion Suppression pour chaque utilisation d’Aide, soit 2 pions Suppression au total, et conserve le pion Esquive d’Ingrédients Secrets.",
+      "page": 46,
+      "heading": "AID: AFFILIATION/UNIT TYPE"
+    },
+    "allies-de-circonstance": {
+      "name": "Alliés de Circonstance",
+      "definition": "Les unités dotées du mot-clé Alliés de Circonstance peuvent donner des ordres à des unités de mercenaires alliées de n'importe quelle affiliation. De plus, lors de la création d'armée, les joueurs peuvent inclure une unité de mercenaires supplémentaire dans leur armée sans prendre en compte son rang si au moins une unité dotée du mot-clé Alliés de Circonstance est présente. Ils ne peuvent cependant pas inclure plus d'unités d'un rang particulier que ce qui est normalement autorisé.",
+      "page": 46,
+      "heading": "ALLIES OF CONVENIENCE"
+    },
+    "armure-x": {
+      "name": "Armure X",
+      "definition": "Pendant l’étape « Modifier les dés d’attaque » de la séquence d’attaque, si l’unité en défense possède le mot-clé Armure X, le joueur défenseur peut annuler jusqu’à X résultats [TOUCHE], en retirant ces dés de la réserve d’attaque.",
+      "page": 46,
+      "heading": "ARMOR X"
+    },
+    "arsenal-x": {
+      "name": "Arsenal X",
+      "definition": "Une unité dotée du mot-clé Arsenal X peut ajouter X armes aux réserves d’attaque pendant l’étape « Constituer la réserve d’attaque ». Chaque arme ou combinaison d’armes peut constituer une nouvelle réserve d’attaque, mais chaque arme ne peut être ajoutée qu’à 1 réserve d’attaque.",
+      "page": 46,
+      "heading": "ARSENAL X"
+    },
+    "associe": {
+      "name": "Associé : Nom d'Unité",
+      "definition": "Pendant la création d'armée, une unité dotée du mot-clé Associé ne compte pas dans le nombre maximal d'unités de son rang pouvant être incluses si une unité portant le nom spécifié est incluse dans la même armée.",
+      "page": 46,
+      "heading": "ASSOCIATE: UNIT NAME"
+    },
+    "barrage": {
+      "name": "Barrage",
+      "definition": "Une unité dotée du mot-clé Barrage peut effectuer deux actions Attaquer au lieu d'une si elle n'utilise pas le mot-clé Arsenal au cours de son activation.",
+      "page": 46,
+      "heading": "BARRAGE"
+    },
+    "blocage": {
+      "name": "Blocage",
+      "definition": "Lorsqu'une unité dotée du mot-clé Blocage défend, si elle dépense un ou plusieurs pions Esquive au cours de l'étape « Appliquer les esquives et couverts », elle gagne [ADR-DEF] : [BLOC] jusqu’à la fin de cette attaque.",
+      "page": 46,
+      "heading": "BLOCK"
+    },
+    "prime": {
+      "name": "Prime",
+      "definition": "Pendant la mise en place, une unité dotée du mot-clé Prime choisit une unité Commandement ou Opérative ennemie : cette dernière gagne un pion Prime. Après qu'une unité alliée dotée du mot-clé Prime a vaincu, grâce à un effet ou une attaque, une unité ennemie dotée d'un ou plusieurs pions Prime, le contrôleur de l'unité alliée marque 1 PV.",
+      "page": 47,
+      "heading": "BOUNTY"
+    },
+    "cache": {
+      "name": "Cache",
+      "definition": "Pendant la mise en place, une unité équipée d'une carte Amélioration dotée du mot-clé Cache place le ou les pions indiqués sur la carte où figure le mot-clé Cache. L'unité peut dépenser ces pions, même si une ou plusieurs des figurines ajoutées à l'unité grâce à cette carte sont vaincues.",
+      "page": 47,
+      "heading": "CACHE"
+    },
+    "calcul-de-probabilites": {
+      "name": "Calcul de Probabilités",
+      "definition": "En tant qu'action de carte, une unité dotée du mot-clé Calcul de Probabilités peut choisir une unité de soldats alliée à ② et en LdV : cette dernière gagne un pion Viser, un pion Esquive et un pion Suppression.",
+      "page": 47,
+      "heading": "CALCULATE ODDS"
+    },
+    "vehicule-grimpant": {
+      "name": "Véhicule Grimpant",
+      "definition": "Une unité dotée du mot-clé Véhicule Grimpant peut effectuer des déplacements Escalader et est considérée comme une unité de soldats pour l’escalade.",
+      "page": 47,
+      "heading": "CLIMBING VEHICLE"
+    },
+    "contrainte": {
+      "name": "Contrainte : Rang/Type d'Unité",
+      "definition": "Après qu'une autre unité de soldats non-droïdes alliée correspondant au rang ou type indiqué située à ② d'une unité alliée dotée du mot-clé Contrainte a effectué son étape « Se rallier », si elle est démoralisée mais pas paniquée, au début de son étape « Effectuer des actions », elle peut gagner un pion Suppression pour effectuer une action Se déplacer gratuite.",
+      "page": 47,
+      "heading": "COMPEL: RANK/UNIT TYPE"
+    },
+    "couvert-x": {
+      "name": "Couvert X",
+      "definition": "Une unité dotée du mot-clé Couvert X qui défend contre une attaque comportant au moins une arme à distance améliore, pendant l'étape « Appliquer les esquives et couverts », la valeur numérique de son couvert d'un nombre égal à X.",
+      "page": 48,
+      "heading": "COVER X"
+    },
+    "malin": {
+      "name": "Malin",
+      "definition": "Pendant la Phase de Commandement, si un joueur révèle une carte Commandement spécifique à un Commandant ou Opérative nommé dont l'unité est dotée du mot-clé Malin et que les joueurs sont à égalité pour la priorité, considérez cette carte Commandement comme affichant un point lumineux de moins, pour un minimum de 0. Si les deux joueurs révèlent une carte Commandement spécifique à un Commandant ou Opérative nommé dont l'unité est dotée du mot-clé Malin, l'égalité pour la priorité demeure.",
+      "page": 48,
+      "heading": "CUNNING"
+    },
+    "la-mort-venue-du-ciel": {
+      "name": "La Mort Venue du Ciel",
+      "definition": "Lorsqu'une unité dotée du mot-clé La Mort Venue du Ciel attaque, l'unité en défense ne peut pas utiliser un couvert pour annuler les résultats [TOUCHE] au cours de l'étape « Appliquer le couvert » si le Chef de l'unité attaquante chevauche un élément de terrain non en zone d'une hauteur supérieure à tout terrain que le Chef de l'unité en défense chevauche.",
+      "page": 48,
+      "heading": "DEATH FROM ABOVE"
+    },
+    "defense-x": {
+      "name": "Défense X",
+      "definition": "Après qu'une unité dotée du mot-clé Défense X a reçu un ordre, elle gagne X pions Esquive.",
+      "page": 48,
+      "heading": "DEFEND X"
+    },
+    "detachement": {
+      "name": "Détachement : Nom/Type d'Unité",
+      "definition": "Pendant la création d'armée, une unité dotée du mot-clé Détachement ne compte pas dans le nombre maximal d'unités de son rang pouvant être incluses. Une unité dotée du mot-clé Détachement ne peut être incluse dans l'armée d'un joueur que si une autre unité qui porte le nom ou est du type spécifié, et qui n'est pas dotée du mot-clé Détachement, est également incluse dans cette armée. Chaque unité dotée du mot-clé Détachement doit être associée à sa propre unité spécifiée. De plus, pendant l'étape « Se déployer sur les positions préparées », une unité dotée du mot-clé Détachement gagne le mot-clé Infiltration ou Position Préparée jusqu'à la fin de la partie si l'unité spécifiée correspondante est dotée de ce mot-clé. Par exemple, une joueuse souhaite ajouter un Soldat avec Mortier DF-90 à son armée. Comme le Soldat avec Mortier DF-90 est doté du mot-clé Détachement : Shoretroopers, la joueuse doit ajouter une unité de Shoretroopers à son armée avant d'ajouter le Soldat avec Mortier DF-90. La joueuse s'exécute, son armée contient donc désormais une unité de Shoretroopers et une unité de Soldat avec Mortier DF-90. La joueuse souhaite ensuite ajouter une seconde unité de Soldat avec Mortier DF-90 à son armée : elle doit donc d'abord sélectionner une seconde unité de Shoretroopers à inclure dans son armée.",
+      "page": 48,
+      "heading": "DETACHMENT: UNIT NAME/ TYPE"
+    },
+    "ordre-direct": {
+      "name": "Ordre Direct : Nom/Type d'Unité",
+      "definition": "Lors de chaque Phase de Commandement, pendant l'étape « Donner des ordres », une unité dotée du mot-clé Ordre direct peut donner un ordre à une unité alliée à ② portant le nom ou étant du type spécifié.",
+      "page": 48,
+      "heading": "DIRECT: UNIT NAME/UNIT TYPE"
+    },
+    "discipline-x": {
+      "name": "Discipliné X",
+      "definition": "Après qu'une unité dotée du mot-clé Discipliné X a reçu un ordre, elle peut retirer jusqu'à X pions Suppression.",
+      "page": 48,
+      "heading": "DISCIPLINED X"
+    },
+    "distraire": {
+      "name": "Distraire",
+      "definition": "En tant qu'action de carte gratuite, une unité dotée du mot-clé Distraire peut choisir une unité de soldats ennemie à ② et en LdV. Jusqu'à la fin du round, lorsque l'unité ennemie choisie effectue une attaque, elle doit attaquer l'unité qui a utilisé Distraire, si possible. Tant que l'unité ennemie choisie attaque l'unité dotée du mot-clé Distraire, chaque figurine de l'unité ennemie doit choisir une arme éligible afin de l'ajouter à une réserve d'attaque. L'unité ennemie peut déclarer des défenseurs supplémentaires et constituer des réserves de dés supplémentaires uniquement si, après avoir constitué une réserve de dés avec des armes éligibles, il reste des armes que des figurines de l'unité peuvent utiliser et qui n'étaient pas éligibles pour contribuer à la première réserve d'attaque. Lorsqu'une unité utilise le mot-clé Distraire, si elle était dotée du mot-clé Discret, elle le perd jusqu'à la fin du round.",
+      "page": 48,
+      "heading": "DISTRACT"
+    },
+    "duelliste": {
+      "name": "Duelliste",
+      "definition": "Lorsqu'une unité dotée du mot-clé Duelliste effectue une attaque au corps-à-corps, si elle dépense un ou plusieurs pions Viser pendant l'étape « Relancer les dés d'attaque », la réserve d'attaque gagne le mot-clé d'arme Perforant 1. Tant qu'une unité dotée du mot-clé Duelliste défend contre une attaque au corps-à-corps, si elle dépense au moins un pion Esquive pendant l'étape « Appliquer les esquives et couverts », elle gagne le mot-clé Immunité : perforant. L'unité dotée du mot-clé Duelliste bénéficie de ces effets en plus des effets normaux déclenchés en utilisant des pions Viser et Esquive.",
+      "page": 49,
+      "heading": "DUELIST"
+    },
+    "enrage-x": {
+      "name": "Enragé X",
+      "definition": "Lorsqu'une unité dotée du mot-clé Enragé X possède un nombre de pions Blessure supérieur ou égal à X, cette unité gagne le mot-clé Charge. De plus, elle considère sa valeur de courage comme « - ». Si une unité dotée du mot-clé Enragé X possède un nombre de pions Blessure supérieur ou égal à X, mais qu'elle retire des pions Blessure grâce à un effet et se retrouve avec moins de pions Blessure que X, elle ne bénéficie plus du mot-clé Enragé X jusqu'à ce qu'elle ait de nouveau un nombre de pions Blessure supérieur ou égal à X.",
+      "page": 49,
+      "heading": "ENRAGE X"
+    },
+    "entourage": {
+      "name": "Entourage : Nom d'Unité",
+      "definition": "Pendant la création d'armée, si un joueur inclut une unité dotée du mot-clé Entourage, une unité spécifiée par le mot-clé Entourage ne compte pas dans le nombre maximal d'unités de son rang pouvant être incluses. Un joueur peut donc inclure plus d'unités d'un rang spécifique qu'autorisé par les prérequis de rang. Lors de la Phase de Commandement, pendant l'étape « Donner des ordres », une unité dotée du mot-clé Entourage peut donner un ordre à une unité alliée à ② portant le nom spécifié par le mot-clé Entourage. De plus, l'unité spécifiée par le mot-clé Entourage ignore le prérequis de rang Troupes (Corps) pour prêter main-forte à l'unité dotée du mot-clé Entourage. Par exemple, le Directeur Orson Krennic est doté du mot-clé Entourage : Death Troopers. Si une armée inclut le Directeur Orson Krennic, 1 unité de Death Troopers de la même armée ne compte pas dans le nombre maximal d'unités du rang forces spéciales autorisé dans l'armée, ce qui permet au joueur d'inclure jusqu'à trois autres unités de forces spéciales en plus des Death Troopers. Lors de la Phase de Commandement, le Directeur Orson Krennic peut donner un ordre à une unité de Death Troopers à ②.",
+      "page": 49,
+      "heading": "ENTOURAGE: UNIT NAME"
+    },
+    "equipe": {
+      "name": "Équipe",
+      "definition": "Pendant la création d'armée, si un joueur inclut une unité dotée du mot-clé Équipe, cette unité doit s'équiper des améliorations spécifiées après le mot-clé.",
+      "page": 49,
+      "heading": "EQUIP"
+    },
+    "exemplaire": {
+      "name": "Exemplaire",
+      "definition": "Tant qu'elle attaque ou défend, si une unité alliée se trouve à ② et en LdV d'une ou plusieurs unités alliées dotées du mot-clé Exemplaire et qui appartiennent à la même faction ou affiliation que l'unité attaquante ou en défense, cette unité attaquante ou en défense peut dépenser un pion Viser, Esquive ou Adrénaline appartenant à une de ces unités dotées du mot-clé Exemplaire comme si cette unité attaquante ou en défense possédait le pion.",
+      "page": 49,
+      "heading": "EXEMPLAR"
+    },
+    "grimpeur-experimente": {
+      "name": "Grimpeur Expérimenté",
+      "definition": "Lorsqu'une unité dotée du mot-clé Grimpeur Expérimenté grimpe, elle peut parcourir une distance verticale allant jusqu'à 2 de hauteur.",
+      "page": 49,
+      "heading": "EXPERT CLIMBER"
+    },
+    "commandant-des-operations": {
+      "name": "Commandant des Opérations",
+      "definition": "Pendant la création d'armée, une armée incluant une unité dotée du mot-clé Commandant des Opérations peut ignorer le nombre minimal de rangs Commandement autorisés. Si l'armée d'un joueur ne contient pas d'unité Commandement pendant la mise en place, mais qu'elle contient une unité dotée du mot-clé Commandant des Opérations, cette unité gagne un pion Commandant. Lorsqu'un joueur révèle une carte Commandement non spécifique à un Commandant ou Opérative nommé, il peut nommer une unité alliée dotée du mot-clé Commandant des Opérations comme Commandant, lui permettant ainsi de donner des ordres. Une unité dotée du mot-clé Commandant des Opérations n'est pas un Commandant et n'est considérée comme tel que pour donner des ordres avec une carte Commandement au cours de la Phase de Commandement. Une unité dotée du mot-clé Commandant des Opérations est considérée comme un Commandant de cette faction ou affiliation lorsque vous créez votre main de commandement. De plus, si une unité alliée se trouve à portée 3 de l’unité possédant le pion Commandant et que ces deux unités partagent la même faction ou affiliation, cette unité alliée peut considérer l’unité dotée du mot-clé Commandant des Opérations comme une unité Commandement ayant une valeur de courage de 2.",
+      "page": 49,
+      "heading": "FIELD COMMANDER"
+    },
+    "tirs-de-soutien": {
+      "name": "Tir de Soutien",
+      "definition": "Après qu’une unité dotée du mot-clé Tirs de Soutien a reçu un ordre, elle gagne 1 pion En attente.",
+      "page": 50,
+      "heading": "FIRE SUPPORT"
+    },
+    "riposte-graduee-x": {
+      "name": "Riposte Graduée X",
+      "definition": "Pendant la création d'armée, une unité dotée du mot-clé Riposte Graduée doit s'équiper de X améliorations.",
+      "page": 50,
+      "heading": "FLEXIBLE RESPONSE X"
+    },
+    "pivot-complet": {
+      "name": "Pivot Complet",
+      "definition": "Lorsqu'une unité dotée du mot-clé Pivot Complet pivote, elle peut pivoter jusqu'à 360°.",
+      "page": 50,
+      "heading": "FULL PIVOT"
+    },
+    "conseils": {
+      "name": "Conseils : Type d'Unité",
+      "definition": "En tant qu’action de carte ou action de carte gratuite, une unité dotée du mot-clé Conseils peut choisir une autre unité alliée du type spécifié à portée 2. L’unité choisie effectue une action gratuite autre qu’Attaquer.",
+      "page": 50,
+      "heading": "GUIDANCE"
+    },
+    "equipe-avec-arme-lourde": {
+      "name": "Équipe avec Arme Lourde",
+      "definition": "Une unité dotée du mot-clé Équipe avec Arme Lourde doit s'équiper d'une carte Amélioration Arme Lourde. La figurine ajoutée à l'unité grâce à cette carte Amélioration devient le Chef d'unité.",
+      "page": 50,
+      "heading": "HEAVY WEAPON TEAM"
+    },
+    "sustentation": {
+      "name": "Sustentation : Terrestre/Aérienne X",
+      "definition": "Une unité dotée du mot-clé Sustentation : terrestre X ou Sustentation : aérienne X peut effectuer des actions Attendre pendant l'étape « Effectuer des actions » et peut gagner et dépenser des pions En attente. Une unité dotée du mot-clé Sustentation : terrestre X ou Sustentation : aérienne X peut reculer. Une unité dotée du mot-clé Sustentation : terrestre X est considérée comme un véhicule terrestre par les autres unités pour vérifier la LdV. Pour tous les autres effets de jeu, l'unité reste considérée comme un véhicule à répulseurs. Une unité dotée du mot-clé Sustentation : aérienne X ignore le terrain de hauteur X ou moins lorsqu'elle se déplace et peut terminer un déplacement en chevauchant un tel terrain. Déraper : si l'unité a un socle avec encoches latérales, elle peut déraper grâce à une action Se déplacer. Déraper est un déplacement normal pour une figurine ayant un socle avec encoches et s'effectue comme tel, à l'exception des points suivants : pour un dérapage complet, au lieu de placer le gabarit dans l'encoche avant, placez-le dans une des encoches latérales, puis déplacez la figurine et placez son encoche latérale opposée à l'autre extrémité du gabarit. Pour un dérapage partiel, placez de même le gabarit dans une encoche latérale au début du déplacement ; à la fin, la figurine doit être placée de telle sorte que la ligne reliant ses deux encoches latérales soit parallèle à la section du gabarit atteinte. Lorsqu'elle dérape, une unité réduit de 1 sa vitesse, jusqu'à un minimum de 1.",
+      "page": 50,
+      "heading": "HOVER: GROUND/AIR X"
+    },
+    "traque": {
+      "name": "Traqué",
+      "definition": "Pendant la mise en place, si une ou plusieurs unités ennemies sont dotées du mot-clé Prime, chaque unité dotée du mot-clé Traqué gagne un pion Prime.",
+      "page": 51,
+      "heading": "HUNTED"
+    },
+    "je-fais-aussi-partie-de-lequipe": {
+      "name": "Je Fais Aussi Partie de l’Équipe",
+      "definition": "Une unité dotée du mot-clé Je Fais Aussi Partie de l’Équipe conteste un pion Objectif si son Chef d’unité se trouve à portée 1 de ce pion Objectif, au lieu de portée ½.",
+      "page": 51,
+      "heading": "I’M PART OF THE SQUAD TOO"
+    },
+    "immunite-deflagration": {
+      "name": "Immunité : Déflagration",
+      "definition": "Tant qu'une unité dotée du mot-clé Immunité : déflagration défend, les effets du mot-clé Déflagration sont ignorés.",
+      "page": 51,
+      "heading": "IMMUNE: BLAST"
+    },
+    "immunite-corps-a-corps": {
+      "name": "Immunité : Corps-à-Corps",
+      "definition": "Les unités dotées du mot-clé Immunité : corps-à-corps ne peuvent pas être ciblées par des attaques au corps-à-corps et ne peuvent pas être engagées. Lorsqu'elle constitue une réserve d'attaque qui cible une unité ayant Immunité : corps-à-corps, l'unité attaquante peut ajouter des armes à distance à la réserve d'attaque, même si elle est au corps-à-corps avec l'unité en défense.",
+      "page": 51,
+      "heading": "IMMUNE: MELEE"
+    },
+    "immunite-perforant-corps-a-corps": {
+      "name": "Immunité : Perforant au Corps-à-Corps",
+      "definition": "Tant qu'une unité dotée du mot-clé Immunité : perforant au corps-à-corps défend contre une attaque au corps-à-corps, l'attaquant ne peut pas utiliser le mot-clé d'arme Perforant X pour annuler des résultats [BLOC] des dés de défense pendant l'étape « Modifier les dés de défense ». Tant qu'une unité dotée du mot-clé Immunité : perforant au corps-à-corps utilise le mot-clé Gardien X au cours d'une attaque au corps-à-corps, l'unité attaquante ne peut pas utiliser le mot-clé Perforant X pour annuler des résultats [BLOC] obtenus sur les dés de défense lancés par cette unité pour le mot-clé Gardien X.",
+      "page": 51,
+      "heading": "IMMUNE: MELEE PIERCE"
+    },
+    "immunite-perforant": {
+      "name": "Immunité : Perforant",
+      "definition": "Tant qu'une unité dotée du mot-clé Immunité : perforant défend, l'attaquant ne peut pas utiliser le mot-clé d'arme Perforant X pour annuler des résultats [BLOC] des dés de défense pendant l'étape « Modifier les dés de défense ». Tant qu'une unité dotée du mot-clé Immunité : perforant utilise le mot-clé Gardien X, l'unité attaquante ne peut pas utiliser le mot-clé Perforant X pour annuler des résultats [BLOC] obtenus sur les dés de défense lancés par cette unité pour le mot-clé Gardien X.",
+      "page": 51,
+      "heading": "IMMUNE: PIERCE"
+    },
+    "immunite-armes-portee-1": {
+      "name": "Immunité : Armes Portée 1",
+      "definition": "Une réserve d'attaque attribuée à une unité dotée du mot-clé Immunité : armes portée 1 ne peut pas contenir d'armes ayant une portée maximale de 1.",
+      "page": 51,
+      "heading": "IMMUNE: WEAPONS"
+    },
+    "insensible": {
+      "name": "Insensible",
+      "definition": "Lorsqu’une réserve d’attaque est résolue contre une unité dotée du mot-clé Insensible, au début de l’étape « Modifier les dés de défense », réduisez de 1 la valeur du mot-clé Perforant X de cette réserve d’attaque, jusqu’à un minimum de 0.",
+      "page": 51,
+      "heading": "IMPERVIOUS"
+    },
+    "discret": {
+      "name": "Discret",
+      "definition": "Tant qu'une unité dotée du mot-clé Discret possède au moins un pion Suppression, lorsqu'une unité ennemie effectue une attaque, elle doit cibler une autre unité, si possible. Lorsqu'une unité dotée du mot-clé Discret se rallie, elle peut choisir de ne pas retirer un nombre de pions Suppression de son choix, y compris zéro.",
+      "page": 51,
+      "heading": "INCONSPICUOUS"
+    },
+    "interrogatoire": {
+      "name": "Interrogatoire",
+      "definition": "Pendant la Phase de Commandement, si un joueur révèle une carte Commandement qui appartient à une unité se trouvant à ① d'une ou plusieurs unités ennemies dotées du mot-clé Interrogatoire et que les joueurs sont à égalité pour la priorité, considérez cette carte Commandement comme affichant un point lumineux supplémentaire.",
+      "page": 52,
+      "heading": "INTERROGATE"
+    },
+    "maitrise-du-jarkai": {
+      "name": "Maîtrise du Jar'Kai",
+      "definition": "Tant qu'elle effectue une attaque au corps-à-corps, une unité dotée du mot-clé Maîtrise du Jar'Kai peut, après avoir converti les adrénalines d'attaque au cours de l'étape « Convertir les adrénalines d'attaque », dépenser n'importe quel nombre de pions Esquive. Pour chaque pion Esquive ainsi dépensé, transformez un résultat vierge en un résultat [TOUCHE] ou un résultat [TOUCHE] en un résultat [CRITIQUE], ou bien dépensez deux pions Esquive pour transformer un résultat vierge en résultat [CRITIQUE].",
+      "page": 52,
+      "heading": "JAR'KAI MASTERY"
+    },
+    "maitrise-du-juyo": {
+      "name": "Maîtrise du Juyo",
+      "definition": "Tant qu'une unité dotée du mot-clé Maîtrise du Juyo possède un ou plusieurs pions Blessure, elle peut effectuer une action supplémentaire pendant son étape « Effectuer des actions ». Une unité dotée du mot-clé Maîtrise du Juyo ne peut effectuer que deux actions Se déplacer pendant son activation, actions gratuites incluses.",
+      "page": 52,
+      "heading": "JUYO MASTERY"
+    },
+    "pouvoir-latent": {
+      "name": "Pouvoir Latent",
+      "definition": "À la fin de l'activation d'une unité dotée du mot-clé Pouvoir Latent, elle peut gagner 1 pion Suppression afin de lancer 1 dé de défense rouge. Dans ce cas, sur un résultat [ADR-DEF], choisissez une unité ennemie à ① de cette figurine. L'unité choisie gagne 2 pions Suppression et 2 pions Immobilisation. Sur un résultat vierge, retirez 1 pion Blessure ou Poison d'une unité de soldats non-droïde alliée à ① de cette figurine.",
+      "page": 52,
+      "heading": "LATENT POWER"
+    },
+    "maitre-de-la-force-x": {
+      "name": "Maître de la Force X",
+      "definition": "À la fin de son activation, une unité dotée du mot-clé Maître de la Force X peut redresser jusqu'à X de ses cartes Amélioration Force inclinées.",
+      "page": 52,
+      "heading": "MASTER OF THE FORCE X"
+    },
+    "mercenaire": {
+      "name": "Mercenaire : Faction",
+      "definition": "Une unité dotée du mot-clé Mercenaire est une unité de mercenaire. La ou les factions spécifiées par le mot-clé Mercenaire peuvent inclure cette unité dans une armée en tant qu'unité de mercenaire.",
+      "page": 52,
+      "heading": "MERCENARY: FACTION"
+    },
+    "surveillance-x": {
+      "name": "Surveillance X",
+      "definition": "En tant qu'action de carte, une unité dotée du mot-clé Surveillance X peut choisir une unité ennemie à ③ et en LdV. L'unité ennemie choisie gagne X pions Surveillance. Les pions Surveillance sont retirés pendant l'étape « Retirer les pions » de la Phase Finale. Pendant une attaque, une unité attaquante alliée peut dépenser n'importe quel nombre de pions Surveillance qui appartiennent à l'unité en défense au cours de l'étape « Relancer les dés d'attaque ». L'unité attaquante relance un dé d'attaque pour chaque pion Surveillance dépensé. Les pions Surveillance sont dépensés un par un, et un même dé peut être relancé plusieurs fois en dépensant des pions Surveillance ou Viser en conséquence. L'unité attaquante peut dépenser des pions Viser et Surveillance dans n'importe quel ordre.",
+      "page": 53,
+      "heading": "OBSERVE X"
+    },
+    "longueur-davance": {
+      "name": "Longueur d'Avance",
+      "definition": "Si une ou plusieurs unités alliées sont dotées du mot-clé Longueur d'avance, pendant l'étape Résoudre les cartes Commandement, après avoir révélé les cartes Commandement mais avant d'en résoudre les effets, si le nombre de points lumineux présents sur les cartes Commandement révélées ne correspond pas, 1 unité alliée dotée du mot-clé Longueur d'avance et se trouvant sur le champ de bataille peut effectuer un déplacement à vitesse 1. Si le nombre de points lumineux correspond, et qu'il y a 1 ou plusieurs unités alliées dotées du mot-clé Longueur d'avance sur le champ de bataille, choisissez une unité alliée se trouvant sur le champ de bataille. L'unité choisie peut effectuer un déplacement à vitesse 1.",
+      "page": 53,
+      "heading": "ONE STEP AHEAD"
+    },
+    "mobilite-difficile": {
+      "name": "Mobilité Difficile",
+      "definition": "Pendant son activation, une unité dotée du mot-clé Mobilité Difficile ne peut effectuer qu'une action Se déplacer.",
+      "page": 53,
+      "heading": "PLODDING"
+    },
+    "position-preparee": {
+      "name": "Position Préparée",
+      "definition": "Pendant l'étape « Se déployer sur les positions préparées » de la mise en place, une unité dotée du mot-clé Position Préparée peut se déployer en plaçant son Chef d'unité intégralement en territoire allié. Ensuite, les figurines restantes de l'unité sont placées en cohésion avec leur Chef d'unité et en territoire allié. Cette unité gagne ensuite 1 pion Esquive. Les figurines ne peuvent pas chevaucher un terrain infranchissable lorsqu'elles sont placées en utilisant Position Préparée.",
+      "page": 53,
+      "heading": "PREPARED POSITION"
+    },
+    "programme": {
+      "name": "Programmé",
+      "definition": "Une unité dotée du mot-clé Programmé doit s’équiper d’au moins 1 carte Amélioration Programmation pendant la création d’armée.",
+      "page": 53,
+      "heading": "PROGRAMMED"
+    },
+    "vivacite-desprit": {
+      "name": "Vivacité d'Esprit",
+      "definition": "Lorsqu'une unité effectue l'action de carte Vivacité d'esprit, elle gagne 1 pion Viser et 1 pion Esquive.",
+      "page": 53,
+      "heading": "QUICK THINKING"
+    },
+    "operationnel-x": {
+      "name": "Opérationnel X",
+      "definition": "Après qu'une unité dotée du mot-clé Opérationnel X a effectué une action Attendre, elle gagne X pions Viser.",
+      "page": 53,
+      "heading": "READY X"
+    },
+    "recharger-x": {
+      "name": "Recharger X",
+      "definition": "Lorsqu'une unité dotée du mot-clé Recharger X récupère, elle peut retourner jusqu'à X pions Bouclier inactifs sur leur côté actif.",
+      "page": 54,
+      "heading": "RECHARGE X"
+    },
+    "regenerer-x": {
+      "name": "Régénérer X",
+      "definition": "À la fin de l'activation d'une unité, si elle est dotée du mot-clé Régénérer X, elle lance un dé de défense blanc pour chaque pion Blessure qu'elle possède, pour un maximum de X pions. Pour chaque résultat [BLOC] ou [ADR-DEF] obtenu, elle retire un pion Blessure.",
+      "page": 54,
+      "heading": "REGENERATE X"
+    },
+    "renforts": {
+      "name": "Renforts",
+      "definition": "Au début de la Phase Finale du round 1 d'une partie, une unité dotée du mot-clé Renforts peut effectuer un déplacement gratuit à vitesse 1.",
+      "page": 54,
+      "heading": "REINFORCEMENTS"
+    },
+    "redeploiement": {
+      "name": "Redéploiement",
+      "definition": "Lorsqu'une unité dotée du mot-clé Redéploiement effectue un déplacement normal, elle peut effectuer un pivot avant ou après avoir effectué le déplacement normal.",
+      "page": 54,
+      "heading": "REPOSITION"
+    },
+    "escorte": {
+      "name": "Escorte : Nom/Type d'Unité",
+      "definition": "Au début de la Phase d'Activation, si une unité dotée du mot-clé Escorte se trouve à ② d'une autre unité ou type d'unité allié(e) spécifié(e) par le mot-clé Escorte, elle gagne soit un pion Viser, soit un pion Esquive. De plus, une unité dotée du mot-clé Escorte ignore le prérequis de rang Troupes (Corps) pour prêter main-forte à l'unité spécifiée.",
+      "page": 54,
+      "heading": "RETINUE: UNIT/UNIT TYPE"
+    },
+    "impitoyable": {
+      "name": "Impitoyable",
+      "definition": "Lorsqu’une unité de soldats alliée possédant un pion Ordre face visible commence son activation à portée 2 et en ligne de vue d’une unité dotée du mot-clé Impitoyable, cette unité alliée peut subir 1 blessure pour effectuer 1 action gratuite.",
+      "page": 54,
+      "heading": "RUTHLESS"
+    },
+    "ascension": {
+      "name": "Ascension",
+      "definition": "Lorsqu'une unité dotée du mot-clé Ascension effectue un déplacement Escalade, cette unité peut se déplacer sur une distance verticale de hauteur 2. Lorsqu'une unité dotée du mot-clé Ascension effectue un déplacement, cette unité ne réduit pas sa vitesse maximale pour entrer, sortir, ou traverser un terrain difficile.",
+      "page": 54,
+      "heading": "SCALE"
+    },
+    "eclaireur-x": {
+      "name": "Éclaireur X",
+      "definition": "Lorsqu'une unité non déployée dotée du mot-clé Éclaireur X s'active, au début de l'étape « Effectuer des actions », elle peut se déployer en effectuant une action Se déplacer à vitesse X gratuite, en ignorant le terrain difficile. Une unité peut effectuer ce déplacement quelle que soit sa vitesse maximale. Le mot-clé Éclaireur X peut se cumuler, mais pas au-dessus de 3. Si une unité est censée être dotée d'Éclaireur X au-dessus de 3, elle est dotée d'Éclaireur 3 à la place.",
+      "page": 54,
+      "heading": "SCOUT X"
+    },
+    "mission-secrete": {
+      "name": "Mission Secrète",
+      "definition": "Au début de chaque Phase de Commandement, si une unité dotée du mot-clé Mission Secrète se trouve intégralement en territoire ennemi, elle gagne un pion Mission secrète. Une unité ne peut gagner qu'un seul pion Mission secrète lors de la partie. Lors du décompte des PV pendant la Phase Finale, si un joueur contrôle une ou plusieurs unités ayant un pion Mission secrète et que ces unités se trouvent en territoire ennemi, ce joueur peut décider de retirer du jeu les pions Mission secrète de ces unités. Il marque 1 PV pour chaque pion Mission secrète ainsi retiré.",
+      "page": 54,
+      "heading": "SECRET MISSION"
+    },
+    "instinct-de-survie": {
+      "name": "Instinct de Survie",
+      "definition": "Lorsque vous vérifiez si une unité dotée du mot-clé Instinct de Survie panique, cette unité ne peut pas utiliser la valeur de courage des unités n'appartenant pas à la même affiliation.",
+      "page": 54,
+      "heading": "SELF-PRESERVATION"
+    },
+    "sentinelle": {
+      "name": "Sentinelle",
+      "definition": "Une unité dotée du mot-clé Sentinelle peut dépenser un pion En attente après qu'une unité ennemie a effectué une attaque, un déplacement ou une action à ③ plutôt qu'à ②.",
+      "page": 54,
+      "heading": "SENTINEL"
+    },
+    "bouclier-x": {
+      "name": "Bouclier X",
+      "definition": "Une unité dotée du mot-clé Bouclier X possède X pions Bouclier. Les pions Bouclier appartiennent à l'unité et ne sont pas attribués individuellement à des figurines. Si une unité gagne le mot-clé Bouclier X, elle gagne X pions Bouclier. De même, si une unité perd le mot-clé Bouclier X, elle perd X pions Bouclier. Les pions Bouclier sont recto verso : un côté actif et un côté inactif. Ils entrent toujours en jeu côté actif visible. Lorsqu'une unité retourne un pion Bouclier actif, ce pion devient inactif (le côté inactif du pion est désormais visible). Lorsqu'une unité retourne un pion Bouclier inactif, ce pion devient actif (le côté actif du pion est désormais visible). Tant qu'elle défend contre une attaque à distance, pendant l'étape « Modifier les dés d'attaque », une unité en défense peut retourner n'importe quel nombre de ses pions Bouclier actifs sur leur côté inactif afin d'annuler un résultat [TOUCHE] ou [CRITIQUE] par pion Bouclier ainsi retourné.",
+      "page": 55,
+      "heading": "SHIELDED X"
+    },
+    "specificite": {
+      "name": "Spécificité : Force Armée",
+      "definition": "Une unité dotée du mot-clé Spécificité ne peut être incluse que dans une armée utilisant la force armée spécifiée.",
+      "page": 55,
+      "heading": "SPECIAL ISSUE: BATTLE FORCE"
+    },
+    "observateur-x": {
+      "name": "Observateur X",
+      "definition": "En tant qu’action de carte ou action de carte gratuite, une unité dotée du mot-clé Observateur X peut choisir jusqu’à X unités alliées à portée 2. Chaque unité choisie gagne 1 pion Viser.",
+      "page": 55,
+      "heading": "SPOTTER X"
+    },
+    "stationnaire": {
+      "name": "Stationnaire",
+      "definition": "Une unité dotée du mot-clé Stationnaire ne peut pas effectuer de déplacements, sauf des pivots. Une unité dotée des mots-clés Position Préparée et Stationnaire doit se déployer pendant l’étape « Se déployer sur les positions préparées » de la mise en place.",
+      "page": 56,
+      "heading": "STATIONARY"
+    },
+    "stratege-x": {
+      "name": "Stratège X",
+      "definition": "En effectuant cette action de carte, une unité dotée du mot-clé Stratège X gagne 1 pion Suppression, puis choisit X unités alliées à ②. Chaque unité choisie gagne 1 pion Viser et 1 pion Esquive.",
+      "page": 56,
+      "heading": "STRATEGIZE X"
+    },
+    "mettre-a-couvert-x": {
+      "name": "Mettre à Couvert X",
+      "definition": "En tant qu’action de carte ou action de carte gratuite, une unité dotée du mot-clé Mettre à Couvert X peut choisir jusqu’à X unités alliées à portée 2. Chaque unité choisie gagne 1 pion Esquive.",
+      "page": 56,
+      "heading": "TAKE COVER X"
+    },
+    "cible-x": {
+      "name": "Cible X",
+      "definition": "Après qu'une unité dotée du mot-clé Cible X a reçu un ordre, elle gagne X pions Viser.",
+      "page": 56,
+      "heading": "TARGET X"
+    },
+    "telle-est-la-voie": {
+      "name": "Telle est la Voie",
+      "definition": "Lorsqu'une unité alliée dotée du mot-clé Telle est la Voie reçoit un ordre, choisissez jusqu'à X autres unités alliées à ② d'elle. Chaque unité choisie effectue, en tant qu'action gratuite, l'action indiquée par le mot-clé Telle est la Voie de l'unité ayant reçu un ordre.",
+      "page": 56,
+      "heading": "THIS IS THE WAY"
+    },
+    "transport": {
+      "name": "Transport",
+      "definition": "Pendant la mise en place, une unité dotée du mot-clé Transport peut choisir une unité de soldats alliée de rang Troupes ou Forces Spéciales à transporter. Pendant l'étape « Donner des ordres » de la Phase de Commandement du round 1, une unité dotée du mot-clé Transport peut donner un ordre à l'unité choisie. Si l'unité choisie n'est pas déployée lorsque l'unité dotée du mot-clé Transport se déploie, une fois que l'effet est résolu, l'unité choisie se déploie en effectuant un déplacement à vitesse 1. Commencez à mesurer le déplacement en plaçant les deux pointes d'une extrémité du gabarit de déplacement de façon qu'elles touchent toutes deux le socle de l'unité dotée du mot-clé Transport. Une unité peut effectuer ce déplacement quelle que soit sa vitesse. Lorsque l'unité choisie se déploie de cette manière, le Chef de cette unité mesure la distance verticale parcourue pendant ce déplacement en partant de l'unité dotée du mot-clé Transport.",
+      "page": 56,
+      "heading": "TRANSPORT"
+    },
+    "indifferent": {
+      "name": "Indifférent",
+      "definition": "Une unité dotée du mot-clé Indifférent ne peut pas bénéficier d'un couvert, et les figurines de cette unité ne peuvent être ni réparées ni restaurées.",
+      "page": 56,
+      "heading": "UNCONCERNED"
+    },
+    "sans-entrave": {
+      "name": "Sans Entrave",
+      "definition": "Lorsqu'une unité dotée du mot-clé Sans Entrave effectue un déplacement, elle ne réduit pas sa vitesse maximale pour entrer dans un terrain difficile, en sortir ou le traverser.",
+      "page": 56,
+      "heading": "UNHINDERED"
+    },
+    "inarretable": {
+      "name": "Inarrêtable",
+      "definition": "Une unité dotée du mot-clé Inarrêtable est éligible pour s'activer pendant la Phase d'Activation tant qu'elle possède au maximum 1 pion Ordre. Cette unité ne peut jamais posséder plus d'un pion Ordre face visible. Tant que cette unité n'est pas vaincue, lors de la constitution de sa réserve d'ordres, le joueur qui la contrôle ajoute à sa réserve d'ordres un pion Ordre supplémentaire correspondant au rang de cette unité.",
+      "page": 57,
+      "heading": "UNSTOPPABLE"
+    },
+    "on-est-pas-des-regs": {
+      "name": "Nous Ne Sommes Pas des Regs",
+      "definition": "Une unité dotée du mot-clé On n’est Pas des Regs ne peut pas dépenser de pions verts appartenant à d’autres unités de soldats clones, et les autres unités de soldats clones ne peuvent pas dépenser les pions verts de cette unité. De plus, cette unité ne peut pas bénéficier de l’aide d’une unité qui lui prête main-forte.",
+      "page": 57,
+      "heading": "WE'RE NOT REGS"
+    },
+    "point-faible-x": {
+      "name": "Point Faible X : Avant/Arrière/Flancs",
+      "definition": "Tant qu'une unité dotée du mot-clé Point Faible X : avant/arrière/flancs défend, si le Chef de l'unité attaquante se trouve au moins partiellement dans l'arc de tir spécifié de l'unité en défense, la réserve d'attaque gagne le mot-clé Impact X, X étant alors égal à la valeur de Point Faible X. Tant qu'une unité dotée du mot-clé Point Faible X défend contre une attaque à distance effectuée par une arme à effet de zone, considérez le pion Charge ou Avantage comme étant le Chef de l'unité attaquante.",
+      "page": 57,
+      "heading": "WEAK POINT X: FRONT/REAR/ SIDES"
+    },
+    "blessure-x": {
+      "name": "Blessure X",
+      "definition": "La première fois qu'une unité dotée du mot-clé Blessure X entre en jeu, cette unité subit X blessures.",
+      "page": 57,
+      "heading": "WOUND X"
+    },
+    "anti-materiel-x": {
+      "name": "Anti-matériel X",
+      "definition": "Lorsqu’une unité effectue une attaque dont la réserve d’attaque possède le mot-clé Anti-matériel X, si l’unité en défense est une unité de véhicule, améliorez X dés d’attaque de cette arme.",
+      "page": 58,
+      "heading": "ANTI-MATERIEL X"
+    },
+    "assaut-x": {
+      "name": "Assaut X",
+      "definition": "Lorsqu'une arme dotée du mot-clé Assaut X est ajoutée à une réserve d'attaque, si l'unité en défense est à ① du Chef de l'unité attaquante, vous pouvez améliorer X dés d'attaque de cette arme.",
+      "page": 58,
+      "heading": "ASSAULT X"
+    },
+    "encombrant": {
+      "name": "Encombrant",
+      "definition": "Lorsqu'une unité ajoute une arme dotée du mot-clé Encombrant à une réserve d'attaque, elle dégrade chacun des dés d'attaque de cette arme si cette unité a effectué un déplacement pendant la même activation.",
+      "page": 58,
+      "heading": "CUMBERSOME"
+    },
+    "fixe": {
+      "name": "Fixe : Avant/Arrière/Flancs",
+      "definition": "Pour ajouter une arme dotée du mot-clé Fixe : avant/arrière/flancs à une réserve d'attaque, l'unité en défense doit comprendre au moins une figurine dont le socle se trouve partiellement à l'intérieur de l'arc de tir spécifié de la figurine attaquante.",
+      "page": 58,
+      "heading": "FIXED: FRONT/SIDES/REAR"
+    },
+    "haute-velocite": {
+      "name": "Haute Vélocité",
+      "definition": "Tant qu'elle défend contre une attaque dont la réserve d'attaque ne contient que des armes dotées du mot-clé d'arme Haute Vélocité, l'unité en défense ne peut pas dépenser de pions Esquive pendant l'étape « Appliquer les esquives et couverts ».",
+      "page": 58,
+      "heading": "HIGH VELOCITY"
+    },
+    "immobiliser-x": {
+      "name": "Immobiliser X",
+      "definition": "Une unité qui subit au moins 1 blessure d’une attaque dont la réserve d’attaque possède Immobiliser X gagne X pions Immobilisation. Lorsqu’une unité effectue un déplacement, sa vitesse est réduite de 1 pour chaque pion Immobilisation qu’elle possède. Après application des modificateurs, si sa vitesse est de 0, elle ne peut effectuer aucun déplacement, quel qu’en soit le type. À la fin de son activation, une unité retire tous ses pions Immobilisation. Lorsqu’une unité effectue un déplacement, appliquez les effets qui augmentent sa vitesse avant ceux qui la réduisent.",
+      "page": 59,
+      "heading": "IMMOBILIZE X"
+    },
+    "ion-x": {
+      "name": "Ion X",
+      "definition": "Une unité de véhicule ou de soldats droïdes qui subit des blessures après avoir défendu contre une attaque comprenant une arme dotée du mot-clé Ion X gagne X pions Ionique après la résolution de l’attaque. Au début de l'activation d'une unité, lancez un dé de défense blanc pour chaque pion Ionique que possède l'unité. Si vous obtenez des résultats vierges, cette unité effectue une action de moins pendant son activation. À la fin de l'activation d'une unité, elle retire tout pion Ionique qu'elle possède. Si une réserve d'attaque est dotée du mot-clé Ion X, au début de l'étape « Modifier les dés d'attaque » de la séquence d'attaque, avant tout autre effet, l'unité en défense doit retourner des pions Bouclier actifs, si possible, pour chaque résultat [TOUCHE] et [CRITIQUE] du jet d'attaque, jusqu'à X.",
+      "page": 59,
+      "heading": "ION X"
+    },
+    "letal-x": {
+      "name": "Létal X",
+      "definition": "Lorsqu'une unité effectue une attaque dont la réserve contient une arme dotée du mot-clé Létal X, elle peut dépenser jusqu'à X pions Viser pendant l'étape « Modifier les dés d'attaque ». Dans ce cas, la réserve d'attaque gagne Perforant 1 pour chaque pion Viser dépensé. L'unité attaquante ne peut pas relancer de dés grâce aux pions Viser ainsi dépensés.",
+      "page": 59,
+      "heading": "LETHAL X"
+    },
+    "longue-distance": {
+      "name": "Longue Distance",
+      "definition": "Lorsqu'une unité possédant au moins une arme dotée du mot-clé Longue Distance effectue une attaque, avant de choisir une unité ennemie à attaquer pendant l'étape « Déclarer le défenseur », cette unité peut dépenser un pion Viser pour améliorer de 1 la portée maximale de chaque arme ayant Longue Distance jusqu'à la fin de la séquence d'attaque. L'unité attaquante ne peut pas relancer de dés grâce aux pions Viser ainsi dépensés. Un seul pion Viser peut être ainsi dépensé par séquence d'attaque.",
+      "page": 59,
+      "heading": "LONG SHOT"
+    },
+    "bordee-x": {
+      "name": "Bordée X",
+      "definition": "Une arme affichant une icône de portée rouge de bordée est une arme de bordée et ne peut être utilisée que lors d'une attaque de bordée. Les attaques de bordée ne sont ni des attaques à distance ni des attaques au corps-à-corps. Une unité peut effectuer X attaques de bordée pendant son activation. Une unité possédant une arme de bordée peut effectuer une attaque de bordée après avoir effectué un déplacement normal durant lequel le gabarit de déplacement ou le socle d'au moins une de ses figurines a chevauché le socle d'une figurine ennemie. Après avoir terminé le déplacement, l'unité possédant l'arme de bordée effectue une attaque contre l'unité à travers laquelle elle s'est déplacée, en ignorant la portée pour cette attaque. Elle ne peut constituer qu'une seule réserve d'attaque lorsqu'elle effectue cette attaque et seules des armes dotées du mot-clé Bordée X peuvent être ajoutées à cette réserve d'attaque. L'arme de bordée n'est ajoutée qu'une seule fois à la réserve d'attaque, même si l'unité contient plusieurs figurines. Si une unité peut effectuer plusieurs attaques de bordée pendant son activation, elle doit effectuer un déplacement distinct à travers une unité ennemie pour chaque attaque de bordée.",
+      "page": 59,
+      "heading": "OVERRUN X"
+    },
+    "debordement": {
+      "name": "Débordement",
+      "definition": "Lorsqu'une unité effectue une attaque dont la réserve contient au moins 1 arme dotée du mot-clé Débordement, si elle dépense au moins 1 pion Viser pendant l'étape « Relancer les dés d'attaque », l'unité en défense gagnera 1 pion Suppression lors de l'étape « Attribuer un pion Suppression au défenseur ».",
+      "page": 59,
+      "heading": "OVERWHELM"
+    },
+    "belier-x": {
+      "name": "Bélier X",
+      "definition": "Tant qu'une unité effectue une attaque en utilisant une réserve d'attaque qui contient une arme dotée du mot-clé Bélier X, pendant l'étape « Modifier les dés d'attaque », elle peut changer X résultats en résultats [CRITIQUE] si elle remplit l'une ou l'autre des conditions suivantes : le Chef de l'unité a un socle avec encoches et l'unité a effectué au moins un déplacement normal complet à sa vitesse maximale pendant la même activation qu'une attaque utilisant Bélier X ; ou le Chef de l'unité a un socle sans encoches et l'unité a effectué au moins un déplacement pendant la même activation qu'une attaque utilisant Bélier X.",
+      "page": 60,
+      "heading": "RAM X"
+    },
+    "equipe-sniper": {
+      "name": "Équipe Sniper",
+      "definition": "Lorsqu'une unité effectue une attaque lors de son activation, si une de ses réserves d'attaque ne contient que des armes dotées du mot-clé Équipe Sniper, améliorez chaque dé d'attaque de ces armes si les conditions suivantes sont vraies : l'unité n'a pas effectué de déplacement pendant son activation, et chacune de ses figurines a une LdV vers 1 ou plusieurs figurines de l'unité en défense. Si vous avez ainsi amélioré des dés, après l'étape « Convertir les adrénalines d'attaque » de cette réserve d'attaque, vous pouvez annuler tous les dés d'attaque de cette réserve d'attaque et passer directement à l'étape « Attribuer un pion Suppression au défenseur ». Dans ce cas, si au moins 1 résultat [CRITIQUE] a été annulé, l'unité en défense subit 1 blessure.",
+      "page": 60,
+      "heading": "SNIPER TEAM"
+    },
+    "cable-de-remorquage": {
+      "name": "Câble de Remorquage",
+      "definition": "Après qu'un véhicule a été blessé par une réserve d'attaque qui contient une arme dotée du mot-clé Câble de Remorquage, le joueur qui a effectué l'attaque effectue un pivot avec le véhicule qui a été blessé, puis il gagne 1 pion Immobilisation.",
+      "page": 60,
+      "heading": "TOW CABLE"
+    },
+    "cycle": {
+      "name": "Cycle",
+      "definition": "À la fin de l'activation d'une unité, redressez chacune de ses cartes Amélioration inclinées dotées du mot-clé Cycle qui n'a pas été utilisée pendant cette activation. Seule l'utilisation de l'arme, des mots-clés ou d'un autre texte de la carte est considérée comme utiliser cette carte Amélioration.",
+      "page": 61,
+      "heading": "CYCLE"
+    },
+    "chef": {
+      "name": "Chef",
+      "definition": "Une figurine dotée du mot-clé Chef est considérée comme le Chef d'une unité pour tous les effets de jeu et capacités. Si une figurine dotée du mot-clé Chef ayant un seuil de blessure de 2 ou plus est vaincue alors qu'elle se trouve dans une unité ayant un seuil de blessure de 1, remplacez normalement une des figurines restantes de cette unité, puis attribuez un pion Blessure à la figurine dotée du mot-clé Chef. Chaque unité ne peut s'équiper que d'une seule carte Amélioration dotée du mot-clé Chef.",
+      "page": 61,
+      "heading": "LEADER"
+    },
+    "non-combattant": {
+      "name": "Non-combattant",
+      "definition": "Une figurine dotée du mot-clé Non-combattant ne peut pas ajouter d'armes aux réserves d'attaque, et les blessures doivent être attribuées à des figurines autres que des Chefs d'unité n'étant pas dotées du mot-clé Non-combattant, si possible. Si une figurine dotée du mot-clé Non-combattant possède déjà un ou plusieurs pions Blessure, elle doit se voir attribuer des blessures avant les figurines qui ne possèdent pas de pions Blessure. Si la figurine de Chef d'unité d'une unité dotée du mot-clé Non-combattant est vaincue, une figurine Non-combattante ne peut pas être remplacée par une nouvelle figurine de Chef d'unité sauf s'il n'y a pas d'autres figurines n'étant pas dotées du mot-clé Non-combattant.",
+      "page": 61,
+      "heading": "NONCOMBATANT"
+    },
+    "reconfiguration": {
+      "name": "Reconfiguration",
+      "definition": "Lorsqu'une unité équipée d'une carte Amélioration dotée du mot-clé Reconfiguration effectue une action Récupérer, le joueur qui contrôle cette unité peut retourner cette carte Amélioration sur son autre face en plus de tout effet lié à la récupération. Si une carte Amélioration affiche l'icône Incliner, utiliser la capacité Reconfiguration ne provoque pas l'inclinaison de cette carte Amélioration.",
+      "page": 62,
+      "heading": "RECONFIGURE"
+    },
+    "reparation-x": {
+      "name": "Réparation X : Capacité Y",
+      "definition": "Lorsqu'une unité utilise l’action de carte ou action de carte gratuite Réparation X : Capacité Y, choisissez une unité de soldats droïdes ou de véhicule alliée à ① et en LdV et placez un pion Blessure sur la carte dotée du mot-clé Réparation X : Capacité Y. Retirez au total jusqu’à 1 pion Blessure, Ionique ou Dégât de véhicule de l'unité choisie ou restaurez jusqu'à X figurines de cette unité. Cette capacité ne peut pas être utilisée si la carte dotée du mot-clé Réparation X : Capacité Y possède sur elle un nombre de pions Blessure supérieur ou égal à Y. Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Réparation X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources.",
+      "page": 62,
+      "heading": "REPAIR X: CAPACITY Y",
+      "editorialNote": "Le PDF officiel du 17/06/2026, p. 62, indique « up to 1 » pour le retrait de pions, et X pour les figurines restaurées. La traduction conserve cette valeur littérale ; aucun erratum correspondant retrouvé dans les sources consultées."
+    },
+    "arme-de-poing": {
+      "name": "Arme de Poing : Corps-à-Corps/à Distance",
+      "definition": "Si une amélioration possède Arme de Poing : Corps-à-Corps, la figurine ajoutée par cette amélioration ou équipée de cette amélioration ne peut ajouter aux réserves d’attaque aucune arme de corps-à-corps autre que celles de la carte Amélioration possédant Arme de Poing : Corps-à-Corps. Si une amélioration possède Arme de Poing : À Distance, la figurine ajoutée par cette amélioration ou équipée de cette amélioration ne peut ajouter aux réserves d’attaque aucune arme à distance autre que celles de la carte Amélioration possédant Arme de Poing : À Distance. Par exemple, la carte Amélioration Droïde Tactique de Série T fournit une arme à distance et possède Arme de Poing : À Distance. La figurine ajoutée par cette amélioration ne peut utiliser que l’arme de cette carte lors d’une attaque à distance. Elle peut toujours utiliser toute arme de corps-à-corps disponible, telle que celle de la carte Unité Droïdes de Combat B1, pendant une attaque au corps-à-corps.",
+      "page": 62,
+      "heading": "SIDEARM: MELEE/RANGED"
+    },
+    "petit": {
+      "name": "Petit",
+      "definition": "Une unité comprenant 1 ou plusieurs figurines Alter Ego dotées du mot-clé Petit ne peut pas être ciblée par des attaques si le Chef de l'unité attaquante n'a une LdV que vers la figurine Alter Ego dotée du mot-clé Petit.",
+      "page": 62,
+      "heading": "SMALL"
+    },
+    "traiter-x": {
+      "name": "Traiter X : Capacité Y",
+      "definition": "Lorsqu'une unité utilise l’action de carte ou action de carte gratuite Traiter X : Capacité Y, choisissez une unité de soldats non-droïdes alliée à ① et en LdV et placez un pion Blessure sur la carte dotée du mot-clé Traiter X : Capacité Y. Retirez au total jusqu'à X pions Blessure et/ou Poison de l'unité choisie ou restaurez jusqu'à X figurines dans cette unité. Cette capacité ne peut pas être utilisée si la carte dotée du mot-clé Traiter X : Capacité Y possède sur elle un nombre de pions Blessure supérieur ou égal à Y. Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Traiter X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources.",
+      "page": 62,
+      "heading": "TREAT X: CAPACITY Y"
+    }
+  },
+  "errataSource": {
+    "title": "Errata Reference",
+    "updatedAt": "2026-06-17",
+    "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/06/DOC56_ErrataReference-2.pdf",
+    "sha256": "4d0eac731e7732c3e478f1f139f270b9fc3f394d64f53cca8f135e4c1b7f3466"
+  }
+}

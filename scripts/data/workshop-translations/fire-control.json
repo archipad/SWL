@@ -1,0 +1,46 @@
+{
+  "kind": "upgrade",
+  "cardId": "upgrade:fire control",
+  "name": "Contrôle de Tir",
+  "sourceFile": "cards/fire-control.webp",
+  "sourceSha256": "38975113ec59013c328b954683a33fcd4dbded7369cf22b9005844b20e3932ca",
+  "expectedSize": [
+    725,
+    1040
+  ],
+  "fr": {
+    "body": "Quand une autre unité alliée à {portee-1} effectue une attaque à distance contre une unité ennemie dans la ligne de vue de cette unité, améliorez 2 des dés d'attaque de l'unité attaquante.",
+    "title": "-Contrôle de Tir"
+  },
+  "zones": {
+    "body": [
+      64,
+      706,
+      668,
+      899
+    ],
+    "title": [
+      54,
+      945,
+      674,
+      1020
+    ]
+  },
+  "sourceIcons": {},
+  "protectedZones": [
+    [
+      0,
+      0,
+      172,
+      118
+    ],
+    [
+      550,
+      0,
+      725,
+      121
+    ]
+  ],
+  "englishText": "When another allied unit within range 1 makes a Ranged attack against an enemy unit in LOS of this unit, upgrade 2 of the attacking unit's attack dice.",
+  "translationStatus": "local-ai-reviewed-not-human-certified"
+}

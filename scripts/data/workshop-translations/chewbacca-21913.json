@@ -1,0 +1,66 @@
+{
+  "sourceId": "upgrade:21913",
+  "name": "Chewbacca",
+  "kind": "upgrade",
+  "fr": {
+    "body": "__Soldat Wookie uniquement.__\nAjoutez 1 figurine de Chewbacca.\nQuand cette unité attaque, pendant l'étape __Former la Réserve d'Attaque__, choisissez 1 de ses réserves d'attaque. Cette unité peut améliorer 1 dé d'attaque de cette réserve pour chaque figurine qui ajoute une arme à la réserve choisie.\nQuand cette unité défend, pour chaque figurine de cette unité, vous pouvez améliorer 1 de ses dés de défense.\n**Chef.**",
+    "weaponName": "Arbalète de Chewbacca",
+    "weaponKeywords": "Impact 1"
+  },
+  "zones": {
+    "body": [
+      58,
+      240,
+      675,
+      741
+    ],
+    "weaponName": [
+      71,
+      768,
+      405,
+      801
+    ],
+    "weaponKeywords": [
+      69,
+      814,
+      490,
+      851
+    ]
+  },
+  "protectedZones": [
+    [
+      550,
+      0,
+      728,
+      240
+    ],
+    [
+      410,
+      758,
+      511,
+      810
+    ],
+    [
+      512,
+      758,
+      680,
+      866
+    ]
+  ],
+  "sourceSha256": "1a4ec1c641a96d2f2c78e579dbab79ab35525a2c88d4561d6628ab30746b0b2c",
+  "sourceFile": "auto-certification/en/upgrade-21913-chewbacca.jpg",
+  "englishText": "Wookiee Trooper only. Add 1 Chewbacca miniature. When this unit attacks, during the Form Attack Pool step, choose 1 of this unit's Attack Pools. This unit may upgrade 1 attack dice in that Attack Pool for each miniature adding a weapon to the chosen Attack Pool. When this unit defends, for each miniature in this unit, you may upgrade 1 of this unit's defense dice. Leader. Chewbacca's Bowcaster. Impact 1.",
+  "translationStatus": "local-ai-reviewed-not-human-certified",
+  "expectedSize": [
+    728,
+    1041
+  ],
+  "eraseZones": {
+    "body": [
+      58,
+      226,
+      675,
+      741
+    ]
+  }
+}

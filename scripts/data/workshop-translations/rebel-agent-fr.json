@@ -1,0 +1,169 @@
+{
+  "stem": "rebel-agent-fr",
+  "cardId": "unit:rebel agent defender of democracy",
+  "key": "rebel agent defender of democracy",
+  "name": "Agent Rebelle, Défenseur de la Démocratie",
+  "kind": "unit",
+  "sourceFile": "cards/workshop/sources/rebel-agent-en-3x.png",
+  "expectedSize": [
+    1260,
+    879
+  ],
+  "fr": {
+    "body": "**Équipe :** {doctrine-source}\n**Autonome : Esquive 1**\n**Agile**",
+    "title": "Agent Rebelle",
+    "subtitle": "Défenseur de la Démocratie",
+    "unitType": "Soldat",
+    "weaponName": "Entraînement au Combat",
+    "weaponName2": "Pistolet Blaster"
+  },
+  "zones": {
+    "body": [
+      45,
+      174,
+      775,
+      348
+    ],
+    "title": [
+      180,
+      0,
+      840,
+      59
+    ],
+    "subtitle": [
+      180,
+      59,
+      840,
+      83
+    ],
+    "unitType": [
+      180,
+      93,
+      795,
+      126
+    ],
+    "weaponName": [
+      45,
+      575,
+      454,
+      631
+    ],
+    "weaponName2": [
+      45,
+      732,
+      454,
+      788
+    ]
+  },
+  "eraseZones": {
+    "body": [
+      42,
+      165,
+      730,
+      351
+    ]
+  },
+  "align": {
+    "body": "left",
+    "title": "left"
+  },
+  "extraTextZones": [
+    {
+      "key": "subtitle",
+      "mode": "light",
+      "style": "band",
+      "size": 25
+    },
+    {
+      "key": "unitType",
+      "mode": "light",
+      "style": "band",
+      "size": 27
+    },
+    {
+      "key": "weaponName2",
+      "mode": "light",
+      "style": "band",
+      "size": 28
+    }
+  ],
+  "sourceIcons": {
+    "doctrine-source": [
+      183,
+      174,
+      228,
+      222
+    ]
+  },
+  "protectedZones": [
+    [
+      0,
+      0,
+      174,
+      165
+    ],
+    [
+      840,
+      0,
+      1260,
+      879
+    ],
+    [
+      457,
+      570,
+      780,
+      640
+    ],
+    [
+      457,
+      728,
+      780,
+      851
+    ],
+    [
+      0,
+      850,
+      1260,
+      879
+    ]
+  ],
+  "englishText": "Rebel Agent. Defender of Democracy. Trooper. Equip: [Doctrine]. Independent: Dodge 1. Nimble. Combat Training. Blaster Pistol.",
+  "sourceTransform": {
+    "originalFile": "cards/rebel-agent-defender-of-democracy.png",
+    "originalSha256": "c1ab2198eac2be244ff8f21401bccd76649030d6244b91e0634179fdae47b0e5",
+    "scale": 3,
+    "method": "Pillow LANCZOS; original low-resolution illustration preserved"
+  },
+  "sourceSha256": "4f01be481e21ba236b60930e3308804708229f9c407e62fee883d9739f851d40",
+  "translationStatus": "local-ai-reviewed-not-human-certified",
+  "eraseThresholds": {
+    "body": 210
+  },
+  "backgroundColors": {
+    "title": [
+      37,
+      33,
+      34
+    ],
+    "subtitle": [
+      37,
+      33,
+      34
+    ],
+    "unitType": [
+      37,
+      33,
+      34
+    ],
+    "weaponName": [
+      37,
+      33,
+      34
+    ],
+    "weaponName2": [
+      37,
+      33,
+      34
+    ]
+  }
+}

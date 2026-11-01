@@ -1,0 +1,291 @@
+{
+  "schemaVersion": 1,
+  "notice": "Substitutions réservées à l’atelier, sur les identifiants existants : aucun doublon, aucun profil ni certification moteur modifié.",
+  "cards": [
+    {
+      "id": "upgrade:cassian andor operative",
+      "key": "cassian andor operative",
+      "englishName": "Cassian Andor",
+      "name": "Cassian Andor",
+      "kind": "upgrade",
+      "image": "workshop/cassian-andor-20800-fr.jpg",
+      "sourceId": "upgrade:20800",
+      "sourceFile": "auto-certification/fr/upgrade-cassian-andor-deblocage-variante.jpg",
+      "sourceSha256": "cd4d291b5aba368c54a0e04b09b1d853e39bce83ca266298f4653a5492792cac",
+      "keywords": [
+        {
+          "id": "chef"
+        },
+        {
+          "id": "profil-bas"
+        },
+        {
+          "id": "mission-secrete"
+        },
+        {
+          "id": "longue-distance"
+        }
+      ],
+      "warnings": [
+        "Carte de jeu retournable : face initiale uniquement ; autre face à consulter sur la carte de jeu."
+      ],
+      "provenance": "Visuel FR officiel local réutilisé, variante TTA upgrade:20800. Actualité à vérifier.",
+      "englishSourceName": "Cassian Andor",
+      "originalFront": "cards/cassian-andor-operative.jpg",
+      "keywordsReviewedOnSource": true
+    },
+    {
+      "id": "upgrade:chewbacca upgrade",
+      "key": "chewbacca upgrade",
+      "englishName": "Chewbacca",
+      "name": "Chewbacca (amélioration)",
+      "kind": "upgrade",
+      "image": "workshop/chewbacca-21913-fr.png",
+      "sourceId": "upgrade:21913",
+      "sourceFile": "auto-certification/en/upgrade-21913-chewbacca.jpg",
+      "sourceSha256": "1a4ec1c641a96d2f2c78e579dbab79ab35525a2c88d4561d6628ab30746b0b2c",
+      "keywords": [
+        {
+          "id": "chef"
+        },
+        {
+          "id": "impact-x",
+          "value": 1
+        }
+      ],
+      "warnings": [
+        "Traduction locale relue sur le visuel anglais ; validation humaine et actualité à vérifier."
+      ],
+      "provenance": "Traduction locale EN → FR, variante TTA upgrade:21913. Glossaire FR du dépôt. Statistiques et icônes conservées.",
+      "fr": {
+        "body": "__Soldat Wookie uniquement.__\nAjoutez 1 figurine de Chewbacca.\nQuand cette unité attaque, pendant l'étape __Former la Réserve d'Attaque__, choisissez 1 de ses réserves d'attaque. Cette unité peut améliorer 1 dé d'attaque de cette réserve pour chaque figurine qui ajoute une arme à la réserve choisie.\nQuand cette unité défend, pour chaque figurine de cette unité, vous pouvez améliorer 1 de ses dés de défense.\n**Chef.**",
+        "weaponName": "Arbalète de Chewbacca",
+        "weaponKeywords": "Impact 1"
+      },
+      "englishSourceName": "Chewbacca",
+      "originalFront": "cards/chewbacca-upgrade.png",
+      "keywordsReviewedOnSource": true
+    },
+    {
+      "id": "upgrade:combat armor rebel",
+      "key": "combat armor rebel",
+      "name": "Armure de Combat",
+      "englishName": "combat armor rebel",
+      "kind": "upgrade",
+      "image": "workshop/combat-armor-rebel-fr.png",
+      "sourceFile": "cards/combat-armor-rebel.webp",
+      "sourceSha256": "32d921e4459aa0f60015b6666e6e99d5bbcf756cafad7be7b27b1801c9f623cd",
+      "keywords": [],
+      "warnings": [
+        "Traduction locale relue sur le visuel anglais ; validation humaine et actualité à vérifier."
+      ],
+      "provenance": "Traduction locale EN → FR depuis combat-armor-rebel.webp. Terminologie du dépôt ; illustrations, coût, dés et portées conservés.",
+      "fr": {
+        "body": "__Agent Rebelle ou Officier Rebelle uniquement.__\nSa défense devient {defense-rouge} au lieu de {defense-blanc}.\nCette unité n'a plus {conversion-defense}.",
+        "title": "Armure de Combat"
+      },
+      "originalFront": "cards/combat-armor-rebel.webp",
+      "keywordsReviewedOnSource": true
+    },
+    {
+      "id": "upgrade:repeating blaster",
+      "key": "repeating blaster",
+      "name": "Blaster Répétiteur",
+      "englishName": "repeating blaster",
+      "kind": "upgrade",
+      "image": "workshop/repeating-blaster-fr.png",
+      "sourceFile": "cards/repeating-blaster.webp",
+      "sourceSha256": "bc26bebcc91411ab25a02b55309f05fb3864f2197560eecce4e57dd4ff407abd",
+      "keywords": [
+        {
+          "id": "precis-x",
+          "value": 2
+        },
+        {
+          "id": "critique-x",
+          "value": 1
+        },
+        {
+          "id": "impact-x",
+          "value": 1
+        },
+        {
+          "id": "longue-distance"
+        }
+      ],
+      "warnings": [
+        "Traduction locale relue sur le visuel anglais ; validation humaine et actualité à vérifier."
+      ],
+      "provenance": "Traduction locale EN → FR depuis repeating-blaster.webp. Terminologie du dépôt ; illustrations, coût, dés et portées conservés.",
+      "fr": {
+        "body": "__Agent Rebelle ou Officier Rebelle uniquement.__\nRéduisez de 1 la vitesse maximale de cette unité.\nCette unité gagne **Précis 2**.",
+        "title": "Blaster Répétiteur",
+        "weaponName": "Blaster Répétiteur",
+        "weaponKeywords": "Critique 1. Impact 1. Longue Distance"
+      },
+      "originalFront": "cards/repeating-blaster.webp",
+      "keywordsReviewedOnSource": true
+    },
+    {
+      "id": "upgrade:fire control",
+      "key": "fire control",
+      "name": "Contrôle de Tir",
+      "englishName": "fire control",
+      "kind": "upgrade",
+      "image": "workshop/fire-control-fr.png",
+      "sourceFile": "cards/fire-control.webp",
+      "sourceSha256": "38975113ec59013c328b954683a33fcd4dbded7369cf22b9005844b20e3932ca",
+      "keywords": [],
+      "warnings": [
+        "Traduction locale relue sur le visuel anglais ; validation humaine et actualité à vérifier."
+      ],
+      "provenance": "Traduction locale EN → FR depuis fire-control.webp. Terminologie du dépôt ; illustrations, coût, dés et portées conservés.",
+      "fr": {
+        "body": "Quand une autre unité alliée à {portee-1} effectue une attaque à distance contre une unité ennemie dans la ligne de vue de cette unité, améliorez 2 des dés d'attaque de l'unité attaquante.",
+        "title": "-Contrôle de Tir"
+      },
+      "originalFront": "cards/fire-control.webp",
+      "keywordsReviewedOnSource": true
+    },
+    {
+      "id": "upgrade:reluctant hero",
+      "key": "reluctant hero",
+      "name": "Héros Malgré Lui",
+      "englishName": "reluctant hero",
+      "kind": "upgrade",
+      "image": "workshop/reluctant-hero-fr.png",
+      "sourceFile": "cards/reluctant-hero.webp",
+      "sourceSha256": "36ad9faae510b5696ae0ff45e468301f6e4256fb21fd9e6fef5e7ac2f37097d1",
+      "keywords": [
+        {
+          "id": "critique-x",
+          "value": 1
+        },
+        {
+          "id": "infiltration"
+        },
+        {
+          "id": "implacable"
+        }
+      ],
+      "warnings": [
+        "Traduction locale relue sur le visuel anglais ; validation humaine et actualité à vérifier."
+      ],
+      "provenance": "Traduction locale EN → FR depuis reluctant-hero.webp. Terminologie du dépôt ; illustrations, coût, dés et portées conservés.",
+      "fr": {
+        "body": "__Agent Rebelle uniquement.__\nQuand cette unité effectue une action Attaquer, pendant l'étape __Former la Réserve d'Attaque__, 1 de ses réserves d'attaque gagne **Critique 1** pour chaque pion Suppression qu'elle possède.\nCette unité gagne **Infiltration** et **Implacable**.",
+        "title": "-Héros Malgré Lui"
+      },
+      "originalFront": "cards/reluctant-hero.webp",
+      "keywordsReviewedOnSource": true
+    },
+    {
+      "id": "upgrade:tristan wren",
+      "key": "tristan wren",
+      "name": "Tristan Wren",
+      "englishName": "Tristan Wren",
+      "kind": "upgrade",
+      "image": "workshop/tristan-wren-current.png",
+      "sourceFile": "cards/workshop/sources/tristan-wren-official-en.png",
+      "sourceSha256": "95e7a5beea52e0974c2cada0ed5a09ba75fa63fd5dbd74178e24a68aae8ce008",
+      "keywords": [
+        {
+          "id": "chef"
+        },
+        {
+          "id": "precis-x",
+          "value": 2
+        }
+      ],
+      "warnings": [
+        "Traduction française locale relue par IA ; validation humaine non effectuée."
+      ],
+      "provenance": "Recto traduit du PDF officiel AMG Mandalorian Cards v1.1, p. 9, consulté le 31/10/2026. Coût de 25 points et symboles conservés.",
+      "fr": {
+        "body": "__{restriction-a} ou {restriction-b} uniquement.__\nAjoutez 1 figurine de Tristan Wren.\n**Chef.**\nCette unité gagne **Précis 2**.\nLes unités alliées {affiliation-alliee} peuvent donner des ordres à cette unité, quelle que soit leur affiliation."
+      },
+      "originalFront": "cards/tristan-wren.jpg",
+      "keywordsReviewedOnSource": true,
+      "officialSource": {
+        "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/07/DOC56_Mandalorian_BattleForceCards-3.pdf",
+        "page": 9,
+        "imageObject": "Im1",
+        "pdfSha256": "17dc96519f5fb3614a70a4b14f1e1eb7880dc72268fee47a9249acfcc09635a9",
+        "version": "v1.1"
+      }
+    },
+    {
+      "id": "upgrade:ursa wren",
+      "key": "ursa wren",
+      "name": "Ursa Wren",
+      "englishName": "Ursa Wren",
+      "kind": "upgrade",
+      "image": "workshop/ursa-wren-current.png",
+      "sourceFile": "cards/workshop/sources/ursa-wren-official-en.png",
+      "sourceSha256": "380a5d5ef01e8b3754ef2d49ccddf6b5fbbf2dda9221fda762f70383f3ed06d1",
+      "keywords": [
+        {
+          "id": "defense-x",
+          "value": 1
+        },
+        {
+          "id": "chef"
+        }
+      ],
+      "warnings": [
+        "Traduction française locale relue par IA ; validation humaine non effectuée."
+      ],
+      "provenance": "Recto traduit du PDF officiel AMG Mandalorian Cards v1.1, p. 9, consulté le 31/10/2026. Coût de 25 points et symboles conservés.",
+      "fr": {
+        "body": "__{restriction} uniquement.__\nAjoutez 1 figurine d’Ursa Wren.\nCette unité augmente sa valeur de {courage} de 1 et gagne **Défense 1**.\n**Chef.**"
+      },
+      "originalFront": "cards/ursa-wren.jpg",
+      "keywordsReviewedOnSource": true,
+      "officialSource": {
+        "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/07/DOC56_Mandalorian_BattleForceCards-3.pdf",
+        "page": 9,
+        "imageObject": "Im2",
+        "pdfSha256": "17dc96519f5fb3614a70a4b14f1e1eb7880dc72268fee47a9249acfcc09635a9",
+        "version": "v1.1"
+      }
+    },
+    {
+      "id": "unit:rebel agent defender of democracy",
+      "key": "rebel agent defender of democracy",
+      "name": "Agent Rebelle, Défenseur de la Démocratie",
+      "englishName": "Rebel Agent, Defender of Democracy",
+      "kind": "unit",
+      "image": "workshop/rebel-agent-fr.png",
+      "sourceFile": "cards/workshop/sources/rebel-agent-en-3x.png",
+      "sourceSha256": "4f01be481e21ba236b60930e3308804708229f9c407e62fee883d9739f851d40",
+      "keywords": [
+        {
+          "id": "equipe",
+          "label": "Équipe : doctrine"
+        },
+        {
+          "id": "autonome",
+          "value": 1,
+          "label": "Autonome : Esquive 1"
+        },
+        {
+          "id": "agile"
+        }
+      ],
+      "warnings": [
+        "Traduction française locale relue par IA ; validation humaine non effectuée. Illustration issue du petit visuel anglais du dépôt, agrandie sans ajout de détails."
+      ],
+      "provenance": "Recto anglais du dépôt traduit en français ; illustration, dés, portées, PV, courage, vitesse et emplacements conservés.",
+      "fr": {
+        "body": "**Équipe :** {doctrine-source}\n**Autonome : Esquive 1**\n**Agile**",
+        "title": "Agent Rebelle",
+        "subtitle": "Défenseur de la Démocratie",
+        "unitType": "Soldat",
+        "weaponName": "Entraînement au Combat",
+        "weaponName2": "Pistolet Blaster"
+      },
+      "originalFront": "cards/rebel-agent-defender-of-democracy.png",
+      "keywordsReviewedOnSource": true
+    }
+  ]
+}

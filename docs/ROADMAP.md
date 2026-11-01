@@ -493,3 +493,11 @@
 - [x] (22/09/2026) Bug « Nouvelle partie » : suppressions, états (démoralisé…) et round 5 revenaient à la synchro (la fusion n'efface jamais rien et le gist gardait l'ancienne partie ; la relève de l'Assistant réécrasait aussi le suivi). Correctif : numéro de partie (`swl.game-epoch.v1`, horodatage de « Nouvelle partie » / restauration) synchronisé avec le gist ; le plus récent gagne, l'ancienne partie est abandonnée par tous les appareils et par l'Assistant. Tests : `test-sync-merge.mjs` et scénario jsdom de synchro.
 
 - [x] (22/09/2026) Certification accélérée : plus de cases à cocher obligatoires ; liste groupée (vos listes — unités puis améliorations —, écarts à relire, autres cartes) ; « Défilé rapide » : une carte à la fois (visuel + récapitulatif), « Conforme » (un clic, carte suivante), « À corriger… », « Passer », vitesse / utilisation de la carte demandées sur place.
+
+## Publication Atelier de cartes FR — 01/11/2026
+
+Lot : remplacement de « Imprimer des cartes » par l’Atelier de cartes FR, au même emplacement. Ancres #imprimer et #atelier-cartes compatibles ; catalogue de 478 cartes, 156 définitions, huit traductions locales et trois derniers rectos actualisés. Sources EN personnelles non publiées. Fichiers : App.tsx, composants et bibliothèques cardWorkshop, données workshop*, visuels public/cards/workshop, recettes/rendu/tests/export et documentation CARD_WORKSHOP*. Validation générale et résultat du déploiement à compléter après exécution. Restent : relecture humaine des traductions, impression matérielle et traduction automatique à l’upload.
+
+Le test de Certification β qui échouait avant ce lot est corrigé : contrôle du blocage d’une identité ambiguë, puis contrôle du refus de validation sans image EN sur une identité déjà résolue. Le produit, le moteur et le design de Certification β sont inchangés.
+
+Validation de publication : npm run verify réussi intégralement (77 parcours Assistant, moteur, contrats, import, impression, 478 cartes atelier, audits, TypeScript et compilation PWA). Contrôle visuel : entrée unique « Atelier de cartes FR » à l’emplacement de l’ancienne impression ; #imprimer ouvre le nouvel écran. Commit du lot : « Publie l’atelier de cartes FR à la place de l’impression ». Publication demandée sur https://archipad.github.io/SWL/#atelier-cartes ; résultat GitHub Pages contrôlé après envoi.

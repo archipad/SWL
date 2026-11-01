@@ -1,0 +1,46 @@
+{
+  "kind": "upgrade",
+  "cardId": "upgrade:reluctant hero",
+  "name": "Héros Malgré Lui",
+  "sourceFile": "cards/reluctant-hero.webp",
+  "sourceSha256": "36ad9faae510b5696ae0ff45e468301f6e4256fb21fd9e6fef5e7ac2f37097d1",
+  "expectedSize": [
+    725,
+    1040
+  ],
+  "fr": {
+    "body": "__Agent Rebelle uniquement.__\nQuand cette unité effectue une action Attaquer, pendant l'étape __Former la Réserve d'Attaque__, 1 de ses réserves d'attaque gagne **Critique 1** pour chaque pion Suppression qu'elle possède.\nCette unité gagne **Infiltration** et **Implacable**.",
+    "title": "-Héros Malgré Lui"
+  },
+  "zones": {
+    "body": [
+      65,
+      559,
+      669,
+      902
+    ],
+    "title": [
+      54,
+      944,
+      677,
+      1020
+    ]
+  },
+  "sourceIcons": {},
+  "protectedZones": [
+    [
+      0,
+      0,
+      172,
+      118
+    ],
+    [
+      550,
+      0,
+      725,
+      121
+    ]
+  ],
+  "englishText": "Rebel Agent only. When this unit makes an Attack action, during the Form Attack Pool step, 1 of its Attack Pools gains Critical 1 for each Suppression token it has. This unit gains Infiltrate and Relentless.",
+  "translationStatus": "local-ai-reviewed-not-human-certified"
+}
