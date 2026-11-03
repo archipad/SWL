@@ -2363,5 +2363,161 @@
     },
     "verificationSource": "Visuel anglais Legion HQ ; fiche française communautaire (texte superposé) relue et validée par Antoine le 23/10/2026 ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
     "addedAt": "2026-10-23"
+  },
+  "imperial dark trooper": {
+    "nameFr": "Dark Trooper Impérial",
+    "cardType": "upgrade",
+    "image": "imperial-dark-trooper.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 2,
+    "keywords": [],
+    "note": "Amélioration Personnel, Dark Troopers Impériaux uniquement (32 pts) — ajoutez 1 figurine de Dark Trooper Impérial.",
+    "verificationSource": "Visuel FR officiel « Dark Trooper Impérial » découpé de Galactic Empire Upgrades FR.pdf p. 10 (extract_pdf_cards.py, 03/11/2026) ; lecture visuelle IA, recoupée avec Legion HQ, à certifier dans l'écran de certification.",
+    "addedAt": "2026-11-04"
+  },
+  "pyke syndicate capo upgrade": {
+    "nameFr": "Capo du Syndicat Pyke (amélioration)",
+    "cardType": "upgrade",
+    "image": "pyke-syndicate-capo-upgrade.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      }
+    ],
+    "autonomousTokens": [
+      {
+        "token": "surge",
+        "count": 1
+      }
+    ],
+    "note": "Amélioration Personnel, Fantassins du Syndicat Pyke uniquement (18 pts) — ajoutez 1 figurine de Capo du Syndicat Pyke. Chef. Cette unité augmente de 1 son courage et gagne Autonome : adrénaline 1.",
+    "verificationSource": "Visuel FR officiel « Capo du Syndicat Pyke » découpé de Mercenary Upgrades FR.pdf p. 1 (extract_pdf_cards.py, 03/11/2026) ; lecture visuelle IA, recoupée avec Legion HQ, à certifier dans l'écran de certification.",
+    "addedAt": "2026-11-04"
+  },
+  "black sun vigo upgrade": {
+    "nameFr": "Vigo du Soleil Noir (amélioration)",
+    "cardType": "upgrade",
+    "image": "black-sun-vigo-upgrade.jpg",
+    "weapons": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      }
+    ],
+    "autonomousTokens": [
+      {
+        "token": "surge",
+        "count": 1
+      }
+    ],
+    "note": "Amélioration Personnel, Hommes de Main du Soleil Noir uniquement (20 pts) — ajoutez 1 figurine de Vigo du Soleil Noir. Chef. Cette unité augmente de 1 son courage et gagne Autonome : adrénaline 1.",
+    "verificationSource": "Visuel FR officiel « Vigo du Soleil Noir » découpé de Mercenary Upgrades FR.pdf p. 3 (extract_pdf_cards.py, 03/11/2026) ; lecture visuelle IA, recoupée avec Legion HQ, à certifier dans l'écran de certification.",
+    "addedAt": "2026-11-04"
+  },
+  "raiding party leader": {
+    "nameFr": "•Chef de Groupe d'Intervention",
+    "cardType": "upgrade",
+    "image": "raiding-party-leader.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "allies-de-circonstance"
+      },
+      {
+        "keywordId": "commandant-des-operations"
+      }
+    ],
+    "note": "Amélioration Pilote, véhicule lourd Raider uniquement (10 pts). Cette unité gagne Alliés de Circonstance et Commandant des Opérations. Les unités de véhicule Raider alliées gagnent Démoraliser 1.",
+    "verificationSource": "Visuel FR officiel « Chef de Groupe d'Intervention » découpé de Mercenary Upgrades FR.pdf p. 4 (extract_pdf_cards.py, 03/11/2026) ; lecture visuelle IA, recoupée avec Legion HQ, à certifier dans l'écran de certification.",
+    "addedAt": "2026-11-04"
+  },
+  "frenzied gunner": {
+    "nameFr": "Artilleur Enragé",
+    "cardType": "upgrade",
+    "image": "frenzied-gunner.jpg",
+    "weapons": [],
+    "keywords": [],
+    "note": "Amélioration Pilote, véhicule lourd Raider uniquement (5 pts). Quand cette unité effectue une attaque à distance, pendant l'étape « Constituer la réserve d'attaque », vous pouvez lancer 1 dé de défense rouge. Sur un résultat vierge, ajoutez 1 dé d'attaque blanc à la réserve d'attaque. Sur un bloc, ajoutez 1 dé d'attaque noir. Sur une adrénaline de défense, ajoutez 1 dé d'attaque rouge.",
+    "verificationSource": "Visuel FR officiel « Artilleur Enragé » découpé de Mercenary Upgrades FR.pdf p. 4 (extract_pdf_cards.py, 03/11/2026) ; lecture visuelle IA, recoupée avec Legion HQ, à certifier dans l'écran de certification.",
+    "addedAt": "2026-11-04"
+  },
+  "axe woves": {
+    "nameFr": "Axe Woves",
+    "cardType": "unit",
+    "rank": "operative",
+    "speed": 3,
+    "image": "axe-woves.jpg",
+    "weapons": [
+      {
+        "name": "Vibrolame & Pistolet",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": [
+          "letal-x"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "defenseColor": "rouge",
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "charge"
+      },
+      {
+        "keywordId": "coordination"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+      },
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      }
+    ],
+    "note": "Guerrier Ingénieux, Soldat Mandalorien, Opératif (90 pts). Mercenaire : Rebelles, République. Coordination : unité Clan Kryze.",
+    "verificationSource": "Visuel FR officiel « Axe Woves, Guerrier Ingénieux » découpé de Errata Reference FR 17.06.26.pdf p. 12 (carte mise à jour) (extract_pdf_cards.py, 03/11/2026) ; lecture visuelle IA, recoupée avec Legion HQ, à certifier dans l'écran de certification.",
+    "addedAt": "2026-11-04"
   }
 }

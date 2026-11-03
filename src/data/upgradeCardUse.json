@@ -1008,6 +1008,26 @@
     "z 6 trooper": {
       "use": "passive",
       "icons": []
+    },
+    "imperial dark trooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "pyke syndicate capo upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "black sun vigo upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "raiding party leader": {
+      "use": "passive",
+      "icons": []
+    },
+    "frenzied gunner": {
+      "use": "passive",
+      "icons": []
     }
   }
 }

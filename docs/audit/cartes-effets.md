@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.
 
-314 cartes connues dans le référentiel · 100 cartes à effet propre · 56 sondes rejouées dans l’Assistant.
+320 cartes connues dans le référentiel · 100 cartes à effet propre · 56 sondes rejouées dans l’Assistant.
 
 | Carte | ↱ / ✖ | Traitement | Où | Remarque |
 |---|---|---|---|---|
@@ -30,7 +30,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Posture Défensive | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Fusil Amban de Din | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Jetpack de Din | — | Statistique | vitesse / courage de la fiche |  |
-| Effroi | — | Panneau d’attaque | étape(s) 6 (bouton) |  |
+| Terreur | — | Panneau d’attaque | étape(s) 6 (bouton) |  |
 | Évitement et Couvert | — | Panneau d’attaque | étape(s) 3 (bouton) |  |
 | Stimulants d'Urgence | ↱ | Panneau d’attaque | étape(s) 5, 6 (bouton) |  |
 | Transpondeur d'Urgence | ✖ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
@@ -87,7 +87,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Électro-grappin | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Sabine Wren | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Saisir l'Opportunité | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
-| Sérénité | ↱ / ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Tranquillité | ↱ / ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Shriv Suurgav | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Astromech | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Grenades Fumigènes | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |

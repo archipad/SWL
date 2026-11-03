@@ -60,6 +60,9 @@ const RANK_LABELS: Record<string, string> = {
 };
 export const rankLabel = (rank?: string) => (rank ? RANK_LABELS[rank] : undefined);
 
+// Unit cards whose certification only records an added model: without stats they would be read as upgrades.
+const UNIT_CARDS_WITHOUT_STATS = new Set(['darth vader the emperor s apprentice']);
+
 function weaponKeywords(profileWeapon: CardDiceProfile['weapons'][number] | undefined, cardTags: CardKeywordTag[], weaponCount: number, byId: Map<string, KeywordDef>): CatalogKeyword[] {
   const valueOf = (id: string) => profileWeapon?.keywordValues?.[id] ?? cardTags.find((tag) => tag.keywordId === id)?.value;
   if (Array.isArray(profileWeapon?.keywordIds)) return profileWeapon.keywordIds.map((id) => ({ keywordId: id, value: valueOf(id) }));
@@ -89,7 +92,7 @@ export function buildCardCatalog(tagLibrary: CardTagLibrary, keywords: KeywordDe
     const onWeapons = new Set(weapons.flatMap((weapon) => weapon.keywords.map((keyword) => keyword.keywordId)));
     const stats = certified?.unitStats ?? profile?.unitStats;
     const defenseColor = certified?.defenseColor ?? profile?.defenseColor;
-    const type: CatalogCard['type'] = full?.cardType ?? (stats || defenseColor ? 'unit' : 'upgrade');
+    const type: CatalogCard['type'] = full?.cardType ?? (stats || defenseColor || UNIT_CARDS_WITHOUT_STATS.has(key) ? 'unit' : 'upgrade');
     const name = frenchCardName(key);
     cards.push({
       key, name, image, type,

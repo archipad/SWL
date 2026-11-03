@@ -138,6 +138,16 @@ try {
   assert.equal(chewbaccaCard.addedModelWounds, 3)
   assert.equal(chewbaccaCard.weapons[0].range, '1-3')
   assert.ok(cardImageFor(chewbaccaUpgrade.name)?.includes('chewbacca-upgrade.png'), 'le visuel de l’amélioration est celui de l’amélioration, pas de l’unité')
+  // Capo et Vigo existent en Unité et en amélioration Personnel : l'amélioration garde son visuel et sa figurine ajoutée.
+  for (const [unit, upgrade, key, file] of [['Pyke Syndicate Foot Soldiers', 'Pyke Syndicate Capo', 'pyke syndicate capo upgrade', 'pyke-syndicate-capo-upgrade.jpg'], ['Black Sun Enforcers', 'Black Sun Vigo', 'black sun vigo upgrade', 'black-sun-vigo-upgrade.jpg']]) {
+    const imported = importArmyList(JSON.stringify({ armyFaction: 'mercenary', units: [{ name: unit, upgrades: [upgrade] }] }));
+    const card = imported.units[0].upgrades[0];
+    assert.equal(canonicalCardKey(card.name), key, `${upgrade} en amélioration ne doit pas devenir la carte Unité`);
+    assert.equal(DICE_PROFILES[key].unitStats, undefined);
+    assert.equal(DICE_PROFILES[key].addedModels, 1);
+    assert.ok(cardImageFor(card.name)?.includes(file));
+    assert.ok(!auditImportedList(imported).catalogIssues.some((issue) => canonicalCardKey(issue.card) === key));
+  }
   // Toute amélioration qui résoudrait vers une carte Unité (collision non répertoriée) est signalée.
   const unlisted = auditImportedList({ units: [{ key: 'u', name: 'Rebel Troopers', kind: 'unit', section: 'Unités', upgrades: [{ key: 'x', name: 'Agent Kallus', kind: 'upgrade' }] }] });
   assert.ok(unlisted.catalogIssues.some((issue) => /même nom qu’une carte Unité/.test(issue.message)), 'Une collision unité/amélioration non répertoriée doit être signalée');

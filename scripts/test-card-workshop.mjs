@@ -16,7 +16,7 @@ try {
   const { CardWorkshopScreen } = await vite.ssrLoadModule('/src/components/CardWorkshopScreen.tsx');
   const storage = await vite.ssrLoadModule('/src/lib/cardWorkshopStorage.ts');
   const catalog = buildWorkshopCatalog(SEED_CARD_TAGS, SEED_KEYWORDS);
-  assert.equal(catalog.length, 478, 'translations reuse existing canonical IDs without adding duplicates');
+  assert.equal(catalog.length, 484, 'translations reuse existing canonical IDs without adding duplicates');
   assert.equal(new Set(catalog.map((c) => c.id)).size, catalog.length, 'IDs are unique across types');
   for (const kind of ['unit', 'upgrade', 'command']) assert.ok(catalog.some((c) => c.kind === kind && c.image && c.rules.length));
   for (const [id, expected] of [['upgrade:cassian andor operative', ['chef', 'profil-bas', 'mission-secrete', 'longue-distance']], ['upgrade:chewbacca upgrade', ['chef', 'impact-x']]]) {
@@ -46,11 +46,12 @@ try {
   assert.ok(chewie.rules.find((r) => r.title === 'Impact 1').text.includes('Armure X'), 'target Armour value is independent of Impact');
   const reviewed = JSON.parse(fs.readFileSync('src/data/workshopKeywordReviews.json', 'utf8'));
   const official = JSON.parse(fs.readFileSync('src/data/workshopOfficialKeywords.json', 'utf8'));
-  assert.equal(reviewed.cards.length, 478);
-  assert.equal(new Set(reviewed.cards.map(c => c.id)).size, 478);
-  assert.equal(reviewed.cards.filter(c => c.keywords.length).length, 333);
-  assert.equal(reviewed.cards.filter(c => !c.keywords.length).length, 145);
+  assert.equal(reviewed.cards.length, 484);
+  assert.equal(new Set(reviewed.cards.map(c => c.id)).size, 484);
+  assert.equal(reviewed.cards.filter(c => c.keywords.length).length, 337);
+  assert.equal(reviewed.cards.filter(c => !c.keywords.length).length, 147);
   assert.equal(Object.keys(official.keywords).length, 156);
+  const KEYWORDS_OUTSIDE_CORE_RULES = new Set(['les-mandaloriens-sont-plus-forts-ensemble']);
   for (const entry of reviewed.cards) {
     const card = catalog.find(c => c.id === entry.id);
     assert.ok(card?.keywordReview);
@@ -58,6 +59,8 @@ try {
     assert.equal(card.rules.length, new Set(entry.keywords.map(k=>k.keywordId)).size);
     for (const keyword of entry.keywords) {
       const definition = official.keywords[keyword.keywordId];
+      // Mot-clé propre à une boîte (cartes mandaloriennes) : absent du règlement de base, défini par le glossaire du dépôt.
+      if (!definition && KEYWORDS_OUTSIDE_CORE_RULES.has(keyword.keywordId)) { assert.ok(card.rules.some(rule => rule.source.startsWith('Glossaire du dépôt'))); continue; }
       assert.ok(definition?.definition && definition.page >= 46 && definition.page <= 62);
       assert.ok(card.rules.some(rule => rule.source.includes('p. ' + definition.page)));
     }
@@ -101,7 +104,7 @@ try {
   assert.ok(official.keywords['tenir-le-cap'].definition.includes('½'));
   assert.ok(official.keywords['chasseur-de-jedi'].definition.includes('[CRITIQUE]'));
   assert.ok(!official.keywords.deflexion.definition.includes('Soresu'));
-  assert.equal(catalog.filter(c=>c.rules.length).length, 333);
+  assert.equal(catalog.filter(c=>c.rules.length).length, 337);
   assert.equal(keywordBackHtml(rulesOf('command:spike-corellien')).includes('p. 51'), false, 'references stay outside the printed back');
   assert.ok(catalog.some(c=>c.rules.some(r=>r.title==='Perforant 2' && r.text.includes('Gardien X'))), 'Guardian value is independent of Pierce');
   const repeated = { units: [{ key: 'a', name: 'Stormtroopers', kind: 'unit', section: 'Troupiers', upgrades: [{ key: 'x', kind: 'upgrade', name: 'HH-12 Stormtrooper' }] }, { key: 'b', name: 'Stormtroopers', kind: 'unit', section: 'Troupiers', upgrades: [{ key: 'y', kind: 'upgrade', name: 'HH-12 Stormtrooper' }] }], commandCards: ['A Higher Purpose'], contingencies: ['A Higher Purpose', 'Carte inconnue'], unparsedLines: [] };

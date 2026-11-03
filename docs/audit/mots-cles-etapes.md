@@ -39,7 +39,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Bélier X | Attaque | moteur (automatique) | 2 |
 | Bordée X | Attaque | moteur (assisté) | 1 |
 | Câble de Remorquage | Attaque | moteur (automatique) | 1 |
-| Charge | Attaque | moteur (assisté) | 10 |
+| Charge | Attaque | moteur (assisté) | 11 |
 | Chasseur de Jedi | Attaque | moteur (automatique) | 1 |
 | Ciblage Avancé : Type d'Unité X | Attaque | moteur (automatique) | 1 |
 | Critique X | Attaque | moteur (automatique) | 21 |
@@ -59,8 +59,8 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Implacable | Attaque | moteur (assisté) | 5 |
 | Ion X | Attaque | moteur (automatique) | 4 |
 | La Mort Venue du Ciel | Attaque | moteur (automatique) | 1 |
-| Les Mandaloriens sont Plus Forts Ensemble | Attaque | moteur (assisté) | 0 |
-| Létal X | Attaque | moteur (automatique) | 8 |
+| Les Mandaloriens sont Plus Forts Ensemble | Attaque | moteur (assisté) | 1 |
+| Létal X | Attaque | moteur (automatique) | 9 |
 | Longue Distance | Attaque | moteur (automatique) | 11 |
 | Maîtrise de l'Ataru | Attaque | moteur (automatique) | 0 |
 | Maîtrise du Jar'Kai | Attaque | moteur (automatique) | 1 |
@@ -85,14 +85,14 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Tireur Embusqué | Attaque | moteur (automatique) | 5 |
 | Transport X : Ouvert/Fermé | Attaque | moteur (assisté) | 0 |
 | Aléas X | Composition d'armée | composition | 0 |
-| Alliés de Circonstance | Composition d'armée | composition | 4 |
+| Alliés de Circonstance | Composition d'armée | composition | 5 |
 | Associé : Nom d'Unité | Composition d'armée | composition | 1 |
-| Commandant des Opérations | Composition d'armée | composition | 6 |
+| Commandant des Opérations | Composition d'armée | composition | 7 |
 | Défaut | Composition d'armée | composition | 0 |
 | Détachement : Nom/Type d'Unité | Composition d'armée | composition | 5 |
 | Équipe | Composition d'armée | composition | 6 |
 | Équipe avec Arme Lourde | Composition d'armée | composition | 2 |
-| Mercenaire : Faction | Composition d'armée | composition | 17 |
+| Mercenaire : Faction | Composition d'armée | composition | 18 |
 | Paquetage | Composition d'armée | composition | 0 |
 | Programmé | Composition d'armée | composition | 1 |
 | Riposte Graduée X | Composition d'armée | composition | 1 |
@@ -116,7 +116,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Incognito | Défense | moteur (automatique) | 3 |
 | Indifférent | Défense | moteur (automatique) | 1 |
 | Influence Divine | Défense | moteur (assisté) | 0 |
-| Insensible | Défense | moteur (automatique) | 12 |
+| Insensible | Défense | moteur (automatique) | 13 |
 | Intuition du Danger X | Défense | moteur (assisté) | 4 |
 | La Victoire ou la Mort | Défense | moteur (assisté) | 0 |
 | Maîtrise du Djem So | Défense | moteur (automatique) | 0 |
@@ -139,14 +139,14 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Redéploiement | Déplacement | regle | 7 |
 | Retrait | Déplacement | regle | 2 |
 | Sans Entrave | Déplacement | regle | 4 |
-| Saut X | Déplacement | auto | 15 |
+| Saut X | Déplacement | auto | 16 |
 | Speeder X | Déplacement | auto | 4 |
 | Stationnaire | Déplacement | regle | 1 |
 | Sustentation : Terrestre/Aérienne X | Déplacement | regle | 2 |
-| Tacticien X | Déplacement | auto | 9 |
+| Tacticien X | Déplacement | auto | 10 |
 | Véhicule Grimpant | Déplacement | regle | 2 |
 | Alourdi | Effets permanents | regle | 0 |
-| Chef | Effets permanents | rappel | 12 |
+| Chef | Effets permanents | rappel | 14 |
 | Coriace (Tough) | Effets permanents | rappel | 0 |
 | Enragé X | Effets permanents | auto | 3 |
 | Immunité : Effets Ennemis | Effets permanents | rappel | 0 |
@@ -172,7 +172,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Transport Léger X : Ouvert/Fermé | Mise en place | auto | 0 |
 | Traqué | Mise en place | auto | 1 |
 | Attaque Impétueuse | Ordre reçu · début d'activation | auto | 0 |
-| Autonome : Pion X/Action | Ordre reçu · début d'activation | auto | 13 |
+| Autonome : Pion X/Action | Ordre reçu · début d'activation | auto | 15 |
 | Cible X | Ordre reçu · début d'activation | auto | 1 |
 | Défense X | Ordre reçu · début d'activation | auto | 2 |
 | Discipliné X | Ordre reçu · début d'activation | auto | 2 |
@@ -185,7 +185,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Surcharge X | Ordre reçu · début d'activation | auto | 0 |
 | Telle est la Voie | Ordre reçu · début d'activation | auto | 1 |
 | Autoritaire | Phase de Commandement | auto | 0 |
-| Coordination : Nom/Type d'Unité | Phase de Commandement | auto | 4 |
+| Coordination : Nom/Type d'Unité | Phase de Commandement | auto | 5 |
 | Divulgation | Phase de Commandement | auto | 0 |
 | Entourage : Nom d'Unité | Phase de Commandement | auto | 2 |
 | Inarrêtable | Phase de Commandement | auto | 1 |

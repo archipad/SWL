@@ -4100,7 +4100,7 @@
       "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG."
     },
     {
-      "id": "upgrade:darth vader the emperor s apprentice",
+      "id": "unit:darth vader the emperor s apprentice",
       "front": {
         "file": "cards/darth-vader-the-emperors-apprentice.jpg",
         "sha256": "b3957cf8133a8f1bae3a466eb9a58e1943de8e4536123f74304ad7fd7ebb50b6",
@@ -8848,6 +8848,137 @@
       ],
       "status": "keywords-reviewed",
       "note": "Mots-clés, valeurs et références contrôlés visuellement sur le recto ; définitions comparées au règlement officiel AMG."
+    },
+    {
+      "id": "upgrade:imperial dark trooper",
+      "front": {
+        "file": "cards/imperial-dark-trooper.jpg",
+        "sha256": "00d42f98679678a5fa517bdbb1395d8f3496e53aabae7282845fb392c0e41e33",
+        "bytes": 130163
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR officiel ajouté le 04/11/2026 ; mots-clés et valeurs lus sur le recto, définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:pyke syndicate capo upgrade",
+      "front": {
+        "file": "cards/pyke-syndicate-capo-upgrade.jpg",
+        "sha256": "6b767e7cc7c54d72ca7e010cbaa7e085cde371100a76a845e81ed1bdb05f2874",
+        "bytes": 143283
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Adrénaline 1"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR officiel ajouté le 04/11/2026 ; mots-clés et valeurs lus sur le recto, définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:black sun vigo upgrade",
+      "front": {
+        "file": "cards/black-sun-vigo-upgrade.jpg",
+        "sha256": "f8b7973cf3d0964fd02d544f4bbe8f09d7b1de3b4222bcc06cdbc11840223e42",
+        "bytes": 141891
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Adrénaline 1"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR officiel ajouté le 04/11/2026 ; mots-clés et valeurs lus sur le recto, définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:raiding party leader",
+      "front": {
+        "file": "cards/raiding-party-leader.jpg",
+        "sha256": "96f2ca687d6315c1f4475e56e4f7224a3de4df65b54b91253e05e9f03593b0c5",
+        "bytes": 146965
+      },
+      "keywords": [
+        {
+          "keywordId": "allies-de-circonstance"
+        },
+        {
+          "keywordId": "commandant-des-operations"
+        },
+        {
+          "keywordId": "demoraliser-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR officiel ajouté le 04/11/2026 ; mots-clés et valeurs lus sur le recto, définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:frenzied gunner",
+      "front": {
+        "file": "cards/frenzied-gunner.jpg",
+        "sha256": "72aec4fff2b7084f1f18b798dfeba0d9a5371179373988e33eae4d810a61d1da",
+        "bytes": 168362
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR officiel ajouté le 04/11/2026 ; mots-clés et valeurs lus sur le recto, définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:axe woves",
+      "front": {
+        "file": "cards/axe-woves.jpg",
+        "sha256": "a22899caf9aa98917ebfa863dec4bf05a5fa1df42adb268e95f771b32c15d33d",
+        "bytes": 153099
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : Rebelles, République"
+        },
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "charge"
+        },
+        {
+          "keywordId": "coordination",
+          "label": "Coordination : unité Clan Kryze"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR officiel ajouté le 04/11/2026 ; mots-clés et valeurs lus sur le recto, définitions comparées au règlement officiel AMG.",
+      "parametersReviewedAt": "2026-11-04"
     }
   ],
   "lots": [
