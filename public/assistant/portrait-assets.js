@@ -84,5 +84,12 @@ window.SWL_CODEX_PORTRAITS={
   "grand admiral thrawn imperial high command": "../cards/grand-admiral-thrawn-fr-community.png",
   "mandalorian hunter": "../cards/mandalorian-hunter-fr-community.jpg",
   "rebel officer fighting for freedom": "../cards/rebel-officer-fighting-for-freedom-fr-community.jpg",
-  "axe woves": "../cards/axe-woves.jpg"
+  "axe woves": "../cards/axe-woves.jpg",
+  "imperial agent bringing order to the galaxy": "../cards/imperial-agent-bringing-order-to-the-galaxy-fr-community.jpg",
+  "imperial officer ruthless efficiency": "../cards/imperial-officer-ruthless-efficiency-fr-community.jpg",
+  "imperial probe droid": "../cards/imperial-probe-droid-fr-community.jpg",
+  "grand moff tarkin imperial high command": "../cards/grand-moff-tarkin-imperial-high-command-fr-community.jpg",
+  "general tagge imperial high command": "../cards/general-tagge-imperial-high-command-fr-community.jpg",
+  "wet weather gear stormtrooper": "../cards/wet-weather-gear-stormtrooper-fr-community.jpg",
+  "imperial mudtroopers": "../cards/imperial-mudtroopers-fr-community.jpg"
 };

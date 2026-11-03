@@ -1028,6 +1028,78 @@
     "frenzied gunner": {
       "use": "passive",
       "icons": []
+    },
+    "mertalizer": {
+      "use": "passive",
+      "icons": []
+    },
+    "stormtrooper marksman": {
+      "use": "passive",
+      "icons": []
+    },
+    "academy trained": {
+      "use": "passive",
+      "icons": []
+    },
+    "tip of the spear": {
+      "use": "passive",
+      "icons": []
+    },
+    "defend in depth": {
+      "use": "passive",
+      "icons": []
+    },
+    "platoon commander": {
+      "use": "passive",
+      "icons": []
+    },
+    "command and control uplink": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "heavy blaster pistol": {
+      "use": "passive",
+      "icons": []
+    },
+    "stun baton": {
+      "use": "passive",
+      "icons": []
+    },
+    "z 6 riot baton": {
+      "use": "passive",
+      "icons": []
+    },
+    "logistical prowess": {
+      "use": "passive",
+      "icons": []
+    },
+    "security detail": {
+      "use": "passive",
+      "icons": []
+    },
+    "imperial probe droid upgrade": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "gas grenades": {
+      "use": "passive",
+      "icons": []
+    },
+    "sx 21 mudtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "z 6 mudtrooper": {
+      "use": "passive",
+      "icons": []
+    },
+    "mudtrooper squad": {
+      "use": "passive",
+      "icons": []
     }
   }
 }

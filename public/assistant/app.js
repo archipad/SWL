@@ -1492,6 +1492,8 @@ const CARD_ACTION_DEFS={
   'baron-rudor':{card:'baron rudor',title:'BARON RUDOR',kind:'roundfree',text:'Après une action Récupérer : cette unité gagne 1 pion Viser.',self:{aim:1}},
   'sleeper-cell-astromech':{card:'sleeper cell astromech',title:'ASTROMECH · CELLULE DORMANTE',kind:'roundfree',text:'Quand cette unité termine un déplacement à portée 1 d’au moins 1 pion Objectif : +1 pion Esquive.',self:{dodge:1}},
   // Ordres (Phase de Commandement / Phase d'Activation)
+  'command-and-control-uplink':{card:'command and control uplink',title:'LIAISON DE COMMANDEMENT ET DE CONTRÔLE',kind:'roundfree',use:'discard',text:'Phase de Commandement, après la révélation des cartes et avant la priorité (✖ supprime la carte) : votre carte de Commandement révélée compte 1 pip de moins jusqu’à la fin du round.',self:{},journal:()=>'carte de Commandement révélée : 1 pip de moins jusqu’à la fin du round'},
+  'imperial-probe-droid-upgrade':{card:'imperial probe droid upgrade',title:'DROÏDE SONDE IMPÉRIAL',kind:'roundfree',use:'tilt',text:'↱ redressée en Phase Finale. Action gratuite : Surveillance 1 (une unité ennemie à portée 3 et en LdV gagne 1 Surveillance). Ou, en déclarant une attaque contre une unité ayant 1 Surveillance : dépensez ce pion, cette unité gagne 1 Viser.',choices:[{label:'Surveillance 1',effect:null},{label:'Dépenser 1 Surveillance : +1 Viser',effect:{aim:1}}]},
   'trusted-agent':{card:'trusted agent',title:'AGENT DE CONFIANCE',kind:'roundfree',use:'discard',text:'Donner des ordres (✖ supprime la carte) : une unité ▲ alliée peut donner un ordre à l’unité choisie, quelle que soit son affiliation.',pick:{max:()=>1,self:false,effect:null},journal:picked=>names(picked)+' peut recevoir un ordre de cette unité, quelle que soit son affiliation'},
   'hq-uplink':{card:'hq uplink',title:'LIAISON HQ',kind:'roundfree',use:'tilt',text:'Donner des ordres (↱) : cette unité peut se donner un ordre à elle-même.',self:{},journal:()=>'peut se donner un ordre à elle-même'},
   'seize-the-opportunity':{card:'seize the opportunity',title:'SAISIR L’OPPORTUNITÉ',kind:'roundfree',use:'discard',text:'Donner des ordres (✖ supprime la carte) : cette unité se donne un ordre à elle-même.',self:{},journal:()=>'se donne un ordre à elle-même'},
@@ -1529,7 +1531,7 @@ applyCardKeywordAction=function(entry,id,choiceIndex){
 };
 // Bonus permanents portés par des cartes : vitesse (Pilote de TIE, Jetpack de Din, Blaster à Répétition) et courage (Officiers, Gideon, Kallus, Rex, Cassian).
 const CARD_SPEED_BONUS={'imperial tie pilot':1,'din djarin jetpack':1,'repeating blaster':-1};
-const CARD_COURAGE_BONUS={'gideon hask':1,'imperial officer':1,'rebel officer':1,'kallus the operative':1,'captain rex':1,'cassian andor operative':1,'proven tactician':1};
+const CARD_COURAGE_BONUS={'gideon hask':1,'imperial officer':1,'rebel officer':1,'kallus the operative':1,'captain rex':1,'cassian andor operative':1,'proven tactician':1,'academy trained':1,'pyke syndicate capo upgrade':1,'black sun vigo upgrade':1};
 const cardBonus=(entry,table)=>(entry?.unit?.upgrades||[]).reduce((sum,up)=>sum+(table[cardKey(up.name)]||0),0);
 // Cartes à deux faces / retournables : la face visible décide des mots-clés actifs (Bouclier de Combat, Cassian Andor, Postures).
 const FLIP_CARDS=new Set(['battle shield wookiee','cassian andor operative','defensive posture','offensive posture']);

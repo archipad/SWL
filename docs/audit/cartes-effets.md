@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.
 
-320 cartes connues dans le référentiel · 100 cartes à effet propre · 56 sondes rejouées dans l’Assistant.
+344 cartes connues dans le référentiel · 102 cartes à effet propre · 58 sondes rejouées dans l’Assistant.
 
 | Carte | ↱ / ✖ | Traitement | Où | Remarque |
 |---|---|---|---|---|
@@ -23,6 +23,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Câbles d'Escalade | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Armure de Combat | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Chef de Groupe de Combat | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| •Liaison de Commandement et de Contrôle | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Système de Commande | — | Rappel (briefing) | briefing tactique | règle permanente de la porteuse (portée de Coordination 2), rappelée dans le briefing |
 | Unité de Piratage Comms | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Brouilleur Comms | — | Rappel (briefing) | briefing tactique | agit sur les unités ennemies proches : rappelé dans le briefing des unités ennemies |
@@ -56,6 +57,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Pilote de l'Unité d'Élite Blindée Imperial Hammers | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Marche Impériale | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Officier Impérial | — | Statistique | vitesse / courage de la fiche |  |
+| Droïde Sonde Impérial (amélioration) | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Pilote de TIE Impérial | — | Statistique | vitesse / courage de la fiche |  |
 | Ordres Improvisés | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Dans la Mêlée | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |

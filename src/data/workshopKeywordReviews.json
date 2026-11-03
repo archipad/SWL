@@ -8979,6 +8979,511 @@
       "status": "keywords-reviewed",
       "note": "Recto FR officiel ajouté le 04/11/2026 ; mots-clés et valeurs lus sur le recto, définitions comparées au règlement officiel AMG.",
       "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:mertalizer",
+      "front": {
+        "file": "cards/mertalizer-fr-community.jpg",
+        "sha256": "3f345e0c0a0ad989bba7a8dd4524f0713d1885457885827fc892be57d3216d9a",
+        "bytes": 140952
+      },
+      "keywords": [
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:stormtrooper marksman",
+      "front": {
+        "file": "cards/stormtrooper-marksman-fr-community.jpg",
+        "sha256": "82e2d536b1307b7e76e60b95e7e55e857dd3812f80c6ea0126d872a518a464aa",
+        "bytes": 151096
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:academy trained",
+      "front": {
+        "file": "cards/academy-trained-fr-community.jpg",
+        "sha256": "b457b9ec2a18eb57974778afe01cbc9560302ed8da575ea9a975b81999b19e39",
+        "bytes": 137974
+      },
+      "keywords": [
+        {
+          "keywordId": "exemplaire"
+        },
+        {
+          "keywordId": "inspiration-x",
+          "value": 1
+        },
+        {
+          "keywordId": "stratege-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:tip of the spear",
+      "front": {
+        "file": "cards/tip-of-the-spear-fr-community.jpg",
+        "sha256": "08159ec96e6ef90f94f20843c4e9f06dc394d090ef047b79fa7da83c6840a730",
+        "bytes": 159398
+      },
+      "keywords": [
+        {
+          "keywordId": "aide",
+          "label": "Aide : unité de soldats Empire"
+        },
+        {
+          "keywordId": "ordre-direct",
+          "label": "Ordre Direct : unité de soldats de Corps"
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:defend in depth",
+      "front": {
+        "file": "cards/defend-in-depth-fr-community.jpg",
+        "sha256": "4cc1c14bb66d89cc373caae277e8a0a92edf959989c1ba1d279f8c1ffaba4ed4",
+        "bytes": 156315
+      },
+      "keywords": [
+        {
+          "keywordId": "aide",
+          "label": "Aide : unité de soldats Emplacement"
+        },
+        {
+          "keywordId": "position-preparee"
+        },
+        {
+          "keywordId": "observateur-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:platoon commander",
+      "front": {
+        "file": "cards/platoon-commander-fr-community.jpg",
+        "sha256": "07f012822b79b4f8f8d1b35c8fc1717d192edb92c94cad463aae9b2d3fe1a902",
+        "bytes": 196865
+      },
+      "keywords": [
+        {
+          "keywordId": "escorte",
+          "label": "Escorte : Agent Impérial"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:command and control uplink",
+      "front": {
+        "file": "cards/command-and-control-uplink-fr-community.jpg",
+        "sha256": "a10aa7cc84a516d9b662cf2d50e2c9f7c7e55e725cb5920b4f655456b4213853",
+        "bytes": 197763
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:heavy blaster pistol",
+      "front": {
+        "file": "cards/heavy-blaster-pistol-fr-community.jpg",
+        "sha256": "898cfe0deff09f8d378a983c6936560a0e7f7af9837570d0f120e3b12a478ffb",
+        "bytes": 143073
+      },
+      "keywords": [
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "cible-x",
+          "value": 1
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        },
+        {
+          "keywordId": "longue-distance"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:stun baton",
+      "front": {
+        "file": "cards/stun-baton-fr-community.jpg",
+        "sha256": "f9dab978cd6ae6126460c5816197bd728a52ff87dcda88587df419f907460eb5",
+        "bytes": 114330
+      },
+      "keywords": [
+        {
+          "keywordId": "demoraliser-x",
+          "value": 1
+        },
+        {
+          "keywordId": "immobiliser-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:z 6 riot baton",
+      "front": {
+        "file": "cards/z-6-riot-baton-fr-community.jpg",
+        "sha256": "8cc89b2e9f97c8db2b1cc7f0fe8e732f7a7b842bec92e5afa0b5ad2e56f8625f",
+        "bytes": 171064
+      },
+      "keywords": [
+        {
+          "keywordId": "immunite-perforant-corps-a-corps"
+        },
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:logistical prowess",
+      "front": {
+        "file": "cards/logistical-prowess-fr-community.jpg",
+        "sha256": "bad73f02b81894764d65d96bcd1b2fd3c5a4b76c7c060abd31d4253a68c57d65",
+        "bytes": 202263
+      },
+      "keywords": [
+        {
+          "keywordId": "calcul-de-probabilites"
+        },
+        {
+          "keywordId": "cache"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:security detail",
+      "front": {
+        "file": "cards/security-detail-fr-community.jpg",
+        "sha256": "270e16a91e438ab9918760ac27d1ae577d635a2b7c0a188793844c34890f5fc0",
+        "bytes": 131704
+      },
+      "keywords": [
+        {
+          "keywordId": "gardien-x",
+          "value": 2,
+          "label": "Gardien 2 : Haut Commandement Impérial"
+        },
+        {
+          "keywordId": "escorte",
+          "label": "Escorte : commandant Empire"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:imperial probe droid upgrade",
+      "front": {
+        "file": "cards/imperial-probe-droid-upgrade-fr-community.jpg",
+        "sha256": "60a4d80b27194a1e167dd89d71598712bab21ad0a671e48d027624ab2c601cc6",
+        "bytes": 182233
+      },
+      "keywords": [
+        {
+          "keywordId": "surveillance-x",
+          "label": "Surveillance 1",
+          "value": 1
+        },
+        {
+          "keywordId": "non-combattant"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:gas grenades",
+      "front": {
+        "file": "cards/gas-grenades-fr-community.jpg",
+        "sha256": "329bd1ad39bda7eaffba00ece9ccde7f575c2e84cee7674e0441bf7a7535e6d8",
+        "bytes": 99023
+      },
+      "keywords": [
+        {
+          "keywordId": "poison-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:sx 21 mudtrooper",
+      "front": {
+        "file": "cards/sx-21-mudtrooper-fr-community.jpg",
+        "sha256": "aaca972864db978a872ea3e961f0429bf0d93941bb88259ca6d41ea0d4d6cefe",
+        "bytes": 137997
+      },
+      "keywords": [
+        {
+          "keywordId": "assaut-x",
+          "value": 2
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:z 6 mudtrooper",
+      "front": {
+        "file": "cards/z-6-mudtrooper-fr-community.jpg",
+        "sha256": "d2b9665a06c6f09431489ac45c63c81d4316f759d8252d5d5a72dfb3ff0782d2",
+        "bytes": 135409
+      },
+      "keywords": [
+        {
+          "keywordId": "anti-personnel-x",
+          "value": 3
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:mudtrooper squad",
+      "front": {
+        "file": "cards/mudtrooper-squad-fr-community.jpg",
+        "sha256": "229693fefbfd011e80b5765f8eb183adc000954121ba12405c1b2c70e28c855c",
+        "bytes": 168658
+      },
+      "keywords": [
+        {
+          "keywordId": "indomptable"
+        },
+        {
+          "keywordId": "transport"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:imperial agent bringing order to the galaxy",
+      "front": {
+        "file": "cards/imperial-agent-bringing-order-to-the-galaxy-fr-community.jpg",
+        "sha256": "8976c8078334f5a1afe763bc9305c798b3686b6be309e5c566bef3fd94d4d9bc",
+        "bytes": 123933
+      },
+      "keywords": [
+        {
+          "keywordId": "implacable"
+        },
+        {
+          "keywordId": "equipe",
+          "label": "Équipe : doctrine"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:imperial officer ruthless efficiency",
+      "front": {
+        "file": "cards/imperial-officer-ruthless-efficiency-fr-community.jpg",
+        "sha256": "9345f08d86b0cbb12dad190911881500e77bd30ab0adfcd907c5b6d1cc7ed242",
+        "bytes": 127673
+      },
+      "keywords": [
+        {
+          "keywordId": "inspiration-x",
+          "value": 1
+        },
+        {
+          "keywordId": "equipe",
+          "label": "Équipe : doctrine"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:imperial probe droid",
+      "front": {
+        "file": "cards/imperial-probe-droid-fr-community.jpg",
+        "sha256": "83e64fa3abf330b1c732fc44c4f2db9052ca810c1ab5fd1672b9e29a091c3a5f",
+        "bytes": 146049
+      },
+      "keywords": [
+        {
+          "keywordId": "surveillance-x",
+          "value": 3
+        },
+        {
+          "keywordId": "autodestruction-x-unite",
+          "value": 3
+        },
+        {
+          "keywordId": "detachement",
+          "label": "Détachement : Forces Spéciales"
+        },
+        {
+          "keywordId": "retrait"
+        },
+        {
+          "keywordId": "infiltration"
+        },
+        {
+          "keywordId": "sustentation",
+          "label": "Sustentation : Aérienne 1",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:grand moff tarkin imperial high command",
+      "front": {
+        "file": "cards/grand-moff-tarkin-imperial-high-command-fr-community.jpg",
+        "sha256": "86d05e0e2dcef7bab8725f51e40e88bc0b3db97f7679eaeb6ca34f06e814bd5a",
+        "bytes": 124052
+      },
+      "keywords": [
+        {
+          "keywordId": "tirer-les-ficelles",
+          "label": "Tirer les Ficelles : soldat Empire"
+        },
+        {
+          "keywordId": "entourage",
+          "label": "Entourage : Dark Vador"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:general tagge imperial high command",
+      "front": {
+        "file": "cards/general-tagge-imperial-high-command-fr-community.jpg",
+        "sha256": "cbbc781fda5ca57ac8c62e4519520f87622e2dca6aab8af26ab0e3ec3a240056",
+        "bytes": 156430
+      },
+      "keywords": [
+        {
+          "keywordId": "equipe",
+          "label": "Équipe : Prouesse Logistique"
+        },
+        {
+          "keywordId": "calcul-de-probabilites"
+        },
+        {
+          "keywordId": "exemplaire"
+        },
+        {
+          "keywordId": "inspiration-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:wet weather gear stormtrooper",
+      "front": {
+        "file": "cards/wet-weather-gear-stormtrooper-fr-community.jpg",
+        "sha256": "22b3f513a46f48aabd1acdc255a0b70093d67b8cbc0fb3a46492e4c6003d818e",
+        "bytes": 171105
+      },
+      "keywords": [
+        {
+          "keywordId": "coordination",
+          "label": "Coordination : Mudtroopers Impériaux"
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "position-preparee"
+        },
+        {
+          "keywordId": "sans-entrave"
+        },
+        {
+          "keywordId": "assaut-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:imperial mudtroopers",
+      "front": {
+        "file": "cards/imperial-mudtroopers-fr-community.jpg",
+        "sha256": "103dcf1603ebb11e477d1b89495e49751a5272fc9301b6cff57eb67c0808d5d8",
+        "bytes": 151299
+      },
+      "keywords": [
+        {
+          "keywordId": "sans-entrave"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
     }
   ],
   "lots": [

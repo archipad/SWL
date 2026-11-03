@@ -2519,5 +2519,966 @@
     "note": "Guerrier Ingénieux, Soldat Mandalorien, Opératif (90 pts). Mercenaire : Rebelles, République. Coordination : unité Clan Kryze.",
     "verificationSource": "Visuel FR officiel « Axe Woves, Guerrier Ingénieux » découpé de Errata Reference FR 17.06.26.pdf p. 12 (carte mise à jour) (extract_pdf_cards.py, 03/11/2026) ; lecture visuelle IA, recoupée avec Legion HQ, à certifier dans l'écran de certification.",
     "addedAt": "2026-11-04"
+  },
+  "mertalizer": {
+    "nameFr": "Dark Trooper avec Mertaliseur",
+    "cardType": "upgrade",
+    "image": "mertalizer-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Mertaliseur",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "suppressif"
+        ]
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 2,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Mertalizer",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mertalizer.webp",
+      "englishText": "Imperial Dark Troopers only. Add 1 Mertalizer Dark Trooper miniature. Mertalizer (2 red, 1 black, melee): Suppressive.",
+      "frenchText": "{\"title\":\"Dark Trooper avec Mertaliseur\",\"body\":\"**Dark Troopers Impériaux uniquement.**\\nAjoutez 1 figurine de Dark Trooper avec Mertaliseur.\",\"weapons\":[{\"name\":\"Mertaliseur\",\"keywords\":\"Suppressif\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "stormtrooper marksman": {
+    "nameFr": "Tireur d'Élite Stormtrooper",
+    "cardType": "upgrade",
+    "image": "stormtrooper-marksman-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Stormtrooper Marksman",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stormtrooper%20Marksman.webp",
+      "englishText": "Stormtrooper Riot Squad only. Add 1 Stormtrooper Marksman miniature. Action: if this unit is not Engaged, choose an unengaged enemy Trooper unit in LOS and roll 1 red attack die. If the result is a hit or crit, the chosen unit suffers 1 Wound and gains 1 Suppression token.",
+      "frenchText": "{\"title\":\"Tireur d'Élite Stormtrooper\",\"body\":\"**Escouade Stormtrooper Antiémeute uniquement.**\\nAjoutez 1 figurine de Tireur d'Élite Stormtrooper.\\n{action}Si cette unité n'est pas engagée, choisissez une unité de soldats ennemie non engagée en LdV et lancez 1 dé d'attaque rouge. Sur un {touche} ou un {critique}, l'unité choisie subit 1 blessure et gagne 1 pion Suppression.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "academy trained": {
+    "nameFr": "•Formé à l'Académie",
+    "cardType": "upgrade",
+    "image": "academy-trained-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "exemplaire"
+      },
+      {
+        "keywordId": "inspiration-x",
+        "value": 1
+      },
+      {
+        "keywordId": "stratege-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Academy Trained",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Academy%20Trained.webp",
+      "englishText": "Imperial Officer only. Increase this unit's courage by 1. This unit gains Exemplar, Inspire 1, and Action: Strategize 1.",
+      "frenchText": "{\"title\":\"•Formé à l'Académie\",\"body\":\"**Officier Impérial uniquement.**\\nAugmentez le {courage} de cette unité de 1.\\nCette unité gagne **Exemplaire**, **Inspiration 1** et {action}**Stratège 1**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "tip of the spear": {
+    "nameFr": "•Fer de Lance",
+    "cardType": "upgrade",
+    "image": "tip-of-the-spear-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "aide"
+      },
+      {
+        "keywordId": "ordre-direct"
+      },
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Tip of the Spear",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Tip%20of%20the%20Spear.webp",
+      "englishText": "Imperial Agent or Imperial Officer only. When this unit is issued an Order, an allied unit within range 1 may remove up to 1 Suppression token. This unit gains Aid: Empire Trooper unit, Direct: Corps Trooper unit, and Tactical 1.",
+      "frenchText": "{\"title\":\"•Fer de Lance\",\"body\":\"**Agent Impérial ou Officier Impérial uniquement.**\\nQuand cette unité reçoit un ordre, une unité alliée à portée 1 peut retirer jusqu'à 1 pion Suppression.\\nCette unité gagne **Aide : unité de soldats** {faction-empire}, **Ordre Direct : unité de soldats de Corps** et **Tacticien 1**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "defend in depth": {
+    "nameFr": "•Défense en Profondeur",
+    "cardType": "upgrade",
+    "image": "defend-in-depth-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "aide"
+      },
+      {
+        "keywordId": "position-preparee"
+      },
+      {
+        "keywordId": "observateur-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Defend in Depth",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Defend%20in%20Depth.webp",
+      "englishText": "Imperial Agent or Imperial Officer only. During the End Phase, choose 1 allied Trooper unit within range 1 of this unit. The chosen unit does not remove 1 Aim token. This unit gains Aid: Emplacement Trooper Unit, Prepared Position, and Action: Spotter 1.",
+      "frenchText": "{\"title\":\"•Défense en Profondeur\",\"body\":\"**Agent Impérial ou Officier Impérial uniquement.**\\nPendant la __Phase Finale__, choisissez 1 unité de soldats alliée à portée 1 de cette unité. L'unité choisie ne retire pas 1 pion Viser.\\nCette unité gagne **Aide : unité de soldats Emplacement**, **Position Préparée** et {action}**Observateur 1**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "platoon commander": {
+    "nameFr": "•Commandant de Section",
+    "cardType": "upgrade",
+    "image": "platoon-commander-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "escorte"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Platoon Commander",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Platoon%20Commander.webp",
+      "englishText": "Imperial Agent only. During Setup, choose 1 allied Corps Trooper unit. The chosen unit gains Retinue: Imperial Agent. While this unit is Engaged, it gains surge:crit and defense surge:block if it does not have it. This unit gains Sharpshooter 1.",
+      "frenchText": "{\"title\":\"•Commandant de Section\",\"body\":\"**Agent Impérial uniquement.**\\nPendant la __Mise en Place__, choisissez 1 unité de soldats de Corps alliée. L'unité choisie gagne **Escorte : Agent Impérial**.\\nTant que cette unité est engagée, elle gagne {adrenaline} : {critique} et adrénaline de défense : bloc si elle ne les a pas.\\nCette unité gagne **Tireur d'Élite 1**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "command and control uplink": {
+    "nameFr": "•Liaison de Commandement et de Contrôle",
+    "cardType": "upgrade",
+    "image": "command-and-control-uplink-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Command and Control Uplink",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Command%20and%20Control%20Uplink.webp",
+      "englishText": "Imperial Agent or Imperial Officer only. During the Command Phase, after revealing Command Cards but before determining Priority, you may discard this card. If you do, you may treat your revealed Command Card as 1 pip lower until the end of the Round.",
+      "frenchText": "{\"title\":\"•Liaison de Commandement et de Contrôle\",\"body\":\"**Agent Impérial ou Officier Impérial uniquement.**\\nPendant la __Phase de Commandement__, après avoir révélé les cartes de Commandement mais avant de déterminer la priorité, vous pouvez défausser cette carte. Dans ce cas, votre carte de Commandement révélée compte comme ayant 1 pip de moins jusqu'à la fin du round.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "heavy blaster pistol": {
+    "nameFr": "Pistolet Blaster Lourd",
+    "cardType": "upgrade",
+    "image": "heavy-blaster-pistol-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Pistolet Blaster Lourd",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "letal-x",
+          "longue-distance"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      },
+      {
+        "keywordId": "cible-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Heavy Blaster Pistol",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Blaster%20Pistol%20E.webp",
+      "englishText": "Imperial Agent or Imperial Officer only. This unit gains Sharpshooter 1 and Target 1. Heavy Blaster Pistol (2 red, range 1-2): Lethal 1, Long Shot.",
+      "frenchText": "{\"title\":\"Pistolet Blaster Lourd\",\"body\":\"**Agent Impérial ou Officier Impérial uniquement.**\\nCette unité gagne **Tireur d'Élite 1** et **Cible 1**.\",\"weapons\":[{\"name\":\"Pistolet Blaster Lourd\",\"keywords\":\"Létal 1, Longue Distance\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "stun baton": {
+    "nameFr": "Bâton Étourdissant",
+    "cardType": "upgrade",
+    "image": "stun-baton-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Bâton Étourdissant",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 5
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "immobiliser-x"
+        ],
+        "keywordValues": {
+          "immobiliser-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "demoraliser-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Stun Baton",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stun%20Baton.webp",
+      "englishText": "Imperial Agent or Imperial Officer only. This unit gains Demoralize 1. Stun Baton (1 red, 5 black, melee): Immobilize 1.",
+      "frenchText": "{\"title\":\"Bâton Étourdissant\",\"body\":\"**Agent Impérial ou Officier Impérial uniquement.**\\nCette unité gagne **Démoraliser 1**.\",\"weapons\":[{\"name\":\"Bâton Étourdissant\",\"keywords\":\"Immobiliser 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "z 6 riot baton": {
+    "nameFr": "Matraque Anti-émeute Z-6",
+    "cardType": "upgrade",
+    "image": "z-6-riot-baton-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Matraque Anti-émeute Z-6",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "suppressif"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "immunite-perforant-corps-a-corps"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Z-6 Riot Baton",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Z-6%20Riot%20Baton.webp",
+      "englishText": "Imperial Agent or Imperial Officer only. This unit gains Immune: Melee Pierce. Z-6 Riot Baton (2 red, 2 black, melee): Suppressive.",
+      "frenchText": "{\"title\":\"Matraque Anti-émeute Z-6\",\"body\":\"**Agent Impérial ou Officier Impérial uniquement.**\\nCette unité gagne **Immunité : Perforant au Corps-à-Corps**.\",\"weapons\":[{\"name\":\"Matraque Anti-émeute Z-6\",\"keywords\":\"Suppressif\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "logistical prowess": {
+    "nameFr": "Prouesse Logistique",
+    "cardType": "upgrade",
+    "image": "logistical-prowess-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "calcul-de-probabilites"
+      },
+      {
+        "keywordId": "cache"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Logistical Prowess",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Logistical%20Prowess.webp",
+      "englishText": "General Tagge only. At the start of this unit's Activation, it may remove any number of tokens from this card to gain the matching tokens. When this unit chooses itself as part of a Calculate Odds action, instead of gaining 1 Aim token and 1 Dodge token, this card may gain 1 Surge token, and 1 Aim token or 1 Dodge token instead. Cache: Aim 1, Dodge 1.",
+      "frenchText": "{\"title\":\"Prouesse Logistique\",\"body\":\"**Général Tagge uniquement.**\\nAu début de l'activation de cette unité, elle peut retirer autant de pions de cette carte qu'elle le souhaite pour gagner les pions correspondants.\\nQuand cette unité se choisit elle-même lors d'une action {action}**Calcul de Probabilités**, au lieu de gagner 1 pion Viser et 1 pion Esquive, cette carte peut gagner 1 pion Adrénaline, et 1 pion Viser ou 1 pion Esquive.\\n**Cache : Viser 1, Esquive 1.**\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "security detail": {
+    "nameFr": "Détachement de Sécurité",
+    "cardType": "upgrade",
+    "image": "security-detail-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "gardien-x",
+        "value": 2
+      },
+      {
+        "keywordId": "escorte"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Security Detail",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Security%20Detail.webp",
+      "englishText": "Imperial Death Troopers only. This unit gains Guardian 2: Imperial High Command and Retinue: Empire Commander.",
+      "frenchText": "{\"title\":\"Détachement de Sécurité\",\"body\":\"**Death Troopers Impériaux uniquement.**\\nCette unité gagne **Gardien 2 : Haut Commandement Impérial** et **Escorte : commandant** {faction-empire}.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "imperial probe droid upgrade": {
+    "nameFr": "Droïde Sonde Impérial (amélioration)",
+    "cardType": "upgrade",
+    "image": "imperial-probe-droid-upgrade-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "surveillance-x",
+        "value": 1
+      },
+      {
+        "keywordId": "non-combattant"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Imperial Probe Droid",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Imperial%20Probe%20Droid%20Upgrade.webp",
+      "englishText": "Empire only. Corps, Special Forces or Heavy only. Add 1 Imperial Probe Droid miniature. If this unit is a Corps unit, it gains 1 personnel upgrade icon. When this unit declares an attack against an enemy unit that has 1 or more Observation tokens, during the Declare Defenders step, you may spend 1 of those Observation tokens and exhaust this card. If you do, this unit gains 1 Aim token. Exhaust, free action: Observe 1. At the start of each End Phase, ready this card. Noncombatant.",
+      "frenchText": "{\"title\":\"Droïde Sonde Impérial\",\"body\":\"{faction-empire} **uniquement. Corps, Forces Spéciales ou Lourd uniquement.**\\nAjoutez 1 figurine de Droïde Sonde Impérial. Une unité de Corps gagne 1 emplacement d'amélioration Personnel.\\nQuand cette unité déclare une attaque contre une unité ennemie ayant au moins 1 pion Surveillance, pendant l'étape __Déclarer les Défenseurs__, vous pouvez dépenser 1 de ces pions et incliner cette carte : cette unité gagne 1 pion Viser.\\n{incliner}{action-gratuite}**Surveillance 1.**\\nAu début de chaque __Phase Finale__, redressez cette carte. **Non-combattant.**\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "gas grenades": {
+    "nameFr": "Grenades à Gaz",
+    "cardType": "upgrade",
+    "image": "gas-grenades-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Grenade à Gaz",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee-1",
+        "keywordIds": [
+          "poison-x"
+        ],
+        "keywordValues": {
+          "poison-x": 1
+        }
+      }
+    ],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Gas Grenades",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gas%20Grenades.webp",
+      "englishText": "Trench Busters & Wet-Weather Gear Stormtroopers only. Gas Grenade (1 black, melee-1): Poison 1.",
+      "frenchText": "{\"title\":\"Grenades à Gaz\",\"body\":\"**Trench Busters et Stormtroopers en Équipement Pluie uniquement.**\",\"weapons\":[{\"name\":\"Grenade à Gaz\",\"keywords\":\"Poison 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "sx 21 mudtrooper": {
+    "nameFr": "Mudtrooper avec SX-21",
+    "cardType": "upgrade",
+    "image": "sx-21-mudtrooper-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Fusil à Dispersion SX-21",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "assaut-x"
+        ],
+        "keywordValues": {
+          "assaut-x": 2
+        }
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "SX-21 Mudtrooper",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/SX-21%20Mudtrooper.webp",
+      "englishText": "Imperial Mudtroopers only. Add 1 SX-21 Mudtrooper miniature. SX-21 Scatter Gun (2 black, 2 white, range 1-2): Assault 2.",
+      "frenchText": "{\"title\":\"Mudtrooper avec SX-21\",\"body\":\"**Mudtroopers Impériaux uniquement.**\\nAjoutez 1 figurine de Mudtrooper avec SX-21.\",\"weapons\":[{\"name\":\"Fusil à Dispersion SX-21\",\"keywords\":\"Assaut 2\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "z 6 mudtrooper": {
+    "nameFr": "Mudtrooper avec Z-6",
+    "cardType": "upgrade",
+    "image": "z-6-mudtrooper-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Blaster Rotatif Z-6",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "anti-personnel-x"
+        ],
+        "keywordValues": {
+          "anti-personnel-x": 3
+        }
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Z-6 Mudtrooper",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Z-6%20Mudtrooper.webp",
+      "englishText": "Imperial Mudtroopers only. Add 1 Z-6 Mudtrooper miniature. Z-6 Rotary Blaster (3 white, range 1-3): Anti-Personnel 3.",
+      "frenchText": "{\"title\":\"Mudtrooper avec Z-6\",\"body\":\"**Mudtroopers Impériaux uniquement.**\\nAjoutez 1 figurine de Mudtrooper avec Z-6.\",\"weapons\":[{\"name\":\"Blaster Rotatif Z-6\",\"keywords\":\"Anti-personnel 3\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "mudtrooper squad": {
+    "nameFr": "Escouade Mudtrooper",
+    "cardType": "upgrade",
+    "image": "mudtrooper-squad-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "indomptable"
+      },
+      {
+        "keywordId": "transport"
+      }
+    ],
+    "addedModels": 4,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Mudtrooper Squad",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mudtrooper%20Squad.webp",
+      "englishText": "Imperial Mudtroopers only. Add 4 Mudtrooper miniatures. This unit gains Indomitable, even if these miniatures are defeated. This unit is in cohesion if all miniatures are within range 1 of the unit leader instead of range 1/2, even if these miniatures are defeated. This unit cannot be deployed or issued Orders using the Transport keyword.",
+      "frenchText": "{\"title\":\"Escouade Mudtrooper\",\"body\":\"**Mudtroopers Impériaux uniquement.**\\nAjoutez 4 figurines de Mudtrooper.\\nCette unité gagne **Indomptable**. Elle conserve ce mot-clé même si ces figurines sont vaincues.\\nCette unité est en cohésion si toutes ses figurines sont à portée 1 du chef d'unité, au lieu de portée ½. Elle conserve cette règle même si ces figurines sont vaincues.\\nCette unité ne peut pas être déployée ni recevoir d'ordre grâce au mot-clé **Transport**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "imperial agent bringing order to the galaxy": {
+    "nameFr": "Agent Impérial, Faire Régner l'Ordre dans la Galaxie",
+    "cardType": "unit",
+    "image": "imperial-agent-bringing-order-to-the-galaxy-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "implacable"
+      },
+      {
+        "keywordId": "equipe"
+      }
+    ],
+    "rank": "operative",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Imperial Agent, Bringing Order to the Galaxy",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Agent.webp",
+      "englishText": "Imperial Agent, Bringing Order to the Galaxy. Trooper. Equip: doctrine. Relentless. Combat Training (3 black, melee). Blaster Pistol (2 white, 1 black, 1-2). 5 wounds, courage 2.",
+      "frenchText": "{\"name\":\"Agent Impérial\",\"subtitle\":\"Faire Régner l'Ordre dans la Galaxie\",\"type\":\"Soldat\",\"keywords\":[\"Équipe : {emplacement-doctrine}\",\"Implacable\"],\"weapons\":[{\"name\":\"Entraînement au Combat\",\"keywords\":\"\"},{\"name\":\"Pistolet Blaster\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "imperial officer ruthless efficiency": {
+    "nameFr": "Officier Impérial, Efficacité Impitoyable",
+    "cardType": "unit",
+    "image": "imperial-officer-ruthless-efficiency-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "inspiration-x",
+        "value": 1
+      },
+      {
+        "keywordId": "equipe"
+      }
+    ],
+    "rank": "commandant",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Imperial Officer, Ruthless Efficiency",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Officer.webp",
+      "englishText": "Imperial Officer, Ruthless Efficiency. Trooper. Equip: doctrine. Inspire 1. Combat Training (3 black, melee). Blaster Pistol (2 white, 1 black, 1-2). 6 wounds, courage 2.",
+      "frenchText": "{\"name\":\"Officier Impérial\",\"subtitle\":\"Efficacité Impitoyable\",\"type\":\"Soldat\",\"keywords\":[\"Équipe : {emplacement-doctrine}\",\"Inspiration 1\"],\"weapons\":[{\"name\":\"Entraînement au Combat\",\"keywords\":\"\"},{\"name\":\"Pistolet Blaster\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "imperial probe droid": {
+    "nameFr": "Droïde Sonde Impérial",
+    "cardType": "unit",
+    "image": "imperial-probe-droid-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Blaster Léger",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee-1",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "surveillance-x",
+        "value": 3
+      },
+      {
+        "keywordId": "autodestruction-x-unite",
+        "value": 3
+      },
+      {
+        "keywordId": "detachement"
+      },
+      {
+        "keywordId": "retrait"
+      },
+      {
+        "keywordId": "infiltration"
+      },
+      {
+        "keywordId": "sustentation",
+        "value": 1
+      }
+    ],
+    "rank": "special",
+    "speed": 1,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 1,
+      "baseModels": 1
+    },
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Imperial Probe Droid",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Probe%20Droid.webp",
+      "englishText": "Imperial Probe Droid. Droid Trooper. Free action: Observe 3. Free action: Self-Destruct 3. Detachment: Special Forces. Disengage. Infiltrate. Hover: Air 1. Light Blaster (2 white, 2 black, melee-1). 4 wounds, courage 1.",
+      "frenchText": "{\"name\":\"Droïde Sonde Impérial\",\"type\":\"Soldat Droïde\",\"keywords\":[\"{action-gratuite}Surveillance 3\",\"{action-gratuite}Autodestruction 3\",\"Détachement : Forces Spéciales\",\"Retrait\",\"Infiltration\",\"Sustentation : Aérienne 1\"],\"weapons\":[{\"name\":\"Blaster Léger\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "grand moff tarkin imperial high command": {
+    "nameFr": "•Grand Moff Tarkin, Haut Commandement Impérial",
+    "cardType": "unit",
+    "image": "grand-moff-tarkin-imperial-high-command-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Mépris",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "tirer-les-ficelles"
+      },
+      {
+        "keywordId": "entourage"
+      }
+    ],
+    "rank": "commandant",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Grand Moff Tarkin, Imperial High Command",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Grand%20Moff%20Tarkin.webp",
+      "englishText": "Grand Moff Tarkin, Imperial High Command. Trooper. Action: Pulling the Strings: Empire Trooper. Entourage: Darth Vader. Contempt (1 white, melee). 6 wounds, courage 3.",
+      "frenchText": "{\"name\":\"Grand Moff Tarkin\",\"subtitle\":\"Haut Commandement Impérial\",\"type\":\"Soldat\",\"keywords\":[\"{action}Tirer les Ficelles : soldat {faction-empire}\",\"Entourage : Dark Vador\"],\"weapons\":[{\"name\":\"Mépris\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "general tagge imperial high command": {
+    "nameFr": "•Général Tagge, Haut Commandement Impérial",
+    "cardType": "unit",
+    "image": "general-tagge-imperial-high-command-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Non armé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Blaster de Tagge",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "equipe"
+      },
+      {
+        "keywordId": "calcul-de-probabilites"
+      },
+      {
+        "keywordId": "exemplaire"
+      },
+      {
+        "keywordId": "inspiration-x",
+        "value": 1
+      }
+    ],
+    "rank": "commandant",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "General Tagge, Imperial High Command",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/General%20Tagge.webp",
+      "englishText": "General Tagge, Imperial High Command. Trooper. Action: Calculate Odds. Equip: Logistical Prowess. Exemplar. Inspire 1. Unarmed (1 black, melee). Tagge's Blaster (3 black, 1-2). 6 wounds, courage 2.",
+      "frenchText": "{\"name\":\"Général Tagge\",\"subtitle\":\"Haut Commandement Impérial\",\"type\":\"Soldat\",\"keywords\":[\"{action}Calcul de Probabilités\",\"Équipe : Prouesse Logistique\",\"Exemplaire\",\"Inspiration 1\"],\"weapons\":[{\"name\":\"Non armé\",\"keywords\":\"\"},{\"name\":\"Blaster de Tagge\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "wet weather gear stormtrooper": {
+    "nameFr": "Stormtroopers en Équipement Pluie",
+    "cardType": "unit",
+    "image": "wet-weather-gear-stormtrooper-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Matraque",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Fusil Blaster E-11",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "assaut-x"
+        ],
+        "keywordValues": {
+          "assaut-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "coordination"
+      },
+      {
+        "keywordId": "profil-bas"
+      },
+      {
+        "keywordId": "position-preparee"
+      },
+      {
+        "keywordId": "sans-entrave"
+      }
+    ],
+    "rank": "support",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    },
+    "attackSurge": "hit",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Wet Weather Gear Stormtrooper",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wet%20Weather%20Gear%20Stormtrooper.webp",
+      "englishText": "Wet-Weather Gear Stormtroopers. Trooper. Coordinate: Imperial Mudtroopers. Low Profile. Prepared Position. Unhindered. Bludgeon (1 white, melee). E-11 Blaster Rifle (1 white, 1-3): Assault 1. 1 wound, courage 2, 4 miniatures.",
+      "frenchText": "{\"name\":\"Stormtroopers en Équipement Pluie\",\"type\":\"Soldat\",\"keywords\":[\"Coordination : Mudtroopers Impériaux\",\"Profil Bas\",\"Position Préparée\",\"Sans Entrave\"],\"weapons\":[{\"name\":\"Matraque\",\"keywords\":\"\"},{\"name\":\"Fusil Blaster E-11\",\"keywords\":\"Assaut 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "imperial mudtroopers": {
+    "nameFr": "Mudtroopers Impériaux",
+    "cardType": "unit",
+    "image": "imperial-mudtroopers-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Matraque",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Fusil Blaster E-10",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "sans-entrave"
+      }
+    ],
+    "rank": "corps",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 5
+    },
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Imperial Mudtroopers",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Imperial%20Mudtroopers.webp",
+      "englishText": "Imperial Mudtroopers. Trooper. Unhindered. Bludgeon (1 white, melee). E-10 Blaster Rifle (1 white, 1-3). 1 wound, courage 1, 5 miniatures.",
+      "frenchText": "{\"name\":\"Mudtroopers Impériaux\",\"type\":\"Soldat\",\"keywords\":[\"Sans Entrave\"],\"weapons\":[{\"name\":\"Matraque\",\"keywords\":\"\"},{\"name\":\"Fusil Blaster E-10\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
   }
 }

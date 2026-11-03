@@ -12,29 +12,29 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 |---|---|---|---:|
 | Armer X : Type de Charge | Actions de carte | auto | 0 |
 | Assistance X | Actions de carte | auto | 0 |
-| Calcul de Probabilités | Actions de carte | auto | 2 |
+| Calcul de Probabilités | Actions de carte | auto | 4 |
 | Conseils : Type d'Unité | Actions de carte | auto | 2 |
 | Distraire | Actions de carte | auto | 1 |
 | Je Fais Partie de l'Équipe Aussi | Actions de carte | auto | 1 |
 | Maître Conteur | Actions de carte | auto | 0 |
 | Mettre à Couvert X | Actions de carte | auto | 2 |
-| Observateur X | Actions de carte | auto | 3 |
+| Observateur X | Actions de carte | auto | 4 |
 | Opérationnel X | Actions de carte | auto | 1 |
 | Pions Bane (Cad Bane) | Actions de carte | auto | 0 |
 | Réparation X : Capacité Y | Actions de carte | auto | 4 |
-| Stratège X | Actions de carte | auto | 1 |
-| Tirer les Ficelles | Actions de carte | auto | 0 |
+| Stratège X | Actions de carte | auto | 2 |
+| Tirer les Ficelles | Actions de carte | auto | 1 |
 | Traiter X : Capacité Y | Actions de carte | auto | 2 |
 | Vivacité d'Esprit | Actions de carte | auto | 2 |
 | Accomplir la Mission | Attaque | moteur (automatique) | 0 |
 | Anti-matériel X | Attaque | moteur (automatique) | 1 |
-| Anti-personnel X | Attaque | moteur (automatique) | 0 |
+| Anti-personnel X | Attaque | moteur (automatique) | 1 |
 | Arme à Effet de Zone | Attaque | moteur (automatique) | 0 |
 | Arme de Poing : Corps-à-Corps/à Distance | Attaque | moteur (assisté) | 1 |
 | Arsenal X | Attaque | moteur (assisté) | 12 |
-| Assaut X | Attaque | moteur (automatique) | 1 |
+| Assaut X | Attaque | moteur (automatique) | 3 |
 | Autodestruction X (arme) | Attaque | moteur (assisté) | 0 |
-| Autodestruction X (unité) | Attaque | moteur (assisté) | 0 |
+| Autodestruction X (unité) | Attaque | moteur (assisté) | 1 |
 | Barrage | Attaque | moteur (assisté) | 0 |
 | Bélier X | Attaque | moteur (automatique) | 2 |
 | Bordée X | Attaque | moteur (assisté) | 1 |
@@ -49,39 +49,39 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Duelliste | Attaque | moteur (automatique) | 4 |
 | Encombrant | Attaque | moteur (automatique) | 5 |
 | Équipe Sniper | Attaque | moteur (automatique) | 2 |
-| Exemplaire | Attaque | moteur (assisté) | 5 |
+| Exemplaire | Attaque | moteur (assisté) | 7 |
 | Explosion X : Type de Charge | Attaque | moteur (assisté) | 0 |
 | Fixe : Avant/Arrière/Flancs | Attaque | moteur (automatique) | 25 |
 | Haute Vélocité | Attaque | moteur (automatique) | 9 |
-| Immobiliser X | Attaque | moteur (automatique) | 3 |
+| Immobiliser X | Attaque | moteur (automatique) | 4 |
 | Immunité : Déflexion | Attaque | moteur (automatique) | 0 |
 | Impact X | Attaque | moteur (automatique) | 55 |
-| Implacable | Attaque | moteur (assisté) | 5 |
+| Implacable | Attaque | moteur (assisté) | 6 |
 | Ion X | Attaque | moteur (automatique) | 4 |
 | La Mort Venue du Ciel | Attaque | moteur (automatique) | 1 |
 | Les Mandaloriens sont Plus Forts Ensemble | Attaque | moteur (assisté) | 1 |
-| Létal X | Attaque | moteur (automatique) | 9 |
-| Longue Distance | Attaque | moteur (automatique) | 11 |
+| Létal X | Attaque | moteur (automatique) | 10 |
+| Longue Distance | Attaque | moteur (automatique) | 12 |
 | Maîtrise de l'Ataru | Attaque | moteur (automatique) | 0 |
 | Maîtrise du Jar'Kai | Attaque | moteur (automatique) | 1 |
 | Maîtrise du Makashi | Attaque | moteur (automatique) | 0 |
 | Maîtrise du Vaapad | Attaque | moteur (assisté) | 0 |
 | Matamore | Attaque | moteur (automatique) | 0 |
-| Non-combattant | Attaque | moteur (assisté) | 5 |
+| Non-combattant | Attaque | moteur (assisté) | 6 |
 | Nous nous Battons pour notre Famille | Attaque | moteur (assisté) | 0 |
 | Perforant X | Attaque | moteur (automatique) | 30 |
 | Pistolero | Attaque | moteur (assisté) | 3 |
-| Poison X | Attaque | moteur (automatique) | 0 |
+| Poison X | Attaque | moteur (automatique) | 1 |
 | Polyvalent | Attaque | moteur (assisté) | 3 |
 | Précis X | Attaque | moteur (automatique) | 8 |
 | Primitif | Attaque | moteur (automatique) | 0 |
 | Rayons X | Attaque | moteur (assisté) | 0 |
 | Souffle | Attaque | moteur (automatique) | 7 |
-| Suppressif | Attaque | moteur (automatique) | 24 |
-| Surveillance X | Attaque | moteur (automatique) | 3 |
+| Suppressif | Attaque | moteur (automatique) | 26 |
+| Surveillance X | Attaque | moteur (automatique) | 5 |
 | Tenir Bon | Attaque | moteur (automatique) | 1 |
 | Tir de Soutien | Attaque | moteur (assisté) | 2 |
-| Tireur d'Élite X | Attaque | moteur (automatique) | 22 |
+| Tireur d'Élite X | Attaque | moteur (automatique) | 24 |
 | Tireur Embusqué | Attaque | moteur (automatique) | 5 |
 | Transport X : Ouvert/Fermé | Attaque | moteur (assisté) | 0 |
 | Aléas X | Composition d'armée | composition | 0 |
@@ -89,8 +89,8 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Associé : Nom d'Unité | Composition d'armée | composition | 1 |
 | Commandant des Opérations | Composition d'armée | composition | 7 |
 | Défaut | Composition d'armée | composition | 0 |
-| Détachement : Nom/Type d'Unité | Composition d'armée | composition | 5 |
-| Équipe | Composition d'armée | composition | 6 |
+| Détachement : Nom/Type d'Unité | Composition d'armée | composition | 6 |
+| Équipe | Composition d'armée | composition | 9 |
 | Équipe avec Arme Lourde | Composition d'armée | composition | 2 |
 | Mercenaire : Faction | Composition d'armée | composition | 18 |
 | Paquetage | Composition d'armée | composition | 0 |
@@ -107,12 +107,12 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Déflexion | Défense | moteur (automatique) | 5 |
 | Discret | Défense | moteur (automatique) | 1 |
 | Fumée X | Défense | moteur (assisté) | 1 |
-| Gardien X | Défense | moteur (assisté) | 1 |
+| Gardien X | Défense | moteur (assisté) | 2 |
 | Immunité : Armes Portée 1 | Défense | moteur (automatique) | 2 |
 | Immunité : Corps-à-Corps | Défense | moteur (automatique) | 2 |
 | Immunité : Déflagration | Défense | moteur (automatique) | 2 |
 | Immunité : Perforant | Défense | moteur (automatique) | 8 |
-| Immunité : Perforant au Corps-à-Corps | Défense | moteur (automatique) | 2 |
+| Immunité : Perforant au Corps-à-Corps | Défense | moteur (automatique) | 3 |
 | Incognito | Défense | moteur (automatique) | 3 |
 | Indifférent | Défense | moteur (automatique) | 1 |
 | Influence Divine | Défense | moteur (assisté) | 0 |
@@ -125,7 +125,7 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Manœuvre Improbable | Défense | moteur (automatique) | 3 |
 | Petit | Défense | moteur (assisté) | 2 |
 | Point Faible X : Avant/Arrière/Flancs | Défense | moteur (automatique) | 5 |
-| Profil Bas | Défense | moteur (automatique) | 7 |
+| Profil Bas | Défense | moteur (automatique) | 8 |
 | Aguerri | Déplacement | auto | 5 |
 | Ascension | Déplacement | regle | 7 |
 | Cloué au Sol | Déplacement | regle | 0 |
@@ -137,13 +137,13 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Pivot Complet | Déplacement | regle | 3 |
 | Preste X | Déplacement | auto | 3 |
 | Redéploiement | Déplacement | regle | 7 |
-| Retrait | Déplacement | regle | 2 |
-| Sans Entrave | Déplacement | regle | 4 |
+| Retrait | Déplacement | regle | 3 |
+| Sans Entrave | Déplacement | regle | 6 |
 | Saut X | Déplacement | auto | 16 |
 | Speeder X | Déplacement | auto | 4 |
 | Stationnaire | Déplacement | regle | 1 |
-| Sustentation : Terrestre/Aérienne X | Déplacement | regle | 2 |
-| Tacticien X | Déplacement | auto | 10 |
+| Sustentation : Terrestre/Aérienne X | Déplacement | regle | 3 |
+| Tacticien X | Déplacement | auto | 11 |
 | Véhicule Grimpant | Déplacement | regle | 2 |
 | Alourdi | Effets permanents | regle | 0 |
 | Chef | Effets permanents | rappel | 14 |
@@ -155,28 +155,28 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Restaurer | Effets permanents | rappel | 0 |
 | Tenir le Cap : Mot-clé | Effets permanents | rappel | 0 |
 | Cycle | Fin d'activation | auto | 5 |
-| Inspiration X | Fin d'activation | auto | 8 |
+| Inspiration X | Fin d'activation | auto | 11 |
 | Maître de la Force X | Fin d'activation | auto | 3 |
 | Pouvoir Latent | Fin d'activation | auto | 1 |
 | Régénérer X | Fin d'activation | auto | 1 |
 | Alter Ego : Nom d'Unité | Mise en place | auto | 4 |
 | Blessure X | Mise en place | auto | 1 |
-| Cache | Mise en place | auto | 5 |
+| Cache | Mise en place | auto | 6 |
 | Éclaireur X | Mise en place | auto | 6 |
 | Équipe d'Éclaireurs X | Mise en place | auto | 0 |
-| Infiltration | Mise en place | auto | 8 |
+| Infiltration | Mise en place | auto | 9 |
 | Opérations Secrètes | Mise en place | auto | 0 |
-| Position Préparée | Mise en place | auto | 8 |
+| Position Préparée | Mise en place | auto | 10 |
 | Prime | Mise en place | auto | 6 |
-| Transport | Mise en place | auto | 3 |
+| Transport | Mise en place | auto | 4 |
 | Transport Léger X : Ouvert/Fermé | Mise en place | auto | 0 |
 | Traqué | Mise en place | auto | 1 |
 | Attaque Impétueuse | Ordre reçu · début d'activation | auto | 0 |
 | Autonome : Pion X/Action | Ordre reçu · début d'activation | auto | 15 |
-| Cible X | Ordre reçu · début d'activation | auto | 1 |
+| Cible X | Ordre reçu · début d'activation | auto | 2 |
 | Défense X | Ordre reçu · début d'activation | auto | 2 |
 | Discipliné X | Ordre reçu · début d'activation | auto | 2 |
-| Escorte : Nom/Type d'Unité | Ordre reçu · début d'activation | auto | 4 |
+| Escorte : Nom/Type d'Unité | Ordre reçu · début d'activation | auto | 6 |
 | Fiable X | Ordre reçu · début d'activation | auto | 3 |
 | IA : Action | Ordre reçu · début d'activation | auto | 4 |
 | Infanterie Mécanisée | Ordre reçu · début d'activation | auto | 0 |
@@ -185,28 +185,28 @@ Généré par `node scripts/audit-keyword-timing.mjs` (dans `npm run build`). 20
 | Surcharge X | Ordre reçu · début d'activation | auto | 0 |
 | Telle est la Voie | Ordre reçu · début d'activation | auto | 1 |
 | Autoritaire | Phase de Commandement | auto | 0 |
-| Coordination : Nom/Type d'Unité | Phase de Commandement | auto | 5 |
+| Coordination : Nom/Type d'Unité | Phase de Commandement | auto | 6 |
 | Divulgation | Phase de Commandement | auto | 0 |
-| Entourage : Nom d'Unité | Phase de Commandement | auto | 2 |
+| Entourage : Nom d'Unité | Phase de Commandement | auto | 3 |
 | Inarrêtable | Phase de Commandement | auto | 1 |
 | Interrogatoire | Phase de Commandement | auto | 2 |
 | Longueur d'Avance | Phase de Commandement | auto | 2 |
 | Malin | Phase de Commandement | auto | 2 |
 | Mission Secrète | Phase de Commandement | auto | 2 |
-| Ordre Direct : Nom/Type d'Unité | Phase de Commandement | auto | 3 |
+| Ordre Direct : Nom/Type d'Unité | Phase de Commandement | auto | 4 |
 | Générateur X | Phase Finale | auto | 0 |
 | Permanent | Phase Finale | rappel | 0 |
 | Renforts | Phase Finale | auto | 2 |
 | Contrainte : Rang/Type d'Unité | Rallier · récupérer | auto | 4 |
-| Démoraliser X | Rallier · récupérer | auto | 3 |
-| Indomptable | Rallier · récupérer | auto | 10 |
+| Démoraliser X | Rallier · récupérer | auto | 4 |
+| Indomptable | Rallier · récupérer | auto | 11 |
 | Instinct de Survie | Rallier · récupérer | rappel | 2 |
 | Intrépide | Rallier · récupérer | auto | 5 |
 | Pilotage de Véhicule X | Rallier · récupérer | auto | 0 |
 | Pions Graffiti | Rallier · récupérer | rappel | 0 |
 | Recharger X | Rallier · récupérer | auto | 3 |
 | Reconfiguration | Rallier · récupérer | auto | 4 |
-| Aide : Affiliation/Type d'Unité | Réactions | auto | 2 |
+| Aide : Affiliation/Type d'Unité | Réactions | auto | 4 |
 | Impitoyable | Réactions | auto | 1 |
 | Sentinelle | Réactions | auto | 6 |
 | Travail d'Équipe : Nom d'Unité | Réactions | auto | 2 |
