@@ -42,3 +42,7 @@ Les 478 rectos sont relus : 333 versos renseignés, 145 vierges, 156 définition
 ## Rectos actuels — Tristan, Ursa et Agent Rebelle (31/10/2026)
 
 Les trois rectos sont remplacés dans l’atelier : Tristan = Chef et Précis 2 ; Ursa = +1 Courage, Défense 1 et Chef ; Agent Rebelle = recto FR, Équipe : doctrine. Source des Wren : PDF officiel AMG Mandalorian Cards v1.1 (juillet 2026), p. 9. Les versos suivent les nouveaux rectos. Catalogue inchangé à 478 cartes, aucun doublon. Les anciennes alertes de ces trois cartes sont supprimées ; les dix cartes retirées restent signalées. Rapport, fichiers et contrôles : docs/CARD_WORKSHOP_FRONTS_CURRENT.md. Traductions locales relues par IA, validation humaine restant à effectuer ; aucune publication.
+
+## Découpe plastifiée (03/11/2026)
+
+Format `cut` : 8 cartes 68 × 98 mm jointives par A4, traits de coupe dans les marges (bordures CSS, imprimées sans graphiques d’arrière-plan). Plastifier la feuille entière en pochette A4, couper les marges gauche, droite et haute sur les traits, puis à la butée 68 mm (bandes) et 98 mm (cartes) : toutes les cartes ont la même taille.

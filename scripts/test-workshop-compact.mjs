@@ -6,7 +6,7 @@ const vite=await createServer({server:{middlewareMode:true},appType:'custom',opt
 try {
  const {SEED_KEYWORDS}=await vite.ssrLoadModule('/src/data/keywords.ts');
  const {workshopRulesForMode}=await vite.ssrLoadModule('/src/lib/cardWorkshopText.ts');
- const {planWorkshopPages,workshopPageLayout,keywordBackHtml}=await vite.ssrLoadModule('/src/lib/cardWorkshopPrint.ts');
+ const {planWorkshopPages,workshopPageLayout,keywordBackHtml,cropMarksHtml}=await vite.ssrLoadModule('/src/lib/cardWorkshopPrint.ts');
  const official=JSON.parse(fs.readFileSync('src/data/workshopOfficialKeywords.json','utf8'));
  const compact=JSON.parse(fs.readFileSync('src/data/workshopCompactKeywords.json','utf8'));
  const coverage=JSON.parse(fs.readFileSync('src/data/workshopKeywordCoverage.json','utf8'));
@@ -48,7 +48,7 @@ try {
  const {SEED_CARD_TAGS}=await vite.ssrLoadModule('/src/data/cardTags.ts');
  for(const card of buildWorkshopCatalog(SEED_CARD_TAGS,SEED_KEYWORDS)) if(card.keywordReview) assert.ok(!card.warnings.some(w=>w.startsWith('Mot-clé à associer')), 'un signalement ancien ne survit pas à la revue du recto');
  const unknown={...impact,id:'personal-inconnu:X'};assert.equal(workshopRulesForMode([unknown],'compact')[0],unknown,'une définition personnelle inconnue reste intégrale');
- for(const [format,capacity]of [['standard',9],['binder',8],['collection',4]]) {
+ for(const [format,capacity]of [['standard',9],['binder',8],['cut',8],['collection',4]]) {
    const layout=workshopPageLayout(format);assert.equal(layout.columns*layout.rows,capacity);
    assert.ok(layout.x>=5&&layout.y>=5);assert.ok(layout.x+layout.columns*layout.slotWidth+(layout.columns-1)*layout.gap<=layout.width-5+.001);
    assert.ok(layout.y+layout.rows*layout.slotHeight+(layout.rows-1)*layout.gap<=layout.height-5+.001);
@@ -59,5 +59,10 @@ try {
      for(const page of pages)for(let i=0;i<capacity;i++)assert.equal(page.front[i],page.back[Math.floor(i/layout.columns)*layout.columns+layout.columns-1-i%layout.columns],'même carte et même copie après retournement bord long');
    }
  }
+ const cut=workshopPageLayout('cut');assert.deepEqual([cut.gap,cut.slotWidth,cut.slotHeight,cut.x,cut.y],[0,98,68,7,12.5],'découpe plastifiée : cartes jointives 68 × 98 mm centrées');
+ const marks=[...cropMarksHtml(cut).matchAll(/left:([\d.]+)mm;top:([\d.]+)mm;width:([\d.]+)mm;height:([\d.]+)mm/g)].map(m=>m.slice(1).map(Number));
+ assert.equal(marks.length,2*(cut.columns+1)+2*(cut.rows+1),'un trait de chaque côté pour chaque ligne de coupe');
+ for(const [l,t,w,h]of marks){assert.ok(l>=3-.001&&t>=3-.001&&l+w<=cut.width-3+.001&&t+h<=cut.height-3+.001,'trait dans la zone imprimable');
+  const inX=l+w>cut.x&&l<cut.x+cut.columns*cut.slotWidth,inY=t+h>cut.y&&t<cut.y+cut.rows*cut.slotHeight;assert.ok(!(inX&&inY),'aucun trait sur une carte');}
  console.log('Atelier compact : 156 définitions condensées + Tough, 197 entrées HQ définies, paramètres indépendants, grilles A4 9/8/4 et duplex partiel vérifiés.');
 } finally {await vite.close();}
