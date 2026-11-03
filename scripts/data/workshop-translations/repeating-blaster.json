@@ -1,0 +1,72 @@
+{
+  "kind": "upgrade",
+  "cardId": "upgrade:repeating blaster",
+  "name": "Blaster Répétiteur",
+  "sourceFile": "cards/repeating-blaster.webp",
+  "sourceSha256": "bc26bebcc91411ab25a02b55309f05fb3864f2197560eecce4e57dd4ff407abd",
+  "expectedSize": [
+    725,
+    1040
+  ],
+  "fr": {
+    "body": "__Agent Rebelle ou Officier Rebelle uniquement.__\nRéduisez de 1 la vitesse maximale de cette unité.\nCette unité gagne **Précis 2**.",
+    "title": "Blaster Répétiteur",
+    "weaponName": "Blaster Répétiteur",
+    "weaponKeywords": "Critique 1. Impact 1. Longue Distance"
+  },
+  "zones": {
+    "body": [
+      65,
+      556,
+      668,
+      746
+    ],
+    "title": [
+      52,
+      943,
+      678,
+      1020
+    ],
+    "weaponName": [
+      70,
+      772,
+      404,
+      806
+    ],
+    "weaponKeywords": [
+      68,
+      817,
+      503,
+      851
+    ]
+  },
+  "sourceIcons": {},
+  "protectedZones": [
+    [
+      0,
+      0,
+      172,
+      118
+    ],
+    [
+      550,
+      0,
+      725,
+      121
+    ],
+    [
+      410,
+      761,
+      509,
+      813
+    ],
+    [
+      512,
+      761,
+      675,
+      870
+    ]
+  ],
+  "englishText": "Rebel Agent or Rebel Officer only. Reduce this unit's maximum Speed by 1. This unit gains Precise 2. Repeating Blaster. Critical 1. Impact 1. Long Shot.",
+  "translationStatus": "local-ai-reviewed-not-human-certified"
+}

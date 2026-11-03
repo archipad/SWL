@@ -1,5 +1,16 @@
 # Feuille de route
 
+## Atelier de cartes FR — 31/10/2026
+
+- [x] Ajustement demandé : une carte = un recto + un verso ; uniquement les définitions des mots-clés au dos, pas de cartes de suite, blocage si le texte ne tient pas lisiblement.
+
+- [x] (03/11/2026) Impression recto verso : les versos ne débordent plus à l'impression. Les versos tournés passent en écriture verticale (plus de boîte pivotée qui dépasse de la page), les faces non tournées n'utilisent plus de centrage par `translate`, la planche est en `overflow:hidden` et la mesure garde une marge de sécurité (texte jusqu'à 7 pt). Catalogue complet imprimé : 0 mot hors emplacement sur 60 feuilles. Résultats de dé des définitions condensées en icônes (`[TOUCHE]`, `[CRITIQUE]`, `[BLOC]`, `[ADR-ATQ]`, `[ADR-DEF]`), aussi dans l'aperçu. 132 rectos d'amélioration recadrés : 128 ré-extraits des PDF FR officiels (`scripts/tools/extract_pdf_cards.py`, couleur, cadre symétrique) et 4 recadrés sur place (versions errata DLT-19x, Saboteur à Protons, Ordres Improvisés ; Entraînement de l'Inquisitorius). Empreintes reportées dans `diceCertifications.json` et `workshopKeywordReviews.json` après contrôle des dés sur le nouveau visuel.
+- [x] Premier lot : bibliothèque FR (unités/améliorations/commandements), aperçu recto verso, définitions complètes, panier Tabletop avec quantités, upload de rectos FR en IndexedDB, calibration et impression/PDF bord long ; détails et fichiers dans `docs/CARD_WORKSHOP.md`.
+- [x] Tests ciblés atelier/import/impression/commandements/catalogue, TypeScript et compilation de production réussis ; contrôle navigateur tablette 820 px et planches témoin/Empire sans débordement. Prototype intégré localement, sans publication.
+- [ ] Suite générale : parcours « Certification automatique β en ligne » en échec sur `#validateAutoCard` absent (`test-assistant-parcours.mjs:2647`), hors fichiers modifiés par l'atelier. Publication en attente.
+- [ ] OCR et traduction automatique d'images EN/PDF avec service sécurisé, réemploi des gabarits FR, contrôle des paramètres, validation de l'actualité du glossaire et sauvegarde des cartes personnelles.
+- [ ] Publication du lot après revue et vérification complète ; ne pas considérer l'aperçu local comme déployé sur GitHub Pages.
+
 ## Dernier lot prêt à valider
 
 - [x] (26/09/2026) Bibliothèque visuelle complète des 76 cartes d'unité de la base :
@@ -493,3 +504,43 @@
 - [x] (22/09/2026) Bug « Nouvelle partie » : suppressions, états (démoralisé…) et round 5 revenaient à la synchro (la fusion n'efface jamais rien et le gist gardait l'ancienne partie ; la relève de l'Assistant réécrasait aussi le suivi). Correctif : numéro de partie (`swl.game-epoch.v1`, horodatage de « Nouvelle partie » / restauration) synchronisé avec le gist ; le plus récent gagne, l'ancienne partie est abandonnée par tous les appareils et par l'Assistant. Tests : `test-sync-merge.mjs` et scénario jsdom de synchro.
 
 - [x] (22/09/2026) Certification accélérée : plus de cases à cocher obligatoires ; liste groupée (vos listes — unités puis améliorations —, écarts à relire, autres cartes) ; « Défilé rapide » : une carte à la fois (visuel + récapitulatif), « Conforme » (un clic, carte suivante), « À corriger… », « Passer », vitesse / utilisation de la carte demandées sur place.
+
+
+## Atelier — traductions locales du 31/10/2026
+
+- [x] Lecture OCR locale des 478 cartes, inventaire complet et rapprochement des 60 sources EN suivies avec leurs variantes FR.
+- [x] Cinq rectos traduits sans service payant : Armure de Combat, Blaster Répétiteur, Chewbacca (amélioration), Contrôle de Tir, Héros Malgré Lui. Cassian FR réutilisé. Identifiants et profils du moteur conservés, aucun doublon ajouté.
+- [x] Rendus relus et contrôle des empreintes, statistiques et illustrations protégées. Catalogue HTML/JSON/CSV de relecture. Voir CARD_WORKSHOP_TRANSLATIONS.md.
+- [x] Valeurs d’Armure/Gardien citées dans une définition indépendantes du X du mot-clé imprimé. Tests atelier et import, cartes FR, catalogue, génération/audit Assistant, TypeScript et compilation ciblée.
+- [ ] Compléter/relire les versos : 275 cartes avec définitions associées, 203 sans définition (dont des versos légitimement vierges). Les propositions OCR restent des brouillons.
+- [ ] Validation humaine des cinq traductions et parcours assisté pour les cartes inconnues. Aucun service payant configuré.
+- [ ] Publication après résolution de l’échec préexistant du parcours Certification β (#validateAutoCard) et suite générale verte. Aucun commit ni déploiement de ce lot.
+
+
+## Atelier — contrôle des 203 versos du 31/10/2026
+
+65 versos complétés et 138 confirmés vierges. Définitions complètes vérifiées sur AMG 17/06/2026 (traductions FR de l’anglais officiel), références et empreintes conservées. Format agrandi disponible pour les 16 versos trop longs au format classique ; toujours un recto et un verso, sans coupure. Voir docs/CARD_WORKSHOP_KEYWORDS.md.
+
+
+## Atelier — contrôle complet des 275 cartes restantes (31/10/2026)
+
+Les 478 rectos sont relus : 333 versos renseignés, 145 vierges, 156 définitions complètes vérifiées sur AMG 17/06/2026. Les 40 corrections d’associations, 10 cartes retirées, 2 rectos Tristan/Ursa anciens et le recto Agent rebelle anglais sont tracés et signalés. Trois formats ; toujours un recto et un verso. Les 478 tiennent en grand format A4 (9 cartes l’exigent). Voir docs/CARD_WORKSHOP_KEYWORDS_COMPLETE.md. Les rectos anciens/anglais restent à remplacer ; aucun nouveau statut de certification du moteur ni déploiement.
+
+## Rectos actuels — Tristan, Ursa et Agent Rebelle (31/10/2026)
+
+Les trois rectos sont remplacés dans l’atelier : Tristan = Chef et Précis 2 ; Ursa = +1 Courage, Défense 1 et Chef ; Agent Rebelle = recto FR, Équipe : doctrine. Source des Wren : PDF officiel AMG Mandalorian Cards v1.1 (juillet 2026), p. 9. Les versos suivent les nouveaux rectos. Catalogue inchangé à 478 cartes, aucun doublon. Les anciennes alertes de ces trois cartes sont supprimées ; les dix cartes retirées restent signalées. Rapport, fichiers et contrôles : docs/CARD_WORKSHOP_FRONTS_CURRENT.md. Traductions locales relues par IA, validation humaine restant à effectuer ; aucune publication.
+
+## Atelier FR publié — 01/11/2026
+
+Commit publié : f12e17f15e20213461535196755d641988bab362, branche claude/star-wars-legion-app-49rc3z. Déploiement GitHub Pages réussi : https://github.com/archipad/SWL/actions/runs/41296261495 . Site contrôlé : https://archipad.github.io/SWL/#atelier-cartes .
+
+L’entrée unique « Atelier de cartes FR » remplace « Imprimer des cartes », conserve la page persistée print-cards et accepte #imprimer / #atelier-cartes. Le catalogue de 478 cartes, les 156 définitions et les huit traductions locales sont publiés. Sources anglaises personnelles et fichiers temporaires exclus. Fichiers : App.tsx, composants/librairies/data cardWorkshop, visuels public/cards/workshop, recettes/rendu/tests/export, package.json et documentation CARD_WORKSHOP*. Test préexistant Certification β corrigé dans scripts/test-assistant-parcours.mjs sans modifier le produit : identité ambiguë distincte du manque de visuel EN. npm run verify réussi intégralement ; 77 parcours Assistant validés ; contrôle en ligne du recto FR Agent Rebelle et de l’aperçu (1 recto, 1 verso, 2 pages), panier de test remis à zéro.
+
+Publication préparée dans une copie isolée fondée sur eb341a7, conservant les trois dernières modifications distantes et les travaux locaux. Navigation et correction du test reportées dans le dépôt de travail. Restent : relecture humaine des traductions, impression matérielle et traduction automatique à l’upload. Sur un appareil gardant l’ancienne application : toucher Recharger dans le bandeau de mise à jour.
+
+### 01/11/2026 — Versos condensés et bibliothèque imprimable
+
+- 156 définitions courtes sourcées + Tough (AMG), couverture des 197 entrées LegionHQ2 ; corrections de correspondances EN/FR.
+- Format commun classeur 68 × 98 mm, 8 cartes/A4 ; un recto et un verso, aucun texte coupé ; impression complète des 478 modèles.
+- Essais Empire Moff Gideon et Rebelles Simon 3 : 37 cartes et 5 feuilles recto verso chacun. Bibliothèque 478 cartes : 60 feuilles.
+- Contrôle visuel des PDF et calibration ; détails et limites : CARD_WORKSHOP_COMPACT.md.

@@ -1,0 +1,963 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-01",
+  "notice": "Aides de jeu condensées, traduites et relues par IA sur les règles AMG officielles. Ce ne sont pas les textes officiels intégraux ; ceux-ci restent consultables dans l’atelier.",
+  "source": {
+    "title": "Star Wars: Legion Core Rules",
+    "publisher": "Atomic Mass Games",
+    "updatedAt": "2026-06-17",
+    "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/06/DOC56_SWQ_Rulebook-2.pdf",
+    "indexUrl": "https://www.atomicmassgames.com/swlegiondocs/",
+    "sha256": "c9d0ffcece6d33dbf222d2a780cff92392df56f59027aa55ec79aba7ee6ce3b8",
+    "language": "en",
+    "frenchTextStatus": "Traduction française vérifiée sur le règlement officiel anglais ; ce texte français n’est pas une édition officielle publiée par AMG."
+  },
+  "keywords": {
+    "tireur-delite-x": {
+      "text": "Déterminer le couvert : réduisez le couvert du défenseur de {X} (minimum 0).",
+      "sourcePage": 55,
+      "sourceHeading": "SHARPSHOOTER X",
+      "sourceDefinitionSha256": "7f8191796d03be7ccbc2aa847b8a057fd29bd6e13efef6f654bedb6cc4619227"
+    },
+    "tacticien-x": {
+      "text": "Après un déplacement normal effectué grâce à une action, gratuite ou non : gagnez {X} pions Viser.",
+      "sourcePage": 56,
+      "sourceHeading": "TACTICAL X",
+      "sourceDefinitionSha256": "1fc72ad035b9c0cd573e9a140adbfb1edc455a923e30ede984c3985f8de8ee29"
+    },
+    "suppressif": {
+      "text": "Après avoir défendu contre cette réserve : le défenseur gagne 1 Suppression supplémentaire à l’étape d’attribution de la Suppression.",
+      "sourcePage": 60,
+      "sourceHeading": "SUPPRESSIVE",
+      "sourceDefinitionSha256": "e9d29d0e223bb80048576e4da20cde87ae29a6af90169c8f9c9042fe4f385412"
+    },
+    "pistolero": {
+      "text": "Déclarer un défenseur supplémentaire : une fois par attaque, créez contre un autre défenseur une réserve avec une seule arme à distance déjà utilisée dans une autre réserve.",
+      "sourcePage": 50,
+      "sourceHeading": "GUNSLINGER",
+      "sourceDefinitionSha256": "3c8c5be29df85a339ca9238199f70ee088d2140fdbcb135f355ec8e8312ea5b6"
+    },
+    "indomptable": {
+      "text": "Ralliement : lancez des dés de défense rouges au lieu de blancs.",
+      "sourcePage": 51,
+      "sourceHeading": "INDOMITABLE",
+      "sourceDefinitionSha256": "ace3a83385dd01dbc96dcaf2555d6c650d0d90c84e1b480a2126a9413454cb62"
+    },
+    "retrait": {
+      "text": "Soldat engagé avec une seule unité ennemie : peut se déplacer normalement.",
+      "sourcePage": 48,
+      "sourceHeading": "DISENGAGE",
+      "sourceDefinitionSha256": "2eface1001262a3be6817151de358471b21dbc3bbb80d0dc6758f147a610c231"
+    },
+    "immunite-deflexion": {
+      "text": "L’attaquant ne peut pas subir de blessures de Déflexion pendant cette attaque.",
+      "sourcePage": 59,
+      "sourceHeading": "IMMUNE: DEFLECT",
+      "sourceDefinitionSha256": "f9d16bccc6e7d7e2ef69317319b0d1ec81cb4c7dbc13be12a237e0048fb09cdd"
+    },
+    "divulgation": {
+      "text": "Révélez la carte au début de la fenêtre indiquée et appliquez sa partie Divulgation (choisissez une option si nécessaire). Elle n’est pas jouée : reprenez-la en main à la fin de cette étape, sauf si elle est Permanente. Plusieurs divulgations possibles ; à fenêtre commune, le bleu décide en premier et renonce définitivement s’il passe.",
+      "sourcePage": 61,
+      "sourceHeading": "DIVULGE",
+      "sourceDefinitionSha256": "da572c1db638439c3426485e493409fc4528e732ac89a0bc57a4c77725ddc7d3"
+    },
+    "deflagration": {
+      "text": "Appliquer esquives et couvert : le couvert léger ou lourd n’annule aucune [TOUCHE] de cette réserve.",
+      "sourcePage": 58,
+      "sourceHeading": "BLAST",
+      "sourceDefinitionSha256": "e9190294006dd53ceffe29ddd2f248d79037269d72a022a63e7b49e3e057ba20"
+    },
+    "critique-x": {
+      "text": "Convertir les [ADR-ATQ] : changez jusqu’à {X} [ADR-ATQ] en [CRITIQUE].",
+      "sourcePage": 58,
+      "sourceHeading": "CRITICAL X",
+      "sourceDefinitionSha256": "9274f92a0962afda875580933a924a3f08cc17a07507e7bb9f588f08a4f9ae66"
+    },
+    "impact-x": {
+      "text": "Modifier les dés d’attaque contre Armure X : changez jusqu’à {X} [TOUCHE] en [CRITIQUE].",
+      "sourcePage": 59,
+      "sourceHeading": "IMPACT X",
+      "sourceDefinitionSha256": "5995b039c4d05ac5d78c7947a692d0c64be3f973c27e7843fd0e472ca5ed8487"
+    },
+    "arme-a-effet-de-zone": {
+      "text": "Icône de portée jaune : attaquez séparément chaque unité alliée ou ennemie en vue et à portée de l’effet, même engagée. Attaques toujours à distance ; cette arme reste seule dans sa réserve et ne rejoint jamais une réserve d’unité.",
+      "sourcePage": 58,
+      "sourceHeading": "AREA WEAPON",
+      "sourceDefinitionSha256": "b1ef0c40d7bca5bf24f2d6a47d91359d40fd57add3324505d7a228aa0e7e08c5"
+    },
+    "tenir-le-cap": {
+      "text": "Le Chef est à portée ½ d’un Objectif, ou l’unité détient un Objectif : elle gagne le mot-clé indiqué.",
+      "sourcePage": 49,
+      "sourceHeading": "EYES ON THE PRIZE: KEYWORD",
+      "sourceDefinitionSha256": "849c6e5735eac26ef9cbbcf4ed93a4dd419e8cf31f8df530fa9f47974427a1c5"
+    },
+    "profil-bas": {
+      "text": "Jet de couvert d’au moins 1 dé : lancez 1 dé de moins et ajoutez 1 [BLOC] au résultat.",
+      "sourcePage": 52,
+      "sourceHeading": "LOW PROFILE",
+      "sourceDefinitionSha256": "148b7875e5de6a8bebc760c63cbb654de736e78f2ae5232cdcb11157152a6d98"
+    },
+    "agile": {
+      "text": "Si vous dépensez au moins 1 Esquive en défendant : récupérez 1 Esquive après l’attaque.",
+      "sourcePage": 53,
+      "sourceHeading": "NIMBLE",
+      "sourceDefinitionSha256": "d5dc671358909cc116f88c5fc2ab5e4764884ff76921b979f42f1f697e7442f7"
+    },
+    "demoraliser-x": {
+      "text": "Après votre ralliement : répartissez jusqu’à {X} Suppressions entre des ennemis à portée 2.",
+      "sourcePage": 48,
+      "sourceHeading": "DEMORALIZE X",
+      "sourceDefinitionSha256": "6e079d80b0086f08e55934cf8cb47719711e1c08cbd76673e64019d02ed86d28"
+    },
+    "manoeuvre-improbable": {
+      "text": "Appliquer esquives et couvert : vos pions Esquive peuvent aussi annuler les [CRITIQUE].",
+      "sourcePage": 53,
+      "sourceHeading": "OUTMANEUVER",
+      "sourceDefinitionSha256": "59747c9dd2cfa6236e3ae00f779936ef4d32f967894cf501efb147443a7925ce"
+    },
+    "aguerri": {
+      "text": "Pendant votre activation, après une action Se déplacer : action Attaquer gratuite, avec des armes à distance uniquement.",
+      "sourcePage": 56,
+      "sourceHeading": "STEADY",
+      "sourceDefinitionSha256": "8bd1e7b1e6d17c83fe68c4246f6e0e5c437f5d86339c68d46b1651ea76e5066a"
+    },
+    "marche-forcee": {
+      "text": "Avant un déplacement : gagnez 1 Suppression pour augmenter sa vitesse maximale de 1 (maximum 3). Appliquez ce bonus avant les réductions de vitesse ; une vitesse finale de 0 interdit le déplacement.",
+      "sourcePage": 56,
+      "sourceHeading": "SPUR",
+      "sourceDefinitionSha256": "0e582872a190e1d43379c1fdfc8d2ed9acee1b7c68aedebc8eb8d4b56011aaad"
+    },
+    "saut-x": {
+      "text": "Action Saut, à la place d’une action Se déplacer : déplacement normal ignorant terrain et figurines de hauteur ≤ {X}, mesurée depuis le départ. Peut finir à cette hauteur ; ignore terrain difficile et peut franchir l’infranchissable, sans y terminer.",
+      "sourcePage": 52,
+      "sourceHeading": "JUMP X",
+      "sourceDefinitionSha256": "0ae4406b665fc8f0299e5c52e9978c6da713411d5e7d03658a606211379ecb24"
+    },
+    "permanent": {
+      "text": "La carte reste en jeu en Phase Finale ; ses effets persistent tant qu’elle reste en jeu.",
+      "sourcePage": 62,
+      "sourceHeading": "PERMANENT",
+      "sourceDefinitionSha256": "fbe51d91a6598911c1fea4e7c08020ae2c4c231ec47a0ef2dd1c8698805487ac"
+    },
+    "dispersion": {
+      "text": "Après cette attaque contre des soldats sur petits socles : replacez leurs figurines autres que le Chef, en respectant la cohésion comme après un déplacement normal du Chef.",
+      "sourcePage": 60,
+      "sourceHeading": "SCATTER",
+      "sourceDefinitionSha256": "3dcdebceef44775862a9da2a84d5762c8338658420faaa384d4afad9f5ab0571"
+    },
+    "fumee-x": {
+      "text": "Action : placez {X} pions Fumée entièrement à portée 1 et en vue du Chef, à plat, sans chevaucher Objectif, Avantage, Charge ou Fumée. Chaque pion donne +1 couvert aux soldats dont le Chef est à portée 1 ; si le Chef attaquant est à portée 1, sa cible gagne aussi ce bonus. Cumulables, une fois par pion et par unité ; retirés en Phase Finale.",
+      "sourcePage": 55,
+      "sourceHeading": "SMOKE X",
+      "sourceDefinitionSha256": "9c89ad1215a71fc3310f676e3f84a2e03e442ac1040c2ca3b44988246150dd1c"
+    },
+    "chasseur-de-jedi": {
+      "text": "Attaque contre une unité ayant un emplacement Force : gagnez [ADR-ATQ] → [CRITIQUE] pour cette attaque.",
+      "sourcePage": 52,
+      "sourceHeading": "JEDI HUNTER",
+      "sourceDefinitionSha256": "2bcf319e3e31d2856a05c783b5f8aa5dacb19f189b3d825357c181eb83366cb5"
+    },
+    "armer-x": {
+      "text": "Action : placez {X} Charges alliées du type indiqué, entièrement à portée 1 et en vue du Chef, à plat, sans chevaucher Objectif, Avantage ou autre Charge.",
+      "sourcePage": 58,
+      "sourceHeading": "ARM X: CHARGE TOKEN TYPE",
+      "sourceDefinitionSha256": "ab87a0ef54b07aaf6ab821eb8415566343ab12a179e1acb416997e8c858ae3c4"
+    },
+    "explosion-x": {
+      "text": "Après l’attaque, le déplacement ou l’action de n’importe quelle unité : faites exploser jusqu’à {X} Charges alliées du type indiqué. En attente précède l’explosion, qui précède les autres effets « après » ; l’adversaire de l’unité active a priorité. Chaque Charge attaque séparément toute unité à portée et en vue, alliés compris, avec ses conversions et mots-clés ; aucun Viser ni modification des dés d’attaque. Retirez la Charge.",
+      "sourcePage": 58,
+      "sourceHeading": "DETONATE X: (CHARGE TYPE)",
+      "sourceDefinitionSha256": "02c83902e994eddab1323c8f9479e71b06cc8b508d0d3886bfe6e4b41c59cab0"
+    },
+    "inspiration-x": {
+      "text": "Fin d’activation : retirez jusqu’à {X} Suppressions au total d’autres unités alliées à portée 2.",
+      "sourcePage": 51,
+      "sourceHeading": "INSPIRE X",
+      "sourceDefinitionSha256": "2932c9b560d0e084395b6f2fda5bebfa6c4fdac9278f9d7e7cdbe9672c148438"
+    },
+    "souffle": {
+      "text": "Chaque figurine utilisant cette arme ajoute ses dés autant de fois qu’elle voit de figurines dans l’unité ciblée.",
+      "sourcePage": 60,
+      "sourceHeading": "SPRAY",
+      "sourceDefinitionSha256": "e720dfb23068ff76882ce665a2ef7c845b8c305248cc05f4c2e3378a64ed9266"
+    },
+    "charge": {
+      "text": "Pendant votre activation, après une action Se déplacer vous amenant au contact d’un ennemi : action Attaquer gratuite au corps-à-corps contre cette unité.",
+      "sourcePage": 47,
+      "sourceHeading": "CHARGE",
+      "sourceDefinitionSha256": "6306f9eb0f952fbf3cb78e8e69f93961b10b139a008e8e9959f5d0343d58ad90"
+    },
+    "intrepide": {
+      "text": "Soldat non-droïde démoralisé mais non paniqué après le ralliement : au début des actions, peut gagner 1 Suppression pour une action Se déplacer gratuite. Ne peut pas subir Contrainte.",
+      "sourcePage": 48,
+      "sourceHeading": "DAUNTLESS",
+      "sourceDefinitionSha256": "f9c9dcdf20c83b0e1fc574c245d44d877fd5217dbfed016a83e534d15564afec"
+    },
+    "preste-x": {
+      "text": "Après un déplacement normal effectué grâce à une action, gratuite ou non : gagnez {X} Esquives.",
+      "sourcePage": 46,
+      "sourceHeading": "AGILE X",
+      "sourceDefinitionSha256": "79de1f295fe1e355f4f5548c26c5b48d83d1cf138238ecd672dccd96670adace"
+    },
+    "coup-de-chance-x": {
+      "text": "Relancer les dés de défense : relancez simultanément jusqu’à {X} dés, une seule fois chacun avec ce mot-clé.",
+      "sourcePage": 56,
+      "sourceHeading": "UNCANNY LUCK X",
+      "sourceDefinitionSha256": "580d22953cbb8253ce44a73935353ddcac568df2ade5cb632b111a63609aa765"
+    },
+    "travail-dequipe": {
+      "text": "À portée 2 du partenaire nommé : lorsque l’un gagne un ou plusieurs Viser ou Esquive, l’autre gagne 1 pion du même type.",
+      "sourcePage": 56,
+      "sourceHeading": "TEAMWORK: UNIT NAME",
+      "sourceDefinitionSha256": "30aa1279ed0465a5d36228cbed26b8779bcf7dd15c2139b1e71c8da6eba8577b"
+    },
+    "infiltration": {
+      "text": "Début d’activation si non déployée : placez toute l’unité entièrement dans le territoire allié, en cohésion. Aucun socle sur terrain infranchissable.",
+      "sourcePage": 51,
+      "sourceHeading": "INFILTRATE",
+      "sourceDefinitionSha256": "9f0068da1a8e57213d56118943ff2e5431a04997e25d0ba3f7fa3ad2634d70fb"
+    },
+    "deflexion": {
+      "text": "Défense à distance ou Gardien : [ADR-DEF] → [BLOC]. Avant conversion, au moins 1 [ADR-DEF] obtenue inflige 1 blessure à l’attaquant ; l’attaque continue même s’il est vaincu. Aucun effet si toutes les armes de la réserve ont Haute Vélocité.",
+      "sourcePage": 48,
+      "sourceHeading": "DEFLECT",
+      "sourceDefinitionSha256": "aaacb19a71ed9cccb657e4cae03ee245a8877dbf3b9147187bc176f716f007f8"
+    },
+    "intuition-du-danger-x": {
+      "text": "Vous pouvez conserver jusqu’à {X} Suppressions qui devaient être retirées. En défense, ajoutez 1 dé par Suppression, maximum {X}.",
+      "sourcePage": 48,
+      "sourceHeading": "DANGER SENSE X",
+      "sourceDefinitionSha256": "e71de4008123516aac746cc8a9ccfc78b88a0b3ce8480bbf07ba428dbcc2b956"
+    },
+    "fiable-x": {
+      "text": "Début de Phase d’Activation : gagnez {X} Adrénalines.",
+      "sourcePage": 54,
+      "sourceHeading": "RELIABLE X",
+      "sourceDefinitionSha256": "1c637ffe3cfb38ab97084658ad97a98852ecc1cb986e5ea8bb3a4f6130df7337"
+    },
+    "implacable": {
+      "text": "Pendant votre activation, après une action Se déplacer : action Attaquer gratuite.",
+      "sourcePage": 54,
+      "sourceHeading": "RELENTLESS",
+      "sourceDefinitionSha256": "e5ac48a6629ccb8421dd56fe57a22bcb403b4d9e87f72cdd93a4293a802061f0"
+    },
+    "precis-x": {
+      "text": "Relances d’attaque : chaque Viser dépensé permet de relancer jusqu’à {X} dés supplémentaires.",
+      "sourcePage": 53,
+      "sourceHeading": "PRECISE X",
+      "sourceDefinitionSha256": "a8a7b1df36577ca431fcbdfb6ad48f196175252ee3fe5c9a06873cd0f74a5f7c"
+    },
+    "perforant-x": {
+      "text": "Modifier les dés de défense : annulez jusqu’à {X} [BLOC], y compris ceux de Gardien (qui deviennent vierges). Seule la valeur non utilisée contre Gardien reste disponible contre le défenseur.",
+      "sourcePage": 59,
+      "sourceHeading": "PIERCE X",
+      "sourceDefinitionSha256": "4bfd6ed36d38fb8ec7985aef0815ae9c511c1b12301ba37e5db85b5479149ef2"
+    },
+    "autonome": {
+      "text": "Début de Phase d’Activation sans pion Ordre : gagnez {X} pions du type indiqué ou effectuez l’action indiquée gratuitement.",
+      "sourcePage": 51,
+      "sourceHeading": "INDEPENDENT: TOKEN X/ ACTION",
+      "sourceDefinitionSha256": "54ab307c97e3ec7f1ab702c00f4b4b969684daaed0ac2dcae2d62afb887d84b0",
+      "actionText": "Début de Phase d’Activation sans pion Ordre : effectuez gratuitement l’action indiquée."
+    },
+    "gardien-x": {
+      "text": "Allié soldat à portée 1 et en vue défendant à distance : annulez jusqu’à {X} [TOUCHE] à l’étape de modification d’attaque. Lancez autant de dés de votre défense ; convertissez les adrénalines, gagnez 1 Suppression et subissez 1 blessure par vierge (Perforant peut annuler vos [BLOC]). Interdit si le défenseur a Gardien ou si vos Suppressions ≥ Courage. Plusieurs gardiens se résolvent successivement. Pas de main-forte reçue ; peut en prêter sans être de rang Troupes.",
+      "sourcePage": 50,
+      "sourceHeading": "GUARDIAN X",
+      "sourceDefinitionSha256": "4d7ece0fde5e1bb767ffa5abea7498bf63f6aefd099777dc20eb8988890c459a"
+    },
+    "autodestruction-x-unite": {
+      "text": "Action possible dès la moitié de votre seuil de blessure, arrondie au supérieur. Pour chaque unité à portée 1 et en vue, lancez séparément {X} dés noirs : 1 blessure par [ADR-ATQ]/[CRITIQUE] et 1 Suppression par [TOUCHE]. Puis votre unité est vaincue.",
+      "sourcePage": 54,
+      "sourceHeading": "SELF-DESTRUCT X",
+      "sourceDefinitionSha256": "7dbfd08e11e3cf9fb36812200481d10ccf56ec35aa466c65742dd587a0b79d1d"
+    },
+    "incognito": {
+      "text": "Ne peut être attaquée au-delà de portée 1, contester ni prêter main-forte. Perdu définitivement dès qu’elle attaque, défend, ou y renonce au début de son activation.",
+      "sourcePage": 51,
+      "sourceHeading": "INCOGNITO",
+      "sourceDefinitionSha256": "ec344ac079b51b350cc8793bc06f09f1e0d942a8cf9ef118df165eefbeec362b"
+    },
+    "rayons-x": {
+      "text": "Déclarer les défenseurs supplémentaires : jusqu’à {X} attaques avec cette seule arme, chacune sur une cible différente à portée 1 de la cible précédente et en vue de l’attaquant ; portée maximale de l’arme ignorée. Pas de nouvelles attaques en chaîne ; incompatible avec Pistolero dans la même attaque.",
+      "sourcePage": 58,
+      "sourceHeading": "BEAM X",
+      "sourceDefinitionSha256": "f7e67a421d9017265673ec8d76c7147ad3a4d1955fea25a4f7b18d4b72ba0939"
+    },
+    "polyvalent": {
+      "text": "Cette arme à distance peut tirer même si votre unité est engagée. Si elle est aussi de corps-à-corps, choisissez l’un des deux types d’attaque.",
+      "sourcePage": 60,
+      "sourceHeading": "VERSATILE",
+      "sourceDefinitionSha256": "e99478f11ec6a08f70c0280b66507f244205d6b1986b54efd25314a97964054d"
+    },
+    "tireur-embusque": {
+      "text": "Après conversion des [ADR-ATQ] : au lieu de relancer, dépensez 1 Viser pour vierge → [TOUCHE] ou [TOUCHE] → [CRITIQUE] ; 2 Viser pour vierge → [CRITIQUE].",
+      "sourcePage": 52,
+      "sourceHeading": "MARKSMAN",
+      "sourceDefinitionSha256": "b7b405da24180609c2a490462e55a8ef554cc49e06c866d76c71eeabb6f2b928"
+    },
+    "tenir-bon": {
+      "text": "Tant que vous êtes engagé : [ADR-ATQ] → [TOUCHE] et [ADR-DEF] → [BLOC].",
+      "sourcePage": 50,
+      "sourceHeading": "HOLD THE LINE",
+      "sourceDefinitionSha256": "bca31dfa8e621396d009e86eaf998d4b9ae732f0bba8577a53caeb6a062d57a9"
+    },
+    "speeder-x": {
+      "text": "Franchit et peut finir sur un terrain de hauteur ≤ {X}. Socle à encoches : pas de pivot initial. Au début ou à la fin des actions, déplacement normal complet obligatoire gratuit ; si impossible ou hors table, avancez aussi loin que possible. Revendiquer un Atout interdit plusieurs actions Se déplacer non obligatoires dans la même activation, et inversement.",
+      "sourcePage": 55,
+      "sourceHeading": "SPEEDER X",
+      "sourceDefinitionSha256": "162f33acb996bd9359fdceed9b2f966af035004ca9f87e0834fc3221cadba582"
+    },
+    "alter-ego": {
+      "text": "Ajoutez la figurine au partenaire indiqué, sans déploiement séparé. L’unité garde les caractéristiques de sa carte Unité et cumule les mots-clés ; chacun garde son seuil de blessure et ses armes. Vous pouvez transférer une blessure d’un non-Alter Ego à l’Alter Ego ; obligatoire si elle tuerait le dernier non-Alter Ego. Le Chef peut être blessé s’il est le seul non-Alter Ego. Les améliorations sans arme de l’Alter Ego profitent à l’unité tant qu’il vit ; ses armes à lui seul. Les armes gagnées par Commandement vont aux non-Alter Ego. Son type sert au choix des améliorations. Sa mort retire ses mots-clés et effets.",
+      "sourcePage": 47,
+      "sourceHeading": "COUNTERPART",
+      "sourceDefinitionSha256": "e8f766c4861fd37a0b53178c51e7171ed353baf0e7753f0653052bc51d246c21"
+    },
+    "ia": {
+      "text": "Début des actions, sans Ordre face visible et démoralisée non paniquée, avec Dégât de véhicule, ou véhicule ayant perdu au moins la moitié de ses figurines : doit effectuer une action IA indiquée. Si aucune n’est possible : 1 action de moins.",
+      "sourcePage": 46,
+      "sourceHeading": "AI: ACTION",
+      "sourceDefinitionSha256": "2558b5c467f38dd92c98b36445f0ac2f395c4357f0bb5445853301208391657f"
+    },
+    "coordination": {
+      "text": "Après réception d’un ordre : donnez un ordre à 1 allié du nom/type indiqué à portée 1. Plusieurs types ou occurrences offrent un choix de cible, jamais plusieurs ordres.",
+      "sourcePage": 47,
+      "sourceHeading": "COORDINATE: UNIT NAME/ UNIT TYPE",
+      "sourceDefinitionSha256": "e6fea2cf79b2b27837f07789fd742c648e457f5b04d13a0d64bb7aff15f989fa"
+    },
+    "ciblage-avance": {
+      "text": "Former la réserve contre le type indiqué : gagnez {X} Viser. Si utilisé, une seule réserve et aucun défenseur supplémentaire.",
+      "sourcePage": 46,
+      "sourceHeading": "ADVANCED TARGETING: UNIT TYPE X",
+      "sourceDefinitionSha256": "3136180692c5e32ed900e805f921ce79c9a3eab394f7711de33ef640a98fb359"
+    },
+    "aide": {
+      "text": "Quand vous devez gagner un Viser, Esquive ou Adrénaline : donnez-le plutôt à un allié du type/affiliation indiqué, à portée 2 et en vue. Gagnez 1 Suppression par pion transféré, si possible.",
+      "sourcePage": 46,
+      "sourceHeading": "AID: AFFILIATION/UNIT TYPE",
+      "sourceDefinitionSha256": "546d9611a8e53f97e77aa97daba97e7917de8489fdb827b63cc447e31ab753a3"
+    },
+    "allies-de-circonstance": {
+      "text": "Peut donner des ordres aux mercenaires alliés de toute affiliation. Création d’armée : autorise 1 mercenaire supplémentaire, sans dépasser les limites de rang.",
+      "sourcePage": 46,
+      "sourceHeading": "ALLIES OF CONVENIENCE",
+      "sourceDefinitionSha256": "717d3d999f1cc2831ab47b70da2132925b587c66d12d21fe21888362f2678452"
+    },
+    "armure-x": {
+      "text": "Modifier les dés d’attaque en défense : annulez jusqu’à {X} [TOUCHE], pas les [CRITIQUE].",
+      "sourcePage": 46,
+      "sourceHeading": "ARMOR X",
+      "sourceDefinitionSha256": "d6d177fd450267e25d9dc5fc8d34c75d1072697a80bab31803e1375b1f3452e9"
+    },
+    "arsenal-x": {
+      "text": "Former les réserves : l’unité peut utiliser {X} armes, réparties entre une ou plusieurs réserves ; chaque arme dans une seule réserve.",
+      "sourcePage": 46,
+      "sourceHeading": "ARSENAL X",
+      "sourceDefinitionSha256": "6dc07916ffb20d8a5548672e6a629ceb99b90ed040c116b226ba69dabbca2ffd"
+    },
+    "associe": {
+      "text": "Création d’armée : ne compte pas dans la limite maximale de son rang si le partenaire nommé est aussi présent.",
+      "sourcePage": 46,
+      "sourceHeading": "ASSOCIATE: UNIT NAME",
+      "sourceDefinitionSha256": "edd1bd1373e352bcc861d4e99fd925724bcb4a795682acc1cbfef80c5954cf1e"
+    },
+    "barrage": {
+      "text": "Peut effectuer 2 actions Attaquer pendant son activation si elle n’utilise pas Arsenal.",
+      "sourcePage": 46,
+      "sourceHeading": "BARRAGE",
+      "sourceDefinitionSha256": "7d9940a0aa20f02dcf69d04c32c83e879d5382fa5c7ae7f11afdedb2c4384f8c"
+    },
+    "blocage": {
+      "text": "Défense : dépenser au moins 1 Esquive à l’étape esquives/couvert donne [ADR-DEF] → [BLOC] pour l’attaque.",
+      "sourcePage": 46,
+      "sourceHeading": "BLOCK",
+      "sourceDefinitionSha256": "a52cedfe356ced1f9ce1135f402db1cf0e9a51fae98b90fabeff9e8bf63a8cc5"
+    },
+    "prime": {
+      "text": "Mise en place : désignez un Commandant ou Opérative ennemi, qui gagne 1 pion Prime. Un allié ayant Prime qui vainc par attaque ou effet un ennemi avec un ou plusieurs pions Prime rapporte 1 point de victoire.",
+      "sourcePage": 47,
+      "sourceHeading": "BOUNTY",
+      "sourceDefinitionSha256": "6732631d7b708ca99f05bbe331d9f7e5d31a4ca4e6eceae56f59bdd96ec14ad8"
+    },
+    "cache": {
+      "text": "Mise en place : posez sur l’amélioration les pions indiqués. L’unité peut les dépenser même si les figurines ajoutées par cette amélioration sont vaincues.",
+      "sourcePage": 47,
+      "sourceHeading": "CACHE",
+      "sourceDefinitionSha256": "480dd032ae64c1414bd93c786844ecac3954edb501d26dcc9b7c1c33d3005f1d"
+    },
+    "calcul-de-probabilites": {
+      "text": "Action : un soldat allié à portée 2 et en vue gagne 1 Viser, 1 Esquive et 1 Suppression.",
+      "sourcePage": 47,
+      "sourceHeading": "CALCULATE ODDS",
+      "sourceDefinitionSha256": "f60fe64a504de9016c426a4fb897d35f95c6d398830cce5dfbe02c48fc0ec816"
+    },
+    "vehicule-grimpant": {
+      "text": "Peut escalader ; applique les règles d’escalade des soldats.",
+      "sourcePage": 47,
+      "sourceHeading": "CLIMBING VEHICLE",
+      "sourceDefinitionSha256": "e822940bd47c4cc0d015e2cb57de32869560de533d5ee0646dd5f03451d0a8e9"
+    },
+    "contrainte": {
+      "text": "Autre soldat allié non-droïde du rang/type indiqué à portée 2, démoralisé non paniqué après le ralliement : au début de ses actions, peut gagner 1 Suppression pour une action Se déplacer gratuite.",
+      "sourcePage": 47,
+      "sourceHeading": "COMPEL: RANK/UNIT TYPE",
+      "sourceDefinitionSha256": "dd97c93eb854c1dbaafa5657fd261a0a2986d7998a3fc461c4fb6853745c033b"
+    },
+    "couvert-x": {
+      "text": "En défense contre au moins une arme à distance : améliorez votre couvert de {X} à l’étape esquives/couvert.",
+      "sourcePage": 48,
+      "sourceHeading": "COVER X",
+      "sourceDefinitionSha256": "b8a45401e9a3318f063df3df86e366ca8dd2c58678ea89838afb39726a507c39"
+    },
+    "malin": {
+      "text": "Égalité de priorité avec la carte propre à ce Commandant/Opérative nommé : comptez 1 point lumineux de moins (minimum 0). Si les deux cartes bénéficient de Malin, l’égalité demeure.",
+      "sourcePage": 48,
+      "sourceHeading": "CUNNING",
+      "sourceDefinitionSha256": "4ed3538fe276fe19bf746b4e9f3f8ce3988b64587a45f759fdb4ad5e42de9d69"
+    },
+    "la-mort-venue-du-ciel": {
+      "text": "En attaque, si votre Chef est sur un terrain non en zone plus haut que tout terrain sous le Chef adverse : le couvert n’annule pas les [TOUCHE].",
+      "sourcePage": 48,
+      "sourceHeading": "DEATH FROM ABOVE",
+      "sourceDefinitionSha256": "3539611cdbd3e2679a309d90a42457e5823a338fae02c5fe27fd109534430a63"
+    },
+    "defense-x": {
+      "text": "Après réception d’un ordre : gagnez {X} Esquives.",
+      "sourcePage": 48,
+      "sourceHeading": "DEFEND X",
+      "sourceDefinitionSha256": "dbf88d6264027c9a6b9c6613b961d9b62b2707d8937529f7a5d47ae2ee619a94"
+    },
+    "detachement": {
+      "text": "Création d’armée : nécessite son propre partenaire du nom/type indiqué sans Détachement et ne compte pas dans sa limite maximale de rang. À l’étape Positions préparées, gagne Infiltration ou Position Préparée jusqu’à la fin de partie si son partenaire a ce mot-clé.",
+      "sourcePage": 48,
+      "sourceHeading": "DETACHMENT: UNIT NAME/ TYPE",
+      "sourceDefinitionSha256": "c7b906adaacde5d99e677865e01dc43dd8931c13de901d8fa6223aa690e07f91"
+    },
+    "ordre-direct": {
+      "text": "Chaque Phase de Commandement, Donner des ordres : donnez 1 ordre à un allié du nom/type indiqué à portée 2.",
+      "sourcePage": 48,
+      "sourceHeading": "DIRECT: UNIT NAME/UNIT TYPE",
+      "sourceDefinitionSha256": "3182ea788263876cab6f87925287e7a61fe6d7f4bd68ccdf56e9545e0ca6705b"
+    },
+    "discipline-x": {
+      "text": "Après réception d’un ordre : retirez jusqu’à {X} Suppressions.",
+      "sourcePage": 48,
+      "sourceHeading": "DISCIPLINED X",
+      "sourceDefinitionSha256": "27667f617f6202a744c41d6438e0abdf262bfc2d1ba9a46347f44f0f0331e405"
+    },
+    "distraire": {
+      "text": "Action gratuite : désignez un soldat ennemi à portée 2 et en vue. Jusqu’à la fin du round, ses attaques doivent vous cibler si possible, avec toute figurine ayant une arme éligible. Seules les armes non éligibles à cette réserve peuvent viser d’autres défenseurs. Vous perdez Discret pour le round.",
+      "sourcePage": 48,
+      "sourceHeading": "DISTRACT",
+      "sourceDefinitionSha256": "f64a50d761772d6b3af2952530f36951387f7feb096e8f7d71cd151bcc8c0c8d"
+    },
+    "duelliste": {
+      "text": "Au corps-à-corps : dépenser au moins 1 Viser pour relancer donne Perforant 1 ; dépenser au moins 1 Esquive à l’étape esquives/couvert donne Immunité : Perforant. Les effets normaux des pions s’appliquent aussi.",
+      "sourcePage": 49,
+      "sourceHeading": "DUELIST",
+      "sourceDefinitionSha256": "3075971e1d428e54e72b10121998acb39664df1e097a071c55ef8e2457c956c0"
+    },
+    "enrage-x": {
+      "text": "Avec au moins {X} Blessures : gagnez Charge et Courage « – ». Ces bénéfices cessent si vous redescendez sous {X} Blessures.",
+      "sourcePage": 49,
+      "sourceHeading": "ENRAGE X",
+      "sourceDefinitionSha256": "3fb3924051c5805e2a4c32a0335236aaa51864ba5c4dff218d911d7576f7f491"
+    },
+    "entourage": {
+      "text": "Création d’armée : 1 unité du nom indiqué ne compte pas dans sa limite maximale de rang. Donner des ordres : donnez 1 ordre à ce type d’allié à portée 2. Il peut vous prêter main-forte sans être de rang Troupes.",
+      "sourcePage": 49,
+      "sourceHeading": "ENTOURAGE: UNIT NAME",
+      "sourceDefinitionSha256": "76200cb868897c62fc9f7e24229fca45d18c585f5d6405e4d9b61f855bd34e67"
+    },
+    "equipe": {
+      "text": "Création d’armée : doit équiper les améliorations indiquées après ce mot-clé.",
+      "sourcePage": 49,
+      "sourceHeading": "EQUIP",
+      "sourceDefinitionSha256": "e1a6a6ec9e0efaefbe9c5bfa820b9b7fff7590ba6f10a0bdf74f0537688b0910"
+    },
+    "exemplaire": {
+      "text": "En attaque/défense, un allié de même faction ou affiliation à portée 2 et en vue peut dépenser vos Viser, Esquive ou Adrénaline comme les siens.",
+      "sourcePage": 49,
+      "sourceHeading": "EXEMPLAR",
+      "sourceDefinitionSha256": "4f7f84b67d3f80305914ea08794df75045e3cda700ace00e15569c4ecf5934f2"
+    },
+    "grimpeur-experimente": {
+      "text": "Escalade : peut parcourir une hauteur verticale de 2.",
+      "sourcePage": 49,
+      "sourceHeading": "EXPERT CLIMBER",
+      "sourceDefinitionSha256": "2ba42a9cad51c2ba66a6b104ae7bd4de527eddc57766da1cae53aa824cc24b57"
+    },
+    "commandant-des-operations": {
+      "text": "Création d’armée : minimum de Commandants ignoré ; compte comme Commandant de sa faction/affiliation pour la main de Commandement. Sans Commandant à la mise en place, gagne le pion Commandant. Peut donner les ordres d’une carte non spécifique à un personnage nommé. Avec ce pion, les alliés de même faction/affiliation à portée 3 peuvent utiliser son Courage 2. N’est Commandant que pour ces règles.",
+      "sourcePage": 49,
+      "sourceHeading": "FIELD COMMANDER",
+      "sourceDefinitionSha256": "98495c8f6c1fdecd41c8b4038bf55bfa1de950751c64834df019601b7005d44a"
+    },
+    "tirs-de-soutien": {
+      "text": "Après réception d’un ordre : gagnez 1 En attente.",
+      "sourcePage": 50,
+      "sourceHeading": "FIRE SUPPORT",
+      "sourceDefinitionSha256": "297d131fed5209b6752942ff3c624c92824fc95c5f4e970d0910de0c87192c80"
+    },
+    "riposte-graduee-x": {
+      "text": "Création d’armée : doit équiper {X} améliorations.",
+      "sourcePage": 50,
+      "sourceHeading": "FLEXIBLE RESPONSE X",
+      "sourceDefinitionSha256": "454ee8e0a2eb4a6d638d4781e1377d355735920041ba6d9ed54ffc928f274526"
+    },
+    "pivot-complet": {
+      "text": "Peut pivoter jusqu’à 360°.",
+      "sourcePage": 50,
+      "sourceHeading": "FULL PIVOT",
+      "sourceDefinitionSha256": "8f74784471b1b3f3447b47ebbaf444fe31431a8a7aa5a8ab97cabe29fbbd5aed"
+    },
+    "conseils": {
+      "text": "Action indiquée sur le recto, gratuite ou non : un autre allié du type indiqué à portée 2 effectue une action gratuite autre qu’Attaquer.",
+      "sourcePage": 50,
+      "sourceHeading": "GUIDANCE",
+      "sourceDefinitionSha256": "140d9c2267433c090eeb4ee46b1b5206dc7639f96db1f0cf50f1cc8335cb2777"
+    },
+    "equipe-avec-arme-lourde": {
+      "text": "Doit équiper une amélioration Arme Lourde ; sa figurine devient le Chef de l’unité.",
+      "sourcePage": 50,
+      "sourceHeading": "HEAVY WEAPON TEAM",
+      "sourceDefinitionSha256": "1175500ee99ec957f0ccb5d5ef237e0b07134902b244277820fc7a0125b7e61c"
+    },
+    "sustentation": {
+      "text": "Peut reculer, Attendre pendant ses actions et utiliser En attente. Terrestre : véhicule terrestre pour la ligne de vue seulement. Aérienne : ignore/peut finir sur terrain de hauteur ≤ {X}. Avec encoches latérales, action Déraper : vitesse −1 (min. 1), gabarit latéral puis arrivée par l’encoche opposée ; en partiel, axe latéral parallèle au segment atteint.",
+      "sourcePage": 50,
+      "sourceHeading": "HOVER: GROUND/AIR X",
+      "sourceDefinitionSha256": "107fd7f9ec859888a2da8bbe1eeaaa0eb5ab2bc53f94ceed5e053f31642a0080",
+      "airText": "Peut reculer, Attendre pendant ses actions et utiliser En attente. Aérienne : ignore/peut finir sur terrain de hauteur ≤ {X}. Avec encoches latérales, action Déraper : vitesse −1 (min. 1), gabarit latéral puis arrivée par l’encoche opposée ; en partiel, axe latéral parallèle au segment atteint.",
+      "groundText": "Peut reculer, Attendre pendant ses actions et utiliser En attente. Terrestre : véhicule terrestre pour la ligne de vue seulement. Avec encoches latérales, action Déraper : vitesse −1 (min. 1), gabarit latéral puis arrivée par l’encoche opposée ; en partiel, axe latéral parallèle au segment atteint."
+    },
+    "traque": {
+      "text": "Mise en place : gagne 1 Prime si au moins un ennemi a le mot-clé Prime.",
+      "sourcePage": 51,
+      "sourceHeading": "HUNTED",
+      "sourceDefinitionSha256": "ca1b46c96169fe3c69510666dc883598ee06c5aad3c5f696beb94ebf73ff496f"
+    },
+    "je-fais-aussi-partie-de-lequipe": {
+      "text": "Conteste un Objectif si son Chef est à portée 1 de celui-ci, au lieu de portée ½.",
+      "sourcePage": 51,
+      "sourceHeading": "I’M PART OF THE SQUAD TOO",
+      "sourceDefinitionSha256": "76a254377bd39e0c8430354dfc3f8756e747a057257a21832876ea66746a0ce8"
+    },
+    "immunite-deflagration": {
+      "text": "En défense : ignore les effets de Déflagration.",
+      "sourcePage": 51,
+      "sourceHeading": "IMMUNE: BLAST",
+      "sourceDefinitionSha256": "2d3872d8357e6f5b0103e68505d5096ec3fe0fed8a41bcfe3b203d5b8a8ab3c8"
+    },
+    "immunite-corps-a-corps": {
+      "text": "Ne peut être ciblée au corps-à-corps ni engagée. Un ennemi à son contact peut utiliser des armes à distance contre elle.",
+      "sourcePage": 51,
+      "sourceHeading": "IMMUNE: MELEE",
+      "sourceDefinitionSha256": "cb8020fd44b740bdc0741be48c324cb7666365f60cad7187f984fc921cd5448d"
+    },
+    "immunite-perforant-corps-a-corps": {
+      "text": "En défense au corps-à-corps, ou avec Gardien contre une attaque au corps-à-corps : Perforant ne peut annuler vos [BLOC].",
+      "sourcePage": 51,
+      "sourceHeading": "IMMUNE: MELEE PIERCE",
+      "sourceDefinitionSha256": "2dc106208cf867e524f8c54bd71e981303ac6dfa759280e3690da1bf915fef4a"
+    },
+    "immunite-perforant": {
+      "text": "En défense ou avec Gardien : Perforant ne peut annuler vos [BLOC].",
+      "sourcePage": 51,
+      "sourceHeading": "IMMUNE: PIERCE",
+      "sourceDefinitionSha256": "05bd892fecceaa6b5c85cbca0815e9513748ebbd81c37a8087a1f76317029218"
+    },
+    "immunite-armes-portee-1": {
+      "text": "Une réserve vous ciblant ne peut contenir d’arme dont la portée maximale est 1.",
+      "sourcePage": 51,
+      "sourceHeading": "IMMUNE: WEAPONS",
+      "sourceDefinitionSha256": "d30383dd1649f3c0739724d87231c14b36b2088eeb7f86e9cec9deee500a8b3a"
+    },
+    "insensible": {
+      "text": "Début de Modifier les dés de défense : réduisez Perforant de la réserve de 1 (minimum 0).",
+      "sourcePage": 51,
+      "sourceHeading": "IMPERVIOUS",
+      "sourceDefinitionSha256": "3aee07134e4ca9c29808ad362d833a60c9bad20f80eb389ea48cbc85a4bb0d77"
+    },
+    "discret": {
+      "text": "Avec au moins 1 Suppression : un attaquant doit choisir une autre cible si possible. Au ralliement, vous pouvez conserver autant de Suppressions que souhaité.",
+      "sourcePage": 51,
+      "sourceHeading": "INCONSPICUOUS",
+      "sourceDefinitionSha256": "bed6635a0fd865701b6b23541b8ee0271e6e6e70a21408b0cfc64d9ab90b1914"
+    },
+    "interrogatoire": {
+      "text": "Égalité de priorité : la carte propre à une unité ennemie à portée 1 compte 1 point lumineux supplémentaire.",
+      "sourcePage": 52,
+      "sourceHeading": "INTERROGATE",
+      "sourceDefinitionSha256": "68532a1c52194f5e7083f0b30d47bd1de1df61d0269825627b504a6a18da2f9b"
+    },
+    "maitrise-du-jarkai": {
+      "text": "Au corps-à-corps, après conversion des adrénalines : dépensez 1 Esquive pour vierge → [TOUCHE] ou [TOUCHE] → [CRITIQUE] ; 2 Esquives pour vierge → [CRITIQUE].",
+      "sourcePage": 52,
+      "sourceHeading": "JAR'KAI MASTERY",
+      "sourceDefinitionSha256": "9114da6efc39f72d077a493e95e2d7791be7f343c1c54fc4cbb8c08a4c7641c3"
+    },
+    "maitrise-du-juyo": {
+      "text": "Avec au moins 1 Blessure : +1 action pendant l’étape Effectuer des actions. Maximum 2 actions Se déplacer par activation, gratuites comprises.",
+      "sourcePage": 52,
+      "sourceHeading": "JUYO MASTERY",
+      "sourceDefinitionSha256": "4b73391af241f440e67812dd86a4d11c10972b4296af0f6995d25ce078f54b0b"
+    },
+    "pouvoir-latent": {
+      "text": "Fin d’activation : peut gagner 1 Suppression pour lancer 1 dé rouge de défense. [ADR-DEF] : un ennemi à portée 1 gagne 2 Suppressions et 2 Immobilisations. Vierge : retirez 1 Blessure ou Poison d’un soldat allié non-droïde à portée 1.",
+      "sourcePage": 52,
+      "sourceHeading": "LATENT POWER",
+      "sourceDefinitionSha256": "d7e686395b47de08312f0a7ae4b13fe994ac38b7ce3690bb80693ee1dc229f9d"
+    },
+    "maitre-de-la-force-x": {
+      "text": "Fin d’activation : redressez jusqu’à {X} améliorations Force inclinées.",
+      "sourcePage": 52,
+      "sourceHeading": "MASTER OF THE FORCE X",
+      "sourceDefinitionSha256": "dad32b55af2dcc712192d5f98eb48d42dfbde86fb1b5d9d38699983e6e45c2e6"
+    },
+    "mercenaire": {
+      "text": "Unité mercenaire pouvant rejoindre les factions indiquées.",
+      "sourcePage": 52,
+      "sourceHeading": "MERCENARY: FACTION",
+      "sourceDefinitionSha256": "d8bbc1a7e01dc91f974ca7cb97356587e194e5f819b3186ae189dd2692511424"
+    },
+    "surveillance-x": {
+      "text": "Action : un ennemi à portée 3 et en vue gagne {X} Surveillances. En relance d’attaque, les alliés dépensent ces pions un par un pour relancer 1 dé chacun ; un dé peut être relancé plusieurs fois, dans l’ordre voulu avec Viser. Pions retirés en Phase Finale.",
+      "sourcePage": 53,
+      "sourceHeading": "OBSERVE X",
+      "sourceDefinitionSha256": "8c852c91fc0d3709cfa09ac4fa3b09af4f3f6983b4663d6b64d3a97d9c17f5c1"
+    },
+    "longueur-davance": {
+      "text": "Après révélation des Commandements, avant leurs effets : si les points lumineux diffèrent, 1 allié Longueur d’avance en jeu peut se déplacer à vitesse 1. S’ils correspondent, choisissez n’importe quel allié en jeu pour ce déplacement. Maximum 1 unité bénéficiaire.",
+      "sourcePage": 53,
+      "sourceHeading": "ONE STEP AHEAD",
+      "sourceDefinitionSha256": "3707112fa968d05c77c1ff589024055e6ed908a18ff9c9ea474a4584353123a4"
+    },
+    "mobilite-difficile": {
+      "text": "Pendant son activation : une seule action Se déplacer.",
+      "sourcePage": 53,
+      "sourceHeading": "PLODDING",
+      "sourceDefinitionSha256": "69d3eecbcf755eb4314f531ef1369fa3a0551362a4d74684b27442b6a9995384"
+    },
+    "position-preparee": {
+      "text": "Mise en place, étape Positions préparées : peut placer son Chef entièrement en territoire allié, puis les autres figurines en cohésion et en territoire allié. Gagne 1 Esquive. Aucun socle sur l’infranchissable.",
+      "sourcePage": 53,
+      "sourceHeading": "PREPARED POSITION",
+      "sourceDefinitionSha256": "4d8301acbb29f77edc994ab0fcecb522e09d76dc2cb3a17b41a1081af60a9977"
+    },
+    "programme": {
+      "text": "Création d’armée : doit équiper au moins 1 amélioration Programmation.",
+      "sourcePage": 53,
+      "sourceHeading": "PROGRAMMED",
+      "sourceDefinitionSha256": "fb36a7074c80d2d22ceb54f459e773f3fe682bf8e9e6092268f64792f0e99380"
+    },
+    "vivacite-desprit": {
+      "text": "Action : gagnez 1 Viser et 1 Esquive.",
+      "sourcePage": 53,
+      "sourceHeading": "QUICK THINKING",
+      "sourceDefinitionSha256": "ef143c8a2d22f198422d5d1df7bffe602f199f523c47da01c0b6aeac2c1509ec"
+    },
+    "operationnel-x": {
+      "text": "Après une action Attendre : gagnez {X} Viser.",
+      "sourcePage": 53,
+      "sourceHeading": "READY X",
+      "sourceDefinitionSha256": "b51e3bad87a3bee30a2c09ffaa5afecdfbf2e4d930bb7ab9340afefbd627367e"
+    },
+    "recharger-x": {
+      "text": "En récupérant : réactivez jusqu’à {X} Boucliers inactifs.",
+      "sourcePage": 54,
+      "sourceHeading": "RECHARGE X",
+      "sourceDefinitionSha256": "2e6c876048ed78c9543e94876ef02819a67d03bba85b9e81bf3463155ef5f4bb"
+    },
+    "regenerer-x": {
+      "text": "Fin d’activation : lancez 1 dé blanc par Blessure, maximum {X} dés. Retirez 1 Blessure par [BLOC] ou [ADR-DEF].",
+      "sourcePage": 54,
+      "sourceHeading": "REGENERATE X",
+      "sourceDefinitionSha256": "55c87a15ad37a940ac8b4f9da07ee6455428fa334c9eba84df12fd932a8f8808"
+    },
+    "renforts": {
+      "text": "Début de Phase Finale du round 1 : peut effectuer un déplacement gratuit à vitesse 1.",
+      "sourcePage": 54,
+      "sourceHeading": "REINFORCEMENTS",
+      "sourceDefinitionSha256": "ece698d19e10d540a5d43c5146df5023cfd65f7b24520f3c5f4995a3c06b07b5"
+    },
+    "redeploiement": {
+      "text": "Déplacement normal : peut pivoter avant ou après celui-ci.",
+      "sourcePage": 54,
+      "sourceHeading": "REPOSITION",
+      "sourceDefinitionSha256": "c65dad23b7dcdf636a240bdd055d8a4d356ba507c7b13f33ee228d739625879e"
+    },
+    "escorte": {
+      "text": "Début de Phase d’Activation à portée 2 d’un autre allié du nom/type indiqué : gagnez 1 Viser ou 1 Esquive. Peut lui prêter main-forte sans être de rang Troupes.",
+      "sourcePage": 54,
+      "sourceHeading": "RETINUE: UNIT/UNIT TYPE",
+      "sourceDefinitionSha256": "4461eaf31c3e96757564e3a3bdb15ca8f791280dc585e3b99faa751ada6364d2"
+    },
+    "impitoyable": {
+      "text": "Début d’activation d’un soldat allié avec Ordre face visible, à portée 2 et en vue de vous : il peut subir 1 blessure pour effectuer 1 action gratuite.",
+      "sourcePage": 54,
+      "sourceHeading": "RUTHLESS",
+      "sourceDefinitionSha256": "6e66de7c58d01b93131d434e3d2fa1c35f5eed55b05db34568b4e3488fff44fb"
+    },
+    "ascension": {
+      "text": "Escalade : hauteur verticale 2. Déplacements : aucune réduction de vitesse due au terrain difficile.",
+      "sourcePage": 54,
+      "sourceHeading": "SCALE",
+      "sourceDefinitionSha256": "36f019355ed185000dd90a57645ce558041ac2efbf1c23ac18719d2747231ae6"
+    },
+    "eclaireur-x": {
+      "text": "Unité non déployée : au début de ses actions, peut se déployer par une action Se déplacer gratuite à vitesse {X}, sans terrain difficile, quelle que soit sa vitesse maximale. Les valeurs se cumulent, maximum 3.",
+      "sourcePage": 54,
+      "sourceHeading": "SCOUT X",
+      "sourceDefinitionSha256": "340f84844320035a806f34cbec26f0ce0c2e48997df9c6cf52c7789b86474565"
+    },
+    "mission-secrete": {
+      "text": "Début de Phase de Commandement entièrement en territoire ennemi : gagnez 1 Mission secrète, une seule fois par partie. Au décompte de Phase Finale, si encore en territoire ennemi, retirez ce pion pour marquer 1 point de victoire.",
+      "sourcePage": 54,
+      "sourceHeading": "SECRET MISSION",
+      "sourceDefinitionSha256": "13fd431800f0bb5f2371084a558a1a4ee5051c1d4b267e0b50176d00085b9748"
+    },
+    "instinct-de-survie": {
+      "text": "Pour vérifier la panique : ne peut utiliser le Courage d’une unité d’une autre affiliation.",
+      "sourcePage": 54,
+      "sourceHeading": "SELF-PRESERVATION",
+      "sourceDefinitionSha256": "ff3de1a4b0e4cb8e5e861bc4c0bb788b05cf86f7c854dcf482b86e9a41753483"
+    },
+    "sentinelle": {
+      "text": "En attente : peut réagir à une attaque, un déplacement ou une action ennemie à portée 3 au lieu de 2.",
+      "sourcePage": 54,
+      "sourceHeading": "SENTINEL",
+      "sourceDefinitionSha256": "6a0010891ceaef37e8ce9bee917c16c9a5e68d7907e44b470bc25cfd3f5ef025"
+    },
+    "bouclier-x": {
+      "text": "Possède {X} Boucliers d’unité, initialement actifs ; gagne/perd les pions avec le mot-clé. Défense à distance, Modifier les dés d’attaque : désactivez autant de Boucliers que souhaité, chacun annule 1 [TOUCHE] ou 1 [CRITIQUE].",
+      "sourcePage": 55,
+      "sourceHeading": "SHIELDED X",
+      "sourceDefinitionSha256": "479f181dc9c4e0916d8abcc604af17580f6090d831f6b93d171f80386aef291f"
+    },
+    "specificite": {
+      "text": "Création d’armée : uniquement dans la force armée indiquée.",
+      "sourcePage": 55,
+      "sourceHeading": "SPECIAL ISSUE: BATTLE FORCE",
+      "sourceDefinitionSha256": "c62cf205683e95f2a5226a5ec85285be540f25a6aa7c916257aa184c2c1c4c73"
+    },
+    "observateur-x": {
+      "text": "Action indiquée, gratuite ou non : jusqu’à {X} alliés à portée 2 gagnent chacun 1 Viser.",
+      "sourcePage": 55,
+      "sourceHeading": "SPOTTER X",
+      "sourceDefinitionSha256": "fffba19a4a55251287573b9259d15eb07e5ff2d5905df3a98a886a66b6a71201"
+    },
+    "stationnaire": {
+      "text": "Ne peut se déplacer que par pivots. Avec Position Préparée : déploiement obligatoire à l’étape Positions préparées.",
+      "sourcePage": 56,
+      "sourceHeading": "STATIONARY",
+      "sourceDefinitionSha256": "884781a99564a1696cd5dbd0d8f9ebdeab8329300137260c1dd80a8f5b23b6d0"
+    },
+    "stratege-x": {
+      "text": "Action : gagnez 1 Suppression ; choisissez {X} alliés à portée 2, qui gagnent chacun 1 Viser et 1 Esquive.",
+      "sourcePage": 56,
+      "sourceHeading": "STRATEGIZE X",
+      "sourceDefinitionSha256": "6272568371ed9277ea6c48077d5b25fc5878068de48841474774c93077cf4d7f"
+    },
+    "mettre-a-couvert-x": {
+      "text": "Action indiquée, gratuite ou non : jusqu’à {X} alliés à portée 2 gagnent chacun 1 Esquive.",
+      "sourcePage": 56,
+      "sourceHeading": "TAKE COVER X",
+      "sourceDefinitionSha256": "a747c9d5ad492fa9688633a57720ce66a42eca662024df10b525cad2d49b5b9b"
+    },
+    "cible-x": {
+      "text": "Après réception d’un ordre : gagnez {X} Viser.",
+      "sourcePage": 56,
+      "sourceHeading": "TARGET X",
+      "sourceDefinitionSha256": "7568d669f8b71d6cc8474a655ea40e480c3893dbc17a91a7182ac753572e0539"
+    },
+    "telle-est-la-voie": {
+      "text": "Après réception d’un ordre : jusqu’à {X} autres alliés à portée 2 effectuent gratuitement l’action indiquée.",
+      "sourcePage": 56,
+      "sourceHeading": "THIS IS THE WAY",
+      "sourceDefinitionSha256": "d3b857dc1873640eba4c3c33e91f647c445a61dff8cb93c6ec0f7c2f236a33ef"
+    },
+    "transport": {
+      "text": "Mise en place : choisissez un soldat allié Troupes ou Forces Spéciales. Donner des ordres au round 1 : peut lui donner un ordre. Après votre déploiement, s’il n’est pas déployé, il se déploie par un déplacement vitesse 1, quelle que soit sa vitesse : les deux pointes du gabarit touchent votre socle ; hauteur mesurée depuis vous.",
+      "sourcePage": 56,
+      "sourceHeading": "TRANSPORT",
+      "sourceDefinitionSha256": "55b0ebd8b943748784e7a9aac581da9598ccdcf415bd115f3b709d3bb1773207"
+    },
+    "indifferent": {
+      "text": "Ne bénéficie d’aucun couvert ; ses figurines ne peuvent être réparées ni restaurées.",
+      "sourcePage": 56,
+      "sourceHeading": "UNCONCERNED",
+      "sourceDefinitionSha256": "e3b07065590c845c123a7fbcd5824622549970f59caa66789daaf902bda23baa"
+    },
+    "sans-entrave": {
+      "text": "Aucune réduction de vitesse pour entrer, sortir ou traverser le terrain difficile.",
+      "sourcePage": 56,
+      "sourceHeading": "UNHINDERED",
+      "sourceDefinitionSha256": "b0511618487702efd0ea40cc0710be8a01225bbe2df2c50ba6ce5ba63e4044fa"
+    },
+    "inarretable": {
+      "text": "Peut s’activer tant qu’elle a au plus 1 pion Ordre ; jamais plus de 1 face visible. Tant qu’elle vit, ajoutez à la réserve 1 Ordre supplémentaire de son rang.",
+      "sourcePage": 57,
+      "sourceHeading": "UNSTOPPABLE",
+      "sourceDefinitionSha256": "7fd59117ad7f0b8a73296d22954dc2ec8c29fcab0d63553aef4ed2fb28836d2d"
+    },
+    "on-est-pas-des-regs": {
+      "text": "Ne partage pas ses pions verts avec les autres soldats clones, dans aucun sens. Ne peut bénéficier de main-forte.",
+      "sourcePage": 57,
+      "sourceHeading": "WE'RE NOT REGS",
+      "sourceDefinitionSha256": "7237cea1ab96f38c4e7991838c9e039893bb52b09e8e31056b6e729c37b2435c"
+    },
+    "point-faible-x": {
+      "text": "En défense, si le Chef attaquant est au moins partiellement dans l’arc indiqué : sa réserve gagne Impact {X}. Pour une arme à effet de zone, le pion remplace le Chef attaquant.",
+      "sourcePage": 57,
+      "sourceHeading": "WEAK POINT X: FRONT/REAR/ SIDES",
+      "sourceDefinitionSha256": "66b7dcf54fa5ae6dc5e48c01981a8a4d0e0718f8e24d9e2fbc972e5857775768"
+    },
+    "blessure-x": {
+      "text": "La première fois que l’unité entre en jeu : subit {X} blessures.",
+      "sourcePage": 57,
+      "sourceHeading": "WOUND X",
+      "sourceDefinitionSha256": "2e3bb3d68e966a7a1594e679f07201d5864980a9e0bcf0ae094560e55a90aa02"
+    },
+    "anti-materiel-x": {
+      "text": "Contre un véhicule : améliorez {X} dés de cette arme.",
+      "sourcePage": 58,
+      "sourceHeading": "ANTI-MATERIEL X",
+      "sourceDefinitionSha256": "73e58bb01b3483e4980906ba8044b08bb5c100c537173db5bd17a1ced7438598"
+    },
+    "assaut-x": {
+      "text": "Si le défenseur est à portée 1 du Chef attaquant : améliorez {X} dés de cette arme.",
+      "sourcePage": 58,
+      "sourceHeading": "ASSAULT X",
+      "sourceDefinitionSha256": "a1a7fd2b53a14589861bdf5e2ebd406b4c0a5f1c1183f07356194c27070fcd35"
+    },
+    "encombrant": {
+      "text": "Si l’unité s’est déplacée pendant cette activation : dégradez chaque dé de cette arme en l’ajoutant à la réserve.",
+      "sourcePage": 58,
+      "sourceHeading": "CUMBERSOME",
+      "sourceDefinitionSha256": "506be74902a9bada67e3e3b40d2ab966d1192240cf53b72bb0e327ad78d80fc4"
+    },
+    "fixe": {
+      "text": "Pour utiliser cette arme : au moins une figurine ciblée doit avoir son socle partiellement dans l’arc indiqué de la figurine attaquante.",
+      "sourcePage": 58,
+      "sourceHeading": "FIXED: FRONT/SIDES/REAR",
+      "sourceDefinitionSha256": "1335b1035a4172fd49048b8a29aeafd3e79c004038c65196bd75e1af58f45f95"
+    },
+    "haute-velocite": {
+      "text": "Si toutes les armes de la réserve ont Haute Vélocité : le défenseur ne peut dépenser d’Esquive à l’étape esquives/couvert.",
+      "sourcePage": 58,
+      "sourceHeading": "HIGH VELOCITY",
+      "sourceDefinitionSha256": "aeb6b11a9abdea68359005222e4bdbec312d0a5cf4f00bdd7a028111a8c22f27"
+    },
+    "immobiliser-x": {
+      "text": "Si l’attaque cause au moins 1 blessure : la cible gagne {X} Immobilisations. Chacune réduit sa vitesse de 1 ; appliquez d’abord les bonus. À vitesse finale 0, aucun déplacement possible. Tous ces pions sont retirés à la fin de son activation.",
+      "sourcePage": 59,
+      "sourceHeading": "IMMOBILIZE X",
+      "sourceDefinitionSha256": "08d0763e60af88df9501f3a4f5bcb03f826f5cc6f1fe9c4acda9aa014a81f674"
+    },
+    "ion-x": {
+      "text": "Si l’attaque blesse un véhicule ou soldat droïde : il gagne {X} Ioniques. Début d’activation : 1 dé blanc par pion ; au moins 1 vierge = 1 action de moins. Retirez-les en fin d’activation. Avant tout autre effet de modification d’attaque : désactivez jusqu’à {X} Boucliers adverses, limités par les [TOUCHE]/[CRITIQUE] obtenus.",
+      "sourcePage": 59,
+      "sourceHeading": "ION X",
+      "sourceDefinitionSha256": "9ddd99d5ba00ae775b34653a8a31ee73cedafa467708aeea59189f9db3c2c765"
+    },
+    "letal-x": {
+      "text": "Modifier les dés d’attaque : dépensez jusqu’à {X} Viser pour gagner Perforant 1 par pion. Ces Viser ne relancent pas de dés.",
+      "sourcePage": 59,
+      "sourceHeading": "LETHAL X",
+      "sourceDefinitionSha256": "e00a12dc683333be5084ff26e6a5399124195d0ba09d308e703f05dfdb621096"
+    },
+    "longue-distance": {
+      "text": "Avant de choisir la cible : dépensez 1 Viser, sans relance, pour +1 portée maximale de toutes vos armes Longue Distance jusqu’à la fin de l’attaque. Une fois par séquence.",
+      "sourcePage": 59,
+      "sourceHeading": "LONG SHOT",
+      "sourceDefinitionSha256": "5928e12cc846455cd0ec14787299312e393a093418bd979240db4fcbcff4e01a"
+    },
+    "bordee-x": {
+      "text": "Après un déplacement normal dont le gabarit ou un de vos socles a chevauché un ennemi : attaquez cette unité avec les seules armes Bordée, sans portée. Ni attaque à distance ni au corps-à-corps ; chaque arme contribue une seule fois, même à plusieurs figurines. Maximum {X} attaques par activation, chacune après un déplacement distinct.",
+      "sourcePage": 59,
+      "sourceHeading": "OVERRUN X",
+      "sourceDefinitionSha256": "ddf89c53520fde45c848e7d579ff4a85c57964e219fb5af8ee009ed79b2bbe8d"
+    },
+    "debordement": {
+      "text": "Si au moins 1 Viser est dépensé en relance pour cette réserve : le défenseur gagne 1 Suppression à l’étape d’attribution de la Suppression.",
+      "sourcePage": 59,
+      "sourceHeading": "OVERWHELM",
+      "sourceDefinitionSha256": "8eb4cc19af5077d61a30046ec2552341d812a5c5978bd28855a693313c1cc67b"
+    },
+    "belier-x": {
+      "text": "Modifier les dés d’attaque : changez jusqu’à {X} résultats quelconques en [CRITIQUE] si vous vous êtes déplacé pendant cette activation. Avec socle à encoches : exige un déplacement normal complet à vitesse maximale.",
+      "sourcePage": 60,
+      "sourceHeading": "RAM X",
+      "sourceDefinitionSha256": "3b3686a58476f005192b4216da8744864fd1e153ca51bda229b32524d7310bfa"
+    },
+    "equipe-sniper": {
+      "text": "Pendant votre activation, si immobile et chaque figurine voit la cible, une réserve entièrement Équipe Sniper améliore tous ses dés. Après conversion, vous pouvez tous les annuler et passer à la Suppression ; au moins 1 [CRITIQUE] annulé inflige 1 blessure à la cible.",
+      "sourcePage": 60,
+      "sourceHeading": "SNIPER TEAM",
+      "sourceDefinitionSha256": "a24bc8322def1db11c63e00010e15ec4e047b911405ad491eab56372d274bc9a"
+    },
+    "cable-de-remorquage": {
+      "text": "Après avoir blessé un véhicule : faites-le pivoter, puis il gagne 1 Immobilisation.",
+      "sourcePage": 60,
+      "sourceHeading": "TOW CABLE",
+      "sourceDefinitionSha256": "49eaaa70713765298e914c891e4b222bcc16fc602adbcbf1e49dc184c2cfdd79"
+    },
+    "cycle": {
+      "text": "Fin d’activation : redressez cette amélioration inclinée si ni son arme, ni ses mots-clés, ni aucun autre texte n’ont été utilisés pendant cette activation.",
+      "sourcePage": 61,
+      "sourceHeading": "CYCLE",
+      "sourceDefinitionSha256": "f376b908b1992a1c94c24e44aeaa89831131fbb140bfa42d5f553dc12ddeac2a"
+    },
+    "chef": {
+      "text": "La figurine devient Chef ; une seule amélioration Chef par unité. Si son seuil de blessure ≥ 2, qu’elle est vaincue dans une unité de seuil 1 : remplacez une figurine restante normalement et attribuez 1 Blessure à la figurine Chef.",
+      "sourcePage": 61,
+      "sourceHeading": "LEADER",
+      "sourceDefinitionSha256": "bc557ae6650602b37f4b9c0c9c9b4caedeb2e2eab26e780dc5e42549a29655cd"
+    },
+    "non-combattant": {
+      "text": "N’ajoute aucune arme. Attribuez d’abord les blessures aux non-Chefs combattants, sauf figurine déjà blessée prioritaire. Ne remplacez un Non-combattant par un Chef vaincu que sans autre combattant disponible.",
+      "sourcePage": 61,
+      "sourceHeading": "NONCOMBATANT",
+      "sourceDefinitionSha256": "aaba0505f211dcfb74517b92689b9cf897d8bc5d45e8dbd24c0f5f9de11a2d0e"
+    },
+    "reconfiguration": {
+      "text": "Pendant une action Récupérer : peut retourner cette amélioration en plus des autres effets. Cela ne l’incline pas.",
+      "sourcePage": 62,
+      "sourceHeading": "RECONFIGURE",
+      "sourceDefinitionSha256": "3469c4290bb09860d8b3acd23307d7ca72f050dd5d40dce419c83876d9ee4051"
+    },
+    "reparation-x": {
+      "text": "Action indiquée : véhicule ou soldat droïde allié à portée 1 et en vue ; cochez 1 utilisation sur cette carte (limite Capacité {Y}). Retirez jusqu’à 1 pion Blessure, Ionique ou Dégât de véhicule au total, OU restaurez jusqu’à {X} figurines. Les marques de capacité ne sont pas des blessures d’unité et ne se soignent pas. Chaque capacité distincte : une utilisation par activation.",
+      "sourcePage": 62,
+      "sourceHeading": "REPAIR X: CAPACITY Y",
+      "sourceDefinitionSha256": "df36def728c59455a3b2ad5386af1a6970b28776ea41e9bee1be453b0388112f"
+    },
+    "arme-de-poing": {
+      "text": "La figurine ajoutée ou équipée ne peut utiliser d’autre arme du type indiqué (corps-à-corps ou distance) que celles de cette amélioration. L’autre type d’arme reste libre.",
+      "sourcePage": 62,
+      "sourceHeading": "SIDEARM: MELEE/RANGED",
+      "sourceDefinitionSha256": "228560fe49d3a62ff1bd47e3ed354d27084c8e6fb7f809e42072880c01ec6bd1"
+    },
+    "petit": {
+      "text": "Ne peut être ciblée si le Chef attaquant ne voit que votre Alter Ego Petit.",
+      "sourcePage": 62,
+      "sourceHeading": "SMALL",
+      "sourceDefinitionSha256": "646bc8f3096e83b2379bb44ed224d82f0b1750ec35def60c6597da79f1de0274"
+    },
+    "traiter-x": {
+      "text": "Action indiquée : soldat allié non-droïde à portée 1 et en vue ; cochez 1 utilisation sur cette carte (limite Capacité {Y}). Retirez jusqu’à {X} Blessures/Poison au total, OU restaurez jusqu’à {X} figurines. Les marques de capacité ne sont pas des blessures d’unité et ne se soignent pas. Chaque capacité distincte : une utilisation par activation.",
+      "sourcePage": 62,
+      "sourceHeading": "TREAT X: CAPACITY Y",
+      "sourceDefinitionSha256": "f6023bcf2f3c0190c7b76a4cc30696f019507d702181699affc91bb63a326b1b"
+    },
+    "coriace": {
+      "text": "Cette figurine peut recevoir des blessures même si elle est le Chef ou n’est pas la plus blessée de l’unité.",
+      "sourcePage": null,
+      "sourceHeading": "TOUGH",
+      "sourceUrl": "https://www.atomicmassgames.com/transmission/scene-to-stats-han-chewie-notorious-scoundrels/",
+      "sourceDefinitionSha256": "efa5afeb3b0ebef0533cd96e2d236e25cec4e5b5ba1c1c09c070f263ec0b14bb"
+    }
+  }
+}

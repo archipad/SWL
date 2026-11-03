@@ -733,7 +733,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/cm-o93-trooper.jpg",
       "verifiedAt": "2026-09-30T18:39:01.888Z",
-      "visualHash": "9ed4c45b446659f59817426ab4ce7c38d365cd1ef80f451ee619bf625d9d3768"
+      "visualHash": "31efc976be433cf01e0caec835a422f6b6f083db8b9e42e478feb4dc1bca895a"
     }
   },
   "cassian andor operative": {
@@ -795,7 +795,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/cassian-andor-operative.jpg",
       "verifiedAt": "2026-09-15T09:29:24.790Z",
-      "visualHash": "3fadc71fa10156aeeedc7212235a9a9aaf0aac34b66b95b3d7d8c83dc970e5ec"
+      "visualHash": "8e13bfd5ededbae0a2dd0d7313872a2c73ef8ead62f61b2022e01764ab741e37"
     }
   },
   "cassian andor": {
@@ -1110,7 +1110,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/dlt-19x-sniper.jpg",
       "verifiedAt": "2026-09-21T23:25:39.088Z",
-      "visualHash": "fce5be73b0a33d5ef2977fc27a37f57d169e69bc2f7293bc6d94d8e447f49691"
+      "visualHash": "c48a9fd3cad61865d275b0b856632dc12349b5e9f44e37592eced011d31a3820"
     }
   },
   "t 21 dewback rider": {
@@ -1199,7 +1199,7 @@
         "correctedAt": "2026-10-21",
         "by": "Certification automatique β — corrections historiques démontrées"
       },
-      "visualHash": "4da07ab137b2e5710c4c3bf5ff43b253f06e32d45825f656d48f4a7be8be97b7"
+      "visualHash": "a3a1657931d10903085a5b4803aef517b51d8c099f64d334c64890e55b02e043"
     }
   },
   "dlt 20a trooper": {
@@ -1272,7 +1272,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/dw-3-concussion-grenade-launcher.jpg",
       "verifiedAt": "2026-09-30T18:39:01.888Z",
-      "visualHash": "4df7d9d73b990b712ca41d01ee48b3b4fb800bb82af4d00191958c47a8bb5d86"
+      "visualHash": "58af78cb7fd3333e3f69d35b3fe5dfc36167307fa084e3deca2c44178f0e53e9"
     }
   },
   "darth vader dark lord of the sith": {
@@ -1412,7 +1412,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/a280-cfe-pistol-sniper-config.jpg",
       "verifiedAt": "2026-09-21T23:25:39.087Z",
-      "visualHash": "69a27e7084d7d88094cddf8da6788c27224cf36aa35efc45795965b5333f024b"
+      "visualHash": "77af48f5c1b741bde2def2f8876f373bb7889ba5b779eb4c84e9ca28b6e76e41"
     }
   },
   "rt 97c pintle mount": {
@@ -1917,7 +1917,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/tristan-wren.jpg",
       "verifiedAt": "2026-09-21T23:25:39.088Z",
-      "visualHash": "4c9d503df96d9ce98e67acbb445c65fc7851fc33a4011dfcf39a6d9bc149be62"
+      "visualHash": "1c169c4c509412392e42e088994d546b7a0c83cbf54c3cfc4b97d9b5a3ae214e"
     }
   },
   "the seventh sister": {
@@ -2049,7 +2049,7 @@
       "crosscheckSignature": "fdffd8eb15",
       "visualPath": "/SWL/cards/the-darksaber.jpg",
       "verifiedAt": "2026-09-21T23:25:39.088Z",
-      "visualHash": "927799e4c343fa1974b860ac20b953ee7763f4613f5769ce5cbf1a1f18dc6de1"
+      "visualHash": "c99ae8f6e5dd9e36728195c52ce0a2d303a64ec1f2a44a62d25d18baa286b9b1"
     }
   },
   "tx 225 occupier tank": {
@@ -2210,7 +2210,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/tl-tt-rotary-blaster.jpg",
       "verifiedAt": "2026-10-23T22:31:04.986Z",
-      "visualHash": "8fe52741a49037fadf76a84db360c5b556db176d488cad9ed1707bc69370e304"
+      "visualHash": "2f5f78aae3a101f9fb431da4e397107eefcb453f59b571e7651805c57ca24de6"
     }
   },
   "tl tt laser cannon": {
@@ -2923,7 +2923,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/flametrooper.jpg",
       "verifiedAt": "2026-09-21T23:25:39.088Z",
-      "visualHash": "05675cb0399b44ebb2136794080fe5c05072c226e9ce2cd9283dc8bbeeaae452"
+      "visualHash": "1dee92ddbaafbe4dcc142bd6c6544e14707cdf1e316391fb3c51eaefa1139725"
     }
   },
   "fleet troopers": {
@@ -3668,7 +3668,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/mpl-57-ion-trooper.jpg",
       "verifiedAt": "2026-09-21T23:25:39.088Z",
-      "visualHash": "829e4e5426a01dbade41b549881ded4d522712bdfcf30af798a270b002d2f2ae"
+      "visualHash": "c9dcaae8e0e6c120f445d0578c9fba77fa4fa663c676b2596f842d7566323139"
     }
   },
   "mandalorian resistance": {
@@ -4072,7 +4072,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/saber-throw.jpg",
       "verifiedAt": "2026-09-15T08:43:15.247Z",
-      "visualHash": "56c3602618bb102384681a363e372424a8e9b91f74e1d1b6cbf573ccb8000816"
+      "visualHash": "1a3b47c19ffc0fae4ef5fde70a316edaa7c209f3bcda461c730fed097aad87f8"
     }
   },
   "xs iv dark trooper": {
@@ -4182,7 +4182,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/scatter-gun-trooper.jpg",
       "verifiedAt": "2026-09-21T23:25:39.088Z",
-      "visualHash": "1a0bd50d2e5a8bf2c19023386f23fb84089c480cd03c50d934ec869eb7605ded"
+      "visualHash": "6158a32ee12c7bd256d644685aea3fd2bd441553c547a8e2f9da373c231f671f"
     }
   },
   "scout troopers strike team": {
@@ -4742,7 +4742,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/kx-series-security-droids.jpg",
       "verifiedAt": "2026-09-15T08:43:15.247Z",
-      "visualHash": "676072a1b87c24e9e2d5648344a369f1778a88582a298b2b3b974be4840b7e6c"
+      "visualHash": "84b942eb8acf36d83ed2676e8857730dc8df5b947e24ff81252282599e478c32"
     }
   },
   "lando calrissian": {
@@ -5448,7 +5448,7 @@
       "crosscheckSignature": "82662ee16b",
       "visualPath": "/SWL/cards/kraken.jpg",
       "verifiedAt": "2026-09-21T23:25:39.088Z",
-      "visualHash": "629a5722566c6901ca7ee4769b5bdd59bf9866f192f8d31679cda31d25c9ab54"
+      "visualHash": "18e57238f0daf9821d92c052bba38f0193e7e285c2232520addef224dd1daab9"
     }
   },
   "captain rex": {
@@ -6052,7 +6052,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/dlt-19-stormtrooper.jpg",
       "verifiedAt": "2026-09-15T09:29:24.790Z",
-      "visualHash": "be9a58e729a40599d1171e72cf4fdaf071cb407450208a1945d0bac5765ccfd7"
+      "visualHash": "b9e22a99efe2ea7973852eb406124cdbb523dcfd4904a0e50bba47d74bfbe026"
     }
   },
   "dlt 19d trooper": {
@@ -6374,7 +6374,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/hh-12-stormtrooper.jpg",
       "verifiedAt": "2026-09-30T18:39:01.888Z",
-      "visualHash": "e43b01bdb4a788c51409c09efc1877baa8d7b3b41b1b12a66a9d696b5c2cc12f"
+      "visualHash": "e18a47f0d9e358c5eabc3ce88b4ce23d01f7f994be95b8774bc7b749548f8c90"
     }
   },
   "hotshot pilot": {
@@ -6529,7 +6529,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/linked-targeting-array.jpg",
       "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "2a0d3ad187028991bf434791016808b334c5f78fefdd2403c4a39f5346406d08"
+      "visualHash": "d32e91ecbff48eec1fa31710ca3819fb74c246e3b743661fd6d3b102d210bf44"
     }
   },
   "mandalorian combat shields": {
@@ -6568,7 +6568,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/offensive-push.jpg",
       "verifiedAt": "2026-10-23T22:31:04.987Z",
-      "visualHash": "364681eb3539d03caa679a7c299c386ad3829d8e771e9c195184d21fbe41ca3c"
+      "visualHash": "365e312fa02ab9974c3382d73897e2327a04ba67c6dbf3626c80209ed8df82f9"
     }
   },
   "outer rim speeder jockey": {
@@ -6643,7 +6643,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/proton-charge-saboteur.jpg",
       "verifiedAt": "2026-09-21T23:26:58.823Z",
-      "visualHash": "3b1718667d0e93baa3cb758ac4cd82dfcba89d27fd25a35e0e74d4e4e286ec1c"
+      "visualHash": "03c6d6db6cdafc5cae6268a83caec761b0df9acfaa0928775200d83feb587608"
     }
   },
   "r5 astromech droid": {
@@ -6686,7 +6686,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/rebel-trooper-squad.jpg",
       "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "68d46c66520e70855ecad338a711141baa825bcd4ab60049c174453edfe3bce8"
+      "visualHash": "4d8109b4a5abe522b0f92ada2cfd1eb288bf739e516ddabf77851021be6bd0a5"
     }
   },
   "rebel veteran squad": {
@@ -6832,7 +6832,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/stormtrooper-squad.jpg",
       "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "ff6b61eb17625bb8c6b5b328c800c0e5321d77ee7ea8870fa3fd8bd35a75f90c"
+      "visualHash": "3a90e07476332b42634a3738429ce4b9c51eded2fa1d451ca8790573fa934a4a"
     }
   },
   "stormtroopers": {
@@ -6961,7 +6961,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/t-7-ion-snowtrooper.jpg",
       "verifiedAt": "2026-09-30T18:39:01.888Z",
-      "visualHash": "c63739d08acc990f10f9fa445f4e15b1da5fec7950ed1d4493c191adea0a5294"
+      "visualHash": "1a2cc3a63d535923b0a5ed0389844923872bae0ac1ddd43a06fff4d5caff5294"
     }
   },
   "z 6 trooper": {
@@ -7005,7 +7005,7 @@
       "noKeywordsConfirmed": true,
       "visualPath": "/SWL/cards/z-6-trooper.jpg",
       "verifiedAt": "2026-09-30T18:39:01.888Z",
-      "visualHash": "e0b79820be0818184559f71f1d187e098311e3494a1087df1801a2ad199f868c"
+      "visualHash": "04abd20c442d3e9eac1899ce992e42794a47e23fa049ef1155d9bc63e2612bd7"
     }
   },
   "fragmentation grenades": {
@@ -7106,7 +7106,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/targeting-scopes.jpg",
       "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "9e1319abffc25d3a8af20f24d4fecda2bce3e207671234a00a7d2fc40983703a"
+      "visualHash": "52121783327982a524506fb9756e98d1707e6e8e0148500f7651d965a6165626"
     }
   },
   "wedge antilles": {
@@ -7149,7 +7149,7 @@
         "correctedAt": "2026-10-21",
         "by": "Certification automatique β — corrections historiques démontrées"
       },
-      "visualHash": "2ea010dbbd3806fa17b5d0a792241900fd14be398df488ccbeb5c4c2f8233e42"
+      "visualHash": "50f3319c6e7675fabcd4df9ae4f525eabf4b9ccac656b494f9c4ce3257441a52"
     }
   },
   "inquisitorius training": {
@@ -7668,7 +7668,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/tenacity.jpg",
       "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "7d8be7610b136d133a35b047961a89d165292803480e68135d31905735375e10"
+      "visualHash": "b750e735850088d1787ebdba7d718273c6dcd5c75ceffb24bde08fb0466a6ece"
     }
   },
   "in the fray": {
@@ -7695,7 +7695,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/in-the-fray.jpg",
       "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "dab026c26aaba819b98bd5ef1584642e15b62b092152cbd42e2027dc905bd8eb"
+      "visualHash": "450bfb657e93a0205a7d1ce2e2171ff44823e942648214db9a4836192a05e3cf"
     }
   },
   "point blank": {
@@ -7722,7 +7722,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/point-blank.jpg",
       "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "b9e27c00601d35317db9beff0682c6696e285f76e266c0d7fd1807c76350c027"
+      "visualHash": "ac868b58e539ec24b96a3505d2eb2ef103bca313d952ccd73bf2f966de96559f"
     }
   },
   "emergency transponder": {
@@ -7749,7 +7749,7 @@
       "rulesVersion": "AMG 2026-06-17",
       "visualPath": "/SWL/cards/emergency-transponder.jpg",
       "verifiedAt": "2026-09-15T08:43:15.248Z",
-      "visualHash": "f6b9920479d7f8ea6270a7a4d24b2294176d2af0339f51f71494aa160fc9b66e"
+      "visualHash": "08c5463f22e6e98f477d43b85a69c26e579fd72615edc8378da7a67ad135b0bc"
     }
   },
   "chewbacca upgrade": {
@@ -8028,7 +8028,7 @@
       "crosscheckSignature": "6344394b32",
       "visualPath": "/SWL/cards/crosshair.jpg",
       "verifiedAt": "2026-09-21T23:26:58.823Z",
-      "visualHash": "b775305172cfca618c142f3a879562e3e9a6f4fc4bc704583a4d9dea4549e129"
+      "visualHash": "c1d4b4ceddfec63f50d6a1a3da56108e00a9c3e2a7904e545d2ad45fae4ce7ac"
     }
   },
   "protector": {
@@ -8059,7 +8059,7 @@
       "crosscheckSignature": "2358a587be",
       "visualPath": "/SWL/cards/protector.jpg",
       "verifiedAt": "2026-09-21T23:26:58.823Z",
-      "visualHash": "120750c129d4baa2b8f169d9931efeed821aa6ad715f8272bc2a7d030f1ed02a"
+      "visualHash": "02d5b60708b360de6bb0bd933600f0704990db083d8903a4bdd364f0187da5b7"
     }
   },
   "engagement protocols": {
@@ -8093,7 +8093,7 @@
       "crosscheckSignature": "38a308017a",
       "visualPath": "/SWL/cards/engagement-protocols.jpg",
       "verifiedAt": "2026-09-21T23:26:58.823Z",
-      "visualHash": "f247183fbca1ef8c04f91e84c22b7a6dde554ee9f092bd5eca1c175fd17a8673"
+      "visualHash": "e888987a83c3a6633a70ed3ad347f62b7609be109d7bc342e83430179077b04b"
     }
   },
   "barrage generator": {
@@ -8127,7 +8127,7 @@
       "crosscheckSignature": "79eee965ff",
       "visualPath": "/SWL/cards/barrage-generator.jpg",
       "verifiedAt": "2026-09-21T23:26:58.823Z",
-      "visualHash": "6db53a6bc1bd0a2b87bb0fd7fb44f19c3bb287d04488d9eb49ca2549588ae292"
+      "visualHash": "bfe8665ebbe1994d19e2997ebaf153e0c65240a11f0b0cce099289efdf08425d"
     }
   },
   "pyke syndicate foot soldiers": {
@@ -9104,7 +9104,7 @@
       "noKeywordsConfirmed": true,
       "visualPath": "/SWL/cards/vigilance.jpg",
       "verifiedAt": "2026-09-30T18:39:01.888Z",
-      "visualHash": "c1d9b37b1027e1b582d068cbee840736abdec806b529b5aabe30204f212154e4"
+      "visualHash": "306a90020b39192afaab10dcf1e000a806f8abf481b81fb8137f1b1a3a046658"
     }
   },
   "fleet trooper": {
@@ -9170,7 +9170,7 @@
         "correctedAt": "2026-10-21",
         "by": "Certification automatique β — corrections historiques démontrées"
       },
-      "visualHash": "663c5682c3973f5bf4e9b36e0d9f2ec4a12e99643d89c3e577f1dda43dcd9d17"
+      "visualHash": "d0c584d1e45e9804e9f89dfc18a136aaebfd237573cbd9daee46cac79015f427"
     }
   },
   "ig 88": {
@@ -9661,7 +9661,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/high-energy-shells.jpg",
       "verifiedAt": "2026-10-23T22:31:04.987Z",
-      "visualHash": "f3fb279be543837ffc81077cebc649abf9076f036a744966085db93e411c4ab7"
+      "visualHash": "1345a2316dc313bc165e0238c17921c57a1c8d3dadf78c8cb7a85a600423cb4c"
     }
   },
   "prepared materiel": {
@@ -9695,7 +9695,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/prepared-materiel.jpg",
       "verifiedAt": "2026-10-23T22:31:04.987Z",
-      "visualHash": "e24fc35dca21892a3d2c2ee864398df86e151e30947c917666cbb02e5f93ef00"
+      "visualHash": "8d6edc2ec65db4b5d77602f97e73eda1b2b9e5eea61be62dfdf2193658708bbb"
     }
   },
   "environmental gear": {
@@ -9729,7 +9729,7 @@
       "keywordsReviewed": true,
       "visualPath": "/SWL/cards/environmental-gear.jpg",
       "verifiedAt": "2026-10-23T22:31:04.987Z",
-      "visualHash": "b4e36ca93968064be1253f22badf819c4a6a0e39d656ab520db08454302e7d08"
+      "visualHash": "bd163f5946cfa2b89d04666fb197f078f9c2d00b463341d2d5c5eca9388aebf9"
     }
   },
   "mandalorian hunter": {

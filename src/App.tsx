@@ -17,7 +17,7 @@ const CommandCardsScreen = lazy(() => import('./components/CommandCardsScreen').
 const LibraryScreen = lazy(() => import('./components/LibraryScreen').then((module) => ({ default: module.LibraryScreen })));
 const CheatSheetScreen = lazy(() => import('./components/CheatSheetScreen').then((module) => ({ default: module.CheatSheetScreen })));
 const CardBrowserScreen = lazy(() => import('./components/CardBrowserScreen').then((module) => ({ default: module.CardBrowserScreen })));
-const PrintCardsScreen = lazy(() => import('./components/PrintCardsScreen').then((module) => ({ default: module.PrintCardsScreen })));
+const CardWorkshopScreen = lazy(() => import('./components/CardWorkshopScreen').then((module) => ({ default: module.CardWorkshopScreen })));
 
 type ThemeId = 'imperial' | 'rebel';
 type ThemePref = 'auto' | ThemeId;
@@ -48,7 +48,7 @@ const PAGE_META: Record<Page, { label: string; icon: CxIconName }> = {
   library: { label: 'Glossaire complet', icon: 'rules' },
   cards: { label: 'Consultation des cartes', icon: 'search' },
   cheatsheet: { label: 'Pense-bête', icon: 'info' },
-  'print-cards': { label: 'Imprimer des cartes', icon: 'dice' },
+  'print-cards': { label: 'Atelier de cartes FR', icon: 'dice' },
 };
 const SECTIONS: { id: string; label: string; icon: CxIconName; pages: Page[] }[] = [
   { id: 'armees', label: 'Gestion Armée', icon: 'army', pages: ['setup', 'army', 'print-cards'] },
@@ -84,6 +84,7 @@ export default function App() {
       '#cartes': 'cards',
       '#pense-bete': 'cheatsheet',
       '#imprimer': 'print-cards',
+      '#atelier-cartes': 'print-cards',
     };
     const openRequestedScreen = () => {
       const target = HASH_PAGES[window.location.hash];
@@ -169,7 +170,7 @@ export default function App() {
   if (page === 'cheatsheet') {
     content = <CheatSheetScreen />;
   } else if (page === 'print-cards') {
-    content = <PrintCardsScreen />;
+    content = <CardWorkshopScreen tagLibrary={tagLibrary} keywords={keywords} listP1={listP1} listP2={listP2} />;
   } else if (page === 'cards') {
     content = <CardBrowserScreen tagLibrary={tagLibrary} keywords={keywords} />;
   } else if (page === 'library') {

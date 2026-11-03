@@ -2640,11 +2640,19 @@ scenario('Certification automatique β en ligne : une carte certifiée et inchan
   assert.match(text($('.auto-cert-certified')), /Certifications existantes valides \(\d+\)[\s\S]*Stormtroopers[\s\S]*Certification existante valide/, 'elles sont listées comme « Certification existante valide », sans visuel anglais')
   const counts = text($('.auto-cert-banner')).match(/(\d+) certifiée\(s\) et inchangée\(s\) · (\d+) certification\(s\) devenue\(s\) obsolète\(s\) · (\d+) connue\(s\) mais incomplète\(s\) · (\d+) réellement nouvelle\(s\)/)
   assert.ok(counts && Number(counts[1]) >= 30 && Number(counts[2]) === 0, `les quatre états sont comptés sur les deux listes réelles (${counts?.[0]})`)
-  // Une carte encore à comparer et sans visuel anglais publié (les cartes changent au fil des certifications).
-  const pending = $$('[data-auto-card]').find((row) => /carte connue mais incomplète|carte réellement nouvelle|devenue obsolète/.test(text(row)) && /✗ EN/.test(text(row)))
-  assert.ok(pending, 'une carte des listes réelles reste à comparer, sans visuel anglais publié')
+  // Une identité ambiguë reste bloquée avant le choix explicite du joueur.
+  const ambiguous = $$('[data-auto-card]').find(row => /! Métadonnées/.test(text(row)))
+  if (ambiguous) {
+    await click(ambiguous)
+    assert.ok($('#autoCandidate') && !$('#autoCandidate').value && !$('#validateAutoCard'), 'aucune validation ni variante choisie automatiquement pour une identité ambiguë')
+    assert.match(text(app.document.body), /Choisissez la carte Tabletop Admiral correspondante/)
+    await click('#backAutoCertification')
+  }
+  // L’absence de visuel EN est testée sur une identité déjà résolue, sans dépendre de l’ordre des variantes.
+  const pending = $$('[data-auto-card]').find(row => /carte connue mais incomplète|carte réellement nouvelle|devenue obsolète/.test(text(row)) && /✓ Métadonnées/.test(text(row)) && /✗ EN/.test(text(row)))
+  assert.ok(pending, 'une carte identifiée des listes réelles reste à comparer, sans visuel anglais publié')
   await click(pending)
-  assert.ok($('#validateAutoCard').disabled && $('#autoEnglishDrop'), 'une carte à comparer reste bloquée sans visuel anglais : import du visuel anglais proposé')
+  assert.ok($('#validateAutoCard')?.disabled && $('#autoEnglishDrop'), 'une carte à comparer reste bloquée sans visuel anglais : import du visuel anglais proposé')
   assert.match(text($('#autoEnglishDrop')), /Importer le visuel anglais[\s\S]*Visuel personnel conservé uniquement sur cet appareil/, 'l’import local est proposé avec son avertissement')
   assert.equal(app.errors.length, 0, app.errors.join(' | '))
   app.window.close()

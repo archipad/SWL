@@ -1,0 +1,65 @@
+{
+  "kind": "upgrade",
+  "cardId": "upgrade:combat armor rebel",
+  "name": "Armure de Combat",
+  "sourceFile": "cards/combat-armor-rebel.webp",
+  "sourceSha256": "32d921e4459aa0f60015b6666e6e99d5bbcf756cafad7be7b27b1801c9f623cd",
+  "expectedSize": [
+    725,
+    1040
+  ],
+  "fr": {
+    "body": "__Agent Rebelle ou Officier Rebelle uniquement.__\nSa défense devient {defense-rouge} au lieu de {defense-blanc}.\nCette unité n'a plus {conversion-defense}.",
+    "title": "Armure de Combat"
+  },
+  "zones": {
+    "body": [
+      65,
+      693,
+      665,
+      898
+    ],
+    "title": [
+      55,
+      941,
+      675,
+      1020
+    ]
+  },
+  "sourceIcons": {
+    "defense-rouge": [
+      442,
+      796,
+      473,
+      833
+    ],
+    "defense-blanc": [
+      610,
+      796,
+      643,
+      833
+    ],
+    "conversion-defense": [
+      482,
+      841,
+      574,
+      880
+    ]
+  },
+  "protectedZones": [
+    [
+      0,
+      0,
+      172,
+      118
+    ],
+    [
+      550,
+      0,
+      725,
+      121
+    ]
+  ],
+  "englishText": "Rebel Agent or Rebel Officer only. This unit's Defense becomes [red defense die] instead of [white defense die] and this unit does not have [defense surge: block].",
+  "translationStatus": "local-ai-reviewed-not-human-certified"
+}

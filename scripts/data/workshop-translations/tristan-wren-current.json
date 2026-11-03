@@ -1,0 +1,66 @@
+{
+  "stem": "tristan-wren-current",
+  "cardId": "upgrade:tristan wren",
+  "name": "Tristan Wren",
+  "kind": "upgrade",
+  "sourceFile": "cards/workshop/sources/tristan-wren-official-en.png",
+  "expectedSize": [
+    727,
+    1040
+  ],
+  "fr": {
+    "body": "__{restriction-a} ou {restriction-b} uniquement.__\nAjoutez 1 figurine de Tristan Wren.\n**Chef.**\nCette unité gagne **Précis 2**.\nLes unités alliées {affiliation-alliee} peuvent donner des ordres à cette unité, quelle que soit leur affiliation."
+  },
+  "zones": {
+    "body": [
+      55,
+      580,
+      680,
+      900
+    ]
+  },
+  "sourceIcons": {
+    "restriction-a": [
+      250,
+      595,
+      275,
+      630
+    ],
+    "restriction-b": [
+      339,
+      593,
+      384,
+      631
+    ],
+    "affiliation-alliee": [
+      147,
+      810,
+      206,
+      846
+    ]
+  },
+  "protectedZones": [
+    [
+      0,
+      0,
+      727,
+      565
+    ],
+    [
+      0,
+      925,
+      727,
+      1040
+    ]
+  ],
+  "englishText": "[Mandalorian symbol] or [Mandalorian Clans symbol] only. Add 1 Tristan Wren miniature. Leader. This unit gains Precise 2. Allied [affiliation symbol] units may issue Orders to this unit regardless of Affiliation.",
+  "officialSource": {
+    "url": "https://cdn.svc.asmodee.net/production-amgcom/uploads/2026/07/DOC56_Mandalorian_BattleForceCards-3.pdf",
+    "page": 9,
+    "imageObject": "Im1",
+    "pdfSha256": "17dc96519f5fb3614a70a4b14f1e1eb7880dc72268fee47a9249acfcc09635a9",
+    "version": "v1.1"
+  },
+  "sourceSha256": "95e7a5beea52e0974c2cada0ed5a09ba75fa63fd5dbd74178e24a68aae8ce008",
+  "translationStatus": "local-ai-reviewed-not-human-certified"
+}

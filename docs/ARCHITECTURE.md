@@ -16,6 +16,13 @@ Les deux interfaces doivent employer les mêmes clés canoniques et certificatio
 6. `src/lib/unitModels.ts` calcule l'effectif et les PV en intégrant seulement les améliorations déclarées comme ajoutant des figurines.
 7. `src/lib/importAudit.ts` sépare les problèmes de catalogue des données moteur non certifiées.
 
+## Atelier de cartes FR (31/10/2026)
+
+`src/components/CardWorkshopScreen.tsx` est accessible depuis Gestion Armée et `#atelier-cartes`.
+`src/lib/cardWorkshop.ts` assemble les mêmes cartes, traductions, définitions et commandements que le reste du projet et résout le panier Tabletop.
+`cardWorkshopPrint.ts` mesure et pagine les définitions, construit les planches A4 recto verso bord long et refuse les rectos manquants.
+`cardWorkshopStorage.ts` conserve les rectos personnels uniquement dans IndexedDB. Le panier possède sa propre clé ; aucune dépendance au moteur d'attaque ni modification des certifications. Portée et suites : `docs/CARD_WORKSHOP.md`.
+
 ## État de partie
 
 Les listes et l'état courant sont conservés localement. `src/lib/gistSync.ts` et `src/lib/useSync.ts` synchronisent les listes, le suivi de partie, les états d'unités et le journal d'attaques via le Gist configuré par l'utilisateur. L'Assistant emploie les mêmes clés de stockage et restaure les données synchronisées.
@@ -34,3 +41,10 @@ Les listes et l'état courant sont conservés localement. `src/lib/gistSync.ts` 
 ## Construction et déploiement
 
 `npm run build` régénère le référentiel, lance les tests et audits, compile TypeScript puis produit `dist/`. `.github/workflows/deploy-pages.yml` exécute ce même build et déploie GitHub Pages sur les branches autorisées.
+
+
+Traductions locales du 31/10/2026 : cinq rectos anglais traduits sans service payant, Cassian FR réutilisé, identifiants existants conservés. Voir docs/CARD_WORKSHOP_TRANSLATIONS.md. Le parcours assisté pour les cartes inconnues reste à réaliser.
+
+## Versos compacts et planches A4 — 01/11/2026
+
+Le mode condensé et le format commun 68 × 98 mm (8/A4) sont proposés par défaut. Les textes intégraux restent inchangés. Voir docs/CARD_WORKSHOP_COMPACT.md pour les 156 résumés, Tough, la couverture des 197 entrées HQ et les essais des deux listes réelles. Aucun changement du moteur ni des certifications humaines.
