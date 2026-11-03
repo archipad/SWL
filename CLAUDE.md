@@ -76,6 +76,43 @@ concerne les sessions Claude Code. En cas de contradiction, `AGENTS.md` prévaut
   (lu par `src/data/upgradeTexts.ts`) ; les mots-clés cités sont mis en gras et définis entre
   parenthèses par `annotateKeywords` (`src/lib/keywordText.ts`).
 
+## Atelier de cartes FR : compléter le catalogue
+
+- Périmètre retenu par Antoine (03/11/2026) : **Rebelles + Empire + Mercenaires** ; la République
+  et les Séparatistes sont écartés. Inventaire et liste des manques (~130 cartes, dont 9 avec un
+  visuel FR officiel) : `docs/ROADMAP.md`, section « Atelier de cartes FR ».
+- PDF FR officiels sur le Bureau : `App Web SWL V2/Nouveau dossier/` (Empire, Rebelles, génériques,
+  nouvelles cartes), `App Web SWL V2/aGENTS/` (Mercenaires) et `Errata Reference FR 17.06.26.pdf`
+  (p. 9-12 : cartes mises à jour, dont Axe Woves ; p. 3-5 : noms FR officiels dans les tables de
+  points). Les PDF Rebelles posés directement sur le Bureau sont identiques à ceux déjà exploités.
+  « Cartes Legion FR · recto verso.pdf » n'est que l'impression des 478 cartes de l'atelier.
+- Extraction : `scripts/tools/extract_pdf_cards.py`, puis OCR des bandeaux de titre avec
+  `scripts/tools/windows-ocr.ps1 -Language fr-FR -ListFile ...`. Comparer les titres OCR aux **noms FR**
+  de l'atelier : c'est plus fiable que la comparaison avec Legion HQ.
+- Comparer au catalogue Legion HQ (base extraite du bundle `legionhq2.com`, voir
+  `scripts/audit-legionhq.mjs`) produit beaucoup de faux manques, car les noms anglais diffèrent
+  (« Strike and Fade » / « Hit and Run », « Door Gunners » / « Mounted Gunners »…). Passer par
+  `scripts/data/legionhq-aliases.json`, puis par le nom FR, et vérifier chaque manque sur le visuel.
+- Anomalie connue : « Dark Vador, l'Apprenti de l'Empereur » est une unité, mais l'atelier la
+  range en amélioration.
+- Gabarit de découpe imprimé en 3D pour le massicot d'Antoine : à traiter dans une conversation
+  séparée, après les traductions.
+
+## Impression (atelier de cartes)
+
+- Format `cut` « Découpe plastifiée » (`src/lib/cardWorkshopPrint.ts`) : cartes de 68 × 98 mm
+  jointives, 8 par A4, bloc centré (marges de 7 mm sur les côtés, 12,5 mm en haut et en bas).
+  Les traits de coupe sont dans les marges, à 1,5 mm des cartes et à au moins 3 mm du bord de la
+  feuille.
+- Les traits de coupe sont dessinés en **bordures CSS**, pas en fonds : ils doivent apparaître dans
+  un PDF imprimé sans graphiques d'arrière-plan.
+- Méthode de plastification et de découpe : plastifier la feuille entière ; couper les marges
+  gauche, droite et haute sur les traits ; puis couper à la butée 68 mm (bandes) et 98 mm (cartes).
+- PDF témoin : servir par Vite une page temporaire qui appelle `prepareWorkshopPrint` dans une
+  iframe (base `/SWL/`, script dans `src/`), puis lancer
+  `msedge --headless=new --no-pdf-header-footer --virtual-time-budget=40000 --print-to-pdf=...`.
+  Supprimer les fichiers temporaires et arrêter Vite avant `npm run build`.
+
 ## Impression (page Listes)
 
 - « Imprimer la liste (visuel + mots-clés) » : une unité par demi-page A4 (jamais coupée), encart
