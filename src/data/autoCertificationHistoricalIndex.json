@@ -12,6 +12,7 @@
       "cassian andor (unit:57, unit:29930)",
       "crosshair (upgrade:15009, upgrade:15989)",
       "din djarin (unit:6179, unit:34881)",
+      "dlt 19 stormtrooper (upgrade:7, upgrade:23968)",
       "imperial march (upgrade:19828, upgrade:19896)",
       "jetpack rockets (upgrade:176, upgrade:22605)",
       "jyn erso (unit:27, unit:29928)",
@@ -655,11 +656,7 @@
       "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
       "rulesVersion": "AMG 2026-06-17",
       "verifiedAt": "2026-09-15T09:29:24.790Z",
-      "tta": {
-        "upgrade:7": [
-          "Impact X"
-        ]
-      }
+      "tta": {}
     },
     "dlt 19x sniper": {
       "cardType": "upgrade",

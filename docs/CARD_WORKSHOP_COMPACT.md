@@ -37,3 +37,5 @@ Le format classique 62 × 88 mm reste proposé (9 cartes/A4), mais 11 modèles t
 workshopCompactKeywords.json trace les sources par page et empreinte du texte intégral ; cardWorkshopText.ts applique les paramètres sans remplacer le X des autres mots-clés. cardWorkshopPrint.ts groupe toutes les orientations sur une grille commune et reflète les colonnes au verso (bord long). La bibliothèque entière sélectionne un modèle de chaque carte, dans la limite de 600 exemplaires. Les trois types d’unité restent consultables dans les sources, hors du dos réservé aux mots-clés.
 
 Tests : test:workshop-compact vérifie couverture HQ, empreintes des 156 définitions sources, paramètres indépendants, variante aérienne, grilles et appariement recto verso. Les mesures navigateur et PDF locaux complètent ces tests.
+
+Validation finale : `npm run verify` terminé avec succès le 01/11/2026 (tests moteur, contrats, imports, 77 parcours, ateliers, audits, TypeScript, build et PWA). L’aperçu de la bibliothèque complète dans l’interface confirme 478 cartes / 60 feuilles / 120 pages et 7,5 pt minimum.

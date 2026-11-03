@@ -529,6 +529,13 @@ Les 478 rectos sont relus : 333 versos renseignés, 145 vierges, 156 définition
 ## Rectos actuels — Tristan, Ursa et Agent Rebelle (31/10/2026)
 
 Les trois rectos sont remplacés dans l’atelier : Tristan = Chef et Précis 2 ; Ursa = +1 Courage, Défense 1 et Chef ; Agent Rebelle = recto FR, Équipe : doctrine. Source des Wren : PDF officiel AMG Mandalorian Cards v1.1 (juillet 2026), p. 9. Les versos suivent les nouveaux rectos. Catalogue inchangé à 478 cartes, aucun doublon. Les anciennes alertes de ces trois cartes sont supprimées ; les dix cartes retirées restent signalées. Rapport, fichiers et contrôles : docs/CARD_WORKSHOP_FRONTS_CURRENT.md. Traductions locales relues par IA, validation humaine restant à effectuer ; aucune publication.
+## Publication Atelier de cartes FR — 01/11/2026
+
+Lot : remplacement de « Imprimer des cartes » par l’Atelier de cartes FR, au même emplacement. Ancres #imprimer et #atelier-cartes compatibles ; catalogue de 478 cartes, 156 définitions, huit traductions locales et trois derniers rectos actualisés. Sources EN personnelles non publiées. Fichiers : App.tsx, composants et bibliothèques cardWorkshop, données workshop*, visuels public/cards/workshop, recettes/rendu/tests/export et documentation CARD_WORKSHOP*. Validation générale et résultat du déploiement à compléter après exécution. Restent : relecture humaine des traductions, impression matérielle et traduction automatique à l’upload.
+
+Le test de Certification β qui échouait avant ce lot est corrigé : contrôle du blocage d’une identité ambiguë, puis contrôle du refus de validation sans image EN sur une identité déjà résolue. Le produit, le moteur et le design de Certification β sont inchangés.
+
+Validation de publication : npm run verify réussi intégralement (77 parcours Assistant, moteur, contrats, import, impression, 478 cartes atelier, audits, TypeScript et compilation PWA). Contrôle visuel : entrée unique « Atelier de cartes FR » à l’emplacement de l’ancienne impression ; #imprimer ouvre le nouvel écran. Commit du lot : « Publie l’atelier de cartes FR à la place de l’impression ». Publication demandée sur https://archipad.github.io/SWL/#atelier-cartes ; résultat GitHub Pages contrôlé après envoi.
 
 ## Atelier FR publié — 01/11/2026
 
@@ -544,3 +551,4 @@ Publication préparée dans une copie isolée fondée sur eb341a7, conservant le
 - Format commun classeur 68 × 98 mm, 8 cartes/A4 ; un recto et un verso, aucun texte coupé ; impression complète des 478 modèles.
 - Essais Empire Moff Gideon et Rebelles Simon 3 : 37 cartes et 5 feuilles recto verso chacun. Bibliothèque 478 cartes : 60 feuilles.
 - Contrôle visuel des PDF et calibration ; détails et limites : CARD_WORKSHOP_COMPACT.md.
+- Validation finale : `npm run verify` réussi ; aperçus des 478 paires et PDF des deux armées vérifiés.

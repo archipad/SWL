@@ -44,6 +44,9 @@ Les listes et l'état courant sont conservés localement. `src/lib/gistSync.ts` 
 
 
 Traductions locales du 31/10/2026 : cinq rectos anglais traduits sans service payant, Cassian FR réutilisé, identifiants existants conservés. Voir docs/CARD_WORKSHOP_TRANSLATIONS.md. Le parcours assisté pour les cartes inconnues reste à réaliser.
+## Atelier de cartes FR — publication du 01/11/2026
+
+La page `print-cards` et les ancres `#imprimer` / `#atelier-cartes` ouvrent désormais `CardWorkshopScreen`. L’entrée de menu existante est renommée « Atelier de cartes FR » : aucun doublon de navigation. Impression : un recto et un verso par exemplaire, uniquement les définitions au dos. Voir docs/CARD_WORKSHOP.md et docs/CARD_WORKSHOP_FRONTS_CURRENT.md. Les sources anglaises personnelles des recettes ne sont pas publiées.
 
 ## Versos compacts et planches A4 — 01/11/2026
 
