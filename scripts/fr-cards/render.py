@@ -292,8 +292,12 @@ def draw_weapons(rgb, bars, weapons, x_left, x_right, report, min_name=12, max_s
         stop = saturated(rgb, (a + b) // 2, lx, int(x_right + (x_right - x_left) * 0.5))
         right = lx + int(stop[0]) - 6 if len(stop) else int(x_right)
         # Ligne de mots-clés : nettement sous le nom, d'une hauteur comparable (pas un jambage de lettre).
-        kws = [l for l in bar_lines(g, (x_left, b + 3, x_right + 100, bottom), 120)  # la ligne passe sous la pastille de portée
-               if l[0] > b + (b - a) * 0.25 and 0.4 * (b - a) <= l[1] - l[0] <= (b - a) * 1.15]
+        # Recherche bornée sous le nom : sur un visuel basse définition agrandi, le bord du bandeau se fond sinon dans la ligne.
+        found = [l for l in bar_lines(g, (x_left, b + 3, x_right + 100, min(bottom, b + int((b - a) * 2.6))), 120)  # la ligne passe sous la pastille de portée
+                 if l[0] > b + (b - a) * 0.25]
+        kws = [l for l in found if 0.4 * (b - a) <= l[1] - l[0] <= (b - a) * 1.15]
+        if not kws:  # visuel basse définition : la ligne déborde sur le bord du bandeau ; effacée en entier, réécrite sur une hauteur de texte
+            kws = [l for l in found if (b - a) * 1.15 < l[1] - l[0] <= (b - a) * 2.2][:1]
         rgb[:] = erase(rgb, (lx - 3, a - 3, min(rx + 4, right + 2), b + 4), 'light', 110)
         if kws and weapons[i].get('keywords') is not None:
             for ka, kb, klx, krx in kws:  # les mots-clés d'une arme peuvent tenir sur deux lignes
@@ -303,7 +307,8 @@ def draw_weapons(rgb, bars, weapons, x_left, x_right, report, min_name=12, max_s
                   f'arme {i + 1} : nom', style='band', color=WHITE, align='left', lh=1.0, wrap=False)
         if kws and weapons[i].get('keywords') is not None:
             ka, kb, klx, _ = kws[0]
-            draw_text(img, (klx, ka - 5, right, kws[-1][1] + 6), weapons[i]['keywords'], min(max_size * 0.8, (kb - ka) * 1.35), report,
+            kb, last = min(kb, ka + int((b - a) * 1.05)), min(kws[-1][1], kws[-1][0] + int((b - a) * 1.05))
+            draw_text(img, (klx, ka - 5, right, last + 6), weapons[i]['keywords'], min(max_size * 0.8, (kb - ka) * 1.35), report,
                       f'arme {i + 1} : mots-clés', style='bandi', color=GREY_KW, align='left', lh=1.0, wrap=len(kws) > 1)
         elif weapons[i].get('keywords'):
             report.problem(f'arme {i + 1} : ligne de mots-clés introuvable sur la carte')
