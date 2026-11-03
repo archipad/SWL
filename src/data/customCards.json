@@ -3480,5 +3480,1095 @@
     },
     "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
     "addedAt": "2026-11-04"
+  },
+  "wicket hero of bright tree": {
+    "nameFr": "Wicket, Héros de l'Arbre Lumineux",
+    "cardType": "unit",
+    "image": "wicket-hero-of-bright-tree-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Lance",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "name": "Fronde",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "perforant-x",
+          "primitif"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      },
+      {
+        "keywordId": "profil-bas"
+      },
+      {
+        "keywordId": "agile"
+      },
+      {
+        "keywordId": "implacable"
+      },
+      {
+        "keywordId": "eclaireur-x",
+        "value": 1
+      },
+      {
+        "keywordId": "equipe-declaireurs-x",
+        "value": 2
+      },
+      {
+        "keywordId": "sans-entrave"
+      }
+    ],
+    "rank": "commandant",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "crit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Wicket, Hero of Bright Tree",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Wicket.webp",
+      "englishText": "Wicket, Hero of Bright Tree. Trooper. Mercenary: Rebels. Independent: Dodge 1. Low Profile. Nimble. Relentless. Scout 1. Scouting Party 2. Unhindered. Spear (2 red, 1 black, melee): Pierce 1. Sling (1 black, 1-2): Pierce 1, Primitive.",
+      "frenchText": "{\"name\":\"Wicket\",\"subtitle\":\"Héros de l'Arbre Lumineux\",\"type\":\"Soldat\",\"keywords\":[\"Mercenaire : {faction-rebelles}\",\"Autonome : Esquive 1\",\"Profil Bas. Agile\",\"Implacable\",\"Éclaireur 1. Équipe d'Éclaireurs 2\",\"Sans Entrave\"],\"weapons\":[{\"name\":\"Lance\",\"keywords\":\"Perforant 1\"},{\"name\":\"Fronde\",\"keywords\":\"Perforant 1, Primitif\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04",
+    "autonomousTokens": [
+      {
+        "token": "dodge",
+        "count": 1
+      }
+    ]
+  },
+  "ewok skirmishers": {
+    "nameFr": "Escarmoucheurs Ewoks",
+    "cardType": "unit",
+    "image": "ewok-skirmishers-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Lances",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "profil-bas"
+      },
+      {
+        "keywordId": "sans-entrave"
+      }
+    ],
+    "rank": "corps",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 6
+    },
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Ewok Skirmishers",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ewok%20Skirmishers.webp",
+      "englishText": "Ewok Skirmishers. Trooper. Mercenary: Rebels. Low Profile. Unhindered. Spears (1 black, melee).",
+      "frenchText": "{\"name\":\"Escarmoucheurs Ewoks\",\"type\":\"Soldat\",\"keywords\":[\"Mercenaire : {faction-rebelles}\",\"Profil Bas\",\"Sans Entrave\"],\"weapons\":[{\"name\":\"Lances\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "ewok slingers": {
+    "nameFr": "Frondeurs Ewoks",
+    "cardType": "unit",
+    "image": "ewok-slingers-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Pierres",
+        "dice": [
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Frondes",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "primitif"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      },
+      {
+        "keywordId": "profil-bas"
+      },
+      {
+        "keywordId": "cible-x",
+        "value": 1
+      }
+    ],
+    "rank": "special",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 6
+    },
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Ewok Slingers",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ewok%20Slingers.webp",
+      "englishText": "Ewok Slingers. Trooper. Mercenary: Rebels. Independent: Surge 1. Low Profile. Target 1. Unhindered. Stones (1 white, melee). Slings (1 white, 1-2): Primitive.",
+      "frenchText": "{\"name\":\"Frondeurs Ewoks\",\"type\":\"Soldat\",\"keywords\":[\"Mercenaire : {faction-rebelles}\",\"Autonome : Adrénaline 1\",\"Profil Bas\",\"Cible 1\",\"Sans Entrave\"],\"weapons\":[{\"name\":\"Pierres\",\"keywords\":\"\"},{\"name\":\"Frondes\",\"keywords\":\"Primitif\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04",
+    "autonomousTokens": [
+      {
+        "token": "surge",
+        "count": 1
+      }
+    ]
+  },
+  "c 3po golden god": {
+    "nameFr": "C-3PO, Dieu Doré",
+    "cardType": "unit",
+    "image": "c-3po-golden-god-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "maitre-conteur"
+      },
+      {
+        "keywordId": "contrainte"
+      },
+      {
+        "keywordId": "infiltration"
+      },
+      {
+        "keywordId": "influence-divine"
+      }
+    ],
+    "rank": "commandant",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 3,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "C-3P0, Golden God",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/C-3PO%20Golden%20God.webp",
+      "englishText": "C-3PO, Golden God. Droid Trooper. Action: Master Storyteller. Compel: Ewok Trooper. Divine Influence. Infiltrate. 3 wounds, courage 2, no weapon.",
+      "frenchText": "{\"name\":\"C-3PO\",\"subtitle\":\"Dieu Doré\",\"type\":\"Soldat Droïde\",\"keywords\":[\"{action}Maître Conteur\",\"Contrainte : soldat Ewok\",\"Influence Divine\",\"Infiltration\"]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "logray superstitious shaman": {
+    "nameFr": "Logray, Chaman Superstitieux",
+    "cardType": "unit",
+    "image": "logray-superstitious-shaman-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Bâton",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "suppressif"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "aide"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      },
+      {
+        "keywordId": "inspiration-x",
+        "value": 2
+      },
+      {
+        "keywordId": "profil-bas"
+      },
+      {
+        "keywordId": "agile"
+      }
+    ],
+    "rank": "commandant",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 4,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Logray, Superstitious Shaman",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Logray.webp",
+      "englishText": "Logray, Superstitious Shaman. Trooper. Aid: Ewok Trooper. Independent: Aim 1 or Dodge 1. Inspire 2. Low Profile. Nimble. Staff (2 black, melee): Suppressive.",
+      "frenchText": "{\"name\":\"Logray\",\"subtitle\":\"Chaman Superstitieux\",\"type\":\"Soldat\",\"keywords\":[\"Aide : soldat Ewok\",\"Autonome : Viser 1 ou Esquive 1\",\"Inspiration 2\",\"Profil Bas\",\"Agile\"],\"weapons\":[{\"name\":\"Bâton\",\"keywords\":\"Suppressif\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04",
+    "autonomousTokens": [
+      {
+        "token": "aim",
+        "count": 1
+      },
+      {
+        "token": "dodge",
+        "count": 1
+      }
+    ]
+  },
+  "hondo ohnaka trustworthy compatriot": {
+    "nameFr": "Hondo Ohnaka, Compagnon Digne de Confiance",
+    "cardType": "unit",
+    "image": "hondo-ohnaka-trustworthy-compatriot-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Ruse Weequay",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Blaster de Hondo",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "polyvalent"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "arsenal-x",
+        "value": 1
+      },
+      {
+        "keywordId": "retrait"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      },
+      {
+        "keywordId": "je-sens-le-profit"
+      },
+      {
+        "keywordId": "agile"
+      },
+      {
+        "keywordId": "fiable-x",
+        "value": 1
+      },
+      {
+        "keywordId": "coup-de-chance-x",
+        "value": 1
+      }
+    ],
+    "rank": "operative",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 1,
+      "baseModels": 1
+    },
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Hondo Ohnaka, Trustworthy Compatriot",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Hondo%20Ohnaka.webp",
+      "englishText": "Hondo Ohnaka, Trustworthy Compatriot. Trooper. Mercenary: Empire, Rebels, Republic, Separatists. Arsenal X. Disengage. Independent: Dodge X. My Mood Is Based On Profit. Nimble. Reliable X. Uncanny Luck X. Weequay's Cunning (3 black, melee-1). Hondo's Blaster (1 white, 3 black, 1-2): Versatile. 5 wounds, courage X.",
+      "frenchText": "{\"name\":\"Hondo Ohnaka\",\"subtitle\":\"Compagnon Digne de Confiance\",\"type\":\"Soldat\",\"keywords\":[\"Mercenaire : {faction-empire}{faction-rebelles}{faction-republique}{faction-separatistes}\",\"Arsenal X. Retrait.\",\"Autonome : Esquive X\",\"Je Sens le Profit\",\"Agile. Fiable X\",\"Coup de Chance X\"],\"weapons\":[{\"name\":\"Ruse Weequay\",\"keywords\":\"\"},{\"name\":\"Blaster de Hondo\",\"keywords\":\"Polyvalent\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04",
+    "autonomousTokens": [
+      {
+        "token": "dodge",
+        "count": 1
+      }
+    ],
+    "note": "Je Sens le Profit : partout où X apparaît (Arsenal, Autonome : Esquive, Fiable, Coup de Chance, courage), X = points de la dernière carte de Commandement jouée et révélée, minimum 1. Valeurs préremplies à 1 (début de partie), à ajuster en jeu."
+  },
+  "weequay pirates": {
+    "nameFr": "Pirates Weequays",
+    "cardType": "unit",
+    "image": "weequay-pirates-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrolame",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      },
+      {
+        "name": "Blaster Weequay",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "polyvalent"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "charge"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      },
+      {
+        "keywordId": "instinct-de-survie"
+      },
+      {
+        "keywordId": "matamore"
+      }
+    ],
+    "rank": "corps",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 4
+    },
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Weequay Pirates",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Weequay%20Pirates.webp",
+      "englishText": "Weequay Pirates. Trooper. Mercenary: Empire, Rebels, Republic, Separatists. Charge. Independent: Aim 1. Self-Preservation. Swashbuckler. Vibroblade (1 black, melee). Weequay Blaster (1 white, 1 black, 1-2): Versatile.",
+      "frenchText": "{\"name\":\"Pirates Weequays\",\"type\":\"Soldat\",\"keywords\":[\"Mercenaire : {faction-empire}{faction-rebelles}{faction-republique}{faction-separatistes}\",\"Charge\",\"Autonome : Viser 1\",\"Instinct de Survie\",\"Matamore\"],\"weapons\":[{\"name\":\"Vibrolame\",\"keywords\":\"\"},{\"name\":\"Blaster Weequay\",\"keywords\":\"Polyvalent\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04",
+    "autonomousTokens": [
+      {
+        "token": "aim",
+        "count": 1
+      }
+    ]
+  },
+  "wlo 5 speeder tank": {
+    "nameFr": "Tank Speeder WLO-5",
+    "cardType": "unit",
+    "image": "wlo-5-speeder-tank-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Lasers Antipersonnel",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "fixe"
+        ]
+      },
+      {
+        "name": "Canon Laser Lourd",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "armure-x",
+        "value": 5
+      },
+      {
+        "keywordId": "arsenal-x",
+        "value": 2
+      },
+      {
+        "keywordId": "sustentation"
+      },
+      {
+        "keywordId": "transport"
+      },
+      {
+        "keywordId": "point-faible-x",
+        "value": 2
+      }
+    ],
+    "rank": "heavy",
+    "speed": 1,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 10,
+      "courage": 6,
+      "baseModels": 1
+    },
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "WLO-5 Speeder Tank",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/WLO-5%20Speeder%20Tank.webp",
+      "englishText": "WLO-5 Speeder Tank. Repulsor Vehicle. Mercenary: Empire, Rebels, Republic, Separatists. Armor 5. Arsenal 2. Hover: Ground. Transport. Weak Point 2: Rear. Anti-Personnel Lasers (2 white, 3 black, 1-2): Fixed: Front. Heavy Laser Cannon (1 red, 2 white, 2 black, 1-3): Impact 2.",
+      "frenchText": "{\"name\":\"Tank Speeder WLO-5\",\"type\":\"Véhicule à Répulseurs\",\"keywords\":[\"Mercenaire : {faction-empire}{faction-rebelles}{faction-republique}{faction-separatistes}\",\"Armure 5\",\"Arsenal 2\",\"Sustentation : Terrestre\",\"Transport\",\"Point Faible 2 : Arrière\"],\"weapons\":[{\"name\":\"Lasers Antipersonnel\",\"keywords\":\"Fixe : Avant\"},{\"name\":\"Canon Laser Lourd\",\"keywords\":\"Impact 2\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "forest dwellers": {
+    "nameFr": "Habitants de la Forêt",
+    "cardType": "upgrade",
+    "image": "forest-dwellers-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "eclaireur-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Forest Dwellers",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Forest%20Dwellers.webp",
+      "englishText": "Ewok Troopers only. This unit gains Scout 1. At the start of the first Activation Phase, this unit gains 1 Dodge token.",
+      "frenchText": "{\"title\":\"Habitants de la Forêt\",\"body\":\"**Soldats Ewoks uniquement.**\\nCette unité gagne **Éclaireur 1**.\\nAu début de la première __Phase d'Activation__, cette unité gagne 1 pion Esquive.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "call to arms": {
+    "nameFr": "Appel aux Armes",
+    "cardType": "upgrade",
+    "image": "call-to-arms-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "charge"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Call To Arms",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Call%20to%20Arms.webp",
+      "englishText": "Ewok Trooper only. Exhaust, free action: this unit gains Charge until the end of the Round. This unit gains 1 Suppression token.",
+      "frenchText": "{\"title\":\"Appel aux Armes\",\"body\":\"**Soldat Ewok uniquement.**\\n{incliner}{action-gratuite}Cette unité gagne **Charge** jusqu'à la fin du round. Cette unité gagne 1 pion Suppression.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "axe ewok": {
+    "nameFr": "Ewok avec Hache",
+    "cardType": "upgrade",
+    "image": "axe-ewok-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Hache de Pierre",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "impact-x",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1,
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Axe Ewok",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Axe%20Ewok.webp",
+      "englishText": "Ewok Slingers or Ewok Skirmishers only. Add 1 Axe Ewok miniature. Stone Axe (1 red, melee): Impact 1, Pierce 1.",
+      "frenchText": "{\"title\":\"Ewok avec Hache\",\"body\":\"**Frondeurs Ewoks ou Escarmoucheurs Ewoks uniquement.**\\nAjoutez 1 figurine d'Ewok avec Hache.\",\"weapons\":[{\"name\":\"Hache de Pierre\",\"keywords\":\"Impact 1, Perforant 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "insatiable curiosity": {
+    "nameFr": "Curiosité Insatiable",
+    "cardType": "upgrade",
+    "image": "insatiable-curiosity-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Insatiable Curiosity",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Insatiable%20Curiosity.webp",
+      "englishText": "Ewok Slingers or Ewok Skirmishers only. Free action: this unit may discard this card to choose an enemy Trooper unit in base contact with this unit's unit leader. If the chosen unit has 1 or more personnel or gear upgrades equipped, discard 1 of those non-unique or limited upgrades. Then this unit suffers 1 Wound.",
+      "frenchText": "{\"title\":\"Curiosité Insatiable\",\"body\":\"**Frondeurs Ewoks ou Escarmoucheurs Ewoks uniquement.**\\n{action-gratuite}Cette unité peut défausser cette carte pour choisir une unité de soldats ennemie au contact du socle de son chef d'unité. Si l'unité choisie est équipée d'au moins 1 amélioration Personnel ou Équipement, défaussez l'une de ces améliorations non unique ou limitée. Cette unité subit ensuite 1 blessure.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "ewok trapper": {
+    "nameFr": "Ewok Trappeur",
+    "cardType": "upgrade",
+    "image": "ewok-trapper-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Ewok Trapper",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ewok%20Trapper.webp",
+      "englishText": "Ewok Slingers or Ewok Skirmishers only. Add 1 Ewok Trapper miniature. This unit gains 1 training upgrade icon.",
+      "frenchText": "{\"title\":\"Ewok Trappeur\",\"body\":\"**Frondeurs Ewoks ou Escarmoucheurs Ewoks uniquement.**\\nAjoutez 1 figurine d'Ewok Trappeur.\\nCette unité gagne 1 emplacement d'amélioration Entraînement.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "secret ingredients": {
+    "nameFr": "•Ingrédients Secrets",
+    "cardType": "upgrade",
+    "image": "secret-ingredients-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "aide"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Secret Ingredients",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Secret%20Ingredients.webp",
+      "englishText": "Logray only. At the start of each Round, put 1 Aim token or 1 Dodge token on this card. At the start of this unit's Activation, it may remove any number of tokens from this card to gain an equal number of matching tokens. Additionally, after this unit uses Aid, it may remove 1 Suppression token.",
+      "frenchText": "{\"title\":\"•Ingrédients Secrets\",\"body\":\"**Logray uniquement.**\\nAu début de chaque round, placez 1 pion Viser ou 1 pion Esquive sur cette carte. Au début de l'activation de cette unité, elle peut retirer autant de pions de cette carte qu'elle le souhaite pour gagner autant de pions correspondants.\\nDe plus, après que cette unité a utilisé **Aide**, elle peut retirer 1 pion Suppression.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "herbal medicine": {
+    "nameFr": "•Médecine par les Plantes",
+    "cardType": "upgrade",
+    "image": "herbal-medicine-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Herbal Medicine",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Herbal%20Medicine.webp",
+      "englishText": "Logray only. Exhaust, free action: choose an allied Ewok Trooper unit within range 1 and in LOS. Remove 1 Wound from or restore 1 defeated miniature to the chosen unit.",
+      "frenchText": "{\"title\":\"•Médecine par les Plantes\",\"body\":\"**Logray uniquement.**\\n{incliner}{action-gratuite}Choisissez une unité de soldats Ewok alliée à portée 1 et en LdV. Retirez 1 blessure de l'unité choisie ou restaurez-lui 1 figurine vaincue.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "onward to victory": {
+    "nameFr": "•En Avant vers la Victoire",
+    "cardType": "upgrade",
+    "image": "onward-to-victory-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Onward to Victory",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Onward%20to%20Victory.webp",
+      "englishText": "Logray only. At the start of the Activation Phase, you may exhaust this card. If you do, at the start of the next End Phase, discard this card. While this card is exhausted, each time an enemy unit is defeated, after the effect is resolved, 1 allied Ewok Trooper unit may make a Speed-1 Move.",
+      "frenchText": "{\"title\":\"•En Avant vers la Victoire\",\"body\":\"**Logray uniquement.**\\nAu début de la __Phase d'Activation__, vous pouvez incliner cette carte. Dans ce cas, au début de la __Phase Finale__ suivante, défaussez cette carte. Tant que cette carte est inclinée, chaque fois qu'une unité ennemie est vaincue, après la résolution de l'effet, 1 unité de soldats Ewok alliée peut effectuer un déplacement à vitesse 1.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "ewok skirmisher squad": {
+    "nameFr": "Escouade d'Escarmoucheurs Ewoks",
+    "cardType": "upgrade",
+    "image": "ewok-skirmisher-squad-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "indomptable"
+      },
+      {
+        "keywordId": "transport"
+      }
+    ],
+    "addedModels": 4,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Ewok Skirmisher Squad",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ewok%20Skirmisher%20Squad.webp",
+      "englishText": "Ewok Skirmishers only. Add 4 Ewok Skirmisher miniatures. This unit gains Indomitable, even if these miniatures are defeated. Cohesion within range 1 of the unit leader instead of range 1/2, even if these miniatures are defeated. This unit cannot be Deployed or issued Orders using the Transport keyword.",
+      "frenchText": "{\"title\":\"Escouade d'Escarmoucheurs Ewoks\",\"body\":\"**Escarmoucheurs Ewoks uniquement.**\\nAjoutez 4 figurines d'Escarmoucheur Ewok.\\nCette unité gagne **Indomptable**. Elle conserve ce mot-clé même si ces figurines sont vaincues.\\nCette unité est en cohésion si toutes ses figurines sont à portée 1 du chef d'unité, au lieu de portée ½. Elle conserve cette règle même si ces figurines sont vaincues.\\nCette unité ne peut pas être déployée ni recevoir d'ordre grâce au mot-clé **Transport**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "ewok slinger squad": {
+    "nameFr": "Escouade de Frondeurs Ewoks",
+    "cardType": "upgrade",
+    "image": "ewok-slinger-squad-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "indomptable"
+      },
+      {
+        "keywordId": "transport"
+      }
+    ],
+    "addedModels": 4,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Ewok Slinger Squad",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Ewok%20Slinger%20Squad.webp",
+      "englishText": "Ewok Slingers only. Add 4 Ewok Slinger miniatures. This unit gains Indomitable, even if these miniatures are defeated. Cohesion within range 1 of the unit leader instead of range 1/2, even if these miniatures are defeated. This unit cannot be Deployed or issued Orders using the Transport keyword.",
+      "frenchText": "{\"title\":\"Escouade de Frondeurs Ewoks\",\"body\":\"**Frondeurs Ewoks uniquement.**\\nAjoutez 4 figurines de Frondeur Ewok.\\nCette unité gagne **Indomptable**. Elle conserve ce mot-clé même si ces figurines sont vaincues.\\nCette unité est en cohésion si toutes ses figurines sont à portée 1 du chef d'unité, au lieu de portée ½. Elle conserve cette règle même si ces figurines sont vaincues.\\nCette unité ne peut pas être déployée ni recevoir d'ordre grâce au mot-clé **Transport**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "black sun crew": {
+    "nameFr": "Équipage du Soleil Noir",
+    "cardType": "upgrade",
+    "image": "black-sun-crew-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Black Sun Crew",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Black%20Sun%20Crew.webp",
+      "englishText": "WLO-5 Speeder Tank only. This unit loses the Pirate Affiliation and gains the Black Sun Affiliation. At the start of the Activation Phase, this unit gains 1 Aim token or 1 Dodge token if there are 1 or more other allied Black Sun units within range 1 of this unit.",
+      "frenchText": "{\"title\":\"Équipage du Soleil Noir\",\"body\":\"**Tank Speeder WLO-5 uniquement.**\\nCette unité perd l'affiliation Pirates et gagne l'affiliation Soleil Noir.\\nAu début de la __Phase d'Activation__, cette unité gagne 1 pion Viser ou 1 pion Esquive s'il y a au moins 1 autre unité Soleil Noir alliée à portée 1 de cette unité.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "pyke syndicate crew": {
+    "nameFr": "Équipage du Syndicat Pyke",
+    "cardType": "upgrade",
+    "image": "pyke-syndicate-crew-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Pyke Syndicate Crew",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Pyke%20Syndicate%20Crew.webp",
+      "englishText": "WLO-5 Speeder Tank only. This unit loses the Pirate Affiliation and gains the Pyke Syndicate Affiliation. At the start of the Activation Phase, this unit gains 1 Aim token or 1 Dodge token if there are 1 or more other allied Pyke Syndicate units within range 1 of this unit.",
+      "frenchText": "{\"title\":\"Équipage du Syndicat Pyke\",\"body\":\"**Tank Speeder WLO-5 uniquement.**\\nCette unité perd l'affiliation Pirates et gagne l'affiliation Syndicat Pyke.\\nAu début de la __Phase d'Activation__, cette unité gagne 1 pion Viser ou 1 pion Esquive s'il y a au moins 1 autre unité Syndicat Pyke alliée à portée 1 de cette unité.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "weequay crew": {
+    "nameFr": "Équipage Weequay",
+    "cardType": "upgrade",
+    "image": "weequay-crew-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Weequay Crew",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Weequay%20Crew.webp",
+      "englishText": "WLO-5 Speeder Tank only. At the start of the Activation Phase, this unit gains 1 Aim token or 1 Dodge token if there are 1 or more other allied Pirate units within range 1 of this unit.",
+      "frenchText": "{\"title\":\"Équipage Weequay\",\"body\":\"**Tank Speeder WLO-5 uniquement.**\\nAu début de la __Phase d'Activation__, cette unité gagne 1 pion Viser ou 1 pion Esquive s'il y a au moins 1 autre unité Pirates alliée à portée 1 de cette unité.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "pirate captain": {
+    "nameFr": "Capitaine Pirate",
+    "cardType": "upgrade",
+    "image": "pirate-captain-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Pirate Captain",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Pirate%20Captain.webp",
+      "englishText": "WLO-5 Speeder Tank only. Free action: choose 1 Pirate unit within range 1 of this unit. The chosen unit removes 1 Suppression token or gains 1 Dodge token.",
+      "frenchText": "{\"title\":\"Capitaine Pirate\",\"body\":\"**Tank Speeder WLO-5 uniquement.**\\n{action-gratuite}Choisissez 1 unité Pirates à portée 1 de cette unité. L'unité choisie retire 1 pion Suppression ou gagne 1 pion Esquive.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "gang boss": {
+    "nameFr": "•Chef de Gang",
+    "cardType": "upgrade",
+    "image": "gang-boss-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "pilotage-de-vehicule-x",
+        "value": 2
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Gang Boss",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Gang%20Boss.webp",
+      "englishText": "Pirate Heavy only. This unit gains Command Vehicle 2. Only Pirate units may benefit from this unit's Command Vehicle X keyword.",
+      "frenchText": "{\"title\":\"•Chef de Gang\",\"body\":\"**Véhicule lourd Pirates uniquement.**\\nCette unité gagne **Pilotage de Véhicule 2**.\\nSeules les unités Pirates peuvent bénéficier du mot-clé **Pilotage de Véhicule X** de cette unité.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "long rifle pirate": {
+    "nameFr": "Pirate avec Fusil Long",
+    "cardType": "upgrade",
+    "image": "long-rifle-pirate-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Fusil Long",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": [
+          "letal-x"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Long Rifle Pirate",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Long%20Rifle%20Pirate.webp",
+      "englishText": "Weequay Pirates only. Add 1 Long Rifle Pirate miniature. Long Rifle (1 red, 2 white, 1-4): Lethal 1.",
+      "frenchText": "{\"title\":\"Pirate avec Fusil Long\",\"body\":\"**Pirates Weequays uniquement.**\\nAjoutez 1 figurine de Pirate avec Fusil Long.\",\"weapons\":[{\"name\":\"Fusil Long\",\"keywords\":\"Létal 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "weequay captain": {
+    "nameFr": "Capitaine Weequay",
+    "cardType": "upgrade",
+    "image": "weequay-captain-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Bravade",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Weequay Captain",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Weequay%20Captain.webp",
+      "englishText": "Weequay Pirates only. Add 1 Weequay Captain miniature. Leader. At the start of this unit's Activation, you may exhaust this card. If you do, this unit cannot remove Suppression tokens or be Suppressed during its Activation. Bravado (1 red, melee-2).",
+      "frenchText": "{\"title\":\"Capitaine Weequay\",\"body\":\"**Pirates Weequays uniquement.**\\nAjoutez 1 figurine de Capitaine Weequay. **Chef.**\\nAu début de l'activation de cette unité, vous pouvez incliner cette carte. Dans ce cas, cette unité ne peut ni retirer de pions Suppression ni être réprimée pendant son activation.\",\"weapons\":[{\"name\":\"Bravade\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "weequay pirate squad": {
+    "nameFr": "Escouade de Pirates Weequays",
+    "cardType": "upgrade",
+    "image": "weequay-pirate-squad-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "indomptable"
+      },
+      {
+        "keywordId": "transport"
+      }
+    ],
+    "addedModels": 4,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Weequay Pirate Squad",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Weequay%20Pirate%20Squad.webp",
+      "englishText": "Weequay Pirates only. Add 4 Weequay Pirate miniatures. This unit gains Indomitable, even if these miniatures are defeated. Cohesion within range 1 of the unit leader instead of range 1/2, even if these miniatures are defeated. This unit cannot be Deployed or issued Orders using the Transport keyword unless the unit with Transport has the same Affiliation as this unit.",
+      "frenchText": "{\"title\":\"Escouade de Pirates Weequays\",\"body\":\"**Pirates Weequays uniquement.**\\nAjoutez 4 figurines de Pirate Weequay.\\nCette unité gagne **Indomptable**. Elle conserve ce mot-clé même si ces figurines sont vaincues.\\nCette unité est en cohésion si toutes ses figurines sont à portée 1 du chef d'unité, au lieu de portée ½. Elle conserve cette règle même si ces figurines sont vaincues.\\nCette unité ne peut pas être déployée ni recevoir d'ordre grâce au mot-clé **Transport**, sauf si l'unité dotée de **Transport** a la même affiliation.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "electrostaff pirate": {
+    "nameFr": "Pirate avec Électrobâton",
+    "cardType": "upgrade",
+    "image": "electrostaff-pirate-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Électrobâton",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "immunite-perforant-corps-a-corps"
+      },
+      {
+        "keywordId": "arme-de-poing"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Electrostaff Pirate",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Electrostaff%20Pirate.webp",
+      "englishText": "Weequay Pirates only. Add 1 Electrostaff Pirate miniature. This unit gains Immune: Melee Pierce. Electrostaff (1 red, 1 black, melee): Sidearm: Melee.",
+      "frenchText": "{\"title\":\"Pirate avec Électrobâton\",\"body\":\"**Pirates Weequays uniquement.**\\nAjoutez 1 figurine de Pirate avec Électrobâton.\\nCette unité gagne **Immunité : Perforant au Corps-à-Corps**.\",\"weapons\":[{\"name\":\"Électrobâton\",\"keywords\":\"Arme de Poing : Corps-à-Corps\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "pyke syndicate foot soldier squad": {
+    "nameFr": "Escouade de Fantassins du Syndicat Pyke",
+    "cardType": "upgrade",
+    "image": "pyke-syndicate-foot-soldier-squad-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "indomptable"
+      }
+    ],
+    "addedModels": 5,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Pyke Syndicate Foot Soldier Squad",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Pyke%20Syndicate%20Foot%20Soldier%20Squad.webp",
+      "englishText": "Pyke Syndicate Foot Soldiers only. Add 5 Pyke Syndicate Foot Soldier miniatures. This unit gains Indomitable and 1 personnel upgrade icon. Cohesion within range 1 of the unit leader instead of range 1/2. This unit has these rules even if these miniatures are defeated.",
+      "frenchText": "{\"title\":\"Escouade de Fantassins du Syndicat Pyke\",\"body\":\"**Fantassins du Syndicat Pyke uniquement.**\\nAjoutez 5 figurines de Fantassin du Syndicat Pyke.\\nCette unité gagne **Indomptable** et 1 emplacement d'amélioration Personnel.\\nCette unité est en cohésion si toutes ses figurines sont à portée 1 du chef d'unité, au lieu de portée ½.\\nCette unité conserve ces règles même si ces figurines sont vaincues.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
   }
 }

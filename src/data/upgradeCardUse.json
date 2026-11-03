@@ -1100,6 +1100,96 @@
     "mudtrooper squad": {
       "use": "passive",
       "icons": []
+    },
+    "forest dwellers": {
+      "use": "passive",
+      "icons": []
+    },
+    "call to arms": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "axe ewok": {
+      "use": "passive",
+      "icons": []
+    },
+    "insatiable curiosity": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "ewok trapper": {
+      "use": "passive",
+      "icons": []
+    },
+    "secret ingredients": {
+      "use": "passive",
+      "icons": []
+    },
+    "herbal medicine": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "onward to victory": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "ewok skirmisher squad": {
+      "use": "passive",
+      "icons": []
+    },
+    "ewok slinger squad": {
+      "use": "passive",
+      "icons": []
+    },
+    "black sun crew": {
+      "use": "passive",
+      "icons": []
+    },
+    "pyke syndicate crew": {
+      "use": "passive",
+      "icons": []
+    },
+    "weequay crew": {
+      "use": "passive",
+      "icons": []
+    },
+    "pirate captain": {
+      "use": "passive",
+      "icons": []
+    },
+    "gang boss": {
+      "use": "passive",
+      "icons": []
+    },
+    "long rifle pirate": {
+      "use": "passive",
+      "icons": []
+    },
+    "weequay captain": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "weequay pirate squad": {
+      "use": "passive",
+      "icons": []
+    },
+    "electrostaff pirate": {
+      "use": "passive",
+      "icons": []
+    },
+    "pyke syndicate foot soldier squad": {
+      "use": "passive",
+      "icons": []
     }
   }
 }

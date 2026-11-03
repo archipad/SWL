@@ -91,5 +91,13 @@ window.SWL_CODEX_PORTRAITS={
   "grand moff tarkin imperial high command": "../cards/grand-moff-tarkin-imperial-high-command-fr-community.jpg",
   "general tagge imperial high command": "../cards/general-tagge-imperial-high-command-fr-community.jpg",
   "wet weather gear stormtrooper": "../cards/wet-weather-gear-stormtrooper-fr-community.jpg",
-  "imperial mudtroopers": "../cards/imperial-mudtroopers-fr-community.jpg"
+  "imperial mudtroopers": "../cards/imperial-mudtroopers-fr-community.jpg",
+  "wicket hero of bright tree": "../cards/wicket-hero-of-bright-tree-fr-community.jpg",
+  "ewok skirmishers": "../cards/ewok-skirmishers-fr-community.jpg",
+  "ewok slingers": "../cards/ewok-slingers-fr-community.jpg",
+  "c 3po golden god": "../cards/c-3po-golden-god-fr-community.jpg",
+  "logray superstitious shaman": "../cards/logray-superstitious-shaman-fr-community.jpg",
+  "hondo ohnaka trustworthy compatriot": "../cards/hondo-ohnaka-trustworthy-compatriot-fr-community.jpg",
+  "weequay pirates": "../cards/weequay-pirates-fr-community.jpg",
+  "wlo 5 speeder tank": "../cards/wlo-5-speeder-tank-fr-community.jpg"
 };

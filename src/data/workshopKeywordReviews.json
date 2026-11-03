@@ -9484,6 +9484,604 @@
       "status": "keywords-reviewed",
       "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
       "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:wicket hero of bright tree",
+      "front": {
+        "file": "cards/wicket-hero-of-bright-tree-fr-community.jpg",
+        "sha256": "f9fb67f0c46e2f00af59b27d8d1df9e891cc8d3d18b81cebee7e1db9a0de500e",
+        "bytes": 211497
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : Rebelles"
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Esquive 1"
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "agile"
+        },
+        {
+          "keywordId": "implacable"
+        },
+        {
+          "keywordId": "eclaireur-x",
+          "value": 1
+        },
+        {
+          "keywordId": "equipe-declaireurs-x",
+          "value": 2
+        },
+        {
+          "keywordId": "sans-entrave"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "primitif"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:ewok skirmishers",
+      "front": {
+        "file": "cards/ewok-skirmishers-fr-community.jpg",
+        "sha256": "66a5c2b0b8e8b1de4c66e5d16d10bfac78ec991e46f090bc8e27e8aab51b2d0e",
+        "bytes": 181315
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : Rebelles"
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "sans-entrave"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:ewok slingers",
+      "front": {
+        "file": "cards/ewok-slingers-fr-community.jpg",
+        "sha256": "6d20402ef8bc6e05e9da7405fc81006ea87f17c0f49f2e565f1c15240c41a55c",
+        "bytes": 173829
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : Rebelles"
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Adrénaline 1"
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "cible-x",
+          "value": 1
+        },
+        {
+          "keywordId": "primitif"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:c 3po golden god",
+      "front": {
+        "file": "cards/c-3po-golden-god-fr-community.jpg",
+        "sha256": "f5aa3c50e6bf5fd44cc4d60889da30f73f8274e8a215653d4e0144442ebee1ce",
+        "bytes": 176670
+      },
+      "keywords": [
+        {
+          "keywordId": "maitre-conteur"
+        },
+        {
+          "keywordId": "contrainte",
+          "label": "Contrainte : soldat Ewok"
+        },
+        {
+          "keywordId": "infiltration"
+        },
+        {
+          "keywordId": "influence-divine"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:logray superstitious shaman",
+      "front": {
+        "file": "cards/logray-superstitious-shaman-fr-community.jpg",
+        "sha256": "164cc757b6a05b2c4d44af19f8cd6b3af71527f7d5f1e4fae065ae147f2bfb9b",
+        "bytes": 179929
+      },
+      "keywords": [
+        {
+          "keywordId": "aide",
+          "label": "Aide : soldat Ewok"
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Viser 1 ou Esquive 1"
+        },
+        {
+          "keywordId": "inspiration-x",
+          "value": 2
+        },
+        {
+          "keywordId": "profil-bas"
+        },
+        {
+          "keywordId": "agile"
+        },
+        {
+          "keywordId": "suppressif"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:hondo ohnaka trustworthy compatriot",
+      "front": {
+        "file": "cards/hondo-ohnaka-trustworthy-compatriot-fr-community.jpg",
+        "sha256": "1a8ec24313b3ec1a68f99cd3ce7ae94c4023fb91c17d70871cc7407aa34847b6",
+        "bytes": 170833
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : toutes factions"
+        },
+        {
+          "keywordId": "arsenal-x",
+          "label": "Arsenal X"
+        },
+        {
+          "keywordId": "retrait"
+        },
+        {
+          "keywordId": "autonome",
+          "label": "Autonome : Esquive X"
+        },
+        {
+          "keywordId": "je-sens-le-profit"
+        },
+        {
+          "keywordId": "agile"
+        },
+        {
+          "keywordId": "fiable-x",
+          "label": "Fiable X"
+        },
+        {
+          "keywordId": "coup-de-chance-x",
+          "label": "Coup de Chance X"
+        },
+        {
+          "keywordId": "polyvalent"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:weequay pirates",
+      "front": {
+        "file": "cards/weequay-pirates-fr-community.jpg",
+        "sha256": "f188409ae1f4030510dcb55e7b50f5c6953e16db75940e20f42e2ae44bce7e9f",
+        "bytes": 164348
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : toutes factions"
+        },
+        {
+          "keywordId": "charge"
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Viser 1"
+        },
+        {
+          "keywordId": "instinct-de-survie"
+        },
+        {
+          "keywordId": "matamore"
+        },
+        {
+          "keywordId": "polyvalent"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:wlo 5 speeder tank",
+      "front": {
+        "file": "cards/wlo-5-speeder-tank-fr-community.jpg",
+        "sha256": "cf1f361733373ba3f59cb8698c8b1f1637dc7154088a3ae1a4718e95eaaebfdf",
+        "bytes": 165093
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : toutes factions"
+        },
+        {
+          "keywordId": "armure-x",
+          "value": 5
+        },
+        {
+          "keywordId": "arsenal-x",
+          "value": 2
+        },
+        {
+          "keywordId": "sustentation",
+          "label": "Sustentation : Terrestre"
+        },
+        {
+          "keywordId": "transport"
+        },
+        {
+          "keywordId": "point-faible-x",
+          "value": 2,
+          "label": "Point Faible 2 : Arrière"
+        },
+        {
+          "keywordId": "fixe",
+          "label": "Fixe : Avant"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:forest dwellers",
+      "front": {
+        "file": "cards/forest-dwellers-fr-community.jpg",
+        "sha256": "cbe50ab41a78582413492e4895f953fbd57dc50936ad2d5d040e0eeb73be1e36",
+        "bytes": 156332
+      },
+      "keywords": [
+        {
+          "keywordId": "eclaireur-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:call to arms",
+      "front": {
+        "file": "cards/call-to-arms-fr-community.jpg",
+        "sha256": "324978fb2ac790819ef9774536f6786f335a921724db30264a4bacd2828b5bd6",
+        "bytes": 153794
+      },
+      "keywords": [
+        {
+          "keywordId": "charge"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:axe ewok",
+      "front": {
+        "file": "cards/axe-ewok-fr-community.jpg",
+        "sha256": "86fe34381bc094c28e4be6c02524486bc74d463573dcbbe85a57f232f8a22c9f",
+        "bytes": 155855
+      },
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:insatiable curiosity",
+      "front": {
+        "file": "cards/insatiable-curiosity-fr-community.jpg",
+        "sha256": "d689ed574e7e6c5ca9ab54609e013c78822434e0638936dfe5f80927730263f4",
+        "bytes": 181248
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:ewok trapper",
+      "front": {
+        "file": "cards/ewok-trapper-fr-community.jpg",
+        "sha256": "04befc3b42cfef0299c496004d1b13f7b94a92ee2b6d81255d936f3d5b03c34e",
+        "bytes": 157693
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:secret ingredients",
+      "front": {
+        "file": "cards/secret-ingredients-fr-community.jpg",
+        "sha256": "199acb1a79d1898b25c56c7983d82f875653a0510e47d32a6d2e7cee08c345f2",
+        "bytes": 172945
+      },
+      "keywords": [
+        {
+          "keywordId": "aide"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:herbal medicine",
+      "front": {
+        "file": "cards/herbal-medicine-fr-community.jpg",
+        "sha256": "8071da48542002d43f52f0e32938f03de5f7c34d3decbf1b39a56c1ec4e7a658",
+        "bytes": 160214
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:onward to victory",
+      "front": {
+        "file": "cards/onward-to-victory-fr-community.jpg",
+        "sha256": "fd9ae31b1b5fac953a994497054ef7cffa7869c95bb238af37ca9512abeacd55",
+        "bytes": 177129
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:ewok skirmisher squad",
+      "front": {
+        "file": "cards/ewok-skirmisher-squad-fr-community.jpg",
+        "sha256": "79f1ba245e44764d12c07f115edd2a7809753f0138a51826d789bc25499d501d",
+        "bytes": 183973
+      },
+      "keywords": [
+        {
+          "keywordId": "indomptable"
+        },
+        {
+          "keywordId": "transport"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:ewok slinger squad",
+      "front": {
+        "file": "cards/ewok-slinger-squad-fr-community.jpg",
+        "sha256": "732bd76c8c2d8659ebd24aaecceaa49124c35b8792a4056f440c5d9ca70de04c",
+        "bytes": 181645
+      },
+      "keywords": [
+        {
+          "keywordId": "indomptable"
+        },
+        {
+          "keywordId": "transport"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:black sun crew",
+      "front": {
+        "file": "cards/black-sun-crew-fr-community.jpg",
+        "sha256": "b0ef4a8f56fb848f7ff69d98fe29485246dbd1d6b46d3dbd3b541ae1d62285fc",
+        "bytes": 175492
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:pyke syndicate crew",
+      "front": {
+        "file": "cards/pyke-syndicate-crew-fr-community.jpg",
+        "sha256": "2c4c8ea571b47755d076c159cd618975c7825e99b5c801c6d5453b93b9871f83",
+        "bytes": 197526
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:weequay crew",
+      "front": {
+        "file": "cards/weequay-crew-fr-community.jpg",
+        "sha256": "d6cbb276e8ab88de22e06de0456f8e900e83547efb2a6f01ea85f00af756c605",
+        "bytes": 183465
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:pirate captain",
+      "front": {
+        "file": "cards/pirate-captain-fr-community.jpg",
+        "sha256": "ea86efb86123f153fcd8ac7c36bab33eea21f02dda932631f03d80dbdf63fd1e",
+        "bytes": 173228
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:gang boss",
+      "front": {
+        "file": "cards/gang-boss-fr-community.jpg",
+        "sha256": "4c46437ac5a48af2d043b9c30c5fb06f80dd838db0330a9d74367429a2d30d4b",
+        "bytes": 149515
+      },
+      "keywords": [
+        {
+          "keywordId": "pilotage-de-vehicule-x",
+          "value": 2,
+          "label": "Pilotage de Véhicule 2"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:long rifle pirate",
+      "front": {
+        "file": "cards/long-rifle-pirate-fr-community.jpg",
+        "sha256": "33025a280ffa11551ba11898aa52e8c612b76ad73ca2b59a0d3fc4c59ba72c98",
+        "bytes": 175204
+      },
+      "keywords": [
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:weequay captain",
+      "front": {
+        "file": "cards/weequay-captain-fr-community.jpg",
+        "sha256": "31d568a3f27da74ce40c3d6a07cf0f89b00a80904075894327053eda4a8a4373",
+        "bytes": 183537
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:weequay pirate squad",
+      "front": {
+        "file": "cards/weequay-pirate-squad-fr-community.jpg",
+        "sha256": "21d85c5a1d7cc3cb47296aa952fb6a10c1ac116664a852e6d48e5ed700ba293e",
+        "bytes": 180089
+      },
+      "keywords": [
+        {
+          "keywordId": "indomptable"
+        },
+        {
+          "keywordId": "transport"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:electrostaff pirate",
+      "front": {
+        "file": "cards/electrostaff-pirate-fr-community.jpg",
+        "sha256": "2388ebdaf03a91a85c80a7453df67cb4ddd4900814e992eb679ce8d5a4c5a27a",
+        "bytes": 137158
+      },
+      "keywords": [
+        {
+          "keywordId": "immunite-perforant-corps-a-corps"
+        },
+        {
+          "keywordId": "arme-de-poing"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:pyke syndicate foot soldier squad",
+      "front": {
+        "file": "cards/pyke-syndicate-foot-soldier-squad-fr-community.jpg",
+        "sha256": "f168222dcb3a9338abdeb5cc31d9f177994ce8a4d09d78f90cb2b1bf04584c74",
+        "bytes": 194522
+      },
+      "keywords": [
+        {
+          "keywordId": "indomptable"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
     }
   ],
   "lots": [

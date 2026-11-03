@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.
 
-344 cartes connues dans le référentiel · 102 cartes à effet propre · 58 sondes rejouées dans l’Assistant.
+372 cartes connues dans le référentiel · 107 cartes à effet propre · 63 sondes rejouées dans l’Assistant.
 
 | Carte | ↱ / ✖ | Traitement | Où | Remarque |
 |---|---|---|---|---|
@@ -17,6 +17,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Boba Fett, Infâme Chasseur de Primes | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Pointe de Vitesse | ✖ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Électro-Gantelets | — | Rappel (briefing) | briefing tactique | règle de déplacement engagé rappelée dans le briefing |
+| Appel aux Armes | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Capitaine Rex | — | Panneau d’attaque | étape(s) 6 (bouton) |  |
 | Cassian Andor | — | Carte retournable | bouton « Retourner la carte » (mots-clés, vitesse et courage selon la face) |  |
 | Clairvoyance | ✖ | Panneau d’attaque | étape(s) 5 (bouton) |  |
@@ -48,6 +49,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Surcharge du Générateur | ↱ | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | •Gideon Hask | — | Statistique | vitesse / courage de la fiche |  |
 | Gouverneur Pryce | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| •Médecine par les Plantes | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Frappe et Fuite | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Liaison HQ | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Hunter | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
@@ -62,6 +64,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Ordres Improvisés | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Dans la Mêlée | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Entraînement de l'Inquisitorius | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Curiosité Insatiable | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Présence Inspirante | — | Panneau d’attaque | étape(s) 6 (bouton) |  |
 | Agent Kallus | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Kraken | — | Panneau d’attaque | étape(s) 1, 2 (bouton) |  |
@@ -72,6 +75,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Poussée Offensive | ↱ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Vieille Ruse Jedi | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | En Chasse | — | Panneau d’attaque | étape(s) 2 (bouton) |  |
+| •En Avant vers la Victoire | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | À Bout Portant | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Loyauté Programmée | — | Rappel (briefing) | briefing tactique | restriction d’ordres rappelée dans le briefing |
 | Protecteur | ↱ | Panneau d’attaque | étape(s) 4 (bouton) |  |
@@ -107,4 +111,5 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Astromech Instable | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Vigilance | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Wedge Antilles | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Capitaine Weequay | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Wrecker | — | Rappel (briefing) | briefing tactique | protection de l’Alter Ego Omega rappelée dans le briefing |
