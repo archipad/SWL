@@ -328,8 +328,8 @@ def upgrade(rgb, fr, report):
     # Bloc de texte : lignes foncées SUR FOND BLANC (la case peut commencer haut si l'illustration est courte),
     # regroupées en remontant depuis le bas tant que l'écart reste celui d'un texte.
     def on_white(line):
-        return (g[line[0]:line[1] + 1, 70:655] > 170).mean() >= 0.55
-    lines = [l for l in text_lines(g, (70, 300, 655, bottom), 'dark', 110, 3) if 10 <= l[1] - l[0] <= 50 and on_white(l)]
+        return (g[line[0]:line[1] + 1, 70:655] > 170).mean() >= 0.5
+    lines = [l for l in text_lines(g, (70, 230, 655, bottom), 'dark', 110, 3) if 10 <= l[1] - l[0] <= 50 and on_white(l)]
     block = []
     for line in reversed(lines):
         if block and block[0][0] - line[1] > 45:
@@ -347,7 +347,7 @@ def upgrade(rgb, fr, report):
                 report.problem('texte anglais possiblement resté au-dessus du bloc traduit')
         # La zone française peut remonter tant que le fond reste blanc (traduction plus longue que l'anglais).
         white_top = top
-        while white_top > 300 and g[white_top - 1, 80:640].mean() > 212:
+        while white_top > 230 and g[white_top - 1, 80:640].mean() > 212:
             white_top -= 1
         pitch = np.median([b2[0] - b1[0] for b1, b2 in zip(block, block[1:])]) if len(block) > 1 else 46
         img = Image.fromarray(rgb)
@@ -508,7 +508,7 @@ def unit(rgb, fr, report):
     g = gray(rgb)
     H, W = g.shape
     # Maquette officielle : nom sur le bandeau du haut, puis sous-titre éventuel et type d'unité sous le nom.
-    names = [l for l in text_lines(g, (int(W * 0.15), 0, int(W * 0.82), int(H * 0.115)), 'light', 160, 2) if l[1] - l[0] >= H * 0.02]
+    names = [l for l in text_lines(g, (int(W * 0.15), 0, int(W * 0.855), int(H * 0.115)), 'light', 160, 2) if l[1] - l[0] >= H * 0.02]
     name = max(names, key=lambda l: l[1] - l[0]) if names else None
     below = [l for l in bar_lines(g, (int(W * 0.15), (name[1] + 2) if name else int(H * 0.06), int(W * 0.60), int(H * 0.20)),
                                   150, H * 0.008)]
@@ -522,7 +522,9 @@ def unit(rgb, fr, report):
             sub = below[0]
     bars = weapon_bars(g, int(W * 0.03), int(W * 0.44), int(H * 0.55), int(H * 0.99), H * 0.045)
     kw_bottom = (bars[0][0] - 6) if bars else int(H * 0.6)
-    kw = [l for l in text_lines(g, (int(W * 0.02), int(H * 0.17), int(W * 0.60), kw_bottom), 'dark', 185, 2) if l[1] - l[0] >= H * 0.012]
+    # Gabarits à grand bandeau (Corps, Soutien) : le bas du bandeau violet descend sous 17 % ; on part sous la ligne de type.
+    kw_top = max(int(H * 0.17), (kind[1] + int(H * 0.035)) if kind else 0)
+    kw = [l for l in text_lines(g, (int(W * 0.02), kw_top, int(W * 0.60), kw_bottom), 'dark', 185, 2) if l[1] - l[0] >= H * 0.012]
     header = [('name', name, 1.32, 0.0, int(W * 0.84), 160), ('subtitle', sub, 1.4, 0.04, int(W * 0.66), 150),
               ('type', kind, 1.45, 0.07, int(W * 0.62), 150)]
     # Tout est effacé avant d'écrire : une zone effacée ne mord jamais sur un texte déjà réécrit.
@@ -545,7 +547,8 @@ def unit(rgb, fr, report):
                       align='left', lh=1.0, ls=ls, wrap=False)
     if lines_fr and kw:
         top, left = kw[0][0], min(l[2] for l in kw)
-        cap = float(np.median([l[1] - l[0] for l in kw]))
+        # Bas quartile : une icône haute (Équipe : icône) ne grossit pas tout le bloc.
+        cap = float(np.percentile([l[1] - l[0] for l in kw], 25))
         pitch = float(np.median([b[0] - a[0] for a, b in zip(kw, kw[1:])])) if len(kw) > 1 else cap * 2.2
         for i, text in enumerate(lines_fr):
             y = top + i * pitch
