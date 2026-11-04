@@ -525,11 +525,18 @@ def unit(rgb, fr, report):
             kind = below[0]
         else:
             sub = below[0]
+    # Visuel basse définition : le sous-titre touche le nom et forme une seule ligne trop haute ; on la coupe à la rangée la moins encrée.
+    if fr.get('subtitle') and not sub and name and name[1] - name[0] > H * 0.065:
+        a, b, lx, rx = name
+        ink = (g[a:b + 1, lx:rx + 1] > 160).sum(1)
+        lo, hi = int((b - a) * 0.55), int((b - a) * 0.85)
+        cut = a + lo + int(np.argmin(ink[lo:hi + 1]))
+        name, sub = (a, cut - 1, lx, rx), (cut + 1, b, lx, rx)
     bars = weapon_bars(g, int(W * 0.03), int(W * 0.44), int(H * 0.55), int(H * 0.99), H * 0.045)
     kw_bottom = (bars[0][0] - 6) if bars else int(H * 0.6)
     # Gabarits à grand bandeau (Corps, Soutien) : le bas du bandeau violet descend sous 17 % ; on part sous la ligne de type.
     kw_top = max(int(H * 0.17), (kind[1] + int(H * 0.035)) if kind else 0)
-    kw = [l for l in text_lines(g, (int(W * 0.02), kw_top, int(W * 0.60), kw_bottom), 'dark', 185, 2) if l[1] - l[0] >= H * 0.012]
+    kw = [l for l in text_lines(g, (int(W * 0.02), kw_top, int(W * 0.63), kw_bottom), 'dark', 185, 2) if l[1] - l[0] >= H * 0.012]
     header = [('name', name, 1.32, 0.0, int(W * 0.84), 160), ('subtitle', sub, 1.4, 0.04, int(W * 0.66), 150),
               ('type', kind, 1.45, 0.07, int(W * 0.62), 150)]
     # Tout est effacé avant d'écrire : une zone effacée ne mord jamais sur un texte déjà réécrit.
@@ -548,7 +555,9 @@ def unit(rgb, fr, report):
     for key, line, size_k, ls, right, _ in header:
         if fr.get(key) and line:
             a, b, lx, _ = line
-            draw_text(img, (lx, a - 6, right, b + 7), fr[key], (b - a) * size_k, report, key, style='band', color=WHITE,
+            # Sous-titre et type : plafonnés, une ligne fondue dans le bord du bandeau ne doit pas grossir le texte.
+            size = (b - a) * size_k if key == 'name' else min((b - a) * size_k, H * 0.028)
+            draw_text(img, (lx, a - 6, right, b + 7), fr[key], size, report, key, style='band', color=WHITE,
                       align='left', lh=1.0, ls=ls, wrap=False)
     if lines_fr and kw:
         top, left = kw[0][0], min(l[2] for l in kw)
