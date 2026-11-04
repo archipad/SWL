@@ -2,7 +2,7 @@
 
 Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.
 
-372 cartes connues dans le référentiel · 107 cartes à effet propre · 63 sondes rejouées dans l’Assistant.
+411 cartes connues dans le référentiel · 111 cartes à effet propre · 67 sondes rejouées dans l’Assistant.
 
 | Carte | ↱ / ✖ | Traitement | Où | Remarque |
 |---|---|---|---|---|
@@ -13,6 +13,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Générateur de Barrage | ↱ | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | Wookie avec Bouclier de Combat | — | Carte retournable | bouton « Retourner la carte » (mots-clés, vitesse et courage selon la face) |  |
 | Homme de Main du Soleil Noir | — | Rappel (briefing) | briefing tactique | conserve Cache si la figurine est vaincue : rappelé dans le briefing |
+| •Bo-Katan Kryze (amélioration) | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Boba Fett, Daimyo de Mos Espa | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Boba Fett, Infâme Chasseur de Primes | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
 | Pointe de Vitesse | ✖ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
@@ -69,6 +70,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Agent Kallus | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Kraken | — | Panneau d’attaque | étape(s) 1, 2 (bouton) |  |
 | Super Commandos Mandaloriens | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
+| Lance-Micro-Grenades | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Objectif de Mission | ↱ | Panneau d’attaque | étape(s) 2 (bouton) |  |
 | Artilleurs Montés | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Posture Offensive | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
@@ -106,10 +108,12 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Super Commando Mandalorien | — | Rappel (briefing) | briefing tactique | conserve Cache si la figurine est vaincue : rappelé dans le briefing |
 | Munitions Antichar | ✖ | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | Ténacité | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
+| ••Roquettes Dorsales (Outils du Métier) | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Agent de Confiance | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Tacticien Peu Orthodoxe | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Astromech Instable | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Vigilance | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Wedge Antilles | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Capitaine Weequay | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| ••Lanceur de Corde | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Wrecker | — | Rappel (briefing) | briefing tactique | protection de l’Alter Ego Omega rappelée dans le briefing |

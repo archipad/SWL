@@ -1190,6 +1190,122 @@
     "pyke syndicate foot soldier squad": {
       "use": "passive",
       "icons": []
+    },
+    "din djarin upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "the armorer upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "mandalorian initiate squad": {
+      "use": "passive",
+      "icons": []
+    },
+    "galaar 15 carbines": {
+      "use": "passive",
+      "icons": []
+    },
+    "shukur 05 repeater": {
+      "use": "passive",
+      "icons": []
+    },
+    "micro grenade launcher": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "axe woves upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "bo katan kryze upgrade": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "paz vizsla upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "clan kryze": {
+      "use": "passive",
+      "icons": []
+    },
+    "clan wren": {
+      "use": "passive",
+      "icons": []
+    },
+    "children of the watch": {
+      "use": "passive",
+      "icons": []
+    },
+    "clan saxon": {
+      "use": "passive",
+      "icons": []
+    },
+    "tools of the trade jetpack rockets": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "personal combat shield": {
+      "use": "passive",
+      "icons": []
+    },
+    "whipcord launcher": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "sabine wren upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "guild member": {
+      "use": "passive",
+      "icons": []
+    },
+    "deadeye": {
+      "use": "passive",
+      "icons": []
+    },
+    "vibrosword": {
+      "use": "passive",
+      "icons": []
+    },
+    "dual armaments": {
+      "use": "passive",
+      "icons": []
+    },
+    "ee 3 carbine rifle": {
+      "use": "passive",
+      "icons": []
+    },
+    "galaar 15 carbine": {
+      "use": "passive",
+      "icons": []
+    },
+    "war party leader": {
+      "use": "passive",
+      "icons": []
+    },
+    "full beskar armor": {
+      "use": "passive",
+      "icons": []
+    },
+    "han solo reckless smuggler": {
+      "use": "passive",
+      "icons": []
+    },
+    "chewbacca courageous co pilot": {
+      "use": "passive",
+      "icons": []
     }
   }
 }

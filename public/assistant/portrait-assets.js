@@ -99,5 +99,17 @@ window.SWL_CODEX_PORTRAITS={
   "logray superstitious shaman": "../cards/logray-superstitious-shaman-fr-community.jpg",
   "hondo ohnaka trustworthy compatriot": "../cards/hondo-ohnaka-trustworthy-compatriot-fr-community.jpg",
   "weequay pirates": "../cards/weequay-pirates-fr-community.jpg",
-  "wlo 5 speeder tank": "../cards/wlo-5-speeder-tank-fr-community.jpg"
+  "wlo 5 speeder tank": "../cards/wlo-5-speeder-tank-fr-community.jpg",
+  "savage opress maul s enforcer": "../cards/savage-opress-maul-s-enforcer-fr-community.jpg",
+  "mandalorian initiates": "../cards/mandalorian-initiates-fr-community.jpg",
+  "mandalorian warriors": "../cards/mandalorian-warriors-fr-community.jpg",
+  "mandalorian warriors fire support": "../cards/mandalorian-warriors-fire-support-fr-community.jpg",
+  "clan kryze veterans": "../cards/clan-kryze-veterans-fr-community.jpg",
+  "mandalorian leader": "../cards/mandalorian-leader-fr-community.jpg",
+  "bo katan kryze savior of mandalore": "../cards/bo-katan-kryze-savior-of-mandalore-fr-community.jpg",
+  "the armorer forging the future": "../cards/the-armorer-forging-the-future-fr-community.jpg",
+  "paz vizsla proud warrior": "../cards/paz-vizsla-proud-warrior-fr-community.jpg",
+  "han chewie notorious scoundrels": "../cards/han-chewie-notorious-scoundrels-fr-community.jpg",
+  "ursa wren leader of clan wren": "../cards/ursa-wren-leader-of-clan-wren-fr-community.jpg",
+  "rook kast devoted to the cause": "../cards/rook-kast-devoted-to-the-cause-fr-community.jpg"
 };

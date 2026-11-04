@@ -10082,6 +10082,961 @@
       "status": "keywords-reviewed",
       "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
       "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:savage opress maul s enforcer",
+      "front": {
+        "file": "cards/savage-opress-maul-s-enforcer-fr-community.jpg",
+        "sha256": "4d520ad47ae35bfe0a726ac4fffb75f4f5aece0eaeb5832da48f8837d1a8a512",
+        "bytes": 138010
+      },
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 1
+        },
+        {
+          "keywordId": "demoraliser-x",
+          "value": 1
+        },
+        {
+          "keywordId": "enrage-x",
+          "value": 2
+        },
+        {
+          "keywordId": "immunite-perforant"
+        },
+        {
+          "keywordId": "escorte",
+          "label": "Escorte : Maul"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 2
+        },
+        {
+          "keywordId": "belier-x",
+          "value": 1
+        },
+        {
+          "keywordId": "poison-x",
+          "value": 1
+        },
+        {
+          "keywordId": "dispersion"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:mandalorian initiates",
+      "front": {
+        "file": "cards/mandalorian-initiates-fr-community.jpg",
+        "sha256": "5d4dd0c414e47f8d350cea7d87b60f34924ca05fb4cdfd979a94009c9a316952",
+        "bytes": 117931
+      },
+      "keywords": [
+        {
+          "keywordId": "longue-distance"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:mandalorian warriors",
+      "front": {
+        "file": "cards/mandalorian-warriors-fr-community.jpg",
+        "sha256": "bcfe9717f20173d241c35a06927f16e62a6cd8334a3335a763fdc71bf11f2711",
+        "bytes": 126572
+      },
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "duelliste"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "longue-distance"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:mandalorian warriors fire support",
+      "front": {
+        "file": "cards/mandalorian-warriors-fire-support-fr-community.jpg",
+        "sha256": "d184860a0a8181737be8035779633eccc976381d78a72cbfa9806d6b606da49f",
+        "bytes": 153935
+      },
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "detachement",
+          "label": "Détachement : Guerriers Mandaloriens"
+        },
+        {
+          "keywordId": "equipe-avec-arme-lourde"
+        },
+        {
+          "keywordId": "duelliste"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        },
+        {
+          "keywordId": "longue-distance"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:clan kryze veterans",
+      "front": {
+        "file": "cards/clan-kryze-veterans-fr-community.jpg",
+        "sha256": "363a1dbecc3dfd9151acde210c3f7664bef01e0a4d996e5a1bd87afb286ed23f",
+        "bytes": 143777
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : Rebelles, République"
+        },
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:mandalorian leader",
+      "front": {
+        "file": "cards/mandalorian-leader-fr-community.jpg",
+        "sha256": "71ea5b42d14075dd1eab0960896a8bc2a93a3b6cf7c7b582384886fdb97424ed",
+        "bytes": 132087
+      },
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "equipe",
+          "label": "Équipe : armement, doctrine"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "escorte",
+          "label": "Escorte : Guerriers Mandaloriens"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:bo katan kryze savior of mandalore",
+      "front": {
+        "file": "cards/bo-katan-kryze-savior-of-mandalore-fr-community.jpg",
+        "sha256": "c88692f2787dfff3c8307ef350ce5354afa4dadcfc9bd57159d4ddd9502cd19c",
+        "bytes": 145203
+      },
+      "keywords": [
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : Rebelles, République"
+        },
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "la-mort-venue-du-ciel"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        },
+        {
+          "keywordId": "haute-velocite"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:the armorer forging the future",
+      "front": {
+        "file": "cards/the-armorer-forging-the-future-fr-community.jpg",
+        "sha256": "1a7252685aba45cc7dee247036d54833f253846cc1aa348256263b7cbf8e14cc",
+        "bytes": 126766
+      },
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "aide",
+          "label": "Aide : Enfants de la Ronde"
+        },
+        {
+          "keywordId": "charge"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "fiable-x",
+          "value": 1
+        },
+        {
+          "keywordId": "telle-est-la-voie",
+          "value": 1,
+          "label": "Telle est la Voie : Se Déplacer 1 ou Récupérer 2"
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:paz vizsla proud warrior",
+      "front": {
+        "file": "cards/paz-vizsla-proud-warrior-fr-community.jpg",
+        "sha256": "951be8caf27c70649618aa1079076602f4eb6546f4f60a9da4e1a10e54b515d4",
+        "bytes": 149980
+      },
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "commandant-des-operations"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "aguerri"
+        },
+        {
+          "keywordId": "telle-est-la-voie",
+          "value": 2,
+          "label": "Telle est la Voie : Viser 2"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "debordement"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:han chewie notorious scoundrels",
+      "front": {
+        "file": "cards/han-chewie-notorious-scoundrels-fr-community.jpg",
+        "sha256": "ebd5587dc3d50f8cba82e02cf8a588542f5053fb2f744ed88ed6cf19edff6f2e",
+        "bytes": 123410
+      },
+      "keywords": [
+        {
+          "keywordId": "equipe",
+          "label": "Équipe : Han Solo, Contrebandier Téméraire ; Chewbacca, Copilote Courageux"
+        },
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : Rebelles"
+        },
+        {
+          "keywordId": "tenir-le-cap",
+          "label": "Tenir le Cap : Aguerri"
+        },
+        {
+          "keywordId": "instinct-de-survie"
+        },
+        {
+          "keywordId": "coup-de-chance-x",
+          "value": 2
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:ursa wren leader of clan wren",
+      "front": {
+        "file": "cards/ursa-wren-leader-of-clan-wren-fr-community.jpg",
+        "sha256": "d921d3bc73e60fedc17b39ef8f517c61f0bf2c24dae761b65294ffe8a89653e3",
+        "bytes": 144194
+      },
+      "keywords": [
+        {
+          "keywordId": "assistance-x",
+          "value": 2
+        },
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "mercenaire",
+          "label": "Mercenaire : Rebelles"
+        },
+        {
+          "keywordId": "entourage",
+          "label": "Entourage : Vétérans du Clan Wren"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "inspiration-x",
+          "value": 1
+        },
+        {
+          "keywordId": "agile"
+        },
+        {
+          "keywordId": "nous-nous-battons-pour-notre-famille"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:rook kast devoted to the cause",
+      "front": {
+        "file": "cards/rook-kast-devoted-to-the-cause-fr-community.jpg",
+        "sha256": "faa3cbf6fc5520dcc14045516493c911eb49de5e56844975aaf7c21588149c06",
+        "bytes": 125927
+      },
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 2
+        },
+        {
+          "keywordId": "coordination",
+          "label": "Coordination : Clan Saxon"
+        },
+        {
+          "keywordId": "insensible"
+        },
+        {
+          "keywordId": "escorte",
+          "label": "Escorte : commandant Clan Saxon"
+        },
+        {
+          "keywordId": "cible-x",
+          "value": 1
+        },
+        {
+          "keywordId": "la-victoire-ou-la-mort"
+        },
+        {
+          "keywordId": "debordement"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:din djarin upgrade",
+      "front": {
+        "file": "cards/din-djarin-upgrade-fr-community.jpg",
+        "sha256": "1d93ba0c223ba0f885cf7f82c00feb20f6ee9f8398337214c8e55ab44bc61913",
+        "bytes": 138864
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "telle-est-la-voie"
+        },
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:the armorer upgrade",
+      "front": {
+        "file": "cards/the-armorer-upgrade-fr-community.jpg",
+        "sha256": "5c01feb2060deef87f8e0cd7e47b0d56e48ad46eef5598f0aa3787d6285ebf74",
+        "bytes": 126372
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "fiable-x",
+          "value": 2
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:mandalorian initiate squad",
+      "front": {
+        "file": "cards/mandalorian-initiate-squad-fr-community.jpg",
+        "sha256": "fd73b20b26481be2e0c63a505dff6c1689bd149a7267121a57d7251a32c0779c",
+        "bytes": 186215
+      },
+      "keywords": [
+        {
+          "keywordId": "indomptable"
+        },
+        {
+          "keywordId": "transport"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:galaar 15 carbines",
+      "front": {
+        "file": "cards/galaar-15-carbines-fr-community.jpg",
+        "sha256": "35bbcef83b66cddaae34698fc0ae23444d99e01d9f158f582b2f6eb8463e312b",
+        "bytes": 125027
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:shukur 05 repeater",
+      "front": {
+        "file": "cards/shukur-05-repeater-fr-community.jpg",
+        "sha256": "429b51199b4229b75287033b1bbcfbbd6197295f20ec2e04d9232f5de71b9184",
+        "bytes": 132666
+      },
+      "keywords": [
+        {
+          "keywordId": "debordement"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:micro grenade launcher",
+      "front": {
+        "file": "cards/micro-grenade-launcher-fr-community.jpg",
+        "sha256": "ceb26206d5cd71232d79efe45fa17fd6df14652db086e948b29ce966f1517d38",
+        "bytes": 158699
+      },
+      "keywords": [
+        {
+          "keywordId": "cycle"
+        },
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:axe woves upgrade",
+      "front": {
+        "file": "cards/axe-woves-upgrade-fr-community.jpg",
+        "sha256": "17a23b6eb6dd6b2aa05552be649aeaffa8eaff1cd885b24bb57fb9a39f2bd75f",
+        "bytes": 132304
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "autonome",
+          "label": "Autonome : Viser 1 ou Esquive 1"
+        },
+        {
+          "keywordId": "infiltration"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:bo katan kryze upgrade",
+      "front": {
+        "file": "cards/bo-katan-kryze-upgrade-fr-community.jpg",
+        "sha256": "665f3dd912ea6544327c6410169a27960308d685bfa2e7a9b3d1767857993960",
+        "bytes": 151275
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "charge"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:paz vizsla upgrade",
+      "front": {
+        "file": "cards/paz-vizsla-upgrade-fr-community.jpg",
+        "sha256": "6ba6726c0972ec328e7621609a53f9c1aa1030503a01aad13438dd7328693fb5",
+        "bytes": 139863
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "telle-est-la-voie",
+          "label": "Telle est la Voie : Viser 1"
+        },
+        {
+          "keywordId": "debordement"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:clan kryze",
+      "front": {
+        "file": "cards/clan-kryze-fr-community.jpg",
+        "sha256": "510aea6a55422e9c2c3bf28af7c6f4959573b485436fcf6e09a1af93de7cb715",
+        "bytes": 134185
+      },
+      "keywords": [
+        {
+          "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:clan wren",
+      "front": {
+        "file": "cards/clan-wren-fr-community.jpg",
+        "sha256": "4374ffba88249c2eea1799f915c235617c6d245841221d163d027d937bc6699f",
+        "bytes": 153261
+      },
+      "keywords": [
+        {
+          "keywordId": "nous-nous-battons-pour-notre-famille"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:children of the watch",
+      "front": {
+        "file": "cards/children-of-the-watch-fr-community.jpg",
+        "sha256": "40bfcf0bb6c176b522573747141f29dae9782c4df9c31935076be608e9c9f197",
+        "bytes": 119070
+      },
+      "keywords": [
+        {
+          "keywordId": "telle-est-la-voie",
+          "label": "Telle est la Voie : Esquive 1 (Appui-Feu : Viser 1)"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:clan saxon",
+      "front": {
+        "file": "cards/clan-saxon-fr-community.jpg",
+        "sha256": "977ca368c3fde9c2550809151ea8dc2d30737982fd03eb1316eed55dbcbad19f",
+        "bytes": 126985
+      },
+      "keywords": [
+        {
+          "keywordId": "la-victoire-ou-la-mort"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:tools of the trade jetpack rockets",
+      "front": {
+        "file": "cards/tools-of-the-trade-jetpack-rockets-fr-community.jpg",
+        "sha256": "4868a958e2c56d37b9159888b8033deaf033407415d36bdfb7a8cc6456337b39",
+        "bytes": 138963
+      },
+      "keywords": [
+        {
+          "keywordId": "anti-materiel-x",
+          "value": 4
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 4
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:personal combat shield",
+      "front": {
+        "file": "cards/personal-combat-shield-fr-community.jpg",
+        "sha256": "dac769bafecce53a660432dfae270ad17f234b2be25399153a650edad555f691",
+        "bytes": 149865
+      },
+      "keywords": [
+        {
+          "keywordId": "bouclier-x",
+          "value": 1
+        },
+        {
+          "keywordId": "recharger-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:whipcord launcher",
+      "front": {
+        "file": "cards/whipcord-launcher-fr-community.jpg",
+        "sha256": "15c551ccccc55da2b95b00ded6864bf039473e14d3ad88cec1949282d74203dc",
+        "bytes": 141866
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:sabine wren upgrade",
+      "front": {
+        "file": "cards/sabine-wren-upgrade-fr-community.jpg",
+        "sha256": "ce5444c9a1ec8042ec89c3cf7bd11751c65686ff835325fb10f7b505ac95dd69",
+        "bytes": 136746
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:guild member",
+      "front": {
+        "file": "cards/guild-member-fr-community.jpg",
+        "sha256": "1abd2e5ee05845bca5c21682f6f1d8c9a274a11ad7b96e2a2b69ff4501636a1a",
+        "bytes": 164344
+      },
+      "keywords": [
+        {
+          "keywordId": "prime"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:deadeye",
+      "front": {
+        "file": "cards/deadeye-fr-community.jpg",
+        "sha256": "acc832974bb1f6f7e9c837b326981bc1665a69e762ad5bae567c10f5afb71e21",
+        "bytes": 156689
+      },
+      "keywords": [
+        {
+          "keywordId": "cible-x",
+          "value": 1
+        },
+        {
+          "keywordId": "tireur-delite-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:vibrosword",
+      "front": {
+        "file": "cards/vibrosword-fr-community.jpg",
+        "sha256": "5f1bc23907e620d79750c186806ff6dfc2267a9c960eae750d2e79dc0f02f0cd",
+        "bytes": 154457
+      },
+      "keywords": [
+        {
+          "keywordId": "charge"
+        },
+        {
+          "keywordId": "duelliste"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:dual armaments",
+      "front": {
+        "file": "cards/dual-armaments-fr-community.jpg",
+        "sha256": "06684c3cb46cf2126b6a0404760f9bd56224e9fdef98f0efcadc78f6c65354a1",
+        "bytes": 139461
+      },
+      "keywords": [
+        {
+          "keywordId": "charge"
+        },
+        {
+          "keywordId": "pistolero"
+        },
+        {
+          "keywordId": "haute-velocite"
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:ee 3 carbine rifle",
+      "front": {
+        "file": "cards/ee-3-carbine-rifle-fr-community.jpg",
+        "sha256": "53602667e9ebbe1db176a38c86531ea09bd74fc8ad03973c3dd7c63e1e7bea9f",
+        "bytes": 127528
+      },
+      "keywords": [
+        {
+          "keywordId": "debordement"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:galaar 15 carbine",
+      "front": {
+        "file": "cards/galaar-15-carbine-fr-community.jpg",
+        "sha256": "54be4df022b6aed1729e1e9432645aa7c8b4ec510f4e6b8b69aacf5a580b06d3",
+        "bytes": 142555
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:war party leader",
+      "front": {
+        "file": "cards/war-party-leader-fr-community.jpg",
+        "sha256": "351bbceb91ef403c98118465a41d89819d7e058b08f2267400e81049561ea346",
+        "bytes": 148772
+      },
+      "keywords": [
+        {
+          "keywordId": "ordre-direct",
+          "label": "Ordre Direct : soldat Mercenaire"
+        },
+        {
+          "keywordId": "inspiration-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:full beskar armor",
+      "front": {
+        "file": "cards/full-beskar-armor-fr-community.jpg",
+        "sha256": "708933f3aa40ca1122aeac7be3d92689fe5d6279bb6b276a31e650a68863cfcf",
+        "bytes": 177029
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:han solo reckless smuggler",
+      "front": {
+        "file": "cards/han-solo-reckless-smuggler-fr-community.jpg",
+        "sha256": "680ef9b3ed71f20139a983b574c21b3dc9b48da636620caf3b0a041bc21d06a9",
+        "bytes": 170451
+      },
+      "keywords": [
+        {
+          "keywordId": "coriace"
+        },
+        {
+          "keywordId": "pistolero"
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Viser 1"
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:chewbacca courageous co pilot",
+      "front": {
+        "file": "cards/chewbacca-courageous-co-pilot-fr-community.jpg",
+        "sha256": "b8ef443828a7434e93c74036ce23fad903755cd6fb9c4af9c5cad8dfd543032f",
+        "bytes": 158550
+      },
+      "keywords": [
+        {
+          "keywordId": "coriace"
+        },
+        {
+          "keywordId": "defense-x",
+          "value": 1
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
     }
   ],
   "lots": [

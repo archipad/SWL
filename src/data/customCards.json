@@ -4570,5 +4570,1778 @@
     },
     "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
     "addedAt": "2026-11-04"
+  },
+  "savage opress maul s enforcer": {
+    "nameFr": "Savage Opress, Exécuteur de Maul",
+    "cardType": "unit",
+    "image": "savage-opress-maul-s-enforcer-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Sabre Laser Double",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": [
+          "impact-x",
+          "perforant-x",
+          "belier-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2,
+          "perforant-x": 2,
+          "belier-x": 1
+        }
+      },
+      {
+        "name": "Fureur Obscure",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "poison-x",
+          "dispersion"
+        ],
+        "keywordValues": {
+          "poison-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 1
+      },
+      {
+        "keywordId": "demoraliser-x",
+        "value": 1
+      },
+      {
+        "keywordId": "enrage-x",
+        "value": 2
+      },
+      {
+        "keywordId": "immunite-perforant"
+      },
+      {
+        "keywordId": "escorte"
+      }
+    ],
+    "rank": "operative",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Savage Opress, Maul's Enforcer",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Savage%20Opress%20Maul's%20Enforcer.webp",
+      "englishText": "Savage Opress, Maul's Enforcer. Trooper. Action: Jump 1. Demoralize 1. Enrage 2. Immune: Pierce. Retinue: Maul. Double-Bladed Lightsaber (2 red, 2 white, 2 black, melee): Impact 2, Pierce 2, Ram 1. Dark Fury (3 black, 1-2): Poison 1, Scatter.",
+      "frenchText": "{\"name\":\"Savage Opress\",\"subtitle\":\"Exécuteur de Maul\",\"type\":\"Soldat\",\"keywords\":[\"{action}Saut 1\",\"Démoraliser 1\",\"Enragé 2\",\"Immunité : Perforant\",\"Escorte : Maul\"],\"weapons\":[{\"name\":\"Sabre Laser Double\",\"keywords\":\"Impact 2, Perforant 2, Bélier 1\"},{\"name\":\"Fureur Obscure\",\"keywords\":\"Poison 1, Dispersion\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "mandalorian initiates": {
+    "nameFr": "Initiés Mandaloriens",
+    "cardType": "unit",
+    "image": "mandalorian-initiates-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrolames",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": []
+      },
+      {
+        "name": "Fusils Blaster",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "longue-distance"
+        ]
+      }
+    ],
+    "keywords": [],
+    "rank": "corps",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 1,
+      "baseModels": 5
+    },
+    "attackSurge": "hit",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Mandalorian Initiates",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Initiates.webp",
+      "englishText": "Mandalorian Initiates. Mandalorian Trooper. Vibro Blades (1 black, melee). Blaster Rifles (1 black, 1-2): Long Shot.",
+      "frenchText": "{\"name\":\"Initiés Mandaloriens\",\"type\":\"Soldat Mandalorien\",\"keywords\":[],\"weapons\":[{\"name\":\"Vibrolames\",\"keywords\":\"\"},{\"name\":\"Fusils Blaster\",\"keywords\":\"Longue Distance\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "mandalorian warriors": {
+    "nameFr": "Guerriers Mandaloriens",
+    "cardType": "unit",
+    "image": "mandalorian-warriors-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrolames",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": []
+      },
+      {
+        "name": "Fusils Blaster",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "longue-distance"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "duelliste"
+      },
+      {
+        "keywordId": "insensible"
+      }
+    ],
+    "rank": "corps",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 5
+    },
+    "attackSurge": "hit",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Mandalorian Warriors",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Warriors.webp",
+      "englishText": "Mandalorian Warriors. Mandalorian Trooper. Action: Jump 2. Duelist. Impervious. Vibro Blades (1 white, 1 black, melee). Blaster Rifles (1 black, 1-2): Long Shot.",
+      "frenchText": "{\"name\":\"Guerriers Mandaloriens\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"{action}Saut 2\",\"Duelliste\",\"Insensible\"],\"weapons\":[{\"name\":\"Vibrolames\",\"keywords\":\"\"},{\"name\":\"Fusils Blaster\",\"keywords\":\"Longue Distance\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "mandalorian warriors fire support": {
+    "nameFr": "Guerriers Mandaloriens, Appui-Feu",
+    "cardType": "unit",
+    "image": "mandalorian-warriors-fire-support-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrolames",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": []
+      },
+      {
+        "name": "Carabine GALAAR-15",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "longue-distance"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "detachement"
+      },
+      {
+        "keywordId": "equipe-avec-arme-lourde"
+      },
+      {
+        "keywordId": "duelliste"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      }
+    ],
+    "rank": "support",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    },
+    "attackSurge": "hit",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Mandalorian Warriors, Fire Support",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Warriors%20Fire%20Support.webp",
+      "englishText": "Mandalorian Warriors, Fire Support. Mandalorian Trooper. Action: Jump 2. Detachment: Mandalorian Warriors. Heavy Weapon Team. Impervious. Sharpshooter 1. Vibro Blades (1 white, 1 black, melee). GALAAR-15 Carbine (1 black, 1-3).",
+      "frenchText": "{\"name\":\"Guerriers Mandaloriens\",\"subtitle\":\"Appui-Feu\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"{action}Saut 2\",\"Détachement : Guerriers Mandaloriens\",\"Équipe avec Arme Lourde\",\"Insensible\",\"Tireur d'Élite 1\"],\"weapons\":[{\"name\":\"Vibrolames\",\"keywords\":\"\"},{\"name\":\"Carabine GALAAR-15\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "clan kryze veterans": {
+    "nameFr": "Vétérans du Clan Kryze",
+    "cardType": "unit",
+    "image": "clan-kryze-veterans-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Pistolets Blaster",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": []
+      },
+      {
+        "name": "Carabines GALAAR-15",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+      },
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      }
+    ],
+    "rank": "special",
+    "speed": 3,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 5
+    },
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Clan Kryze Veterans",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Clan%20Kryze%20Veterans.webp",
+      "englishText": "Clan Kryze Veterans. Mandalorian Trooper. Mercenary: Rebels, Republic. Action: Jump 2. Impervious. Mandalorians Are Stronger Together. Tactical 1. Blaster Pistols (1 red, 1 white, melee-2). GALAAR-15 Carbines (1 black, 1-3).",
+      "frenchText": "{\"name\":\"Vétérans du Clan Kryze\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"Mercenaire : {faction-rebelles}{faction-republique}\",\"{action}Saut 2\",\"Insensible\",\"Les Mandaloriens sont Plus Forts Ensemble\",\"Tacticien 1\"],\"weapons\":[{\"name\":\"Pistolets Blaster\",\"keywords\":\"\"},{\"name\":\"Carabines GALAAR-15\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "mandalorian leader": {
+    "nameFr": "Chef Mandalorien",
+    "cardType": "unit",
+    "image": "mandalorian-leader-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrocouteau",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "name": "Pistolet Blaster",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "equipe"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "escorte"
+      }
+    ],
+    "rank": "commandant",
+    "speed": 3,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Mandalorian Leader",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Mandalorian%20Leader.webp",
+      "englishText": "Mandalorian Leader. Mandalorian Trooper. Action: Jump 2. Equip: armament, doctrine. Impervious. Retinue: Mandalorian Warriors. Vibroknife (2 white, 2 black, melee): Pierce 1. Blaster Pistol (2 red, 2 white, 1-2).",
+      "frenchText": "{\"name\":\"Chef Mandalorien\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"{action}Saut 2\",\"Équipe : {emplacement-armement}, {emplacement-doctrine}\",\"Insensible\",\"Escorte : Guerriers Mandaloriens\"],\"weapons\":[{\"name\":\"Vibrocouteau\",\"keywords\":\"Perforant 1\"},{\"name\":\"Pistolet Blaster\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "bo katan kryze savior of mandalore": {
+    "nameFr": "Bo-Katan Kryze, Sauveuse de Mandalore",
+    "cardType": "unit",
+    "image": "bo-katan-kryze-savior-of-mandalore-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Pistolets Blaster Jumelés",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": [
+          "haute-velocite"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "la-mort-venue-du-ciel"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+      },
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      }
+    ],
+    "rank": "commandant",
+    "speed": 3,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "attackSurge": "crit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Bo-Katan Kryze, Savior of Mandalore",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Bo-Katan%20Kryze.webp",
+      "englishText": "Bo-Katan Kryze, Savior of Mandalore. Mandalorian Trooper. Mercenary: Rebels, Republic. Action: Jump 2. Death From Above. Impervious. Mandalorians Are Stronger Together. Tactical 1. Dual Blaster Pistols (2 red, 2 black, melee-2): High Velocity.",
+      "frenchText": "{\"name\":\"Bo-Katan Kryze\",\"subtitle\":\"Sauveuse de Mandalore\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"Mercenaire : {faction-rebelles}{faction-republique}\",\"{action}Saut 2\",\"La Mort Venue du Ciel\",\"Insensible\",\"Les Mandaloriens sont Plus Forts Ensemble\",\"Tacticien 1\"],\"weapons\":[{\"name\":\"Pistolets Blaster Jumelés\",\"keywords\":\"Haute Vélocité\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "the armorer forging the future": {
+    "nameFr": "L'Armurière, Forger l'Avenir",
+    "cardType": "unit",
+    "image": "the-armorer-forging-the-future-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Marteau et Pinces",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": [
+          "critique-x",
+          "impact-x",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "critique-x": 1,
+          "impact-x": 2,
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "aide"
+      },
+      {
+        "keywordId": "charge"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "fiable-x",
+        "value": 1
+      },
+      {
+        "keywordId": "telle-est-la-voie",
+        "value": 1
+      }
+    ],
+    "rank": "commandant",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "The Armorer, Forging the Future",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/The%20Armorer.webp",
+      "englishText": "The Armorer, Forging the Future. Mandalorian Trooper. Action: Jump 2. Aid: Children of the Watch. Charge. Impervious. Reliable 1. This Is the Way: Move 1 or Recover 2. Hammer and Tongs (3 red, 3 black, melee): Critical 1, Impact 2, Pierce 1.",
+      "frenchText": "{\"name\":\"L'Armurière\",\"subtitle\":\"Forger l'Avenir\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"{action}Saut 2\",\"Aide : {enclave-armuriere}\",\"Charge\",\"Insensible\",\"Fiable 1\",\"Telle est la Voie : Se Déplacer 1 ou Récupérer 2\"],\"weapons\":[{\"name\":\"Marteau et Pinces\",\"keywords\":\"Critique 1, Impact 2, Perforant 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "paz vizsla proud warrior": {
+    "nameFr": "Paz Vizsla, Fier Guerrier",
+    "cardType": "unit",
+    "image": "paz-vizsla-proud-warrior-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrocouteau",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      },
+      {
+        "name": "Blaster Répétiteur",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "debordement"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "commandant-des-operations"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "aguerri"
+      },
+      {
+        "keywordId": "telle-est-la-voie",
+        "value": 2
+      }
+    ],
+    "rank": "operative",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 3,
+      "baseModels": 1
+    },
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Paz Vizsla, Proud Warrior",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Paz%20Vizsla.webp",
+      "englishText": "Paz Vizsla, Proud Warrior. Mandalorian Trooper. Action: Jump 2. Field Commander. Impervious. Steady. This Is the Way: Aim 2. Vibroknife (2 red, 2 white, melee): Pierce 1. Repeating Blaster (1 red, 3 white, 2 black, 1-3): Overwhelm.",
+      "frenchText": "{\"name\":\"Paz Vizsla\",\"subtitle\":\"Fier Guerrier\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"{action}Saut 2\",\"Commandant des Opérations\",\"Insensible\",\"Aguerri\",\"Telle est la Voie : Viser 2\"],\"weapons\":[{\"name\":\"Vibrocouteau\",\"keywords\":\"Perforant 1\"},{\"name\":\"Blaster Répétiteur\",\"keywords\":\"Débordement\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "han chewie notorious scoundrels": {
+    "nameFr": "Han & Chewie, Fripouilles Notoires",
+    "cardType": "unit",
+    "image": "han-chewie-notorious-scoundrels-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "equipe"
+      },
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "tenir-le-cap"
+      },
+      {
+        "keywordId": "instinct-de-survie"
+      },
+      {
+        "keywordId": "coup-de-chance-x",
+        "value": 2
+      }
+    ],
+    "rank": "operative",
+    "speed": 2,
+    "defenseColor": "blanc",
+    "unitStats": {
+      "woundsPerModel": 0,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "crit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Han & Chewie, Notorious Scoundrels",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Han%20%26%20Chewie.webp",
+      "englishText": "Han & Chewie, Notorious Scoundrels. Trooper. Mercenary: Rebels. Equip: Han Solo, Reckless Smuggler; Chewbacca, Courageous Co-Pilot. Eyes on the Prize: Steady. Self-Preservation. Uncanny Luck 2. No weapon on the unit card (weapons come from the equipped miniatures).",
+      "frenchText": "{\"name\":\"Han & Chewie\",\"subtitle\":\"Fripouilles Notoires\",\"type\":\"Soldat\",\"keywords\":[\"Mercenaire : {faction-rebelles}\",\"Équipe : Han Solo, Contrebandier Téméraire\",\"Chewbacca, Copilote Courageux\",\"Tenir le Cap : Aguerri\",\"Instinct de Survie. Coup de Chance 2\"]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "ursa wren leader of clan wren": {
+    "nameFr": "Ursa Wren, Cheffe du Clan Wren",
+    "cardType": "unit",
+    "image": "ursa-wren-leader-of-clan-wren-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Pistolets Blaster",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "assistance-x",
+        "value": 2
+      },
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "mercenaire"
+      },
+      {
+        "keywordId": "entourage"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "inspiration-x",
+        "value": 1
+      },
+      {
+        "keywordId": "agile"
+      },
+      {
+        "keywordId": "nous-nous-battons-pour-notre-famille"
+      }
+    ],
+    "rank": "commandant",
+    "speed": 3,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "hit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Ursa Wren, Leader of Clan Wren",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Ursa%20Wren%20Unit.webp",
+      "englishText": "Ursa Wren, Leader of Clan Wren. Mandalorian Trooper. Mercenary: Rebels. Action: Bolster 2. Action: Jump 2. Entourage: Clan Wren Veterans. Impervious. Inspire 1. Nimble. We Fight for Our Family. Blaster Pistols (2 red, 2 black, melee-2).",
+      "frenchText": "{\"name\":\"Ursa Wren\",\"subtitle\":\"Cheffe du Clan Wren\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"Mercenaire : {faction-rebelles}\",\"{action}Assistance 2\",\"{action}Saut 2\",\"Entourage : Vétérans du Clan Wren\",\"Insensible\",\"Inspiration 1\",\"Agile\",\"Nous nous Battons pour notre Famille\"],\"weapons\":[{\"name\":\"Pistolets Blaster\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "rook kast devoted to the cause": {
+    "nameFr": "Rook Kast, Dévouée à la Cause",
+    "cardType": "unit",
+    "image": "rook-kast-devoted-to-the-cause-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Pistolets Jumelés",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": [
+          "debordement"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 2
+      },
+      {
+        "keywordId": "coordination"
+      },
+      {
+        "keywordId": "insensible"
+      },
+      {
+        "keywordId": "escorte"
+      },
+      {
+        "keywordId": "cible-x",
+        "value": 1
+      },
+      {
+        "keywordId": "la-victoire-ou-la-mort"
+      }
+    ],
+    "rank": "operative",
+    "speed": 3,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 5,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "crit",
+    "defenseSurge": "block",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Rook Kast, Devoted to the Cause",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Rook%20Kast%20Unit.webp",
+      "englishText": "Rook Kast, Devoted to the Cause. Mandalorian Trooper. Action: Jump 2. Coordinate: Clan Saxon. Impervious. Retinue: Clan Saxon Commander. Target 1. Victory or Death. Dual Pistols (2 red, 2 black, melee-2): Overwhelm.",
+      "frenchText": "{\"name\":\"Rook Kast\",\"subtitle\":\"Dévouée à la Cause\",\"type\":\"Soldat Mandalorien\",\"keywords\":[\"{action}Saut 2\",\"Coordination : {clan-saxon}\",\"Insensible\",\"Escorte : commandant {clan-saxon}\",\"Cible 1\",\"La Victoire ou la Mort\"],\"weapons\":[{\"name\":\"Pistolets Jumelés\",\"keywords\":\"Débordement\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "din djarin upgrade": {
+    "nameFr": "•Din Djarin (amélioration)",
+    "cardType": "upgrade",
+    "image": "din-djarin-upgrade-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Pistolet Blaster de Din",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": [
+          "deflagration",
+          "letal-x"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "telle-est-la-voie"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Din Djarin",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Din%20Djarin%20Upgrade.webp",
+      "englishText": "Children of the Watch only. Add 1 Din Djarin miniature. Once per Round, when this unit is chosen as a target of the This is the Way keyword, it gains 1 Surge token. Leader. Din's Blaster Pistol (1 red, 1 black, melee-2): Lethal 1.",
+      "frenchText": "{\"title\":\"•Din Djarin\",\"body\":\"{enclave-armuriere} **uniquement.**\\nAjoutez 1 figurine de Din Djarin.\\nUne fois par round, quand cette unité est choisie comme cible du mot-clé **Telle est la Voie**, elle gagne 1 pion Adrénaline.\\n**Chef.**\",\"weapons\":[{\"name\":\"Pistolet Blaster de Din\",\"keywords\":\"Létal 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "the armorer upgrade": {
+    "nameFr": "•L'Armurière (amélioration)",
+    "cardType": "upgrade",
+    "image": "the-armorer-upgrade-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Marteau et Pinces",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "fiable-x",
+        "value": 2
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "The Armorer",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/The%20Armorer%20Upgrade.webp",
+      "englishText": "Children of the Watch only. Add 1 The Armorer miniature. Leader. This unit increases its courage value by 1 and gains Reliable 2. Hammer and Tongs (2 red, 2 black, melee): Pierce 1.",
+      "frenchText": "{\"title\":\"•L'Armurière\",\"body\":\"{enclave-armuriere} **uniquement.**\\nAjoutez 1 figurine de l'Armurière.\\n**Chef.**\\nCette unité augmente sa valeur de {courage} de 1 et gagne **Fiable 2**.\",\"weapons\":[{\"name\":\"Marteau et Pinces\",\"keywords\":\"Perforant 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "mandalorian initiate squad": {
+    "nameFr": "Escouade d'Initiés Mandaloriens",
+    "cardType": "upgrade",
+    "image": "mandalorian-initiate-squad-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "indomptable"
+      },
+      {
+        "keywordId": "transport"
+      }
+    ],
+    "addedModels": 4,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Mandalorian Initiate Squad",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Mandalorian%20Initiate%20Squad.webp",
+      "englishText": "Mandalorian Initiates only. Add 4 Mandalorian Initiate miniatures. This unit gains Indomitable, even if these miniatures are defeated. Cohesion within range 1 of the unit leader instead of range 1/2, even if these miniatures are defeated. This unit cannot be Deployed or issued Orders using the Transport keyword.",
+      "frenchText": "{\"title\":\"Escouade d'Initiés Mandaloriens\",\"body\":\"**Initiés Mandaloriens uniquement.**\\nAjoutez 4 figurines d'Initié Mandalorien.\\nCette unité gagne **Indomptable**. Elle conserve ce mot-clé même si ces figurines sont vaincues.\\nCette unité est en cohésion si toutes ses figurines sont à portée 1 du chef d'unité, au lieu de portée ½. Elle conserve cette règle même si ces figurines sont vaincues.\\nCette unité ne peut pas être déployée ni recevoir d'ordre grâce au mot-clé **Transport**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "galaar 15 carbines": {
+    "nameFr": "Carabines GALAAR-15",
+    "cardType": "upgrade",
+    "image": "galaar-15-carbines-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Carabine GALAAR-15",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "GALAAR-15 Carbines",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/GALAAR-15%20Carbines.webp",
+      "englishText": "Clan Kryze, Clan Saxon, Clan Wren or Mandalorian Mandalorian Warriors only. GALAAR-15 Carbine (1 black, 1-3).",
+      "frenchText": "{\"title\":\"Carabines GALAAR-15\",\"body\":\"**Guerriers Mandaloriens** {clan-kryze}, {clan-saxon}, {clan-wren} **ou** {faction-mandaloriens} **uniquement.**\",\"weapons\":[{\"name\":\"Carabine GALAAR-15\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "shukur 05 repeater": {
+    "nameFr": "Mandalorien avec Répéteur SHUKUR-05",
+    "cardType": "upgrade",
+    "image": "shukur-05-repeater-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Répéteur SHUKUR-05",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "debordement"
+        ]
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "SHUKUR-05 Repeater",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/SHUKUR-05%20Repeater.webp",
+      "englishText": "Mandalorian Trooper only. Add 1 SHUKUR-05 Mandalorian miniature. SHUKUR-05 Repeater (3 white, 1-3): Overwhelm.",
+      "frenchText": "{\"title\":\"Répéteur SHUKUR-05\",\"body\":\"**Soldat Mandalorien uniquement.**\\nAjoutez 1 figurine de Mandalorien avec SHUKUR-05.\",\"weapons\":[{\"name\":\"Répéteur SHUKUR-05\",\"keywords\":\"Débordement\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "micro grenade launcher": {
+    "nameFr": "Lance-Micro-Grenades",
+    "cardType": "upgrade",
+    "image": "micro-grenade-launcher-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Lance-Micro-Grenades",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "deflagration",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "cycle"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Micro-Grenade Launcher",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Micro-Grenade%20Launcher.webp",
+      "englishText": "Mandalorian Trooper only. Add 1 Micro-Grenade Launcher Mandalorian miniature. Cycle. Micro-Grenade Launcher (2 white, 1 black, 1-2): Blast, Impact 1.",
+      "frenchText": "{\"title\":\"Lance-Micro-Grenades\",\"body\":\"**Soldat Mandalorien uniquement.**\\nAjoutez 1 figurine de Mandalorien avec Lance-Micro-Grenades.\\n**Cycle.**\",\"weapons\":[{\"name\":\"Lance-Micro-Grenades\",\"keywords\":\"Déflagration, Impact 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "axe woves upgrade": {
+    "nameFr": "•Axe Woves (amélioration)",
+    "cardType": "upgrade",
+    "image": "axe-woves-upgrade-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "autonome"
+      },
+      {
+        "keywordId": "infiltration"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Axe Woves",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Axe%20Woves%20Upgrade.webp",
+      "englishText": "Clan Kryze only. Add 1 Axe Woves miniature. Leader. This unit gains Independent: Aim 1 or Dodge 1 and Infiltrate.",
+      "frenchText": "{\"title\":\"•Axe Woves\",\"body\":\"{clan-kryze} **uniquement.**\\nAjoutez 1 figurine d'Axe Woves.\\n**Chef.**\\nCette unité gagne **Autonome : Viser 1 ou Esquive 1** et **Infiltration**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04",
+    "autonomousTokens": [
+      {
+        "token": "aim",
+        "count": 1
+      },
+      {
+        "token": "dodge",
+        "count": 1
+      }
+    ]
+  },
+  "bo katan kryze upgrade": {
+    "nameFr": "•Bo-Katan Kryze (amélioration)",
+    "cardType": "upgrade",
+    "image": "bo-katan-kryze-upgrade-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "charge"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Bo-Katan Kryze",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Bo-Katan%20Kryze%20Upgrade.webp",
+      "englishText": "Clan Kryze only. Add 1 Bo-Katan Kryze miniature. Leader. At the start of this unit's Activation, you may exhaust this card. If you do, this unit removes any number of Suppression tokens and gains Charge until the end of its Activation.",
+      "frenchText": "{\"title\":\"•Bo-Katan Kryze\",\"body\":\"{clan-kryze} **uniquement.**\\nAjoutez 1 figurine de Bo-Katan Kryze.\\n**Chef.**\\nAu début de l'activation de cette unité, vous pouvez incliner cette carte. Dans ce cas, cette unité retire autant de pions Suppression qu'elle le souhaite et gagne **Charge** jusqu'à la fin de son activation.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "paz vizsla upgrade": {
+    "nameFr": "•Paz Vizsla (amélioration)",
+    "cardType": "upgrade",
+    "image": "paz-vizsla-upgrade-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Blaster Répétiteur",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "debordement"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "telle-est-la-voie"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 2,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Paz Vizsla",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Paz%20Vizsla%20Upgrade.webp",
+      "englishText": "Children of the Watch only. Add 1 Paz Vizsla miniature. Leader. This unit gains This is the Way: Aim 1. Repeating Blaster (1 red, 3 white, 2 black, 1-3): Overwhelm.",
+      "frenchText": "{\"title\":\"•Paz Vizsla\",\"body\":\"{enclave-armuriere} **uniquement.**\\nAjoutez 1 figurine de Paz Vizsla.\\n**Chef.**\\nCette unité gagne **Telle est la Voie : Viser 1**.\",\"weapons\":[{\"name\":\"Blaster Répétiteur\",\"keywords\":\"Débordement\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "clan kryze": {
+    "nameFr": "Clan Kryze",
+    "cardType": "upgrade",
+    "image": "clan-kryze-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "les-mandaloriens-sont-plus-forts-ensemble"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Clan Kryze",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clan%20Kryze.webp",
+      "englishText": "Mandalorian Trooper only. This unit changes its Affiliation to Clan Kryze. This unit gains Mandalorians Are Stronger Together.",
+      "frenchText": "{\"title\":\"Clan Kryze\",\"body\":\"**Soldat Mandalorien uniquement.**\\nCette unité change son affiliation en {clan-kryze}.\\nCette unité gagne **Les Mandaloriens sont Plus Forts Ensemble**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "clan wren": {
+    "nameFr": "Clan Wren",
+    "cardType": "upgrade",
+    "image": "clan-wren-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "nous-nous-battons-pour-notre-famille"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Clan Wren",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clan%20Wren.webp",
+      "englishText": "Mandalorian Trooper only. This unit changes its affiliation to Clan Wren. This unit gains We Fight for Our Family.",
+      "frenchText": "{\"title\":\"Clan Wren\",\"body\":\"**Soldat Mandalorien uniquement.**\\nCette unité change son affiliation en {clan-wren}.\\nCette unité gagne **Nous nous Battons pour notre Famille**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "children of the watch": {
+    "nameFr": "Enfants de la Ronde",
+    "cardType": "upgrade",
+    "image": "children-of-the-watch-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "telle-est-la-voie"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Children of the Watch",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Children%20of%20the%20Watch.webp",
+      "englishText": "Mandalorian Trooper only. This unit changes its Affiliation to Children of the Watch. If this unit is a Mandalorian Warrior unit, it gains This Is the Way: Dodge 1. If this unit is a Mandalorian Warrior (Fire Support) unit, it gains This Is the Way: Aim 1 instead.",
+      "frenchText": "{\"title\":\"Enfants de la Ronde\",\"body\":\"**Soldat Mandalorien uniquement.**\\nCette unité change son affiliation en {enclave-armuriere}.\\nSi cette unité est une unité de Guerriers Mandaloriens, elle gagne **Telle est la Voie : Esquive 1**.\\nSi c'est une unité de Guerriers Mandaloriens (Appui-Feu), elle gagne **Telle est la Voie : Viser 1** à la place.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "clan saxon": {
+    "nameFr": "Clan Saxon",
+    "cardType": "upgrade",
+    "image": "clan-saxon-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "la-victoire-ou-la-mort"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Clan Saxon",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Clan%20Saxon.webp",
+      "englishText": "Mandalorian Trooper only. This unit changes its affiliation to Clan Saxon. This unit gains Victory or Death.",
+      "frenchText": "{\"title\":\"Clan Saxon\",\"body\":\"**Soldat Mandalorien uniquement.**\\nCette unité change son affiliation en {clan-saxon}.\\nCette unité gagne **La Victoire ou la Mort**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "tools of the trade jetpack rockets": {
+    "nameFr": "••Roquettes Dorsales (Outils du Métier)",
+    "cardType": "upgrade",
+    "image": "tools-of-the-trade-jetpack-rockets-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Roquettes Dorsales",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 4
+          }
+        ],
+        "range": "3-4",
+        "keywordIds": [
+          "anti-materiel-x",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "anti-materiel-x": 4,
+          "impact-x": 4
+        }
+      }
+    ],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Jetpack Rockets",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Jetpack%20Rockets%20Mandos.webp",
+      "englishText": "Tools of the Trade. Mandalorian Trooper only. Jetpack Rockets (4 black, 3-4): Anti-Materiel 4, Impact 4.",
+      "frenchText": "{\"title\":\"••Roquettes Dorsales\",\"body\":\"**Soldat Mandalorien uniquement.**\",\"weapons\":[{\"name\":\"Roquettes Dorsales\",\"keywords\":\"Anti-matériel 4, Impact 4\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "personal combat shield": {
+    "nameFr": "••Bouclier de Combat Personnel",
+    "cardType": "upgrade",
+    "image": "personal-combat-shield-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "bouclier-x",
+        "value": 1
+      },
+      {
+        "keywordId": "recharger-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Personal Combat Shield",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Personal%20Combat%20Shield%20Leader.webp",
+      "englishText": "Mandalorian Trooper commander or operative only. This unit gains Shielded 1 and Recharge 1. During the End Phase, if this unit did not flip any active Shield tokens this Round, it may flip up to 1 of its inactive Shield tokens.",
+      "frenchText": "{\"title\":\"••Bouclier de Combat Personnel\",\"body\":\"**Soldat Mandalorien commandant ou opératif uniquement.**\\nCette unité gagne **Bouclier 1** et **Recharger 1**.\\nPendant la __Phase Finale__, si cette unité n'a retourné aucun pion Bouclier actif ce round, elle peut retourner jusqu'à 1 de ses pions Bouclier inactifs.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "whipcord launcher": {
+    "nameFr": "••Lanceur de Corde",
+    "cardType": "upgrade",
+    "image": "whipcord-launcher-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Whipcord Launcher",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Whipcord%20Launcher%20Mandos.webp",
+      "englishText": "Mandalorian Trooper commander or operative only. Action: choose an enemy Trooper unit within range 1 and in LOS and discard this card. The chosen unit gains 2 Immobilize tokens and 2 Suppression tokens.",
+      "frenchText": "{\"title\":\"••Lanceur de Corde\",\"body\":\"**Soldat Mandalorien commandant ou opératif uniquement.**\\n{action}Choisissez une unité de soldats ennemie à portée 1 et en LdV et défaussez cette carte. L'unité choisie gagne 2 pions Immobilisation et 2 pions Suppression.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "sabine wren upgrade": {
+    "nameFr": "•Sabine Wren (amélioration)",
+    "cardType": "upgrade",
+    "image": "sabine-wren-upgrade-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Sabine Wren",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Sabine%20Wren%20Upgrade.webp",
+      "englishText": "Clan Wren only. Add 1 Sabine Wren miniature. Free action: if there are no allied Graffiti tokens on the battlefield, place 1 allied Graffiti token within range 1 and in LOS of this unit, touching a piece of non-area terrain. Leader.",
+      "frenchText": "{\"title\":\"•Sabine Wren\",\"body\":\"{clan-wren} **uniquement.**\\nAjoutez 1 figurine de Sabine Wren.\\n{action-gratuite}S'il n'y a aucun pion Graffiti allié sur le champ de bataille, placez 1 pion Graffiti allié à portée 1 et en LdV de cette unité, au contact d'un élément de terrain qui n'est pas une zone.\\n**Chef.**\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "guild member": {
+    "nameFr": "•Membre de la Guilde",
+    "cardType": "upgrade",
+    "image": "guild-member-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "prime"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Guild Member",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Guild%20Member.webp",
+      "englishText": "Mandalorian Hunter only. This unit gains Bounty. When this unit attacks a unit that has 1 or more Bounty tokens, during the Form Attack Pool step, this unit gains 1 Aim token. When this unit defends against an attack made by a unit that has 1 or more Bounty tokens, during the Form Attack Pool step, this unit gains 1 Dodge token.",
+      "frenchText": "{\"title\":\"•Membre de la Guilde\",\"body\":\"**Chasseur Mandalorien uniquement.**\\nCette unité gagne **Prime**.\\nQuand cette unité attaque une unité ayant au moins 1 pion Prime, pendant l'étape __Former la Réserve d'Attaque__, cette unité gagne 1 pion Viser.\\nQuand cette unité défend contre une attaque d'une unité ayant au moins 1 pion Prime, pendant l'étape __Former la Réserve d'Attaque__, cette unité gagne 1 pion Esquive.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "deadeye": {
+    "nameFr": "•Œil de Lynx",
+    "cardType": "upgrade",
+    "image": "deadeye-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "cible-x",
+        "value": 1
+      },
+      {
+        "keywordId": "tireur-delite-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Deadeye",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Deadeye.webp",
+      "englishText": "Mandalorian Leader or Mandalorian Hunter only. This unit gains Target 1 and Sharpshooter 1.",
+      "frenchText": "{\"title\":\"•Œil de Lynx\",\"body\":\"**Chef Mandalorien ou Chasseur Mandalorien uniquement.**\\nCette unité gagne **Cible 1** et **Tireur d'Élite 1**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "vibrosword": {
+    "nameFr": "Vibro-épée",
+    "cardType": "upgrade",
+    "image": "vibrosword-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibro-épée",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "charge"
+      },
+      {
+        "keywordId": "duelliste"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Vibrosword",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Vibrosword.webp",
+      "englishText": "Mandalorian Leader or Mandalorian Hunter only. This unit gains Charge and Duelist. While defending against a Melee attack, during the Modify Dice Step, this unit may flip any number of its active Shield tokens to their inactive side to cancel 1 crit or hit result for each Shield token flipped in this way. Vibrosword (1 red, 3 white, 2 black, melee): Pierce 1.",
+      "frenchText": "{\"title\":\"Vibro-épée\",\"body\":\"**Chef Mandalorien ou Chasseur Mandalorien uniquement.**\\nCette unité gagne **Charge** et **Duelliste**.\\nEn défense contre une attaque au corps-à-corps, pendant l'étape __Modifier les Dés__, cette unité peut retourner sur leur face inactive autant de ses pions Bouclier actifs qu'elle le souhaite pour annuler 1 {critique} ou {touche} par pion ainsi retourné.\",\"weapons\":[{\"name\":\"Vibro-épée\",\"keywords\":\"Perforant 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "dual armaments": {
+    "nameFr": "Double Armement",
+    "cardType": "upgrade",
+    "image": "dual-armaments-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Vibrocouteaux",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "haute-velocite",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "charge"
+      },
+      {
+        "keywordId": "pistolero"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Dual Armaments",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Dual%20Armaments.webp",
+      "englishText": "Mandalorian Leader or Mandalorian Hunter only. This unit gains Charge and Gunslinger. Vibroknives (3 white, 3 black, melee): High Velocity, Pierce 1.",
+      "frenchText": "{\"title\":\"Double Armement\",\"body\":\"**Chef Mandalorien ou Chasseur Mandalorien uniquement.**\\nCette unité gagne **Charge** et **Pistolero**.\",\"weapons\":[{\"name\":\"Vibrocouteaux\",\"keywords\":\"Haute Vélocité, Perforant 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "ee 3 carbine rifle": {
+    "nameFr": "Carabine EE-3",
+    "cardType": "upgrade",
+    "image": "ee-3-carbine-rifle-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Carabine EE-3",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "debordement"
+        ]
+      }
+    ],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "EE-3 Carbine Rifle",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/EE-3%20Carbine%20Rifle.webp",
+      "englishText": "Mandalorian Leader or Mandalorian Hunter only. EE-3 Carbine Rifle (1 red, 3 black, 1-3): Overwhelm.",
+      "frenchText": "{\"title\":\"Carabine EE-3\",\"body\":\"**Chef Mandalorien ou Chasseur Mandalorien uniquement.**\",\"weapons\":[{\"name\":\"Carabine EE-3\",\"keywords\":\"Débordement\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "galaar 15 carbine": {
+    "nameFr": "Carabine GALAAR-15",
+    "cardType": "upgrade",
+    "image": "galaar-15-carbine-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Carabine GALAAR-15",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 4
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "GALAAR-15 Carbine",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/GALAAR-15%20Carbine.webp",
+      "englishText": "Mandalorian Leader or Mandalorian Hunter only. GALAAR-15 Carbine (4 black, 1-3).",
+      "frenchText": "{\"title\":\"Carabine GALAAR-15\",\"body\":\"**Chef Mandalorien ou Chasseur Mandalorien uniquement.**\",\"weapons\":[{\"name\":\"Carabine GALAAR-15\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "war party leader": {
+    "nameFr": "•Chef de Guerre",
+    "cardType": "upgrade",
+    "image": "war-party-leader-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "ordre-direct"
+      },
+      {
+        "keywordId": "inspiration-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "War Party Leader",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/War%20Party%20Leader.webp",
+      "englishText": "Mandalorian Leader only. This unit increases its courage by 1. This unit gains Direct: Mercenary Trooper and Inspire 1.",
+      "frenchText": "{\"title\":\"•Chef de Guerre\",\"body\":\"**Chef Mandalorien uniquement.**\\nCette unité augmente son {courage} de 1. Cette unité gagne **Ordre Direct : soldat Mercenaire** et **Inspiration 1**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "full beskar armor": {
+    "nameFr": "•Armure Intégrale en Beskar",
+    "cardType": "upgrade",
+    "image": "full-beskar-armor-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Full Beskar Armor",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Full%20Beskar%20Armor.webp",
+      "englishText": "Mandalorian Hunter only. This unit gains defense surge: block.",
+      "frenchText": "{\"title\":\"•Armure Intégrale en Beskar\",\"body\":\"**Chasseur Mandalorien uniquement.**\\nCette unité gagne adrénaline de défense : bloc.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "han solo reckless smuggler": {
+    "nameFr": "•Han Solo, Contrebandier Téméraire",
+    "cardType": "upgrade",
+    "image": "han-solo-reckless-smuggler-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Blaster DL-44 de Han",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "melee-2",
+        "keywordIds": [
+          "letal-x"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "coriace"
+      },
+      {
+        "keywordId": "pistolero"
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 3,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Han Solo, Reckless Smuggler",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Han%20Solo%20Reckless%20Smuggler.webp",
+      "englishText": "Han & Chewie only. Leader. Add 1 Han Solo miniature. This miniature has Tough. This unit gains Gunslinger and Independent: Aim 1. Only this miniature may add weapons to the Attack Pool when using Gunslinger. Han's DL-44 Blaster (3 black, melee-2): Lethal 1.",
+      "frenchText": "{\"title\":\"•Han Solo, Contrebandier Téméraire\",\"body\":\"**Han & Chewie uniquement.**\\n**Chef.**\\nAjoutez 1 figurine de Han Solo. Cette figurine a **Coriace**.\\nCette unité gagne **Pistolero** et **Autonome : Viser 1**. Seule cette figurine peut ajouter des armes à la réserve d'attaque en utilisant **Pistolero**.\",\"weapons\":[{\"name\":\"Blaster DL-44 de Han\",\"keywords\":\"Létal 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04",
+    "autonomousTokens": [
+      {
+        "token": "aim",
+        "count": 1
+      }
+    ]
+  },
+  "chewbacca courageous co pilot": {
+    "nameFr": "•Chewbacca, Copilote Courageux",
+    "cardType": "upgrade",
+    "image": "chewbacca-courageous-co-pilot-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Débordement",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "letal-x"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      },
+      {
+        "name": "Arbalète de Chewbacca",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 2
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "impact-x",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1,
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "coriace"
+      },
+      {
+        "keywordId": "defense-x",
+        "value": 1
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 5,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Chewbacca, Courageous Co-Pilot",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Chewbacca%20Courageous%20Co-Pilot.webp",
+      "englishText": "Han & Chewie only. Add 1 Chewbacca miniature. This miniature has Tough. This unit gains Defend 1. Overwhelm (3 red, melee): Lethal 1. Chewbacca's Bowcaster (1 red, 2 white, 1-3): Impact 1, Pierce 1.",
+      "frenchText": "{\"title\":\"•Chewbacca, Copilote Courageux\",\"body\":\"**Han & Chewie uniquement.**\\nAjoutez 1 figurine de Chewbacca. Cette figurine a **Coriace**.\\nCette unité gagne **Défense 1**.\",\"weapons\":[{\"name\":\"Débordement\",\"keywords\":\"Létal 1\"},{\"name\":\"Arbalète de Chewbacca\",\"keywords\":\"Impact 1, Perforant 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
   }
 }
