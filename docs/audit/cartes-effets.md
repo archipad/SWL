@@ -2,16 +2,19 @@
 
 Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom). Une carte à icône ↱ ou ✖ ne peut pas rester en simple rappel : son état (prête / inclinée / supprimée) doit être suivi.
 
-411 cartes connues dans le référentiel · 111 cartes à effet propre · 67 sondes rejouées dans l’Assistant.
+441 cartes connues dans le référentiel · 120 cartes à effet propre · 76 sondes rejouées dans l’Assistant.
 
 | Carte | ↱ / ✖ | Traitement | Où | Remarque |
 |---|---|---|---|---|
+| Réseau de Combat Adaptatif | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Fournitures Supplémentaires | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Grimpeur Agile | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Colère | — | Panneau d’attaque | étape(s) 6 (bouton) |  |
 | Câbles Ascensionnels | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Baron Rudor | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Générateur de Barrage | ↱ | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | Wookie avec Bouclier de Combat | — | Carte retournable | bouton « Retourner la carte » (mots-clés, vitesse et courage selon la face) |  |
+| Méditation de Combat | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Homme de Main du Soleil Noir | — | Rappel (briefing) | briefing tactique | conserve Cache si la figurine est vaincue : rappelé dans le briefing |
 | •Bo-Katan Kryze (amélioration) | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Boba Fett, Daimyo de Mos Espa | — | Rappel (briefing) | briefing tactique | carte Unité : type d’unité Soldat Mandalorien (erratum 17/06/2026), rappelé dans le briefing |
@@ -40,8 +43,11 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Endurance | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Retranché | — | Panneau d’attaque | étape(s) 3 (bouton) |  |
 | Contrôle de Tir | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
+| Absorption de Force | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Agilité de la Force | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Barrière de la Force | ↱ | Panneau d’attaque | étape(s) 4 (bouton) |  |
 | Strangulation de la Force | ↱ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
+| Drain de Force | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Guidé par la Force | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Poussée de la Force | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Réflexes de la Force | ↱ | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
@@ -50,8 +56,10 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Surcharge du Générateur | ↱ | Panneau d’attaque | étape(s) 1 (bouton) |  |
 | •Gideon Hask | — | Statistique | vitesse / courage de la fiche |  |
 | Gouverneur Pryce | — | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Coup de Main | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | •Médecine par les Plantes | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Frappe et Fuite | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| À Terre ! | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Liaison HQ | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Hunter | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | Programmation « Nounou » | — | Rappel (briefing) | briefing tactique | mots-clés gagnés (IA) ; règle de création d’armée rappelée dans le briefing |
@@ -78,6 +86,7 @@ Généré par `node scripts/audit-card-effects.mjs` (sondes réelles dans jsdom)
 | Vieille Ruse Jedi | ↱ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | En Chasse | — | Panneau d’attaque | étape(s) 2 (bouton) |  |
 | •En Avant vers la Victoire | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
+| Recharges Blaster Surchargées | ✖ | Bouton (fiche d’unité) | fiche d’unité · automatismes |  |
 | À Bout Portant | — | Automatique | calcul de l’attaque / de la défense / bouton dédié |  |
 | Loyauté Programmée | — | Rappel (briefing) | briefing tactique | restriction d’ordres rappelée dans le briefing |
 | Protecteur | ↱ | Panneau d’attaque | étape(s) 4 (bouton) |  |

@@ -1,11 +1,11 @@
 # Audit visuel et structurel de toutes les cartes du moteur
 
-- Cartes canoniques du moteur contrôlées : **408**
-- Profils de moteur présents : **408/408**
-- Visuels de cartes présents : **408/408**
-- Unités certifiées contrôlées : **109**
-- Portraits associés : **109/109**
-- Fichiers de portrait présents : **109/109**
+- Cartes canoniques du moteur contrôlées : **438**
+- Profils de moteur présents : **438/438**
+- Visuels de cartes présents : **438/438**
+- Unités certifiées contrôlées : **111**
+- Portraits associés : **111/111**
+- Fichiers de portrait présents : **111/111**
 - Noms longs couverts par une règle de troncature : **oui**
 - Cadrage sans flou latéral (`object-fit: cover`) : **oui**
 - Règles iPad paysage : **oui**

@@ -9061,13 +9061,13 @@
       "id": "upgrade:defend in depth",
       "front": {
         "file": "cards/defend-in-depth-fr-community.jpg",
-        "sha256": "4cc1c14bb66d89cc373caae277e8a0a92edf959989c1ba1d279f8c1ffaba4ed4",
-        "bytes": 156315
+        "sha256": "6ac74e9be19e0c659171414068aa54a573e8afc9bb16e97a4ab1495db0b4549c",
+        "bytes": 153344
       },
       "keywords": [
         {
           "keywordId": "aide",
-          "label": "Aide : unité de soldats Emplacement"
+          "label": "Aide : Soldat en Position"
         },
         {
           "keywordId": "position-preparee"
@@ -11032,6 +11032,540 @@
         {
           "keywordId": "perforant-x",
           "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:luke skywalker commander skywalker",
+      "front": {
+        "file": "cards/luke-skywalker-commander-skywalker-fr-community.jpg",
+        "sha256": "5a73f451dccb4edee25fd1f6319f454d443edf562ef906e6bb40ddb70fbc0bfb",
+        "bytes": 169589
+      },
+      "keywords": [
+        {
+          "keywordId": "observateur-x",
+          "value": 1
+        },
+        {
+          "keywordId": "mettre-a-couvert-x",
+          "value": 1
+        },
+        {
+          "keywordId": "immunite-perforant"
+        },
+        {
+          "keywordId": "inspiration-x",
+          "value": 2
+        },
+        {
+          "keywordId": "implacable"
+        },
+        {
+          "keywordId": "redeploiement"
+        },
+        {
+          "keywordId": "marche-forcee"
+        },
+        {
+          "keywordId": "sans-entrave"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        },
+        {
+          "keywordId": "belier-x",
+          "value": 1
+        },
+        {
+          "keywordId": "longue-distance"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "unit:guerilla troopers",
+      "front": {
+        "file": "cards/guerilla-troopers-fr-community.jpg",
+        "sha256": "d08d8b9bdd5798e6214e4e43ebc5d93274aee9efca769e1b3df8769c57bd0aa3",
+        "bytes": 129787
+      },
+      "keywords": [
+        {
+          "keywordId": "riposte-graduee-x",
+          "value": 2
+        },
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Viser 1"
+        },
+        {
+          "keywordId": "infiltration"
+        },
+        {
+          "keywordId": "debordement"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:frontline commander",
+      "front": {
+        "file": "cards/frontline-commander-fr-community.jpg",
+        "sha256": "046c5cac85fd2eb81d6efd77536035b249681e7ded16f87cebb2376747112a1b",
+        "bytes": 171543
+      },
+      "keywords": [
+        {
+          "keywordId": "intrepide"
+        },
+        {
+          "keywordId": "aide",
+          "label": "Aide : unité de soldats Rebelle"
+        },
+        {
+          "keywordId": "indomptable"
+        },
+        {
+          "keywordId": "marche-forcee"
+        },
+        {
+          "keywordId": "tacticien-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:unseen saboteur",
+      "front": {
+        "file": "cards/unseen-saboteur-fr-community.jpg",
+        "sha256": "9965b151cb2d1ea87bc8594482594189fa2032cf0f5369e9f8278f9fdd0a3214",
+        "bytes": 162428
+      },
+      "keywords": [
+        {
+          "keywordId": "position-preparee"
+        },
+        {
+          "keywordId": "profil-bas"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:heavy blaster pistol rebel",
+      "front": {
+        "file": "cards/heavy-blaster-pistol-rebel-fr-community.jpg",
+        "sha256": "d6697bdf701fa3674fd5c29a2f82075df0be76a19d2fdd75d0650aea02520cc2",
+        "bytes": 116889
+      },
+      "keywords": [
+        {
+          "keywordId": "arsenal-x",
+          "value": 2
+        },
+        {
+          "keywordId": "letal-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:thermal detonator",
+      "front": {
+        "file": "cards/thermal-detonator-fr-community.jpg",
+        "sha256": "6ba19c77e446269d297411c249a31ae76aefa6e137b503de65d6a989a2adb9fa",
+        "bytes": 134381
+      },
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 4
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:luke skywalker upgrade",
+      "front": {
+        "file": "cards/luke-skywalker-upgrade-fr-community.jpg",
+        "sha256": "8f0b92c4ddc4efae88458223784a2120cd7132b1370862cf33a8396691a92b02",
+        "bytes": 186038
+      },
+      "keywords": [
+        {
+          "keywordId": "chef"
+        },
+        {
+          "keywordId": "arme-de-poing",
+          "label": "Arme de Poing : Corps-à-Corps"
+        },
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "perforant-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:superior equipment",
+      "front": {
+        "file": "cards/superior-equipment-fr-community.jpg",
+        "sha256": "6971f69f47bfa0d7aec54a6a47c9bf730d8138948b46f5055e0e86fcd53839d9",
+        "bytes": 165759
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:force enhanced defense",
+      "front": {
+        "file": "cards/force-enhanced-defense-fr-community.jpg",
+        "sha256": "9eda90181a638a46ae43650b9068facacf36f5833fba37c60a93ead193e33b62",
+        "bytes": 125837
+      },
+      "keywords": [
+        {
+          "keywordId": "bouclier-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:force agility",
+      "front": {
+        "file": "cards/force-agility-fr-community.jpg",
+        "sha256": "bdfdc3f58cc255632adbf329a9c0e1450bacdf551670aa64f251ee5575b181b3",
+        "bytes": 175977
+      },
+      "keywords": [
+        {
+          "keywordId": "retrait"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:battlemind",
+      "front": {
+        "file": "cards/battlemind-fr-community.jpg",
+        "sha256": "636474baded34c1bcb8d8b19f5fb916d2dd182ac9bc4f11983bf4a64c09e3c9f",
+        "bytes": 150252
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:annul",
+      "front": {
+        "file": "cards/annul-fr-community.jpg",
+        "sha256": "c1637999639f653389a8c9b5bf7796248a885a1fcf4cbd5ad34d00e5e9f3b6f4",
+        "bytes": 153374
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:helping hand",
+      "front": {
+        "file": "cards/helping-hand-fr-community.jpg",
+        "sha256": "d3a0657fce50a6c48927259213c04944d1a75be722d5d912568e1f2c1c83ae72",
+        "bytes": 177502
+      },
+      "keywords": [
+        {
+          "keywordId": "saut-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:force absorb",
+      "front": {
+        "file": "cards/force-absorb-fr-community.jpg",
+        "sha256": "91ecfaf7531c79b893ca4319cd3e0fabaf3a584c18031f799e3fd4634da50b19",
+        "bytes": 142891
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:despair",
+      "front": {
+        "file": "cards/despair-fr-community.jpg",
+        "sha256": "7b3c3e8288eda67e307aa99686d1ec5ffe7d2f5a616efbe792981880ed71a531",
+        "bytes": 162994
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:hatred",
+      "front": {
+        "file": "cards/hatred-fr-community.jpg",
+        "sha256": "8beaa0f925b74f3e239cec6bac20b2a0d38a830580282fdefb4e62289f815c45",
+        "bytes": 140346
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:force drain",
+      "front": {
+        "file": "cards/force-drain-fr-community.jpg",
+        "sha256": "d9c37ea964949b6d1c40dce618bc7882cb8d1e04c032487cb406bed14d5a858c",
+        "bytes": 168789
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:strong in the force",
+      "front": {
+        "file": "cards/strong-in-the-force-fr-community.jpg",
+        "sha256": "4504ca05ac6949b940aa91060884dd73a0d9f47fb04dad70b9cd7eb1d676d8d4",
+        "bytes": 167633
+      },
+      "keywords": [
+        {
+          "keywordId": "autonome",
+          "value": 1,
+          "label": "Autonome : Viser 1 ou Esquive 1"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:hit the dirt",
+      "front": {
+        "file": "cards/hit-the-dirt-fr-community.jpg",
+        "sha256": "b5ea5df837447b7f78608d09da2f679a9910a6bc0a57b92c65d367e93840e3cb",
+        "bytes": 201449
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:lying in wait",
+      "front": {
+        "file": "cards/lying-in-wait-fr-community.jpg",
+        "sha256": "4d1679711a3723cc45f66e4deea71f24c50ef0fe6e342689d079f08135fb9911",
+        "bytes": 151237
+      },
+      "keywords": [
+        {
+          "keywordId": "profil-bas"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:stuck in",
+      "front": {
+        "file": "cards/stuck-in-fr-community.jpg",
+        "sha256": "723ad618a232fafeb3c68b73323b08382dff03983de79df550a137286863dc66",
+        "bytes": 141298
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:agile climber",
+      "front": {
+        "file": "cards/agile-climber-fr-community.jpg",
+        "sha256": "02d8c010ad0e3793048e1e0b7d31f8bddb64b93e6a1ac70f88741463118aa034",
+        "bytes": 151945
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:infantry support",
+      "front": {
+        "file": "cards/infantry-support-fr-community.jpg",
+        "sha256": "4aa755218249e96da9eadae2f44398808fa817b06d6024621ab7bc079299fd1a",
+        "bytes": 189686
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:adaptive combat network",
+      "front": {
+        "file": "cards/adaptive-combat-network-fr-community.jpg",
+        "sha256": "b683fca4ab4a8a8d9fadedc5a3d2020b12e65a1b39f4e879551f6a78cdeddb47",
+        "bytes": 158872
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:squadron leader",
+      "front": {
+        "file": "cards/squadron-leader-fr-community.jpg",
+        "sha256": "ec9168fab51363a5499d7ff33288534dc5444135bacf6a56a571d82c75f409e3",
+        "bytes": 187789
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:high speed tracking",
+      "front": {
+        "file": "cards/high-speed-tracking-fr-community.jpg",
+        "sha256": "0a4f86c4d951f6fc4dce8009863cec9c3828509bb7715f6966c88c386feb4ac5",
+        "bytes": 140040
+      },
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:overcharged blaster packs",
+      "front": {
+        "file": "cards/overcharged-blaster-packs-fr-community.jpg",
+        "sha256": "82e81c4309f75dff3f8684cc896b9230b1e07b1b9d305a45049c281c937d914e",
+        "bytes": 155187
+      },
+      "keywords": [
+        {
+          "keywordId": "anti-personnel-x",
+          "value": 2
+        },
+        {
+          "keywordId": "debordement"
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:stolen rt 97c",
+      "front": {
+        "file": "cards/stolen-rt-97c-fr-community.jpg",
+        "sha256": "920cb29c5b305412c7eba5e99eb05141e28a4d4c7ddcca53cd3f011fb2df503b",
+        "bytes": 128133
+      },
+      "keywords": [],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:stolen dlt 19",
+      "front": {
+        "file": "cards/stolen-dlt-19-fr-community.jpg",
+        "sha256": "9cd0b95738a45c14d338dc333db1e72a74b2295b878e31278c14d28b1615ec01",
+        "bytes": 129416
+      },
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        }
+      ],
+      "status": "keywords-reviewed",
+      "note": "Recto FR traduit le 04/11/2026 sur le visuel Legion HQ ; mots-clés et valeurs lus sur le recto et recoupés avec Legion HQ.",
+      "parametersReviewedAt": "2026-11-04"
+    },
+    {
+      "id": "upgrade:stolen hh 12",
+      "front": {
+        "file": "cards/stolen-hh-12-fr-community.jpg",
+        "sha256": "77aea94c60ecb295d5e1899edc5ac83ceb4e6257384101a93f4cb51ce43ee49e",
+        "bytes": 112392
+      },
+      "keywords": [
+        {
+          "keywordId": "encombrant"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 3
         }
       ],
       "status": "keywords-reviewed",

@@ -2659,7 +2659,7 @@
       "englishTitle": "Defend in Depth",
       "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Defend%20in%20Depth.webp",
       "englishText": "Imperial Agent or Imperial Officer only. During the End Phase, choose 1 allied Trooper unit within range 1 of this unit. The chosen unit does not remove 1 Aim token. This unit gains Aid: Emplacement Trooper Unit, Prepared Position, and Action: Spotter 1.",
-      "frenchText": "{\"title\":\"•Défense en Profondeur\",\"body\":\"**Agent Impérial ou Officier Impérial uniquement.**\\nPendant la __Phase Finale__, choisissez 1 unité de soldats alliée à portée 1 de cette unité. L'unité choisie ne retire pas 1 pion Viser.\\nCette unité gagne **Aide : unité de soldats Emplacement**, **Position Préparée** et {action}**Observateur 1**.\"}",
+      "frenchText": "{\"title\":\"•Défense en Profondeur\",\"body\":\"**Agent Impérial ou Officier Impérial uniquement.**\\nPendant la __Phase Finale__, choisissez 1 unité de soldats alliée à portée 1 de cette unité. L'unité choisie ne retire pas 1 pion Viser.\\nCette unité gagne **Aide : Soldat en Position**, **Position Préparée** et {action}**Observateur 1**.\"}",
       "glossaryVersion": "2026-05-08",
       "verifiedAt": "2026-11-04T00:00:00.000Z"
     },
@@ -6338,6 +6338,866 @@
       "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Chewbacca%20Courageous%20Co-Pilot.webp",
       "englishText": "Han & Chewie only. Add 1 Chewbacca miniature. This miniature has Tough. This unit gains Defend 1. Overwhelm (3 red, melee): Lethal 1. Chewbacca's Bowcaster (1 red, 2 white, 1-3): Impact 1, Pierce 1.",
       "frenchText": "{\"title\":\"•Chewbacca, Copilote Courageux\",\"body\":\"**Han & Chewie uniquement.**\\nAjoutez 1 figurine de Chewbacca. Cette figurine a **Coriace**.\\nCette unité gagne **Défense 1**.\",\"weapons\":[{\"name\":\"Débordement\",\"keywords\":\"Létal 1\"},{\"name\":\"Arbalète de Chewbacca\",\"keywords\":\"Impact 1, Perforant 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "luke skywalker commander skywalker": {
+    "nameFr": "Luke Skywalker, Commandant Skywalker",
+    "cardType": "unit",
+    "image": "luke-skywalker-commander-skywalker-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Sabre Laser et Corne",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "melee",
+        "keywordIds": [
+          "impact-x",
+          "letal-x",
+          "perforant-x",
+          "belier-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2,
+          "letal-x": 1,
+          "perforant-x": 1,
+          "belier-x": 1
+        }
+      },
+      {
+        "name": "Blaster de Luke",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "longue-distance"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "observateur-x",
+        "value": 1
+      },
+      {
+        "keywordId": "mettre-a-couvert-x",
+        "value": 1
+      },
+      {
+        "keywordId": "immunite-perforant"
+      },
+      {
+        "keywordId": "inspiration-x",
+        "value": 2
+      },
+      {
+        "keywordId": "implacable"
+      },
+      {
+        "keywordId": "redeploiement"
+      },
+      {
+        "keywordId": "marche-forcee"
+      },
+      {
+        "keywordId": "sans-entrave"
+      }
+    ],
+    "rank": "commandant",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 6,
+      "courage": 2,
+      "baseModels": 1
+    },
+    "attackSurge": "hit",
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Luke Skywalker, Commander Skywalker",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Luke%20Skywalker%20Commander%20Skywalker.webp",
+      "englishText": "Luke Skywalker, Commander Skywalker. Creature Trooper. Free action: Spotter 1. Free action: Take Cover 1. Immune: Pierce. Inspire 2. Relentless. Reposition. Spur. Unhindered. Lightsaber & Horn (3 white, 3 black, melee): Impact 2, Lethal 1, Pierce 1, Ram 1. Luke's Blaster (1 red, 3 black, 1-2): Long Shot.",
+      "frenchText": "{\"name\":\"Luke Skywalker\",\"subtitle\":\"Commandant Skywalker\",\"type\":\"Soldat Créature\",\"keywords\":[\"{action-gratuite}Observateur 1\",\"{action-gratuite}Mettre à Couvert 1\",\"Immunité : Perforant\",\"Inspiration 2\",\"Implacable. Redéploiement\",\"Marche Forcée. Sans Entrave\"],\"weapons\":[{\"name\":\"Sabre Laser et Corne\",\"keywords\":\"Impact 2, Létal 1, Perforant 1, Bélier 1\"},{\"name\":\"Blaster de Luke\",\"keywords\":\"Longue Distance\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "guerilla troopers": {
+    "nameFr": "Guérilleros",
+    "cardType": "unit",
+    "image": "guerilla-troopers-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Entraînement au Combat",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": []
+      },
+      {
+        "name": "Blasters Volés",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 1
+          }
+        ],
+        "range": "1-3",
+        "keywordIds": [
+          "debordement"
+        ]
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "riposte-graduee-x",
+        "value": 2
+      },
+      {
+        "keywordId": "autonome",
+        "value": 1
+      },
+      {
+        "keywordId": "infiltration"
+      }
+    ],
+    "rank": "special",
+    "speed": 2,
+    "defenseColor": "rouge",
+    "unitStats": {
+      "woundsPerModel": 1,
+      "courage": 2,
+      "baseModels": 4
+    },
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Guerilla Troopers",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/unitCards/Guerilla%20Troopers.webp",
+      "englishText": "Guerilla Troopers. Trooper. Flexible Response 2. Independent: Aim 1. Infiltrate. Combat Training (1 black, melee). Stolen Blasters (1 black, 1-3): Overwhelm.",
+      "frenchText": "{\"name\":\"Guérilleros\",\"type\":\"Soldat\",\"keywords\":[\"Riposte Graduée 2\",\"Autonome : Viser 1\",\"Infiltration\"],\"weapons\":[{\"name\":\"Entraînement au Combat\",\"keywords\":\"\"},{\"name\":\"Blasters Volés\",\"keywords\":\"Débordement\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "frontline commander": {
+    "nameFr": "•Commandant de Première Ligne",
+    "cardType": "upgrade",
+    "image": "frontline-commander-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "intrepide"
+      },
+      {
+        "keywordId": "aide"
+      },
+      {
+        "keywordId": "indomptable"
+      },
+      {
+        "keywordId": "marche-forcee"
+      },
+      {
+        "keywordId": "tacticien-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Frontline Commander",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Frontline%20Commander.webp",
+      "englishText": "Rebel Officer only. While within range 1 of this unit, allied Trooper units gain Dauntless. This unit gains Aid: Rebel Trooper Unit, Indomitable, Spur, and Tactical 1.",
+      "frenchText": "{\"title\":\"•Commandant de Première Ligne\",\"body\":\"**Officier Rebelle uniquement.**\\nTant qu'elles sont à portée 1 de cette unité, les unités de soldats alliées gagnent **Intrépide**.\\nCette unité gagne **Aide : unité de soldats** {faction-rebelles}, **Indomptable**, **Marche Forcée** et **Tacticien 1**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "unseen saboteur": {
+    "nameFr": "•Saboteur Invisible",
+    "cardType": "upgrade",
+    "image": "unseen-saboteur-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "position-preparee"
+      },
+      {
+        "keywordId": "profil-bas"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Unseen Saboteur",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Unseen%20Saboteur.webp",
+      "englishText": "Rebel Agent or Rebel Officer only. During Setup, choose another allied non-commander non-operative Trooper unit. The chosen unit gains Prepared Position. This unit gains Low Profile and Prepared Position.",
+      "frenchText": "{\"title\":\"•Saboteur Invisible\",\"body\":\"**Agent Rebelle ou Officier Rebelle uniquement.**\\nPendant la __Mise en Place__, choisissez une autre unité de soldats alliée qui n'est ni commandant ni opératif. L'unité choisie gagne **Position Préparée**.\\nCette unité gagne **Profil Bas** et **Position Préparée**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "heavy blaster pistol rebel": {
+    "nameFr": "Pistolet Blaster Lourd (Rebelles)",
+    "cardType": "upgrade",
+    "image": "heavy-blaster-pistol-rebel-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Pistolet Blaster Lourd",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-2",
+        "keywordIds": [
+          "letal-x"
+        ],
+        "keywordValues": {
+          "letal-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "arsenal-x",
+        "value": 2
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Heavy Blaster Pistol",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Heavy%20Blaster%20Pistol%20Reb.webp",
+      "englishText": "Rebel Agent or Rebel Officer only. This unit gains Arsenal 2. Heavy Blaster Pistol (1 red, 1 white, 1-2): Lethal 1.",
+      "frenchText": "{\"title\":\"Pistolet Blaster Lourd\",\"body\":\"**Agent Rebelle ou Officier Rebelle uniquement.**\\nCette unité gagne **Arsenal 2**.\",\"weapons\":[{\"name\":\"Pistolet Blaster Lourd\",\"keywords\":\"Létal 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "thermal detonator": {
+    "nameFr": "Détonateur Thermique",
+    "cardType": "upgrade",
+    "image": "thermal-detonator-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Détonateur Thermique",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 4
+          }
+        ],
+        "range": "melee-1",
+        "keywordIds": [
+          "deflagration",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 4
+        }
+      }
+    ],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Thermal Detonator",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Thermal%20Detonator.webp",
+      "englishText": "Rebel Agent or Rebel Officer only. Thermal Detonator (4 red, melee-1): Blast, Impact 4.",
+      "frenchText": "{\"title\":\"Détonateur Thermique\",\"body\":\"**Agent Rebelle ou Officier Rebelle uniquement.**\",\"weapons\":[{\"name\":\"Détonateur Thermique\",\"keywords\":\"Déflagration, Impact 4\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "luke skywalker upgrade": {
+    "nameFr": "•Luke Skywalker (amélioration)",
+    "cardType": "upgrade",
+    "image": "luke-skywalker-upgrade-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "Sabre Laser d'Anakin",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "noir",
+            "count": 2
+          }
+        ],
+        "range": "melee-0",
+        "keywordIds": [
+          "critique-x",
+          "impact-x",
+          "perforant-x"
+        ],
+        "keywordValues": {
+          "critique-x": 1,
+          "impact-x": 1,
+          "perforant-x": 1
+        }
+      }
+    ],
+    "keywords": [
+      {
+        "keywordId": "chef"
+      },
+      {
+        "keywordId": "arme-de-poing"
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Luke Skywalker",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Luke%20Skywalker%20Upgrade.webp",
+      "englishText": "Rebel Veterans only. Add 1 Luke Skywalker miniature. This unit increases its courage by 1 and gains 1 personnel upgrade icon. When this unit attacks, after the effect is resolved, you may choose an allied unit within range 2. The chosen unit removes up to 2 Suppression tokens. Leader. Sidearm: Melee. Anakin's Lightsaber (1 red, 2 black, melee): Critical 1, Impact 1, Pierce 1.",
+      "frenchText": "{\"title\":\"•Luke Skywalker\",\"body\":\"**Vétérans Rebelles uniquement.**\\nAjoutez 1 figurine de Luke Skywalker.\\nCette unité augmente son {courage} de 1 et gagne 1 emplacement d'amélioration Personnel.\\nQuand cette unité attaque, après la résolution de l'effet, vous pouvez choisir une unité alliée à portée 2 : elle retire jusqu'à 2 pions Suppression.\\n**Chef. Arme de Poing : Corps-à-Corps.**\",\"weapons\":[{\"name\":\"Sabre Laser d'Anakin\",\"keywords\":\"Critique 1, Impact 1, Perforant 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "superior equipment": {
+    "nameFr": "••Équipement Supérieur",
+    "cardType": "upgrade",
+    "image": "superior-equipment-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Superior Equipment",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Superior%20Equipment.webp",
+      "englishText": "Non-commander non-operative unit only. When this unit defends against an enemy Ranged attack, upgrade 2 of its defense dice.",
+      "frenchText": "{\"title\":\"••Équipement Supérieur\",\"body\":\"**Unité ni commandant ni opératif uniquement.**\\nQuand cette unité défend contre une attaque à distance ennemie, améliorez 2 de ses dés de défense.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "force enhanced defense": {
+    "nameFr": "Défense Renforcée par la Force",
+    "cardType": "upgrade",
+    "image": "force-enhanced-defense-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "bouclier-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Force Enhanced Defense",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Enhanced%20Defense.webp",
+      "englishText": "This unit gains Shielded 1. At the start of this unit's Activation, it may flip up to 1 of its inactive Shield tokens.",
+      "frenchText": "{\"title\":\"Défense Renforcée par la Force\",\"body\":\"Cette unité gagne **Bouclier 1**.\\nAu début de l'activation de cette unité, elle peut retourner jusqu'à 1 de ses pions Bouclier inactifs.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "force agility": {
+    "nameFr": "Agilité de la Force",
+    "cardType": "upgrade",
+    "image": "force-agility-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "retrait"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Force Agility",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Agility.webp",
+      "englishText": "At the start of this unit's Activation, you may discard this card. If you do, this unit gains Disengage this Round.",
+      "frenchText": "{\"title\":\"Agilité de la Force\",\"body\":\"Au début de l'activation de cette unité, vous pouvez défausser cette carte. Dans ce cas, cette unité gagne **Retrait** pour ce round.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "battlemind": {
+    "nameFr": "Méditation de Combat",
+    "cardType": "upgrade",
+    "image": "battlemind-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Battlemind",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Battlemind.webp",
+      "englishText": "When this unit or an allied Trooper unit within range 1 attacks, you may exhaust this card. If you do, upgrade 2 of the attacking unit's attack dice. At the end of this unit's Activation, you may ready this card.",
+      "frenchText": "{\"title\":\"Méditation de Combat\",\"body\":\"Quand cette unité ou une unité de soldats alliée à portée 1 attaque, vous pouvez incliner cette carte. Dans ce cas, améliorez 2 dés d'attaque de l'unité attaquante.\\nÀ la fin de l'activation de cette unité, vous pouvez redresser cette carte.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "annul": {
+    "nameFr": "Annulation",
+    "cardType": "upgrade",
+    "image": "annul-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Annul",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Annul.webp",
+      "englishText": "When an enemy unit within range 2 of this unit uses a force upgrade that is not Annul, if this unit is not Suppressed, this unit may gain up to 3 Suppression tokens. For each Suppression token gained in this way, roll 1 red defense die. If the roll contains any block or defense surge results, cancel the effect of the enemy force upgrade.",
+      "frenchText": "{\"title\":\"Annulation\",\"body\":\"Quand une unité ennemie à portée 2 de cette unité utilise une amélioration Force autre qu'Annulation, si cette unité n'est pas réprimée, elle peut gagner jusqu'à 3 pions Suppression. Pour chaque pion ainsi gagné, lancez 1 dé de défense rouge. Si le jet contient au moins un bloc ou une adrénaline de défense, annulez l'effet de l'amélioration Force ennemie.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "helping hand": {
+    "nameFr": "Coup de Main",
+    "cardType": "upgrade",
+    "image": "helping-hand-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "saut-x",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Helping Hand",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Helping%20Hand.webp",
+      "englishText": "Light Side only. When another allied Trooper unit within range 1 of this unit would make a Move action, you may exhaust this card. If you do, the allied unit instead makes a Jump 1 action and gains 1 Dodge token. At the end of this unit's Activation, ready this card.",
+      "frenchText": "{\"title\":\"Coup de Main\",\"body\":\"**Côté Lumineux uniquement.**\\nQuand une autre unité de soldats alliée à portée 1 de cette unité devrait effectuer une action Se Déplacer, vous pouvez incliner cette carte. Dans ce cas, l'unité alliée effectue à la place une action {action}**Saut 1** et gagne 1 pion Esquive.\\nÀ la fin de l'activation de cette unité, redressez cette carte.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "force absorb": {
+    "nameFr": "Absorption de Force",
+    "cardType": "upgrade",
+    "image": "force-absorb-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Force Absorb",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Absorb.webp",
+      "englishText": "Light Side only. When an allied unit within range 1 of this unit defends against a Ranged attack, during the Modify Attack Dice step, you may exhaust this card. If you do, cancel 1 crit result in the Attack Pool. At the start of this unit's Activation, you may ready this card.",
+      "frenchText": "{\"title\":\"Absorption de Force\",\"body\":\"**Côté Lumineux uniquement.**\\nQuand une unité alliée à portée 1 de cette unité défend contre une attaque à distance, pendant l'étape __Modifier les Dés d'Attaque__, vous pouvez incliner cette carte. Dans ce cas, annulez 1 {critique} de la réserve d'attaque.\\nAu début de l'activation de cette unité, vous pouvez redresser cette carte.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "despair": {
+    "nameFr": "Désespoir",
+    "cardType": "upgrade",
+    "image": "despair-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Despair",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Despair.webp",
+      "englishText": "Dark Side only. Enemy units Engaged with this unit downgrade 1 of their defense dice when defending. Additionally, after this unit makes a Melee attack, each other enemy unit within range 1/2 of the defending unit gains 1 Suppression token.",
+      "frenchText": "{\"title\":\"Désespoir\",\"body\":\"**Côté Obscur uniquement.**\\nLes unités ennemies engagées avec cette unité dégradent 1 de leurs dés de défense quand elles défendent.\\nDe plus, après que cette unité a effectué une attaque au corps-à-corps, chaque autre unité ennemie à portée ½ de l'unité défenseuse gagne 1 pion Suppression.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "hatred": {
+    "nameFr": "Haine",
+    "cardType": "upgrade",
+    "image": "hatred-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Hatred",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hatred.webp",
+      "englishText": "Dark Side only. Free action: this unit may suffer up to 3 Wounds. When this unit makes a Melee attack, it may upgrade 1 of its attack dice for each Wound token it has.",
+      "frenchText": "{\"title\":\"Haine\",\"body\":\"**Côté Obscur uniquement.**\\n{action-gratuite}Cette unité peut subir jusqu'à 3 blessures.\\nQuand cette unité effectue une attaque au corps-à-corps, elle peut améliorer 1 de ses dés d'attaque par pion Blessure qu'elle possède.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "force drain": {
+    "nameFr": "Drain de Force",
+    "cardType": "upgrade",
+    "image": "force-drain-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Force Drain",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Force%20Drain.webp",
+      "englishText": "Dark Side only. Exhaust, free action: choose an enemy unit Engaged with this unit and roll 3 black attack dice. For each crit rolled, the enemy unit gains 1 Suppression token. After the effect is resolved, if the enemy unit is Panicked, it gains 1 Poison token and this unit removes 1 Wound token. If the enemy unit is Suppressed but not Panicked, it gains 1 Immobilize token.",
+      "frenchText": "{\"title\":\"Drain de Force\",\"body\":\"**Côté Obscur uniquement.**\\n{incliner}{action-gratuite}Choisissez une unité ennemie engagée avec cette unité et lancez 3 dés d'attaque noirs. Pour chaque {critique} obtenu, l'unité ennemie gagne 1 pion Suppression. Ensuite, si l'unité ennemie est paniquée, elle gagne 1 pion Poison et cette unité retire 1 pion Blessure. Si elle est réprimée mais pas paniquée, elle gagne 1 pion Immobilisation.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "strong in the force": {
+    "nameFr": "Puissant dans la Force",
+    "cardType": "upgrade",
+    "image": "strong-in-the-force-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "autonome",
+        "value": 1
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Strong in the Force",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Strong%20in%20the%20Force.webp",
+      "englishText": "This card may only be equipped by a unit that has 1 or more force upgrade icons. This unit gains Independent: Aim or Dodge.",
+      "frenchText": "{\"title\":\"Puissant dans la Force\",\"body\":\"__Seule une unité ayant au moins 1 icône d'amélioration Force peut s'équiper de cette carte.__\\nCette unité gagne **Autonome : Viser ou Esquive**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "hit the dirt": {
+    "nameFr": "À Terre !",
+    "cardType": "upgrade",
+    "image": "hit-the-dirt-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Hit the Dirt",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Hit%20the%20Dirt.webp",
+      "englishText": "Non-Droid Trooper only. Trooper only. Small base only. Units may equip this card even if they do not have a training upgrade slot on their Unit Card. When this unit defends against a Ranged attack, during the Apply Dodge and Cover step, you may discard this card. If you do, this unit rolls red defense dice instead of white defense dice when rolling its Cover Pool for this attack.",
+      "frenchText": "{\"title\":\"À Terre !\",\"body\":\"**Soldat non-droïde uniquement. Soldat uniquement. Socle petit uniquement.**\\n__Les unités peuvent s'équiper de cette carte même sans emplacement Entraînement sur leur carte Unité.__\\nQuand cette unité défend contre une attaque à distance, pendant l'étape __Appliquer Esquives et Couvert__, vous pouvez défausser cette carte. Dans ce cas, cette unité lance des dés de défense rouges au lieu de blancs pour sa réserve de couvert lors de cette attaque.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "lying in wait": {
+    "nameFr": "À l'Affût",
+    "cardType": "upgrade",
+    "image": "lying-in-wait-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "profil-bas"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Lying In Wait",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Lying%20in%20Wait%20Upgrade.webp",
+      "englishText": "Trooper unit with Infiltrate or Prepared Position only. While this unit does not have an Order token, it has Low Profile.",
+      "frenchText": "{\"title\":\"À l'Affût\",\"body\":\"**Unité de soldats ayant Infiltration ou Position Préparée uniquement.**\\nTant que cette unité n'a pas de pion Ordre, elle a **Profil Bas**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "stuck in": {
+    "nameFr": "Accrochés",
+    "cardType": "upgrade",
+    "image": "stuck-in-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Stuck In",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stuck%20In.webp",
+      "englishText": "Trooper only. At the end of this unit's Activation, if it is Contesting 1 or more POIs, this unit gains 1 Dodge token.",
+      "frenchText": "{\"title\":\"Accrochés\",\"body\":\"**Soldat uniquement.**\\nÀ la fin de l'activation de cette unité, si elle conteste au moins 1 point d'intérêt, elle gagne 1 pion Esquive.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "agile climber": {
+    "nameFr": "Grimpeur Agile",
+    "cardType": "upgrade",
+    "image": "agile-climber-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Agile Climber",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Agile%20Climber.webp",
+      "englishText": "Trooper only. Small base only. When this unit starts a Climb, you may exhaust this card. If you do, this unit uses the Movement tool matching its Speed during this Climb, instead of the Speed-1 tool.",
+      "frenchText": "{\"title\":\"Grimpeur Agile\",\"body\":\"**Soldat uniquement. Socle petit uniquement.**\\nQuand cette unité commence une Escalade, vous pouvez incliner cette carte. Dans ce cas, cette unité utilise pour cette Escalade la réglette de déplacement correspondant à sa vitesse, au lieu de la réglette de vitesse 1.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "infantry support": {
+    "nameFr": "Soutien d'Infanterie",
+    "cardType": "upgrade",
+    "image": "infantry-support-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Infantry Support",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Infantry%20Support.webp",
+      "englishText": "Vehicle only. When an allied Trooper unit within range 1 of this unit is issued an Order, this unit may issue an Order to itself.",
+      "frenchText": "{\"title\":\"Soutien d'Infanterie\",\"body\":\"**Véhicule uniquement.**\\nQuand une unité de soldats alliée à portée 1 de cette unité reçoit un ordre, cette unité peut se donner un ordre à elle-même.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "adaptive combat network": {
+    "nameFr": "Réseau de Combat Adaptatif",
+    "cardType": "upgrade",
+    "image": "adaptive-combat-network-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Adaptive Combat Network",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Adeptive%20Combat%20Network.webp",
+      "englishText": "Droid Trooper only. When another unit equipped with Adaptive Combat Network suffers 1 or more Wounds, you may exhaust this card. If you do, this unit gains 1 Aim token. At the start of the End Phase, ready this card.",
+      "frenchText": "{\"title\":\"Réseau de Combat Adaptatif\",\"body\":\"**Soldat Droïde uniquement.**\\nQuand une autre unité équipée du Réseau de Combat Adaptatif subit au moins 1 blessure, vous pouvez incliner cette carte. Dans ce cas, cette unité gagne 1 pion Viser.\\nAu début de la __Phase Finale__, redressez cette carte.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "squadron leader": {
+    "nameFr": "•Chef d'Escadron",
+    "cardType": "upgrade",
+    "image": "squadron-leader-fr-community.jpg",
+    "weapons": [],
+    "keywords": [],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Squadron Leader",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Squadron%20Leader.webp",
+      "englishText": "Vehicle only. During Setup, each allied unit with the same name as this unit gains a Squadron token. When an allied unit with a Squadron token within range 1 of this unit attacks, during the Reroll Attack Dice step, it may reroll 1 of its attack dice for each other allied unit within range 1 that has a Squadron token.",
+      "frenchText": "{\"title\":\"•Chef d'Escadron\",\"body\":\"**Véhicule uniquement.**\\nPendant la __Mise en Place__, chaque unité alliée portant le même nom que cette unité gagne un pion Escadron.\\nQuand une unité alliée ayant un pion Escadron à portée 1 de cette unité attaque, pendant l'étape __Relancer les Dés d'Attaque__, elle peut relancer 1 de ses dés d'attaque pour chaque autre unité alliée à portée 1 ayant un pion Escadron.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "high speed tracking": {
+    "nameFr": "Poursuite à Grande Vitesse",
+    "cardType": "upgrade",
+    "image": "high-speed-tracking-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "deflagration"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "High Speed Tracking",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/High%20Speed%20Tracking.webp",
+      "englishText": "When this unit attacks a Flying Vehicle unit, during the Form Attack Pool step of that attack, that Attack Pool gains Blast.",
+      "frenchText": "{\"title\":\"Poursuite à Grande Vitesse\",\"body\":\"Quand cette unité attaque une unité de véhicule volant, pendant l'étape __Former la Réserve d'Attaque__ de cette attaque, cette réserve d'attaque gagne **Déflagration**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "overcharged blaster packs": {
+    "nameFr": "Recharges Blaster Surchargées",
+    "cardType": "upgrade",
+    "image": "overcharged-blaster-packs-fr-community.jpg",
+    "weapons": [],
+    "keywords": [
+      {
+        "keywordId": "anti-personnel-x",
+        "value": 2
+      },
+      {
+        "keywordId": "debordement"
+      }
+    ],
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Overcharged Blaster Packs",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Overcharged%20Blaster%20Packs.webp",
+      "englishText": "When this unit attacks, during the Form Attack Pool step, you may discard this card. If you do, that Attack Pool gains Anti-Personnel 2 and Overwhelm.",
+      "frenchText": "{\"title\":\"Recharges Blaster Surchargées\",\"body\":\"Quand cette unité attaque, pendant l'étape __Former la Réserve d'Attaque__, vous pouvez défausser cette carte. Dans ce cas, cette réserve d'attaque gagne **Anti-personnel 2** et **Débordement**.\"}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "stolen rt 97c": {
+    "nameFr": "Guérillero avec RT-97C Volé",
+    "cardType": "upgrade",
+    "image": "stolen-rt-97c-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "RT-97C Volé",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 1
+          },
+          {
+            "color": "blanc",
+            "count": 3
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": []
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Stolen RT-97C",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stolen%20RT-97C.webp",
+      "englishText": "Guerilla Troopers only. Add 1 RT-97C Guerilla Trooper miniature. Stolen RT-97C (1 red, 3 white, 1-4).",
+      "frenchText": "{\"title\":\"RT-97C Volé\",\"body\":\"**Guérilleros uniquement.**\\nAjoutez 1 figurine de Guérillero avec RT-97C.\",\"weapons\":[{\"name\":\"RT-97C Volé\",\"keywords\":\"\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "stolen dlt 19": {
+    "nameFr": "Guérillero avec DLT-19 Volé",
+    "cardType": "upgrade",
+    "image": "stolen-dlt-19-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "DLT-19 Volé",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1
+        }
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Stolen DLT-19",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stolen%20DLT-19.webp",
+      "englishText": "Guerilla Troopers only. Add 1 DLT-19 Guerilla Trooper miniature. Stolen DLT-19 (2 red, 1-4): Impact 1.",
+      "frenchText": "{\"title\":\"DLT-19 Volé\",\"body\":\"**Guérilleros uniquement.**\\nAjoutez 1 figurine de Guérillero avec DLT-19.\",\"weapons\":[{\"name\":\"DLT-19 Volé\",\"keywords\":\"Impact 1\"}]}",
+      "glossaryVersion": "2026-05-08",
+      "verifiedAt": "2026-11-04T00:00:00.000Z"
+    },
+    "verificationSource": "Visuel anglais Legion HQ ; fiche française traduite en session et validée visuellement par Antoine le 04/11/2026 ; dés, portées, PV et mots-clés repris de la base Legion HQ ; termes de l'index Star Wars Légion V2.6 et du glossaire SWL.",
+    "addedAt": "2026-11-04"
+  },
+  "stolen hh 12": {
+    "nameFr": "Guérillero avec HH-12 Volé",
+    "cardType": "upgrade",
+    "image": "stolen-hh-12-fr-community.jpg",
+    "weapons": [
+      {
+        "name": "HH-12 Volé",
+        "dice": [
+          {
+            "color": "noir",
+            "count": 3
+          }
+        ],
+        "range": "2-4",
+        "keywordIds": [
+          "encombrant",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 3
+        }
+      }
+    ],
+    "keywords": [],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "translationProof": {
+      "schemaVersion": 1,
+      "englishTitle": "Stolen HH-12",
+      "sourceUrl": "https://d2maxvwz12z6fm.cloudfront.net/upgradeCards/Stolen%20HH-12.webp",
+      "englishText": "Guerilla Troopers only. Add 1 HH-12 Guerilla Trooper miniature. Stolen HH-12 (3 black, 2-4): Cumbersome, Impact 3.",
+      "frenchText": "{\"title\":\"HH-12 Volé\",\"body\":\"**Guérilleros uniquement.**\\nAjoutez 1 figurine de Guérillero avec HH-12.\",\"weapons\":[{\"name\":\"HH-12 Volé\",\"keywords\":\"Encombrant, Impact 3\"}]}",
       "glossaryVersion": "2026-05-08",
       "verifiedAt": "2026-11-04T00:00:00.000Z"
     },

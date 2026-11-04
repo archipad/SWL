@@ -111,5 +111,7 @@ window.SWL_CODEX_PORTRAITS={
   "paz vizsla proud warrior": "../cards/paz-vizsla-proud-warrior-fr-community.jpg",
   "han chewie notorious scoundrels": "../cards/han-chewie-notorious-scoundrels-fr-community.jpg",
   "ursa wren leader of clan wren": "../cards/ursa-wren-leader-of-clan-wren-fr-community.jpg",
-  "rook kast devoted to the cause": "../cards/rook-kast-devoted-to-the-cause-fr-community.jpg"
+  "rook kast devoted to the cause": "../cards/rook-kast-devoted-to-the-cause-fr-community.jpg",
+  "luke skywalker commander skywalker": "../cards/luke-skywalker-commander-skywalker-fr-community.jpg",
+  "guerilla troopers": "../cards/guerilla-troopers-fr-community.jpg"
 };

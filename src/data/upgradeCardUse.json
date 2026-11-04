@@ -1306,6 +1306,136 @@
     "chewbacca courageous co pilot": {
       "use": "passive",
       "icons": []
+    },
+    "frontline commander": {
+      "use": "passive",
+      "icons": []
+    },
+    "unseen saboteur": {
+      "use": "passive",
+      "icons": []
+    },
+    "heavy blaster pistol rebel": {
+      "use": "passive",
+      "icons": []
+    },
+    "thermal detonator": {
+      "use": "passive",
+      "icons": []
+    },
+    "luke skywalker upgrade": {
+      "use": "passive",
+      "icons": []
+    },
+    "superior equipment": {
+      "use": "passive",
+      "icons": []
+    },
+    "force enhanced defense": {
+      "use": "passive",
+      "icons": []
+    },
+    "force agility": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "battlemind": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "annul": {
+      "use": "passive",
+      "icons": []
+    },
+    "helping hand": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "force absorb": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "despair": {
+      "use": "passive",
+      "icons": []
+    },
+    "hatred": {
+      "use": "passive",
+      "icons": []
+    },
+    "force drain": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "strong in the force": {
+      "use": "passive",
+      "icons": []
+    },
+    "hit the dirt": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "lying in wait": {
+      "use": "passive",
+      "icons": []
+    },
+    "stuck in": {
+      "use": "passive",
+      "icons": []
+    },
+    "agile climber": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "infantry support": {
+      "use": "passive",
+      "icons": []
+    },
+    "adaptive combat network": {
+      "use": "exhaust",
+      "icons": [
+        "exhaust"
+      ]
+    },
+    "squadron leader": {
+      "use": "passive",
+      "icons": []
+    },
+    "high speed tracking": {
+      "use": "passive",
+      "icons": []
+    },
+    "overcharged blaster packs": {
+      "use": "discard",
+      "icons": [
+        "discard"
+      ]
+    },
+    "stolen rt 97c": {
+      "use": "passive",
+      "icons": []
+    },
+    "stolen dlt 19": {
+      "use": "passive",
+      "icons": []
+    },
+    "stolen hh 12": {
+      "use": "passive",
+      "icons": []
     }
   }
 }

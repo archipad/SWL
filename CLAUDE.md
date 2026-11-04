@@ -93,8 +93,14 @@ concerne les sessions Claude Code. En cas de contradiction, `AGENTS.md` prévaut
   `scripts/audit-legionhq.mjs`) produit beaucoup de faux manques, car les noms anglais diffèrent
   (« Strike and Fade » / « Hit and Run », « Door Gunners » / « Mounted Gunners »…). Passer par
   `scripts/data/legionhq-aliases.json`, puis par le nom FR, et vérifier chaque manque sur le visuel.
-- Anomalie connue : « Dark Vador, l'Apprenti de l'Empereur » est une unité, mais l'atelier la
-  range en amélioration.
+- Catalogue complété le 04/11/2026 (605 cartes). Doublons : comparer aussi le TEXTE des fiches à
+  l'OCR des rectos FR existants (noms Legion HQ ≠ noms FR : Terror = « Effroi »/Terreur, Strike Team
+  Leader = Chef de Groupe de Combat, Dug In = Retranchement, Overwatch = Vigilance…).
+- Une carte ajoutée à l'atelier doit avoir : `customCards.json` (données moteur), `workshopKeywordReviews.json`
+  (verso, empreinte du recto), `upgradeCardUse.json`, un portrait (`portrait-assets.js`, ?v=N) pour une unité,
+  une collision dans `upgradeNameCollisions.json` si l'amélioration porte le nom d'une unité, et un bouton
+  dans `app.js` (CARD_KEYWORD_ACTIONS) si elle s'incline ou se défausse ; mots-clés absents de la référence
+  AMG à lister dans `KEYWORDS_OUTSIDE_CORE_RULES` (`test-card-workshop.mjs`).
 - Gabarit de découpe imprimé en 3D pour le massicot d'Antoine : à traiter dans une conversation
   séparée, après les traductions.
 
