@@ -95,11 +95,13 @@ function renderItem(item:WorkshopPrintItem,side:'front'|'back',layout:WorkshopPa
   const [boxW,boxH]=turned&&side==='back'?[h,w]:[w,h];
   return '<article class="physical-card" data-card-id="'+e(item.cardId)+'" data-copy="'+item.copy+'" style="width:'+layout.slotWidth+'mm;height:'+layout.slotHeight+'mm"><div class="card-face '+(side==='front'?'front':'workshop-back')+(turned?' turn-'+side:'')+'" style="width:'+boxW+'mm;height:'+boxH+'mm">'+(side==='front'?'<img src="'+e(item.front!)+'" alt="'+e(item.name)+'">':backHtml(item,mode))+'</div></article>';
 }
+// Room for the whole library (605 cards on 04/11/2026) plus a second copy of a full army list.
+export const WORKSHOP_MAX_PRINT_CARDS=1000;
 export interface WorkshopPrintResult {physicalCards:number;pages:number;sheets:number;capacity:number;format:ResolvedWorkshopFormat;minFontSizePt:number}
 export async function prepareWorkshopPrint(win:Window,cards:WorkshopCard[],quantities:Record<string,number>,format:WorkshopPrintFormat='auto',mode:WorkshopTextMode='compact'):Promise<WorkshopPrintResult>{
   const doc=win.document;doc.open();doc.write('<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Cartes Legion FR · recto verso</title><style>'+WORKSHOP_PRINT_CSS+'</style></head><body><div class="instructions">Préparation des cartes…</div></body></html>');doc.close();
   const originals:{card:WorkshopCard;orientation:WorkshopOrientation;front:string;qty:number}[]=[];let count=0;
-  for(const card of cards){const qty=quantities[card.id]??0;if(!qty)continue;if(!Number.isInteger(qty)||qty<1||qty>99)throw new Error('Quantité attendue : de 1 à 99.');if(!card.image)throw new Error('Recto manquant : '+card.name+'.');if(count+qty>600)throw new Error('Maximum 600 cartes physiques par lot.');const image=await loadPrintImage(new URL(card.image,window.location.href).href,win);originals.push({card,orientation:image.naturalWidth>image.naturalHeight?'landscape':'portrait',front:image.src,qty});count+=qty;}
+  for(const card of cards){const qty=quantities[card.id]??0;if(!qty)continue;if(!Number.isInteger(qty)||qty<1||qty>99)throw new Error('Quantité attendue : de 1 à 99.');if(!card.image)throw new Error('Recto manquant : '+card.name+'.');if(count+qty>WORKSHOP_MAX_PRINT_CARDS)throw new Error('Maximum '+WORKSHOP_MAX_PRINT_CARDS+' cartes physiques par lot.');const image=await loadPrintImage(new URL(card.image,window.location.href).href,win);originals.push({card,orientation:image.naturalWidth>image.naturalHeight?'landscape':'portrait',front:image.src,qty});count+=qty;}
   if(!count)throw new Error('Sélectionnez au moins une carte.');
   let chosen:ResolvedWorkshopFormat|undefined;let sizes=new Map<string,number>();
   const candidates:ResolvedWorkshopFormat[]=format==='auto'?(mode==='compact'?['standard','binder','collection']:['standard','binder','collection','large','full']):[format];

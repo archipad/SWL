@@ -6,7 +6,7 @@ const vite=await createServer({server:{middlewareMode:true},appType:'custom',opt
 try {
  const {SEED_KEYWORDS}=await vite.ssrLoadModule('/src/data/keywords.ts');
  const {workshopRulesForMode}=await vite.ssrLoadModule('/src/lib/cardWorkshopText.ts');
- const {planWorkshopPages,workshopPageLayout,keywordBackHtml,cropMarksHtml}=await vite.ssrLoadModule('/src/lib/cardWorkshopPrint.ts');
+ const {planWorkshopPages,workshopPageLayout,keywordBackHtml,cropMarksHtml,WORKSHOP_MAX_PRINT_CARDS}=await vite.ssrLoadModule('/src/lib/cardWorkshopPrint.ts');
  const official=JSON.parse(fs.readFileSync('src/data/workshopOfficialKeywords.json','utf8'));
  const compact=JSON.parse(fs.readFileSync('src/data/workshopCompactKeywords.json','utf8'));
  const coverage=JSON.parse(fs.readFileSync('src/data/workshopKeywordCoverage.json','utf8'));
@@ -64,5 +64,8 @@ try {
  assert.equal(marks.length,2*(cut.columns+1)+2*(cut.rows+1),'un trait de chaque côté pour chaque ligne de coupe');
  for(const [l,t,w,h]of marks){assert.ok(l>=3-.001&&t>=3-.001&&l+w<=cut.width-3+.001&&t+h<=cut.height-3+.001,'trait dans la zone imprimable');
   const inX=l+w>cut.x&&l<cut.x+cut.columns*cut.slotWidth,inY=t+h>cut.y&&t<cut.y+cut.rows*cut.slotHeight;assert.ok(!(inX&&inY),'aucun trait sur une carte');}
+ // La bibliothèque entière s'imprime en un seul lot, et chaque mot-clé d'un verso a sa définition condensée.
+ const library=buildWorkshopCatalog(SEED_CARD_TAGS,SEED_KEYWORDS);assert.ok(library.length<=WORKSHOP_MAX_PRINT_CARDS,'la bibliothèque entière dépasse la limite d’impression');
+ for(const card of library)for(const rule of card.rules)assert.ok(compact.keywords[rule.id.split(':')[0]],'Définition condensée absente : '+rule.id.split(':')[0]+' ('+card.name+')');
  console.log('Atelier compact : 156 définitions condensées + Tough, 197 entrées HQ définies, paramètres indépendants, grilles A4 9/8/4 et duplex partiel vérifiés.');
 } finally {await vite.close();}

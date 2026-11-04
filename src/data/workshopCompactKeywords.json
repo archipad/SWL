@@ -958,6 +958,104 @@
       "sourceHeading": "TOUGH",
       "sourceUrl": "https://www.atomicmassgames.com/transmission/scene-to-stats-han-chewie-notorious-scoundrels/",
       "sourceDefinitionSha256": "efa5afeb3b0ebef0533cd96e2d236e25cec4e5b5ba1c1c09c070f263ec0b14bb"
+    },
+    "poison-x": {
+      "text": "Soldat non-droïde blessé par cette réserve : gagne {X} Poison. Fin de son activation : 1 blessure par pion Poison, puis retirez-les.",
+      "sourcePage": null,
+      "sourceHeading": "POISON X",
+      "sourceDefinitionSha256": "2a2719a435b1350ddd74f773c73a413dea77fedd09402e3bd3c53fa83a5372c1",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "primitif": {
+      "text": "Après Impact X, contre une unité dotée d’Armure : tous les [CRITIQUE] de la réserve deviennent des [TOUCHE].",
+      "sourcePage": null,
+      "sourceHeading": "PRIMITIF",
+      "sourceDefinitionSha256": "37d848271a745afe4899da5a6e5e51af9f6569890139fa34664f21a19429a1d3",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "equipe-declaireurs-x": {
+      "text": "Mise en place : jusqu’à {X} soldats alliés de même faction ou affiliation, sans Éclaireur, gagnent Éclaireur de cette unité pour la partie.",
+      "sourcePage": null,
+      "sourceHeading": "ÉQUIPE D'ÉCLAIREURS X",
+      "sourceDefinitionSha256": "b193f6618d885c8f9171e6caf5effba29a0bae5b2d2e45c2db89ca3bfb6e3b02",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "anti-personnel-x": {
+      "text": "Contre une unité de soldats : améliorez {X} dés d’attaque de cette arme.",
+      "sourcePage": null,
+      "sourceHeading": "ANTI-PERSONNEL X",
+      "sourceDefinitionSha256": "c5a0941f2f0a6c8960a5c5920131d969eeff839770372874aa788b7f012d5992",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "tirer-les-ficelles": {
+      "text": "Action de carte : un autre soldat allié à portée 2 effectue une action de carte ou Se déplacer gratuite.",
+      "sourcePage": null,
+      "sourceHeading": "TIRER LES FICELLES",
+      "sourceDefinitionSha256": "f22f1c7254bdce3037bd7517d08e057e7534671941f52392817c8e73df5ae0a0",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "maitre-conteur": {
+      "text": "Action de carte : jusqu’à N alliés à portée 1 (N = numéro du round) gagnent 2 Adrénaline chacun.",
+      "sourcePage": null,
+      "sourceHeading": "MAÎTRE CONTEUR",
+      "sourceDefinitionSha256": "2ae07527be898ded04802335c1137d7677e626cc544ba52ea460cb5995c83348",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "influence-divine": {
+      "text": "Autres soldats alliés à portée 1 et en LdV de C-3PO : Gardien 2 : C-3PO, et annulent les [CRITIQUE] comme des [TOUCHE].",
+      "sourcePage": null,
+      "sourceHeading": "INFLUENCE DIVINE",
+      "sourceDefinitionSha256": "c09a9eebbf8e4103c226fda5b0f21e004e1aabf1ed81d0a474f2436dbb44b512",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "je-sens-le-profit": {
+      "text": "X de cette carte = points de la dernière carte Commandement jouée et révélée, minimum 1 (1 avant la première).",
+      "sourcePage": null,
+      "sourceHeading": "JE SENS LE PROFIT",
+      "sourceDefinitionSha256": "c2e518a37ea328a37d8310d905d39c419430369c79b5c60810fd1a4d5b4b57a5",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "matamore": {
+      "text": "Après une action Attaquer où elle dépense au moins 1 Viser : gagne 1 Esquive.",
+      "sourcePage": null,
+      "sourceHeading": "MATAMORE",
+      "sourceDefinitionSha256": "bddd3243fdf05bfe442ed0faebb5cf29960668e71ebe474687d5106322d2b269",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "pilotage-de-vehicule-x": {
+      "text": "Alliés de même faction ou affiliation à portée 3 : la traitent comme un Commandant de valeur {X} pour la panique.",
+      "sourcePage": null,
+      "sourceHeading": "PILOTAGE DE VÉHICULE X",
+      "sourceDefinitionSha256": "e50461af5cdee4b0b9daf9912bf8accc5ededfa57e708b67cffc1a3f99f1330f",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "assistance-x": {
+      "text": "Action de carte : jusqu’à {X} alliés à portée 1 gagnent 1 Adrénaline chacun.",
+      "sourcePage": null,
+      "sourceHeading": "ASSISTANCE X",
+      "sourceDefinitionSha256": "2c640aa3f39848a6fbd07854167d4557ed6bdb2c0323e91e848dfe23c361e4f3",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "nous-nous-battons-pour-notre-famille": {
+      "text": "Après une action Attaquer : un autre allié doté de ce mot-clé à portée 2 gagne 1 Esquive.",
+      "sourcePage": null,
+      "sourceHeading": "NOUS NOUS BATTONS POUR NOTRE FAMILLE",
+      "sourceDefinitionSha256": "ca31c55a96286571a496984e268027ebaaad518accf16b34ddb3c58ca44a72db",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "la-victoire-ou-la-mort": {
+      "text": "Blessée par une attaque ennemie : peut gagner 1 Suppression pour gagner 1 Viser ou 1 Esquive.",
+      "sourcePage": null,
+      "sourceHeading": "LA VICTOIRE OU LA MORT",
+      "sourceDefinitionSha256": "868a7aca3b2bd38f2cd36f53345787201e0200a85fdf036f5bc4b65da3dae883",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
+    },
+    "les-mandaloriens-sont-plus-forts-ensemble": {
+      "text": "À portée 2 d’un autre allié doté de ce mot-clé : après avoir dépensé Viser, gagne 1 Esquive ; après avoir dépensé Esquive, gagne 1 Viser.",
+      "sourcePage": null,
+      "sourceHeading": "LES MANDALORIENS SONT PLUS FORTS ENSEMBLE",
+      "sourceDefinitionSha256": "61565b5b3a3e15d101c25aedd3aa3f03cea9768c5e43b9625101cc1ab8004823",
+      "source": "Glossaire du dépôt (mot-clé absent du règlement de base AMG)"
     }
   }
 }
