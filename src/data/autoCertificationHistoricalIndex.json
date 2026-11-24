@@ -666,7 +666,7 @@
       "dataSha256": "25fcc01b85c271d49c3cad4f9d08a67f37c81eafd9d69c7284a8f051dd1de3c6",
       "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
       "rulesVersion": "AMG 2026-06-17",
-      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "verifiedAt": "2026-11-24T12:01:07.565Z",
       "tta": {
         "upgrade:84": [
           "Impact X"
@@ -1301,7 +1301,7 @@
       "dataSha256": "8601d0717df88edd70f223410dbf11b878b8ec82c2620ccc3fde20f534abffea",
       "definitionsSha256": "e0cf2b628955edb45ce4f322e98c4152cf99dfd2a29733fe20ccf539ad83dba0",
       "rulesVersion": "AMG 2026-06-17",
-      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "verifiedAt": "2026-11-24T12:01:07.565Z",
       "tta": {
         "upgrade:92": [
           "Critical X",
@@ -1476,7 +1476,7 @@
       "dataSha256": "cbd3c3d9d5a3dc8ad5f33db454fe22c0bb5842409f2724e591fe4286f0638b35",
       "definitionsSha256": "82302984b4165c92d0cf8454230d1923434ae6671fbe5f2db743bf3201580fa4",
       "rulesVersion": "AMG 2026-06-17",
-      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "verifiedAt": "2026-11-24T12:01:07.565Z",
       "tta": {
         "upgrade:39": [
           "Blast",
@@ -2337,7 +2337,7 @@
       "dataSha256": "6450b436139d26f33c72f940a56dab254c1ecfa1dd5188ff1c7691561bd73d69",
       "definitionsSha256": "bf8dccd0678dd1d5fdf2d86a8964dda4a6c8310007a991959622d5de66aff380",
       "rulesVersion": "AMG 2026-06-17",
-      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "verifiedAt": "2026-11-24T12:01:07.564Z",
       "tta": {
         "unit:32": [
           "Armor [X]",
