@@ -1682,14 +1682,57 @@
             "count": 2
           }
         ],
-        "range": "1-2"
+        "range": "1-2",
+        "keywordIds": []
       }
     ],
     "defenseColor": "blanc",
     "unitStats": {
       "woundsPerModel": 6,
       "courage": null,
-      "baseModels": 1
+      "baseModels": 1,
+      "suppressionImmune": false
+    },
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "unit",
+      "rank": "heavy",
+      "unitType": "Véhicule à répulseurs",
+      "speed": "2",
+      "speedFromHq": true,
+      "attackSurge": "hit",
+      "defenseSurge": "block",
+      "keywords": [
+        {
+          "keywordId": "armure-x",
+          "value": 2
+        },
+        {
+          "keywordId": "arsenal-x",
+          "value": 3
+        },
+        {
+          "keywordId": "couvert-x",
+          "value": 1
+        },
+        {
+          "keywordId": "speeder-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/x-34-landspeeder.jpg",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "visualHash": "5cc707082ddd5bbecd0bc23aa7f9c4ee3fd95780f9753f8150777796088bb36e"
     }
   },
   "wookiee warriors kashyyyk resistance": {
@@ -3597,10 +3640,63 @@
             "count": 2
           }
         ],
-        "range": "1-4"
+        "range": "1-4",
+        "keywordIds": [
+          "critique-x",
+          "impact-x",
+          "ion-x",
+          "fixe"
+        ],
+        "keywordValues": {
+          "critique-x": 1,
+          "impact-x": 1,
+          "ion-x": 1
+        }
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "critique-x",
+          "value": 1
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        },
+        {
+          "keywordId": "ion-x",
+          "value": 1
+        },
+        {
+          "keywordId": "fixe"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/m-45-ion-blaster.jpg",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "visualHash": "39600fb2d70458f42a5048b99a551de5918b56b6702f52f1786f9d0c4fcdc320"
+    }
   },
   "mpl 57 ion trooper": {
     "weapons": [
@@ -4833,10 +4929,54 @@
             "count": 1
           }
         ],
-        "range": "1-3"
+        "range": "1-3",
+        "keywordIds": [
+          "deflagration",
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 2
+        }
       }
     ],
-    "addedModels": 1
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "deflagration"
+        },
+        {
+          "keywordId": "impact-x",
+          "value": 2
+        },
+        {
+          "keywordId": "cycle"
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/mpl-57-barrage-trooper.jpg",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "visualHash": "7b55740e3c0c0562f16b2da3982e353ed352c1af8763c7b5cb84edd80223e61e"
+    }
   },
   "major marquand": {
     "weapons": [
@@ -6056,8 +6196,61 @@
     }
   },
   "dlt 19d trooper": {
-    "weapons": [],
-    "addedModels": 1
+    "weapons": [
+      {
+        "index": 0,
+        "name": "Fusil Blaster DLT-19D",
+        "dice": [
+          {
+            "color": "rouge",
+            "count": 2
+          },
+          {
+            "color": "blanc",
+            "count": 1
+          }
+        ],
+        "range": "1-4",
+        "keywordIds": [
+          "impact-x"
+        ],
+        "keywordValues": {
+          "impact-x": 1
+        }
+      }
+    ],
+    "addedModels": 1,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "none",
+      "defenseSurge": "none",
+      "keywords": [
+        {
+          "keywordId": "impact-x",
+          "value": 1
+        }
+      ],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "visualPath": "/SWL/cards/dlt-19d-trooper.jpg",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "visualHash": "0b2dc11d4fcc5d586cc02cc3193027f3aa22a90874bf91f118be71de590fcf93"
+    }
   },
   "dewback rider": {
     "weapons": [
@@ -7048,7 +7241,7 @@
       "keywordsReviewed": true,
       "noKeywordsConfirmed": true,
       "visualPath": "/SWL/cards/fragmentation-grenades.jpg",
-      "verifiedAt": "2026-11-24T11:45:17.442Z",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
       "visualHash": "3b404d6d6abfc39cb15ce94793f2a0f61ba63751fe02b02f4bc24194ff7eb3f3"
     }
   },

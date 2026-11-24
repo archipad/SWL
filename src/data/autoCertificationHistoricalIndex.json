@@ -658,6 +658,21 @@
       "verifiedAt": "2026-09-15T09:29:24.790Z",
       "tta": {}
     },
+    "dlt 19d trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat avec DLT-19D",
+      "frenchVisual": "cards/dlt-19d-trooper.jpg",
+      "frenchVisualSha256": "0b2dc11d4fcc5d586cc02cc3193027f3aa22a90874bf91f118be71de590fcf93",
+      "dataSha256": "25fcc01b85c271d49c3cad4f9d08a67f37c81eafd9d69c7284a8f051dd1de3c6",
+      "definitionsSha256": "9c30701962c6fa922d3abd20477832869ca0ad18fa02594c56cf122756eb2ba9",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "tta": {
+        "upgrade:84": [
+          "Impact X"
+        ]
+      }
+    },
     "dlt 19x sniper": {
       "cardType": "upgrade",
       "frenchName": "Sniper avec DLT-19x",
@@ -873,7 +888,7 @@
       "dataSha256": "9ba342f79672c06b451188a96d20006c0a78342d299d7c4c9b96633293e24fa0",
       "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
       "rulesVersion": "AMG 2026-06-17",
-      "verifiedAt": "2026-11-24T11:45:17.442Z",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
       "tta": {
         "upgrade:57": []
       }
@@ -1278,6 +1293,24 @@
         ]
       }
     },
+    "m 45 ion blaster": {
+      "cardType": "upgrade",
+      "frenchName": "Blaster Ionique M-45",
+      "frenchVisual": "cards/m-45-ion-blaster.jpg",
+      "frenchVisualSha256": "39600fb2d70458f42a5048b99a551de5918b56b6702f52f1786f9d0c4fcdc320",
+      "dataSha256": "8601d0717df88edd70f223410dbf11b878b8ec82c2620ccc3fde20f534abffea",
+      "definitionsSha256": "e0cf2b628955edb45ce4f322e98c4152cf99dfd2a29733fe20ccf539ad83dba0",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "tta": {
+        "upgrade:92": [
+          "Critical X",
+          "Fixed: Front/Sides/Rear",
+          "Impact X",
+          "Ion X"
+        ]
+      }
+    },
     "major marquand": {
       "cardType": "unit",
       "frenchName": "Major Marquand",
@@ -1432,6 +1465,22 @@
           "Ruthless",
           "Sharpshooter",
           "Tactical X"
+        ]
+      }
+    },
+    "mpl 57 barrage trooper": {
+      "cardType": "upgrade",
+      "frenchName": "Soldat avec MPL-57 de Barrage",
+      "frenchVisual": "cards/mpl-57-barrage-trooper.jpg",
+      "frenchVisualSha256": "7b55740e3c0c0562f16b2da3982e353ed352c1af8763c7b5cb84edd80223e61e",
+      "dataSha256": "cbd3c3d9d5a3dc8ad5f33db454fe22c0bb5842409f2724e591fe4286f0638b35",
+      "definitionsSha256": "82302984b4165c92d0cf8454230d1923434ae6671fbe5f2db743bf3201580fa4",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "tta": {
+        "upgrade:39": [
+          "Blast",
+          "Impact X"
         ]
       }
     },
@@ -2277,6 +2326,24 @@
           "Duelist",
           "Indomitable",
           "Scale"
+        ]
+      }
+    },
+    "x 34 landspeeder": {
+      "cardType": "unit",
+      "frenchName": "Landspeeder X-34",
+      "frenchVisual": "cards/x-34-landspeeder.jpg",
+      "frenchVisualSha256": "5cc707082ddd5bbecd0bc23aa7f9c4ee3fd95780f9753f8150777796088bb36e",
+      "dataSha256": "6450b436139d26f33c72f940a56dab254c1ecfa1dd5188ff1c7691561bd73d69",
+      "definitionsSha256": "bf8dccd0678dd1d5fdf2d86a8964dda4a6c8310007a991959622d5de66aff380",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-11-24T11:52:58.722Z",
+      "tta": {
+        "unit:32": [
+          "Armor [X]",
+          "Arsenal",
+          "Cover",
+          "Speeder"
         ]
       }
     },
