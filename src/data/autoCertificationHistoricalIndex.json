@@ -2329,6 +2329,19 @@
         ]
       }
     },
+    "x 34 gunner": {
+      "cardType": "upgrade",
+      "frenchName": "Artilleur avec Fusil A300",
+      "frenchVisual": "cards/x-34-gunner.jpg",
+      "frenchVisualSha256": "8f024967b9416ab70a3e4d4c18dda4d9eea0294a1a015548943f65ec41ae0ba7",
+      "dataSha256": "2414d5faad9729c0df334a0d7f3de62481696b1c738ad4172267289affc94616",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-11-24T14:00:00.000Z",
+      "tta": {
+        "upgrade:80": []
+      }
+    },
     "x 34 landspeeder": {
       "cardType": "unit",
       "frenchName": "Landspeeder X-34",
