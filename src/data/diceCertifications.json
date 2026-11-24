@@ -7019,10 +7019,38 @@
             "count": 1
           }
         ],
-        "range": "1"
+        "range": "1",
+        "keywordIds": []
       }
     ],
-    "addedModels": 0
+    "addedModels": 0,
+    "addedModelWounds": 1,
+    "fullCardCertification": {
+      "schemaVersion": 2,
+      "cardType": "upgrade",
+      "rank": "",
+      "unitType": "",
+      "speed": "",
+      "speedFromHq": false,
+      "attackSurge": "crit",
+      "defenseSurge": "none",
+      "keywords": [],
+      "checks": [
+        "identity",
+        "visual",
+        "stats",
+        "weapons",
+        "conversions",
+        "keywords"
+      ],
+      "rulesVersion": "AMG 2026-06-17",
+      "cardUse": "passive",
+      "keywordsReviewed": true,
+      "noKeywordsConfirmed": true,
+      "visualPath": "/SWL/cards/fragmentation-grenades.jpg",
+      "verifiedAt": "2026-11-24T11:45:17.442Z",
+      "visualHash": "3b404d6d6abfc39cb15ce94793f2a0f61ba63751fe02b02f4bc24194ff7eb3f3"
+    }
   },
   "impact grenades": {
     "weapons": [

@@ -1,7 +1,7 @@
 {
   "_meta": {
     "description": "Certifications historiques valides au moment de l’indexation : empreintes SHA-256 des données moteur, du visuel français et des définitions de mots-clés, et identités Tabletop Admiral rattachées sans ambiguïté. Toute différence rend la certification obsolète dans la Certification automatique β.",
-    "indexedOn": "2026-11-03",
+    "indexedOn": "2026-11-24",
     "uncertainIdentities": [
       "a a5 speeder truck (unit:772, unit:4919)",
       "agent kallus (unit:81, unit:29931)",
@@ -865,6 +865,19 @@
         "upgrade:8": []
       }
     },
+    "fragmentation grenades": {
+      "cardType": "upgrade",
+      "frenchName": "Grenades à Fragmentation",
+      "frenchVisual": "cards/fragmentation-grenades.jpg",
+      "frenchVisualSha256": "3b404d6d6abfc39cb15ce94793f2a0f61ba63751fe02b02f4bc24194ff7eb3f3",
+      "dataSha256": "9ba342f79672c06b451188a96d20006c0a78342d299d7c4c9b96633293e24fa0",
+      "definitionsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rulesVersion": "AMG 2026-06-17",
+      "verifiedAt": "2026-11-24T11:45:17.442Z",
+      "tta": {
+        "upgrade:57": []
+      }
+    },
     "galaar 90 sniper rifle armament": {
       "cardType": "upgrade",
       "frenchName": "Fusil Sniper GALAAR-90",
@@ -891,16 +904,7 @@
       "definitionsSha256": "ea2215aeb14bad8aafa5bbc9e9baba0b071703072404f2af73ec724e0b3d2a66",
       "rulesVersion": "AMG 2026-06-17",
       "verifiedAt": "2026-09-30T18:39:01.888Z",
-      "tta": {
-        "unit:4891": [
-          "Allies of Convenience",
-          "Compel",
-          "Impervious",
-          "Jump",
-          "Pierce X",
-          "Sharpshooter"
-        ]
-      }
+      "tta": {}
     },
     "general veers": {
       "cardType": "unit",
@@ -1046,12 +1050,16 @@
       "verifiedAt": "2026-10-23T22:31:04.987Z",
       "tta": {
         "unit:6178": [
-          "Armor [X]",
+          "Armor",
+          "Bounty",
+          "Equip",
           "Gunslinger",
+          "Impact X",
           "Impervious",
+          "Mercenary: Faction",
           "Pierce X",
-          "Programmed",
-          "Sharpshooter"
+          "Sharpshooter",
+          "Steady"
         ]
       }
     },
@@ -1066,13 +1074,14 @@
       "verifiedAt": "2026-10-23T22:31:04.987Z",
       "tta": {
         "unit:6177": [
-          "Armor [X]",
-          "Arsenal",
+          "Armor",
           "Bounty",
+          "Equip",
           "Impervious",
+          "Mercenary: Faction",
           "Pierce X",
-          "Sharpshooter",
-          "Versatile"
+          "Relentless",
+          "Sharpshooter"
         ]
       }
     },
